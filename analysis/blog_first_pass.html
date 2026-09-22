@@ -109,9 +109,12 @@
   #browse { display:none; margin-top:32px; }
 
   /* Lightbox */
-  .lb { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; z-index:10; overflow:auto; cursor:zoom-out; }
-  .lb.open { display:block; }
-  .lb img { display:block; width:min(1100px,94vw); margin:40px auto; }
+  .lb { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; z-index:10; overflow:auto;
+    cursor:zoom-out; padding:40px 0; }
+  .lb.open { display:flex; }
+  /* margin:auto rather than align-items:center: it centers the shot the same way, but an
+     image taller than the window still scrolls from its top instead of being clipped. */
+  .lb img { display:block; width:min(1100px,94vw); margin:auto; }
   .lb .cap { position:fixed; top:12px; left:16px; color:#fff; font:14px -apple-system,sans-serif; }
 
   /* Charts */
