@@ -502,7 +502,6 @@ const $ = s => document.querySelector(s);
 const labName = id => LABS.find(l => l[0] === id);
 const parsePal = s => s.split(" ").map(t => ["#" + t.slice(0,6), +t.slice(6)]);
 const heroSrc = (m,p) => `../sites/${m}/${p}_hero.png`;
-const fullSrc = (m,p) => `../sites/${m}/${p}_full.png`;
 const briefName = p => BRIEFS.find(b => b[0] === p)[1];
 
 function fallbackCopy(text) {
@@ -569,11 +568,11 @@ function shotEl(m, p) {
   return box;
 }
 
-// Lightbox: scroll the full page
+// Lightbox: the hero shot at full size
 function openLB(m, p, caption) {
   const img = $("#lbImg");
-  img.onerror = () => { img.onerror = null; img.src = heroSrc(m,p); };
-  img.src = fullSrc(m,p);
+  img.onerror = () => { img.onerror = null; img.src = `thumbs/${m}__${p}_hero.jpg`; };
+  img.src = heroSrc(m,p);
   $("#lbCap").textContent = `${caption}  (click anywhere or press Esc to close)`;
   $("#lb").classList.add("open"); $("#lb").scrollTop = 0;
 }
@@ -616,7 +615,7 @@ function renderVote() {
     c.appendChild(shotEl(m, p));
     const row = document.createElement("div");
     row.className = "meta";
-    row.innerHTML = `<span>${letter}</span><span class="zoom">see full page</span>`;
+    row.innerHTML = `<span>${letter}</span><span class="zoom">see larger</span>`;
     c.appendChild(row);
     c.onclick = e => {
       if (e.target.classList.contains("zoom")) { e.stopPropagation(); return openLB(m, p, `Option ${letter} · ${name}`); }
@@ -832,7 +831,7 @@ renderMatrix();
     g.addEventListener("mouseenter", e => show(g, e));
     g.addEventListener("mousemove", place);
     g.addEventListener("mouseleave", hide);
-    // Click (or tap on phones) opens the full page
+    // Click (or tap on phones) opens the hero shot
     g.addEventListener("click", () => {
       if (mSel !== "all" && g.dataset.p !== mSel) return;
       hide();

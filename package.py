@@ -7,7 +7,7 @@ Run from the project folder, inside the .venv (Pillow is already installed from 
 
 Output:
   dist/index.html     the page, with image paths rewritten
-  dist/img/           compressed JPGs: hero shots and full pages
+  dist/img/           compressed JPGs: one hero shot per site
   dist.zip            the same folder, zipped, ready to send
 To publish, upload the dist/ folder as-is (Netlify Drop, GitHub Pages, Vercel, or your portfolio host).
 """
@@ -19,7 +19,7 @@ Image.MAX_IMAGE_PIXELS = None  # full-page screenshots can be very tall
 SRC_HTML = sys.argv[1] if len(sys.argv) > 1 else "analysis/index.html"
 OUT = "dist"
 PROMPTS = {"saas", "candy", "techno", "law", "tea", "portfolio"}
-SIZES = {"hero": (1440, 80), "full": (1200, 72)}  # max width, JPG quality
+SIZES = {"hero": (1440, 80)}  # max width, JPG quality
 
 if not os.path.exists(SRC_HTML):
     sys.exit(f"Can't find {SRC_HTML}. Pass the path to your blog HTML file.")
@@ -29,7 +29,7 @@ os.makedirs(f"{OUT}/img")
 
 # 1. Compress every hero and full-page screenshot into dist/img/
 count, total_in, total_out = 0, 0, 0
-for png in sorted(glob.glob("sites/*/*_hero.png") + glob.glob("sites/*/*_full.png")):
+for png in sorted(glob.glob("sites/*/*_hero.png")):
     model = os.path.basename(os.path.dirname(png))
     prompt, kind = os.path.basename(png)[:-4].rsplit("_", 1)   # "techno_hero" -> techno, hero
     if prompt not in PROMPTS:
@@ -56,8 +56,7 @@ for name in sorted(set(re.findall(r'data-file="([^"]+)"', html))):
     else:
         print(f"WARNING: the page wants {name}, which isn't next to the HTML.")
 
-swaps = {"../sites/${m}/${p}_hero.png": "img/${m}__${p}_hero.jpg",
-         "../sites/${m}/${p}_full.png": "img/${m}__${p}_full.jpg"}
+swaps = {"../sites/${m}/${p}_hero.png": "img/${m}__${p}_hero.jpg"}
 for old, new in swaps.items():
     if old not in html:
         print(f"WARNING: didn't find {old} in the HTML; images may not load. Tell Claude.")
@@ -71,8 +70,8 @@ shutil.make_archive(OUT, "zip", OUT)
 mb = lambda b: f"{b / 1e6:.1f} MB"
 print(f"{count} images: {mb(total_in)} -> {mb(total_out)}")
 print(f"Wrote {OUT}/ and {OUT}.zip ({mb(os.path.getsize(OUT + '.zip'))})")
-if count != 96:
-    print(f"Note: expected 96 images (48 sites x hero + full), found {count}.")
+if count != 48:
+    print(f"Note: expected 48 hero images (8 models x 6 briefs), found {count}.")
 if "TODO" in html:
     print("Reminder: the page still contains a TODO placeholder.")
 print(f"Preview it: open {OUT}/index.html in your browser.")
