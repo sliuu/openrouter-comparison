@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Summer Days — Healthy-ish Candy, Real Sugar</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34' fill='%23FFC53D'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23FF5D73'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream: '#FFF8EE',
+        ink: '#2D1B2E',
+        coral: '#FF5D73',
+        peach: '#FFB085',
+        sun: '#FFC53D',
+        mint: '#5FD4B1',
+        berry: '#A05CFF',
+        sky: '#5BC8E8',
+      },
+      fontFamily: {
+        display: ['Fraunces', 'serif'],
+        body: ['Outfit', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: auto; }
+  body { background:#FFF8EE; color:#2D1B2E; font-family:'Outfit',sans-serif; overflow-x:hidden; }
+  ::selection { background:#FF5D73; color:#fff; }
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:#FFF8EE; }
+  ::-webkit-scrollbar-thumb { background:#FFB085; border-radius:99px; border:2px solid #FFF8EE; }
+  ::-webkit-scrollbar-thumb:hover { background:#FF5D73; }
+
+  @media (hover:hover) {
+    body, a, button, input, [data-hover] { cursor:none !important; }
+  }
+  #cursorDot, #cursorRing { position:fixed; top:0; left:0; pointer-events:none; z-index:300; border-radius:50%; }
+  #cursorDot { width:8px; height:8px; background:#FF5D73; transform:translate(-50%,-50%); }
+  #cursorRing { width:38px; height:38px; border:1.5px solid #2D1B2E; transform:translate(-50%,-50%); transition:width .3s, height .3s, background .3s, border-color .3s; }
+  #cursorRing.grow { width:64px; height:64px; background:rgba(255,93,115,.12); border-color:#FF5D73; }
+  @media (hover:none) { #cursorDot, #cursorRing { display:none; } }
+
+  .grain { position:fixed; inset:0; z-index:90; pointer-events:none; opacity:.05; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E"); }
+
+  @keyframes marquee { to { transform:translateX(-50%); } }
+  .marquee-track { display:flex; width:max-content; animation:marquee 26s linear infinite; }
+  .marquee-track:hover { animation-play-state:paused; }
+
+  @keyframes spinSlow { to { transform:rotate(360deg); } }
+  .animate-spin-slow { animation:spinSlow 16s linear infinite; }
+
+  .nav-link { position:relative; }
+  .nav-link::after { content:''; position:absolute; left:0; bottom:-4px; width:100%; height:2px; background:#FF5D73; transform:scaleX(0); transform-origin:right; transition:transform .35s cubic-bezier(.65,0,.35,1); }
+  .nav-link:hover::after { transform:scaleX(1); transform-origin:left; }
+
+  #nav { transition:background .4s, box-shadow .4s, backdrop-filter .4s; }
+  #nav.scrolled { background:rgba(255,248,238,.85); backdrop-filter:blur(14px); box-shadow:0 1px 0 rgba(45,27,46,.08); }
+
+  .btn-primary { position:relative; overflow:hidden; z-index:1; }
+  .btn-primary::before { content:''; position:absolute; inset:0; background:#FF5D73; transform:translateY(101%); transition:transform .4s cubic-bezier(.65,0,.35,1); z-index:-1; border-radius:inherit; }
+  .btn-primary:hover::before { transform:translateY(0); }
+  .btn-primary:hover .btn-arrow { transform:translateX(5px); }
+  .btn-arrow { transition:transform .35s; }
+
+  .product-card { transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s; }
+  .product-card:hover { transform:translateY(-8px); box-shadow:0 24px 48px -16px rgba(45,27,46,.18); }
+  .product-card .candy-svg { transition:transform .6s cubic-bezier(.34,1.56,.64,1); }
+  .product-card:hover .candy-svg { transform:rotate(-8deg) scale(1.12); }
+  .card-art { position:relative; overflow:hidden; }
+  .card-art::after { content:''; position:absolute; top:0; left:-80%; width:50%; height:100%; background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent); transform:skewX(-20deg); transition:left .7s ease; }
+  .product-card:hover .card-art::after { left:130%; }
+
+  .filter-pill { transition:all .3s; }
+  .filter-pill.active { background:#2D1B2E; color:#FFF8EE; border-color:#2D1B2E; }
+
+  .word { color:#EAD9C4; transition:none; }
+
+  .quiz-option { transition:all .3s; }
+  .quiz-option:hover { background:#2D1B2E; color:#FFF8EE; transform:translateX(6px); }
+  .quiz-option.picked { background:#FF5D73; color:#fff; border-color:#FF5D73; }
+
+  .value-card { transition:transform .4s; }
+
+  #cartDrawer { transition:transform .55s cubic-bezier(.7,0,.25,1); }
+  #cartOverlay { transition:opacity .45s; }
+
+  .toast { box-shadow:0 12px 32px -8px rgba(45,27,46,.3); }
+
+  .dotted-bg { background-image:radial-gradient(rgba(45,27,46,.09) 1.5px, transparent 1.5px); background-size:26px 26px; }
+
+  input:focus { outline:none; }
+
+  .footer-big { -webkit-text-stroke:1.5px rgba(255,248,238,.35); color:transparent; transition:color .6s; }
+  .footer-big:hover { color:rgba(255,197,61,.9); -webkit-text-stroke:1.5px transparent; }
+
+  .no-scrollbar::-webkit-scrollbar { display:none; }
+  .no-scrollbar { scrollbar-width:none; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- GRAIN -->
+<div class="grain"></div>
+
+<!-- CURSOR -->
+<div id="cursorDot"></div>
+<div id="cursorRing"></div>
+
+<!-- PRELOADER -->
+<div id="preloader" class="fixed inset-0 z-[400] bg-cream flex flex-col items-center justify-center gap-6">
+  <svg id="loaderSun" viewBox="0 0 100 100" class="w-20 h-20">
+    <g stroke="#FFC53D" stroke-width="5" stroke-linecap="round">
+      <line x1="50" y1="4" x2="50" y2="18"/><line x1="50" y1="82" x2="50" y2="96"/>
+      <line x1="4" y1="50" x2="18" y2="50"/><line x1="82" y1="50" x2="96" y2="50"/>
+      <line x1="17" y1="17" x2="27" y2="27"/><line x1="73" y1="73" x2="83" y2="83"/>
+      <line x1="17" y1="83" x2="27" y2="73"/><line x1="73" y1="27" x2="83" y2="17"/>
+    </g>
+    <circle cx="50" cy="50" r="20" fill="#FF5D73"/>
+  </svg>
+  <p class="font-display italic text-2xl">unwrapping summer…</p>
+</div>
+
+<!-- NAV -->
+<header id="nav" class="fixed top-0 left-0 w-full z-[100] px-5 md:px-10 py-4 flex items-center justify-between">
+  <a href="#hero" data-scroll class="flex items-center gap-2.5" data-hover>
+    <svg viewBox="0 0 100 100" class="w-9 h-9">
+      <g stroke="#FFC53D" stroke-width="7" stroke-linecap="round">
+        <line x1="50" y1="2" x2="50" y2="16"/><line x1="50" y1="84" x2="50" y2="98"/>
+        <line x1="2" y1="50" x2="16" y2="50"/><line x1="84" y1="50" x2="98" y2="50"/>
+        <line x1="16" y1="16" x2="26" y2="26"/><line x1="74" y1="74" x2="84" y2="84"/>
+        <line x1="16" y1="84" x2="26" y2="74"/><line x1="74" y1="26" x2="84" y2="16"/>
+      </g>
+      <circle cx="50" cy="50" r="20" fill="#FF5D73"/>
+    </svg>
+    <span class="font-display font-semibold text-lg leading-none">Sweet Summer <span class="italic text-coral">Days</span></span>
+  </a>
+  <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+    <a href="#shop" data-scroll class="nav-link" data-hover>Shop</a>
+    <a href="#story" data-scroll class="nav-link" data-hover>Our Story</a>
+    <a href="#quiz" data-scroll class="nav-link" data-hover>Flavor Quiz</a>
+    <a href="#reviews" data-scroll class="nav-link" data-hover>Sweet Talk</a>
+  </nav>
+  <div class="flex items-center gap-3">
+    <button id="cartBtn" data-hover class="relative flex items-center gap-2 bg-ink text-cream rounded-full pl-4 pr-5 py-2.5 text-sm font-semibold hover:bg-coral transition-colors">
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.5 13.5a1 1 0 0 1-1 1.1H5.5a1 1 0 0 1-1-1.1L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="hidden sm:inline">Candy Bag</span>
+      <span id="cartCount" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-sun text-ink text-[11px] font-bold hidden items-center justify-center">0</span>
+    </button>
+    <button id="menuBtn" data-hover class="md:hidden w-10 h-10 rounded-full border border-ink/20 flex flex-col items-center justify-center gap-1.5">
+      <span class="w-4 h-0.5 bg-ink"></span><span class="w-4 h-0.5 bg-ink"></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="fixed inset-0 z-[150] bg-ink text-cream flex-col items-center justify-center gap-8 hidden">
+  <button id="menuClose" class="absolute top-6 right-6 w-11 h-11 rounded-full border border-cream/30 flex items-center justify-center text-xl">×</button>
+  <a href="#shop" data-scroll class="mm-link font-display italic text-4xl">Shop</a>
+  <a href="#story" data-scroll class="mm-link font-display italic text-4xl">Our Story</a>
+  <a href="#quiz" data-scroll class="mm-link font-display italic text-4xl">Flavor Quiz</a>
+  <a href="#reviews" data-scroll class="mm-link font-display italic text-4xl">Sweet Talk</a>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden dotted-bg pt-24 pb-16">
+  <div class="absolute -top-40 -right-40 w-[36rem] h-[36rem] rounded-full bg-sun/30 blur-3xl"></div>
+  <div class="absolute -bottom-52 -left-40 w-[34rem] h-[34rem] rounded-full bg-coral/20 blur-3xl"></div>
+  <div class="absolute top-1/3 left-1/4 w-72 h-72 rounded-full bg-mint/20 blur-3xl"></div>
+
+  <!-- floating candies -->
+  <div class="float-candy absolute top-[16%] left-[6%] w-20 md:w-28" data-depth="1.4"><div class="float-inner" id="fc1"></div></div>
+  <div class="float-candy absolute top-[58%] left-[12%] w-16 md:w-24" data-depth="0.8"><div class="float-inner" id="fc2"></div></div>
+  <div class="float-candy absolute top-[14%] right-[8%] w-16 md:w-24" data-depth="1.1"><div class="float-inner" id="fc3"></div></div>
+  <div class="float-candy absolute bottom-[16%] right-[10%] w-20 md:w-28" data-depth="1.6"><div class="float-inner" id="fc4"></div></div>
+  <div class="float-candy absolute top-[40%] right-[22%] w-12 md:w-16 hidden md:block" data-depth="0.6"><div class="float-inner" id="fc5"></div></div>
+  <div class="float-candy absolute bottom-[24%] left-[26%] w-12 md:w-16 hidden md:block" data-depth="0.9"><div class="float-inner" id="fc6"></div></div>
+
+  <div class="relative z-10 text-center px-5 max-w-5xl mx-auto">
+    <p class="hero-el text-xs md:text-sm font-semibold tracking-[0.3em] uppercase text-coral mb-6">Small-batch candy boutique · est. summertime</p>
+    <h1 class="leading-[0.95]">
+      <span class="block overflow-hidden"><span class="hero-line block font-display italic font-medium text-[clamp(3rem,9vw,7.5rem)]">Sweet</span></span>
+      <span class="block overflow-hidden"><span class="hero-line block font-body font-extrabold tracking-tight text-[clamp(3.4rem,11vw,9rem)] uppercase">Summer</span></span>
+      <span class="block overflow-hidden"><span class="hero-line block font-display italic font-medium text-[clamp(3rem,9vw,7.5rem)] text-coral">Days</span></span>
+    </h1>
+    <p class="hero-el mt-7 text-base md:text-lg text-ink/70 max-w-xl mx-auto">Healthy-ish candy made with real sugar, real fruit, and a whole lot of sunshine. For kids, grown-ups, and every sweet tooth in between.</p>
+    <div class="hero-el mt-9 flex flex-wrap items-center justify-center gap-4">
+      <a href="#shop" data-scroll data-hover class="btn-primary bg-ink text-cream rounded-full px-8 py-4 font-semibold text-sm tracking-wide flex items-center gap-2">
+        Shop the goods
+        <svg class="btn-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#quiz" data-scroll data-hover class="rounded-full px-8 py-4 font-semibold text-sm tracking-wide border-2 border-ink/15 hover:border-coral hover:text-coral transition-colors">Find your flavor</a>
+    </div>
+  </div>
+
+  <!-- rotating badge -->
+  <div class="hero-el absolute bottom-8 right-8 md:bottom-12 md:right-14 w-24 h-24 md:w-28 md:h-28 hidden sm:block">
+    <svg viewBox="0 0 100 100" class="w-full h-full animate-spin-slow">
+      <defs><path id="circPath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+      <text class="fill-ink" style="font-size:9px; letter-spacing:2.5px; font-weight:600;"><textPath href="#circPath">REAL SUGAR · REAL FRUIT · REAL JOY ·</textPath></text>
+    </svg>
+    <svg viewBox="0 0 100 100" class="absolute inset-0 m-auto w-9 h-9"><circle cx="50" cy="50" r="30" fill="#FFC53D"/><circle cx="50" cy="50" r="16" fill="#FF5D73"/></svg>
+  </div>
+
+  <div class="hero-el absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ink/40">
+    <span class="text-[10px] tracking-[0.3em] uppercase font-semibold">Scroll</span>
+    <div class="w-px h-8 bg-ink/25 overflow-hidden"><div id="scrollDot" class="w-full h-3 bg-coral"></div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="bg-ink text-cream py-4 overflow-hidden -rotate-1 scale-[1.02] relative z-20">
+  <div class="marquee-track gap-0">
+    <div class="flex items-center gap-8 pr-8 shrink-0" id="marqueeA"></div>
+    <div class="flex items-center gap-8 pr-8 shrink-0" id="marqueeB"></div>
+  </div>
+</div>
+
+<!-- ============ STORY / MANIFESTO ============ -->
+<section id="story" class="relative py-28 md:py-40 px-5">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="reveal text-xs font-semibold tracking-[0.3em] uppercase text-coral mb-8">Our sweet philosophy</p>
+    <p id="manifesto" class="font-display text-[clamp(1.6rem,4vw,3rem)] leading-snug font-medium">We make candy the way summer tastes — bright, honest, and a little bit wild. Real cane sugar in sensible amounts, fruit juice you can pronounce, and colors that come from gardens, not labs.</p>
+  </div>
+  <div class="max-w-5xl mx-auto mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="reveal text-center p-6 rounded-3xl bg-white/60 border border-ink/5">
+      <p class="font-display font-semibold text-4xl md:text-5xl text-coral"><span data-count="0">0</span></p>
+      <p class="mt-2 text-sm text-ink/60 font-medium">artificial dyes, ever</p>
+    </div>
+    <div class="reveal text-center p-6 rounded-3xl bg-white/60 border border-ink/5">
+      <p class="font-display font-semibold text-4xl md:text-5xl text-sun"><span data-count="12">0</span>g</p>
+      <p class="mt-2 text-sm text-ink/60 font-medium">max sugar per serving</p>
+    </div>
+    <div class="reveal text-center p-6 rounded-3xl bg-white/60 border border-ink/5">
+      <p class="font-display font-semibold text-4xl md:text-5xl text-mint"><span data-count="100">0</span>%</p>
+      <p class="mt-2 text-sm text-ink/60 font-medium">real fruit flavor</p>
+    </div>
+    <div class="reveal text-center p-6 rounded-3xl bg-white/60 border border-ink/5">
+      <p class="font-display font-semibold text-4xl md:text-5xl text-berry"><span data-count="48">0</span>hr</p>
+      <p class="mt-2 text-sm text-ink/60 font-medium">batch-to-door freshness</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOP ============ -->
+<section id="shop" class="relative py-24 md:py-32 px-5 md:px-10 bg-white/50">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <div>
+        <p class="reveal text-xs font-semibold tracking-[0.3em] uppercase text-coral mb-4">Shop the lineup</p>
+        <h2 class="reveal font-display font-semibold text-[clamp(2.4rem,5.5vw,4.5rem)] leading-none">The Candy <span class="italic text-coral">Counter</span></h2>
+      </div>
+      <div class="reveal flex flex-wrap gap-2" id="filters"></div>
+    </div>
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="relative py-24 md:py-36 px-5 overflow-hidden">
+  <div class="absolute top-20 right-0 w-96 h-96 rounded-full bg-berry/10 blur-3xl"></div>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+    <div>
+      <p class="reveal text-xs font-semibold tracking-[0.3em] uppercase text-coral mb-4">The flavor finder</p>
+      <h2 class="reveal font-display font-semibold text-[clamp(2.4rem,5vw,4.2rem)] leading-[1.02]">Three questions.<br><span class="italic text-berry">One perfect candy.</span></h2>
+      <p class="reveal mt-6 text-ink/65 max-w-md">Answer a few very important questions about your snacking personality, and we'll match you with your soulmate in candy form.</p>
+      <div class="reveal mt-8 flex items-center gap-3 text-sm text-ink/50 font-medium">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 text-sun" fill="currentColor"><path d="M12 2l2.4 6.2 6.6.4-5.1 4.2 1.7 6.4L12 15.4 6.4 19.2l1.7-6.4L3 8.6l6.6-.4L12 2z"/></svg>
+        Over 12,000 sweet teeth matched
+      </div>
+    </div>
+    <div class="reveal">
+      <div id="quizCard" class="bg-white rounded-[2rem] border border-ink/8 shadow-[0_30px_60px_-20px_rgba(45,27,46,0.15)] p-7 md:p-9 min-h-[26rem] flex flex-col"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES (horizontal scroll) ============ -->
+<section id="values" class="relative bg-ink text-cream overflow-hidden">
+  <div class="md:h-screen flex flex-col justify-center py-20 md:py-0">
+    <div class="px-5 md:px-10 mb-10 md:mb-14 max-w-7xl mx-auto w-full">
+      <p class="text-xs font-semibold tracking-[0.3em] uppercase text-sun mb-4">The sweet fine print</p>
+      <h2 class="font-display font-semibold text-[clamp(2.2rem,4.5vw,3.8rem)] leading-none">What <span class="italic text-coral">"healthy-ish"</span> means here</h2>
+    </div>
+    <div id="valuesWrap" class="overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory md:snap-none">
+      <div id="valuesTrack" class="flex gap-5 md:gap-8 px-5 md:px-10 w-max items-stretch">
+
+        <div class="value-card snap-center shrink-0 w-[80vw] sm:w-[24rem] md:w-[28rem] rounded-[2rem] bg-cream text-ink p-8 md:p-10 flex flex-col justify-between min-h-[22rem]">
+          <div class="flex items-start justify-between">
+            <span class="font-display italic text-6xl text-coral/30">01</span>
+            <svg viewBox="0 0 48 48" class="w-12 h-12"><rect x="10" y="18" width="13" height="13" rx="3" fill="#FFC53D"/><rect x="25" y="18" width="13" height="13" rx="3" fill="#FFB085"/><rect x="17" y="7" width="13" height="13" rx="3" fill="#FF5D73"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-2xl md:text-3xl mb-3">Real sugar, honest amounts</h3>
+            <p class="text-ink/60 leading-relaxed">We sweeten with real cane sugar — never corn syrup, never weird substitutes — and keep every serving at 12 grams or less. Sweet, not sneaky.</p>
+          </div>
+        </div>
+
+        <div class="value-card snap-center shrink-0 w-[80vw] sm:w-[24rem] md:w-[28rem] rounded-[2rem] bg-coral text-cream p-8 md:p-10 flex flex-col justify-between min-h-[22rem]">
+          <div class="flex items-start justify-between">
+            <span class="font-display italic text-6xl text-cream/30">02</span>
+            <svg viewBox="0 0 48 48" class="w-12 h-12"><circle cx="24" cy="24" r="16" fill="#FFF8EE"/><g stroke="#FF5D73" stroke-width="2.5"><line x1="24" y1="24" x2="24" y2="10"/><line x1="24" y1="24" x2="36" y2="18"/><line x1="24" y1="24" x2="36" y2="30"/><line x1="24" y1="24" x2="24" y2="38"/><line x1="24" y1="24" x2="12" y2="30"/><line x1="24" y1="24" x2="12" y2="18"/></g></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-2xl md:text-3xl mb-3">Fruit-first flavor</h3>
+            <p class="text-cream/80 leading-relaxed">Our gummies start as actual juice. Our chews begin as real purée. If it tastes like a strawberry, a strawberry was involved. Revolutionary, we know.</p>
+          </div>
+        </div>
+
+        <div class="value-card snap-center shrink-0 w-[80vw] sm:w-[24rem] md:w-[28rem] rounded-[2rem] bg-sun text-ink p-8 md:p-10 flex flex-col justify-between min-h-[22rem]">
+          <div class="flex items-start justify-between">
+            <span class="font-display italic text-6xl text-ink/20">03</span>
+            <svg viewBox="0 0 48 48" class="w-12 h-12"><path d="M24 6C24 6 10 20 10 30a14 14 0 0 0 28 0C38 20 24 6 24 6z" fill="#2D1B2E"/><path d="M24 14v22" stroke="#FFC53D" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-2xl md:text-3xl mb-3">Nothing artificial</h3>
+            <p class="text-ink/65 leading-relaxed">Colors from beets, turmeric, and spirulina. Flavors from fruit. No dyes with numbers, no "natural flavor" mysteries, no lab-coat aftertaste.</p>
+          </div>
+        </div>
+
+        <div class="value-card snap-center shrink-0 w-[80vw] sm:w-[24rem] md:w-[28rem] rounded-[2rem] bg-mint text-ink p-8 md:p-10 flex flex-col justify-between min-h-[22rem]">
+          <div class="flex items-start justify-between">
+            <span class="font-display italic text-6xl text-ink/20">04</span>
+            <svg viewBox="0 0 48 48" class="w-12 h-12"><circle cx="24" cy="24" r="17" fill="none" stroke="#2D1B2E" stroke-width="3"/><path d="M7 24h34M24 7c6 5 6 29 0 34c-6-5-6-29 0-34z" stroke="#2D1B2E" stroke-width="3" fill="none"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-2xl md:text-3xl mb-3">Kind packaging</h3>
+            <p class="text-ink/65 leading-relaxed">Compostable pouches, recyclable boxes, and shipping materials that won't outlive your great-grandchildren. The planet has a sweet tooth too.</p>
+          </div>
+        </div>
+
+        <div class="value-card snap-center shrink-0 w-[80vw] sm:w-[24rem] md:w-[28rem] rounded-[2rem] bg-berry text-cream p-8 md:p-10 flex flex-col justify-between min-h-[22rem]">
+          <div class="flex items-start justify-between">
+            <span class="font-display italic text-6xl text-cream/30">05</span>
+            <svg viewBox="0 0 48 48" class="w-12 h-12"><path d="M24 4l3.5 10.5L38 18l-10.5 3.5L24 32l-3.5-10.5L10 18l10.5-3.5L24 4z" fill="#FFF8EE"/><path d="M38 30l1.8 5.2L45 37l-5.2 1.8L38 44l-1.8-5.2L31 37l5.2-1.8L38 30z" fill="#FFC53D"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-semibold text-2xl md:text-3xl mb-3">Small batch, always</h3>
+            <p class="text-cream/80 leading-relaxed">Every batch is cooked, poured, and packed by actual humans in our sunny little kitchen. Made weekly, shipped within 48 hours, gone fast.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews" class="relative py-24 md:py-36 px-5 dotted-bg">
+  <div class="max-w-3xl mx-auto text-center">
+    <p class="reveal text-xs font-semibold tracking-[0.3em] uppercase text-coral mb-4">Sweet talk</p>
+    <h2 class="reveal font-display font-semibold text-[clamp(2.2rem,5vw,4rem)] leading-none mb-14">From our candy jar <span class="italic text-coral">to yours</span></h2>
+    <div class="reveal relative bg-white rounded-[2rem] border border-ink/8 shadow-[0_30px_60px_-20px_rgba(45,27,46,0.12)] p-8 md:p-12 min-h-[19rem] flex flex-col justify-between">
+      <svg viewBox="0 0 24 24" class="w-10 h-10 text-sun mx-auto mb-4" fill="currentColor"><path d="M10 8H6a4 4 0 0 0-4 4v6h8v-8a2 2 0 0 0 0-2zm12 0h-4a4 4 0 0 0-4 4v6h8v-8a2 2 0 0 0 0-2z" opacity=".9"/></svg>
+      <div id="reviewBody" class="flex-1"></div>
+      <div class="flex items-center justify-center gap-2 mt-8" id="reviewDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section id="newsletter" class="relative py-24 md:py-32 px-5">
+  <div class="reveal max-w-5xl mx-auto rounded-[2.5rem] bg-gradient-to-br from-sun via-peach to-coral p-10 md:p-16 text-center relative overflow-hidden">
+    <svg viewBox="0 0 100 100" class="absolute -top-8 -left-8 w-40 h-40 opacity-30 animate-spin-slow"><g stroke="#fff" stroke-width="4" stroke-linecap="round"><line x1="50" y1="5" x2="50" y2="20"/><line x1="50" y1="80" x2="50" y2="95"/><line x1="5" y1="50" x2="20" y2="50"/><line x1="80" y1="50" x2="95" y2="50"/><line x1="18" y1="18" x2="29" y2="29"/><line x1="71" y1="71" x2="82" y2="82"/><line x1="18" y1="82" x2="29" y2="71"/><line x1="71" y1="29" x2="82" y2="18"/></g><circle cx="50" cy="50" r="18" fill="#fff"/></svg>
+    <h2 class="font-display font-semibold text-white text-[clamp(2rem,5vw,3.6rem)] leading-tight relative">Join the <span class="italic">Sunshine Club</span></h2>
+    <p class="text-white/85 mt-4 max-w-md mx-auto relative">First dibs on new flavors, secret drops, and 10% off your first box. No spam — just candy.</p>
+    <form id="newsForm" class="relative mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input id="newsEmail" type="email" placeholder="your@email.com" class="flex-1 rounded-full px-6 py-4 bg-white/95 text-ink placeholder-ink/40 font-medium text-sm border-2 border-transparent focus:border-ink/20 transition">
+      <button type="submit" data-hover class="bg-ink text-cream rounded-full px-8 py-4 font-semibold text-sm hover:bg-white hover:text-ink transition-colors">Sweeten my inbox</button>
+    </form>
+    <p id="newsMsg" class="relative mt-4 text-sm font-semibold text-white h-5"></p>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-ink text-cream pt-20 pb-10 px-5 md:px-10 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-16">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 mb-5">
+          <svg viewBox="0 0 100 100" class="w-9 h-9"><g stroke="#FFC53D" stroke-width="7" stroke-linecap="round"><line x1="50" y1="2" x2="50" y2="16"/><line x1="50" y1="84" x2="50" y2="98"/><line x1="2" y1="50" x2="16" y2="50"/><line x1="84" y1="50" x2="98" y2="50"/><line x1="16" y1="16" x2="26" y2="26"/><line x1="74" y1="74" x2="84" y2="84"/><line x1="16" y1="84" x2="26" y2="74"/><line x1="74" y1="26" x2="84" y2="16"/></g><circle cx="50" cy="50" r="20" fill="#FF5D73"/></svg>
+          <span class="font-display font-semibold text-lg">Sweet Summer <span class="italic text-coral">Days</span></span>
+        </div>
+        <p class="text-cream/50 text-sm max-w-sm leading-relaxed">Healthy-ish candy made with real sugar and real love. Cooked in small batches under a very sunny sky.</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold tracking-[0.25em] uppercase text-cream/40 mb-4">Shop</p>
+        <ul class="space-y-2.5 text-sm text-cream/70">
+          <li><a href="#shop" data-scroll data-hover class="hover:text-sun transition-colors">All candy</a></li>
+          <li><a href="#shop" data-scroll data-hover class="hover:text-sun transition-colors">Chewy</a></li>
+          <li><a href="#shop" data-scroll data-hover class="hover:text-sun transition-colors">Sour</a></li>
+          <li><a href="#shop" data-scroll data-hover class="hover:text-sun transition-colors">Chocolate</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold tracking-[0.25em] uppercase text-cream/40 mb-4">Company</p>
+        <ul class="space-y-2.5 text-sm text-cream/70">
+          <li><a href="#story" data-scroll data-hover class="hover:text-sun transition-colors">Our story</a></li>
+          <li><a href="#quiz" data-scroll data-hover class="hover:text-sun transition-colors">Flavor quiz</a></li>
+          <li><a href="#reviews" data-scroll data-hover class="hover:text-sun transition-colors">Reviews</a></li>
+          <li><a href="#newsletter" data-scroll data-hover class="hover:text-sun transition-colors">Sunshine Club</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center select-none py-6 border-t border-cream/10">
+      <p class="footer-big font-display font-bold uppercase text-[clamp(2.4rem,9vw,8rem)] leading-none tracking-tight whitespace-nowrap" data-hover>Sweet Summer Days</p>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-xs text-cream/40">
+      <p>© 2025 Sweet Summer Days. All rights reserved.</p>
+      <p>Made with real sugar and real love.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CART ============ -->
+<div id="cartOverlay" class="fixed inset-0 z-[180] bg-ink/50 backdrop-blur-sm opacity-0 pointer-events-none"></div>
+<aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md z-[190] bg-cream translate-x-full flex flex-col shadow-2xl">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-ink/10">
+    <h3 class="font-display font-semibold text-2xl">Your Candy Bag</h3>
+    <button id="cartClose" data-hover class="w-10 h-10 rounded-full border border-ink/15 flex items-center justify-center text-xl hover:bg-ink hover:text-cream transition-colors">×</button>
+  </div>
+  <div id="cartItems" class="flex-1 overflow-y-auto px-6 py-5 space-y-4"></div>
+  <div id="cartFooter" class="border-t border-ink/10 px-6 py-5 space-y-4">
+    <div>
+      <p id="shipMsg" class="text-xs font-semibold mb-2 text-ink/60"></p>
+      <div class="h-2 rounded-full bg-ink/10 overflow-hidden"><div id="shipBar" class="h-full bg-gradient-to-r from-sun to-coral rounded-full transition-all duration-700" style="width:0%"></div></div>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-medium text-ink/60">Subtotal</span>
+      <span id="cartTotal" class="font-display font-semibold text-2xl">$0.00</span>
+    </div>
+    <button id="checkoutBtn" data-hover class="btn-primary w-full bg-ink text-cream rounded-full py-4 font-semibold text-sm tracking-wide">Checkout</button>
+  </div>
+</aside>
+
+<!-- TOASTS -->
+<div id="toasts" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[250] flex flex-col items-center gap-2 pointer-events-none"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ================= SMOOTH SCROLL ================= */
+const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+
+document.querySelectorAll('[data-scroll]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) lenis.scrollTo(target, { offset: -70 });
+    closeMobileMenu();
+  });
+});
+
+/* ================= CANDY ART (SVG) ================= */
+const ART = {
+  gummy: c => `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-lg">
+    <ellipse cx="34" cy="74" rx="9" ry="15" fill="${c}" transform="rotate(18 34 74)"/>
+    <ellipse cx="86" cy="74" rx="9" ry="15" fill="${c}" transform="rotate(-18 86 74)"/>
+    <circle cx="41" cy="30" r="9" fill="${c}"/><circle cx="79" cy="30" r="9" fill="${c}"/>
+    <ellipse cx="60" cy="82" rx="25" ry="27" fill="${c}"/><circle cx="60" cy="42" r="21" fill="${c}"/>
+    <ellipse cx="47" cy="106" rx="10" ry="7" fill="${c}"/><ellipse cx="73" cy="106" rx="10" ry="7" fill="${c}"/>
+    <ellipse cx="60" cy="86" rx="13" ry="15" fill="#fff" opacity=".35"/>
+    <circle cx="53" cy="40" r="2.6" fill="#2D1B2E"/><circle cx="67" cy="40" r="2.6" fill="#2D1B2E"/>
+    <path d="M55 48q5 4 10 0" stroke="#2D1B2E" stroke-width="2.4" stroke-linecap="round"/>
+    <ellipse cx="48" cy="26" rx="4" ry="2.2" fill="#fff" opacity=".55" transform="rotate(-25 48 26)"/></svg>`,
+  ring: (c1, c2) => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <path d="M30 60a30 30 0 0 1 60 0" stroke="${c1}" stroke-width="20" stroke-linecap="round"/>
+    <path d="M30 60a30 30 0 0 0 60 0" stroke="${c2}" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="34" cy="44" r="2.2" fill="#fff" opacity=".85"/><circle cx="60" cy="31" r="2.2" fill="#fff" opacity=".85"/>
+    <circle cx="86" cy="44" r="2.2" fill="#fff" opacity=".85"/><circle cx="40" cy="80" r="2.2" fill="#fff" opacity=".7"/>
+    <circle cx="80" cy="80" r="2.2" fill="#fff" opacity=".7"/><circle cx="60" cy="90" r="2.2" fill="#fff" opacity=".7"/></svg>`,
+  wrap: (c1, c2) => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <path d="M6 60l24-14v28L6 60z" fill="${c2}"/><path d="M114 60L90 46v28l24-14z" fill="${c2}"/>
+    <rect x="28" y="42" width="64" height="36" rx="18" fill="${c1}"/>
+    <ellipse cx="52" cy="60" rx="5" ry="13" fill="#fff" opacity=".28"/>
+    <ellipse cx="68" cy="60" rx="5" ry="13" fill="#fff" opacity=".28"/>
+    <ellipse cx="44" cy="50" rx="6" ry="3" fill="#fff" opacity=".4" transform="rotate(-20 44 50)"/></svg>`,
+  pop: c => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <rect x="57" y="56" width="6" height="54" rx="3" fill="#EAD9BE"/>
+    <circle cx="60" cy="40" r="30" fill="${c}"/>
+    <path d="M60 22a18 18 0 1 1-13 31" stroke="#fff" opacity=".5" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="48" cy="28" r="5" fill="#fff" opacity=".55"/></svg>`,
+  drop: c => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <path d="M60 12s30 40 30 64a30 30 0 1 1-60 0c0-24 30-64 30-64z" fill="${c}"/>
+    <ellipse cx="48" cy="68" rx="6" ry="12" fill="#fff" opacity=".5" transform="rotate(-14 48 68)"/>
+    <circle cx="71" cy="88" r="4" fill="#fff" opacity=".4"/></svg>`,
+  comb: c => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <rect x="22" y="32" width="76" height="58" rx="12" fill="#5B3A29"/>
+    <g fill="${c}">
+      <polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(43 68)"/>
+      <polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(70 68)"/>
+      <polygon points="14,0 7,12.1 -7,12.1 -14,0 -7,-12.1 7,-12.1" transform="translate(56.5 46)"/>
+    </g>
+    <circle cx="90" cy="42" r="3" fill="#fff" opacity=".3"/></svg>`,
+  melon: c => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <path d="M12 58a48 48 0 0 1 96 0H12z" fill="#3FA66A"/>
+    <path d="M20 58a40 40 0 0 1 80 0H20z" fill="#DFF3E3"/>
+    <path d="M26 58a34 34 0 0 1 68 0H26z" fill="${c}"/>
+    <ellipse cx="46" cy="42" rx="2.4" ry="4" fill="#2D1B2E"/>
+    <ellipse cx="60" cy="33" rx="2.4" ry="4" fill="#2D1B2E"/>
+    <ellipse cx="74" cy="42" rx="2.4" ry="4" fill="#2D1B2E"/></svg>`,
+  swirl: c => `<svg viewBox="0 0 120 120" fill="none" class="w-full h-full drop-shadow-lg">
+    <circle cx="60" cy="60" r="34" fill="#FFF8EE"/>
+    <g fill="${c}">
+      <path d="M60 60L60 26a34 34 0 0 1 29.4 17L60 60z"/>
+      <path d="M60 60L60 26a34 34 0 0 1 29.4 17L60 60z" transform="rotate(90 60 60)"/>
+      <path d="M60 60L60 26a34 34 0 0 1 29.4 17L60 60z" transform="rotate(180 60 60)"/>
+      <path d="M60 60L60 26a34 34 0 0 1 29.4 17L60 60z" transform="rotate(270 60 60)"/>
+    </g>
+    <circle cx="60" cy="60" r="34" stroke="${c}" stroke-width="4"/>
+    <circle cx="60" cy="60" r="5" fill="${c}"/></svg>`
+};
+
+/* ================= DATA ================= */
+const PRODUCTS = [
+  { id:'sunbeam', name:'Sunbeam Citrus Gummies', desc:'Real orange & lemon juice chews, kissed with cane sugar.', price:8, art:'gummy', c1:'#FFB53D', c2:'#FFB53D', bg:'#FFF3D8', cats:['Chewy'], badge:'Bestseller' },
+  { id:'rings', name:'Peachy Keen Rings', desc:'Juicy peach rings with a soft, sunny, old-school chew.', price:7, art:'ring', c1:'#FF9E7D', c2:'#FFC53D', bg:'#FFEDE4', cats:['Chewy','Classics'] },
+  { id:'melon', name:'Wild Watermelon Slices', desc:'Sweet-tart watermelon with a sparkly sour finish.', price:8, art:'melon', c1:'#FF5D73', c2:'#FF5D73', bg:'#FFE7EB', cats:['Sour','Chewy'], badge:'New' },
+  { id:'caramel', name:'Salty Coconut Caramels', desc:'Slow-cooked coconut milk caramels with flaky sea salt.', price:9, art:'wrap', c1:'#C98B4B', c2:'#A06A32', bg:'#F7EBDD', cats:['Classics'] },
+  { id:'pop', name:'Berry Blast Lollipops', desc:'Triple-berry pops made with real berry purée.', price:6, art:'pop', c1:'#A05CFF', c2:'#A05CFF', bg:'#F0E8FF', cats:['Classics'] },
+  { id:'fizz', name:'Citrus Fizz Drops', desc:'Tingly, fizzy hard candies that taste like soda pop.', price:7, art:'drop', c1:'#5BC8E8', c2:'#5BC8E8', bg:'#E2F5FC', cats:['Sour'], badge:'New' },
+  { id:'comb', name:'Honeycomb Choco Crunch', desc:'70% dark chocolate poured over crackly honeycomb.', price:10, art:'comb', c1:'#E8A33D', c2:'#E8A33D', bg:'#F3E6D8', cats:['Chocolate'], badge:'Bestseller' },
+  { id:'swirl', name:'Strawberry Swirl Buttons', desc:'Creamy strawberry buttons that melt like a daydream.', price:7, art:'swirl', c1:'#FF7DA0', c2:'#FF7DA0', bg:'#FFE9F0', cats:['Classics','Chocolate'] },
+];
+const byId = id => PRODUCTS.find(p => p.id === id);
+const money = n => '$' + n.toFixed(2);
+
+/* ================= MARQUEE ================= */
+const marqueeItems = ['REAL SUGAR','NO CORN SYRUP','REAL FRUIT JUICE','SMALL BATCH','KID APPROVED','GROWN-UP OBSESSED','COMPOSTABLE POUCHES'];
+const marqueeHTML = marqueeItems.map(t => `<span class="font-display italic text-lg md:text-xl whitespace-nowrap">${t}</span><svg viewBox="0 0 24 24" class="w-4 h-4 shrink-0 fill-sun"><path d="M12 2l2.4 6.2 6.6.4-5.1 4.2 1.7 6.4L12 15.4 6.4 19.2l1.7-6.4L3 8.6l6.6-.4L12 2z"/></svg>`).join('');
+document.getElementById('marqueeA').innerHTML = marqueeHTML;
+document.getElementById('marqueeB').innerHTML = marqueeHTML;
+
+/* ================= HERO FLOATING CANDIES ================= */
+const heroCandies = { fc1:['gummy','#FFB53D'], fc2:['ring','#FF9E7D','#FFC53D'], fc3:['pop','#A05CFF'], fc4:['melon','#FF5D73'], fc5:['drop','#5BC8E8'], fc6:['swirl','#FF7DA0'] };
+Object.entries(heroCandies).forEach(([id, a]) => {
+  document.getElementById(id).innerHTML = ART[a[0]](a[1], a[2] || a[1]);
+});
+document.querySelectorAll('.float-inner').forEach((el, i) => {
+  gsap.to(el, { y: '+=16', rotation: i % 2 ? 7 : -7, duration: 2.4 + i * 0.35, ease: 'sine.inOut', repeat: -1, yoyo: true });
+});
+const heroSec = document.getElementById('hero');
+const parallaxSetters = [...document.querySelectorAll('.float-candy')].map(el => ({
+  x: gsap.quickTo(el, 'x', { duration: 0.8, ease: 'power3' }),
+  y: gsap.quickTo(el, 'y', { duration: 0.8, ease: 'power3' }),
+  d: parseFloat(el.dataset.depth)
+}));
+heroSec.addEventListener('mousemove', e => {
+  const cx = e.clientX / innerWidth - 0.5, cy = e.clientY / innerHeight - 0.5;
+  parallaxSetters.forEach(s => { s.x(cx * 44 * s.d); s.y(cy * 44 * s.d); });
+});
+
+/* ================= SHOP ================= */
+const FILTERS = ['All','Chewy','Sour','Chocolate','Classics'];
+let activeFilter = 'All';
+const filtersEl = document.getElementById('filters');
+filtersEl.innerHTML = FILTERS.map(f => `<button data-hover data-filter="${f}" class="filter-pill ${f==='All'?'active':''} rounded-full border-2 border-ink/15 px-5 py-2 text-sm font-semibold">${f}</button>`).join('');
+filtersEl.addEventListener('click', e => {
+  const btn = e.target.closest('[data-filter]');
+  if (!btn) return;
+  activeFilter = btn.dataset.filter;
+  filtersEl.querySelectorAll('.filter-pill').forEach(b => b.classList.toggle('active', b === btn));
+  renderProducts(true);
+});
+
+function productCard(p) {
+  return `<article class="product-card bg-white rounded-[1.6rem] border border-ink/8 overflow-hidden flex flex-col" data-id="${p.id}">
+    <div class="card-art aspect-square flex items-center justify-center relative" style="background:${p.bg}">
+      ${p.badge ? `<span class="absolute top-4 left-4 z-10 bg-ink text-cream text-[10px] font-bold tracking-widest uppercase rounded-full px-3 py-1.5">${p.badge}</span>` : ''}
+      <div class="candy-svg w-3/5 h-3/5">${ART[p.art](p.c1, p.c2)}</div>
+    </div>
+    <div class="p-5 flex flex-col flex-1">
+      <div class="flex items-start justify-between gap-2">
+        <h3 class="font-display font-semibold text-lg leading-tight">${p.name}</h3>
+        <span class="font-display font-semibold text-lg text-coral whitespace-nowrap">${money(p.price)}</span>
+      </div>
+      <p class="text-sm text-ink/55 mt-1.5 flex-1">${p.desc}</p>
+      <div class="mt-4 flex items-center justify-between">
+        <span class="text-[10px] font-bold tracking-widest uppercase text-ink/40">${p.cats.join(' · ')}</span>
+        <button data-hover data-add="${p.id}" class="add-btn w-11 h-11 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-coral hover:rotate-90 transition-all duration-300">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderProducts(animate) {
+  const grid = document.getElementById('productGrid');
+  const list = PRODUCTS.filter(p => activeFilter === 'All' || p.cats.includes(activeFilter));
+  const build = () => {
+    grid.innerHTML = list.map(productCard).join('');
+    gsap.fromTo(grid.children, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.07, ease: 'power3.out', clearProps: 'transform' });
+  };
+  if (animate) gsap.to(grid.children, { opacity: 0, y: 20, duration: 0.25, stagger: 0.03, onComplete: build });
+  else build();
+}
+renderProducts(false);
+
+document.getElementById('productGrid').addEventListener('click', e => {
+  const btn = e.target.closest('[data-add]');
+  if (!btn) return;
+  const card = btn.closest('.product-card');
+  addToCart(btn.dataset.add, card.querySelector('.card-art'));
+});
+
+/* ================= CART ================= */
+let cart = {};
+const drawer = document.getElementById('cartDrawer');
+const overlay = document.getElementById('cartOverlay');
+const FREE_SHIP = 35;
+
+function cartQty() { return Object.values(cart).reduce((a, b) => a + b, 0); }
+function cartSubtotal() { return Object.entries(cart).reduce((s, [id, q]) => s + byId(id).price * q, 0); }
+
+function addToCart(id, sourceEl) {
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+  toast(`${byId(id).name} added to your bag`);
+  if (sourceEl) flyToCart(sourceEl); else bumpCart();
+}
+
+function flyToCart(sourceEl) {
+  const r = sourceEl.getBoundingClientRect();
+  const t = document.getElementById('cartBtn').getBoundingClientRect();
+  const ghost = sourceEl.cloneNode(true);
+  Object.assign(ghost.style, { position:'fixed', left:r.left+'px', top:r.top+'px', width:r.width+'px', height:r.height+'px', zIndex:260, pointerEvents:'none', borderRadius:'1.4rem', margin:0 });
+  document.body.appendChild(ghost);
+  gsap.to(ghost, { left: t.left + t.width/2 - 20, top: t.top + t.height/2 - 20, width: 40, height: 40, opacity: 0.4, rotation: 15, duration: 0.75, ease: 'power2.inOut', onComplete: () => { ghost.remove(); bumpCart(); } });
+}
+function bumpCart() { gsap.fromTo('#cartBtn', { scale: 1 }, { scale: 1.15, duration: 0.16, yoyo: true, repeat: 1, ease: 'power2.out' }); }
+
+function renderCart() {
+  const wrap = document.getElementById('cartItems');
+  const count = cartQty();
+  const badge = document.getElementById('cartCount');
+  badge.textContent = count;
+  badge.classList.toggle('hidden', count === 0);
+  badge.classList.toggle('flex', count > 0);
+
+  if (count === 0) {
+    wrap.innerHTML = `<div class="h-full flex flex-col items-center justify-center text-center gap-4 py-16">
+      <div class="w-24 opacity-70">${ART.gummy('#EAD9C4')}</div>
+      <p class="font-display italic text-xl text-ink/50">Your bag is empty.</p>
+      <p class="text-sm text-ink/40">A tragedy, honestly. Let's fix that.</p>
+      <button data-hover id="emptyShopBtn" class="mt-2 bg-ink text-cream rounded-full px-7 py-3 text-sm font-semibold hover:bg-coral transition-colors">Browse candy</button>
+    </div>`;
+    document.getElementById('emptyShopBtn').addEventListener('click', () => { closeCart(); lenis.scrollTo('#shop', { offset: -70 }); });
+  } else {
+    wrap.innerHTML = Object.entries(cart).map(([id, q]) => {
+      const p = byId(id);
+      return `<div class="flex items-center gap-4 bg-white rounded-2xl border border-ink/8 p-3.5">
+        <div class="w-16 h-16 rounded-xl shrink-0 flex items-center justify-center p-2" style="background:${p.bg}">${ART[p.art](p.c1, p.c2)}</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold text-sm leading-tight truncate">${p.name}</p>
+          <p class="text-coral font-display font-semibold mt-0.5">${money(p.price)}</p>
+          <div class="flex items-center gap-2.5 mt-2">
+            <button data-hover data-dec="${id}" class="w-7 h-7 rounded-full border border-ink/15 text-sm font-bold hover:bg-ink hover:text-cream transition-colors">−</button>
+            <span class="text-sm font-bold w-4 text-center">${q}</span>
+            <button data-hover data-inc="${id}" class="w-7 h-7 rounded-full border border-ink/15 text-sm font-bold hover:bg-ink hover:text-cream transition-colors">+</button>
+          </div>
+        </div>
+        <button data-hover data-del="${id}" class="text-ink/30 hover:text-coral transition-colors p-1">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-9 0l1 13h8l1-13"/></svg>
+        </button>
+      </div>`;
+    }).join('');
+  }
+
+  const sub = cartSubtotal();
+  document.getElementById('cartTotal').textContent = money(sub);
+  const pct = Math.min(sub / FREE_SHIP * 100, 100);
+  document.getElementById('shipBar').style.width = pct + '%';
+  document.getElementById('shipMsg').innerHTML = sub >= FREE_SHIP
+    ? '<span class="text-coral">Free shipping unlocked!</span> Sunshine en route.'
+    : `You're <span class="text-coral">${money(FREE_SHIP - sub)}</span> away from free shipping`;
+}
+
+document.getElementById('cartItems').addEventListener('click', e => {
+  const inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]'), del = e.target.closest('[data-del]');
+  if (inc) cart[inc.dataset.inc]++;
+  if (dec) { const id = dec.dataset.dec; cart[id]--; if (cart[id] <= 0) delete cart[id]; }
+  if (del) delete cart[del.dataset.del];
+  if (inc || dec || del) renderCart();
+});
+
+function openCart() { drawer.classList.remove('translate-x-full'); overlay.classList.remove('opacity-0','pointer-events-none'); lenis.stop(); }
+function closeCart() { drawer.classList.add('translate-x-full'); overlay.classList.add('opacity-0','pointer-events-none'); lenis.start(); }
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCart(); closeMobileMenu(); } });
+
+document.getElementById('checkoutBtn').addEventListener('click', function () {
+  if (cartQty() === 0) { toast('Your bag is empty — add something sweet first'); return; }
+  this.textContent = 'Placing order…';
+  setTimeout(() => {
+    cart = {}; renderCart();
+    this.textContent = 'Checkout';
+    closeCart();
+    confetti();
+    toast('Order placed! Summer is on its way.');
+  }, 900);
+});
+renderCart();
+
+/* ================= TOASTS ================= */
+function toast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast bg-ink text-cream rounded-full px-6 py-3.5 text-sm font-semibold flex items-center gap-2.5';
+  t.innerHTML = `<svg viewBox="0 0 24 24" class="w-4 h-4 fill-sun shrink-0"><path d="M12 2l2.4 6.2 6.6.4-5.1 4.2 1.7 6.4L12 15.4 6.4 19.2l1.7-6.4L3 8.6l6.6-.4L12 2z"/></svg>${msg}`;
+  document.getElementById('toasts').appendChild(t);
+  gsap.fromTo(t, { y: 24, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.7)' });
+  setTimeout(() => gsap.to(t, { y: 16, opacity: 0, duration: 0.35, onComplete: () => t.remove() }), 2600);
+}
+
+/* ================= CONFETTI ================= */
+function confetti() {
+  const cv = document.createElement('canvas');
+  cv.style.cssText = 'position:fixed;inset:0;z-index:280;pointer-events:none';
+  cv.width = innerWidth; cv.height = innerHeight;
+  document.body.appendChild(cv);
+  const ctx = cv.getContext('2d');
+  const colors = ['#FF5D73','#FFC53D','#5FD4B1','#A05CFF','#5BC8E8','#FFB085'];
+  const parts = Array.from({ length: 140 }, () => ({
+    x: innerWidth / 2 + (Math.random() - 0.5) * 220, y: innerHeight / 2,
+    vx: (Math.random() - 0.5) * 14, vy: -Math.random() * 15 - 5,
+    s: Math.random() * 8 + 4, r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+    c: colors[Math.floor(Math.random() * colors.length)], circle: Math.random() > 0.5
+  }));
+  let frames = 0;
+  (function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    parts.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.4; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      if (p.circle) { ctx.beginPath(); ctx.arc(0, 0, p.s / 2, 0, 7); ctx.fill(); }
+      else ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
+      ctx.restore();
+    });
+    if (++frames < 130) requestAnimationFrame(tick); else cv.remove();
+  })();
+}
+
+/* ================= QUIZ ================= */
+const QUIZ = [
+  { q: 'Pick a mood.', opts: [
+    ['Bright & sunny', { sunbeam:2, fizz:1, rings:1 }],
+    ['Berry bold', { pop:2, melon:2, swirl:1 }],
+    ['Cozy & mellow', { caramel:2, comb:2 }] ]},
+  { q: 'Choose a texture.', opts: [
+    ['Chewy & bouncy', { sunbeam:2, rings:2, melon:1 }],
+    ['Smooth & melty', { caramel:2, swirl:2, comb:1 }],
+    ['Crunchy & fizzy', { fizz:2, comb:2, pop:1 }] ]},
+  { q: 'How do you sweet?', opts: [
+    ['Pucker me up', { fizz:2, melon:2 }],
+    ['Sweet & silky', { caramel:2, swirl:2, pop:1 }],
+    ['Fresh & fruity', { sunbeam:2, rings:2, melon:1 }] ]},
+];
+let quizStep = 0, quizScores = {};
+const quizCard = document.getElementById('quizCard');
+
+function renderQuiz() {
+  if (quizStep < QUIZ.length) {
+    const step = QUIZ[quizStep];
+    quizCard.innerHTML = `
+      <div class="flex items-center justify-between mb-6">
+        <span class="text-xs font-bold tracking-[0.25em] uppercase text-ink/40">Question ${quizStep + 1} / ${QUIZ.length}</span>
+        <div class="flex gap-1.5">${QUIZ.map((_, i) => `<span class="w-2.5 h-2.5 rounded-full ${i <= quizStep ? 'bg-coral' : 'bg-ink/10'}"></span>`).join('')}</div>
+      </div>
+      <h3 class="font-display font-semibold text-3xl mb-7">${step.q}</h3>
+      <div class="space-y-3 flex-1">
+        ${step.opts.map((o, i) => `<button data-hover data-opt="${i}" class="quiz-option w-full text-left rounded-2xl border-2 border-ink/10 px-6 py-4 font-semibold text-sm">${o[0]}</button>`).join('')}
+      </div>
+      <p class="mt-6 text-xs text-ink/35 font-medium">No wrong answers. Only delicious ones.</p>`;
+    gsap.fromTo(quizCard.children, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' });
+  } else {
+    const winner = Object.entries(quizScores).sort((a, b) => b[1] - a[1])[0][0];
+    const p = byId(winner);
+    quizCard.innerHTML = `
+      <p class="text-xs font-bold tracking-[0.25em] uppercase text-coral mb-5">Your candy soulmate</p>
+      <div class="flex-1 flex flex-col items-center text-center">
+        <div class="w-40 h-40 rounded-[2rem] flex items-center justify-center p-6 mb-5" style="background:${p.bg}">${ART[p.art](p.c1, p.c2)}</div>
+        <h3 class="font-display font-semibold text-2xl">${p.name}</h3>
+        <p class="text-sm text-ink/55 mt-2 max-w-xs">${p.desc}</p>
+        <p class="font-display font-semibold text-xl text-coral mt-3">${money(p.price)}</p>
+      </div>
+      <div class="flex gap-3 mt-6">
+        <button data-hover data-add="${p.id}" class="btn-primary flex-1 bg-ink text-cream rounded-full py-3.5 font-semibold text-sm">Add to bag</button>
+        <button data-hover id="retakeBtn" class="rounded-full px-6 py-3.5 font-semibold text-sm border-2 border-ink/15 hover:border-coral hover:text-coral transition-colors">Retake</button>
+      </div>`;
+    gsap.fromTo(quizCard.children, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' });
+    document.getElementById('retakeBtn').addEventListener('click', () => { quizStep = 0; quizScores = {}; renderQuiz(); });
+  }
+}
+quizCard.addEventListener('click', e => {
+  const opt = e.target.closest('[data-opt]');
+  if (opt) {
+    opt.classList.add('picked');
+    const weights = QUIZ[quizStep].opts[+opt.dataset.opt][1];
+    Object.entries(weights).forEach(([id, w]) => quizScores[id] = (quizScores[id] || 0) + w);
+    quizStep++;
+    setTimeout(renderQuiz, 380);
+    return;
+  }
+  const add = e.target.closest('[data-add]');
+  if (add) addToCart(add.dataset.add, quizCard);
+});
+renderQuiz();
+
+/* ================= REVIEWS ================= */
+const REVIEWS = [
+  { text: '"My kids think it\'s candy. I know it\'s basically fruit. We both win, and nobody suspects a thing."', name: 'Priya M.', role: 'Mom of two very suspicious children' },
+  { text: '"The honeycomb crunch replaced my afternoon coffee. I\'m not even mad about it."', name: 'Daniel R.', role: 'Former caffeine enthusiast' },
+  { text: '"Finally, a sour candy that doesn\'t taste like a chemistry experiment gone wrong."', name: 'Jess T.', role: 'Sour candy critic, self-appointed' },
+  { text: '"Ordered a box for a party. Ate half of it before the guests arrived. Zero regrets."', name: 'Marcus L.', role: 'Party host, candy enthusiast' },
+];
+let reviewIdx = 0, reviewTimer;
+const reviewBody = document.getElementById('reviewBody');
+const reviewDots = document.getElementById('reviewDots');
+
+function renderReview(i) {
+  const r = REVIEWS[i];
+  reviewBody.innerHTML = `
+    <p class="font-display text-xl md:text-2xl leading-relaxed font-medium">${r.text}</p>
+    <div class="mt-6 flex items-center justify-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-gradient-to-br from-coral to-sun flex items-center justify-center text-white font-bold text-sm">${r.name[0]}</div>
+      <div class="text-left"><p class="font-bold text-sm">${r.name}</p><p class="text-xs text-ink/50">${r.role}</p></div>
+      <div class="flex gap-0.5 ml-2">${'<svg viewBox="0 0 24 24" class="w-4 h-4 fill-sun"><path d="M12 2l2.4 6.2 6.6.4-5.1 4.2 1.7 6.4L12 15.4 6.4 19.2l1.7-6.4L3 8.6l6.6-.4L12 2z"/></svg>'.repeat(5)}</div>
+    </div>`;
+  gsap.fromTo(reviewBody.children, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power3.out' });
+  reviewDots.innerHTML = REVIEWS.map((_, j) => `<button data-hover data-dot="${j}" class="h-2 rounded-full transition-all duration-400 ${j === i ? 'w-7 bg-coral' : 'w-2 bg-ink/15'}"></button>`).join('');
+}
+reviewDots.addEventListener('click', e => {
+  const d = e.target.closest('[data-dot]');
+  if (!d) return;
+  reviewIdx = +d.dataset.dot; renderReview(reviewIdx); restartReviewTimer();
+});
+function restartReviewTimer() { clearInterval(reviewTimer); reviewTimer = setInterval(() => { reviewIdx = (reviewIdx + 1) % REVIEWS.length; renderReview(reviewIdx); }, 5200); }
+renderReview(0); restartReviewTimer();
+
+/* ================= NEWSLETTER ================= */
+document.getElementById('newsForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const input = document.getElementById('newsEmail');
+  const msg = document.getElementById('newsMsg');
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+    msg.textContent = 'Welcome to the club! Check your inbox for 10% off.';
+    input.value = '';
+    confetti();
+    gsap.fromTo(msg, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)' });
+  } else {
+    msg.textContent = 'Hmm, that email looks a little melty. Try again?';
+    gsap.fromTo(input, { x: -8 }, { x: 0, duration: 0.5, ease: 'elastic.out(1,0.3)' });
+  }
+});
+
+/* ================= MOBILE MENU ================= */
+const mm = document.getElementById('mobileMenu');
+document.getElementById('menuBtn').addEventListener('click', () => {
+  mm.classList.remove('hidden'); mm.classList.add('flex'); lenis.stop();
+  gsap.fromTo('.mm-link', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' });
+});
+function closeMobileMenu() { mm.classList.add('hidden'); mm.classList.remove('flex'); lenis.start(); }
+document.getElementById('menuClose').addEventListener('click', closeMobileMenu);
+
+/* ================= CURSOR ================= */
+const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+(function cursorLoop() {
+  rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(cursorLoop);
+})();
+document.addEventListener('mouseover', e => { if (e.target.closest('[data-hover], a, button, input')) ring.classList.add('grow'); });
+document.addEventListener('mouseout', e => { if (e.target.closest('[data-hover], a, button, input')) ring.classList.remove('grow'); });
+
+/* ================= SCROLL ANIMATIONS ================= */
+lenis.on('scroll', ({ scroll }) => document.getElementById('nav').classList.toggle('scrolled', scroll > 40));
+
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+});
+
+/* manifesto word reveal */
+const man = document.getElementById('manifesto');
+man.innerHTML = man.textContent.trim().split(' ').map(w => `<span class="word">${w}</span>`).join(' ');
+gsap.to('.word', { color: '#2D1B2E', stagger: 0.06, ease: 'none',
+  scrollTrigger: { trigger: man, start: 'top 78%', end: 'bottom 45%', scrub: 0.6 } });
+
+/* stat count-ups */
+document.querySelectorAll('[data-count]').forEach(el => {
+  const end = +el.dataset.count;
+  ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true,
+    onEnter: () => gsap.fromTo(el, { innerText: 0 }, { innerText: end, duration: 1.6, snap: { innerText: 1 }, ease: 'power2.out' }) });
+});
+
+/* values horizontal scroll (desktop) */
+const mmq = gsap.matchMedia();
+mmq.add('(min-width: 768px)', () => {
+  const track = document.getElementById('valuesTrack');
+  const dist = () => track.scrollWidth - window.innerWidth + 80;
+  gsap.to(track, { x: () => -dist(), ease: 'none',
+    scrollTrigger: { trigger: '#values', start: 'top top', end: () => '+=' + dist(), scrub: 1, pin: true, invalidateOnRefresh: true } });
+});
+
+/* scroll dot loop */
+gsap.to('#scrollDot', { y: 22, duration: 1.1, repeat: -1, ease: 'power2.in' });
+
+/* ================= PRELOADER + INTRO ================= */
+gsap.set('.hero-line', { yPercent: 115 });
+gsap.set('.hero-el', { opacity: 0, y: 24 });
+gsap.set('.float-candy', { opacity: 0, scale: 0.4 });
+gsap.to('#loaderSun', { rotation: 360, duration: 2, repeat: -1, ease: 'none' });
+
+window.addEventListener('load', () => {
+  const tl = gsap.timeline();
+  tl.to('#preloader', { yPercent: -100, duration: 0.9, ease: 'power4.inOut', delay: 1 })
+    .set('#preloader', { display: 'none' })
+    .to('.hero-line', { yPercent: 0, duration: 1.1, stagger: 0.12, ease: 'power4.out' }, '-=0.45')
+    .to('.hero-el', { opacity: 1, y: 0, duration: 0.8, stagger: 0.09, ease: 'power3.out' }, '-=0.7')
+    .to('.float-candy', { opacity: 1, scale: 1, duration: 0.9, stagger: 0.08, ease: 'back.out(1.8)' }, '-=0.8')
+    .add(() => ScrollTrigger.refresh());
+});
+</script>
+</body>
+</html>

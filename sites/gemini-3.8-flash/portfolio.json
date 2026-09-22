@@ -1,0 +1,16 @@
+{
+  "model": "gemini-3.8-flash",
+  "slug": "google/gemini-3.8-flash",
+  "prompt": "portfolio",
+  "returned_model": "google/gemini-3.8-flash",
+  "provider": "Google",
+  "started_at": "2026-09-21 17:22:27",
+  "seconds": 99,
+  "prompt_tokens": 51,
+  "output_tokens": 18767,
+  "thinking_tokens": 1041,
+  "html_chars": 67489,
+  "cost": 0.0704145,
+  "finish_reason": "stop",
+  "truncated": false
+}

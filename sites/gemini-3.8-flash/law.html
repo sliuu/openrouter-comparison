@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harlow & Pierce | Michigan Personal Injury & Trial Lawyers</title>
+  <meta name="description" content="Harlow & Pierce is Michigan's premier personal injury and catastrophic accident law firm. Over $280M recovered. Detroit, Grand Rapids & Ann Arbor.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#070C12',
+              900: '#0D1622',
+              850: '#111E2E',
+              800: '#17273C',
+              700: '#223854',
+            },
+            gold: {
+              300: '#F3E5C8',
+              400: '#E2C792',
+              500: '#C9A96E',
+              600: '#A98747',
+              700: '#7E632F'
+            },
+            slate: {
+              150: '#E8ECF2',
+              850: '#182232',
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom refined styling */
+    .hero-glow {
+      background: radial-gradient(circle at 60% 30%, rgba(201, 169, 110, 0.12) 0%, rgba(13, 22, 34, 0) 65%);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF1D6 0%, #C9A96E 50%, #9C7736 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-border-gradient {
+      border-image: linear-gradient(to right, #C9A96E, #17273C) 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #C9A96E;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans antialiased selection:bg-gold-500 selection:text-navy-950">
+
+  <!-- Top Emergency Dispatch Banner -->
+  <div class="bg-navy-900 border-b border-navy-800 text-xs py-2 px-4 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center space-x-4">
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping mr-1.5"></span>
+          24/7 MI Injury Hotline
+        </span>
+        <span class="text-slate-400 hidden md:inline">Detroit • Grand Rapids • Ann Arbor</span>
+      </div>
+      <div class="flex items-center space-x-6">
+        <span class="text-slate-300 font-medium">Zero Fee Guarantee — No Win, No Legal Bill</span>
+        <a href="tel:8005554743" class="text-gold-400 hover:text-gold-300 font-semibold tracking-wide flex items-center transition-colors">
+          <svg class="w-3.5 h-3.5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/>
+          </svg>
+          1-800-555-H&amp;P-LAW
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Header & Navigation -->
+  <header class="bg-navy-950/90 backdrop-blur-md border-b border-navy-800/80 sticky top-[33px] z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 border-2 border-gold-500 flex items-center justify-center font-serif text-gold-400 text-xl font-bold bg-navy-900 shadow-lg group-hover:border-gold-400 transition-colors">
+            H&amp;P
+          </div>
+          <div>
+            <span class="block font-serif text-lg tracking-[0.2em] uppercase text-slate-100 font-bold group-hover:text-gold-300 transition-colors">Harlow &amp; Pierce</span>
+            <span class="block text-[10px] tracking-[0.3em] uppercase text-gold-500/90 font-medium">Michigan Trial Counsel</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+          <a href="#about" class="text-slate-300 hover:text-gold-400 transition-colors">Firm Profile</a>
+          <a href="#practice-areas" class="text-slate-300 hover:text-gold-400 transition-colors">Practice Areas</a>
+          <a href="#results" class="text-slate-300 hover:text-gold-400 transition-colors">Case Verdicts</a>
+          <a href="#calculator" class="text-slate-300 hover:text-gold-400 transition-colors">Michigan No-Fault Guide</a>
+          <a href="#attorneys" class="text-slate-300 hover:text-gold-400 transition-colors">Attorneys</a>
+          <a href="#reviews" class="text-slate-300 hover:text-gold-400 transition-colors">Testimonials</a>
+        </nav>
+
+        <!-- CTA & Actions -->
+        <div class="hidden sm:flex items-center space-x-4">
+          <a href="#evaluation" class="px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider text-navy-950 bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 shadow-md shadow-gold-500/10 transition-all transform hover:-translate-y-0.5">
+            Free Case Review
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobileMenuBtn" aria-label="Toggle navigation menu" class="text-slate-400 hover:text-white p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-b border-navy-800 px-6 py-6 space-y-4">
+      <a href="#about" class="block text-slate-300 hover:text-gold-400 py-1 font-medium">Firm Profile</a>
+      <a href="#practice-areas" class="block text-slate-300 hover:text-gold-400 py-1 font-medium">Practice Areas</a>
+      <a href="#results" class="block text-slate-300 hover:text-gold-400 py-1 font-medium">Case Verdicts</a>
+      <a href="#calculator" class="block text-slate-300 hover:text-gold-400 py-1 font-medium">Settlement Estimator</a>
+      <a href="#attorneys" class="block text-slate-300 hover:text-gold-400 py-1 font-medium">Attorneys</a>
+      <a href="#evaluation" class="block w-full text-center py-3 bg-gold-500 text-navy-950 font-semibold rounded mt-4">Get Immediate Case Evaluation</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden hero-glow">
+    <!-- Background Decor -->
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+      <div class="absolute -top-24 right-0 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center space-x-2 border border-gold-500/30 px-3 py-1 rounded-full bg-navy-900/60 backdrop-blur-sm">
+            <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+            <span class="text-xs uppercase tracking-widest text-gold-300 font-semibold">Specialized Michigan Trial Advocates</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight">
+            Relentless Advocacy For The <span class="gold-gradient-text">Seriously Injured</span> In Michigan.
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+            When life changes in seconds on Michigan highways, job sites, or through gross negligence, the insurance corporations assemble an army of defense litigators. We level the courtroom. With over $280,000,000 won for Michigan families, Harlow &amp; Pierce doesn't take quick deals—we build winning trial verdicts.
+          </p>
+
+          <!-- Core Call to Actions -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <a href="#evaluation" class="inline-flex justify-center items-center px-8 py-4 rounded bg-gold-500 text-navy-950 font-bold uppercase tracking-wider hover:bg-gold-400 shadow-lg shadow-gold-500/20 transition-all text-sm group">
+              Start Free Case Evaluation
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+            <a href="tel:8005554743" class="inline-flex justify-center items-center px-6 py-4 rounded border border-navy-700 bg-navy-900/80 hover:bg-navy-800 text-slate-200 hover:text-white font-semibold transition-all text-sm">
+              <svg class="w-4 h-4 mr-2 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/>
+              </svg>
+              (800) 555-HP-LAW
+            </a>
+          </div>
+
+          <!-- Quick trust proof points -->
+          <div class="pt-6 border-t border-navy-800/80 grid grid-cols-3 gap-4 text-center sm:text-left">
+            <div>
+              <p class="font-serif text-2xl lg:text-3xl font-bold text-white">$280M+</p>
+              <p class="text-xs text-slate-400 mt-0.5">Recovered for Victims</p>
+            </div>
+            <div>
+              <p class="font-serif text-2xl lg:text-3xl font-bold text-gold-400">98.4%</p>
+              <p class="text-xs text-slate-400 mt-0.5">Trial &amp; Settlement Win Rate</p>
+            </div>
+            <div>
+              <p class="font-serif text-2xl lg:text-3xl font-bold text-white">0%</p>
+              <p class="text-xs text-slate-400 mt-0.5">Fees Unless We Recover</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Interactive Quick Consultation Card -->
+        <div class="lg:col-span-5">
+          <div class="bg-navy-900/90 border border-navy-700 rounded-xl p-6 sm:p-8 shadow-2xl relative">
+            <div class="absolute -top-3 right-6 bg-gold-500 text-navy-950 font-bold text-[11px] uppercase tracking-wider py-1 px-3 rounded shadow">
+              Confidential &bull; 24/7 Available
+            </div>
+            <h3 class="text-xl font-serif font-bold text-white mb-2">Check Your Claim Worth</h3>
+            <p class="text-xs text-slate-400 mb-6">Injured in Michigan? Answer 3 quick prompts for an immediate priority attorney callback within 15 minutes.</p>
+
+            <form id="heroQuickForm" onsubmit="event.preventDefault(); handleHeroQuickSubmit();" class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Accident Type</label>
+                <select id="heroAccidentType" required class="w-full bg-navy-950 border border-navy-700 rounded px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                  <option value="" disabled selected>Select Incident Type...</option>
+                  <option value="Car Accident / No-Fault Claim">Car Accident (Michigan No-Fault / Bodily Injury)</option>
+                  <option value="Semi-Truck or Commercial Vehicle">Semi-Truck / Commercial Vehicle</option>
+                  <option value="Motorcycle or Pedestrian">Motorcycle or Pedestrian Collision</option>
+                  <option value="Slip, Fall or Premises Liability">Premises Liability / Dangerous Condition</option>
+                  <option value="Wrongful Death / Catastrophic">Catastrophic Injury or Wrongful Death</option>
+                  <option value="Other">Other Severe Injury</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Michigan County</label>
+                  <select id="heroCounty" class="w-full bg-navy-950 border border-navy-700 rounded px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                    <option value="Wayne">Wayne (Detroit)</option>
+                    <option value="Oakland">Oakland</option>
+                    <option value="Macomb">Macomb</option>
+                    <option value="Kent">Kent (Grand Rapids)</option>
+                    <option value="Washtenaw">Washtenaw</option>
+                    <option value="Genesee">Genesee (Flint)</option>
+                    <option value="Ingham">Ingham (Lansing)</option>
+                    <option value="Other MI County">Other MI County</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Injury Date</label>
+                  <select id="heroTimeline" class="w-full bg-navy-950 border border-navy-700 rounded px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                    <option value="Last 30 Days">Last 30 Days</option>
+                    <option value="1 - 6 Months Ago">1 - 6 Months Ago</option>
+                    <option value="6 - 12 Months Ago">6 - 12 Months Ago</option>
+                    <option value="Over 1 Year Ago">Over 1 Year Ago</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Direct Phone Number</label>
+                <input type="tel" id="heroPhone" required placeholder="(313) 000-0000" class="w-full bg-navy-950 border border-navy-700 rounded px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+              </div>
+
+              <button type="submit" class="w-full py-3.5 bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold uppercase tracking-wider rounded text-sm transition-all shadow-md">
+                Request Free Case Audit
+              </button>
+              
+              <div id="heroAlert" class="hidden text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800 p-2.5 rounded text-center">
+                ✓ Request received. On-call MI litigator is reviewing your dispatch now.
+              </div>
+            </form>
+
+            <p class="text-[11px] text-slate-500 text-center mt-3">
+              Protected by Attorney-Client Privilege. No sales spam guaranteed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accreditations & Michigan Court Bar Strip -->
+  <section class="border-y border-navy-800 bg-navy-900/60 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center md:justify-between items-center gap-6 opacity-75">
+        <div class="flex items-center space-x-2 text-xs uppercase tracking-widest text-slate-400">
+          <svg class="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <span>State Bar of Michigan Admitted</span>
+        </div>
+        <div class="flex items-center space-x-2 text-xs uppercase tracking-widest text-slate-400">
+          <svg class="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 20 20"><path d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+          <span>U.S. District Court Eastern &amp; Western MI</span>
+        </div>
+        <div class="flex items-center space-x-2 text-xs uppercase tracking-widest text-slate-400">
+          <svg class="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/></svg>
+          <span>Michigan Association for Justice</span>
+        </div>
+        <div class="flex items-center space-x-2 text-xs uppercase tracking-widest text-slate-400">
+          <svg class="w-4 h-4 text-gold-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z"/></svg>
+          <span>Top 100 Trial Lawyers in America</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big Results / Verdicts Showcase -->
+  <section id="results" class="py-20 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Proven Courtroom Track Record</span>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-1">Verdicts &amp; Settlements That Speak.</h2>
+        </div>
+        <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
+          Insurance companies know which firms fold for easy checks and which prepare for full trial. We build every case to stand before a Michigan jury.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Verdict 1 -->
+        <div class="bg-navy-900 border border-navy-800 p-8 rounded-lg relative overflow-hidden group hover:border-gold-500/50 transition-all duration-300">
+          <div class="text-xs uppercase tracking-wider text-gold-400 font-semibold mb-2">Wayne County Circuit Court</div>
+          <div class="text-4xl lg:text-5xl font-serif font-bold text-white group-hover:text-gold-300 transition-colors">$14,250,000</div>
+          <h3 class="text-lg font-semibold text-slate-200 mt-4 mb-2">I-94 Commercial Semi-Truck Multi-Vehicle Crash</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-6">
+            Client suffered traumatic brain injury and spinal fracture when an overloaded freight carrier violated federal hours-of-service regulations during winter whiteout conditions.
+          </p>
+          <div class="pt-4 border-t border-navy-800 flex justify-between text-xs text-slate-400">
+            <span>Liability: Commercial Carrier</span>
+            <span class="text-emerald-400 font-medium">Jury Verdict</span>
+          </div>
+        </div>
+
+        <!-- Verdict 2 -->
+        <div class="bg-navy-900 border border-navy-800 p-8 rounded-lg relative overflow-hidden group hover:border-gold-500/50 transition-all duration-300">
+          <div class="text-xs uppercase tracking-wider text-gold-400 font-semibold mb-2">Kent County / Grand Rapids</div>
+          <div class="text-4xl lg:text-5xl font-serif font-bold text-white group-hover:text-gold-300 transition-colors">$8,900,000</div>
+          <h3 class="text-lg font-semibold text-slate-200 mt-4 mb-2">Catastrophic Motorcycle Highway Blindside</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-6">
+            Secured full Michigan PIP lifetime attendant care plus maximum third-party policy recovery for a motorcyclist struck by a distracted delivery fleet van on US-131.
+          </p>
+          <div class="pt-4 border-t border-navy-800 flex justify-between text-xs text-slate-400">
+            <span>Liability: Fleet Operator</span>
+            <span class="text-emerald-400 font-medium">Pre-Trial Settlement</span>
+          </div>
+        </div>
+
+        <!-- Verdict 3 -->
+        <div class="bg-navy-900 border border-navy-800 p-8 rounded-lg relative overflow-hidden group hover:border-gold-500/50 transition-all duration-300">
+          <div class="text-xs uppercase tracking-wider text-gold-400 font-semibold mb-2">Washtenaw County / Ann Arbor</div>
+          <div class="text-4xl lg:text-5xl font-serif font-bold text-white group-hover:text-gold-300 transition-colors">$5,650,000</div>
+          <h3 class="text-lg font-semibold text-slate-200 mt-4 mb-2">Workplace Industrial Trench Collapse</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-6">
+            Wrongful death recovery against negligent subcontractors who violated MIOSHA shoring protocols, bypassing worker compensation limitations through third-party tort claims.
+          </p>
+          <div class="pt-4 border-t border-navy-800 flex justify-between text-xs text-slate-400">
+            <span>Liability: General Contractor</span>
+            <span class="text-emerald-400 font-medium">Mediated Award</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional mini verdicts ticker bar -->
+      <div class="mt-8 bg-navy-900/50 border border-navy-800/80 p-4 rounded-lg flex flex-wrap justify-between items-center text-xs text-slate-300 gap-4">
+        <div><strong class="text-gold-400">$3.8M</strong> — T-Bone Collision (Macomb Co.)</div>
+        <div class="hidden sm:block text-navy-700">|</div>
+        <div><strong class="text-gold-400">$2.4M</strong> — Traumatic Pedestrian Crosswalk (Detroit)</div>
+        <div class="hidden sm:block text-navy-700">|</div>
+        <div><strong class="text-gold-400">$1.95M</strong> — Commercial Premise Slip &amp; Brain Injury (Oakland)</div>
+        <div class="hidden sm:block text-navy-700">|</div>
+        <div><strong class="text-gold-400">$1.6M</strong> — Drunk Driving Head-On Impact (Lansing)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Michigan No-Fault & Claim Estimator Section -->
+  <section id="calculator" class="py-20 bg-navy-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Explainer -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Understanding Michigan Law</span>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">
+            Michigan's Complex Auto No-Fault System, Decoded.
+          </h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Following the monumental 2020 Michigan Auto No-Fault Reform, accident victims face a two-front battle:
+          </p>
+          
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3 bg-navy-950 p-4 rounded border border-navy-800">
+              <div class="w-8 h-8 rounded bg-gold-500/10 text-gold-400 flex items-center justify-center font-bold text-sm shrink-0">1</div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">First-Party PIP Benefits</h4>
+                <p class="text-xs text-slate-400 mt-1">Medical bills, wage loss (up to 3 years), and attendant care paid by your insurer regardless of fault.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-3 bg-navy-950 p-4 rounded border border-navy-800">
+              <div class="w-8 h-8 rounded bg-gold-500/10 text-gold-400 flex items-center justify-center font-bold text-sm shrink-0">2</div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">Third-Party Pain &amp; Suffering</h4>
+                <p class="text-xs text-slate-400 mt-1">A lawsuit against the at-fault driver for severe impairment of bodily function, scarring, or wrongful death.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-xs text-slate-400 italic">
+            * Harlow &amp; Pierce manages both simultaneous claims to ensure your medical treatment is funded while we pursue maximum liability damages.
+          </div>
+        </div>
+
+        <!-- Interactive Calculator Tool -->
+        <div class="lg:col-span-7">
+          <div class="bg-navy-950 border border-gold-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl">
+            <div class="border-b border-navy-800 pb-4 mb-6 flex justify-between items-center">
+              <div>
+                <h3 class="text-lg font-serif font-bold text-white">Claim Assessment Calculator</h3>
+                <p class="text-xs text-slate-400">Estimate potential damage categories under Michigan Compiled Laws (MCL § 500.3135)</p>
+              </div>
+              <span class="px-2.5 py-1 text-[11px] font-semibold bg-navy-800 text-gold-400 rounded border border-navy-700">Interactive</span>
+            </div>
+
+            <!-- Form Inputs -->
+            <div class="space-y-5">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Primary Injury Severity</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="injurySeverityGroup">
+                  <button type="button" onclick="setInjury(1, this)" class="calc-btn active text-left p-3 rounded border text-xs font-medium border-gold-500 bg-gold-500/10 text-gold-300">
+                    <span class="block font-bold">Moderate</span>
+                    <span class="text-[11px] text-slate-400">Fractures, soft tissue, disc bulges</span>
+                  </button>
+                  <button type="button" onclick="setInjury(2, this)" class="calc-btn text-left p-3 rounded border text-xs font-medium border-navy-800 bg-navy-900 text-slate-300 hover:border-slate-600">
+                    <span class="block font-bold">Severe</span>
+                    <span class="text-[11px] text-slate-400">Surgical spine, joint reconstruction</span>
+                  </button>
+                  <button type="button" onclick="setInjury(3, this)" class="calc-btn text-left p-3 rounded border text-xs font-medium border-navy-800 bg-navy-900 text-slate-300 hover:border-slate-600">
+                    <span class="block font-bold">Catastrophic</span>
+                    <span class="text-[11px] text-slate-400">Traumatic Brain, paralysis, loss of limb</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Estimated Medical Expenses to Date</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-2.5 text-slate-500 text-sm">$</span>
+                    <input type="number" id="calcMed" value="35000" step="5000" min="0" oninput="calculateEstimate()" class="w-full bg-navy-900 border border-navy-800 rounded pl-7 pr-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Estimated Monthly Lost Wages</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-2.5 text-slate-500 text-sm">$</span>
+                    <input type="number" id="calcWages" value="4500" step="500" min="0" oninput="calculateEstimate()" class="w-full bg-navy-900 border border-navy-800 rounded pl-7 pr-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Impact on Daily Normal Life / Disability Duration</label>
+                <select id="calcDisability" onchange="calculateEstimate()" class="w-full bg-navy-900 border border-navy-800 rounded px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                  <option value="6">Under 6 Months Impairment</option>
+                  <option value="12" selected>6 - 18 Months Impairment (Affects Employment)</option>
+                  <option value="36">Permanent or Lifetime Functional Limitation</option>
+                </select>
+              </div>
+
+              <!-- Estimated Output Display -->
+              <div class="bg-navy-900 border border-navy-800 rounded-xl p-5 mt-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                  <div>
+                    <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Potential Evaluated Damages Range</span>
+                    <span id="outputRange" class="text-2xl sm:text-3xl font-serif font-bold text-gold-400">$185,000 — $440,000+</span>
+                  </div>
+                  <a href="#evaluation" class="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs uppercase tracking-wider rounded transition-all">
+                    Verify My Case Free
+                  </a>
+                </div>
+                <div class="mt-3 pt-3 border-t border-navy-800/80 flex flex-wrap items-center justify-between text-[11px] text-slate-400 gap-2">
+                  <span id="outputPIP">Includes First-Party PIP Wage replacement (~$54k max/yr)</span>
+                  <span class="text-gold-400 font-medium">Subject to policy limits &amp; comparative fault</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice Areas Detailed -->
+  <section id="practice-areas" class="py-20 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Our Legal Competencies</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-1">Disciplined Injury Litigation Across Michigan</h2>
+        <p class="text-slate-400 text-sm mt-3">We don't juggle wills or divorce. Every dollar, trial prep hour, and expert witness budget is dedicated entirely to serious accident victims.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Area 1 -->
+        <div class="bg-navy-900/80 border border-navy-800 p-8 rounded-xl hover:border-gold-500/40 transition-all">
+          <div class="w-12 h-12 bg-gold-500/10 text-gold-400 rounded flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-white mb-3">Michigan Auto Accidents &amp; PIP</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Specializing in high-speed highway collisions on I-75, I-96, I-94, and US-131. We fight insurance bad-faith denials and recover allowable lifetime benefits.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 mb-6">
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Attendant care and nursing claim recovery</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Uninsured/Underinsured motorist claims</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Distracted &amp; drunk driving third-party suits</li>
+          </ul>
+          <a href="#evaluation" class="text-gold-400 text-xs font-bold uppercase tracking-wider hover:text-gold-300 inline-flex items-center">
+            Consult Auto Team &rarr;
+          </a>
+        </div>
+
+        <!-- Area 2 -->
+        <div class="bg-navy-900/80 border border-navy-800 p-8 rounded-xl hover:border-gold-500/40 transition-all">
+          <div class="w-12 h-12 bg-gold-500/10 text-gold-400 rounded flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-white mb-3">Semi-Truck &amp; Commercial Fleets</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Commercial logistics companies deploy catastrophic response adjusters within hours. We immediately subpoena ECM "black box" logs, dash cams, and driver logs.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 mb-6">
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> FMCSA regulation violations</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Improper load securement &amp; rollover</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Broker and corporate vicarious liability</li>
+          </ul>
+          <a href="#evaluation" class="text-gold-400 text-xs font-bold uppercase tracking-wider hover:text-gold-300 inline-flex items-center">
+            Consult Truck Litigators &rarr;
+          </a>
+        </div>
+
+        <!-- Area 3 -->
+        <div class="bg-navy-900/80 border border-navy-800 p-8 rounded-xl hover:border-gold-500/40 transition-all">
+          <div class="w-12 h-12 bg-gold-500/10 text-gold-400 rounded flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-white mb-3">Brain &amp; Spinal Cord Catastrophes</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Traumatic brain injuries (TBI) and quadriplegia demand life-care planners, vocational rehabilitation experts, and neuropsychologists to quantify 40-year damages.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 mb-6">
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Diffuse axonal and closed-head injury</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Lifetime medical trust structures</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Home modification &amp; wheelchair vans</li>
+          </ul>
+          <a href="#evaluation" class="text-gold-400 text-xs font-bold uppercase tracking-wider hover:text-gold-300 inline-flex items-center">
+            Consult Catastrophic Unit &rarr;
+          </a>
+        </div>
+
+        <!-- Area 4 -->
+        <div class="bg-navy-900/80 border border-navy-800 p-8 rounded-xl hover:border-gold-500/40 transition-all">
+          <div class="w-12 h-12 bg-gold-500/10 text-gold-400 rounded flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-white mb-3">Workplace &amp; Industrial Sites</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Workers' Comp alone is rarely enough for Michigan automotive factory and construction accidents. We find third-party machine manufacturers and negligent contractors.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 mb-6">
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Defective industrial punch presses &amp; robotics</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Scaffold collapses &amp; crane failures</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Toxic chemical or explosion events</li>
+          </ul>
+          <a href="#evaluation" class="text-gold-400 text-xs font-bold uppercase tracking-wider hover:text-gold-300 inline-flex items-center">
+            Review Workplace Case &rarr;
+          </a>
+        </div>
+
+        <!-- Area 5 -->
+        <div class="bg-navy-900/80 border border-navy-800 p-8 rounded-xl hover:border-gold-500/40 transition-all">
+          <div class="w-12 h-12 bg-gold-500/10 text-gold-400 rounded flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-white mb-3">Michigan Wrongful Death Claims</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            Under the Michigan Wrongful Death Act (MCL 600.2922), only appointed personal representatives can bring suit. We guide grieving families with dignity, firmness, and fierce advocacy.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 mb-6">
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Estate probate setup and representation</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Loss of financial support &amp; companionship</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Conscious pain and suffering recovery</li>
+          </ul>
+          <a href="#evaluation" class="text-gold-400 text-xs font-bold uppercase tracking-wider hover:text-gold-300 inline-flex items-center">
+            Wrongful Death Counsel &rarr;
+          </a>
+        </div>
+
+        <!-- Area 6 -->
+        <div class="bg-navy-900/80 border border-navy-800 p-8 rounded-xl hover:border-gold-500/40 transition-all">
+          <div class="w-12 h-12 bg-gold-500/10 text-gold-400 rounded flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-white mb-3">Premises Liability &amp; Severe Falls</h3>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            With the Michigan Supreme Court's monumental overruling of the harsh "Open and Obvious" doctrine (Kandil-Elsayed v F &amp; E Oil), property owners can no longer easily escape accountability.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2 mb-6">
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Black ice &amp; unplowed parking hazards</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Inadequate commercial building security</li>
+            <li class="flex items-center"><span class="text-gold-400 mr-2">&bull;</span> Structural code &amp; stairway defects</li>
+          </ul>
+          <a href="#evaluation" class="text-gold-400 text-xs font-bold uppercase tracking-wider hover:text-gold-300 inline-flex items-center">
+            Premises Case Review &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attorneys Spotlight Section -->
+  <section id="attorneys" class="py-20 bg-navy-900 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Leadership &amp; Trial Counsel</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-1">Seasoned Michigan Courtroom Lawyers</h2>
+        <p class="text-slate-400 text-sm mt-3">You will speak directly with senior trial partners, not junior case clerks or out-of-state call hubs.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <!-- Partner 1 -->
+        <div class="bg-navy-950 border border-navy-800 rounded-xl overflow-hidden group hover:border-gold-500/50 transition-all">
+          <div class="h-64 sm:h-72 bg-navy-800 relative overflow-hidden flex items-center justify-center">
+            <!-- Professional SVG Avatar / Portrait Concept -->
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent z-10"></div>
+            <div class="w-32 h-32 rounded-full border-2 border-gold-500/40 flex items-center justify-center font-serif text-3xl text-gold-300 bg-navy-900">
+              E.H.
+            </div>
+            <div class="absolute bottom-4 left-6 z-20">
+              <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gold-500 text-navy-950 rounded">Founding Partner</span>
+              <h3 class="text-2xl font-serif font-bold text-white mt-1">Eleanor Harlow, Esq.</h3>
+              <p class="text-xs text-gold-300 font-medium">Catastrophic &amp; Traumatic Brain Injury Lead</p>
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Former Wayne County Assistant Prosecutor with 22 years of courtroom cross-examinations. Eleanor has tried over 90 cases to verdict, securing some of Michigan's highest awards for children and traumatic brain injury survivors.
+            </p>
+            <div class="border-t border-navy-850 pt-3 text-xs text-slate-400 space-y-1">
+              <div><strong class="text-slate-200">Education:</strong> University of Michigan Law School (J.D., Magna Cum Laude)</div>
+              <div><strong class="text-slate-200">Honors:</strong> Michigan "Super Lawyers" Top 50 Female Litigators (2018–2024)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner 2 -->
+        <div class="bg-navy-950 border border-navy-800 rounded-xl overflow-hidden group hover:border-gold-500/50 transition-all">
+          <div class="h-64 sm:h-72 bg-navy-800 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent z-10"></div>
+            <div class="w-32 h-32 rounded-full border-2 border-gold-500/40 flex items-center justify-center font-serif text-3xl text-gold-300 bg-navy-900">
+              M.P.
+            </div>
+            <div class="absolute bottom-4 left-6 z-20">
+              <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-gold-500 text-navy-950 rounded">Managing Partner</span>
+              <h3 class="text-2xl font-serif font-bold text-white mt-1">Marcus Pierce, Esq.</h3>
+              <p class="text-xs text-gold-300 font-medium">Commercial Truck &amp; Corporate Liability Strategist</p>
+            </div>
+          </div>
+          <div class="p-6 space-y-4">
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Marcus spent the first 9 years of his career defending Fortune 500 insurers and interstate trucking carriers. Today, he uses that exact playbook against them to dismantle insurance defense strategies before juries.
+            </p>
+            <div class="border-t border-navy-850 pt-3 text-xs text-slate-400 space-y-1">
+              <div><strong class="text-slate-200">Education:</strong> Wayne State University Law School (J.D.)</div>
+              <div><strong class="text-slate-200">Admissions:</strong> Michigan Supreme Court, 6th U.S. Circuit Court of Appeals</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Comparison: Harlow & Pierce vs. TV Settlement Mills -->
+  <section id="about" class="py-20 bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <span class="text-xs uppercase tracking-widest font-bold text-gold-400">The Michigan Standard</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-1">Why Families Choose Harlow &amp; Pierce</h2>
+        <p class="text-slate-400 text-sm mt-3">Billboard lawyers process thousands of clients on assembly lines. We operate as a high-stakes trial boutique.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-navy-900/60 border border-navy-800 p-6 sm:p-8 rounded-xl">
+          <h3 class="text-lg font-serif font-bold text-red-400 flex items-center mb-4">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            High-Volume Billboard Mills
+          </h3>
+          <ul class="text-xs text-slate-400 space-y-3.5">
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">&times;</span> Thousands of files assigned to paralegals; rarely see an attorney.</li>
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">&times;</span> Pressure injured clients to accept fast, low settlements to avoid trial costs.</li>
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">&times;</span> Little mastery of nuanced 2020 Michigan PIP fee schedule statutes.</li>
+            <li class="flex items-start"><span class="text-red-400 mr-2 font-bold">&times;</span> Unknown trial track record; insurance adjusters know they will not go to verdict.</li>
+          </ul>
+        </div>
+
+        <div class="bg-navy-900 border-2 border-gold-500/60 p-6 sm:p-8 rounded-xl shadow-xl relative">
+          <div class="absolute -top-3 right-6 bg-gold-500 text-navy-950 text-[10px] font-bold uppercase tracking-wider py-1 px-2.5 rounded">
+            Our Commitment
+          </div>
+          <h3 class="text-lg font-serif font-bold text-gold-300 flex items-center mb-4">
+            <svg class="w-5 h-5 mr-2 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Harlow &amp; Pierce Trial Team
+          </h3>
+          <ul class="text-xs text-slate-200 space-y-3.5">
+            <li class="flex items-start"><span class="text-gold-400 mr-2 font-bold">&check;</span> Selective caseload allows partner-level dedication to each case.</li>
+            <li class="flex items-start"><span class="text-gold-400 mr-2 font-bold">&check;</span> Complete fronting of expert accident reconstructionists &amp; medical specialists.</li>
+            <li class="flex items-start"><span class="text-gold-400 mr-2 font-bold">&check;</span> Direct cell phone access to your assigned lead attorney.</li>
+            <li class="flex items-start"><span class="text-gold-400 mr-2 font-bold">&check;</span> Insurers offer top-tier payouts because they know we are ready for a jury.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials -->
+  <section id="reviews" class="py-20 bg-navy-900 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Real Voices, Restored Lives</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-1">What Our Clients Experience</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="bg-navy-950 p-6 rounded-xl border border-navy-800 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex text-gold-400 space-x-1">
+              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed italic">
+              "After my crash on I-96, my auto insurance stopped paying for my physical therapy and home nurse. Harlow &amp; Pierce took over, got every bill paid retroactively with interest, and then won a $2.1M third-party settlement. They saved my family."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-navy-850">
+            <p class="text-sm font-serif font-bold text-white">David K.</p>
+            <p class="text-[11px] text-slate-400">Livonia, MI &bull; Auto Collision Client</p>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-navy-950 p-6 rounded-xl border border-navy-800 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex text-gold-400 space-x-1">
+              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed italic">
+              "Marcus Pierce actually picked up his cell on a Sunday night when my husband was in the ICU following a gravel truck collision. He handled the police report, the trucking company lawyers, and never charged us a dime out of pocket."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-navy-850">
+            <p class="text-sm font-serif font-bold text-white">Brenda &amp; Thomas M.</p>
+            <p class="text-[11px] text-slate-400">Grand Rapids, MI &bull; Semi-Truck Litigation</p>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-navy-950 p-6 rounded-xl border border-navy-800 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex text-gold-400 space-x-1">
+              <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed italic">
+              "Two other Detroit firms told me my slip and fall at a commercial loading dock was 'too difficult' because of open and obvious rules. Eleanor Harlow took it to court and recovered $1.4M. Her courtroom poise is extraordinary."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-navy-850">
+            <p class="text-sm font-serif font-bold text-white">Kareem A.</p>
+            <p class="text-[11px] text-slate-400">Detroit, MI &bull; Premises Liability</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Michigan Accident FAQ -->
+  <section class="py-20 bg-navy-950 border-t border-navy-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Answers For Injured Michiganders</span>
+        <h2 class="text-3xl font-serif font-bold text-white mt-1">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-3" id="faqAccordion">
+        <!-- FAQ item 1 -->
+        <div class="border border-navy-800 bg-navy-900 rounded-lg overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left font-serif font-semibold text-white flex justify-between items-center hover:text-gold-300 transition-colors" onclick="toggleFaq(this)">
+            <span>How does Michigan's "No Win, No Fee" guarantee work?</span>
+            <span class="faq-icon text-gold-400 text-xl font-sans font-bold ml-4">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-xs text-slate-300 leading-relaxed border-t border-navy-800/50 pt-3">
+            Under our contingency agreement, Harlow &amp; Pierce advances all costs for your case, including accident reconstructionists, medical records, and courtroom exhibits. You pay zero dollars up front. If we do not obtain a financial recovery for you, you owe us nothing in attorney fees.
+          </div>
+        </div>
+
+        <!-- FAQ item 2 -->
+        <div class="border border-navy-800 bg-navy-900 rounded-lg overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left font-serif font-semibold text-white flex justify-between items-center hover:text-gold-300 transition-colors" onclick="toggleFaq(this)">
+            <span>What is the Statute of Limitations for injury claims in Michigan?</span>
+            <span class="faq-icon text-gold-400 text-xl font-sans font-bold ml-4">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-xs text-slate-300 leading-relaxed border-t border-navy-800/50 pt-3">
+            In Michigan, you generally have <strong>3 years</strong> from the date of the incident to file a third-party lawsuit for bodily injury or wrongful death. However, for <strong>First-Party PIP Auto No-Fault benefits</strong>, you must give formal notice to your insurance carrier within <strong>1 year</strong> of the accident (the strict "one-year-back rule"), or you may lose your medical and wage benefits permanently.
+          </div>
+        </div>
+
+        <!-- FAQ item 3 -->
+        <div class="border border-navy-800 bg-navy-900 rounded-lg overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left font-serif font-semibold text-white flex justify-between items-center hover:text-gold-300 transition-colors" onclick="toggleFaq(this)">
+            <span>Can I sue if I was partially at fault for the crash in Michigan?</span>
+            <span class="faq-icon text-gold-400 text-xl font-sans font-bold ml-4">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-xs text-slate-300 leading-relaxed border-t border-navy-800/50 pt-3">
+            Yes. Michigan follows the modified comparative negligence rule (51% bar). As long as you were 50% or less at fault, you can recover pain and suffering damages from the other driver, though your award is reduced by your share of fault. Furthermore, regardless of fault, your First-Party PIP benefits pay 100% of your allowable medical expenses.
+          </div>
+        </div>
+
+        <!-- FAQ item 4 -->
+        <div class="border border-navy-800 bg-navy-900 rounded-lg overflow-hidden">
+          <button type="button" class="faq-btn w-full px-6 py-4 text-left font-serif font-semibold text-white flex justify-between items-center hover:text-gold-300 transition-colors" onclick="toggleFaq(this)">
+            <span>What should I do if an insurance adjuster calls me right away?</span>
+            <span class="faq-icon text-gold-400 text-xl font-sans font-bold ml-4">+</span>
+          </button>
+          <div class="faq-content hidden px-6 pb-4 text-xs text-slate-300 leading-relaxed border-t border-navy-800/50 pt-3">
+            Do not provide a recorded statement or accept a quick settlement release. Insurance adjusters are trained to phrase questions to elicit admissions of fault or downplay your injuries. Politely state: "I am represented by Harlow &amp; Pierce, and they will coordinate all communications."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Michigan Physical Office Presence -->
+  <section class="py-16 bg-navy-900 border-t border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Local Michigan Accessibility</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">Our Regional Office Hubs</h2>
+        <p class="text-slate-400 text-xs mt-2">In addition to in-office visits, our attorneys travel directly to home or hospital bedsides anywhere in Michigan.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-navy-950 p-6 rounded-lg border border-navy-800 text-center">
+          <h4 class="font-serif font-bold text-white text-base">Detroit Headquarters</h4>
+          <p class="text-xs text-gold-400 mt-1">Financial District</p>
+          <p class="text-xs text-slate-400 mt-2">150 W Jefferson Ave, Suite 2100<br>Detroit, MI 48226</p>
+          <p class="text-xs font-semibold text-slate-200 mt-3">(313) 555-0199</p>
+        </div>
+
+        <div class="bg-navy-950 p-6 rounded-lg border border-navy-800 text-center">
+          <h4 class="font-serif font-bold text-white text-base">Grand Rapids Hub</h4>
+          <p class="text-xs text-gold-400 mt-1">Downtown / Medical Mile</p>
+          <p class="text-xs text-slate-400 mt-2">99 Monroe Ave NW, Suite 850<br>Grand Rapids, MI 49503</p>
+          <p class="text-xs font-semibold text-slate-200 mt-3">(616) 555-0144</p>
+        </div>
+
+        <div class="bg-navy-950 p-6 rounded-lg border border-navy-800 text-center">
+          <h4 class="font-serif font-bold text-white text-base">Ann Arbor Office</h4>
+          <p class="text-xs text-gold-400 mt-1">Washtenaw Tech Corridor</p>
+          <p class="text-xs text-slate-400 mt-2">301 N Main St, Suite 400<br>Ann Arbor, MI 48104</p>
+          <p class="text-xs font-semibold text-slate-200 mt-3">(734) 555-0182</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Comprehensive Case Evaluation Form -->
+  <section id="evaluation" class="py-20 bg-navy-950 relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="bg-navy-900 border border-gold-500/40 rounded-2xl p-8 sm:p-12 shadow-2xl">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="text-xs uppercase tracking-widest font-bold text-gold-400">Strictly Confidential Consultation</span>
+          <h2 class="text-3xl font-serif font-bold text-white mt-1">Start Your Case Review</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-2">
+            No obligation. Zero legal fees unless we win compensation. A Michigan partner will assess your case details.
+          </p>
+        </div>
+
+        <form id="mainConsultForm" onsubmit="event.preventDefault(); handleMainFormSubmit();" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">First &amp; Last Name *</label>
+              <input type="text" id="mainName" required placeholder="Jane Doe" class="w-full bg-navy-950 border border-navy-700 rounded px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Phone Number *</label>
+              <input type="tel" id="mainPhone" required placeholder="(313) 555-0199" class="w-full bg-navy-950 border border-navy-700 rounded px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Email Address</label>
+              <input type="email" id="mainEmail" placeholder="jane@example.com" class="w-full bg-navy-950 border border-navy-700 rounded px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Accident Location (City or Highway)</label>
+              <input type="text" id="mainLocation" placeholder="e.g. Detroit, I-94 near Ann Arbor" class="w-full bg-navy-950 border border-navy-700 rounded px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Incident Category *</label>
+              <select id="mainCategory" required class="w-full bg-navy-950 border border-navy-700 rounded px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                <option value="Auto Accident">Auto Collision / Passenger Injury</option>
+                <option value="Truck Accident">Commercial Freight / Truck Crash</option>
+                <option value="Motorcycle / Pedestrian">Motorcycle or Pedestrian Impact</option>
+                <option value="Premises Liability">Slip / Fall / Hazardous Property</option>
+                <option value="Workplace Incident">Industrial / Job Site Trauma</option>
+                <option value="Wrongful Death">Wrongful Death Representation</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Were Medical Services Received?</label>
+              <select id="mainMedical" class="w-full bg-navy-950 border border-navy-700 rounded px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-gold-500">
+                <option value="Hospital ER / ICU">Yes &ndash; Admitted to Hospital / Surgery</option>
+                <option value="Urgent Care / Outpatient">Yes &ndash; Urgent Care or Primary Doctor</option>
+                <option value="Scheduled Appointment">Not yet &ndash; Planning appointment</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Brief Summary of What Happened</label>
+            <textarea id="mainDetails" rows="4" placeholder="Describe the collision or injury, who you believe was at fault, and injuries sustained..." class="w-full bg-navy-950 border border-navy-700 rounded p-4 text-sm text-slate-200 focus:outline-none focus:border-gold-500"></textarea>
+          </div>
+
+          <div class="flex items-start space-x-3 text-xs text-slate-400">
+            <input type="checkbox" id="privacyConsent" checked required class="mt-1 rounded bg-navy-950 border-navy-700 text-gold-500 focus:ring-0">
+            <label for="privacyConsent">
+              I agree to receive attorney consultation correspondence at the phone/email provided. I understand that submitting this inquiry does not formally establish an attorney-client relationship until an engagement contract is signed.
+            </label>
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold uppercase tracking-wider rounded text-sm transition-all shadow-lg shadow-gold-500/20">
+            Submit For Immediate Attorney Evaluation
+          </button>
+
+          <div id="mainFormSuccess" class="hidden text-center p-4 bg-emerald-950/80 border border-emerald-700 rounded text-emerald-300 text-sm">
+            &check; Case inquiry successfully routed to our senior Michigan trial partners. An on-call attorney will contact you promptly at the provided phone number.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-950 border-t border-navy-800 text-slate-400 text-xs py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <!-- Col 1 -->
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <span class="font-serif text-lg text-white font-bold tracking-widest">HARLOW &amp; PIERCE</span>
+          </div>
+          <p class="text-slate-400 leading-relaxed text-[11px]">
+            Dedicated Michigan personal injury attorneys fighting for auto, truck, and catastrophic injury victims across Wayne, Oakland, Macomb, Kent, and Washtenaw counties.
+          </p>
+          <p class="text-gold-400 font-semibold text-xs">Zero Fee Guarantee &bull; Michigan Trial Litigators</p>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <h4 class="font-serif text-white uppercase tracking-wider font-bold mb-3 text-xs">Practice Areas</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="#practice-areas" class="hover:text-gold-400 transition-colors">Michigan Car Accidents (No-Fault)</a></li>
+            <li><a href="#practice-areas" class="hover:text-gold-400 transition-colors">Interstate Trucking &amp; Semi Crashes</a></li>
+            <li><a href="#practice-areas" class="hover:text-gold-400 transition-colors">Traumatic Brain &amp; Spinal Injury</a></li>
+            <li><a href="#practice-areas" class="hover:text-gold-400 transition-colors">Motorcycle &amp; Pedestrian Deaths</a></li>
+            <li><a href="#practice-areas" class="hover:text-gold-400 transition-colors">Industrial &amp; Job Site Accidents</a></li>
+            <li><a href="#practice-areas" class="hover:text-gold-400 transition-colors">Premises Liability &amp; Winter Falls</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <h4 class="font-serif text-white uppercase tracking-wider font-bold mb-3 text-xs">Michigan Offices</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><strong>Detroit:</strong> 150 W Jefferson, Suite 2100</li>
+            <li><strong>Grand Rapids:</strong> 99 Monroe Ave NW, Ste 850</li>
+            <li><strong>Ann Arbor:</strong> 301 N Main St, Suite 400</li>
+            <li class="pt-2 text-gold-400">Toll-Free 24/7: 1-800-555-4743</li>
+            <li class="text-slate-300">Intake Desk: intake@harlowpiercelaw.com</li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div>
+          <h4 class="font-serif text-white uppercase tracking-wider font-bold mb-3 text-xs">Michigan Legal Notice</h4>
+          <p class="text-[10px] leading-relaxed text-slate-500">
+            The information on this website is for informational purposes only and is not legal advice. Submitting information does not create an attorney-client relationship. Prior case results do not guarantee similar outcomes. Admitted to practice before all Michigan State Courts and Federal District Courts.
+          </p>
+        </div>
+      </div>
+
+      <div class="border-t border-navy-900 pt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-500 gap-4">
+        <p>&copy; <span id="currentYear"></span> Harlow &amp; Pierce, PLLC. All Rights Reserved. Michigan Trial Attorneys.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+          <a href="#" class="hover:text-slate-300">Terms of Engagement</a>
+          <a href="#" class="hover:text-slate-300">State Bar Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Call Quick Action Button for Mobile -->
+  <div class="fixed bottom-4 right-4 z-40 sm:hidden">
+    <a href="tel:8005554743" class="flex items-center space-x-2 bg-gold-500 text-navy-950 font-bold px-4 py-3 rounded-full shadow-2xl border-2 border-white/20 active:scale-95 transition-transform">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/>
+      </svg>
+      <span class="text-xs uppercase tracking-wider">Call MI Lawyer 24/7</span>
+    </a>
+  </div>
+
+  <!-- Inline Application Logic -->
+  <script>
+    // Set Year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Accordion Logic
+    function toggleFaq(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const isHidden = content.classList.contains('hidden');
+
+      // Close all first
+      document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(el => el.textContent = '+');
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        icon.textContent = '−';
+      } else {
+        content.classList.add('hidden');
+        icon.textContent = '+';
+      }
+    }
+
+    // Dynamic Settlement Calculator Logic
+    let currentSeverityFactor = 1.0;
+
+    function setInjury(level, btnElement) {
+      document.querySelectorAll('#injurySeverityGroup button').forEach(btn => {
+        btn.classList.remove('border-gold-500', 'bg-gold-500/10', 'text-gold-300');
+        btn.classList.add('border-navy-800', 'bg-navy-900', 'text-slate-300');
+      });
+
+      btnElement.classList.remove('border-navy-800', 'bg-navy-900', 'text-slate-300');
+      btnElement.classList.add('border-gold-500', 'bg-gold-500/10', 'text-gold-300');
+
+      if (level === 1) currentSeverityFactor = 1.0;
+      if (level === 2) currentSeverityFactor = 2.4;
+      if (level === 3) currentSeverityFactor = 5.2;
+
+      calculateEstimate();
+    }
+
+    function calculateEstimate() {
+      const medExpenses = parseFloat(document.getElementById('calcMed').value) || 0;
+      const monthlyWages = parseFloat(document.getElementById('calcWages').value) || 0;
+      const disabilityMonths = parseInt(document.getElementById('calcDisability').value) || 6;
+
+      // Michigan statutory wage caps & general tort modeling
+      const wageLossTotal = monthlyWages * disabilityMonths;
+      const economicBase = medExpenses + wageLossTotal;
+
+      // Pain and suffering pain multiplier based on Michigan third-party threshold metrics
+      let minEstimate = (economicBase * 1.4 * currentSeverityFactor) + 25000;
+      let maxEstimate = (economicBase * 3.8 * currentSeverityFactor) + 85000;
+
+      // Cap representations or round nicely
+      const formatCurrency = (val) => '$' + Math.round(val).toLocaleString();
+
+      document.getElementById('outputRange').textContent = `${formatCurrency(minEstimate)} — ${formatCurrency(maxEstimate)}+`;
+      document.getElementById('outputPIP').textContent = `Includes calculated wage loss (~${formatCurrency(wageLossTotal)}) + accrued medical`;
+    }
+
+    // Form Submissions
+    function handleHeroQuickSubmit() {
+      const alertEl = document.getElementById('heroAlert');
+      alertEl.classList.remove('hidden');
+      setTimeout(() => {
+        alertEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
+    function handleMainFormSubmit() {
+      const successEl = document.getElementById('mainFormSuccess');
+      successEl.classList.remove('hidden');
+      document.getElementById('mainConsultForm').reset();
+      setTimeout(() => {
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
+    // Initialize calculator defaults
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateEstimate();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "slug": "deepseek/deepseek-v4.1-flash",
+  "prompt": "saas",
+  "returned_model": "deepseek/deepseek-v4.1-flash",
+  "provider": "Alibaba",
+  "started_at": "2026-09-21 21:48:48",
+  "seconds": 73,
+  "prompt_tokens": 87,
+  "output_tokens": 25530,
+  "thinking_tokens": 3741,
+  "html_chars": 66100,
+  "cost": 0.0306621,
+  "finish_reason": "stop",
+  "truncated": false
+}

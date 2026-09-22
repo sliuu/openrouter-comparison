@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KŌYŌ — Japanese Tea House · San Francisco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F1E7;
+  --paper2:#EFE7D6;
+  --paper3:#E9DFC9;
+  --ink:#1A1B18;
+  --ink2:#2E2F2B;
+  --muted:#7A766D;
+  --line:rgba(26,27,24,.14);
+  --matcha:#5A6E4B;
+  --matcha-d:#3C4C33;
+  --persimmon:#C2552F;
+  --gold:#B9975B;
+  --stone:#101210;
+  --cream:#FFFCF3;
+  --radius:22px;
+  --shadow:0 20px 60px rgba(26,27,24,.14);
+  --font-serif:'Cormorant Garamond',serif;
+  --font-jp:'Zen Kaku Gothic New',sans-serif;
+  --font-sans:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ink);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+/* texture */
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.06;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* preloader */
+#loader{position:fixed;inset:0;background:var(--stone);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .8s ease, visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .koyo-mark{font-family:var(--font-jp);font-weight:900;font-size:88px;color:var(--paper);line-height:1}
+#loader .koyo-mark span{color:var(--persimmon)}
+#loader .load-bar{width:180px;height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
+#loader .load-bar i{position:absolute;inset:0;background:var(--paper);transform-origin:left;animation:load 1.8s ease forwards}
+@keyframes load{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+#loader p{color:rgba(246,241,231,.6);letter-spacing:.35em;font-size:10px;text-transform:uppercase}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;transition:.4s}
+nav.scrolled{background:rgba(246,241,231,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:12px 28px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:38px;height:38px;background:var(--ink);color:var(--paper);display:grid;place-items:center;border-radius:50%;font-family:var(--font-jp);font-weight:900;font-size:20px}
+.brand-name{line-height:1}
+.brand-name b{font-family:var(--font-jp);letter-spacing:.18em;font-size:18px;display:block}
+.brand-name small{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.nav-links{display:flex;gap:30px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.nav-links a{position:relative;opacity:.75;transition:.3s}
+.nav-links a:hover{opacity:1}
+.nav-links a:after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--persimmon);transition:.3s}
+.nav-links a:hover:after{width:100%}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:12px 22px;border-radius:100px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.35s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px)}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--persimmon);border-color:var(--persimmon)}
+.btn-pers{background:var(--persimmon);border-color:var(--persimmon);color:#fff}
+.btn-pers:hover{background:#a84523}
+.cart-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--cream);display:grid;place-items:center;cursor:pointer;position:relative;transition:.3s}
+.cart-btn:hover{background:var(--ink);color:#fff}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--persimmon);color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:grid;place-items:center}
+#hamburger{display:none;background:none;border:none;font-size:26px;cursor:pointer}
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;padding:92px 28px 28px;gap:18px}
+.hero-left{background:var(--stone);color:var(--paper);border-radius:28px;padding:46px 44px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;min-height:640px}
+.hero-left-bg{position:absolute;inset:0}
+.hero-left-bg img{width:100%;height:100%;object-fit:cover;opacity:.72;filter:saturate(.9) contrast(1.05)}
+.hero-left-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,18,16,.15) 0%,rgba(16,18,16,.05) 35%,rgba(16,18,16,.78) 100%)}
+.hero-content{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);padding:8px 16px;border-radius:100px;margin-bottom:20px}
+.dot{width:7px;height:7px;background:#8FC46A;border-radius:50%;box-shadow:0 0 12px #8FC46A;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.hero h1{font-family:var(--font-serif);font-weight:300;font-size:clamp(56px,7.2vw,108px);line-height:.9;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;font-weight:400;color:#E8D9B8}
+.hero h1 .jp{font-family:var(--font-jp);font-weight:700;font-size:.55em;vertical-align:middle;letter-spacing:.1em;border:1px solid rgba(255,255,255,.4);border-radius:100px;padding:6px 22px;margin-left:10px}
+.hero-sub{display:flex;gap:24px;margin-top:22px;flex-wrap:wrap;align-items:center}
+.hero-sub p{max-width:380px;font-size:15px;line-height:1.7;color:rgba(246,241,231,.82);font-weight:300}
+.hero-cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.btn-light{border-color:rgba(255,255,255,.4);color:#fff}
+.btn-light:hover{background:#fff;color:#111}
+.hero-meta{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.2);margin-top:30px;padding-top:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.hero-right{display:flex;flex-direction:column;gap:18px}
+.hero-card-top{background:var(--cream);border:1px solid var(--line);border-radius:28px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;flex:1}
+.koyo-big{font-family:var(--font-jp);font-size:14px;letter-spacing:.4em;color:var(--persimmon);font-weight:700}
+.hero-card-top h2{font-family:var(--font-serif);font-size:clamp(30px,3vw,44px);line-height:1.05;font-weight:400;margin:14px 0}
+.hours-row{display:flex;justify-content:space-between;border-top:1px dashed var(--line);padding:12px 0;font-size:13px}
+.hours-row strong{font-weight:600}
+.status{display:inline-flex;align-items:center;gap:8px;background:#E6EDDB;color:var(--matcha-d);font-size:12px;font-weight:600;padding:8px 14px;border-radius:100px;letter-spacing:.05em}
+.hero-images{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1}
+.hero-img{border-radius:28px;overflow:hidden;position:relative;min-height:300px}
+.hero-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.2s ease}
+.hero-img:hover img{transform:scale(1.06)}
+.hero-img label{position:absolute;bottom:14px;left:14px;background:rgba(255,252,243,.92);backdrop-filter:blur(6px);padding:8px 14px;border-radius:100px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+/* marquee */
+.marquee{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:16px 0;border-y:1px solid var(--ink)}
+.marquee-track{display:inline-flex;gap:0;animation:marq 28s linear infinite;font-family:var(--font-jp);letter-spacing:.28em;font-size:13px;text-transform:uppercase}
+.marquee-track span{padding:0 28px;display:inline-flex;align-items:center;gap:28px}
+.marquee-track i{color:var(--persimmon);font-style:normal}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:90px 28px;max-width:1320px;margin:0 auto}
+.sec-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:44px;gap:20px;flex-wrap:wrap}
+.sec-num{font-size:12px;letter-spacing:.3em;color:var(--persimmon);font-weight:700}
+.sec-title{font-family:var(--font-serif);font-size:clamp(38px,5vw,68px);line-height:.95;font-weight:400;letter-spacing:-.02em}
+.sec-title em{font-style:italic;color:var(--matcha)}
+.sec-desc{max-width:360px;color:var(--muted);font-size:15px;line-height:1.7}
+/* philosophy */
+.philo-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.philo-img{border-radius:24px;overflow:hidden;position:relative;min-height:520px}
+.philo-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.philo-img figcaption{position:absolute;bottom:18px;left:18px;right:18px;background:rgba(255,252,243,.92);border-radius:16px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.philo-cards{display:grid;grid-template-rows:1fr 1fr;gap:18px}
+.philo-card{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:32px}
+.philo-card h3{font-family:var(--font-serif);font-size:28px;font-weight:500;margin:12px 0 10px}
+.philo-card p{color:#5A5750;font-size:14.5px;line-height:1.7}
+.philo-icon{width:44px;height:44px;border-radius:14px;background:var(--paper2);display:grid;place-items:center;font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px}
+.stat{background:var(--ink);color:var(--paper);border-radius:20px;padding:26px 22px;text-align:center}
+.stat b{font-family:var(--font-serif);font-size:38px;font-weight:400;display:block}
+.stat span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.6}
+/* menu */
+#menu{background:var(--paper2);border-radius:36px;margin:0 14px;max-width:none}
+#menu .inner{max-width:1320px;margin:0 auto}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.tab{padding:12px 22px;border-radius:100px;border:1px solid var(--line);background:transparent;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:.3s}
+.tab.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab:hover:not(.active){background:var(--cream)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.dish{background:var(--cream);border-radius:22px;overflow:hidden;border:1px solid rgba(0,0,0,.06);transition:.4s;display:flex;flex-direction:column}
+.dish:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.dish-img{height:230px;overflow:hidden;position:relative}
+.dish-img img{width:100%;height:100%;object-fit:cover;transition:1s}
+.dish:hover .dish-img img{transform:scale(1.08)}
+.dish-price{position:absolute;top:14px;right:14px;background:var(--paper);padding:8px 14px;border-radius:100px;font-weight:700;font-size:14px}
+.dish-tag{position:absolute;top:14px;left:14px;background:var(--ink);color:#fff;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:7px 12px;border-radius:100px}
+.dish-body{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dish-body h4{font-family:var(--font-serif);font-size:24px;font-weight:500}
+.dish-body h4 span{font-family:var(--font-jp);font-size:13px;color:var(--muted);font-weight:400;margin-left:8px}
+.dish-body p{font-size:13.5px;color:#6B675E;line-height:1.6;flex:1}
+.dish-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.qty{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:100px;padding:6px 10px}
+.qty button{width:26px;height:26px;border-radius:50%;border:none;background:var(--paper2);cursor:pointer;font-size:16px;line-height:1}
+.add{flex:1;margin-left:10px;background:var(--ink);color:#fff;border:none;border-radius:100px;padding:11px;cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;transition:.3s}
+.add:hover{background:var(--persimmon)}
+/* brew lab */
+.brew{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px;margin-top:10px}
+.brew-left{background:var(--stone);color:var(--paper);border-radius:24px;padding:38px;position:relative;overflow:hidden}
+.brew-left h3{font-family:var(--font-serif);font-size:38px;font-weight:400;line-height:1.05;margin:14px 0}
+.brew-left p{color:rgba(255,255,255,.7);font-size:14px;line-height:1.7}
+.tea-select{display:grid;gap:10px;margin:24px 0}
+.tea-opt{display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:14px 18px;cursor:pointer;transition:.3s;font-size:14px}
+.tea-opt.active{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.tea-opt small{opacity:.6}
+.brew-right{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:38px;display:flex;gap:30px;align-items:center}
+.timer-ring{position:relative;width:220px;height:220px;flex-shrink:0}
+.timer-ring svg{transform:rotate(-90deg)}
+.timer-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.timer-center b{font-family:var(--font-serif);font-size:54px;line-height:1}
+.timer-center span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.brew-steps{flex:1}
+.brew-steps h4{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--persimmon);margin-bottom:12px}
+#brewInstruction{font-family:var(--font-serif);font-size:24px;line-height:1.3;margin-bottom:18px}
+.brew-btns{display:flex;gap:10px;flex-wrap:wrap}
+/* ceremony */
+.cer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.cer-card{border-radius:24px;overflow:hidden;background:var(--cream);border:1px solid var(--line);display:flex;flex-direction:column}
+.cer-card .cimg{height:260px;position:relative;overflow:hidden}
+.cer-card .cimg img{width:100%;height:100%;object-fit:cover;transition:1s}
+.cer-card:hover .cimg img{transform:scale(1.07)}
+.cer-card .cbody{padding:26px}
+.cbody h3{font-family:var(--font-serif);font-size:28px;margin:8px 0}
+.cbody ul{list-style:none;margin:14px 0;display:grid;gap:8px;font-size:13px;color:#5F5B53}
+.cbody ul li:before{content:"— ";color:var(--persimmon)}
+.c-price{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);padding-top:16px;margin-top:6px}
+.c-price b{font-size:22px;font-family:var(--font-serif)}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+.gal div{border-radius:18px;overflow:hidden;position:relative;cursor:zoom-in}
+.gal div img{width:100%;height:100%;object-fit:cover;transition:.8s}
+.gal div:hover img{transform:scale(1.08)}
+.gal div:nth-child(1){grid-column:span 2;grid-row:span 2}
+.gal div:nth-child(4){grid-row:span 2}
+/* visit */
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.map-card{background:var(--ink);color:var(--paper);border-radius:24px;padding:34px;position:relative;overflow:hidden}
+.map-art{height:240px;border-radius:16px;background:
+radial-gradient(circle at 30% 40%,rgba(194,85,47,.35),transparent 60%),
+radial-gradient(circle at 70% 60%,rgba(90,110,75,.5),transparent 60%),
+#22241F;border:1px solid rgba(255,255,255,.12);margin:20px 0;position:relative;overflow:hidden}
+.map-art:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:32px 32px}
+.pin{position:absolute;top:42%;left:52%;z-index:2;background:var(--persimmon);color:#fff;padding:10px 16px;border-radius:100px;font-size:12px;font-weight:700;transform:translate(-50%,-50%);box-shadow:0 10px 30px rgba(0,0,0,.4);white-space:nowrap}
+.pin:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:var(--persimmon)}
+.visit-info{display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:13.5px;line-height:1.7}
+.visit-info div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px}
+.visit-info h5{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;margin-bottom:8px}
+.form-card{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:34px}
+.form-card h3{font-family:var(--font-serif);font-size:34px;font-weight:400;margin-bottom:6px}
+.form-card p{font-size:14px;color:var(--muted);margin-bottom:20px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:12px;display:flex;flex-direction:column;gap:6px}
+.field label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#5A5750}
+.field input,.field select,.field textarea{border:1px solid var(--line);background:#fff;border-radius:12px;padding:13px 14px;font-size:14px;font-family:inherit;outline:none;transition:.3s;width:100%}
+.field input:focus,.field select:focus{border-color:var(--ink)}
+/* footer */
+footer{background:var(--stone);color:var(--paper);border-radius:28px 28px 0 0;margin-top:40px;padding:60px 28px 28px}
+.foot-inner{max-width:1320px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.14)}
+.foot-top h4{font-family:var(--font-serif);font-size:42px;line-height:1;font-weight:300}
+.foot-top h5{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.5;margin-bottom:14px}
+.foot-top a,.foot-top p{display:block;font-size:14px;opacity:.8;line-height:2}
+.foot-top a:hover{opacity:1;color:#E8D9B8}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:22px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.6;flex-wrap:wrap;gap:10px}
+/* drawer */
+#overlay{position:fixed;inset:0;background:rgba(16,18,16,.5);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:.4s;z-index:200}
+#overlay.show{opacity:1;visibility:visible}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,92vw);background:var(--cream);z-index:201;transform:translateX(105%);transition:.5s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;border-radius:24px 0 0 24px;overflow:hidden}
+#drawer.open{transform:none}
+.drawer-head{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.drawer-head h3{font-family:var(--font-serif);font-size:28px}
+#closeDrawer{background:none;border:1px solid var(--line);width:36px;height:36px;border-radius:50%;cursor:pointer}
+#cartItems{flex:1;overflow:auto;padding:18px 24px;display:flex;flex-direction:column;gap:12px}
+.cart-item{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;align-items:center}
+.cart-item img{width:58px;height:58px;border-radius:12px;object-fit:cover}
+.cart-item div{flex:1}
+.cart-item b{font-size:14px}
+.cart-item small{color:var(--muted);font-size:12px}
+.cart-item .rm{background:none;border:none;cursor:pointer;color:var(--persimmon);font-size:18px}
+.drawer-foot{padding:20px 24px;border-top:1px solid var(--line);background:#fff}
+.total-row{display:flex;justify-content:space-between;font-weight:700;margin-bottom:14px;font-size:16px}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--paper);padding:14px 22px;border-radius:100px;font-size:13px;z-index:300;transition:.5s;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow)}
+#toast.show{transform:translate(-50%,0)}
+/* lightbox */
+#lightbox{position:fixed;inset:0;background:rgba(10,10,10,.92);z-index:400;display:none;align-items:center;justify-content:center;padding:30px}
+#lightbox.show{display:flex}
+#lightbox img{max-width:min(1000px,90vw);max-height:82vh;border-radius:18px}
+#lightbox button{position:absolute;top:24px;right:24px;background:#fff;border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px}
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:.9s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:none}
+#mobileMenu{position:fixed;inset:0;background:var(--paper);z-index:150;display:none;flex-direction:column;padding:100px 30px 30px;gap:18px}
+#mobileMenu.show{display:flex}
+#mobileMenu a{font-family:var(--font-serif);font-size:42px;border-bottom:1px solid var(--line);padding-bottom:12px}
+@media(max-width:1020px){
+.hero{grid-template-columns:1fr}.hero-left{min-height:520px}.nav-links{display:none}#hamburger{display:block}
+.philo-grid,.brew,.visit-grid{grid-template-columns:1fr}.menu-grid,.cer-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.gal{grid-template-columns:1fr 1fr}.foot-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){.menu-grid,.cer-grid{grid-template-columns:1fr}section{padding:60px 18px}.hero{padding:84px 12px 12px}.hero-left{padding:28px}.frow{grid-template-columns:1fr}.brew-right{flex-direction:column}.foot-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="koyo-mark">紅葉<span>.</span></div><div class="load-bar"><i></i></div><p>KŌYŌ · SAN FRANCISCO</p></div>
+
+<nav id="nav">
+  <a href="#top" class="brand"><div class="brand-mark">紅</div><div class="brand-name"><b>KŌYŌ</b><small>Tea House · SF</small></div></a>
+  <div class="nav-links">
+    <a href="#philosophy">Philosophy</a><a href="#menu">Menu</a><a href="#brew">Brew Lab</a><a href="#ceremony">Ceremony</a><a href="#space">Space</a><a href="#visit">Visit</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-solid" onclick="document.getElementById('visit').scrollIntoView({behavior:'smooth'})" style="padding:11px 20px">Reserve</button>
+    <button class="cart-btn" id="openCart" aria-label="Open order">🛒<span class="cart-count" id="cartCount">0</span></button>
+    <button id="hamburger">☰</button>
+  </div>
+</nav>
+
+<div id="mobileMenu"><a href="#philosophy">Philosophy</a><a href="#menu">Menu</a><a href="#brew">Brew Lab</a><a href="#ceremony">Ceremony</a><a href="#visit">Visit</a><button class="btn btn-solid" onclick="document.getElementById('mobileMenu').classList.remove('show')">Close</button></div>
+
+<header class="hero" id="top">
+  <div class="hero-left reveal visible">
+    <div class="hero-left-bg"><img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1600&auto=format&fit=crop" alt="Tea pouring"></div>
+    <div class="hero-content">
+      <div class="eyebrow"><span class="dot"></span> Japantown · San Francisco · Est. 2019</div>
+      <h1>Quiet tea,<br><em>modern calm.</em> <span class="jp">紅葉</span></h1>
+      <div class="hero-sub"><p>A traditional Japanese tea house reimagined for slow mornings, laptop afternoons & golden-hour matcha. 200-year-old Uji methods, California soul.</p></div>
+      <div class="hero-cta"><button class="btn btn-light btn-solid" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore the menu →</button><button class="btn btn-light" onclick="document.getElementById('ceremony').scrollIntoView({behavior:'smooth'})">Book tea ceremony</button></div>
+      <div class="hero-meta"><span>Open Tue–Sun · 8a — 6p</span><span>1737 Post St, SF</span><span>★ 4.9 — 2.4k reviews</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card-top reveal visible">
+      <div><div class="koyo-big">今日のお茶 — TODAY AT KOYO</div><h2>Wabi-sabi cafe sitting. No rush, no wifi wars. Just steep.</h2></div>
+      <div><div class="status">● Open now — seating available, fog rolling in</div><div style="margin-top:14px"><div class="hours-row"><span>Morning Pour — sencha & kissaten coffee</span><strong>8a – 11a</strong></div><div class="hours-row"><span>Midday matcha & wagashi</span><strong>11a – 3p</strong></div><div class="hours-row"><span>Yūgure — sunset hojicha hour</span><strong>4p – 6p</strong></div></div></div>
+    </div>
+    <div class="hero-images">
+      <div class="hero-img reveal visible"><img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=800&auto=format&fit=crop" alt="Matcha"><label>🍵 Ceremonial Uji Matcha</label></div>
+      <div class="hero-img reveal visible"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800&auto=format&fit=crop" alt="Cafe interior"><label>⛩️ The Hinoki Room</label></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-track" id="marq"></div></div>
+
+<section id="philosophy">
+  <div class="sec-head reveal"><div><div class="sec-num">01 — OUR PHILOSOPHY</div><div class="sec-title">Old Kyoto, <em>softened</em> for San Francisco.</div></div><p class="sec-desc">We keep the bow, the whisk, the silence — but we added outlets, oat milk, and chairs you actually want to sit in for three hours. This is chadō for modern life.</p></div>
+  <div class="philo-grid">
+    <figure class="philo-img reveal"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=1200&auto=format&fit=crop" alt="Tea ceremony"><figcaption><span><strong>Chasen ritual, every whisk to order.</strong><br><small style="color:#777">Never batched, never rushed.</small></span><span style="font-size:28px">🍂</span></figcaption></figure>
+    <div class="philo-cards">
+      <div class="philo-card reveal"><div class="philo-icon">🍃</div><h3>Ichi-go ichi-e, daily.</h3><p>One time, one meeting. Whether it's a 6-minute takeaway or a 90-minute ceremony, we treat your bowl as unrepeatable. Tea is sourced directly from three family farms in Uji, Shizuoka & Yame.</p></div>
+      <div class="philo-card reveal"><div class="philo-icon">☁️</div><h3>Designed for cafe-sitting.</h3><p>Low hinoki tables, tatami nooks, plus a sunlit communal bar with fast wifi and slow tea refills. Linger. Read. Fog-watch. Our staff will never nudge your cup. Kanso — simplicity — with cushions.</p></div>
+    </div>
+  </div>
+  <div class="stats reveal"><div class="stat"><b>14</b><span>Single-origin teas</span></div><div class="stat"><b>100%</b><span>Stone-milled in-house</span></div><div class="stat"><b>3hr</b><span>Avg. Sunday sit</span></div><div class="stat"><b>2019</b><span>Japantown home</span></div></div>
+</section>
+
+<section id="menu">
+<div class="inner">
+  <div class="sec-head reveal"><div><div class="sec-num">02 — THE MENU</div><div class="sec-title">Drink slow. <em>Snack softer.</em></div></div><p class="sec-desc">Everything can be made to-stay in ceramic or to-go. Oat, soy or whole milk. Free second steep on all loose leaf when you sit in.</p></div>
+  <div class="tabs reveal" id="tabs"><button class="tab active" data-cat="all">All</button><button class="tab" data-cat="tea">Pure Tea お茶</button><button class="tab" data-cat="matcha">Matcha & Modern</button><button class="tab" data-cat="sweet">Wagashi & Food</button></div>
+  <div class="menu-grid" id="menuGrid"></div>
+  <p style="margin-top:18px;font-size:13px;color:#6b675e">🍂 Autumn special: <strong>Persimmon Shakerato + Roasted Chestnut Monaka</strong> — only through November. Show this site for a free tasting sip.</p>
+</div>
+</section>
+
+<section id="brew">
+  <div class="sec-head reveal"><div><div class="sec-num">03 — BREW LAB</div><div class="sec-title">Learn the <em>steep.</em> Take it home.</div></div><p class="sec-desc">Our tea masters distilled the ceremony into a timer you can use anywhere. Pick a tea, breathe, pour.</p></div>
+  <div class="brew">
+    <div class="brew-left reveal"><div class="koyo-big" style="color:#E8D9B8">お点前 — TEMAE TIMER</div><h3>Your pocket tea master.</h3><p>Real parameters from our bar — temperature, grams, seconds. Follow the steps and your kitchen becomes Kyoto.</p><div class="tea-select" id="teaSelect"></div><p style="font-size:12px;letter-spacing:.15em;text-transform:uppercase;opacity:.6">● Water: filtered · soft · 70–80°C ideal</p></div>
+    <div class="brew-right reveal">
+      <div class="timer-ring"><svg width="220" height="220"><circle cx="110" cy="110" r="100" stroke="#E9DFC9" stroke-width="12" fill="none"/><circle id="ring" cx="110" cy="110" r="100" stroke="#C2552F" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="628" stroke-dashoffset="0"/></svg><div class="timer-center"><b id="timerText">2:00</b><span id="timerLabel">Ready</span></div></div>
+      <div class="brew-steps"><h4 id="brewName">Sencha — 煎茶</h4><div id="brewInstruction">Warm your kyusu. 5g leaf, 160ml water at 75°C. First steep, patience.</div><div class="brew-btns"><button class="btn btn-solid" id="startTimer">Start steep ▶</button><button class="btn" id="resetTimer">Reset</button></div><div style="margin-top:16px;font-size:13px;color:#6b675e;line-height:1.6" id="brewMeta">5g · 75°C · 120 sec · 2 steeps</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ceremony">
+  <div class="sec-head reveal"><div><div class="sec-num">04 — TEA CEREMONY</div><div class="sec-title">Sit on the floor. <em>Leave lighter.</em></div></div><p class="sec-desc">Small groups, tatami room, English + Japanese. Aprons provided. Phones sleep in wooden boxes.</p></div>
+  <div class="cer-grid" id="cerGrid"></div>
+</section>
+
+<section id="space">
+  <div class="sec-head reveal"><div><div class="sec-num">05 — THE SPACE</div><div class="sec-title">Hinoki, washi, <em>fog light.</em></div></div><p class="sec-desc">Designed by Studio Saka + local redwood. 48 seats: tatami nooks, communal bar, hidden garden. Click any photo to expand.</p></div>
+  <div class="gal reveal" id="gallery">
+    <div><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=1200&auto=format&fit=crop" alt=""></div>
+    <div><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=800&auto=format&fit=crop" alt=""></div>
+    <div><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop" alt=""></div>
+    <div><img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=800&auto=format&fit=crop" alt=""></div>
+    <div><img src="https://images.unsplash.com/photo-1576092762791-dd9e53929d11?q=80&w=800&auto=format&fit=crop" alt=""></div>
+    <div><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt=""></div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="sec-head reveal"><div><div class="sec-num">06 — VISIT & RESERVE</div><div class="sec-title">Find us in <em>Japantown.</em></div></div><p class="sec-desc">Walk-ins always welcome. Reservations recommended weekends. Tatami rooms book out 5 days ahead.</p></div>
+  <div class="visit-grid">
+    <div class="map-card reveal"><div class="koyo-big" style="color:#E8D9B8">住所 — ADDRESS</div><h3 style="font-family:var(--font-serif);font-size:36px;margin-top:10px;font-weight:400">1737 Post Street,<br>San Francisco, CA 94115</h3><div class="map-art"><div class="pin">🍵 KŌYŌ is here</div></div><div class="visit-info"><div><h5>Hours</h5>Tue–Fri · 8a–6p<br>Sat–Sun · 9a–7p<br>Monday · closed for milling</div><div><h5>Getting here</h5>Muni 38 · 2 min walk<br>Parking: Japan Center Garage<br>Bikes park inside ♡</div><div><h5>Contact</h5>hello@koyo-sf.com<br>(415) 555-0147</div><div><h5>Good to know</h5>Kids + dogs welcome on patio<br>Wifi: koyo-slow (no zooms pls)</div></div></div>
+    <div class="form-card reveal"><h3>Reserve a table</h3><p>We hold tables for 15 min past time. For ceremonies, please book via ceremony cards above.</p><form id="resForm"><div class="frow"><div class="field"><label>Name</label><input required id="rName" placeholder="Maya Chen"></div><div class="field"><label>Phone / Email</label><input required id="rContact" placeholder="maya@email.com"></div></div><div class="frow"><div class="field"><label>Date</label><input type="date" required id="rDate"></div><div class="field"><label>Time</label><select id="rTime"><option>8:30 AM — Morning calm</option><option>10:30 AM — Late morning</option><option>12:30 PM — Midday</option><option>2:30 PM — Afternoon sit</option><option>4:30 PM — Sunset hojicha</option></select></div></div><div class="frow"><div class="field"><label>Guests</label><select id="rGuests"><option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ (we'll call you)</option></select></div><div class="field"><label>Seating</label><select id="rSeat"><option>Tatami nook (floor)</option><option>Communal bar (laptop ok)</option><option>Garden patio</option><option>Any — surprise me</option></select></div></div><div class="field"><label>Notes (allergies, occasions...)</label><textarea rows="3" placeholder="One matcha oat latte, one quiet corner for sketching..."></textarea></div><button class="btn btn-pers" style="width:100%;justify-content:center;padding:16px" type="submit">Confirm reservation — 確認 →</button><p id="resMsg" style="margin:12px 0 0;text-align:center;font-weight:600;color:var(--matcha-d)"></p></form></div>
+  </div>
+</section>
+
+<footer><div class="foot-inner"><div class="foot-top"><div><h4>KŌYŌ<br>紅葉茶屋</h4><p style="margin-top:14px;max-width:300px">A tea house for modern life. Steeped in Uji, rooted in San Francisco fog.</p><div style="display:flex;gap:8px;margin-top:16px"><span style="border:1px solid rgba(255,255,255,.2);padding:8px 14px;border-radius:100px;font-size:12px">IG — @koyo.sf</span><span style="border:1px solid rgba(255,255,255,.2);padding:8px 14px;border-radius:100px;font-size:12px">TikTok</span></div></div><div><h5>Visit</h5><p>1737 Post St<br>San Francisco, CA<br>Tue–Sun 8a–6p<br>(415) 555-0147</p></div><div><h5>Explore</h5><a href="#menu">Menu</a><a href="#brew">Brew Lab</a><a href="#ceremony">Ceremony</a><a href="#space">Space</a></div><div><h5>Newsletter — Monthly steep</h5><p style="line-height:1.6">Seasonal teas, wagashi drops.</p><div style="display:flex;margin-top:12px;border:1px solid rgba(255,255,255,.2);border-radius:100px;overflow:hidden"><input id="nl" placeholder="you@email.com" style="background:transparent;border:none;padding:12px 16px;color:#fff;outline:none;flex:1"><button onclick="subscribe()" style="background:#fff;border:none;padding:0 20px;cursor:pointer;font-weight:700">→</button></div></div></div><div class="foot-bottom"><span>© 2026 Koyo Chaya SF · All rights reserved</span><span>一期一会 · Ichi-go ichi-e</span><span>Made with fog in SF 🌁</span></div></div></footer>
+
+<div id="overlay"></div>
+<aside id="drawer"><div class="drawer-head"><div><div style="font-size:11px;letter-spacing:.25em;color:var(--persimmon);font-weight:700">YOUR TRAY お盆</div><h3>Your order</h3></div><button id="closeDrawer">✕</button></div><div id="cartItems"></div><div class="drawer-foot"><div class="total-row"><span>Total</span><span id="cartTotal">$0.00</span></div><button class="btn btn-pers" style="width:100%;justify-content:center;padding:15px" onclick="checkout()">Checkout — pickup in ~10 min →</button><p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px">Pickup at 1737 Post St · Show code at counter</p></div></aside>
+<div id="toast">🍵 Added to your tray</div>
+<div id="lightbox"><button onclick="document.getElementById('lightbox').classList.remove('show')">✕</button><img id="lightImg" src="" alt=""></div>
+
+<script>
+// loader
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('done'),1400)});
+// nav
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30));
+document.getElementById('hamburger').onclick=()=>document.getElementById('mobileMenu').classList.toggle('show');
+document.querySelectorAll('#mobileMenu a').forEach(a=>a.onclick=()=>document.getElementById('mobileMenu').classList.remove('show'));
+// marquee
+const words=['Ceremonial Matcha','Sencha 一番茶','Hojicha Latte',' seasonal Wagashi ','Kissaten Pudding','Tatami Sitting','San Francisco Fog'];
+document.getElementById('marq').innerHTML=(words.map(w=>`<span>${w} <i>●</i></span>`).join('')).repeat(2);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// MENU DATA
+const MENU=[
+{id:1,cat:'tea',tag:'Single-origin',name:'Uji Sencha',jp:'煎茶',desc:'First-harvest steamed green, sea-breeze umami, sweet finish. Free second steep in-house.',price:5.5,img:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800&auto=format&fit=crop'},
+{id:2,cat:'tea',tag:'Roasted',name:'Hojicha Roast',jp:'ほうじ茶',desc:'Twice-roasted Bancha, toasted hazelnut & caramel. Low caffeine, very cozy.',price:5,img:'https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=800&auto=format&fit=crop'},
+{id:3,cat:'tea',tag:'Rare',name:'Gyokuro “Jade Dew”',jp:'玉露',desc:'Shade-grown 21 days, brewed low & slow. Thick, brothy, unforgettable.',price:9,img:'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?q=80&w=800&auto=format&fit=crop'},
+{id:4,cat:'matcha',tag:'Signature',name:'Koyo Ceremonial Latte',jp:'抹茶ラテ',desc:'Stone-milled Uji matcha whisked to order, your milk, touch of vanilla-bean syrup.',price:6.8,img:'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=800&auto=format&fit=crop'},
+{id:5,cat:'matcha',tag:'Modern',name:'Yuzu Matcha Tonic',jp:'柚子',desc:'Iced matcha over yuzu + tonic. Bitter, bright, electric. SF summer in a glass.',price:7.2,img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=800&auto=format&fit=crop'},
+{id:6,cat:'matcha',tag:'Kissaten',name:'Hojicha Pudding Latte',jp:'プリン',desc:'Our viral 1970s-style caramel pudding drowned in warm hojicha milk.',price:7.5,img:'https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=800&auto=format&fit=crop'},
+{id:7,cat:'sweet',tag:'Wagashi',name:'Nerikiri of the Day',jp:'練り切り',desc:'Handmade bean + rice-flour sweet by chef Aiko. Autumn: persimmon & maple leaf.',price:4.8,img:'https://images.unsplash.com/photo-1582793988951-9aed5509eb97?q=80&w=800&auto=format&fit=crop'},
+{id:8,cat:'sweet',tag:'Baked',name:'Matcha Basque Cheesecake',jp:'チーズケーキ',desc:'Burnt top, molten center, ceremonial-grade matcha. Baked each morning.',price:6.5,img:'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=800&auto=format&fit=crop'},
+{id:9,cat:'sweet',tag:'Savory',name:'Miso Butter Toast',jp:'味噌トースト',desc:'Thick shokupan, miso-butter, nori salt. The cafe-sitter’s anchor for hours.',price:5.8,img:'https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=800&auto=format&fit=crop'},
+];
+const grid=document.getElementById('menuGrid');
+let filter='all';
+function renderMenu(){
+ grid.innerHTML=MENU.filter(m=>filter==='all'||m.cat===filter).map(m=>`
+ <div class="dish"><div class="dish-img"><img src="${m.img}" loading="lazy"><span class="dish-tag">${m.tag}</span><span class="dish-price">$${m.price.toFixed(2)}</span></div>
+ <div class="dish-body"><h4>${m.name}<span>${m.jp}</span></h4><p>${m.desc}</p>
+ <div class="dish-foot"><div class="qty"><button onclick="chQty(${m.id},-1)">−</button><span id="q-${m.id}">1</span><button onclick="chQty(${m.id},1)">+</button></div><button class="add" onclick="addToCart(${m.id})">Add +</button></div></div></div>`).join('');
+}
+renderMenu();
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');filter=t.dataset.cat;renderMenu();});
+const qtyMap={};
+function chQty(id,d){qtyMap[id]=Math.min(9,Math.max(1,(qtyMap[id]||1)+d));document.getElementById('q-'+id).textContent=qtyMap[id];}
+// cart
+let cart=[];
+function addToCart(id){const q=qtyMap[id]||1;const f=cart.find(c=>c.id===id);if(f)f.q+=q;else cart.push({...MENU.find(m=>m.id===id),q});updateCart();toast(`Added ${(MENU.find(m=>m.id===id).name)} × ${q}`);openDrawer();}
+function updateCart(){document.getElementById('cartCount').textContent=cart.reduce((s,c)=>s+c.q,0);document.getElementById('cartTotal').textContent='$'+cart.reduce((s,c)=>s+c.q*c.price,0).toFixed(2);document.getElementById('cartItems').innerHTML=cart.length?cart.map((c,i)=>`<div class="cart-item"><img src="${c.img}"><div><b>${c.name}</b><br><small>$${c.price.toFixed(2)} × ${c.q} — $${(c.price*c.q).toFixed(2)}</small></div><button class="rm" onclick="cart.splice(${i},1);updateCart()">×</button></div>`).join(''):`<div style="text-align:center;padding:40px 10px;color:#888"><div style="font-size:46px">🍵</div><p>Your tray is empty.<br>Add something warm.</p></div>`;}
+updateCart();
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show');}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
+document.getElementById('openCart').onclick=openDrawer;
+document.getElementById('closeDrawer').onclick=closeDrawer;
+document.getElementById('overlay').onclick=closeDrawer;
+function toast(msg){const t=document.getElementById('toast');t.innerHTML='🍵 '+msg;t.classList.add('show');clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('show'),2400);}
+function checkout(){if(!cart.length)return toast('Tray is empty — add a tea first');const code='KOYO-'+Math.floor(1000+Math.random()*9000);toast(`Order ${code} confirmed! See you at Post St ♡`);cart=[];updateCart();setTimeout(closeDrawer,1200);}
+// ceremony
+const CERS=[
+{name:'Morning Stillness',jp:'朝の茶',img:'https://images.unsplash.com/photo-1576092762791-dd9e53929d11?q=80&w=800&auto=format&fit=crop',price:45,time:'60 min · 9am daily',list:['Usucha + seasonal nerikiri','Tea history & whisk lesson','Max 6 guests · tatami']},
+{name:'Full Chanoyu',jp:'茶の湯',img:'https://images.unsplash.com/photo-1523905330026-b8bd1f5f320e?q=80&w=800&auto=format&fit=crop',price:85,time:'90 min · Fri–Sun',list:['Koicha thick tea + usucha','Kaiseki bite + calligraphy','Kimono photo moment']},
+{name:'Sunset Hojicha',jp:'夕暮れ',img:'https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=800&auto=format&fit=crop',price:38,time:'45 min · 4:30pm daily',list:['Roasted flight + pudding','Golden-hour garden seating','Perfect first-timers intro']},
+];
+document.getElementById('cerGrid').innerHTML=CERS.map((c,i)=>`<div class="cer-card reveal"><div class="cimg"><img src="${c.img}"><span class="dish-tag" style="position:absolute;top:14px;left:14px">${c.time}</span></div><div class="cbody"><div style="font-size:11px;letter-spacing:.25em;color:#C2552F;font-weight:700">${c.jp}</div><h3>${c.name}</h3><ul>${c.list.map(l=>`<li>${l}</li>`).join('')}</ul><div class="c-price"><b>$${c.price}</b><button class="btn btn-solid" onclick="bookCer('${c.name}')">Book →</button></div></div></div>`).join('');
+document.querySelectorAll('#cerGrid .reveal').forEach(el=>io.observe(el));
+function bookCer(n){document.getElementById('visit').scrollIntoView({behavior:'smooth'});toast(`${n} selected — pick a date below`);}
+// brew lab
+const TEAS=[
+{name:'Sencha — 煎茶',meta:'5g · 75°C · 120 sec · 2 steeps',secs:120,ins:'Warm your kyusu. 5g leaf, 160ml at 75°C. Pour, wait, pour in one smooth circle.'},
+{name:'Matcha — 抹茶',meta:'2g · 80°C · 90 sec · whisk 15s',secs:90,ins:'Sift 2g matcha. 70ml at 80°C. Whisk “M” fast 15 sec till frothy jade foam.'},
+{name:'Hojicha — ほうじ茶',meta:'6g · 90°C · 60 sec · cozy',secs:60,ins:'6g roast, 200ml at 90°C. Short steep — nutty, toasty, no bitterness.'},
+{name:'Gyokuro — 玉露',meta:'6g · 55°C · 150 sec · slow',secs:150,ins:'Low & slow: 55°C, tiny cup. Sip like soup. Umami bomb, patience rewarded.'},
+];
+let ti=0, remaining=TEAS[0].secs, interval=null;
+const ring=document.getElementById('ring'), tText=document.getElementById('timerText');
+function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function renderTea(){document.getElementById('teaSelect').innerHTML=TEAS.map((t,i)=>`<div class="tea-opt ${i===ti?'active':''}" onclick="pickTea(${i})"><span><strong>${t.name}</strong></span><small>${t.meta}</small></div>`).join('');const t=TEAS[ti];document.getElementById('brewName').textContent=t.name;document.getElementById('brewInstruction').textContent=t.ins;document.getElementById('brewMeta').textContent=t.meta;remaining=t.secs;tText.textContent=fmt(remaining);ring.style.strokeDashoffset=0;document.getElementById('timerLabel').textContent='Ready';}
+function pickTea(i){ti=i;clearInterval(interval);interval=null;document.getElementById('startTimer').textContent='Start steep ▶';renderTea();}
+renderTea();
+document.getElementById('startTimer').onclick=function(){if(interval){clearInterval(interval);interval=null;this.textContent='Resume ▶';return;}this.textContent='Pause ⏸';document.getElementById('timerLabel').textContent='Steeping…';interval=setInterval(()=>{remaining--;tText.textContent=fmt(Math.max(0,remaining));const total=TEAS[ti].secs;ring.style.strokeDashoffset=628*(1-remaining/total);if(remaining<=0){clearInterval(interval);interval=null;document.getElementById('timerLabel').textContent='Pour! どうぞ';document.getElementById('startTimer').textContent='Brew again ↺';remaining=total;toast('Tea ready — pour slowly, enjoy warm');new AudioContext&&void 0;}},1000);};
+document.getElementById('resetTimer').onclick=()=>{clearInterval(interval);interval=null;document.getElementById('startTimer').textContent='Start steep ▶';renderTea();};
+// gallery lightbox
+document.querySelectorAll('#gallery div').forEach(d=>d.onclick=()=>{document.getElementById('lightImg').src=d.querySelector('img').src;document.getElementById('lightbox').classList.add('show');});
+document.getElementById('lightbox').onclick=e=>{if(e.target.id==='lightbox')e.target.classList.remove('show')};
+// reservation
+document.getElementById('rDate').min=new Date().toISOString().split('T')[0];
+document.getElementById('resForm').onsubmit=e=>{e.preventDefault();const n=document.getElementById('rName').value||'friend';const d=document.getElementById('rDate').value;const t=document.getElementById('rTime').value;document.getElementById('resMsg').textContent=`✓ Arigato, ${n}! Table for ${document.getElementById('rGuests').value} on ${d} · ${t}. Confirmation sent.`;toast(`Reserved for ${n} — see you soon 🍂`);e.target.reset();};
+function subscribe(){const v=document.getElementById('nl').value;if(!v||!v.includes('@'))return toast('Please enter a valid email');document.getElementById('nl').value='';toast('Subscribed — first steep letter arrives Oct 1');}
+</script>
+</body>
+</html>

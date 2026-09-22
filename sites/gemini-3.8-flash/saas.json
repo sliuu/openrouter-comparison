@@ -1,0 +1,16 @@
+{
+  "model": "gemini-3.8-flash",
+  "slug": "google/gemini-3.8-flash",
+  "prompt": "saas",
+  "returned_model": "google/gemini-3.8-flash",
+  "provider": "Google",
+  "started_at": "2026-09-21 16:44:41",
+  "seconds": 134,
+  "prompt_tokens": 57,
+  "output_tokens": 25735,
+  "thinking_tokens": 1270,
+  "html_chars": 81220,
+  "cost": 0.096549,
+  "finish_reason": "stop",
+  "truncated": false
+}

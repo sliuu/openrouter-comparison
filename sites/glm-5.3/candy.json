@@ -1,0 +1,16 @@
+{
+  "model": "glm-5.3",
+  "slug": "z-ai/glm-5.3",
+  "prompt": "candy",
+  "returned_model": "z-ai/glm-5.3",
+  "provider": "Together",
+  "started_at": "2026-09-21 21:48:48",
+  "seconds": 294,
+  "prompt_tokens": 67,
+  "output_tokens": 75171,
+  "thinking_tokens": 49725,
+  "html_chars": 79298,
+  "cost": 0.3308462,
+  "finish_reason": "stop",
+  "truncated": false
+}

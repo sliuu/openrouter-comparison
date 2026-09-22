@@ -1,0 +1,935 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Koyo — A Tea House for Slow Hours · Hayes Valley, San Francisco</title>
+<meta name="description" content="Koyo is a traditional Japanese tea house in Hayes Valley, San Francisco — single-origin leaf, stone-ground matcha, and a room built for sitting a long while." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ========== TOKENS ========== */
+:root{
+  --paper:#F7F2E8;
+  --paper-2:#EFE6D6;
+  --paper-3:#E5DAC6;
+  --ink:#1B1917;
+  --ink-70:rgba(27,25,23,.70);
+  --ink-50:rgba(27,25,23,.50);
+  --ink-30:rgba(27,25,23,.28);
+  --ink-12:rgba(27,25,23,.12);
+  --maple:#9C3B2A;
+  --clay:#B5654A;
+  --ochre:#C4873A;
+  --moss:#5A6B52;
+  --serif:"Zen Old Mincho",'Hiragino Mincho ProN',Georgia,serif;
+  --sans:"Zen Kaku Gothic New",'Hiragino Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+  --maxw:1240px;
+  --gut:clamp(20px,5vw,72px);
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:300;line-height:1.72;
+  font-size:clamp(15px,.4vw + 14px,17px);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::after{ /* washi grain */
+  content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.32;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--maple);color:var(--paper)}
+
+/* ========== TYPE ========== */
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;margin:0;line-height:1.12;letter-spacing:.01em}
+.h-display{font-size:clamp(3.4rem,13vw,10.5rem);line-height:.86;letter-spacing:-.02em;font-weight:500}
+.h1{font-size:clamp(2.2rem,5.4vw,4.4rem);line-height:1.04}
+.h2{font-size:clamp(1.8rem,3.6vw,3rem)}
+.h3{font-size:clamp(1.25rem,1.8vw,1.6rem)}
+p{margin:0 0 1.1em}
+.lede{font-size:clamp(1.06rem,1.35vw,1.36rem);line-height:1.68;color:var(--ink-70);font-weight:300}
+.kicker{
+  font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--maple);display:flex;align-items:center;gap:.9em;
+}
+.kicker::before{content:"";width:34px;height:1px;background:var(--maple);opacity:.6;flex:none}
+.jp{font-family:var(--serif);letter-spacing:.14em}
+.vjp{writing-mode:vertical-rl;text-orientation:upright;font-family:var(--serif);letter-spacing:.42em}
+.mono{font-variant-numeric:tabular-nums;letter-spacing:.06em}
+
+/* ========== LAYOUT ========== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+section{position:relative}
+.sec-pad{padding:clamp(72px,10vw,140px) 0}
+.rule{height:1px;background:var(--ink-12);border:0;margin:0}
+
+/* ========== NAV ========== */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .5s var(--ease),box-shadow .5s var(--ease),padding .4s var(--ease);
+  padding:18px 0;
+}
+header.nav.stuck{
+  background:rgba(247,242,232,.86);backdrop-filter:blur(14px) saturate(1.2);
+  box-shadow:0 1px 0 var(--ink-12);padding:10px 0;
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:baseline;gap:10px;font-family:var(--serif);font-size:1.42rem;letter-spacing:.06em}
+.brand b{font-weight:600}
+.brand span{font-size:.92rem;color:var(--maple);letter-spacing:.2em}
+.navlinks{display:flex;gap:clamp(14px,2vw,32px);align-items:center}
+.navlinks a{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-70);position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--maple);transition:width .45s var(--ease)}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a:hover::after{width:100%}
+.btn{
+  display:inline-flex;align-items:center;gap:.7em;border:1px solid var(--ink);
+  padding:.72em 1.5em;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;
+  background:transparent;color:var(--ink);cursor:pointer;font-family:var(--sans);font-weight:500;
+  transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
+}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.solid{background:var(--maple);border-color:var(--maple);color:#FDF7EC}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+.burger{display:none;width:44px;height:38px;border:1px solid var(--ink-30);background:none;cursor:pointer;position:relative}
+.burger i{position:absolute;left:11px;width:20px;height:1px;background:var(--ink);transition:.35s var(--ease)}
+.burger i:nth-child(1){top:14px}.burger i:nth-child(2){top:22px}
+.burger.on i:nth-child(1){top:18px;transform:rotate(38deg)}
+.burger.on i:nth-child(2){top:18px;transform:rotate(-38deg)}
+#mobile{
+  position:fixed;inset:0;z-index:99;background:var(--paper-2);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 var(--gut);
+  clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease);
+}
+#mobile.open{clip-path:inset(0 0 0 0)}
+#mobile a{font-family:var(--serif);font-size:clamp(1.8rem,7vw,2.6rem);padding:.18em 0;border-bottom:1px solid var(--ink-12)}
+#mobile a small{font-family:var(--sans);font-size:.62rem;letter-spacing:.24em;color:var(--maple);vertical-align:super;margin-left:.6em}
+
+/* ========== HERO ========== */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding-top:120px;padding-bottom:clamp(28px,5vh,56px);position:relative;overflow:hidden}
+#leaves{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.9}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,72px);align-items:end;width:100%}
+.hero-title{position:relative}
+.hero-title .h-display{margin:0 0 .18em}
+.hero-title .h-display em{font-style:normal;color:var(--maple)}
+.hero-sub{max-width:34ch}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:2.2em;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50)}
+.hero-meta span{display:flex;align-items:center;gap:.6em}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--moss);box-shadow:0 0 0 4px rgba(90,107,82,.18)}
+.dot.shut{background:var(--clay);box-shadow:0 0 0 4px rgba(181,101,74,.18)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:2em}
+
+/* scroll art panel */
+.scrollpanel{
+  position:relative;aspect-ratio:3/4.1;min-height:320px;
+  background:linear-gradient(170deg,#EFE4CE 0%,#E7D7BC 45%,#DFC9A9 100%);
+  border:1px solid rgba(27,25,23,.16);overflow:hidden;
+  box-shadow:0 30px 60px -40px rgba(27,25,23,.5);
+}
+.scrollpanel .sun{
+  position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);
+  width:62%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 36% 32%,#C9613F,#9C3B2A 62%,#7C2C22);
+  opacity:.9;
+}
+.scrollpanel .hz{position:absolute;left:0;right:0;height:1px;background:rgba(27,25,23,.16)}
+.scrollpanel .mist{
+  position:absolute;left:-10%;right:-10%;height:44%;bottom:0;
+  background:linear-gradient(to top,rgba(247,242,232,.95),rgba(247,242,232,0));
+}
+.scrollpanel .vlabel{position:absolute;right:16px;top:20px;font-size:.92rem;color:rgba(27,25,23,.6)}
+.scrollpanel .caption{
+  position:absolute;left:16px;bottom:14px;font-size:.62rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(27,25,23,.55)
+}
+.scrollpanel svg.leafart{position:absolute;inset:0;width:100%;height:100%}
+.scroll-cue{position:absolute;left:var(--gut);bottom:14px;z-index:3;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-50);display:flex;align-items:center;gap:10px}
+.scroll-cue i{display:block;width:1px;height:38px;background:var(--ink-30);animation:drip 2.6s var(--ease) infinite}
+@keyframes drip{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+/* now-brewing chip */
+.chip{
+  display:inline-flex;align-items:center;gap:.8em;border:1px solid var(--ink-12);
+  background:rgba(255,255,255,.35);padding:.55em 1em;font-size:.7rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-70);margin-bottom:1.6em;
+}
+.chip b{font-weight:500;color:var(--maple);letter-spacing:.14em}
+
+/* ========== TICKER ========== */
+.ticker{border-top:1px solid var(--ink-12);border-bottom:1px solid var(--ink-12);overflow:hidden;background:var(--paper-2)}
+.ticker-track{display:flex;gap:0;width:max-content;animation:slide 44s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{
+  font-family:var(--serif);font-size:.98rem;letter-spacing:.24em;padding:.9em 2.2em;
+  color:var(--ink-50);white-space:nowrap;
+}
+.ticker-track span em{font-style:normal;color:var(--maple)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ========== GENERIC BLOCKS ========== */
+.two{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,90px)}
+.tenets{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);margin-top:clamp(40px,6vw,72px)}
+.tenet{background:var(--paper);padding:clamp(22px,2.6vw,36px)}
+.tenet .num{font-family:var(--serif);font-size:.8rem;letter-spacing:.2em;color:var(--maple);display:block;margin-bottom:1.6em}
+.tenet h3{margin-bottom:.5em}
+.tenet p{color:var(--ink-70);font-size:.94rem;margin:0}
+.tenet .jpsmall{display:block;font-family:var(--serif);color:var(--ink-30);font-size:.9rem;letter-spacing:.3em;margin-top:1.2em}
+
+/* ========== MENU ========== */
+.menu-sec{background:var(--paper-2)}
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:clamp(30px,4vw,48px) 0 clamp(26px,3vw,40px)}
+.tab{
+  border:1px solid var(--ink-30);background:transparent;padding:.6em 1.15em;cursor:pointer;
+  font-family:var(--sans);font-weight:400;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-70);transition:.35s var(--ease);display:inline-flex;gap:.7em;align-items:center;
+}
+.tab .t-jp{font-family:var(--serif);color:var(--ink-30);transition:color .35s}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.tab[aria-selected="true"] .t-jp{color:var(--ochre)}
+.menu-list{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px)}
+.item{
+  padding:1.25em 0;border-bottom:1px solid var(--ink-12);
+  display:grid;grid-template-columns:1fr auto;gap:.4em 1.2em;align-items:baseline;
+  animation:fadeUp .6s var(--ease) both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.item h4{font-size:1.1rem;display:flex;align-items:baseline;gap:.6em;flex-wrap:wrap}
+.item h4 .k{font-size:.82rem;color:var(--ink-30);letter-spacing:.2em}
+.item .price{font-family:var(--serif);font-size:1rem;color:var(--maple);font-variant-numeric:tabular-nums}
+.item .desc{grid-column:1/-1;font-size:.9rem;color:var(--ink-50);margin:0;max-width:52ch}
+.item .tagrow{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:.5em}
+.tag{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--ink-12);padding:.25em .6em;color:var(--ink-50)}
+.menu-note{margin-top:2.4em;font-size:.86rem;color:var(--ink-50);max-width:62ch}
+
+/* ========== SPACE / ROOMS ========== */
+.rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--ink-12);margin-top:clamp(36px,5vw,64px);border:1px solid var(--ink-12)}
+.room{background:var(--paper);padding:clamp(20px,2.4vw,32px);transition:background .5s var(--ease)}
+.room:hover{background:#FBF7EF}
+.room .swatch{height:86px;margin-bottom:1.5em;position:relative;overflow:hidden;border:1px solid var(--ink-12)}
+.room .swatch i{position:absolute;inset:0}
+.room h3{font-size:1.16rem;margin-bottom:.35em}
+.room .seat{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--maple);display:block;margin-bottom:1em}
+.room p{font-size:.9rem;color:var(--ink-70);margin:0}
+.houserules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(44px,6vw,72px)}
+.houserules div{border-top:1px solid var(--ink);padding-top:1.1em}
+.houserules h4{font-size:1rem;margin-bottom:.4em}
+.houserules p{font-size:.88rem;color:var(--ink-50);margin:0}
+
+/* ========== RITUAL ========== */
+.ritual{background:var(--ink);color:#F2EADB}
+.ritual .kicker{color:var(--ochre)}
+.ritual .kicker::before{background:var(--ochre)}
+.ritual .lede{color:rgba(242,234,219,.66)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(242,234,219,.16);margin-top:clamp(40px,6vw,72px)}
+.step{background:var(--ink);padding:clamp(22px,3vw,40px)}
+.step .big{font-family:var(--serif);font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:rgba(242,234,219,.2);display:block;margin-bottom:.4em}
+.step h3{color:#F2EADB;margin-bottom:.5em}
+.step p{color:rgba(242,234,219,.6);font-size:.92rem;margin:0}
+.step .spec{margin-top:1.4em;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre)}
+
+/* ========== RESERVE ========== */
+.reserve-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.workshop{border-top:1px solid var(--ink);padding:1.2em 0;display:grid;grid-template-columns:auto 1fr auto;gap:1.4em;align-items:baseline}
+.workshop .when{font-family:var(--serif);color:var(--maple);font-size:.9rem;letter-spacing:.06em;white-space:nowrap}
+.workshop h4{font-size1:1rem;font-size:1.04rem}
+.workshop p{font-size:.86rem;color:var(--ink-50);margin:.3em 0 0}
+.workshop .cost{font-family:var(--serif);font-size:.95rem}
+form{background:var(--paper-2);padding:clamp(24px,3vw,40px);border:1px solid var(--ink-12)}
+.field{margin-bottom:1.15em}
+label{display:block;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-50);margin-bottom:.55em}
+input,select,textarea{
+  width:100%;padding:.8em .9em;font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--ink);
+  background:rgba(255,255,255,.55);border:1px solid var(--ink-12);border-radius:0;transition:.3s var(--ease);
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--maple);background:#fff}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1.15em}
+.formnote{font-size:.76rem;color:var(--ink-50);margin:1.2em 0 0}
+.ok{margin-top:1.2em;padding:1em;border:1px solid var(--moss);color:var(--moss);font-size:.88rem;display:none}
+.ok.show{display:block;animation:fadeUp .5s var(--ease) both}
+
+/* ========== VISIT ========== */
+.visit{background:var(--paper-2)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px)}
+.hours{width:100%;border-collapse:collapse;margin-top:1.6em}
+.hours td{padding:.7em 0;border-bottom:1px solid var(--ink-12);font-size:.92rem}
+.hours td:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-70)}
+.hours tr.today td{color:var(--maple)}
+.hours tr.today td:first-child::after{content:" · today";font-size:.62rem;letter-spacing:.2em;text-transform:uppercase}
+.mapbox{
+  position:relative;aspect-ratio:4/3.2;border:1px solid var(--ink-12);overflow:hidden;
+  background:
+    linear-gradient(90deg,transparent 49.6%,rgba(27,25,23,.14) 49.6%,rgba(27,25,23,.14) 50.4%,transparent 50.4%),
+    linear-gradient(0deg,transparent 49.6%,rgba(27,25,23,.14) 49.6%,rgba(27,25,23,.14) 50.4%,transparent 50.4%),
+    repeating-linear-gradient(90deg,transparent 0 68px,rgba(27,25,23,.07) 68px 69px),
+    repeating-linear-gradient(0deg,transparent 0 68px,rgba(27,25,23,.07) 68px 69px),
+    #EBE1CE;
+}
+.pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center}
+.pin i{display:block;width:12px;height:12px;border-radius:50%;background:var(--maple);margin:0 auto 10px;box-shadow:0 0 0 8px rgba(156,59,42,.14),0 0 0 20px rgba(156,59,42,.07)}
+.pin span{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-70)}
+.addr{font-family:var(--serif);font-size:1.3rem;line-height:1.5}
+.infolist{list-style:none;padding:0;margin:2em 0 0}
+.infolist li{border-top:1px solid var(--ink-12);padding:.85em 0;display:flex;gap:1.4em;font-size:.9rem}
+.infolist li b{font-weight:500;min-width:96px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50);padding-top:.25em}
+
+/* ========== FOOTER ========== */
+footer{background:var(--ink);color:rgba(242,234,219,.72);padding:clamp(56px,8vw,100px) 0 28px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,5vw,64px)}
+footer h4{color:#F2EADB;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;font-family:var(--sans);font-weight:500;margin-bottom:1.4em}
+footer a:hover{color:#fff}
+.f-links{display:flex;flex-direction:column;gap:.6em;font-size:.92rem}
+.f-brand{font-family:var(--serif);font-size:clamp(2.4rem,6vw,3.6rem);color:#F2EADB;line-height:1;margin-bottom:.4em}
+.f-brand span{color:var(--ochre)}
+.news{display:flex;border-bottom:1px solid rgba(242,234,219,.3);margin-top:1.2em}
+.news input{background:none;border:0;color:#F2EADB;padding:.7em 0}
+.news input::placeholder{color:rgba(242,234,219,.4)}
+.news button{background:none;border:0;color:var(--ochre);cursor:pointer;font-family:var(--sans);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:0 0 0 1em}
+.f-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:clamp(48px,7vw,80px);padding-top:22px;border-top:1px solid rgba(242,234,219,.16);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,219,.42)}
+
+/* ========== REVEAL ========== */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr}
+  .scrollpanel{display:none}
+  .two,.reserve-grid,.visit-grid{grid-template-columns:1fr}
+  .tenets,.steps{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .navlinks{display:none}
+  .burger{display:block}
+  .nav-in .btn.solid{display:none}
+  .menu-list{grid-template-columns:1fr}
+  .hero{align-items:center;padding-top:110px}
+  .workshop{grid-template-columns:1fr;gap:.3em}
+  .f-grid{grid-template-columns:1fr}
+  .scroll-cue{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="Koyo home"><b>Koyo</b><span class="jp">紅葉</span></a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#philosophy">Tea House</a>
+      <a href="#menu">Menu</a>
+      <a href="#space">The Room</a>
+      <a href="#ritual">Ritual</a>
+      <a href="#reserve">Workshops</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a href="#reserve" class="btn solid">Reserve a Seat</a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<div id="mobile" aria-hidden="true">
+  <a href="#philosophy">Tea House <small>茶室</small></a>
+  <a href="#menu">Menu <small>献立</small></a>
+  <a href="#space">The Room <small>空間</small></a>
+  <a href="#ritual">Ritual <small>作法</small></a>
+  <a href="#reserve">Workshops <small>稽古</small></a>
+  <a href="#visit">Visit <small>案内</small></a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <canvas id="leaves" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-title reveal">
+      <div class="chip"><span id="clock" class="mono">—</span> · Now pouring <b id="nowTea">Hojicha</b></div>
+      <h1 class="h-display">Ko<em>y</em>o</h1>
+      <p class="lede hero-sub">A traditional Japanese tea house, kept slow — and built for the way San Francisco actually sits. Single-origin leaf, stone-ground matcha, and a chair that's yours for as long as you'd like it.</p>
+      <div class="hero-cta">
+        <a href="#menu" class="btn">See the menu</a>
+        <a href="#space" class="btn" style="border-color:var(--ink-30)">About the room</a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot" id="statusDot"></i><span id="statusText">Open today · 8–18</span></span>
+        <span>388 Linden Street, Hayes Valley</span>
+        <span>Est. 2016 · 二十四節気</span>
+      </div>
+    </div>
+
+    <div class="scrollpanel reveal" style="--d:.15s" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="hz" style="top:64%"></div>
+      <div class="hz" style="top:70%;opacity:.5"></div>
+      <div class="mist"></div>
+      <svg class="leafart" viewBox="0 0 300 410" fill="none">
+        <g fill="#8E3527" opacity=".85">
+          <g transform="translate(34,258) rotate(-18) scale(.34)">
+            <path d="M50 6 L58 30 L74 22 L70 42 L92 38 L78 54 L96 62 L72 66 L82 86 L58 74 L54 96 L46 96 L42 74 L18 86 L28 66 L4 62 L22 54 L8 38 L30 42 L26 22 L42 30 Z"/>
+          </g>
+          <g transform="translate(212,300) rotate(24) scale(.26)" opacity=".7">
+            <path d="M50 6 L58 30 L74 22 L70 42 L92 38 L78 54 L96 62 L72 66 L82 86 L58 74 L54 96 L46 96 L42 74 L18 86 L28 66 L4 62 L22 54 L8 38 L30 42 L26 22 L42 30 Z"/>
+          </g>
+          <g transform="translate(146,344) rotate(6) scale(.19)" opacity=".5">
+            <path d="M50 6 L58 30 L74 22 L70 42 L92 38 L78 54 L96 62 L72 66 L82 86 L58 74 L54 96 L46 96 L42 74 L18 86 L28 66 L4 62 L22 54 L8 38 L30 42 L26 22 L42 30 Z"/>
+          </g>
+        </g>
+        <g stroke="rgba(27,25,23,.3)" stroke-width="1" fill="none">
+          <path d="M120 170 c14-16 -14-30 0-46 M150 164 c16-18 -16-34 0-52 M180 172 c14-16 -14-30 0-46"/>
+        </g>
+      </svg>
+      <div class="vjp vlabel">秋 の 茶</div>
+      <div class="caption">Momiji · the turning of leaves</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><i></i> Scroll</div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tick"></div>
+</div>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section class="sec-pad" id="philosophy">
+  <div class="wrap">
+    <div class="two">
+      <div class="reveal">
+        <p class="kicker">One time, one meeting</p>
+        <h2 class="h1" style="margin-top:.7em">一期一会<br><span style="font-size:.44em;letter-spacing:.04em;color:var(--ink-70)">Ichigo ichie</span></h2>
+      </div>
+      <div class="reveal" style="--d:.1s">
+        <p class="lede">Koyo began as a question: what survives when a 400-year-old ritual moves into a storefront on Linden Street, between a bike shop and a laundromat?</p>
+        <p>Not the formality. We let that go. What we kept is the attention — water measured by temperature rather than habit, leaf weighed rather than scooped, a second steep poured only when you're ready for it. Our tea comes from eleven family gardens in Uji, Wazuka, Kirishima and Yame, most of them small enough that we know the name of the person who picked it.</p>
+        <p>The rest we built for here. Ceramic cups you don't have to be careful with. A long table with outlets. Oat milk. A room warm enough for fog. We think the tea house was always a public room first — a place to put down your day — and that translates just fine.</p>
+      </div>
+    </div>
+
+    <div class="tenets">
+      <div class="tenet reveal">
+        <span class="num">01</span>
+        <h3>Leaf, not powder-by-default</h3>
+        <p>Every tea is weighed to the gram and steeped to the second at the counter. Refills of hot water are free and expected — most leaf gives three distinct cups, and the second is usually the best one.</p>
+        <span class="jpsmall">煎 茶</span>
+      </div>
+      <div class="tenet reveal" style="--d:.08s">
+        <h3>No timer on the table</h3>
+        <span class="num" style="margin:0 0 0;display:block;order:-1">02</span>
+        <p>You may sit for four hours with one pot of bancha. Nobody will clear your cup or leave a check. If the room is full, we'll ask the counter crowd first, never the people already settled.</p>
+        <span class="jpsmall">間</span>
+      </div>
+      <div class="tenet reveal" style="--d:.16s">
+        <span class="num">03</span>
+        <h3>The season decides</h3>
+        <p>We follow the twenty-four Japanese microseasons. Shincha in May, cold-brewed gyokuro through the fog of July, roasted hojicha and chestnut once the light goes low. The board changes roughly every fifteen days.</p>
+        <span class="jpsmall">二十四節気</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="sec-pad menu-sec" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div class="reveal">
+        <p class="kicker">Menu · 献立</p>
+        <h2 class="h1" style="margin-top:.7em">What's on the board<br>this fortnight</h2>
+      </div>
+      <p class="lede reveal" style="--d:.1s;max-width:32ch;margin:0">Autumn board, Kanro (寒露) — cold dew. Priced for a full service: leaf, water, and every steep it will give you.</p>
+    </div>
+
+    <div class="tabs" id="tabs" role="tablist" aria-label="Menu categories"></div>
+    <div class="menu-list" id="menuList"></div>
+
+    <p class="menu-note">All leaf teas are served gong-fu style at the counter or as a full <em>kyusu</em> set for the table (+$3). Sweets are made in-house each morning by Emi; when they're gone, they're gone. Oat, whole and soy milk at no charge. We're happy to brew anything as a to-go cold pour — bring a vessel and we'll take a dollar off.</p>
+  </div>
+</section>
+
+<!-- ============ SPACE ============ -->
+<section class="sec-pad" id="space">
+  <div class="wrap">
+    <div class="two">
+      <div class="reveal">
+        <p class="kicker">The Room · 空間</p>
+        <h2 class="h1" style="margin-top:.7em">Sit as long<br>as you like.</h2>
+      </div>
+      <div class="reveal" style="--d:.1s">
+        <p class="lede">Twenty-eight seats across four different ways of being in public. Choose by how much of the world you want at your table.</p>
+        <p>The building was a 1912 carriage house; we kept the fir floor and the roll-up door, and added a cypress counter milled in Sebastopol. Afternoon light comes through shoji on the west wall around four — the best hour in the room, and the reason we don't take reservations for it.</p>
+      </div>
+    </div>
+
+    <div class="rooms">
+      <div class="room reveal">
+        <div class="swatch"><i style="background:linear-gradient(140deg,#D9C39B,#B68E5E)"></i></div>
+        <h3>The Cypress Counter</h3>
+        <span class="seat">8 seats · walk-in only</span>
+        <p>Facing the brew station. You'll be talked to — about water temperature, about the garden your leaf came from. Best for one person with forty-five minutes.</p>
+      </div>
+      <div class="room reveal" style="--d:.07s">
+        <div class="swatch"><i style="background:linear-gradient(140deg,#C8CDBD,#8E9B84)"></i></div>
+        <h3>The Long Table</h3>
+        <span class="seat">12 seats · laptops till 3pm</span>
+        <p>One slab of elm, eight outlets, good wifi. Screens welcome until three, when we close the lids together and the table turns to conversation. Calls outside, please.</p>
+      </div>
+      <div class="room reveal" style="--d:.14s">
+        <div class="swatch"><i style="background:linear-gradient(140deg,#E2D2B4,#C0A37A)"></i></div>
+        <h3>The Tatami Room</h3>
+        <span class="seat">4 guests · reserve ahead</span>
+        <p>Six mats, one alcove, one scroll changed with the season. Shoes and devices stay outside. Ninety-minute seatings with full koicha service.</p>
+      </div>
+      <div class="room reveal" style="--d:.21s">
+        <div class="swatch"><i style="background:linear-gradient(140deg,#CDBDA6,#9C8468)"></i></div>
+        <h3>The Back Steps</h3>
+        <span class="seat">4 seats · dogs welcome</span>
+        <p>A maple, a stone basin, and the sound of the laundromat. Open when it isn't raining sideways. Our quietest seat in the whole place.</p>
+      </div>
+    </div>
+
+    <div class="houserules">
+      <div class="reveal"><h4>No minimum, no rush</h4><p>One pot buys you the afternoon. Hot water refills are always free.</p></div>
+      <div class="reveal" style="--d:.06s"><h4>Quiet after three</h4><p>Lids down, voices low. Meetings and calls are best before then.</p></div>
+      <div class="reveal" style="--d:.12s"><h4>Cash and card</h4><p>Prices include tax. No tipping — it's in the price, and the staff are paid hourly.</p></div>
+      <div class="reveal" style="--d:.18s"><h4>Bring your own cup</h4><p>Any vessel, any size. A dollar off, every time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RITUAL ============ -->
+<section class="sec-pad ritual" id="ritual">
+  <div class="wrap">
+    <div class="two">
+      <div class="reveal">
+        <p class="kicker">Ritual · 作法</p>
+        <h2 class="h1" style="margin-top:.7em;color:#F2EADB">Three steeps,<br>three teas.</h2>
+      </div>
+      <div class="reveal" style="--d:.1s">
+        <p class="lede">The same leaf will give you a different cup each time you pour water over it. Here's what we tell people at the counter — take it home with you.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="big">一</span>
+        <h3>Cool the water</h3>
+        <p>Boiling water scalds green leaf and pulls bitterness forward. Pour from the kettle into your empty cups first — every transfer drops the temperature about 10°C — then into the pot.</p>
+        <div class="spec">Sencha 70°C · Gyokuro 55°C · Hojicha 95°C</div>
+      </div>
+      <div class="step reveal" style="--d:.08s">
+        <span class="big">二</span>
+        <h3>Weigh, don't scoop</h3>
+        <p>Five grams of leaf to 150ml of water is our house ratio — roughly twice what a Western recipe suggests, steeped for half as long. Density varies wildly between teas; a scale removes the guesswork.</p>
+        <div class="spec">5g : 150ml · 45 seconds</div>
+      </div>
+      <div class="step reveal" style="--d:.16s">
+        <span class="big">三</span>
+        <h3>Pour it all out</h3>
+        <p>Empty the pot completely each time, down to the last drop — the leaf keeps brewing in whatever you leave behind. Second steep: hotter, faster, sweeter. Third: add thirty seconds and let it go soft.</p>
+        <div class="spec">Steep 2 · +5°C, 20s &nbsp;— &nbsp;Steep 3 · +75s</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVE ============ -->
+<section class="sec-pad" id="reserve">
+  <div class="wrap">
+    <div class="reserve-grid">
+      <div>
+        <div class="reveal">
+          <p class="kicker">Workshops · 稽古</p>
+          <h2 class="h1" style="margin-top:.7em">Learn it<br>properly.</h2>
+          <p class="lede" style="margin-top:1.2em">Small classes in the tatami room, led by Naoko Serizawa (Urasenke, 22 years) and our head brewer Dae. Six people maximum. Tea, sweets and a takeaway pouch included.</p>
+        </div>
+        <div style="margin-top:2.6em">
+          <div class="workshop reveal">
+            <div class="when">Sat · 10:00</div>
+            <div><h4>Sencha, from the beginning</h4><p>Water, ratio, and the three steeps. Ninety minutes, no experience needed.</p></div>
+            <div class="cost">$65</div>
+          </div>
+          <div class="workshop reveal" style="--d:.06s">
+            <div class="when">Sun · 11:00</div>
+            <div><h4>Chabako — the ceremony, abridged</h4><p>A full usucha service in the tatami room. Kneeling optional; we have stools.</p></div>
+            <div class="cost">$90</div>
+          </div>
+          <div class="workshop reveal" style="--d:.12s">
+            <div class="when">Wed · 18:30</div>
+            <div><h4>Matcha &amp; whisk clinic</h4><p>Sifting, temperature, chasen technique. Leave able to make a good bowl at home.</p></div>
+            <div class="cost">$55</div>
+          </div>
+          <div class="workshop reveal" style="--d:.18s">
+            <div class="when">Monthly</div>
+            <div><h4>Tasting: one garden, five pickings</h4><p>Vertical flight from a single Wazuka farm. Announced by newsletter.</p></div>
+            <div class="cost">$78</div>
+          </div>
+        </div>
+      </div>
+
+      <form id="resForm" class="reveal" style="--d:.1s" novalidate>
+        <h3 class="h3" style="margin-bottom:1.4em">Request a seat</h3>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="frow">
+          <div class="field">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" required />
+          </div>
+          <div class="field">
+            <label for="guests">Guests</label>
+            <select id="guests" name="guests">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="kind">Experience</label>
+          <select id="kind" name="kind">
+            <option>Tatami room — usucha service (90 min)</option>
+            <option>Sencha, from the beginning (Sat 10:00)</option>
+            <option>Chabako — the ceremony, abridged (Sun 11:00)</option>
+            <option>Matcha &amp; whisk clinic (Wed 18:30)</option>
+            <option>Private group / event enquiry</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="note">Anything we should know</label>
+          <textarea id="note" name="note" rows="3" placeholder="Allergies, mobility, celebrating something…"></textarea>
+        </div>
+        <button type="submit" class="btn solid" style="width:100%;justify-content:center">Send request</button>
+        <p class="formnote">The counter and long table are always walk-in — this form is only for the tatami room and workshops. We reply within a day.</p>
+        <div class="ok" id="okMsg" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="sec-pad visit" id="visit">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div class="reveal">
+        <p class="kicker">Visit · 案内</p>
+        <h2 class="h1" style="margin:.7em 0 1.2em">Linden Street,<br>between things.</h2>
+        <p class="addr">388 Linden Street<br>Hayes Valley, San Francisco<br>CA 94102</p>
+        <table class="hours" id="hoursTable">
+          <tbody></tbody>
+        </table>
+        <ul class="infolist">
+          <li><b>Transit</b><span>Van Ness / Market — 21 Hayes, 6, 7, 49. Twelve minutes on foot from Civic Center BART.</span></li>
+          <li><b>Parking</b><span>Metered on Gough and Octavia. Bike racks at the roll-up door; we'll keep an eye on it.</span></li>
+          <li><b>Access</b><span>Step-free entry, accessible restroom. Tatami room has stool seating on request.</span></li>
+          <li><b>Contact</b><span><a href="mailto:hello@koyo.tea" style="border-bottom:1px solid var(--ink-30)">hello@koyo.tea</a> · (415) 555-0142</span></li>
+        </ul>
+      </div>
+      <div class="reveal" style="--d:.1s">
+        <div class="mapbox">
+          <div class="pin"><i></i><span>Koyo 紅葉</span></div>
+          <div style="position:absolute;left:12px;bottom:10px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50)">Linden St &amp; Gough</div>
+          <div class="vjp" style="position:absolute;right:14px;top:16px;font-size:.85rem;color:var(--ink-30)">案 内</div>
+        </div>
+        <p style="margin-top:1.6em;font-size:.92rem;color:var(--ink-70)">Look for the maple in the half-barrel and the indigo curtain. If the curtain is down, we're open. If it's tied up, we're doing a private service — come back in an hour and we'll make it up to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="f-brand">Koyo <span class="jp">紅葉</span></div>
+        <p style="max-width:34ch;font-size:.94rem">A tea house for slow hours. Fifteen days of news, one season of tea — sent whenever the board changes.</p>
+        <form class="news" id="newsForm">
+          <input type="email" id="newsEmail" placeholder="Email address" aria-label="Email address" required>
+          <button type="submit">Join</button>
+        </form>
+        <p id="newsOk" style="color:var(--ochre);font-size:.82rem;margin-top:.9em;display:none">Thank you — see you at the next season.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="f-links">
+          <a href="#philosophy">Tea House</a>
+          <a href="#menu">Menu</a>
+          <a href="#space">The Room</a>
+          <a href="#ritual">Ritual</a>
+          <a href="#reserve">Workshops</a>
+        </div>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <div class="f-links">
+          <a href="#visit">Instagram</a>
+          <a href="#visit">Tea shop &amp; leaf by mail</a>
+          <a href="#visit">Wholesale &amp; cafés</a>
+          <a href="#visit">Work with us</a>
+          <a href="#visit">Gift cards</a>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span id="yr">2024</span> Koyo Tea House · 388 Linden St, San Francisco</span>
+      <span>Kanro · 寒露 · cold dew</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- NAV ---------- */
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('stuck', window.scrollY > 40); }
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger = document.getElementById('burger'), mob = document.getElementById('mobile');
+  burger.addEventListener('click', function(){
+    var open = mob.classList.toggle('open');
+    burger.classList.toggle('on', open);
+    burger.setAttribute('aria-expanded', open);
+    mob.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mob.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      mob.classList.remove('open'); burger.classList.remove('on');
+      burger.setAttribute('aria-expanded','false'); document.body.style.overflow='';
+    }
+  });
+
+  /* ---------- REVEAL ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ---------- TICKER ---------- */
+  var phrases = ['一期一会 <em>ichigo ichie</em>','one time, one meeting','侘寂 <em>wabi-sabi</em>','the beauty of what is worn','間 <em>ma</em>','the space between things','紅葉 <em>koyo</em>','the turning of the leaves','一服 <em>ippuku</em>','one bowl, one pause'];
+  var tick = document.getElementById('tick');
+  var row = phrases.map(function(p){ return '<span>'+p+'</span>'; }).join('');
+  tick.innerHTML = row + row;
+
+  /* ---------- CLOCK + NOW POURING ---------- */
+  var suggestions = [
+    [5,  'Sencha Asatsuyu'], [9,  'Gyokuro, first steep'], [11, 'Usucha, thin'],
+    [14, 'Kuri Hojicha Latte'], [16, 'Hojicha, charcoal-roasted'], [19, 'Kukicha'], [22, 'Amazake, warm']
+  ];
+  function tock(){
+    var d = new Date();
+    document.getElementById('clock').textContent =
+      d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+    var h = d.getHours(), pick = suggestions[suggestions.length-1][1];
+    for(var i=0;i<suggestions.length;i++){ if(h >= suggestions[i][0]) pick = suggestions[i][1]; }
+    document.getElementById('nowTea').textContent = pick;
+  }
+  tock(); setInterval(tock, 20000);
+
+  /* ---------- HOURS ---------- */
+  var HOURS = [
+    ['Sunday', 8, 17], ['Monday', 8, 17], ['Tuesday', null, null],
+    ['Wednesday', 8, 18], ['Thursday', 8, 18], ['Friday', 8, 19], ['Saturday', 8, 19]
+  ];
+  function fmt(h){ var ap = h>=12?'pm':'am', hh = h%12||12; return hh+ap; }
+  var tbody = document.querySelector('#hoursTable tbody'), today = new Date().getDay();
+  var order = [3,4,5,6,0,1,2]; // Wed → Tue
+  order.forEach(function(i){
+    var d = HOURS[i], tr = document.createElement('tr');
+    if(i === today) tr.className = 'today';
+    tr.innerHTML = '<td>'+d[0]+'</td><td>'+(d[1]===null ? 'Closed' : fmt(d[1])+' — '+fmt(d[2]))+'</td>';
+    tbody.appendChild(tr);
+  });
+  (function status(){
+    var now = new Date(), d = HOURS[now.getDay()], h = now.getHours() + now.getMinutes()/60;
+    var dot = document.getElementById('statusDot'), txt = document.getElementById('statusText');
+    if(d[1] !== null && h >= d[1] && h < d[2]){
+      txt.textContent = 'Open now · until ' + fmt(d[2]);
+    } else if(d[1] === null){
+      dot.classList.add('shut'); txt.textContent = 'Closed Tuesdays · back Wednesday 8am';
+    } else {
+      dot.classList.add('shut');
+      txt.textContent = (h < d[1]) ? 'Opening at ' + fmt(d[1]) : 'Closed · reopens ' + fmt(HOURS[(now.getDay()+1)%7][1] || 8);
+    }
+  })();
+
+  /* ---------- MENU ---------- */
+  var MENU = {
+    'Leaf': { jp:'煎茶', items:[
+      {n:'Gyokuro "Jade Dew"', k:'玉露', p:14, d:'Uji, Kyoto · shaded twenty-one days before picking. Thick, almost broth-like, sweet as fresh corn silk. Served in three tiny pours at 55°C.', t:['Shaded','Uji','3 steeps']},
+      {n:'Sencha Asatsuyu', k:'煎茶', p:9, d:'Kirishima, Kagoshima · deep-steamed, bright green, cut grass and snap pea. Our house morning tea and the one we teach with.', t:['Deep-steamed','Grassy']},
+      {n:'Kabusecha Tsuyuhikari', k:'かぶせ茶', p:11, d:'Wazuka · half-shaded, the middle road between sencha and gyokuro. Soft edges, long finish.', t:['Half-shade']},
+      {n:'Bancha, autumn pick', k:'番茶', p:6, d:'Later leaf from the same gardens — plain, woody, endlessly refillable. The tea we drink ourselves at closing.', t:['Low caffeine','All-day']},
+      {n:'Shincha (waitlist)', k:'新茶', p:16, d:'First flush, air-freighted each May. Sold as a flight of two gardens for two weeks only. Add your name at the counter.', t:['Seasonal','May']}
+    ]},
+    'Matcha': { jp:'抹茶', items:[
+      {n:'Usucha — thin', k:'薄茶', p:8, d:'Okumidori, stone-ground in Uji, sifted and whisked to order in a warmed bowl. Bright, brisk, a little foam.', t:['Whisked','Single cultivar']},
+      {n:'Koicha — thick', k:'濃茶', p:16, d:'Four grams kneaded rather than whisked, the consistency of warm honey. Served with one wagashi. Sit down for this one.', t:['Ceremonial','Intense']},
+      {n:'Matcha Latte', k:'抹茶ラテ', p:7, d:'Whisked first in water so it never tastes chalky, then poured over oat or whole milk. Unsweetened unless you ask.', t:['Oat / whole / soy']},
+      {n:'Matcha Soda, yuzu', k:'抹茶ソーダ', p:8, d:'Cold-whisked matcha, sparkling water, a bar spoon of yuzu peel syrup. Absurdly refreshing on the four warm days a year.', t:['Iced','Vegan']},
+      {n:'Matcha Flight', k:'', p:19, d:'Three cultivars side by side — Okumidori, Asahi, Samidori — thin, in white cups, with tasting notes.', t:['Flight of 3']}
+    ]},
+    'Roasted': { jp:'焙じ茶', items:[
+      {n:'Hojicha, charcoal-roasted', k:'ほうじ茶', p:6, d:'Stems and late leaf roasted over binchotan in the back. Caramel, toast, almost no caffeine. The most ordered thing we make.', t:['Caffeine-light','Warm']},
+      {n:'Genmaicha', k:'玄米茶', p:6, d:'Bancha with rice popped that morning. Savoury, nutty, deeply unserious. Good with salted sweets.', t:['Toasty']},
+      {n:'Kukicha', k:'茎茶', p:6, d:'Stem tea — sweet, light, faintly creamy. What we give people who say they don\'t like green tea.', t:['Gentle']},
+      {n:'Hojicha Affogato', k:'', p:9, d:'A hot double-strength pour over black sesame ice cream from Ichido in the Sunset.', t:['Dessert']},
+      {n:'Roasted Rice Cold Brew', k:'', p:7, d:'Steeped sixteen hours, served over one large clear cube. Also available by the growler to take home.', t:['Iced','16h']}
+    ]},
+    'Seasonal': { jp:'季節', items:[
+      {n:'Kuri Hojicha Latte', k:'栗', p:8, d:'Roasted tea with Japanese chestnut paste and a dust of cinnamon bark. On the board from October through the solstice.', t:['Autumn','Warm']},
+      {n:'Persimmon &amp; Kukicha', k:'柿', p:8, d:'Cold-steeped stem tea with hachiya persimmon pressed in-house. Barely sweet, very orange.', t:['Iced','Autumn']},
+      {n:'Amazake', k:'甘酒', p:7, d:'Fermented rice, no alcohol, served warm in a tumbler with grated ginger. Two hundred years older than coffee.', t:['Warm','Fermented']},
+      {n:'Yuzu Sencha, iced', k:'柚子', p:8, d:'Flash-chilled sencha over ice with yuzu juice and a pinch of sea salt.', t:['Iced']},
+      {n:'Smoked Barley &amp; Mugwort', k:'麦茶', p:6, d:'Caffeine-free, earthy and dark. Our late-afternoon recommendation for anyone who wants to sleep tonight.', t:['Caffeine-free']}
+    ]},
+    'Sweets': { jp:'和菓子', items:[
+      {n:'Warabi Mochi', k:'わらび餅', p:7, d:'Bracken-starch jelly, roasted soy flour, black sugar syrup poured at the table. Made at 7am, best before noon.', t:['Vegan','Made daily']},
+      {n:'Dorayaki, to order', k:'どら焼き', p:6, d:'Two small pancakes griddled while you wait, filled with our own tsubuan red bean. Four minutes.', t:['Hot','4 min']},
+      {n:'Momiji Manju', k:'紅葉饅頭', p:4, d:'Maple-leaf cakes from Miyajima, filled with chestnut cream. Our namesake and our mascot.', t:['Signature']},
+      {n:'Persimmon Yokan', k:'羊羹', p:5, d:'Firm agar jelly, cut thick, tasting mostly of ripe fruit and a little of the sea.', t:['Vegan']},
+      {n:'Shokupan Toast', k:'', p:8, d:'Thick-cut milk bread from Yasukochi\'s, koji butter, buckwheat honey, flaky salt. The only savoury thing we serve.', t:['All day']}
+    ]}
+  };
+
+  var tabs = document.getElementById('tabs'), list = document.getElementById('menuList');
+  Object.keys(MENU).forEach(function(cat, idx){
+    var b = document.createElement('button');
+    b.className = 'tab'; b.type = 'button'; b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+    b.innerHTML = cat + ' <span class="t-jp">' + MENU[cat].jp + '</span>';
+    b.addEventListener('click', function(){
+      tabs.querySelectorAll('.tab').forEach(function(t){ t.setAttribute('aria-selected','false'); });
+      b.setAttribute('aria-selected','true');
+      render(cat);
+    });
+    tabs.appendChild(b);
+  });
+
+  function render(cat){
+    list.innerHTML = '';
+    MENU[cat].items.forEach(function(it, i){
+      var el = document.createElement('article');
+      el.className = 'item';
+      el.style.animationDelay = (i * 0.06) + 's';
+      el.innerHTML =
+        '<h4>' + it.n + (it.k ? ' <span class="k jp">' + it.k + '</span>' : '') + '</h4>' +
+        '<div class="price">' + it.p + '</div>' +
+        '<p class="desc">' + it.d + '</p>' +
+        '<div class="tagrow">' + it.t.map(function(t){ return '<span class="tag">'+t+'</span>'; }).join('') + '</div>';
+      list.appendChild(el);
+    });
+  }
+  render(Object.keys(MENU)[0]);
+
+  /* ---------- FORMS ---------- */
+  var form = document.getElementById('resForm'), ok = document.getElementById('okMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var date = document.getElementById('date').value;
+    var guests = document.getElementById('guests').value;
+    if(!name || !/^\S+@\S+\.\S+$/.test(email) || !date){
+      ok.style.borderColor = '#B5654A'; ok.style.color = '#B5654A';
+      ok.textContent = 'Please add your name, a valid email and a date — then we can hold the room.';
+      ok.classList.add('show'); return;
+    }
+    var pretty = new Date(date + 'T12:00').toLocaleDateString([], {weekday:'long', month:'long', day:'numeric'});
+    ok.style.borderColor = ''; ok.style.color = '';
+    ok.textContent = 'Thank you, ' + name.split(' ')[0] + '. We have your request for ' + guests + ' on ' + pretty + ' — you\'ll hear from us at ' + email + ' within a day. お待ちしております。';
+    ok.classList.add('show');
+    form.reset();
+  });
+
+  var nf = document.getElementById('newsForm');
+  nf.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = document.getElementById('newsEmail').value.trim();
+    if(!/^\S+@\S+\.\S+$/.test(v)) return;
+    document.getElementById('newsOk').style.display = 'block';
+    nf.reset();
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---------- FALLING LEAVES ---------- */
+  var cv = document.getElementById('leaves');
+  if(cv && !reduce){
+    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var LEAF = new Path2D('M50 6 L58 30 L74 22 L70 42 L92 38 L78 54 L96 62 L72 66 L82 86 L58 74 L54 96 L46 96 L42 74 L18 86 L28 66 L4 62 L22 54 L8 38 L30 42 L26 22 L42 30 Z');
+    var COLORS = ['rgba(156,59,42,.42)','rgba(196,135,58,.40)','rgba(181,101,74,.36)','rgba(90,107,82,.26)','rgba(124,44,34,.32)'];
+    var leaves = [];
+
+    function size(){
+      var r = cv.getBoundingClientRect();
+      W = r.width; H = r.height;
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function make(initial){
+      return {
+        x: Math.random()*W,
+        y: initial ? Math.random()*H : -60,
+        s: 0.10 + Math.random()*0.20,
+        vy: 0.18 + Math.random()*0.45,
+        sway: 14 + Math.random()*34,
+        phase: Math.random()*Math.PI*2,
+        rot: Math.random()*Math.PI*2,
+        vr: (Math.random()-0.5)*0.012,
+        c: COLORS[(Math.random()*COLORS.length)|0]
+      };
+    }
+    function init(){
+      size();
+      var n = W < 700 ? 9 : 18;
+      leaves = []; for(var i=0;i<n;i++) leaves.push(make(true));
+    }
+    var t = 0;
+    function frame(){
+      t += 0.01;
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<leaves.length;i++){
+        var l = leaves[i];
+        l.y += l.vy; l.rot += l.vr;
+        var x = l.x + Math.sin(t*0.8 + l.phase) * l.sway;
+        ctx.save();
+        ctx.translate(x, l.y);
+        ctx.rotate(l.rot);
+        ctx.scale(l.s, l.s);
+        ctx.translate(-50,-50);
+        ctx.fillStyle = l.c;
+        ctx.fill(LEAF);
+        ctx.restore();
+        if(l.y > H + 80) leaves[i] = make(false);
+      }
+      requestAnimationFrame(frame);
+    }
+    init(); requestAnimationFrame(frame);
+    var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(init, 200); });
+  }
+})();
+</script>
+</body>
+</html>
+```

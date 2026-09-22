@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOYŌ — Japanese Tea House · Japantown, San Francisco</title>
+<meta name="description" content="Koyo is a traditional Japanese tea house adapted for modern life in San Francisco. Matcha whisked to order, seats with no time limits, and one very slow hour.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23B5402A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Shippori+Mincho:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & TOKENS ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --paper:#F4EEE1;
+  --paper-2:#ECE3D0;
+  --ink:#1A1510;
+  --ink-2:#4A4036;
+  --aka:#B5402A;
+  --aka-deep:#7C2A1A;
+  --matcha:#67744A;
+  --gold:#C2A15C;
+  --line:rgba(26,21,16,.16);
+  --line-soft:rgba(26,21,16,.09);
+  --serif:'Fraunces',serif;
+  --jp:'Shippori Mincho',serif;
+  --sans:'Manrope',sans-serif;
+}
+html{scroll-behavior:auto;}
+html.lenis,html.lenis body{height:auto;}
+.lenis.lenis-smooth{scroll-behavior:auto!important;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden;}
+::selection{background:var(--aka);color:var(--paper);}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--paper-2);}
+::-webkit-scrollbar-thumb{background:var(--ink-2);border-radius:6px;border:2px solid var(--paper-2);}
+img,svg{display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;background:none;border:none;color:inherit;}
+ul{list-style:none;}
+@media (hover:hover) and (pointer:fine){
+  body, a, button, .menu-item{cursor:none;}
+}
+
+/* ============ GRAIN ============ */
+.grain{
+  position:fixed;inset:-50%;width:200%;height:200%;
+  pointer-events:none;z-index:2000;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainShift 9s steps(6) infinite;
+}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}20%{transform:translate(-2%,3%)}40%{transform:translate(3%,-2%)}
+  60%{transform:translate(-3%,-3%)}80%{transform:translate(2%,2%)}100%{transform:translate(0,0)}
+}
+
+/* ============ CURSOR ============ */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:3000;border-radius:50%;}
+.cursor-dot{width:8px;height:8px;background:var(--aka);margin:-4px 0 0 -4px;}
+.cursor-ring{
+  width:40px;height:40px;margin:-20px 0 0 -20px;
+  border:1px solid rgba(181,64,42,.65);
+  display:flex;align-items:center;justify-content:center;
+  transition:width .35s cubic-bezier(.22,1,.36,1),height .35s cubic-bezier(.22,1,.36,1),margin .35s cubic-bezier(.22,1,.36,1),background .3s,border-color .3s;
+}
+.cursor-ring .cursor-label{
+  font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--paper);opacity:0;transition:opacity .25s;
+}
+.cursor-ring.is-active{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(181,64,42,.12);}
+.cursor-ring.is-view{width:88px;height:88px;margin:-44px 0 0 -44px;background:var(--aka);border-color:var(--aka);}
+.cursor-ring.is-view .cursor-label{opacity:1;}
+@media (hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none;}}
+
+/* ============ LOADER ============ */
+#loader{
+  position:fixed;inset:0;z-index:5000;background:var(--paper);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:6px solid var(--aka);
+}
+.loader-inner{text-align:center;}
+.loader-kanji{
+  font-family:var(--jp);font-weight:600;
+  font-size:clamp(4rem,10vw,7rem);line-height:1;color:var(--ink);
+  overflow:hidden;
+}
+.loader-kanji span{display:inline-block;transform:translateY(110%);}
+.loader-sub{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-2);margin-top:1.2rem;opacity:0;}
+.loader-bar{width:180px;height:1px;background:var(--line);margin:1.6rem auto 0;position:relative;overflow:hidden;}
+.loader-bar span{position:absolute;inset:0;background:var(--aka);transform:scaleX(0);transform-origin:left;}
+.loader-num{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-2);margin-top:.8rem;}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 2.4rem;
+  transition:transform .5s cubic-bezier(.22,1,.36,1),background .4s,padding .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+  transform:translateY(-110%);
+}
+.nav.scrolled{background:rgba(244,238,225,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line-soft);padding:.85rem 2.4rem;}
+.nav.hidden{transform:translateY(-110%);}
+.nav.visible{transform:translateY(0);}
+.nav-logo{display:flex;align-items:baseline;gap:.6rem;}
+.nav-logo .logo-en{font-family:var(--serif);font-weight:600;font-size:1.35rem;letter-spacing:.06em;}
+.nav-logo .logo-jp{font-family:var(--jp);font-size:.8rem;color:var(--aka);letter-spacing:.3em;}
+.nav-links{display:flex;gap:2.2rem;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;}
+.nav-links a{position:relative;padding:.2rem 0;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--aka);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.22,1,.36,1);}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+.nav-cta{
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid var(--ink);border-radius:999px;padding:.7rem 1.5rem;
+  transition:background .35s,color .35s,border-color .35s;display:inline-block;
+}
+.nav-cta:hover{background:var(--aka);border-color:var(--aka);color:var(--paper);}
+@media(max-width:900px){.nav-links{display:none;}.nav{padding:1rem 1.3rem;}.nav.scrolled{padding:.7rem 1.3rem;}}
+
+/* ============ SHARED ============ */
+.section{padding:clamp(6rem,12vh,9rem) clamp(1.3rem,5vw,5rem);position:relative;}
+.eyebrow{
+  display:flex;align-items:center;gap:.9rem;
+  font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2);
+  margin-bottom:2.2rem;
+}
+.eyebrow::before{content:'';width:34px;height:1px;background:var(--aka);}
+.eyebrow .jp{font-family:var(--jp);color:var(--aka);letter-spacing:.25em;}
+.mask-reveal{overflow:hidden;}
+.mask-reveal .mr-in{display:block;transform:translateY(115%);}
+.h2{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1.06;letter-spacing:-.015em;
+}
+.h2 em{font-style:italic;font-weight:300;color:var(--aka);}
+.body-text{max-width:34rem;color:var(--ink-2);font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.85;}
+.vert-jp{writing-mode:vertical-rl;font-family:var(--jp);letter-spacing:.35em;color:var(--ink-2);}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 clamp(1.3rem,5vw,5rem) 2.4rem;overflow:hidden;
+}
+#leaves{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;}
+.hero-bg-mark{
+  position:absolute;right:-6vw;top:8vh;font-family:var(--jp);font-weight:700;
+  font-size:clamp(18rem,38vw,34rem);line-height:1;color:transparent;
+  -webkit-text-stroke:1px rgba(26,21,16,.10);z-index:1;user-select:none;pointer-events:none;
+}
+.hero-enso{
+  position:absolute;top:50%;left:50%;width:min(58vh,60vw);height:min(58vh,60vw);
+  transform:translate(-50%,-58%);z-index:1;pointer-events:none;
+}
+.hero-enso path{fill:none;stroke:var(--aka);stroke-width:2.2;stroke-linecap:round;opacity:.85;}
+.hero-top{
+  position:absolute;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:6.4rem clamp(1.3rem,5vw,5rem) 0;z-index:4;
+}
+.hero-tag{font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2);line-height:2.1;}
+.hero-tag .jp{font-family:var(--jp);color:var(--aka);}
+.hero-vert{writing-mode:vertical-rl;font-family:var(--jp);font-size:13px;letter-spacing:.5em;color:var(--ink-2);}
+.hero-center{position:relative;z-index:4;text-align:center;margin-bottom:clamp(1rem,4vh,3rem);}
+.hero-title{
+  font-family:var(--serif);font-weight:500;letter-spacing:.02em;
+  font-size:clamp(5rem,19vw,17rem);line-height:.92;color:var(--ink);
+  display:inline-flex;
+}
+.hero-title .ht-char{display:inline-block;overflow:hidden;}
+.hero-title .ht-char-in{display:inline-block;transform:translateY(115%);}
+.hero-title .accent{color:var(--aka);position:relative;}
+.hero-title .accent::after{content:'';position:absolute;left:8%;right:8%;top:.04em;height:.045em;background:var(--aka);}
+.hero-sub{
+  margin-top:1.6rem;display:flex;gap:1.6rem;justify-content:center;align-items:center;
+  font-size:clamp(.85rem,1.4vw,1.05rem);color:var(--ink-2);letter-spacing:.04em;
+}
+.hero-sub .dot{width:5px;height:5px;border-radius:50%;background:var(--aka);flex:none;}
+.hero-bottom{
+  position:relative;z-index:4;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
+  border-top:1px solid var(--line);padding-top:1.4rem;
+}
+.hero-bottom p{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);max-width:22rem;line-height:1.9;}
+.hero-bottom p b{color:var(--ink);}
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:.7rem;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-2);}
+.scroll-hint .line{width:1px;height:52px;background:var(--line);position:relative;overflow:hidden;}
+.scroll-hint .line::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--aka);animation:scrollLine 2.2s cubic-bezier(.65,0,.35,1) infinite;}
+@keyframes scrollLine{0%{top:-100%}55%{top:0}100%{top:100%}}
+.hero-badge{position:absolute;right:clamp(1.3rem,5vw,5rem);bottom:9.5rem;width:110px;height:110px;z-index:5;}
+.hero-badge svg{width:100%;height:100%;animation:spin 16s linear infinite;}
+.hero-badge text{font-family:var(--sans);font-size:8.6px;font-weight:600;letter-spacing:2px;fill:var(--ink-2);text-transform:uppercase;}
+.hero-badge .badge-leaf{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--jp);color:var(--aka);font-size:22px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){
+  .hero-badge{display:none;}
+  .hero-vert{display:none;}
+  .hero-bottom{flex-direction:column;align-items:flex-start;}
+  .scroll-hint{flex-direction:row;}.scroll-hint .line{width:52px;height:1px;}
+  .scroll-hint .line::after{animation:scrollLineX 2.2s cubic-bezier(.65,0,.35,1) infinite;}
+}
+@keyframes scrollLineX{0%{left:-100%;top:0}55%{left:0;top:0}100%{left:100%;top:0}}
+
+/* ============ MARQUEE ============ */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--paper-2);padding:1.1rem 0;position:relative;z-index:5;}
+.marquee-inner{display:flex;width:max-content;animation:mq 32s linear infinite;}
+.marquee-inner:hover{animation-play-state:paused;}
+.mq-chunk{display:flex;align-items:center;flex:none;}
+.mq-item{
+  font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.5rem);white-space:nowrap;
+  display:flex;align-items:center;gap:1.4rem;padding:0 1.4rem;color:var(--ink-2);
+}
+.mq-item .jp{font-family:var(--jp);color:var(--aka);}
+.mq-item .star{font-size:.7em;color:var(--gold);}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ STORY ============ */
+.story{background:var(--paper);overflow:hidden;}
+.story-grid{display:grid;grid-template-columns:minmax(200px,.9fr) 1.4fr;gap:clamp(2rem,6vw,7rem);align-items:start;}
+.story-ma{position:sticky;top:16vh;}
+.story-ma .ma-char{
+  font-family:var(--jp);font-weight:600;font-size:clamp(9rem,20vw,17rem);line-height:.95;
+  color:transparent;-webkit-text-stroke:1.5px var(--ink);transition:color .8s;
+}
+.story-ma:hover .ma-char{color:var(--aka);-webkit-text-stroke:1.5px var(--aka);}
+.story-ma .ma-cap{margin-top:1.2rem;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-2);line-height:2;}
+.story-copy .h2{margin-bottom:2.4rem;}
+.story-copy .body-text + .body-text{margin-top:1.4rem;}
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:4rem;
+}
+.stat{background:var(--paper);padding:1.6rem 1.2rem;}
+.stat .num{font-family:var(--serif);font-size:clamp(2rem,3.4vw,3rem);line-height:1;color:var(--ink);}
+.stat .num sup{font-size:.45em;color:var(--aka);font-style:italic;}
+.stat .lbl{margin-top:.7rem;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);}
+@media(max-width:900px){
+  .story-grid{grid-template-columns:1fr;}
+  .story-ma{position:static;display:flex;align-items:flex-end;gap:1.4rem;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ============ MENU ============ */
+.menu-sec{
+  background:
+   radial-gradient(ellipse 60% 40% at 90% 0%,rgba(103,116,74,.10),transparent 70%),
+   var(--paper-2);
+  border-top:1px solid var(--line);
+}
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3.4rem;}
+.menu-head .note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);text-align:right;line-height:2;}
+.menu-head .note .jp{font-family:var(--jp);color:var(--aka);}
+.menu-list{border-top:1px solid var(--line);}
+.menu-item{
+  display:grid;grid-template-columns:4.5rem 1.15fr 1fr 5rem;gap:1.4rem;align-items:center;
+  padding:1.7rem .8rem;border-bottom:1px solid var(--line);position:relative;overflow:hidden;
+}
+.menu-item::before{
+  content:'';position:absolute;inset:0;background:var(--ink);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .5s cubic-bezier(.65,0,.35,1);z-index:0;
+}
+.menu-item:hover::before{transform:scaleY(1);}
+.menu-item > *{position:relative;z-index:1;transition:color .35s,transform .5s cubic-bezier(.22,1,.36,1);}
+.mi-num{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--ink-2);}
+.mi-name{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:500;letter-spacing:.01em;display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;}
+.mi-name em{font-family:var(--jp);font-style:normal;font-size:.55em;color:var(--aka);letter-spacing:.2em;}
+.mi-desc{font-size:.92rem;color:var(--ink-2);line-height:1.7;}
+.mi-price{font-family:var(--serif);font-size:1.4rem;text-align:right;}
+.mi-price::before{content:'$';font-size:.65em;color:var(--aka);margin-right:.1em;font-style:italic;}
+.menu-item:hover .mi-num{color:var(--gold);}
+.menu-item:hover .mi-name{color:var(--paper);transform:translateX(12px);}
+.menu-item:hover .mi-desc{color:rgba(244,238,225,.65);}
+.menu-item:hover .mi-price{color:var(--paper);}
+.menu-foot{margin-top:2.6rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.menu-foot .plates{font-size:.95rem;color:var(--ink-2);}
+.menu-foot .plates b{color:var(--ink);font-weight:600;}
+.menu-foot .plates .jp{font-family:var(--jp);color:var(--aka);margin:0 .4rem;}
+.link-arrow{
+  display:inline-flex;align-items:center;gap:.7rem;font-size:11px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;border-bottom:1px solid var(--aka);padding-bottom:.45rem;
+  transition:gap .3s,color .3s;
+}
+.link-arrow:hover{gap:1.2rem;color:var(--aka);}
+@media(max-width:820px){
+  .menu-item{grid-template-columns:3rem 1fr 4rem;grid-template-rows:auto auto;}
+  .mi-desc{grid-column:2/4;}
+}
+/* floating preview */
+.menu-preview{
+  position:fixed;top:0;left:0;width:290px;height:360px;z-index:800;pointer-events:none;
+  opacity:0;will-change:transform;
+}
+.mp-card{
+  position:absolute;inset:0;border-radius:6px;overflow:hidden;opacity:0;transform:scale(.85);
+  transition:opacity .4s,transform .5s cubic-bezier(.22,1,.36,1);
+  display:flex;flex-direction:column;justify-content:space-between;padding:1.3rem;
+  box-shadow:0 30px 60px -20px rgba(26,21,16,.45);
+}
+.mp-card.active{opacity:1;transform:scale(1);}
+.mp-card svg{width:100%;flex:1;stroke-width:1.4;}
+.mp-card .mp-jp{font-family:var(--jp);font-size:1.5rem;letter-spacing:.3em;color:rgba(244,238,225,.9);}
+.mp-card .mp-en{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(244,238,225,.6);margin-top:.3rem;}
+@media(hover:none),(pointer:coarse){.menu-preview{display:none;}}
+
+/* ============ SPACE (horizontal) ============ */
+.space{background:var(--ink);color:var(--paper);border-top:1px solid var(--line);}
+.hs-pin{height:100vh;overflow:hidden;display:flex;align-items:center;}
+.hs-track{display:flex;align-items:center;gap:clamp(2rem,4vw,4.5rem);padding:0 clamp(1.3rem,5vw,5rem);will-change:transform;}
+.hs-panel{flex:none;}
+.hs-intro{width:min(38vw,520px);}
+.hs-intro .eyebrow{color:rgba(244,238,225,.55);}
+.hs-intro .h2{color:var(--paper);}
+.hs-intro .body-text{color:rgba(244,238,225,.6);margin-top:1.8rem;}
+.hs-intro .vert-jp{color:rgba(244,238,225,.4);margin-top:2.4rem;font-size:12px;}
+.hs-card{width:min(64vw,760px);}
+.panel-art{
+  position:relative;height:min(62vh,560px);border-radius:6px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.panel-art .ghost{
+  position:absolute;right:.4rem;bottom:-2.2rem;font-family:var(--serif);font-style:italic;
+  font-size:11rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(244,238,225,.22);pointer-events:none;
+}
+.panel-art svg.scene{width:78%;max-width:480px;stroke-width:1.4;}
+.panel-cap{display:flex;align-items:baseline;gap:1.4rem;margin-top:1.3rem;flex-wrap:wrap;}
+.panel-cap .idx{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1rem;}
+.panel-cap h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;letter-spacing:.01em;}
+.panel-cap .cap-jp{font-family:var(--jp);font-size:.85rem;color:var(--aka);letter-spacing:.25em;}
+.panel-cap p{width:100%;color:rgba(244,238,225,.55);font-size:.92rem;margin-top:.4rem;max-width:34rem;}
+.hs-end{width:min(40vw,540px);text-align:left;}
+.hs-end .big{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.25;color:var(--paper);}
+.hs-end .big em{color:var(--gold);font-style:italic;}
+.art-1{background:linear-gradient(160deg,#2B231B 0%,#171310 70%);color:#E8DCC3;}
+.art-2{background:linear-gradient(180deg,#E9E0CC 0%,#D9CCAF 100%);color:#3A3226;}
+.art-2 .ghost{-webkit-text-stroke:1px rgba(26,21,16,.18);}
+.art-3{background:linear-gradient(200deg,#3E4630 0%,#232A1B 75%);color:#E4E8D2;}
+.art-4{background:linear-gradient(160deg,#8A3323 0%,#4A1810 80%);color:#F0E2CC;}
+@media(max-width:899px){
+  .hs-pin{height:auto;overflow:visible;}
+  .hs-track{flex-direction:column;align-items:stretch;padding:5rem 1.3rem;transform:none!important;}
+  .hs-intro,.hs-card,.hs-end{width:100%;}
+  .panel-art{height:52vw;min-height:280px;}
+  .hs-panel + .hs-panel{margin-top:3.5rem;}
+  .hs-end{margin-top:4rem!important;}
+}
+
+/* ============ RITUAL ============ */
+.ritual{background:var(--ink);color:var(--paper);border-top:1px solid rgba(244,238,225,.1);overflow:hidden;}
+.ritual .eyebrow{color:rgba(244,238,225,.55);}
+.ritual .eyebrow::before{background:var(--gold);}
+.ritual .eyebrow .jp{color:var(--gold);}
+.ritual-head{position:relative;max-width:60rem;}
+.ritual .h2{color:var(--paper);}
+.ritual .body-text{color:rgba(244,238,225,.62);margin-top:2rem;}
+.ritual-enso{position:absolute;right:-6rem;top:-9rem;width:min(46vw,460px);opacity:.5;pointer-events:none;}
+.ritual-enso path{fill:none;stroke:var(--aka);stroke-width:2.4;stroke-linecap:round;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(244,238,225,.14);border:1px solid rgba(244,238,225,.14);margin-top:4.5rem;}
+.step{background:var(--ink);padding:2.6rem 2rem;position:relative;transition:background .5s;}
+.step:hover{background:#241E17;}
+.step .s-num{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--gold);}
+.step .s-jp{position:absolute;top:2.4rem;right:2rem;font-family:var(--jp);font-size:2rem;color:transparent;-webkit-text-stroke:1px rgba(244,238,225,.3);transition:color .5s,transform .6s cubic-bezier(.22,1,.36,1);}
+.step:hover .s-jp{color:var(--aka);-webkit-text-stroke:1px var(--aka);transform:translateY(-6px);}
+.step h3{font-family:var(--serif);font-weight:500;font-size:1.7rem;margin:2.6rem 0 .9rem;}
+.step p{font-size:.92rem;color:rgba(244,238,225,.55);line-height:1.8;}
+.ritual-cta{margin-top:4rem;display:flex;align-items:center;gap:2.4rem;flex-wrap:wrap;}
+.btn-fill{
+  display:inline-flex;align-items:center;gap:.9rem;background:var(--aka);color:var(--paper);
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  padding:1.15rem 2.2rem;border-radius:999px;position:relative;overflow:hidden;
+  transition:background .35s;
+}
+.btn-fill::after{content:'→';transition:transform .35s;}
+.btn-fill:hover{background:var(--aka-deep);}
+.btn-fill:hover::after{transform:translateX(5px);}
+.ritual-meta{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,238,225,.55);line-height:2.1;}
+.ritual-meta b{color:var(--gold);font-weight:600;}
+@media(max-width:900px){.steps{grid-template-columns:1fr;}.ritual-enso{opacity:.25;}}
+
+/* ============ VISIT ============ */
+.visit{background:var(--paper);}
+.visit-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:clamp(2.5rem,6vw,7rem);margin-top:1rem;align-items:start;}
+.info-rows{border-top:1px solid var(--line);}
+.info-row{display:grid;grid-template-columns:9rem 1fr;gap:1.5rem;padding:1.8rem .4rem;border-bottom:1px solid var(--line);transition:background .35s,padding-left .35s;}
+.info-row:hover{background:rgba(181,64,42,.05);padding-left:1rem;}
+.info-row .k{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-2);padding-top:.35rem;}
+.info-row .k .jp{display:block;font-family:var(--jp);color:var(--aka);letter-spacing:.2em;margin-top:.3rem;font-weight:500;}
+.info-row .v{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.45rem);line-height:1.5;}
+.info-row .v small{display:block;font-family:var(--sans);font-size:.85rem;color:var(--ink-2);margin-top:.4rem;letter-spacing:.04em;}
+.info-row .v a{border-bottom:1px solid var(--aka);transition:color .3s;}
+.info-row .v a:hover{color:var(--aka);}
+.clock-card{
+  border:1px solid var(--line);border-radius:6px;padding:2.6rem 2.2rem;position:relative;overflow:hidden;
+  background:linear-gradient(170deg,#FBF7EE, #EFE7D4);
+}
+.clock-card .cc-label{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2);}
+.clock-card .cc-time{font-family:var(--serif);font-size:clamp(2.6rem,4.6vw,3.8rem);line-height:1;margin:1.4rem 0 1rem;font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+.clock-card .cc-time .sec{font-size:.4em;color:var(--aka);font-style:italic;}
+.status-pill{
+  display:inline-flex;align-items:center;gap:.6rem;font-size:11px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.55rem 1.1rem;
+}
+.status-pill .pulse{width:8px;height:8px;border-radius:50%;background:var(--matcha);animation:pulse 1.8s ease infinite;}
+.status-pill.closed .pulse{background:var(--aka);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(103,116,74,.5)}50%{box-shadow:0 0 0 7px rgba(103,116,74,0)}}
+.clock-card .cc-foot{margin-top:2rem;padding-top:1.4rem;border-top:1px dashed var(--line);font-size:.85rem;color:var(--ink-2);line-height:1.9;}
+.clock-card .cc-foot .jp{font-family:var(--jp);color:var(--aka);}
+.clock-card .maple-deco{position:absolute;right:-2.5rem;bottom:-3rem;width:190px;opacity:.16;transform:rotate(24deg);color:var(--aka);}
+@media(max-width:900px){.visit-grid{grid-template-columns:1fr;}.info-row{grid-template-columns:1fr;gap:.4rem;}}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--ink);color:var(--paper);padding:clamp(5rem,10vh,8rem) clamp(1.3rem,5vw,5rem) 2rem;position:relative;overflow:hidden;}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:3rem;padding-bottom:4rem;border-bottom:1px solid rgba(244,238,225,.12);}
+.foot-brand p{color:rgba(244,238,225,.55);font-size:.95rem;margin-top:1.4rem;max-width:24rem;line-height:1.9;}
+.foot-col h4{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;}
+.foot-col a{display:block;padding:.35rem 0;color:rgba(244,238,225,.7);font-size:.95rem;transition:color .3s,transform .3s;}
+.foot-col a:hover{color:var(--aka);transform:translateX(6px);}
+.news-head{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;margin:3.6rem 0 1.6rem;}
+.news-head em{color:var(--gold);font-style:italic;}
+.news-form{display:flex;gap:0;max-width:520px;border:1px solid rgba(244,238,225,.25);border-radius:999px;overflow:hidden;transition:border-color .3s;}
+.news-form:focus-within{border-color:var(--aka);}
+.news-form input{
+  flex:1;background:transparent;border:none;outline:none;color:var(--paper);
+  padding:1.1rem 1.6rem;font-family:var(--sans);font-size:.95rem;
+}
+.news-form input::placeholder{color:rgba(244,238,225,.4);}
+.news-form button{
+  background:var(--aka);color:var(--paper);font-size:11px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;padding:0 1.8rem;transition:background .3s;
+}
+.news-form button:hover{background:var(--aka-deep);}
+.news-done{font-family:var(--jp);color:var(--gold);font-size:1.1rem;letter-spacing:.2em;padding:1rem 0;}
+.foot-giant{
+  margin:3rem 0 0;text-align:center;user-select:none;
+  font-family:var(--serif);font-weight:600;letter-spacing:.04em;line-height:.9;
+  font-size:clamp(4.5rem,20vw,19rem);
+  color:transparent;-webkit-text-stroke:1px rgba(244,238,225,.35);
+  transition:color 1s,-webkit-text-stroke 1s;
+}
+.foot-giant:hover{color:var(--aka);-webkit-text-stroke:1px var(--aka);}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:2.6rem;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,238,225,.4);}
+.foot-bottom .jp{font-family:var(--jp);color:var(--gold);letter-spacing:.3em;}
+.to-top{
+  width:52px;height:52px;border:1px solid rgba(244,238,225,.3);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:var(--paper);font-size:1.1rem;
+  transition:background .35s,border-color .35s,transform .35s;
+}
+.to-top:hover{background:var(--aka);border-color:var(--aka);transform:translateY(-4px);}
+@media(max-width:900px){.foot-top{grid-template-columns:1fr;}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- GRAIN -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span class="cursor-label">View</span></div>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-kanji"><span>紅葉</span></div>
+    <div class="loader-sub">KOYŌ TEA HOUSE — SAN FRANCISCO</div>
+    <div class="loader-bar"><span></span></div>
+    <div class="loader-num">00</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav-logo" data-scroll>
+    <span class="logo-en">KOYŌ</span>
+    <span class="logo-jp">紅葉</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#story" data-scroll>Story</a>
+    <a href="#menu" data-scroll>Tea List</a>
+    <a href="#space" data-scroll>The Room</a>
+    <a href="#ritual" data-scroll>Slow Hour</a>
+    <a href="#visit" data-scroll>Visit</a>
+  </nav>
+  <a href="#ritual" class="nav-cta" data-scroll data-magnetic>Reserve a Seat</a>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-mark" aria-hidden="true">紅葉</div>
+    <svg class="hero-enso" viewBox="0 0 200 200" aria-hidden="true">
+      <path id="ensoHero" d="M100,18 A82,82 0 1,1 62,33"/>
+    </svg>
+    <canvas id="leaves" aria-hidden="true"></canvas>
+
+    <div class="hero-top">
+      <div class="hero-tag">喫茶 · Tea House<br>Est. 2019 — Japantown, SF</div>
+      <div class="hero-vert">紅葉の季節に、一杯を。</div>
+    </div>
+
+    <div class="hero-center">
+      <h1 class="hero-title" aria-label="KOYŌ">
+        <span class="ht-char"><span class="ht-char-in">K</span></span><span class="ht-char"><span class="ht-char-in">O</span></span><span class="ht-char"><span class="ht-char-in">Y</span></span><span class="ht-char"><span class="ht-char-in accent">Ō</span></span>
+      </h1>
+      <div class="hero-sub">
+        <span>A traditional tea house</span>
+        <span class="dot"></span>
+        <span>reimagined for the modern pause</span>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <p><b>Koyo</b> — named for the turning of the maple. Matcha whisked to order, pots of sencha, and seats with no time limits on Sutter Street.</p>
+      <div class="scroll-hint"><span>Scroll</span><span class="line"></span><span style="font-family:var(--jp);letter-spacing:.3em;">下へ</span></div>
+      <p style="text-align:right;">Tue – Sun · 8a – 6p<br>Slow Hour seatings Fri – Sun</p>
+    </div>
+
+    <div class="hero-badge" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <defs><path id="circPath" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+        <text><textPath href="#circPath" textLength="234" lengthAdjust="spacingAndGlyphs">SIT · SIP · STAY · KOYO · SF ·</textPath></text>
+      </svg>
+      <span class="badge-leaf">紅</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-inner">
+      <div class="mq-chunk">
+        <span class="mq-item"><span class="jp">抹茶</span> MATCHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">焙じ茶</span> HŌJICHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">煎茶</span> SENCHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">玄米茶</span> GENMAICHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">柚子</span> YUZU <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">紅葉</span> KOYO RESERVE <span class="star">✳</span></span>
+      </div>
+      <div class="mq-chunk">
+        <span class="mq-item"><span class="jp">抹茶</span> MATCHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">焙じ茶</span> HŌJICHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">煎茶</span> SENCHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">玄米茶</span> GENMAICHA <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">柚子</span> YUZU <span class="star">✳</span></span>
+        <span class="mq-item"><span class="jp">紅葉</span> KOYO RESERVE <span class="star">✳</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section class="section story" id="story">
+    <div class="story-grid">
+      <div class="story-ma">
+        <div class="ma-char" aria-hidden="true">間</div>
+        <div class="ma-cap">Ma — the space<br>between things</div>
+      </div>
+      <div class="story-copy">
+        <div class="eyebrow">01 — Our Story <span class="jp">物語</span></div>
+        <h2 class="h2 mask-reveal"><span class="mr-in">Named for the turning of the leaves — <em>the brief, blazing pause before the fall.</em></span></h2>
+        <p class="body-text" data-fade>Koyo began with a simple question: what would a four-hundred-year-old tea house do about laptops? Our answer — nothing, and everything. We whisk matcha the slow way, brew sencha in small pots, and keep the wifi fast and the lighting kind.</p>
+        <p class="body-text" data-fade>The counter is hinoki cypress. The kettle is always on. Come for a meeting, a novel, a long catch-up, or nothing at all. In a city that rarely stops, we keep a slower hour — and a seat that is yours for as long as the light is good.</p>
+        <div class="stats">
+          <div class="stat"><div class="num"><span data-count="9">0</span><sup> teas</sup></div><div class="lbl">On the list</div></div>
+          <div class="stat"><div class="num"><span data-count="42">0</span></div><div class="lbl">Seats, no time limit</div></div>
+          <div class="stat"><div class="num"><span data-count="2019">0</span></div><div class="lbl">Est. in Japantown</div></div>
+          <div class="stat"><div class="num"><span data-count="1">0</span><sup> hr</sup></div><div class="lbl">Kept deliberately slow</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section menu-sec" id="menu">
+    <div class="menu-head">
+      <div>
+        <div class="eyebrow">02 — The Tea List <span class="jp">お茶</span></div>
+        <h2 class="h2 mask-reveal"><span class="mr-in">Whisked, steeped, <em>poured slowly.</em></span></h2>
+      </div>
+      <div class="note">Everything made to order<br>Oat or whole milk +0 <span class="jp">· どうぞ</span></div>
+    </div>
+
+    <ul class="menu-list" id="menuList">
+      <li class="menu-item" data-index="0">
+        <span class="mi-num">01</span>
+        <span class="mi-name">Ceremonial Matcha <em>抹茶</em></span>
+        <span class="mi-desc">Uji first-harvest, stone-milled, whisked thick and bright in a warmed chawan.</span>
+        <span class="mi-price">9</span>
+      </li>
+      <li class="menu-item" data-index="1">
+        <span class="mi-num">02</span>
+        <span class="mi-name">Matcha Latte <em>抹茶ラテ</em></span>
+        <span class="mi-desc">The modern classic — barely sweetened, silk-textured, hot or over ice.</span>
+        <span class="mi-price">7</span>
+      </li>
+      <li class="menu-item" data-index="2">
+        <span class="mi-num">03</span>
+        <span class="mi-name">Hōjicha Latte <em>ほうじ茶</em></span>
+        <span class="mi-desc">Roasted twig tea — toasty, caramel-dark, and gentle on caffeine.</span>
+        <span class="mi-price">7</span>
+      </li>
+      <li class="menu-item" data-index="3">
+        <span class="mi-num">04</span>
+        <span class="mi-name">Seasonal Sencha <em>煎茶</em></span>
+        <span class="mi-desc">A rotating single-origin steep, served in a small kyusu with two pours.</span>
+        <span class="mi-price">8</span>
+      </li>
+      <li class="menu-item" data-index="4">
+        <span class="mi-num">05</span>
+        <span class="mi-name">Genmaicha <em>玄米茶</em></span>
+        <span class="mi-desc">Green tea with toasted rice — warm, nutty, and endlessly refillable.</span>
+        <span class="mi-price">6</span>
+      </li>
+      <li class="menu-item" data-index="5">
+        <span class="mi-num">06</span>
+        <span class="mi-name">Yuzu Sparkling <em>柚子ソーダ</em></span>
+        <span class="mi-desc">Cold-pressed yuzu and shiso over ice — bright as a clear day on the bay.</span>
+        <span class="mi-price">8</span>
+      </li>
+      <li class="menu-item" data-index="6">
+        <span class="mi-num">07</span>
+        <span class="mi-name">Koyo Reserve <em>紅葉</em></span>
+        <span class="mi-desc">Our namesake pour — maple-smoked bancha, brewed tableside. Changes with the leaves.</span>
+        <span class="mi-price">11</span>
+      </li>
+    </ul>
+
+    <div class="menu-foot">
+      <p class="plates"><b>Small plates</b> — matcha soft serve<span class="jp">·</span>hōjicha brownie<span class="jp">·</span>miso onigiri set<span class="jp">·</span>from 5</p>
+      <a class="link-arrow" href="#ritual" data-scroll>Pair with the Slow Hour <span>→</span></a>
+    </div>
+  </section>
+
+  <!-- SPACE -->
+  <section class="space" id="space">
+    <div class="hs-pin">
+      <div class="hs-track">
+        <article class="hs-panel hs-intro">
+          <div class="eyebrow">03 — The Room <span class="jp">空間</span></div>
+          <h2 class="h2">One long room, <em>tuned for lingering.</em></h2>
+          <p class="body-text">Designed with a Kyoto machiya as the reference and a San Francisco workday as the reality — low light, deep seats, outlets where you need them, and silence where you don't.</p>
+          <div class="vert-jp" aria-hidden="true">くつろぎの時間をどうぞ</div>
+        </article>
+
+        <article class="hs-panel hs-card" data-cursor-label="View">
+          <div class="panel-art art-1">
+            <svg class="scene" viewBox="0 0 240 160" fill="none" stroke="currentColor" aria-hidden="true">
+              <line x1="20" y1="70" x2="220" y2="70"/>
+              <line x1="20" y1="76" x2="220" y2="76" stroke-opacity=".4"/>
+              <circle cx="60" cy="105" r="14"/><line x1="60" y1="119" x2="60" y2="140"/>
+              <circle cx="120" cy="105" r="14"/><line x1="120" y1="119" x2="120" y2="140"/>
+              <circle cx="180" cy="105" r="14"/><line x1="180" y1="119" x2="180" y2="140"/>
+              <line x1="70" y1="8" x2="70" y2="34"/><circle cx="70" cy="42" r="9"/>
+              <line x1="170" y1="8" x2="170" y2="34"/><circle cx="170" cy="42" r="9"/>
+              <path d="M132 62 h36 c0 12 -8 18 -18 18 c-10 0 -18 -6 -18 -18 Z"/>
+              <path d="M146 50 q4 -8 0 -14 M158 50 q4 -8 0 -14" stroke-opacity=".7"/>
+            </svg>
+            <span class="ghost">01</span>
+          </div>
+          <div class="panel-cap">
+            <span class="idx">01</span><h3>The Counter</h3><span class="cap-jp">カウンター</span>
+            <p>Seven stools of hinoki cypress facing the whisk. Watch every bowl made, eighty strokes at a time.</p>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-card" data-cursor-label="View">
+          <div class="panel-art art-2">
+            <svg class="scene" viewBox="0 0 240 160" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="30" y="16" width="80" height="110"/><line x1="70" y1="16" x2="70" y2="126"/>
+              <rect x="130" y="16" width="80" height="110"/><line x1="170" y1="16" x2="170" y2="126"/>
+              <line x1="40" y1="46" x2="60" y2="46" stroke-opacity=".5"/><line x1="80" y1="66" x2="102" y2="66" stroke-opacity=".5"/>
+              <line x1="140" y1="40" x2="164" y2="40" stroke-opacity=".5"/><line x1="150" y1="86" x2="200" y2="86" stroke-opacity=".5"/>
+              <line x1="30" y1="138" x2="210" y2="138"/>
+              <path d="M108 126 h24 c0 9 -5 12 -12 12 c-7 0 -12 -3 -12 -12 Z"/>
+              <path d="M116 116 q3 -7 0 -12 M126 116 q3 -7 0 -12" stroke-opacity=".7"/>
+            </svg>
+            <span class="ghost">02</span>
+          </div>
+          <div class="panel-cap">
+            <span class="idx">02</span><h3>The Window Line</h3><span class="cap-jp">窓際</span>
+            <p>A long oak bench along Sutter Street — fog-watching, people-watching, an outlet at every seat.</p>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-card" data-cursor-label="View">
+          <div class="panel-art art-3">
+            <svg class="scene" viewBox="0 0 240 160" fill="none" stroke="currentColor" aria-hidden="true">
+              <rect x="24" y="96" width="92" height="46"/><rect x="124" y="96" width="92" height="46"/>
+              <line x1="24" y1="119" x2="116" y2="119" stroke-opacity=".4"/><line x1="124" y1="119" x2="216" y2="119" stroke-opacity=".4"/>
+              <rect x="86" y="58" width="68" height="26" rx="2"/>
+              <line x1="94" y1="84" x2="94" y2="96"/><line x1="146" y1="84" x2="146" y2="96"/>
+              <rect x="46" y="76" width="26" height="14" rx="2" stroke-opacity=".8"/>
+              <rect x="168" y="76" width="26" height="14" rx="2" stroke-opacity=".8"/>
+              <path d="M112 50 h16 c0 7 -3 10 -8 10 c-5 0 -8 -3 -8 -10 Z"/>
+              <path d="M118 40 q3 -6 0 -10" stroke-opacity=".7"/>
+            </svg>
+            <span class="ghost">03</span>
+          </div>
+          <div class="panel-cap">
+            <span class="idx">03</span><h3>The Tatami Corner</h3><span class="cap-jp">畳</span>
+            <p>Shoes off, time off. Six rice-straw mats, a low table, and a strict no-meetings policy after 4pm.</p>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-card" data-cursor-label="View">
+          <div class="panel-art art-4">
+            <svg class="scene" viewBox="0 0 240 160" fill="none" stroke="currentColor" aria-hidden="true">
+              <circle cx="178" cy="42" r="20"/>
+              <path d="M30 130 q20 -26 48 -14 q26 10 44 -8 q20 -18 46 -6" stroke-opacity=".9"/>
+              <path d="M40 130 q14 -8 26 0 M96 122 q14 -8 26 0 M150 118 q14 -8 26 0" stroke-opacity=".5"/>
+              <path d="M70 60 q10 -20 34 -18 M82 60 q8 -12 22 -10" />
+              <path d="M104 42 l10 -8 M104 42 l2 -13" stroke-opacity=".7"/>
+              <ellipse cx="60" cy="128" rx="16" ry="8"/><ellipse cx="188" cy="126" rx="20" ry="9"/>
+            </svg>
+            <span class="ghost">04</span>
+          </div>
+          <div class="panel-cap">
+            <span class="idx">04</span><h3>The Tsuboniwa</h3><span class="cap-jp">坪庭</span>
+            <p>A pocket garden kept mossy through the driest September — one maple, three stones, endless fog.</p>
+          </div>
+        </article>
+
+        <article class="hs-panel hs-end">
+          <p class="big">"Stay as long as <em>the light is good.</em>"</p>
+          <div class="ritual-cta" style="margin-top:2.4rem;">
+            <a class="btn-fill" href="#visit" data-scroll data-magnetic>Plan your visit</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RITUAL -->
+  <section class="section ritual" id="ritual">
+    <div class="ritual-head">
+      <svg class="ritual-enso" viewBox="0 0 200 200" aria-hidden="true">
+        <path id="ensoRitual" d="M100,18 A82,82 0 1,1 62,33"/>
+      </svg>
+      <div class="eyebrow">04 — The Slow Hour <span class="jp">点前</span></div>
+      <h2 class="h2 mask-reveal"><span class="mr-in">Twenty minutes. One bowl. <em>No phones.</em></span></h2>
+      <p class="body-text" data-fade>Every Friday through Sunday we clear the center table for a guided bowl of thick koicha matcha and a seasonal sweet. It isn't a performance — it's a pause, shared with seven strangers who won't stay strangers.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="s-num">01</span><span class="s-jp" aria-hidden="true">来</span>
+        <h3>Arrive</h3>
+        <p>Leave the fog at the door. Shoes are optional; hurry is not. Your cushion is set before you sit.</p>
+      </div>
+      <div class="step">
+        <span class="s-num">02</span><span class="s-jp" aria-hidden="true">点</span>
+        <h3>Whisk</h3>
+        <p>Watch the bowl turn jade under eighty strokes of the chasen — then turn it twice, and drink.</p>
+      </div>
+      <div class="step">
+        <span class="s-num">03</span><span class="s-jp" aria-hidden="true">留</span>
+        <h3>Stay</h3>
+        <p>The seat is yours until the light changes. Most people close their laptops. Some just close their eyes.</p>
+      </div>
+    </div>
+
+    <div class="ritual-cta">
+      <a class="btn-fill" href="mailto:hello@koyo-sf.com?subject=Slow%20Hour%20Reservation" data-magnetic>Reserve the Slow Hour</a>
+      <p class="ritual-meta">Fri – Sun · Seatings <b>10a / 1p / 4p</b><b>$18</b> — bowl &amp; seasonal sweet included</p>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="section visit" id="visit">
+    <div class="eyebrow">05 — Visit <span class="jp">訪問</span></div>
+    <h2 class="h2 mask-reveal"><span class="mr-in">Find the red maple <em>on Sutter.</em></span></h2>
+
+    <div class="visit-grid">
+      <div class="info-rows">
+        <div class="info-row">
+          <div class="k">Address<span class="jp">住所</span></div>
+          <div class="v"><a href="https://maps.google.com/?q=1840+Sutter+St+San+Francisco+CA" target="_blank" rel="noopener">1840 Sutter Street</a><small>Japantown, San Francisco, CA 94115 — between the pagoda and the fog.</small></div>
+        </div>
+        <div class="info-row">
+          <div class="k">Hours<span class="jp">時間</span></div>
+          <div class="v">Tue – Fri · 8:00 – 18:00<br>Sat – Sun · 9:00 – 18:00<small>Mondays: we steep, we don't serve. Slow Hour seatings Fri – Sun.</small></div>
+        </div>
+        <div class="info-row">
+          <div class="k">Contact<span class="jp">連絡</span></div>
+          <div class="v"><a href="mailto:hello@koyo-sf.com">hello@koyo-sf.com</a><br><a href="tel:+14155550184">(415) 555-0184</a><small>Parties of six or more — write ahead, we'll clear the tatami.</small></div>
+        </div>
+        <div class="info-row">
+          <div class="k">Good to know<span class="jp">案内</span></div>
+          <div class="v">Wifi is fast. Lighting is kind.<small>Laptops welcome until 4pm at the window line; the tatami corner is always analog.</small></div>
+        </div>
+      </div>
+
+      <div class="clock-card">
+        <svg class="maple-deco" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12,1 L13.4,6.5 L18,4.5 L15.9,8.5 L21,8 L17.4,12 L21.5,14 L15.9,14.2 L16.5,20 L12.8,15.5 L12,21 L11.2,15.5 L7.5,20 L8.1,14.2 L2.5,14 L6.6,12 L3,8 L8.1,8.5 L6,4.5 L10.6,6.5 Z"/></svg>
+        <div class="cc-label">San Francisco — right now</div>
+        <div class="cc-time" id="sfClock">--:-- <span class="sec">--</span></div>
+        <div class="status-pill" id="statusPill"><span class="pulse"></span><span id="statusText">Checking the kettle…</span></div>
+        <div class="cc-foot">If we're open, the kettle is on and a seat is waiting. <span class="jp">お茶をどうぞ。</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <a href="#top" class="nav-logo" data-scroll style="color:var(--paper);">
+        <span class="logo-en">KOYŌ</span><span class="logo-jp" style="color:var(--gold);">紅葉</span>
+      </a>
+      <p>A traditional Japanese tea house adapted for modern life — and modern cafe-sitting — in Japantown, San Francisco.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="#story" data-scroll>Our Story</a>
+      <a href="#menu" data-scroll>The Tea List</a>
+      <a href="#space" data-scroll>The Room</a>
+      <a href="#ritual" data-scroll>The Slow Hour</a>
+      <a href="#visit" data-scroll>Visit</a>
+    </div>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
+      <a href="#" rel="noopener">Instagram</a>
+      <a href="#" rel="noopener">Spotify — Tea House Playlist</a>
+      <a href="#" rel="noopener">Are.na — Moodboard</a>
+      <a href="mailto:hello@koyo-sf.com">hello@koyo-sf.com</a>
+    </div>
+  </div>
+
+  <h3 class="news-head">The Steep — <em>a monthly note on tea and slowness.</em></h3>
+  <form class="news-form" id="newsForm" novalidate>
+    <input type="email" id="newsEmail" placeholder="your@email.com" aria-label="Email address" required>
+    <button type="submit" data-hover>Join</button>
+  </form>
+
+  <div class="foot-giant" id="footGiant" aria-hidden="true">KOYŌ</div>
+
+  <div class="foot-bottom">
+    <span>© 2025 Koyo Tea House · San Francisco</span>
+    <span class="jp">紅葉 — 季節とともに</span>
+    <span>Made slowly, poured slowly</span>
+    <button class="to-top" id="toTop" aria-label="Back to top" data-hover>↑</button>
+  </div>
+</footer>
+
+<!-- MENU FLOATING PREVIEW -->
+<div class="menu-preview" aria-hidden="true">
+  <div class="mp-card" style="background:radial-gradient(circle at 30% 20%,#8A9A5E,#3E4B28 75%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#F4EEE1"><path d="M25 55 C25 82 40 94 60 94 C80 94 95 82 95 55"/><path d="M25 55 H95"/><path d="M46 94 h28"/><path d="M50 40 q5 -9 0 -16 M62 40 q5 -9 0 -16 M74 40 q5 -9 0 -16" stroke-opacity=".8"/></svg>
+    <div><div class="mp-jp">抹茶</div><div class="mp-en">Ceremonial Matcha</div></div>
+  </div>
+  <div class="mp-card" style="background:radial-gradient(circle at 70% 25%,#B7C48F,#67744A 78%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#F4EEE1"><path d="M42 30 L48 96 h24 L78 30 Z"/><path d="M42 30 h36"/><path d="M47 52 h26" stroke-opacity=".7"/><path d="M50 70 h20" stroke-opacity=".5"/><circle cx="58" cy="40" r="3" stroke-opacity=".7"/><circle cx="66" cy="44" r="2" stroke-opacity=".7"/></svg>
+    <div><div class="mp-jp">抹茶ラテ</div><div class="mp-en">Matcha Latte</div></div>
+  </div>
+  <div class="mp-card" style="background:radial-gradient(circle at 30% 30%,#B97E46,#5A3418 78%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#F4EEE1"><path d="M35 52 h44 c0 22 -10 34 -22 34 c-12 0 -22 -12 -22 -34 Z"/><path d="M79 56 q14 2 12 12 q-2 9 -14 8"/><path d="M50 38 q4 -7 0 -13 M62 38 q4 -7 0 -13" stroke-opacity=".8"/></svg>
+    <div><div class="mp-jp">ほうじ茶</div><div class="mp-en">Hōjicha Latte</div></div>
+  </div>
+  <div class="mp-card" style="background:radial-gradient(circle at 65% 20%,#C9D6A0,#7C8A52 80%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#2E3A20"><path d="M35 60 a25 22 0 1 0 50 0 a25 22 0 1 0 -50 0"/><path d="M85 56 q16 -8 12 -16 q-3 -6 -12 -2"/><path d="M35 58 q-12 2 -10 10 q2 7 12 5"/><path d="M55 30 q4 -7 0 -12 M68 30 q4 -7 0 -12" stroke-opacity=".7"/></svg>
+    <div><div class="mp-jp">煎茶</div><div class="mp-en">Seasonal Sencha</div></div>
+  </div>
+  <div class="mp-card" style="background:radial-gradient(circle at 35% 25%,#D9C391,#8A744A 80%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#3B2E18"><path d="M28 52 C28 80 42 92 60 92 C78 92 92 80 92 52"/><path d="M28 52 H92"/><circle cx="46" cy="44" r="2.4"/><circle cx="58" cy="40" r="2.4"/><circle cx="70" cy="44" r="2.4"/><circle cx="52" cy="32" r="2"/><circle cx="66" cy="30" r="2"/></svg>
+    <div><div class="mp-jp">玄米茶</div><div class="mp-en">Genmaicha</div></div>
+  </div>
+  <div class="mp-card" style="background:radial-gradient(circle at 60% 20%,#F0D06A,#C9822E 80%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#5A3A10"><path d="M44 26 L49 94 h22 L76 26 Z"/><path d="M44 26 h32"/><circle cx="54" cy="48" r="2.6"/><circle cx="64" cy="60" r="2"/><circle cx="56" cy="72" r="2.2"/><circle cx="66" cy="38" r="1.8"/><path d="M52 26 q10 -14 20 -12" stroke-opacity=".8"/></svg>
+    <div><div class="mp-jp">柚子ソーダ</div><div class="mp-en">Yuzu Sparkling</div></div>
+  </div>
+  <div class="mp-card" style="background:radial-gradient(circle at 30% 20%,#C95636,#5E1D0E 80%);">
+    <svg viewBox="0 0 120 120" fill="none" stroke="#F4EEE1"><path d="M60 22 L63 45 L78 34 L71 51 L88 50 L74 61 L89 70 L70 70 L73 88 L62 74 L60 92 L58 74 L47 88 L50 70 L31 70 L46 61 L32 50 L49 51 L42 34 L57 45 Z" fill="#F4EEE1" fill-opacity=".14"/></svg>
+    <div><div class="mp-jp">紅葉</div><div class="mp-en">Koyo Reserve</div></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+"use strict";
+gsap.registerPlugin(ScrollTrigger);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+/* ---------- LENIS SMOOTH SCROLL ---------- */
+let lenis = null;
+if(!reduced){
+  lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time)=>{ lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+}
+
+/* ---------- ANCHOR SCROLLING ---------- */
+function scrollToTarget(sel){
+  const el = document.querySelector(sel);
+  if(!el) return;
+  if(lenis){ lenis.scrollTo(el, { duration: 1.4 }); }
+  else{ el.scrollIntoView({behavior:'smooth'}); }
+}
+document.querySelectorAll('[data-scroll]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const href = a.getAttribute('href');
+    if(href && href.startsWith('#')){ e.preventDefault(); scrollToTarget(href === '#top' ? 'body' : href); }
+  });
+});
+document.getElementById('toTop').addEventListener('click', ()=>{
+  if(lenis) lenis.scrollTo(0,{duration:1.6}); else window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------- CUSTOM CURSOR ---------- */
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+if(!isTouch){
+  window.addEventListener('mousemove', e=>{ mx = e.clientX; my = e.clientY; });
+  gsap.ticker.add(()=>{
+    rx += (mx - rx) * .16; ry += (my - ry) * .16;
+    dot.style.transform = `translate(${mx}px,${my}px)`;
+    ring.style.transform = `translate(${rx}px,${ry}px)`;
+  });
+  document.querySelectorAll('a, button, .menu-item, input, [data-hover]').forEach(el=>{
+    el.addEventListener('mouseenter', ()=> ring.classList.add('is-active'));
+    el.addEventListener('mouseleave', ()=> ring.classList.remove('is-active'));
+  });
+  document.querySelectorAll('[data-cursor-label]').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>{
+      ring.querySelector('.cursor-label').textContent = el.dataset.cursorLabel;
+      ring.classList.add('is-view');
+    });
+    el.addEventListener('mouseleave', ()=> ring.classList.remove('is-view'));
+  });
+}
+
+/* ---------- MAGNETIC ---------- */
+if(!isTouch){
+  document.querySelectorAll('[data-magnetic]').forEach(el=>{
+    const xTo = gsap.quickTo(el, 'x', {duration:.4, ease:'power3'});
+    const yTo = gsap.quickTo(el, 'y', {duration:.4, ease:'power3'});
+    el.addEventListener('mousemove', e=>{
+      const r = el.getBoundingClientRect();
+      xTo((e.clientX - (r.left + r.width/2)) * .35);
+      yTo((e.clientY - (r.top + r.height/2)) * .35);
+    });
+    el.addEventListener('mouseleave', ()=>{ xTo(0); yTo(0); });
+  });
+}
+
+/* ---------- FALLING LEAVES ---------- */
+const canvas = document.getElementById('leaves');
+const ctx = canvas.getContext('2d');
+let W=0, H=0, leaves=[], leavesRunning=false, lt=0;
+const COLORS = ['#B5402A','#C9822E','#C2A15C','#8C3A24','#9A5A28'];
+const maple = new Path2D('M0,-11 L2.2,-5.5 L7,-8.5 L5.5,-3.5 L11,-4.5 L7,0.5 L11.5,3 L5,3.8 L6.5,9 L1.6,5.5 L0,11 L-1.6,5.5 L-6.5,9 L-5,3.8 L-11.5,3 L-7,0.5 L-11,-4.5 L-5.5,-3.5 L-7,-8.5 L-2.2,-5.5 Z');
+const oval  = new Path2D('M0,-10 C6,-6 6,6 0,10 C-6,6 -6,-6 0,-10 Z');
+function sizeCanvas(){
+  const dpr = Math.min(window.devicePixelRatio||1, 2);
+  const r = canvas.parentElement.getBoundingClientRect();
+  W = r.width; H = r.height;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+function mkLeaf(anywhere){
+  return {
+    x: Math.random()*W,
+    y: anywhere ? Math.random()*H : -30 - Math.random()*60,
+    s: 7 + Math.random()*13,
+    a: Math.random()*Math.PI*2,
+    va: (Math.random()-.5)*.02,
+    vy: .35 + Math.random()*.85,
+    ph: Math.random()*Math.PI*2,
+    sw: .5 + Math.random()*1.5,
+    c: COLORS[(Math.random()*COLORS.length)|0],
+    p: Math.random() < .55 ? maple : oval,
+    o: .3 + Math.random()*.5
+  };
+}
+function leafLoop(){
+  if(!leavesRunning) return;
+  lt += .016;
+  ctx.clearRect(0,0,W,H);
+  for(const l of leaves){
+    l.y += l.vy; l.a += l.va; l.x += Math.sin(lt*l.sw + l.ph) * .7;
+    if(l.y > H + 40) Object.assign(l, mkLeaf(false));
+    ctx.save();
+    ctx.translate(l.x, l.y); ctx.rotate(l.a);
+    const sc = l.s/11; ctx.scale(sc, sc);
+    ctx.globalAlpha = l.o; ctx.fillStyle = l.c;
+    ctx.fill(l.p);
+    ctx.restore();
+  }
+  requestAnimationFrame(leafLoop);
+}
+if(!reduced){
+  sizeCanvas();
+  leaves = Array.from({length: 26}, ()=> mkLeaf(true));
+  new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting && !leavesRunning){ leavesRunning = true; leafLoop(); }
+      else if(!en.isIntersecting){ leavesRunning = false; }
+    });
+  },{threshold:0}).observe(document.getElementById('hero'));
+  window.addEventListener('resize', sizeCanvas);
+}
+
+/* ---------- PRELOADER ---------- */
+const heroChars = document.querySelectorAll('.ht-char-in');
+const tlIntro = gsap.timeline({paused:true});
+tlIntro
+  .to('.nav', {y:0, duration:1, ease:'power4.out', onStart:()=>document.getElementById('nav').classList.add('visible')}, 0)
+  .set('.nav', {clearProps:'transform'}, 1)
+  .to(heroChars, {y:0, duration:1.25, ease:'power4.out', stagger:.07}, .05)
+  .fromTo('.hero-sub', {opacity:0, y:24}, {opacity:1, y:0, duration:.9, ease:'power3.out'}, .7)
+  .fromTo('.hero-top, .hero-bottom', {opacity:0, y:20}, {opacity:1, y:0, duration:.9, ease:'power3.out', stagger:.12}, .75)
+  .fromTo('.hero-badge', {opacity:0, scale:.6}, {opacity:1, scale:1, duration:.8, ease:'back.out(1.6)'}, 1)
+  .fromTo('#ensoHero', {strokeDasharray:520, strokeDashoffset:520}, {strokeDashoffset:40, duration:2, ease:'power2.inOut'}, .2);
+
+const loaderEl = document.getElementById('loader');
+const numEl = document.querySelector('.loader-num');
+const counter = {v:0};
+const tlLoad = gsap.timeline({
+  onComplete(){
+    loaderEl.style.display = 'none';
+    document.body.classList.remove('locked');
+    if(lenis) lenis.start();
+    tlIntro.play();
+    ScrollTrigger.refresh();
+  }
+});
+tlLoad
+  .to('.loader-kanji span', {y:0, duration:.9, ease:'power4.out'}, .15)
+  .to('.loader-sub', {opacity:1, duration:.6}, .5)
+  .to(counter, {v:100, duration:1.5, ease:'power2.inOut',
+    onUpdate:()=>{ numEl.textContent = String(Math.round(counter.v)).padStart(2,'0'); }}, .2)
+  .to('.loader-bar span', {scaleX:1, duration:1.5, ease:'power2.inOut'}, .2)
+  .to('.loader-kanji span', {y:'-115%', duration:.6, ease:'power3.in'}, '+=.25')
+  .to('.loader-sub, .loader-bar, .loader-num', {opacity:0, duration:.4}, '<')
+  .to(loaderEl, {yPercent:-100, duration:1, ease:'power4.inOut'}, '-=.1');
+
+/* ---------- SCROLL REVEALS ---------- */
+document.querySelectorAll('.mask-reveal .mr-in').forEach(el=>{
+  gsap.to(el, {y:0, duration:1.3, ease:'power4.out',
+    scrollTrigger:{trigger:el, start:'top 88%'}});
+});
+document.querySelectorAll('[data-fade]').forEach(el=>{
+  gsap.fromTo(el, {opacity:0, y:34}, {opacity:1, y:0, duration:1.1, ease:'power3.out',
+    scrollTrigger:{trigger:el, start:'top 88%'}});
+});
+gsap.fromTo('.menu-item', {opacity:0, y:40}, {opacity:1, y:0, duration:.9, ease:'power3.out', stagger:.07,
+  scrollTrigger:{trigger:'.menu-list', start:'top 82%'}});
+gsap.fromTo('.step', {opacity:0, y:50}, {opacity:1, y:0, duration:1, ease:'power3.out', stagger:.12,
+  scrollTrigger:{trigger:'.steps', start:'top 85%'}});
+gsap.fromTo('.info-row', {opacity:0, x:-30}, {opacity:1, x:0, duration:.9, ease:'power3.out', stagger:.08,
+  scrollTrigger:{trigger:'.info-rows', start:'top 85%'}});
+
+/* counters */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const target = +el.dataset.count;
+  ScrollTrigger.create({trigger:el, start:'top 88%', once:true,
+    onEnter(){ gsap.fromTo(el, {innerText:0}, {innerText:target, duration:1.6, ease:'power2.out', snap:{innerText:1}}); }});
+});
+
+/* ritual enso scrub draw */
+const ensoR = document.getElementById('ensoRitual');
+const ensoLen = ensoR.getTotalLength();
+gsap.fromTo(ensoR, {strokeDasharray:ensoLen, strokeDashoffset:ensoLen},
+  {strokeDashoffset:ensoLen*.12, ease:'none',
+   scrollTrigger:{trigger:'#ritual', start:'top 80%', end:'center center', scrub:1}});
+
+/* story ma parallax */
+gsap.to('.story-ma .ma-char', {yPercent:18, ease:'none',
+  scrollTrigger:{trigger:'#story', start:'top bottom', end:'bottom top', scrub:1}});
+
+/* footer giant drift */
+gsap.fromTo('#footGiant', {yPercent:30}, {yPercent:0, ease:'none',
+  scrollTrigger:{trigger:'.footer', start:'top bottom', end:'bottom bottom', scrub:1}});
+
+/* ---------- NAV BEHAVIOR ---------- */
+const nav = document.getElementById('nav');
+let lastY = 0;
+function onScrollY(y){
+  nav.classList.toggle('scrolled', y > 60);
+  if(y > 140 && y > lastY + 4) nav.classList.add('hidden');
+  else if(y < lastY - 4 || y < 140) nav.classList.remove('hidden');
+  lastY = y;
+}
+if(lenis){ lenis.on('scroll', ({scroll})=> onScrollY(scroll)); }
+else{ window.addEventListener('scroll', ()=> onScrollY(scrollY), {passive:true}); }
+
+/* ---------- HERO MOUSE PARALLAX ---------- */
+if(!isTouch && !reduced){
+  const title = document.querySelector('.hero-title');
+  const enso = document.querySelector('.hero-enso');
+  const tX = gsap.quickTo(title,'x',{duration:.8,ease:'power3'});
+  const tY = gsap.quickTo(title,'y',{duration:.8,ease:'power3'});
+  const eX = gsap.quickTo(enso,'xPercent',{duration:1.2,ease:'power3'});
+  document.getElementById('hero').addEventListener('mousemove', e=>{
+    const nx = (e.clientX/innerWidth - .5);
+    tX(nx*18); tY(nx*10); eX(nx*-6);
+  });
+}
+
+/* ---------- MENU PREVIEW ---------- */
+const preview = document.querySelector('.menu-preview');
+const cards = Array.from(preview.children);
+const menuList = document.getElementById('menuList');
+if(!isTouch){
+  let px=0, py=0, tx=innerWidth/2, ty=innerHeight/2, pVisible=false;
+  document.addEventListener('mousemove', e=>{ tx=e.clientX; ty=e.clientY; });
+  document.querySelectorAll('.menu-item').forEach(item=>{
+    item.addEventListener('mouseenter', ()=>{
+      cards.forEach(c=>c.classList.remove('active'));
+      cards[+item.dataset.index].classList.add('active');
+      pVisible = true;
+      preview.style.opacity = 1;
+    });
+  });
+  menuList.addEventListener('mouseleave', ()=>{
+    pVisible = false;
+    preview.style.opacity = 0;
+  });
+  gsap.ticker.add(()=>{
+    px += (tx-px)*.11; py += (ty-py)*.11;
+    const rot = Math.max(-9, Math.min(9, (tx-px)*.05));
+    const sc = pVisible ? 1 : .85;
+    preview.style.transform = `translate(${px-145}px, ${py-190}px) rotate(${rot}deg) scale(${sc})`;
+  });
+}
+
+/* ---------- HORIZONTAL SCROLL (desktop) ---------- */
+const mm = gsap.matchMedia();
+mm.add('(min-width: 900px)', ()=>{
+  const track = document.querySelector('.hs-track');
+  const getDist = ()=> track.scrollWidth - window.innerWidth;
+  const tween = gsap.to(track, {
+    x: ()=> -getDist(), ease:'none',
+    scrollTrigger:{
+      trigger:'#space', start:'top top',
+      end: ()=> '+=' + getDist(),
+      scrub:1, pin:true, anticipatePin:1, invalidateOnRefresh:true
+    }
+  });
+  return ()=>{ tween.scrollTrigger && tween.scrollTrigger.kill(); tween.kill(); gsap.set(track,{clearProps:'x'}); };
+});
+
+/* ---------- SF CLOCK & STATUS ---------- */
+const clockEl = document.getElementById('sfClock');
+const statusPill = document.getElementById('statusPill');
+const statusText = document.getElementById('statusText');
+function sfNow(){
+  return new Date(new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'}));
+}
+function tickClock(){
+  const d = sfNow();
+  let h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+  const ap = h >= 12 ? 'PM' : 'AM';
+  const h12 = h % 12 || 12;
+  clockEl.innerHTML = `${String(h12).padStart(2,'0')}:${String(m).padStart(2,'0')} <span class="sec">${String(s).padStart(2,'0')} ${ap}</span>`;
+  const day = d.getDay(); // 0 Sun ... 6 Sat
+  const hr = h + m/60;
+  let open = false, msg = '';
+  if(day === 1){ open = false; msg = 'Closed today — back Tuesday'; }
+  else{
+    const openH = (day === 0 || day === 6) ? 9 : 8;
+    open = hr >= openH && hr < 18;
+    msg = open ? `Open now — until 6:00 PM` : (hr < openH ? `Opens at ${openH}:00 AM` : 'Closed — see you tomorrow');
+  }
+  statusPill.classList.toggle('closed', !open);
+  statusText.textContent = msg;
+}
+tickClock();
+setInterval(tickClock, 1000);
+
+/* ---------- NEWSLETTER ---------- */
+const form = document.getElementById('newsForm');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  const input = document.getElementById('newsEmail');
+  const val = input.value.trim();
+  if(!val || !val.includes('@')){
+    gsap.fromTo(form, {x:-8},{x:0, duration:.5, ease:'elastic.out(1,.35)'});
+    input.focus();
+    return;
+  }
+  const done = document.createElement('div');
+  done.className = 'news-done';
+  done.textContent = 'ありがとう — you are on the list. First note arrives with the new moon.';
+  form.replaceWith(done);
+  gsap.fromTo(done, {opacity:0, y:14}, {opacity:1, y:0, duration:.8, ease:'power3.out'});
+});
+
+/* ---------- REFRESH ON FONTS/LOAD ---------- */
+window.addEventListener('load', ()=> ScrollTrigger.refresh());
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(()=> ScrollTrigger.refresh()); }
+})();
+</script>
+</body>
+</html>

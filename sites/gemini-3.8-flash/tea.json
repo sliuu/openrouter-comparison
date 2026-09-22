@@ -1,0 +1,16 @@
+{
+  "model": "gemini-3.8-flash",
+  "slug": "google/gemini-3.8-flash",
+  "prompt": "tea",
+  "returned_model": "google/gemini-3.8-flash",
+  "provider": "Google",
+  "started_at": "2026-09-21 20:33:12",
+  "seconds": 107,
+  "prompt_tokens": 54,
+  "output_tokens": 20860,
+  "thinking_tokens": 1301,
+  "html_chars": 64008,
+  "cost": 0.0782655,
+  "finish_reason": "stop",
+  "truncated": false
+}

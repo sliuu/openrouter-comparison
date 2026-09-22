@@ -1,0 +1,16 @@
+{
+  "model": "kimi-k3",
+  "slug": "moonshotai/kimi-k3",
+  "prompt": "portfolio",
+  "returned_model": "moonshotai/kimi-k3",
+  "provider": "Sail Research",
+  "started_at": "2026-09-21 17:22:27",
+  "seconds": 243,
+  "prompt_tokens": 147,
+  "output_tokens": 41502,
+  "thinking_tokens": 21226,
+  "html_chars": 65238,
+  "cost": 0.446516284,
+  "finish_reason": "stop",
+  "truncated": false
+}

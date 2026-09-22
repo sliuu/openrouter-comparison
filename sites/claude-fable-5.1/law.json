@@ -1,0 +1,16 @@
+{
+  "model": "claude-fable-5.1",
+  "slug": "anthropic/claude-fable-5.1",
+  "prompt": "law",
+  "returned_model": "anthropic/claude-fable-5.1",
+  "provider": "Anthropic",
+  "started_at": "2026-09-21 16:56:50",
+  "seconds": 305,
+  "prompt_tokens": 94,
+  "output_tokens": 29308,
+  "thinking_tokens": 1710,
+  "html_chars": 62371,
+  "cost": 1.46634,
+  "finish_reason": "stop",
+  "truncated": false
+}

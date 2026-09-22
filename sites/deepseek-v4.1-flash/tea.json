@@ -1,0 +1,16 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "slug": "deepseek/deepseek-v4.1-flash",
+  "prompt": "tea",
+  "returned_model": "deepseek/deepseek-v4.1-flash",
+  "provider": "Together",
+  "started_at": "2026-09-21 20:37:35",
+  "seconds": 95,
+  "prompt_tokens": 84,
+  "output_tokens": 29639,
+  "thinking_tokens": 11381,
+  "html_chars": 55201,
+  "cost": 0.035592,
+  "finish_reason": "stop",
+  "truncated": false
+}

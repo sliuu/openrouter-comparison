@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Waltz — Luxury Interior Designer in New York City</title>
+<meta name="description" content="Jenny Waltz is a high-end interior designer in New York City specializing in luxury residences, penthouses, townhouses and boutique hospitality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF7F2;
+  --bg2:#F1EAE0;
+  --ink:#131110;
+  --ink2:#2B2521;
+  --muted:#8A7F76;
+  --line:rgba(19,17,16,.12);
+  --gold:#B9975B;
+  --gold2:#D9C19A;
+  --gold-deep:#8C6F3A;
+  --dark:#11100E;
+  --dark2:#1B1917;
+  --cream:#FFFEFB;
+  --serif:'Cormorant Garamond', serif;
+  --sans:'Jost', sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+::selection{background:var(--ink);color:var(--bg)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+.wrap{width:min(1320px,92vw);margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:'';width:36px;height:1px;background:var(--gold);display:inline-block}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:.95;letter-spacing:-.02em}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:2000}
+
+/* preloader */
+#loader{position:fixed;inset:0;background:var(--dark);z-index:3000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .8s ease,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .mono{font-family:var(--serif);font-size:clamp(36px,6vw,72px);color:var(--bg);letter-spacing:.02em;font-style:italic}
+#loader .bar{width:180px;height:1px;background:rgba(255,255,255,.15);position:relative;overflow:hidden}
+#loader .bar span{position:absolute;inset:0;background:var(--gold);transform-origin:left;animation:load 1.6s var(--ease) infinite}
+@keyframes load{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+#loader small{letter-spacing:.4em;text-transform:uppercase;font-size:10px;color:rgba(250,247,242,.6)}
+
+/* cursor */
+.cursor{position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:2500;mix-blend-mode:multiply;transition:transform .18s ease,opacity .3s;transform:translate(-50%,-50%)}
+.cursor-ring{position:fixed;top:0;left:0;width:44px;height:44px;border:1px solid rgba(185,151,91,.7);border-radius:50%;pointer-events:none;z-index:2500;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s}
+@media(hover:none){.cursor,.cursor-ring{display:none}}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
+header.scrolled{background:rgba(250,247,242,.86);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:42px;height:42px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:20px;font-style:italic;position:relative}
+.brand-mark::after{content:'';position:absolute;inset:4px;border:1px solid var(--gold);border-radius:50%;opacity:.6}
+.brand-name{line-height:1}
+.brand-name b{font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:.02em;display:block}
+.brand-name span{font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:var(--muted)}
+.nav-links{display:flex;gap:34px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.nav-links a{position:relative;opacity:.75;transition:.3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--ink);transition:.35s var(--ease)}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 30px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer;transition:.4s var(--ease);position:relative;overflow:hidden;white-space:nowrap}
+.btn span{position:relative;z-index:2}
+.btn::before{content:'';position:absolute;inset:0;background:var(--gold-deep);transform:scaleY(0);transform-origin:bottom;transition:.45s var(--ease)}
+.btn:hover::before{transform:scaleY(1)}
+.btn:hover{border-color:var(--gold-deep)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:var(--bg)}
+.btn.light{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.burger{display:none;background:none;border:0;flex-direction:column;gap:6px;cursor:pointer;padding:6px}
+.burger i{display:block;width:28px;height:1.5px;background:var(--ink);transition:.3s}
+@media(max-width:1020px){.nav-links,.nav-cta .btn{display:none}.burger{display:flex}}
+
+/* mobile menu */
+#mmenu{position:fixed;inset:0;background:var(--dark);color:var(--bg);z-index:1500;display:flex;flex-direction:column;justify-content:center;padding:8vw;gap:8px;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease)}
+#mmenu.open{clip-path:inset(0 0 0% 0)}
+#mmenu a.big{font-family:var(--serif);font-size:clamp(36px,9vw,64px);line-height:1;border-bottom:1px solid rgba(255,255,255,.1);padding:12px 0;display:flex;justify-content:space-between;align-items:center}
+#mmenu a.big small{font-family:var(--sans);font-size:11px;letter-spacing:.3em}
+#mclose{position:absolute;top:26px;right:6vw;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:140px 0 0;overflow:hidden;background:var(--dark);color:var(--bg)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.62;transform:scale(1.08);animation:heroZoom 12s var(--ease) forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,16,14,.55) 0%,rgba(17,16,14,.15) 45%,rgba(17,16,14,.85) 100%),linear-gradient(90deg,rgba(17,16,14,.6),transparent 60%)}
+.hero-inner{position:relative;z-index:2;width:min(1320px,92vw);margin:0 auto;padding-bottom:48px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(56px,9.5vw,138px);color:#FFF8ED}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--gold2)}
+.hero-sub{max-width:460px;color:rgba(250,247,242,.82);font-weight:300;font-size:17px;margin-top:18px}
+.hero-meta{display:flex;gap:18px;margin-top:28px;flex-wrap:wrap}
+.hero-card{background:rgba(255,255,255,.08);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.16);padding:28px;border-radius:2px}
+.hero-card h4{font-family:var(--serif);font-size:26px;font-weight:400;margin-bottom:6px}
+.hero-card p{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2)}
+.avail{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:10px 16px;border-radius:100px;margin-bottom:18px}
+.dot{width:8px;height:8px;border-radius:50%;background:#7ED492;box-shadow:0 0 0 6px rgba(126,212,146,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px rgba(126,212,146,0)}}
+.hero-bottom{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.15);background:rgba(17,16,14,.35);backdrop-filter:blur(10px)}
+.hero-bottom .wrap{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:20px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.scroll-hint{display:flex;align-items:center;gap:12px}
+.scroll-hint i{width:1px;height:36px;background:rgba(255,255,255,.4);display:block;position:relative;overflow:hidden}
+.scroll-hint i::after{content:'';position:absolute;top:-50%;left:0;width:100%;height:50%;background:var(--gold2);animation:drop 1.8s ease infinite}
+@keyframes drop{to{top:110%}}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-card{display:none}}
+
+/* marquee */
+.marquee{background:var(--bg);border-bottom:1px solid var(--line);overflow:hidden;padding:22px 0;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:60px;animation:mq 26s linear infinite;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+.marquee-track strong{color:var(--ink);font-weight:500}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:110px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(38px,5.2vw,72px);margin-top:16px;max-width:700px}
+.sec-head p{max-width:380px;color:var(--muted);font-weight:300}
+@media(max-width:800px){.sec-head{flex-direction:column;align-items:start}section{padding:72px 0}}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:center}
+.about-imgs{position:relative}
+.about-imgs .main{border-radius:2px;overflow:hidden;aspect-ratio:4/5}
+.about-imgs .main img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.about-imgs .main:hover img{transform:scale(1.04)}
+.about-imgs .small{position:absolute;right:-34px;bottom:44px;width:46%;aspect-ratio:1/1.15;overflow:hidden;border:8px solid var(--bg);box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.about-imgs .small img{width:100%;height:100%;object-fit:cover}
+.badge-circle{position:absolute;left:-36px;top:-36px;width:132px;height:132px;background:var(--ink);color:var(--bg);border-radius:50%;display:grid;place-items:center;text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;line-height:1.6;padding:20px}
+.badge-circle::after{content:'';position:absolute;inset:8px;border:1px dashed rgba(217,193,154,.6);border-radius:50%;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.about-copy h2{font-size:clamp(36px,4.6vw,62px);margin:16px 0 20px}
+.about-copy p{color:#4A443E;font-weight:300;font-size:17px;margin-bottom:16px}
+.sig{font-family:var(--serif);font-style:italic;font-size:38px;margin:18px 0 6px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0 32px}
+.checks div{display:flex;gap:10px;align-items:center;font-size:13px;letter-spacing:.06em}
+.checks i{width:26px;height:26px;border-radius:50%;background:#131110;color:#D9C19A;display:grid;place-items:center;font-style:normal;font-size:14px;flex-shrink:0}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr}.about-imgs .small{right:10px}.badge-circle{left:10px}}
+
+/* stats */
+.stats{background:var(--dark);color:var(--bg);padding:0}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-left:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.12)}
+.stat{background:var(--dark);padding:46px 30px;text-align:center}
+.stat b{font-family:var(--serif);font-size:56px;font-weight:400;display:block;color:#FFF6E6}
+.stat b sup{font-size:26px;color:var(--gold2)}
+.stat span{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+@media(max-width:800px){.stats .wrap{grid-template-columns:1fr 1fr}.stat b{font-size:42px}}
+
+/* portfolio */
+#work{background:var(--bg2)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.filters button{padding:12px 22px;border:1px solid var(--line);background:transparent;border-radius:100px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:.3s}
+.filters button.active,.filters button:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.proj{position:relative;overflow:hidden;border-radius:2px;cursor:pointer;background:#ddd}
+.proj img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s}
+.proj:hover img{transform:scale(1.06)}
+.proj::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,9,8,.78));opacity:.9;transition:.5s}
+.proj-info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:28px;color:#fff;display:flex;justify-content:space-between;align-items:end;gap:12px}
+.proj-info h3{font-size:30px}
+.proj-info small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2)}
+.proj-info .plus{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;font-size:22px;flex-shrink:0;transition:.4s}
+.proj:hover .plus{background:var(--gold);border-color:var(--gold);transform:rotate(90deg)}
+.p1{grid-column:span 7;height:520px}.p2{grid-column:span 5;height:520px}.p3{grid-column:span 5;height:460px}.p4{grid-column:span 7;height:460px}.p5{grid-column:span 4;height:420px}.p6{grid-column:span 8;height:420px}
+.proj.hide{display:none}
+@media(max-width:800px){.grid>*{grid-column:span 12!important;height:380px!important}}
+
+/* before after */
+.ba-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ba-slider{position:relative;aspect-ratio:4/4.6;overflow:hidden;border-radius:2px;user-select:none;touch-action:none;box-shadow:0 40px 80px rgba(0,0,0,.18)}
+.ba-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-after{clip-path:inset(0 0 0 var(--x,50%))}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;z-index:3}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:58px;height:58px;background:#fff;border-radius:50%;display:grid;place-items:center;font-size:18px;box-shadow:0 10px 30px rgba(0,0,0,.3);white-space:nowrap}
+.ba-tag{position:absolute;top:18px;z-index:2;font-size:10px;letter-spacing:.28em;text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;padding:8px 14px;border-radius:100px;backdrop-filter:blur(6px)}
+.ba-tag.l{left:18px}.ba-tag.r{right:18px}
+.ba-copy h2{font-size:clamp(34px,4vw,58px);margin:16px 0 18px}
+.ba-copy p{color:#4A443E;font-weight:300;margin-bottom:14px}
+.ba-range{display:flex;align-items:center;gap:16px;margin-top:22px}
+.ba-range input{flex:1;accent-color:var(--gold-deep);height:4px}
+@media(max-width:900px){.ba-wrap{grid-template-columns:1fr}}
+
+/* services */
+#services{background:var(--dark);color:var(--bg)}
+#services .eyebrow{color:var(--gold2)}
+.serv-list{border-top:1px solid rgba(255,255,255,.14);margin-top:20px}
+.serv{border-bottom:1px solid rgba(255,255,255,.14);padding:30px 10px;display:grid;grid-template-columns:80px 1fr auto;gap:20px;align-items:center;cursor:pointer;transition:.4s}
+.serv:hover{background:rgba(255,255,255,.04)}
+.serv-num{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold2)}
+.serv h3{font-size:clamp(26px,3.4vw,44px);transition:.3s}
+.serv p.desc{max-height:0;overflow:hidden;opacity:0;transition:max-height .6s var(--ease),opacity .5s,margin .4s;color:rgba(255,255,255,.68);font-weight:300;max-width:640px}
+.serv.open p.desc{max-height:200px;opacity:1;margin-top:12px}
+.serv-meta{text-align:right}
+.serv-meta b{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.serv-meta span{font-size:13px;color:rgba(255,255,255,.6)}
+.serv-arrow{width:52px;height:52px;border:1px solid rgba(255,255,255,.25);border-radius:50%;display:grid;place-items:center;font-size:20px;transition:.4s var(--ease);margin-top:12px}
+.serv.open .serv-arrow{transform:rotate(45deg);background:var(--gold);border-color:var(--gold);color:#111}
+@media(max-width:700px){.serv{grid-template-columns:1fr auto}.serv-num{display:none}.serv-meta{display:none}}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:step}
+.step{border:1px solid var(--line);padding:34px 28px;background:var(--cream);position:relative;transition:.4s var(--ease)}
+.step:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(0,0,0,.1);border-color:var(--gold)}
+.step::before{counter-increment:step;content:'0' counter(step);font-family:var(--serif);font-style:italic;font-size:20px;color:var(--gold-deep)}
+.step h4{font-family:var(--serif);font-size:26px;margin:12px 0 10px;font-weight:500}
+.step p{font-size:14.5px;color:#5B544D;font-weight:300}
+.step .time{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* testimonials */
+#voices{background:var(--bg2);overflow:hidden}
+.t-shell{position:relative;background:var(--dark);color:var(--bg);border-radius:4px;padding:clamp(30px,5vw,70px);display:grid;grid-template-columns:1.1fr .9fr;gap:40px;overflow:hidden}
+.t-shell::before{content:'“';position:absolute;left:20px;top:-10px;font-family:var(--serif);font-size:220px;opacity:.07;line-height:1}
+.t-track{position:relative;min-height:300px}
+.t-slide{position:absolute;inset:0;opacity:0;transform:translateY(20px);transition:.6s var(--ease);pointer-events:none}
+.t-slide.active{opacity:1;transform:none;pointer-events:auto;position:relative}
+.t-slide blockquote{font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);line-height:1.3;font-style:italic;font-weight:300}
+.t-who{margin-top:22px;display:flex;align-items:center;gap:14px}
+.t-who img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}
+.t-who b{display:block;font-size:14px;letter-spacing:.08em}
+.t-who span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+.stars{color:var(--gold2);letter-spacing:4px;font-size:14px;margin-bottom:14px}
+.t-nav{display:flex;gap:12px;margin-top:28px}
+.t-nav button{width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:20px;cursor:pointer;transition:.3s}
+.t-nav button:hover{background:var(--gold);border-color:var(--gold);color:#111}
+.t-side img{width:100%;height:100%;object-fit:cover;border-radius:2px;min-height:320px}
+.t-dots{display:flex;gap:8px;margin-top:18px}
+.t-dots i{width:28px;height:3px;background:rgba(255,255,255,.2);border-radius:10px;transition:.3s;cursor:pointer}
+.t-dots i.active{background:var(--gold2);width:44px}
+@media(max-width:900px){.t-shell{grid-template-columns:1fr}.t-side{display:none}}
+
+/* journal */
+.j-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.j-card{background:var(--cream);border:1px solid var(--line);overflow:hidden;transition:.4s var(--ease)}
+.j-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,.12)}
+.j-card .im{aspect-ratio:16/11;overflow:hidden}
+.j-card .im img{width:100%;height:100%;object-fit:cover;transition:1s var(--ease)}
+.j-card:hover .im img{transform:scale(1.07)}
+.j-card .tx{padding:26px}
+.j-card .tx small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep)}
+.j-card .tx h4{font-family:var(--serif);font-size:24px;margin:10px 0;font-weight:500;line-height:1.1}
+.j-card .tx p{font-size:14px;color:#5B544D;font-weight:300}
+@media(max-width:800px){.j-grid{grid-template-columns:1fr}}
+
+/* cta */
+.cta{background:linear-gradient(rgba(17,16,14,.72),rgba(17,16,14,.72)),url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600&auto=format&fit=crop') center/cover;padding:110px 0;text-align:center;color:#fff}
+.cta h2{font-size:clamp(38px,6vw,78px);color:#FFF6E6}
+.cta h2 em{font-style:italic;color:var(--gold2)}
+.cta p{color:rgba(255,255,255,.75);font-weight:300;max-width:560px;margin:16px auto 30px}
+
+/* contact */
+#contact .c-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line);background:var(--cream)}
+.c-info{background:var(--dark);color:var(--bg);padding:50px 44px;display:flex;flex-direction:column;gap:26px}
+.c-info h3{font-size:38px}
+.c-line{display:flex;gap:16px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:20px}
+.c-line i{width:42px;height:42px;border:1px solid rgba(217,193,154,.5);border-radius:50%;display:grid;place-items:center;font-style:normal;flex-shrink:0;color:var(--gold2)}
+.c-line b{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold2);display:block;margin-bottom:4px}
+.c-line p{font-weight:300;color:rgba(255,255,255,.85)}
+.areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.areas span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.18);padding:7px 13px;border-radius:100px}
+form{padding:50px 44px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f-group{margin-bottom:18px}
+.f-group label{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:8px;color:#5B544D}
+.f-group input,.f-group select,.f-group textarea{width:100%;padding:15px 16px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:15px;outline:none;transition:.3s;border-radius:2px}
+.f-group input:focus,.f-group select:focus,.f-group textarea:focus{border-color:var(--gold-deep);box-shadow:0 0 0 4px rgba(185,151,91,.15)}
+.f-group textarea{min-height:120px;resize:vertical}
+.budget-val{font-family:var(--serif);font-size:28px;font-style:italic}
+input[type=range]{accent-color:#131110;padding:0!important;border:0!important}
+.f-check{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 6px}
+.f-check label{border:1px solid var(--line);padding:10px 18px;border-radius:100px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.3s;background:#fff}
+.f-check input{display:none}
+.f-check label.sel{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:16px 26px;border-radius:100px;font-size:13px;letter-spacing:.08em;z-index:2000;transition:.5s var(--ease);display:flex;gap:10px;align-items:center;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+#toast.show{transform:translate(-50%,0)}
+@media(max-width:900px){#contact .c-grid{grid-template-columns:1fr}form,.c-info{padding:32px 22px}.f-row{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:#0C0B0A;color:rgba(250,247,242,.7);padding:70px 0 30px}
+.f-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.1)}
+.f-top h5{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:18px}
+.f-top a,.f-top p{display:block;font-size:14px;font-weight:300;margin-bottom:10px;transition:.3s}
+.f-top a:hover{color:#fff;padding-left:6px}
+.f-brand{font-family:var(--serif);font-size:42px;color:#fff;line-height:1}
+.f-brand em{font-style:italic;color:var(--gold2)}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:12px;letter-spacing:.12em;gap:12px;flex-wrap:wrap}
+#toTop{position:fixed;right:22px;bottom:22px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--gold2);border:1px solid rgba(217,193,154,.4);cursor:pointer;font-size:20px;z-index:1200;opacity:0;pointer-events:none;transition:.4s;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+#toTop.show{opacity:1;pointer-events:auto}
+@media(max-width:800px){.f-top{grid-template-columns:1fr 1fr}}
+
+/* lightbox */
+#lightbox{position:fixed;inset:0;background:rgba(12,11,10,.94);z-index:2000;display:none;align-items:center;justify-content:center;padding:4vw}
+#lightbox.open{display:flex}
+#lightbox img{max-width:min(1000px,90vw);max-height:76vh;object-fit:contain;border:1px solid rgba(255,255,255,.15)}
+#lightbox .cap{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:#fff;text-align:center}
+#lightbox .cap b{font-family:var(--serif);font-size:24px;font-weight:400;display:block}
+#lightbox .cap span{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2)}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:22px;cursor:pointer;transition:.3s}
+.lb-btn:hover{background:var(--gold);border-color:var(--gold);color:#111}
+#lbPrev{left:3vw}#lbNext{right:3vw}#lbClose{position:absolute;top:26px;right:4vw;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:20px}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="cursor" id="cur"></div><div class="cursor-ring" id="curR"></div>
+
+<div id="loader"><small>New York City</small><div class="mono">Jenny Waltz</div><div class="bar"><span></span></div></div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><div class="brand-mark">J</div><div class="brand-name"><b>Jenny Waltz</b><span>Interiors · NYC</span></div></a>
+    <nav class="nav-links">
+      <a href="#about">Studio</a><a href="#work">Portfolio</a><a href="#services">Services</a><a href="#process">Process</a><a href="#voices">Clients</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+12125550194" style="font-size:13px;letter-spacing:.08em;opacity:.8">+1 (212) 555-0194</a>
+      <a href="#contact" class="btn"><span>Book Consultation</span></a>
+      <button class="burger" id="burger" aria-label="menu"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<div id="mmenu">
+  <button id="mclose">✕</button>
+  <a class="big" href="#about">Studio <small>01</small></a>
+  <a class="big" href="#work">Portfolio <small>02</small></a>
+  <a class="big" href="#services">Services <small>03</small></a>
+  <a class="big" href="#process">Process <small>04</small></a>
+  <a class="big" href="#contact">Contact <small>05</small></a>
+  <p style="margin-top:24px;color:rgba(255,255,255,.6);letter-spacing:.2em;text-transform:uppercase;font-size:11px">12 E 49th St, New York, NY · By Appointment</p>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" alt="Luxury NYC living room"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="avail"><span class="dot"></span> Now accepting 3 projects for Winter 2026 — NYC Only</div>
+      <h1>Rooms that<br><em>whisper luxury</em><br>& feel like home.</h1>
+      <p class="hero-sub">Jenny Waltz is a high-end interior designer crafting soulful, light-filled residences across Manhattan, Brooklyn & the Hamptons — from Fifth Avenue penthouses to West Village townhouses.</p>
+      <div class="hero-meta">
+        <a href="#contact" class="btn light"><span>Reserve Your Consultation — $350</span></a>
+        <a href="#work" class="btn ghost" style="border-color:rgba(255,255,255,.4);color:#fff"><span>View Portfolio</span></a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p>★ ★ ★ ★ ★ — 5.0 · 87 Reviews</p>
+      <h4>“Jenny didn’t just design our apartment. She understood how we live.”</h4>
+      <p style="color:rgba(255,255,255,.6);margin-top:8px">Upper East Side Penthouse · 2025</p>
+    </div>
+  </div>
+  <div class="hero-bottom"><div class="wrap">
+    <span>Manhattan · Brooklyn · Queens · Hamptons</span>
+    <span class="scroll-hint">Scroll <i></i></span>
+    <span>Est. 2012 · ASID · Elle Decor A-List</span>
+  </div></div>
+</section>
+
+<div class="marquee"><div class="marquee-track" id="mq">
+  <span>As seen in <strong>Architectural Digest</strong> ✦</span><span><strong>Elle Decor</strong> ✦</span><span><strong>Luxe Interiors</strong> ✦</span><span><strong>The New York Times</strong> ✦</span><span><strong>Veranda</strong> ✦</span><span><strong> dwell</strong> ✦</span>
+  <span>As seen in <strong>Architectural Digest</strong> ✦</span><span><strong>Elle Decor</strong> ✦</span><span><strong>Luxe Interiors</strong> ✦</span><span><strong>The New York Times</strong> ✦</span><span><strong>Veranda</strong> ✦</span><span><strong> dwell</strong> ✦</span>
+</div></div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-imgs reveal">
+      <div class="badge-circle">12 Years<br>NYC Luxury<br>★ ★ ★ ★ ★</div>
+      <div class="main"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=900&auto=format&fit=crop" alt="Jenny Waltz portrait"></div>
+      <div class="small"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=600&auto=format&fit=crop" alt="Interior detail"></div>
+    </div>
+    <div class="about-copy reveal reveal-d1">
+      <div class="eyebrow">The Designer — Jenny Waltz</div>
+      <h2>Old-world glamour,<br><em style="color:var(--gold-deep)">downtown ease.</em></h2>
+      <p>For over a decade, Jenny has transformed some of New York’s most extraordinary addresses — pre-war co-ops on Park Avenue, glass towers in Tribeca, brownstones in Park Slope — into calm, collected, deeply personal homes.</p>
+      <p>Her signature? Warm minimalism layered with vintage finds, custom millwork, and museum-worthy art. No showrooms. No copy-paste. Only spaces that tell <em>your</em> story.</p>
+      <div class="sig">Jenny Waltz</div>
+      <p style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)">Founder & Principal · Pratt Institute · ASID Member</p>
+      <div class="checks">
+        <div><i>✓</i> Licensed & Insured in NY</div>
+        <div><i>✓</i> 140+ Homes Completed</div>
+        <div><i>✓</i> Trade-Only Showroom Access</div>
+        <div><i>✓</i> White-Glove Project Management</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#contact" class="btn"><span>Work With Jenny</span></a><a href="#process" class="btn ghost"><span>How It Works</span></a></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats"><div class="wrap">
+  <div class="stat reveal"><b><span data-count="140">0</span><sup>+</sup></b><span>Luxury Projects</span></div>
+  <div class="stat reveal reveal-d1"><b><span data-count="12">0</span><sup>yrs</sup></b><span>In New York City</span></div>
+  <div class="stat reveal reveal-d2"><b><span data-count="98">0</span><sup>%</sup></b><span>Referral Clients</span></div>
+  <div class="stat reveal reveal-d3"><b><span data-count="26">0</span><sup>★</sup></b><span>Design Awards</span></div>
+</div></div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">Selected Work 2019 — 2026</div><h2>Signature New York interiors.</h2></div><p>Every project is full-service, custom, and photographed after styling. Click any image to view the full story.</p></div>
+    <div class="filters reveal">
+      <button class="active" data-f="all">All Projects</button>
+      <button data-f="living">Living</button>
+      <button data-f="penthouse">Penthouses</button>
+      <button data-f="townhouse">Townhouses</button>
+      <button data-f="bedbath">Bed & Bath</button>
+    </div>
+    <div class="grid" id="pgrid">
+      <div class="proj p1 reveal" data-cat="penthouse" data-title="Fifth Avenue Penthouse" data-sub="Upper East Side · 3,400 SF"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop" alt=""><div class="proj-info"><div><small>Penthouse · Upper East Side</small><h3>Fifth Avenue Penthouse</h3></div><div class="plus">+</div></div></div>
+      <div class="proj p2 reveal" data-cat="living" data-title="SoHo Artist Loft" data-sub="SoHo · Cast-Iron Loft"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=900&auto=format&fit=crop" alt=""><div class="proj-info"><div><small>Living · SoHo</small><h3>SoHo Artist Loft</h3></div><div class="plus">+</div></div></div>
+      <div class="proj p3 reveal" data-cat="townhouse" data-title="West Village Townhouse" data-sub="Greenwich Village · 4 Floors"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=900&auto=format&fit=crop" alt=""><div class="proj-info"><div><small>Townhouse · West Village</small><h3>Village Townhouse</h3></div><div class="plus">+</div></div></div>
+      <div class="proj p4 reveal" data-cat="living" data-title="Tribeca Sky Residence" data-sub="Tribeca · Corner Residence"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1200&auto=format&fit=crop" alt=""><div class="proj-info"><div><small>Living · Tribeca</small><h3>Tribeca Sky Residence</h3></div><div class="plus">+</div></div></div>
+      <div class="proj p5 reveal" data-cat="bedbath" data-title="Park Slope Primary Suite" data-sub="Brooklyn · Marble & Oak"><img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop" alt=""><div class="proj-info"><div><small>Bed & Bath · Brooklyn</small><h3>Park Slope Suite</h3></div><div class="plus">+</div></div></div>
+      <div class="proj p6 reveal" data-cat="penthouse" data-title="Hudson Yards Cloud Home" data-sub="Hudson Yards · 58th Floor"><img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop" alt=""><div class="proj-info"><div><small>Penthouse · Hudson Yards</small><h3>Cloud Home</h3></div><div class="plus">+</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="beforeafter" style="padding-top:0">
+  <div class="wrap ba-wrap">
+    <div class="ba-slider reveal" id="ba">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop" alt="before">
+      <img class="ba-after" id="baAfter" src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1000&auto=format&fit=crop" alt="after">
+      <span class="ba-tag l">Before</span><span class="ba-tag r">After · Jenny Waltz</span>
+      <div class="ba-handle" id="baHandle"><div class="ba-knob">↔</div></div>
+    </div>
+    <div class="ba-copy reveal reveal-d1">
+      <div class="eyebrow">Drag To See The Magic</div>
+      <h2>From dated rental to Upper West Side jewel.</h2>
+      <p>This 1920s pre-war had great bones and terrible lighting. Jenny opened the kitchen, restored the herringbone floors, added unlacquered brass, limewash walls and bespoke boucle seating.</p>
+      <p><strong>Scope:</strong> 1,800 SF full renovation · <strong>Timeline:</strong> 14 weeks · <strong>Budget:</strong> $285k</p>
+      <div class="ba-range"><span style="font-size:11px;letter-spacing:.2em">BEFORE</span><input type="range" id="baRange" min="0" max="100" value="50"><span style="font-size:11px;letter-spacing:.2em">AFTER</span></div>
+      <a href="#contact" class="btn" style="margin-top:26px"><span>Start Your Transformation</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">Services & Investment</div><h2 style="color:#FFF6E6">White-glove design, end to end.</h2></div><p style="color:rgba(255,255,255,.6)">Jenny takes on a limited number of full-service projects per year to ensure obsessive attention to every hinge, hem and handle.</p></div>
+    <div class="serv-list">
+      <div class="serv open reveal"><div class="serv-num">— 01</div><div><h3>Full-Service Residential Design</h3><p class="desc">Our signature service. Concept to installation — floor plans, custom millwork, lighting design, procurement, contractor management and final styling. Ideal for renovations, new builds and full-home furnishing in NYC. Includes private client portal and weekly site visits.</p></div><div style="display:flex;gap:20px;align-items:start"><div class="serv-meta"><b>From $45,000</b><span>4–12 months</span><div class="serv-arrow">+</div></div></div></div>
+      <div class="serv reveal"><div class="serv-num">— 02</div><div><h3>Penthouse & Townhouse Specialist</h3><p class="desc">High-rise logistics, board approvals, DOB permits, landmark considerations — handled. Jenny’s team is trusted by top NYC buildings including 15 Central Park West, The Woolworth Tower and 220 Central Park South.</p></div><div style="display:flex;gap:20px;align-items:start"><div class="serv-meta"><b>From $85,000</b><span>6–18 months</span><div class="serv-arrow">+</div></div></div></div>
+      <div class="serv reveal"><div class="serv-num">— 03</div><div><h3>Kitchen & Bath Renovation</h3><p class="desc">Marble, mosaic, unlacquered brass and perfect lighting. Complete renovation drawings, stone selection at ABC Stone, fixtures, tile layouts and contractor bidding.</p></div><div style="display:flex;gap:20px;align-items:start"><div class="serv-meta"><b>From $25,000</b><span>3–6 months</span><div class="serv-arrow">+</div></div></div></div>
+      <div class="serv reveal"><div class="serv-num">— 04</div><div><h3>Design Consultation & Styling Day</h3><p class="desc">A 2-hour in-home intensive in Manhattan, Brooklyn or Queens. Walk away with a paint plan, furniture layout, shopping list and honest advice on what to keep, sell or invest in. Perfect first step.</p></div><div style="display:flex;gap:20px;align-items:start"><div class="serv-meta"><b>$350 / 2 hrs</b><span>Credited to project</span><div class="serv-arrow">+</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">The Waltz Method</div><h2>Effortless for you. Obsessive behind the scenes.</h2></div><p>A refined 4-step process perfected over 140+ New York homes. You live your life — we handle the dust, delays and deliveries.</p></div>
+    <div class="steps">
+      <div class="step reveal"><h4>Discover</h4><p>In-home consultation, lifestyle interview, measurements, photos and honest budget mapping. You’ll know exactly what’s possible.</p><div class="time">Week 01 · $350</div></div>
+      <div class="step reveal reveal-d1"><h4>Design</h4><p>Moodboards, floor plans, 3D renders, fabric memos and fixed-fee proposal. Revisions until it feels unmistakably you.</p><div class="time">Weeks 02–05</div></div>
+      <div class="step reveal reveal-d2"><h4>Build & Buy</h4><p>We order, track, warehouse and manage contractors. Weekly updates in your private portal — no 2am vendor chasing for you.</p><div class="time">Weeks 06–20</div></div>
+      <div class="step reveal reveal-d3"><h4>Reveal</h4><p>White-glove installation, art hanging, books styled, candles lit. Walk into a finished home — photographed and ready to live in.</p><div class="time">Final Week ✦</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="voices">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">Client Love</div><h2>Trusted on the city’s finest blocks.</h2></div><div class="t-nav" style="margin:0"><button id="tPrev">←</button><button id="tNext">→</button></div></div>
+    <div class="t-shell reveal">
+      <div>
+        <div class="t-track" id="tTrack">
+          <div class="t-slide active"><div class="stars">★★★★★</div><blockquote>“Worth every penny. Jenny turned our dark Park Avenue co-op into a light-filled sanctuary. The board loved her, our kids love it, I cry happy tears.”</blockquote><div class="t-who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop"><div><b>Caroline & James Whitmore</b><span>Park Avenue Co-op · Full Home</span></div></div></div>
+          <div class="t-slide"><div class="stars">★★★★★</div><blockquote>“She finished our Tribeca penthouse two weeks early and under budget. Her contractors are magicians. I’ve already referred three friends.”</blockquote><div class="t-who"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"><div><b>Marcus Chen</b><span>Tribeca Penthouse · 2,800 SF</span></div></div></div>
+          <div class="t-slide"><div class="stars">★★★★★</div><blockquote>“As a first-time brownstone owner in Brooklyn, I was overwhelmed. Jenny held my hand through DOB, landmark rules, everything. Flawless.”</blockquote><div class="t-who"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop"><div><b>Amara Okafor</b><span>Park Slope Townhouse</span></div></div></div>
+        </div>
+        <div class="t-dots" id="tDots"><i class="active"></i><i></i><i></i></div>
+      </div>
+      <div class="t-side"><img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?q=80&w=800&auto=format&fit=crop" alt="testimonial interior"></div>
+    </div>
+  </div>
+</section>
+
+<section id="journal" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">Journal & Press</div><h2>Notes from the studio.</h2></div><a href="#contact" style="font-size:12px;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:4px">All Articles →</a></div>
+    <div class="j-grid">
+      <a href="#contact" class="j-card reveal"><div class="im"><img src="https://images.unsplash.com/photo-1617104678098-de229db51175?q=80&w=800&auto=format&fit=crop"></div><div class="tx"><small>Guide · 8 min read</small><h4>What a $200k NYC renovation really buys in 2026</h4><p>Real budgets, real timelines, no sugar-coating — from a designer who does it weekly.</p></div></a>
+      <a href="#contact" class="j-card reveal reveal-d1"><div class="im"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=800&auto=format&fit=crop"></div><div class="tx"><small>Trend Report</small><h4>Quiet luxury is out. Warm minimalism is in.</h4><p>Limewash, boucle, travertine — how Jenny layers texture without clutter.</p></div></a>
+      <a href="#contact" class="j-card reveal reveal-d2"><div class="im"><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=800&auto=format&fit=crop"></div><div class="tx"><small>Before / After</small><h4>Inside a 58th-floor Hudson Yards transformation</h4><p>See how we made glass-box living feel intimate and soulful.</p></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="cta reveal"><div class="wrap">
+  <div class="eyebrow" style="justify-content:center;color:var(--gold2)">Limited Availability — Winter 2026</div>
+  <h2>Your dream home is <em>one waltz</em> away.</h2>
+  <p>Jenny accepts only 2 new full-service projects per month. Consultations in Manhattan, Brooklyn & virtual for the Hamptons.</p>
+  <a href="#contact" class="btn light"><span>Claim Your Consultation</span></a>
+</div></div>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="eyebrow">Begin Your Project</div><h2>Tell Jenny about your home.</h2></div><p>Responds personally within 24 hours, Monday–Friday. For press or trade inquiries, email studio@jennywaltz.com</p></div>
+    <div class="c-grid reveal">
+      <div class="c-info">
+        <div><p style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2)">Jenny Waltz Interiors</p><h3>Let’s create something timeless.</h3></div>
+        <div class="c-line"><i>◍</i><div><b>Studio</b><p>12 E 49th St, Suite 1204<br>New York, NY 10017<br>By appointment only</p></div></div>
+        <div class="c-line"><i>✉</i><div><b>Contact</b><p>hello@jennywaltz.com<br>+1 (212) 555-0194<br>Mon–Fri · 9am–6pm ET</p></div></div>
+        <div><b style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold2)">Now Serving</b><div class="areas"><span>Upper East Side</span><span>Tribeca</span><span>SoHo</span><span>West Village</span><span>Park Slope</span><span>Hamptons</span></div></div>
+      </div>
+      <form id="bookForm" novalidate>
+        <div class="f-row">
+          <div class="f-group"><label>Full Name *</label><input required name="name" placeholder="Alexandra Laurent"></div>
+          <div class="f-group"><label>Email *</label><input required type="email" name="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="f-row">
+          <div class="f-group"><label>Phone</label><input name="phone" placeholder="(212) 555-0000"></div>
+          <div class="f-group"><label>Preferred Date *</label><input required type="date" id="date" name="date"></div>
+        </div>
+        <div class="f-group"><label>Project Type *</label><div class="f-check" id="ptype">
+          <label class="sel"><input type="radio" name="ptype" checked> Full Home</label>
+          <label><input type="radio" name="ptype"> Penthouse</label>
+          <label><input type="radio" name="ptype"> Townhouse</label>
+          <label><input type="radio" name="ptype"> Kitchen / Bath</label>
+          <label><input type="radio" name="ptype"> Consultation</label>
+        </div></div>
+        <div class="f-group"><label>Investment Budget: <span class="budget-val" id="bval">$250,000</span></label><input type="range" id="budget" min="15000" max="1000000" step="5000" value="250000"></div>
+        <div class="f-group"><label>Tell us about your space *</label><textarea required name="msg" placeholder="e.g. 2-bed pre-war on the Upper West Side, 1,400 SF, hoping to renovate kitchen + living this winter..."></textarea></div>
+        <button class="btn" type="submit" style="width:100%"><span id="btnTxt">Request My Consultation →</span></button>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center">$350 credited in full toward any project. No spam, ever. NDA available on request.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="f-top">
+    <div><div class="f-brand">Jenny <em>Waltz</em></div><p style="max-width:300px;margin-top:14px">High-end interior design for New Yorkers who believe home should feel like the best version of themselves.</p><div style="display:flex;gap:10px;margin-top:18px"><a href="#top" style="width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center">IG</a><a href="#top" style="width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center">PIN</a><a href="#top" style="width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center">IN</a></div></div>
+    <div><h5>Studio</h5><a href="#about">About Jenny</a><a href="#work">Portfolio</a><a href="#voices">Reviews</a><a href="#journal">Journal</a></div>
+    <div><h5>Services</h5><a href="#services">Full-Service Design</a><a href="#services">Penthouses</a><a href="#services">Kitchens & Baths</a><a href="#contact">Consultation</a></div>
+    <div><h5>Contact</h5><p>12 E 49th St, NYC</p><p>hello@jennywaltz.com</p><p>+1 (212) 555-0194</p><a href="#contact" class="btn" style="margin-top:12px;padding:12px 20px"><span>Book Now</span></a></div>
+  </div>
+  <div class="f-bottom"><span>© 2026 Jenny Waltz Interiors LLC · Licensed & Insured</span><span>Crafted with care in New York City ✦</span></div>
+</div></footer>
+
+<div id="lightbox"><button id="lbClose">✕</button><button class="lb-btn" id="lbPrev">←</button><img id="lbImg" src="" alt=""><button class="lb-btn" id="lbNext">→</button><div class="cap"><b id="lbTitle"></b><span id="lbSub"></span></div></div>
+<div id="toast">✓ &nbsp; Thank you — request received!</div>
+<button id="toTop">↑</button>
+
+<script>
+// loader
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('done'),900)});
+setTimeout(()=>document.getElementById('loader').classList.add('done'),2800);
+
+// progress + header + totop
+const hdr=document.getElementById('header'), prog=document.getElementById('progress'), toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  prog.style.width=p+'%';
+  hdr.classList.toggle('scrolled',h.scrollTop>40);
+  toTop.classList.toggle('show',h.scrollTop>700);
+  // active links
+  const secs=['about','work','services','process','voices','contact'];
+  let cur='';
+  secs.forEach(id=>{const el=document.getElementById(id); if(el && h.scrollTop>el.offsetTop-200) cur=id;});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
+toTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// cursor
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,.proj,.serv,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{curR.style.width='68px';curR.style.height='68px';curR.style.background='rgba(185,151,91,.15)'});
+  el.addEventListener('mouseleave',()=>{curR.style.width='44px';curR.style.height='44px';curR.style.background='transparent'});
+});
+
+// mobile
+const mm=document.getElementById('mmenu');
+document.getElementById('burger').onclick=()=>mm.classList.add('open');
+document.getElementById('mclose').onclick=()=>mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>mm.classList.remove('open'));
+
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// counters
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return; cio.unobserve(e.target);
+  const el=e.target,end=+el.dataset.count;let s=performance.now();
+  (function tick(t){const p=Math.min((t-s)/1600,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(s);
+}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// filters
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  const f=b.dataset.f;
+  document.querySelectorAll('.proj').forEach(p=>{
+    const show=f==='all'||p.dataset.cat===f;
+    p.classList.toggle('hide',!show);
+    if(show){p.style.opacity='0';p.style.transform='translateY(20px)';setTimeout(()=>{p.style.transition='.6s cubic-bezier(.16,1,.3,1)';p.style.opacity='1';p.style.transform='none'},50);}
+  });
+});
+
+// lightbox
+const projs=[...document.querySelectorAll('.proj')];
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbT=document.getElementById('lbTitle'),lbS=document.getElementById('lbSub');
+let li=0;
+function openLb(i){li=(i+projs.length)%projs.length;const p=projs[li];lbImg.src=p.querySelector('img').src.replace('w=900','w=1600').replace('w=800','w=1600').replace('w=1200','w=1600');lbT.textContent=p.dataset.title;lbS.textContent=p.dataset.sub;lb.classList.add('open');document.body.style.overflow='hidden';}
+projs.forEach((p,i)=>p.onclick=()=>openLb(i));
+document.getElementById('lbClose').onclick=()=>{lb.classList.remove('open');document.body.style.overflow='';};
+document.getElementById('lbPrev').onclick=e=>{e.stopPropagation();openLb(li-1)};
+document.getElementById('lbNext').onclick=e=>{e.stopPropagation();openLb(li+1)};
+lb.onclick=e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='';}};
+window.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open'),document.body.style.overflow='';if(e.key==='ArrowRight')openLb(li+1);if(e.key==='ArrowLeft')openLb(li-1)});
+
+// before/after
+const ba=document.getElementById('ba'),baA=document.getElementById('baAfter'),baH=document.getElementById('baHandle'),baR=document.getElementById('baRange');
+function setBA(v){v=Math.max(2,Math.min(98,v));ba.style.setProperty('--x',v+'%');baA.style.setProperty('--x',v+'%');baH.style.setProperty('--x',v+'%');baR.value=v;}
+baR.oninput=()=>setBA(+baR.value);
+let dragging=false;
+ba.addEventListener('pointerdown',e=>{dragging=true;ba.setPointerCapture(e.pointerId);moveBA(e)});
+ba.addEventListener('pointermove',e=>{if(dragging)moveBA(e)});
+ba.addEventListener('pointerup',()=>dragging=false);
+function moveBA(e){const r=ba.getBoundingClientRect();setBA((e.clientX-r.left)/r.width*100);}
+
+// services accordion
+document.querySelectorAll('.serv').forEach(s=>s.addEventListener('click',()=>{
+  const was=s.classList.contains('open');
+  document.querySelectorAll('.serv').forEach(x=>x.classList.remove('open'));
+  if(!was)s.classList.add('open');
+}));
+
+// testimonials
+const slides=[...document.querySelectorAll('.t-slide')],dots=[...document.querySelectorAll('#tDots i')];
+let ti=0,tTimer;
+function showT(i){ti=(i+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('active',k===ti));dots.forEach((d,k)=>d.classList.toggle('active',k===ti));restart();}
+function restart(){clearInterval(tTimer);tTimer=setInterval(()=>showT(ti+1),6000);}
+document.getElementById('tNext').onclick=()=>showT(ti+1);
+document.getElementById('tPrev').onclick=()=>showT(ti-1);
+dots.forEach((d,k)=>d.onclick=()=>showT(k));
+restart();
+
+// ptype pills
+document.querySelectorAll('#ptype label').forEach(l=>l.addEventListener('click',()=>{
+  document.querySelectorAll('#ptype label').forEach(x=>x.classList.remove('sel'));l.classList.add('sel');
+}));
+
+// budget
+const bud=document.getElementById('budget'),bval=document.getElementById('bval');
+bud.oninput=()=>bval.textContent='$'+(+bud.value).toLocaleString();
+// date min today
+const dEl=document.getElementById('date');dEl.min=new Date().toISOString().split('T')[0];
+
+// form
+document.getElementById('bookForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=e.target;
+  if(!f.name.value.trim()||!f.email.value.includes('@')||!f.date.value||!f.msg.value.trim()){
+    toast('Please complete name, email, date & project details.');return;
+  }
+  const btn=document.getElementById('btnTxt');btn.textContent='Sending…';
+  setTimeout(()=>{
+    btn.textContent='Request Received ✓';
+    toast('Thank you '+f.name.value.split(' ')[0]+' — Jenny will reply within 24h.');
+    f.reset();bval.textContent='$250,000';bud.value=250000;
+    setTimeout(()=>btn.textContent='Request My Consultation →',3000);
+  },900);
+});
+function toast(msg){
+  const t=document.getElementById('toast');t.innerHTML='✓ &nbsp; '+msg;t.classList.add('show');
+  clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),4200);
+}
+</script>
+</body>
+</html>

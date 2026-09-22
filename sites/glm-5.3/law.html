@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harlow &amp; Pierce — Michigan Accident &amp; Injury Lawyers</title>
+<meta name="description" content="Harlow & Pierce, P.C. — Michigan trial lawyers for accident and injury cases. $412M+ recovered. No fee unless we win. Offices in Detroit and Grand Rapids.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Archivo:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS & RESET ============ */
+:root{
+  --paper:#F2EDE2; --paper-2:#E9E2D1; --ink:#17130E; --ink-2:#4A4034;
+  --line:rgba(23,19,14,.16); --line-s:rgba(23,19,14,.30);
+  --brick:#A93B22; --brick-d:#8C2F19; --brick-lt:#D97A57;
+  --cream:#EDE6D4; --cream-2:#B4A891; --line-d:rgba(237,230,212,.16); --line-d2:rgba(237,230,212,.32);
+  --serif:'Fraunces',Georgia,serif; --sans:'Archivo',Helvetica,sans-serif; --mono:'Spline Sans Mono',ui-monospace,monospace;
+  --nav-h:78px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 18px)}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--brick);color:var(--paper)}
+:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+/* paper grain */
+body::after{content:"";position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ============ UTILITIES ============ */
+.wrap{max-width:1380px;margin-inline:auto;padding-inline:clamp(20px,5vw,72px)}
+.sec{padding-block:clamp(4.2rem,9vw,8.2rem)}
+.sec-h{display:grid;grid-template-columns:1fr;gap:1.4rem;border-top:1px solid var(--line);padding-top:2.4rem;margin-bottom:clamp(2.6rem,5vw,4.4rem)}
+.eyebrow{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:.7rem}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--brick);flex:none}
+.sec-t{font-family:var(--serif);font-optical-sizing:auto;font-weight:500;letter-spacing:-.015em;line-height:1.04;font-size:clamp(2.35rem,4.8vw,3.8rem);max-width:18ch}
+.kick{color:var(--ink-2);max-width:52ch;font-size:1.02rem}
+.mono{font-family:var(--mono)}
+.dark{background:var(--ink);color:var(--cream)}
+.dark .eyebrow{color:var(--cream-2)}.dark .eyebrow::before{background:var(--brick-lt)}
+.dark .sec-h{border-top-color:var(--line-d2)}
+.dark .kick{color:var(--cream-2)}
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .85s cubic-bezier(.2,.7,.15,1);transition-delay:var(--d,0s)}
+.rv.on{opacity:1;transform:none}
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:1.05em 1.7em;text-decoration:none;border:1px solid transparent;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.btn svg{width:15px;height:15px;flex:none}
+.btn-p{background:var(--brick);color:#F6F1E4;border-color:var(--brick)}
+.btn-p:hover{background:var(--ink);border-color:var(--ink)}
+.btn-g{border-color:var(--line-s);color:var(--ink)}
+.btn-g:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+/* ============ NAV ============ */
+#nav{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--nav-h);display:flex;align-items:center;transition:background .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
+#nav.scr{background:rgba(242,237,226,.9);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);border-bottom-color:var(--line)}
+.nav-in{width:100%;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:clamp(1rem,3vw,2.6rem)}
+.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+.brand svg{width:36px;height:36px;flex:none}
+.brand-n{font-family:var(--serif);font-weight:560;font-size:1.18rem;line-height:1.05;letter-spacing:-.01em}
+.brand-n em{font-style:italic;color:var(--brick);transition:color .25s}
+.brand:hover em{color:var(--ink)}
+.brand-s{display:block;font-family:var(--mono);font-size:.55rem;letter-spacing:.26em;color:var(--ink-2);margin-top:.28rem;text-transform:uppercase}
+.nav-l{display:flex;justify-content:center;gap:clamp(1.1rem,2.4vw,2.1rem);list-style:none}
+.nav-l a{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);position:relative;padding:.4rem 0;transition:color .2s}
+.nav-l a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--brick);transition:right .28s cubic-bezier(.2,.7,.15,1)}
+.nav-l a:hover,.nav-l a.cur{color:var(--ink)}
+.nav-l a:hover::after,.nav-l a.cur::after{right:0}
+.nav-ph{display:flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-decoration:none;color:var(--ink);font-weight:500}
+.nav-ph svg{width:15px;height:15px;color:var(--brick)}
+.nav-ph:hover{color:var(--brick)}
+#navToggle{display:none;width:44px;height:44px;position:relative;margin-left:auto}
+#navToggle span{position:absolute;left:10px;right:10px;height:2px;background:var(--ink);transition:transform .3s,opacity .3s}
+#navToggle span:first-child{top:17px}#navToggle span:last-child{bottom:17px}
+#navToggle[aria-expanded="true"] span:first-child{transform:translateY(4px) rotate(45deg)}
+#navToggle[aria-expanded="true"] span:last-child{transform:translateY(-4px) rotate(-45deg)}
+/* mobile menu */
+#mnav{position:fixed;inset:0;z-index:850;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + 2rem) clamp(24px,7vw,64px) 3rem;visibility:hidden;opacity:0;transform:translateY(-14px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+#mnav.open{visibility:visible;opacity:1;transform:none;transition:opacity .35s,transform .35s}
+#mnav ul{list-style:none}
+#mnav a.ln{display:block;font-family:var(--serif);font-size:clamp(2rem,8.5vw,3rem);font-weight:450;line-height:1.28;letter-spacing:-.01em;text-decoration:none;color:var(--cream);opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s,color .2s}
+#mnav.open a.ln{opacity:1;transform:none}
+#mnav a.ln:hover{color:var(--brick-lt)}
+#mnav a.ln span{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--brick-lt);margin-left:1rem;vertical-align:.5em}
+.mnav-ft{margin-top:clamp(2rem,7vh,4rem);border-top:1px solid var(--line-d2);padding-top:2rem;display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-end}
+.mnav-ft a.tl{font-family:var(--serif);font-size:1.5rem;color:var(--cream);text-decoration:none}
+.mnav-ft a.tl:hover{color:var(--brick-lt)}
+.mnav-ft p{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--cream-2);line-height:2;text-transform:uppercase}
+/* ============ HERO ============ */
+.hero{padding-top:calc(var(--nav-h) + clamp(2.6rem,7vh,5.4rem));padding-bottom:clamp(2rem,5vh,4rem);min-height:92svh;display:flex;flex-direction:column;justify-content:space-between}
+.hero-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:clamp(2.4rem,5vw,5.5rem);align-items:end}
+.hero-eyebrow{margin-bottom:clamp(1.2rem,2.5vw,2rem)}
+h1{font-family:var(--serif);font-optical-sizing:auto;font-weight:550;font-size:clamp(2.7rem,7.2vw,6.3rem);line-height:1.02;letter-spacing:-.02em}
+.hl{display:block;overflow:hidden;padding-block:.07em;margin-block:-.07em}
+.hl>span{display:block;transform:translateY(115%);animation:rise .95s cubic-bezier(.19,.72,.16,1) forwards}
+.hl:nth-child(2)>span{animation-delay:.12s}
+.hl:nth-child(3)>span{animation-delay:.24s}
+.hl.acc{color:var(--brick);font-style:italic;font-weight:480}
+.hl .note{display:inline-block;font-family:var(--mono);font-style:normal;font-weight:400;font-size:clamp(.62rem,1vw,.74rem);letter-spacing:.22em;color:var(--ink-2);margin-left:1.4rem;transform:translateY(-1.6em)}
+@keyframes rise{to{transform:translateY(0)}}
+.hero-lede{max-width:52ch;color:var(--ink-2);font-size:1.06rem;margin-top:clamp(1.4rem,2.6vw,2.1rem)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:clamp(1.6rem,3vw,2.4rem)}
+.hero-fine{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;color:var(--ink-2);margin-top:1.1rem;text-transform:uppercase}
+.hero-fine b{color:var(--brick);font-weight:500}
+/* map figure */
+.fig{border:1px solid var(--line-s);max-width:430px;margin-left:auto;background:var(--paper)}
+.fig-hd{display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--line);padding:.7rem 1rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--ink-2);text-transform:uppercase}
+.fig-hd b{color:var(--ink);font-weight:500}
+.fig-bd{padding:1.1rem 1rem .4rem}
+.fig-ft{border-top:1px solid var(--line);padding:.7rem 1rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase;line-height:1.8}
+.mi{width:100%;height:auto}
+.mi-shape{fill:url(#hatch);fill-opacity:0;stroke:var(--ink);stroke-width:.9;stroke-dasharray:1;stroke-dashoffset:1;animation:mapdraw 2.4s ease .35s forwards,mapfill 1.2s ease 1.9s forwards}
+.mi-shape.up{animation-delay:.15s,1.9s}
+@keyframes mapdraw{to{stroke-dashoffset:0}}
+@keyframes mapfill{to{fill-opacity:1}}
+.mi-lbl{font-family:var(--mono);font-size:4.6px;letter-spacing:.08em;fill:var(--ink-2)}
+.mi-lbl.hq{fill:var(--brick);font-weight:600}
+.mi-dot{fill:var(--ink)}
+.mi-dot.hq{fill:var(--brick)}
+.mi-pulse{fill:none;stroke:var(--brick);stroke-width:.7;opacity:0;transform-box:fill-box;transform-origin:center;animation:pulse 3s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.4);opacity:.8}70%{transform:scale(2.4);opacity:0}100%{transform:scale(2.4);opacity:0}}
+.mi-bridge{stroke:var(--brick);stroke-width:.9;stroke-dasharray:2 2;fill:none}
+.mi-n{font-family:var(--mono);font-size:4.6px;letter-spacing:.18em;fill:var(--ink-2)}
+/* stats ledger */
+.stats{border-top:2px solid var(--ink);margin-top:clamp(2.6rem,6vh,4.6rem);display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:clamp(1.2rem,2.4vw,2rem) clamp(.8rem,1.8vw,1.6rem) 0}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat .num{font-family:var(--serif);font-optical-sizing:auto;font-weight:520;font-size:clamp(2rem,3.6vw,3.3rem);line-height:1;letter-spacing:-.02em;display:block}
+.stat-lb{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--ink-2);text-transform:uppercase;display:block;margin-top:.7rem;line-height:1.7}
+/* ============ MARQUEE ============ */
+.tick{border-block:1px solid var(--line);overflow:hidden;user-select:none}
+.tick-track{display:flex;width:max-content;animation:tick 55s linear infinite}
+.tick:hover .tick-track{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+.tick-set{display:flex;align-items:center}
+.ti{display:inline-flex;align-items:baseline;gap:.7rem;padding:1rem 1.1rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.ti b{color:var(--ink);font-weight:500}
+.ti i{font-style:italic;font-family:var(--serif);color:var(--ink);font-size:.85rem}
+.tsep{color:var(--brick);font-family:var(--serif);font-size:.85rem;flex:none}
+/* ============ ACCORDIONS (practice + faq) ============ */
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-item:first-child{border-top:1px solid var(--line)}
+.acc-h{width:100%;text-align:left}
+.acc-h>span{display:grid;grid-template-columns:3.4rem 1fr auto;align-items:center;gap:1rem;padding:clamp(1.1rem,2.4vw,1.55rem) 0;transition:padding .3s}
+.acc-h:hover>span{padding-left:.6rem}
+.acc-n{font-family:var(--mono);font-size:.78rem;color:var(--ink-2);transition:color .25s}
+.acc-t{font-family:var(--serif);font-weight:500;font-size:clamp(1.35rem,2.7vw,2.05rem);line-height:1.12;letter-spacing:-.01em;transition:color .25s}
+.acc-h:hover .acc-n,.acc-item.open .acc-n{color:var(--brick)}
+.plus{position:relative;width:15px;height:15px;flex:none;justify-self:end}
+.plus::before,.plus::after{content:"";position:absolute;background:var(--ink);transition:transform .35s,background .25s}
+.plus::before{left:0;right:0;top:7px;height:1.5px}
+.plus::after{top:0;bottom:0;left:7px;width:1.5px}
+.acc-item.open .plus::after{transform:scaleY(0)}
+.acc-item.open .plus::before{background:var(--brick)}
+.acc-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.7,.15,1)}
+.acc-item.open .acc-b{grid-template-rows:1fr}
+.acc-in{overflow:hidden}
+.acc-c{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:2rem;padding:0 0 clamp(1.6rem,3vw,2.2rem);margin-left:calc(3.4rem + 1rem)}
+.acc-c p{color:var(--ink-2);max-width:56ch}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;align-content:start}
+.tag{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-s);padding:.45em .8em;white-space:nowrap}
+.ask{display:inline-flex;align-items:center;gap:.55rem;margin-top:1.2rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--brick);border-bottom:1px solid var(--brick);padding-bottom:.25em}
+.ask svg{width:13px;height:13px;transition:transform .25s}
+.ask:hover svg{transform:translateX(4px)}
+/* faq variant */
+.faq .acc-t{font-size:clamp(1.1rem,2vw,1.4rem)}
+.faq .acc-c{grid-template-columns:1fr;margin-left:0}
+.faq .acc-c p{max-width:68ch}
+/* ============ MANIFESTO ============ */
+.man-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(2.6rem,6vw,6rem)}
+.man-q{font-family:var(--serif);font-optical-sizing:auto;font-weight:440;font-size:clamp(1.75rem,3.4vw,2.9rem);line-height:1.22;letter-spacing:-.01em;position:sticky;top:calc(var(--nav-h) + 3rem);align-self:start}
+.man-q em{font-style:italic;color:var(--brick-lt)}
+.man-intro{color:var(--cream-2);max-width:52ch;margin-bottom:2.4rem;font-size:1.02rem}
+.pt{display:grid;grid-template-columns:2.6rem 1fr;gap:1.2rem;padding:1.35rem 0;border-top:1px solid var(--line-d);align-items:start}
+.pt-m{color:var(--brick-lt);font-family:var(--serif);font-size:1.4rem;line-height:1;padding-top:.1rem}
+.pt b{display:block;font-weight:600;color:var(--cream);font-size:1.04rem;margin-bottom:.25rem}
+.pt span{color:var(--cream-2);font-size:.95rem}
+.man-stamp{margin-top:2.6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;color:var(--cream-2);display:flex;align-items:center;gap:.8rem;text-transform:uppercase}
+.man-stamp::before{content:"";width:9px;height:9px;background:var(--brick-lt)}
+/* ============ RESULTS ============ */
+.res-bar{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;margin-bottom:1.6rem}
+.fil{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.fil button{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-2);padding:.45rem 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.fil button:hover{color:var(--ink)}
+.fil button.on{color:var(--ink);border-color:var(--brick);font-weight:500}
+#resCount{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--ink-2);text-transform:uppercase}
+.res-row{width:100%;text-align:left;display:grid;grid-template-columns:minmax(180px,.9fr) minmax(0,2.1fr) auto;align-items:baseline;gap:1.4rem;padding:clamp(1.2rem,2.4vw,1.7rem) .9rem;border-bottom:1px solid var(--line);transition:background .25s;animation:resIn .55s both}
+.res-row:first-of-type{border-top:1px solid var(--line)}
+@keyframes resIn{from{opacity:0;transform:translateY(14px)}}
+.res-row:hover{background:var(--paper-2)}
+.res-amt{font-family:var(--serif);font-weight:530;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1;letter-spacing:-.02em}
+.res-amt.cf{font-style:italic;font-weight:440;font-size:clamp(1.4rem,2.6vw,2rem)}
+.res-desc{color:var(--ink);font-size:1.02rem}
+.res-meta{text-align:right;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--ink-2);text-transform:uppercase;line-height:1.9;white-space:nowrap}
+.res-meta b{color:var(--brick);font-weight:500}
+.res-ask{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;color:var(--brick);text-transform:uppercase;display:inline-block;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s;margin-top:.4rem}
+.res-row:hover .res-ask,.res-row:focus-visible .res-ask{opacity:1;transform:none}
+.res-note{margin-top:1.6rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--ink-2);text-transform:uppercase}
+/* ============ ROSTER ============ */
+.ros-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(2.4rem,5vw,5rem);align-items:start}
+.dossier{border:1px solid var(--line-s);padding:clamp(1.6rem,3.5vw,2.8rem);position:relative;overflow:hidden;background:var(--paper)}
+.dossier::after{content:"§";position:absolute;right:-.4rem;bottom:-5rem;font-family:var(--serif);font-size:19rem;line-height:1;color:var(--ink);opacity:.045;pointer-events:none}
+.ds-hd{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--ink-2);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:.8rem;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+.ds-hd b{color:var(--brick);font-weight:500}
+#dIn{transition:opacity .22s,transform .22s}
+#dIn .gi{font-family:var(--serif);font-optical-sizing:auto;font-weight:580;font-size:clamp(5.2rem,11vw,8.6rem);line-height:.92;letter-spacing:-.03em;display:block}
+#dIn .gi i{font-style:normal;color:var(--brick)}
+#dName{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,2.8vw,2.1rem);margin-top:clamp(1.2rem,2.4vw,1.8rem);letter-spacing:-.01em}
+#dRole{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;color:var(--ink-2);text-transform:uppercase;margin-top:.5rem}
+#dMaxim{font-family:var(--serif);font-style:italic;font-weight:440;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;margin-top:clamp(1.2rem,2.2vw,1.7rem);color:var(--ink);position:relative;padding-left:1.6rem}
+#dMaxim::before{content:"“";position:absolute;left:0;top:-.1em;color:var(--brick);font-size:1.5em}
+#dBio{color:var(--ink-2);margin-top:1.1rem;max-width:58ch;font-size:.98rem}
+#dStats{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:clamp(1.3rem,2.4vw,1.9rem);position:relative;z-index:1}
+#dStats span{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--line-s);padding:.5em .85em;background:var(--paper)}
+.fading{opacity:0;transform:translateY(10px)}
+.ros-rows{border-top:1px solid var(--line)}
+.ros-row{width:100%;text-align:left;display:grid;grid-template-columns:2.6rem 1fr auto;align-items:center;gap:1rem;padding:clamp(1.15rem,2.2vw,1.5rem) .4rem;border-bottom:1px solid var(--line);transition:background .25s}
+.ros-row .rn{font-family:var(--mono);font-size:.72rem;color:var(--ink-2);transition:color .25s}
+.ros-row .rname{font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2.3vw,1.75rem);letter-spacing:-.01em;line-height:1.1;transition:color .25s}
+.ros-row .rname small{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;color:var(--ink-2);margin-top:.4rem;text-transform:uppercase}
+.ros-row svg{width:16px;height:16px;color:var(--brick);opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+.ros-row:hover,.ros-row.on{background:var(--paper-2)}
+.ros-row.on .rname{color:var(--brick)}
+.ros-row.on .rn{color:var(--brick)}
+.ros-row.on svg,.ros-row:hover svg{opacity:1;transform:none}
+.ros-hint{margin-top:1rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--ink-2);text-transform:uppercase}
+/* ============ PROCESS ============ */
+#procSteps{position:relative;padding-left:0}
+#procSteps::before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1.5px;background:var(--line-s)}
+#procFill{position:absolute;left:5px;top:12px;height:calc(100% - 24px);width:1.5px;background:var(--brick);transform:scaleY(0);transform-origin:top}
+.step{position:relative;padding:clamp(1.7rem,3.4vw,2.5rem) 0 clamp(1.7rem,3.4vw,2.5rem) clamp(2.6rem,5vw,4.2rem);border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.node{position:absolute;left:0;top:calc(clamp(1.7rem,3.4vw,2.5rem) + .45em);width:11px;height:11px;background:var(--paper);border:1.5px solid var(--ink);transform:rotate(45deg);transition:background .4s,border-color .4s}
+.step.done .node{background:var(--brick);border-color:var(--brick)}
+.s-num{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;color:var(--ink-2);transition:color .35s}
+.step.done .s-num{color:var(--brick)}
+.step h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,3vw,2.25rem);letter-spacing:-.012em;margin:.5rem 0 .7rem}
+.step p{color:var(--ink-2);max-width:62ch}
+/* ============ QUOTE BAND ============ */
+.qband{background:var(--paper-2);border-block:1px solid var(--line);text-align:center;position:relative}
+.qband blockquote{font-family:var(--serif);font-style:italic;font-weight:420;font-size:clamp(1.6rem,3.4vw,2.75rem);line-height:1.28;letter-spacing:-.01em;max-width:26ch;margin:0 auto;position:relative;padding-top:2.6rem}
+.qband blockquote::before{content:"“";position:absolute;top:-.6rem;left:50%;transform:translateX(-50%);font-size:5.5rem;color:var(--brick);font-style:normal;line-height:1}
+.qband figcaption{margin-top:2.2rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);line-height:2.1}
+.qband figcaption b{color:var(--ink);font-weight:500}
+.q-note{margin-top:1.4rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;color:var(--ink-2);text-transform:uppercase}
+/* ============ CONTACT ============ */
+.contact{background:var(--paper-2)}
+.c-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2.6rem,6vw,6.5rem)}
+.c-info>div{border-top:1px solid var(--line-s);padding:1.7rem 0}
+.c-info>div:first-child{border-top:0;padding-top:0}
+.c-lb{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.c-lb svg{width:14px;height:14px;color:var(--brick)}
+.c-tel{font-family:var(--serif);font-weight:520;font-size:clamp(1.7rem,3vw,2.3rem);text-decoration:none;letter-spacing:-.01em}
+.c-tel:hover{color:var(--brick)}
+.c-note{color:var(--ink-2);font-size:.92rem;margin-top:.6rem;max-width:38ch}
+.c-addr{font-size:.95rem;line-height:1.85}
+.c-addr b{font-weight:600}
+.c-addr a{color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick)}
+/* form */
+.f-hd{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--ink-2);text-transform:uppercase;border-bottom:1px solid var(--line-s);padding-bottom:.8rem;margin-bottom:1.8rem}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:0 1.8rem}
+.fg{margin-bottom:1.7rem}
+.fg label{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.15rem}
+.fg label i{font-style:normal;color:var(--brick)}
+.fg input,.fg select,.fg textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-s);font-family:var(--sans);font-size:1.06rem;color:var(--ink);padding:.7rem 0;transition:border-color .25s;border-radius:0}
+.fg select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A4034' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .2rem center}
+.fg textarea{resize:vertical;min-height:5.2rem}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--ink)}
+.fg.err input,.fg.err select,.fg.err textarea{border-color:var(--brick)}
+.emsg{display:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--brick);margin-top:.5rem}
+.fg.err .emsg{display:block}
+.consent{display:flex;align-items:flex-start;gap:.8rem;margin:1.4rem 0 1.8rem;max-width:52ch}
+.consent input{accent-color:var(--brick);width:16px;height:16px;margin-top:.2rem;flex:none}
+.consent label{font-size:.86rem;color:var(--ink-2);line-height:1.5}
+.f-fine{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--ink-2);text-transform:uppercase;margin-top:1.3rem;line-height:1.9}
+#formOk{display:none;border:1px solid var(--line-s);padding:clamp(1.8rem,3.5vw,2.8rem);text-align:left}
+#formOk.show{display:block;animation:resIn .6s both}
+#formOk .ok-i{width:44px;height:44px;border:1.5px solid var(--brick);display:grid;place-items:center;margin-bottom:1.4rem}
+#formOk .ok-i svg{width:22px;height:22px;color:var(--brick)}
+#formOk h3{font-family:var(--serif);font-weight:520;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.01em}
+#formOk p{color:var(--ink-2);margin-top:.8rem;max-width:52ch}
+#formOk .btn{margin-top:1.6rem}
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--cream)}
+.ft-top{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,.7fr));gap:clamp(2rem,5vw,4.5rem);padding:clamp(3.4rem,7vw,6rem) 0 clamp(2.4rem,5vw,4rem);border-bottom:1px solid var(--line-d2)}
+.ft-word{font-family:var(--serif);font-weight:480;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;letter-spacing:-.02em}
+.ft-word em{font-style:italic;color:var(--brick-lt)}
+.ft-tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;color:var(--cream-2);text-transform:uppercase;margin-top:1.4rem;line-height:2}
+.ft-h{font-family:var(--mono);font-size:.6rem;letter-spacing:.24em;color:var(--brick-lt);text-transform:uppercase;margin-bottom:1.3rem}
+.ft-l{list-style:none}
+.ft-l li{margin-bottom:.55rem}
+.ft-l a{color:var(--cream-2);text-decoration:none;font-size:.94rem;transition:color .2s}
+.ft-l a:hover{color:var(--cream)}
+.ft-addr{font-size:.92rem;color:var(--cream-2);line-height:1.8;font-style:normal}
+.ft-addr b{color:var(--cream);font-weight:500}
+.ft-addr a{color:var(--cream-2);text-decoration:none;border-bottom:1px solid var(--line-d2)}
+.ft-addr a:hover{color:var(--brick-lt)}
+.ft-bot{display:flex;flex-wrap:wrap;gap:1rem 2.5rem;justify-content:space-between;align-items:center;padding:1.8rem 0 2.2rem}
+.ft-bot p{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--cream-2);line-height:1.9;max-width:88ch}
+.ft-mi{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--cream-2);text-transform:uppercase;flex:none}
+.ft-mi svg{width:22px;height:22px}
+/* ============ TOAST & MOBILE BAR ============ */
+#toast{position:fixed;left:50%;bottom:2rem;transform:translate(-50%,140%);background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;padding:.9rem 1.4rem;border-left:3px solid var(--brick-lt);z-index:950;transition:transform .45s cubic-bezier(.2,.7,.15,1);max-width:min(90vw,480px);text-align:center}
+#toast.show{transform:translate(-50%,0)}
+#mbar{display:none;position:fixed;inset:auto 0 0 0;z-index:800;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-d2);transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.7,.15,1)}
+#mbar.show{transform:none}
+#mbar a{display:flex;align-items:center;justify-content:center;gap:.6rem;background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:1.15rem;text-decoration:none}
+#mbar a+b a{border-left:1px solid var(--line-d2)}
+#mbar a.p{background:var(--brick);color:#F6F1E4}
+#mbar svg{width:15px;height:15px}
+/* ============ RESPONSIVE ============ */
+@media (max-width:1060px){
+  .nav-l{display:none}
+  #navToggle{display:block}
+  .nav-in{grid-template-columns:auto auto auto}
+  .hero-g{grid-template-columns:1fr}
+  .fig{margin-left:0;max-width:440px}
+  .man-g,.ros-g,.c-g{grid-template-columns:1fr}
+  .man-q{position:static}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat{border-top:1px solid var(--line);margin-top:-1px}
+  .stat:nth-child(1),.stat:nth-child(2){border-top:0;margin-top:0}
+}
+@media (max-width:720px){
+  :root{--nav-h:66px}
+  .nav-ph{display:none}
+  .nav-in{grid-template-columns:auto auto}
+  #navToggle{margin-left:auto}
+  .sec-h{gap:1.1rem}
+  .res-row{grid-template-columns:1fr;gap:.5rem;padding-inline:.6rem}
+  .res-meta{text-align:left}
+  .acc-c{grid-template-columns:1fr;margin-left:0;gap:1.2rem}
+  .acc-h>span{grid-template-columns:2.4rem 1fr auto;gap:.7rem}
+  .f-row{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr;gap:2.4rem}
+  .qband blockquote{max-width:24ch}
+  #mbar{display:grid}
+  footer{padding-bottom:4.6rem}
+  .ros-row{grid-template-columns:2.2rem 1fr auto}
+}
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001s!important;animation-delay:0s!important;transition-duration:.001s!important}
+  .rv{opacity:1;transform:none}
+  .hl>span{transform:none;animation:none}
+  .tick-track{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="top"></div>
+
+<!-- ============ ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h4l2 5.2-2.4 1.6a12.5 12.5 0 0 0 5.1 5.1l1.6-2.4 5.2 2v4a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.7 2 2 0 0 1 5 3.5Z"/></symbol>
+  <symbol id="i-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+  <symbol id="i-ux" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></symbol>
+  <symbol id="i-ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.5 5.5L20 7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5S5 15.8 5 10a7 7 0 0 1 14 0c0 5.8-7 11.5-7 11.5Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-cl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Harlow and Pierce — home">
+      <svg viewBox="18 10 118 102" aria-hidden="true"><path d="M38 24 C41 21 44 21 46 24 C47 30 46 36 48 40 C50 34 54 30 58 26 C60 24 61 22 63 20 C67 24 70 32 72 40 C68 48 73 55 79 60 C85 55 90 49 95 44 C101 38 106 33 112 28 C106 32 112 28 119 24 C126 28 129 36 128 44 C127 55 122 66 116 74 C111 83 107 92 103 99 C105 103 102 106 98 106 L46 108 C38 108 33 101 31 93 C27 82 26 70 28 60 C30 48 33 36 36 28 C37 26 37 25 38 24 Z" fill="none" stroke="#17130E" stroke-width="3"/><rect x="91" y="99" width="6" height="6" transform="rotate(45 94 102)" fill="#A93B22"/></svg>
+      <span><span class="brand-n">Harlow <em>&amp;</em> Pierce</span><span class="brand-s">Michigan · Est. 1987</span></span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-l">
+        <li><a href="#practice">Practice</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#attorneys">Attorneys</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="nav-ph" href="tel:+13135550117"><svg><use href="#i-ph"/></svg>(313) 555-0117</a>
+    <a class="btn btn-p" href="#contact" style="padding:.9em 1.3em">Free case review</a>
+    <button id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<nav id="mnav" aria-label="Mobile">
+  <ul>
+    <li><a class="ln" href="#practice" style="transition-delay:.05s">Practice<span>01</span></a></li>
+    <li><a class="ln" href="#results" style="transition-delay:.1s">Results<span>02</span></a></li>
+    <li><a class="ln" href="#attorneys" style="transition-delay:.15s">Attorneys<span>03</span></a></li>
+    <li><a class="ln" href="#process" style="transition-delay:.2s">Process<span>04</span></a></li>
+    <li><a class="ln" href="#faq" style="transition-delay:.25s">FAQ<span>05</span></a></li>
+    <li><a class="ln" href="#contact" style="transition-delay:.3s">Contact<span>06</span></a></li>
+  </ul>
+  <div class="mnav-ft">
+    <a class="tl" href="tel:+13135550117">(313) 555-0117</a>
+    <p>648 Griswold St, Suite 900, Detroit<br>77 Monroe Center NW, Grand Rapids<br>Answered 24/7 — call anytime</p>
+  </div>
+</nav>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero wrap">
+  <div class="hero-g">
+    <div>
+      <p class="eyebrow hero-eyebrow">Michigan accident &amp; injury law · since 1987</p>
+      <h1>
+        <span class="hl"><span>The insurance company</span></span>
+        <span class="hl"><span>is not on your side.</span></span>
+        <span class="hl acc"><span>We&nbsp;are.<span class="note">— Harlow &amp; Pierce</span></span></span>
+      </h1>
+      <p class="hero-lede">For thirty-eight years, we have represented the people insurance companies would rather not hear from — Michigan drivers, workers, and families upended by someone else's negligence. Every case is prepared for trial. You pay nothing unless we win.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#contact">Free case review<svg><use href="#i-ar"/></svg></a>
+        <a class="btn btn-g" href="tel:+13135550117"><svg><use href="#i-ph"/></svg>(313) 555-0117</a>
+      </div>
+      <p class="hero-fine"><b>Free</b> · Confidential · No obligation — <b>24/7 intake</b></p>
+    </div>
+
+    <figure class="fig rv" style="--d:.3s">
+      <figcaption class="fig-hd"><span>Coverage — <b>all 83 Michigan counties</b></span><span>Fig. 01</span></figcaption>
+      <div class="fig-bd">
+        <svg class="mi" viewBox="-2 -3 152 122" role="img" aria-label="Stylized map of Michigan with offices in Detroit and Grand Rapids">
+          <defs>
+            <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#17130E" stroke-width=".5" opacity=".22"/>
+            </pattern>
+          </defs>
+          <!-- Upper Peninsula -->
+          <path class="mi-shape up" pathLength="1" d="M2 24 C2 18 8 16 16 15 C26 13 36 10 44 8 C48 7 52 5 56 3 L63 1.5 C66 3 66 7 62 9 C58 11 54 11 51 13 C44 17 36 16 28 19 C20 21 8 21 2 24 Z"/>
+          <!-- Mackinac Bridge -->
+          <path class="mi-bridge" d="M57 13 L57 20"/>
+          <!-- Lower Peninsula (the mitten) -->
+          <path class="mi-shape" pathLength="1" d="M38 24 C41 21 44 21 46 24 C47 30 46 36 48 40 C50 34 54 30 58 26 C60 24 61 22 63 20 C67 24 70 32 72 40 C68 48 73 55 79 60 C85 55 90 49 95 44 C101 38 106 33 112 28 C106 32 112 28 119 24 C126 28 129 36 128 44 C127 55 122 66 116 74 C111 83 107 92 103 99 C105 103 102 106 98 106 L46 108 C38 108 33 101 31 93 C27 82 26 70 28 60 C30 48 33 36 36 28 C37 26 37 25 38 24 Z"/>
+          <!-- Cities -->
+          <circle class="mi-pulse" cx="94" cy="102" r="3.4"/>
+          <rect class="mi-dot hq" x="91.6" y="99.6" width="4.8" height="4.8" transform="rotate(45 94 102)"/>
+          <text class="mi-lbl hq" x="99" y="103.5">DETROIT — HQ</text>
+          <rect class="mi-dot" x="42.5" y="79.5" width="3.4" height="3.4" transform="rotate(45 44.2 81.2)"/>
+          <text class="mi-lbl" x="49" y="82.5">GRAND RAPIDS</text>
+          <rect class="mi-dot" x="46.8" y="38.3" width="3.4" height="3.4" transform="rotate(45 48.5 40)"/>
+          <text class="mi-lbl" x="53" y="41">TRAVERSE CITY</text>
+          <rect class="mi-dot" x="20.3" y="14.8" width="3.4" height="3.4" transform="rotate(45 22 16.5)"/>
+          <text class="mi-lbl" x="26" y="17.5">MARQUETTE</text>
+          <!-- compass -->
+          <line x1="138" y1="26" x2="138" y2="14" stroke="#4A4034" stroke-width=".7"/>
+          <path d="M136.6 16.5 138 13.4 139.4 16.5 Z" fill="#A93B22"/>
+          <text class="mi-n" x="134.6" y="31">N</text>
+        </svg>
+      </div>
+      <p class="fig-ft">Fig. 01 — State of Michigan. Offices in Detroit &amp; Grand Rapids;<br>we travel anywhere your case is.</p>
+    </figure>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="num" data-n="412" data-pre="$" data-suf="M+">$412M+</span><span class="stat-lb">Recovered for Michigan families</span></div>
+    <div class="stat"><span class="num" data-n="3800" data-comma="1">3,800</span><span class="stat-lb">Families represented since 1987</span></div>
+    <div class="stat"><span class="num" data-n="143">143</span><span class="stat-lb">Jury trials taken to verdict</span></div>
+    <div class="stat"><span class="num">$0</span><span class="stat-lb">Owed until we win — ever</span></div>
+  </div>
+</section>
+
+<!-- ============ VERDICT TICKER ============ -->
+<div class="tick" aria-label="Selected results ticker">
+  <div class="tick-track" id="tickTrack">
+    <div class="tick-set">
+      <span class="ti"><b>$4.2M</b> Truck collision, I-94 · Jackson Co.</span><span class="tsep">§</span>
+      <span class="ti"><b>$3.5M</b> Wrongful death, drunk driver · Kent Co.</span><span class="tsep">§</span>
+      <span class="ti"><b>$2.75M</b> Construction fall · Grand Rapids</span><span class="tsep">§</span>
+      <span class="ti"><b>$1.9M</b> Verdict · birth injury · Oakland Co.</span><span class="tsep">§</span>
+      <span class="ti"><b>$1.4M</b> Motorcycle crash, M-119 · Emmet Co.</span><span class="tsep">§</span>
+      <span class="ti"><b>$1.2M</b> Nursing home neglect · Wayne Co.</span><span class="tsep">§</span>
+      <span class="ti"><b>$975K</b> Scaffold collapse · Dearborn</span><span class="tsep">§</span>
+      <span class="ti"><b>$850K</b> Black-ice fall, unplowed lot · Macomb Co.</span><span class="tsep">§</span>
+      <span class="ti"><b>$675K</b> Snowmobile vs. truck · Kalkaska Co.</span><span class="tsep">§</span>
+      <span class="ti"><i>Confidential</i> Catastrophic brain injury · St. Clair Co.</span><span class="tsep">§</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRACTICE ============ -->
+<section class="sec" id="practice">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">What we fight</p>
+      <div>
+        <h2 class="sec-t">Negligence comes in many forms. So does our answer.</h2>
+        <p class="kick" style="margin-top:1.2rem">Michigan's laws are unlike any other state's — no-fault thresholds, damage caps, government notice deadlines. We have spent four decades learning exactly where the traps are set, and who set them.</p>
+      </div>
+    </div>
+
+    <div class="acc" data-solo>
+      <div class="acc-item open">
+        <h3 class="acc-h"><button aria-expanded="true"><span><span class="acc-n">01</span><span class="acc-t">Car &amp; truck collisions</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c">
+          <div>
+            <p>Rear-endings on the Lodge, jackknifed semis on I-94, dooring crashes on Woodward. Michigan's no-fault system is unlike any other state's — and insurers know exactly how to use it against you. We know how to use it for you.</p>
+            <button class="ask" data-go="car-truck">Ask about a case like this<svg><use href="#i-ar"/></svg></button>
+          </div>
+          <div class="tags"><span class="tag">No-fault / PIP</span><span class="tag">Commercial carriers</span><span class="tag">UM &amp; UIM</span><span class="tag">Catastrophic injury</span></div>
+        </div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">02</span><span class="acc-t">Motorcycle &amp; snowmobile accidents</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c">
+          <div>
+            <p>Between April and October it's two lanes of M-119. From November it's six thousand miles of groomed trail. Riders get hurt because drivers "didn't see them" — a defense we have dismantled in front of juries for decades.</p>
+            <button class="ask" data-go="moto">Ask about a case like this<svg><use href="#i-ar"/></svg></button>
+          </div>
+          <div class="tags"><span class="tag">Driver inattention</span><span class="tag">Road &amp; trail defects</span><span class="tag">UM &amp; UIM</span><span class="tag">Traumatic brain injury</span></div>
+        </div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">03</span><span class="acc-t">Workplace &amp; construction injuries</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c">
+          <div>
+            <p>Michigan built the middle class, and too many employers still treat safety as optional. Falls from height, trench collapses, machine amputations — we have handled them all, and we are not intimidated by company counsel or comp-carrier red tape.</p>
+            <button class="ask" data-go="workplace">Ask about a case like this<svg><use href="#i-ar"/></svg></button>
+          </div>
+          <div class="tags"><span class="tag">Third-party claims</span><span class="tag">Trench &amp; scaffold falls</span><span class="tag">Machinery injuries</span><span class="tag">Site-owner liability</span></div>
+        </div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">04</span><span class="acc-t">Premises &amp; negligent security</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c">
+          <div>
+            <p>A snowy parking lot in January. A broken stair in a walk-up. A bar with a history of fights and no security at the door. Property owners owe you ordinary care — when they don't, we make that failure expensive.</p>
+            <button class="ask" data-go="premises">Ask about a case like this<svg><use href="#i-ar"/></svg></button>
+          </div>
+          <div class="tags"><span class="tag">Ice &amp; snow removal</span><span class="tag">Negligent security</span><span class="tag">Dog bites</span><span class="tag">"Open &amp; obvious" defense</span></div>
+        </div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">05</span><span class="acc-t">Medical negligence</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c">
+          <div>
+            <p>A missed diagnosis. A surgical error. A delivery that changed a family forever. Insurers fight these cases harder than any others — which is precisely why we prepare them harder than anyone else.</p>
+            <button class="ask" data-go="medical">Ask about a case like this<svg><use href="#i-ar"/></svg></button>
+          </div>
+          <div class="tags"><span class="tag">Misdiagnosis</span><span class="tag">Surgical errors</span><span class="tag">Birth injury</span><span class="tag">Nursing home neglect</span></div>
+        </div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">06</span><span class="acc-t">Wrongful death</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c">
+          <div>
+            <p>No verdict returns a life. But a family deserves more than a quick check and a release form. Under Michigan's Wrongful Death Act, we pursue full accountability — economic, emotional, and exemplary.</p>
+            <button class="ask" data-go="death">Ask about a case like this<svg><use href="#i-ar"/></svg></button>
+          </div>
+          <div class="tags"><span class="tag">Estate representation</span><span class="tag">Loss of companionship</span><span class="tag">Survival damages</span><span class="tag">Dram-shop claims</span></div>
+        </div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="sec dark" id="why">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">Why Harlow &amp; Pierce</p>
+      <h2 class="sec-t">Trial lawyers, not a settlement mill.</h2>
+    </div>
+    <div class="man-g">
+      <p class="man-q rv">Insurance companies keep a short list of the firms that <em>actually try cases</em>. We have spent thirty-eight years <em>staying on it.</em></p>
+      <div>
+        <p class="man-intro rv">Most injury practices run on volume: take everything, settle fast, move on. Harlow &amp; Pierce was built on the opposite bet — take fewer cases, prepare each one as if a jury will hear it, and never let an adjuster set the price of a client's life.</p>
+        <div class="pt rv" style="--d:.05s"><span class="pt-m">§1</span><div><b>Your lawyer's direct line — not a case manager's queue.</b><span>When you call, the phone is answered by the lawyer whose name is on your file. That is not a luxury here; it is the arrangement.</span></div></div>
+        <div class="pt rv" style="--d:.12s"><span class="pt-m">§2</span><div><b>We front every cost — reconstruction, experts, depositions.</b><span>You will never be asked to write a check while your case is pending. If we don't recover, those costs are ours, not yours.</span></div></div>
+        <div class="pt rv" style="--d:.19s"><span class="pt-m">§3</span><div><b>We know Michigan's no-fault system cold.</b><span>The thresholds, the caps, the three-year rule and every exception to it. The other side counts on you not knowing. They stop counting on it quickly.</span></div></div>
+        <div class="pt rv" style="--d:.26s"><span class="pt-m">§4</span><div><b>If the number is unfair, twelve citizens pick a fairer one.</b><span>Filing suit isn't a tactic here — it's leverage, and adjusters price our files accordingly. It has worked for thirty-eight years.</span></div></div>
+        <p class="man-stamp rv" style="--d:.3s">That's not a slogan. It's the docket.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="sec" id="results">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">Selected results</p>
+      <div>
+        <h2 class="sec-t">The record speaks.</h2>
+        <p class="kick" style="margin-top:1.2rem">Past results guarantee nothing — the fine print at the bottom of this page says so. But a firm's record is still the most honest thing about it. A decade of ours, abbreviated.</p>
+      </div>
+    </div>
+
+    <div class="res-bar rv">
+      <div class="fil" role="group" aria-label="Filter results">
+        <button class="on" data-f="all">All</button>
+        <button data-f="vehicles">Vehicles</button>
+        <button data-f="workplace">Workplace</button>
+        <button data-f="premises">Premises</button>
+        <button data-f="medical">Medical</button>
+        <button data-f="death">Wrongful death</button>
+      </div>
+      <p id="resCount">Showing 10 of 10</p>
+    </div>
+
+    <div class="res-list rv" id="resList" style="--d:.1s">
+      <button class="res-row" data-cat="vehicles" data-go="car-truck"><span class="res-amt">$4.2M</span><span class="res-desc">Jackknifed semi on I-94 in fog · spinal injury</span><span class="res-meta"><b>Verdict</b> · Jackson Co. — 2024<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="death" data-go="death"><span class="res-amt">$3.5M</span><span class="res-desc">Drunk driver · wrongful death of a husband and father</span><span class="res-meta"><b>Settlement</b> · Kent Co. — 2024<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="workplace" data-go="workplace"><span class="res-amt">$2.75M</span><span class="res-desc">Third-story scaffold fall · permanent nerve damage</span><span class="res-meta"><b>Settlement</b> · Kent Co. — 2023<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="medical" data-go="medical"><span class="res-amt">$1.9M</span><span class="res-desc">Delayed emergency C-section · birth injury</span><span class="res-meta"><b>Verdict</b> · Oakland Co. — 2022<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="vehicles" data-go="moto"><span class="res-amt">$1.4M</span><span class="res-desc">Motorcycle vs. left-turning SUV on M-119</span><span class="res-meta"><b>Settlement</b> · Emmet Co. — 2023<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="medical" data-go="medical"><span class="res-amt">$1.2M</span><span class="res-desc">Nursing home neglect · avoidable sepsis</span><span class="res-meta"><b>Settlement</b> · Wayne Co. — 2022<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="workplace" data-go="workplace"><span class="res-amt">$975K</span><span class="res-desc">Scaffold collapse at a Dearborn stamping plant</span><span class="res-meta"><b>Settlement</b> · Wayne Co. — 2021<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="premises" data-go="premises"><span class="res-amt">$850K</span><span class="res-desc">Unplowed retail parking lot · shattered ankle</span><span class="res-meta"><b>Settlement</b> · Macomb Co. — 2023<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="vehicles" data-go="moto"><span class="res-amt">$675K</span><span class="res-desc">Snowmobile struck by truck at a trail crossing</span><span class="res-meta"><b>Settlement</b> · Kalkaska Co. — 2022<br><span class="res-ask">Ask about a case like this →</span></span></button>
+      <button class="res-row" data-cat="vehicles" data-go="car-truck"><span class="res-amt cf">Confidential</span><span class="res-desc">Catastrophic brain injury · commercial carrier</span><span class="res-meta"><b>Settlement</b> · St. Clair Co. — 2024<br><span class="res-ask">Ask about a case like this →</span></span></button>
+    </div>
+    <p class="res-note rv">Select any result to ask about a similar case — the intake form below will follow along.</p>
+  </div>
+</section>
+
+<!-- ============ ATTORNEYS ============ -->
+<section class="sec" id="attorneys" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">The firm</p>
+      <div>
+        <h2 class="sec-t">The names on the door.</h2>
+        <p class="kick" style="margin-top:1.2rem">No associates you never meet, no lawyer-of-the-month. The attorneys below are the ones who take your call, build your file, and — if it comes to it — stand up in court for you.</p>
+      </div>
+    </div>
+    <div class="ros-g">
+      <div class="dossier rv" id="dossier">
+        <div class="ds-hd"><span>Personnel file — <b id="dIdx">01</b> / 04</span><span>H&amp;P · Trial group</span></div>
+        <div id="dIn"><span class="gi">EH<i>.</i></span>
+          <h3 id="dName">Eleanor Harlow</h3>
+          <p id="dRole">Founding partner · Trial practice</p>
+          <p id="dMaxim">Never bring a spreadsheet to a closing argument.</p>
+          <p id="dBio">Ellie Harlow has tried more than 140 jury trials across Michigan — from Wayne County's crowded dockets to one-stoplight courthouses up north. Adjusters keep her cell number for one reason: an offer she will take is an offer they can make.</p>
+          <div id="dStats"><span>140+ jury trials</span><span>28 seven-figure verdicts</span><span>Called to the bar, 1987</span></div>
+        </div>
+      </div>
+      <div class="rv" style="--d:.15s">
+        <div class="ros-rows" id="rosRows">
+          <button class="ros-row on" data-i="0"><span class="rn">01</span><span class="rname">Eleanor Harlow<small>Founding partner · Trial</small></span><svg><use href="#i-ux"/></svg></button>
+          <button class="ros-row" data-i="1"><span class="rn">02</span><span class="rname">James Pierce<small>Founding partner · Catastrophic</small></span><svg><use href="#i-ux"/></svg></button>
+          <button class="ros-row" data-i="2"><span class="rn">03</span><span class="rname">Maya Okafor<small>Partner · Trial practice</small></span><svg><use href="#i-ux"/></svg></button>
+          <button class="ros-row" data-i="3"><span class="rn">04</span><span class="rname">Daniel Reyes<small>Associate · Intake &amp; investigation</small></span><svg><use href="#i-ux"/></svg></button>
+        </div>
+        <p class="ros-hint">Hover or select a name to read the file.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">How it works</p>
+      <div>
+        <h2 class="sec-t">After you call.</h2>
+        <p class="kick" style="margin-top:1.2rem">No mystery, no runaround. Here is exactly what happens — and what never does.</p>
+      </div>
+    </div>
+    <div id="procSteps">
+      <div id="procFill" aria-hidden="true"></div>
+      <div class="step"><span class="node" aria-hidden="true"></span><p class="s-num">Step 01</p><h3>A lawyer calls you back. Today.</h3><p>Not a call center, not a "client services coordinator." An attorney reviews your situation and tells you honestly whether you have a case — including, sometimes, the answer you'd rather not hear: no.</p></div>
+      <div class="step"><span class="node" aria-hidden="true"></span><p class="s-num">Step 02</p><h3>We take the case — and the costs.</h3><p>Sign nothing you don't understand; we explain everything first. From that hour, every expense is ours: records, reconstruction, experts, depositions. You never write us a check.</p></div>
+      <div class="step"><span class="node" aria-hidden="true"></span><p class="s-num">Step 03</p><h3>We prepare for trial.</h3><p>We build the file as if twelve strangers will decide it — because they might. Filing suit isn't a tactic here; it's leverage, and adjusters price our files accordingly.</p></div>
+      <div class="step"><span class="node" aria-hidden="true"></span><p class="s-num">Step 04</p><h3>You recover. Literally.</h3><p>Verdict or settlement, the fee is the same: a percentage, only if we win. You focus on healing. We handle everything else — and we mean everything.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="sec qband">
+  <div class="wrap rv">
+    <figure>
+      <blockquote>They told me to focus on healing and let them handle the rest. When the offer went from $18,000 to $475,000, I understood why people say call Harlow &amp; Pierce first.</blockquote>
+      <figcaption><b>R. Moreau — Detroit</b><br>Rear-end collision, I-96 · Settled 2023</figcaption>
+      <p class="q-note">Client names shortened at the client's request.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">Straight answers</p>
+      <div>
+        <h2 class="sec-t">The questions everyone asks.</h2>
+        <p class="kick" style="margin-top:1.2rem">Ask us anything else — the consultation is free, and we would rather answer a "small" question early than a hard one too late.</p>
+      </div>
+    </div>
+    <div class="acc faq" data-solo>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">Q1</span><span class="acc-t">What does "no fee unless we win" actually mean?</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c"><p>Exactly what it says. We work on contingency: our fee is a percentage of what we recover for you, and nothing is owed if we don't recover anything. We also front every case expense — records, expert witnesses, accident reconstruction, filing fees. You will never receive a bill during your case. The percentage depends on case type and stage, and we put it in writing before you sign anything.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">Q2</span><span class="acc-t">How long do I have to file a claim in Michigan?</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c"><p>For most personal injury claims, three years from the date of injury (MCL 600.5805). But exceptions shorten that window dramatically — claims against a government unit often require formal notice within months, and some insurance deadlines are measured in weeks. The honest advice: call sooner. Evidence disappears, memories fade, and deadlines that lapse don't come back.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">Q3</span><span class="acc-t">The other driver's insurance company called. Should I give a statement?</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c"><p>Politely decline, and call a lawyer first. Adjusters are pleasant, professional, and trained to elicit statements that minimize your claim. You have no obligation to give one, and a "required" recorded statement before you have counsel is simply not true. Let us handle every conversation — that's part of the job.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">Q4</span><span class="acc-t">Michigan is a no-fault state. Can I even sue the other driver?</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c"><p>Often, yes — but the rules are unusual. Your own auto policy pays medical bills and wage loss first, regardless of who caused the crash. To sue the at-fault driver, your injury generally must meet Michigan's threshold — a "serious impairment of body function" — and vehicle damage falls under the limited "mini-tort." Deciding which claims you have, against whom, and in what order is precisely what we untangle on day one.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">Q5</span><span class="acc-t">How much is my case worth?</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c"><p>Anyone who quotes a number before reviewing your medical records, wage documentation, and the facts of the collision is guessing. Value turns on the severity and permanence of your injuries, your treatment, your lost income, and the strength of the liability proof. What we can promise: you'll get our honest assessment early, and no offer is ever accepted without your informed approval.</p></div></div></div>
+      </div>
+      <div class="acc-item">
+        <h3 class="acc-h"><button aria-expanded="false"><span><span class="acc-n">Q6</span><span class="acc-t">Will my case have to go to trial?</span><span class="plus" aria-hidden="true"></span></span></button></h3>
+        <div class="acc-b"><div class="acc-in"><div class="acc-c"><p>Statistically, most don't — but preparation changes the math. Cases built for trial settle for meaningfully more than cases filed to be settled, because adjusters price files by the lawyer on the other side. If yours is one of the ones that should be tried, you'll have a firm that tries cases every year — not one that folds at the courthouse steps.</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec contact" id="contact">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <p class="eyebrow">Free case review</p>
+      <div>
+        <h2 class="sec-t">Tell us what happened.</h2>
+        <p class="kick" style="margin-top:1.2rem">The consultation is free, confidential, and genuinely without obligation. If we can help, we'll say how. If we can't, we'll say that too — and tell you who might.</p>
+      </div>
+    </div>
+    <div class="c-g">
+      <div class="c-info rv">
+        <div>
+          <p class="c-lb"><svg><use href="#i-ph"/></svg>Call — 24/7 intake</p>
+          <a class="c-tel" href="tel:+13135550117">(313) 555-0117</a>
+          <p class="c-note">A person answers. Nights, weekends, holidays — accidents don't keep office hours.</p>
+        </div>
+        <div>
+          <p class="c-lb"><svg><use href="#i-pin"/></svg>Visit</p>
+          <p class="c-addr"><b>Detroit</b> — 648 Griswold St, Suite 900<br>Detroit, MI 48226</p>
+          <p class="c-addr" style="margin-top:.9rem"><b>Grand Rapids</b> — 77 Monroe Center NW, Suite 400<br>Grand Rapids, MI 49503</p>
+        </div>
+        <div>
+          <p class="c-lb"><svg><use href="#i-cl"/></svg>Hours</p>
+          <p class="c-addr">Mon–Fri, 8:00a – 6:00p<br>Phone intake answered around the clock.</p>
+        </div>
+        <div>
+          <p class="c-lb"><svg><use href="#i-ar"/></svg>Write</p>
+          <p class="c-addr"><a href="mailto:intake@harlowpierce.law">intake@harlowpierce.law</a></p>
+        </div>
+      </div>
+
+      <div class="rv" style="--d:.12s">
+        <form id="revForm" novalidate>
+          <div class="f-hd"><span>Intake form — confidential</span><span>HP-101</span></div>
+          <div id="formWrap">
+            <div class="f-row">
+              <div class="fg" id="g-name"><label for="fName">Full name <i>*</i></label><input id="fName" name="name" type="text" autocomplete="name"><p class="emsg">Please tell us your name.</p></div>
+              <div class="fg" id="g-phone"><label for="fPhone">Phone <i>*</i></label><input id="fPhone" name="phone" type="tel" autocomplete="tel"><p class="emsg">A number we can reach you at, please.</p></div>
+            </div>
+            <div class="f-row">
+              <div class="fg" id="g-email"><label for="fEmail">Email <i>*</i></label><input id="fEmail" name="email" type="email" autocomplete="email"><p class="emsg">That email doesn't look complete.</p></div>
+              <div class="fg" id="g-type"><label for="fType">What happened? <i>*</i></label>
+                <select id="fType" name="type">
+                  <option value="">Select a practice area…</option>
+                  <option value="car-truck">Car or truck collision</option>
+                  <option value="moto">Motorcycle or snowmobile</option>
+                  <option value="workplace">Workplace injury</option>
+                  <option value="premises">Slip, trip or fall</option>
+                  <option value="medical">Medical negligence</option>
+                  <option value="death">Wrongful death</option>
+                  <option value="other">Something else</option>
+                </select>
+                <p class="emsg">Choose whichever is closest — we'll refine it together.</p>
+              </div>
+            </div>
+            <div class="fg"><label for="fMsg">In your own words <span style="color:var(--ink-2)">(optional)</span></label><textarea id="fMsg" name="message" rows="4" placeholder="Where, when, who was involved — a few sentences is plenty."></textarea></div>
+            <div class="fg" id="g-consent">
+              <div class="consent"><input type="checkbox" id="fConsent"><label for="fConsent">I understand submitting this form does not create an attorney–client relationship, and that Harlow &amp; Pierce will keep what I send confidential.</label></div>
+              <p class="emsg">One quick checkbox so we can proceed.</p>
+            </div>
+            <button class="btn btn-p" type="submit">Request my free review<svg><use href="#i-ar"/></svg></button>
+            <p class="f-fine">Free · Confidential · No obligation — no fee unless we recover compensation.</p>
+          </div>
+        </form>
+
+        <div id="formOk" role="status">
+          <span class="ok-i"><svg><use href="#i-ck"/></svg></span>
+          <h3 id="okName">Thank you.</h3>
+          <p>A lawyer — not a call center — will call you back within one business hour (Mon–Fri, 8–6). If it can't wait, call <a href="tel:+13135550117" style="color:var(--brick);border-bottom:1px solid var(--brick);text-decoration:none">(313) 555-0117</a> now; we answer 24/7.</p>
+          <p style="font-size:.9rem">In the meantime: don't give statements to the other side's insurer, and start a folder with anything related to the incident — photos, paperwork, names.</p>
+          <button class="btn btn-g" id="resetForm" type="button">Submit another inquiry<svg><use href="#i-ar"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div>
+        <p class="ft-word">Harlow <em>&amp;</em> Pierce</p>
+        <p class="ft-tag">Michigan accident &amp; injury law · est. 1987<br>No fee unless we win — ever.</p>
+      </div>
+      <div>
+        <p class="ft-h">Practice</p>
+        <ul class="ft-l">
+          <li><a href="#practice">Car &amp; truck collisions</a></li>
+          <li><a href="#practice">Motorcycle &amp; snowmobile</a></li>
+          <li><a href="#practice">Workplace &amp; construction</a></li>
+          <li><a href="#practice">Premises &amp; security</a></li>
+          <li><a href="#practice">Medical negligence</a></li>
+          <li><a href="#practice">Wrongful death</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ft-h">Firm</p>
+        <ul class="ft-l">
+          <li><a href="#results">Selected results</a></li>
+          <li><a href="#attorneys">Attorneys</a></li>
+          <li><a href="#process">How we work</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Free case review</a></li>
+        </ul>
+        <p class="ft-h" style="margin-top:2rem">Offices</p>
+        <address class="ft-addr"><b>Detroit</b> — 648 Griswold St, Suite 900<br><b>Grand Rapids</b> — 77 Monroe Center NW, Suite 400<br><a href="tel:+13135550117">(313) 555-0117</a> · <a href="mailto:intake@harlowpierce.law">intake@harlowpierce.law</a></address>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© <span id="year">2025</span> Harlow &amp; Pierce, P.C. · All rights reserved. Attorney advertising. The information on this site is not legal advice for any particular matter, and viewing it does not create an attorney–client relationship. Past results do not guarantee a similar outcome — every case turns on its own facts and the law applicable to it.</p>
+      <span class="ft-mi"><svg viewBox="18 10 118 102" aria-hidden="true"><path d="M38 24 C41 21 44 21 46 24 C47 30 46 36 48 40 C50 34 54 30 58 26 C60 24 61 22 63 20 C67 24 70 32 72 40 C68 48 73 55 79 60 C85 55 90 49 95 44 C101 38 106 33 112 28 C106 32 112 28 119 24 C126 28 129 36 128 44 C127 55 122 66 116 74 C111 83 107 92 103 99 C105 103 102 106 98 106 L46 108 C38 108 33 101 31 93 C27 82 26 70 28 60 C30 48 33 36 36 28 C37 26 37 25 38 24 Z" fill="none" stroke="#B4A891" stroke-width="3"/></svg>Made in Michigan</span>
+    </div>
+  </div>
+</footer>
+
+<!-- mobile action bar -->
+<div id="mbar">
+  <a class="p" href="tel:+13135550117"><svg><use href="#i-ph"/></svg>Call now — 24/7</a>
+  <a href="#contact"><svg><use href="#i-ux"/></svg>Free review</a>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  const $  = (s,c)=> (c||document).querySelector(s);
+  const $$ = (s,c)=> Array.from((c||document).querySelectorAll(s));
+
+  /* ---------- nav state ---------- */
+  const nav = $('#nav');
+  const onScrollNav = ()=> nav.classList.toggle('scr', window.scrollY > 24);
+  window.addEventListener('scroll', onScrollNav, {passive:true}); onScrollNav();
+
+  /* ---------- mobile menu ---------- */
+  const mnav = $('#mnav'), tog = $('#navToggle');
+  function menu(open){
+    mnav.classList.toggle('open', open);
+    tog.setAttribute('aria-expanded', open);
+    tog.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  tog.addEventListener('click', ()=> menu(!mnav.classList.contains('open')));
+  $$('#mnav a').forEach(a=> a.addEventListener('click', ()=> menu(false)));
+  document.addEventListener('keydown', e=> { if(e.key==='Escape' && mnav.classList.contains('open')) menu(false); });
+
+  /* ---------- scrollspy ---------- */
+  const navLinks = $$('.nav-l a');
+  const spy = new IntersectionObserver(en=>{
+    en.forEach(x=>{
+      if(!x.isIntersecting) return;
+      navLinks.forEach(a=> a.classList.toggle('cur', a.getAttribute('href') === '#'+x.target.id));
+    });
+  }, {rootMargin:'-40% 0px -55% 0px'});
+  ['practice','results','attorneys','process','faq','contact'].forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+
+  /* ---------- reveal on scroll ---------- */
+  const rvIO = new IntersectionObserver(en=>{
+    en.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('on'); rvIO.unobserve(x.target); } });
+  }, {threshold:.12});
+  $$('.rv').forEach(el=> rvIO.observe(el));
+
+  /* ---------- animated counters ---------- */
+  const ease = t => 1 - Math.pow(1-t, 3);
+  function runCount(el){
+    const n = +el.dataset.n, comma = el.dataset.comma, pre = el.dataset.pre||'', suf = el.dataset.suf||'';
+    const t0 = performance.now(), dur = 1500;
+    (function tick(now){
+      const p = Math.min((now-t0)/dur, 1), v = Math.round(n * ease(p));
+      el.textContent = pre + (comma ? v.toLocaleString('en-US') : v) + suf;
+      if(p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const numIO = new IntersectionObserver(en=>{
+    en.forEach(x=>{ if(x.isIntersecting){ runCount(x.target); numIO.unobserve(x.target); } });
+  }, {threshold:.5});
+  $$('.num[data-n]').forEach(el=> numIO.observe(el));
+
+  /* ---------- verdict ticker: duplicate set for a seamless loop ---------- */
+  const track = $('#tickTrack'), set = $('.tick-set');
+  if(track && set){ const clone = set.cloneNode(true); clone.setAttribute('aria-hidden','true'); track.appendChild(clone); }
+
+  /* ---------- accordions (practice + faq) ---------- */
+  $$('.acc').forEach(list=>{
+    const solo = list.hasAttribute('data-solo');
+    $$('.acc-item', list).forEach(item=>{
+      const btn = $('.acc-h button', item);
+      btn.addEventListener('click', ()=>{
+        const willOpen = !item.classList.contains('open');
+        if(solo) $$('.acc-item', list).forEach(i=>{ i.classList.remove('open'); $('.acc-h button',i).setAttribute('aria-expanded','false'); });
+        item.classList.toggle('open', willOpen);
+        btn.setAttribute('aria-expanded', willOpen);
+      });
+    });
+  });
+
+  /* ---------- toast ---------- */
+  const toastEl = $('#toast'); let toastT;
+  function toast(msg){
+    toastEl.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastT); toastT = setTimeout(()=> toastEl.classList.remove('show'), 3200);
+  }
+
+  /* ---------- prefill the intake form from practice/results ---------- */
+  const fType = $('#fType'), fName = $('#fName');
+  function prefill(go){
+    if(fType) fType.value = go;
+    toast('Practice area pre-selected below — tell us what happened.');
+    const c = document.getElementById('contact');
+    c.scrollIntoView({behavior:'smooth'});
+    setTimeout(()=> fName && fName.focus({preventScroll:true}), 700);
+  }
+  $$('.ask[data-go]').forEach(b=> b.addEventListener('click', ()=> prefill(b.dataset.go)));
+  $$('.res-row').forEach(r=> r.addEventListener('click', ()=> prefill(r.dataset.go)));
+
+  /* ---------- results filter ---------- */
+  const rows = $$('.res-row'), count = $('#resCount');
+  $$('.fil button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      $$('.fil button').forEach(b=> b.classList.remove('on')); btn.classList.add('on');
+      const f = btn.dataset.f; let shown = 0;
+      rows.forEach((r,i)=>{
+        const show = (f==='all' || r.dataset.cat===f);
+        r.hidden = !show;
+        if(show){ shown++; r.style.animation='none'; r.style.animationDelay=(i*0.04)+'s';
+          requestAnimationFrame(()=> r.style.animation=''); }
+      });
+      count.textContent = 'Showing ' + shown + ' of ' + rows.length;
+    });
+  });
+
+  /* ---------- attorney roster ---------- */
+  const ROS = [
+    {in:'EH', name:'Eleanor Harlow', role:'Founding partner · Trial practice',
+     max:'Never bring a spreadsheet to a closing argument.',
+     bio:'Ellie Harlow has tried more than 140 jury trials across Michigan — from Wayne County\u2019s crowded dockets to one-stoplight courthouses up north. Adjusters keep her cell number for one reason: an offer she will take is an offer they can make.',
+     stats:['140+ jury trials','28 seven-figure verdicts','Called to the bar, 1987']},
+    {in:'JP', name:'James Pierce', role:'Founding partner · Catastrophic files',
+     max:'Preparation is a form of respect — for the client, and for the jury.',
+     bio:'Jim Pierce leads the firm\u2019s most technical files: trucking, industrial, and medical negligence. He is the lawyer other lawyers call when a case turns complicated — and the author of the chapters on Michigan no-fault litigation other firms keep on the shelf.',
+     stats:['96 jury trials','19 seven-figure verdicts','Called to the bar, 1987']},
+    {in:'MO', name:'Maya Okafor', role:'Partner · Trial practice',
+     max:'Juries can smell a shortcut. So can I.',
+     bio:'A former Wayne County prosecutor, Maya Okafor cross-examines accident-reconstruction experts for a living and leads the firm\u2019s motorcycle practice. Every August she rides M-119 with her father, which she insists is field research.',
+     stats:['54 jury trials','11 seven-figure verdicts','Former Wayne Co. prosecutor']},
+    {in:'DR', name:'Daniel Reyes', role:'Associate · Intake & investigation',
+     max:'The insurance company already has a file on you. We build a better one.',
+     bio:'The first voice most clients hear. A Grand Rapids native and former insurance adjuster, Danny Reyes knows the playbook on the other side of the table — he joined the firm to stop running it.',
+     stats:['Runs intake & investigation','Former claims adjuster','Called to the bar, 2021']}
+  ];
+  const dIn = $('#dIn'), rosRows = $$('#rosRows .ros-row');
+  let rosT, rosCur = 0;
+  function paint(i){
+    const a = ROS[i];
+    $('#dIdx').textContent = String(i+1).padStart(2,'0');
+    dIn.innerHTML =
+      '<span class="gi">'+a.in[0]+a.in[1]+'<i>.</i></span>'+
+      '<h3 id="dName">'+a.name+'</h3>'+
+      '<p id="dRole">'+a.role+'</p>'+
+      '<p id="dMaxim">'+a.max+'</p>'+
+      '<p id="dBio">'+a.bio+'</p>'+
+      '<div id="dStats">'+a.stats.map(s=>'<span>'+s+'</span>').join('')+'</div>';
+    rosRows.forEach((r,j)=> r.classList.toggle('on', j===i));
+  }
+  function show(i){
+    if(i===rosCur){ paint(i); return; }
+    rosCur = i; clearTimeout(rosT);
+    dIn.classList.add('fading');
+    rosT = setTimeout(()=>{ paint(i); dIn.classList.remove('fading'); }, 220);
+  }
+  rosRows.forEach(r=>{
+    const i = +r.dataset.i;
+    r.addEventListener('click', ()=> show(i));
+    r.addEventListener('mouseenter', ()=> show(i));
+    r.addEventListener('focus', ()=> show(i));
+  });
+
+  /* ---------- process progress line ---------- */
+  const steps = $('#procSteps'), fill = $('#procFill'), stepEls = $$('.step');
+  let procTick = false;
+  function procUpdate(){
+    procTick = false;
+    const r = steps.getBoundingClientRect();
+    const mid = window.innerHeight * .55;
+    const p = Math.max(0, Math.min(1, (mid - r.top) / r.height));
+    fill.style.transform = 'scaleY(' + p + ')';
+    stepEls.forEach(s=>{
+      const sr = s.getBoundingClientRect();
+      s.classList.toggle('done', sr.top < mid);
+    });
+  }
+  window.addEventListener('scroll', ()=>{ if(!procTick){ procTick = true; requestAnimationFrame(procUpdate); } }, {passive:true});
+  procUpdate();
+
+  /* ---------- form validation + success ---------- */
+  const form = $('#revForm'), wrap = $('#formWrap'), ok = $('#formOk');
+  function setErr(id, bad){ const g = document.getElementById(id); g.classList.toggle('err', bad); return bad; }
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = fName.value.trim();
+    const phone = $('#fPhone').value.trim();
+    const email = $('#fEmail').value.trim();
+    const type = fType.value;
+    const consent = $('#fConsent').checked;
+    const errs = [
+      setErr('g-name',   name.length < 2),
+      setErr('g-phone',  (phone.match(/\d/g)||[]).length < 7),
+      setErr('g-email',  !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)),
+      setErr('g-type',   !type),
+      setErr('g-consent', !consent)
+    ];
+    if(errs.some(Boolean)){
+      const first = document.querySelector('.fg.err input, .fg.err select, .fg.err input[type=checkbox]');
+      if(first){ first.scrollIntoView({behavior:'smooth', block:'center'}); first.focus({preventScroll:true}); }
+      return;
+    }
+    $('#okName').textContent = 'Thank you, ' + name.split(/\s+/)[0].replace(/^\w/, c=>c.toUpperCase()) + '.';
+    wrap.style.display = 'none';
+    ok.classList.add('show');
+    ok.scrollIntoView({behavior:'smooth', block:'center'});
+    toast('Case review request received — we\u2019ll call you back.');
+  });
+  $('#resetForm').addEventListener('click', ()=>{
+    ok.classList.remove('show'); wrap.style.display = '';
+    fName.focus({preventScroll:true});
+  });
+
+  /* ---------- mobile action bar ---------- */
+  const mbar = $('#mbar');
+  window.addEventListener('scroll', ()=> mbar.classList.toggle('show', window.scrollY > window.innerHeight * .55), {passive:true});
+
+  /* ---------- year ---------- */
+  $('#year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

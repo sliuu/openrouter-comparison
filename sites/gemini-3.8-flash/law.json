@@ -1,0 +1,16 @@
+{
+  "model": "gemini-3.8-flash",
+  "slug": "google/gemini-3.8-flash",
+  "prompt": "law",
+  "returned_model": "google/gemini-3.8-flash",
+  "provider": "Google",
+  "started_at": "2026-09-21 16:54:59",
+  "seconds": 152,
+  "prompt_tokens": 51,
+  "output_tokens": 25067,
+  "thinking_tokens": 1118,
+  "html_chars": 73987,
+  "cost": 0.0940395,
+  "finish_reason": "stop",
+  "truncated": false
+}

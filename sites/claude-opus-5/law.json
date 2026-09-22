@@ -1,0 +1,16 @@
+{
+  "model": "claude-opus-5",
+  "slug": "anthropic/claude-opus-5",
+  "prompt": "law",
+  "returned_model": "anthropic/claude-opus-5",
+  "provider": "Claude Platform on AWS",
+  "started_at": "2026-09-21 16:57:31",
+  "seconds": 318,
+  "prompt_tokens": 92,
+  "output_tokens": 31420,
+  "thinking_tokens": 870,
+  "html_chars": 66634,
+  "cost": 0.78596,
+  "finish_reason": "stop",
+  "truncated": false
+}

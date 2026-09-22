@@ -1,0 +1,794 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harlow &amp; Pierce | Michigan Accident &amp; Injury Lawyers</title>
+<meta name="description" content="Harlow &amp; Pierce - Michigan's trusted accident &amp; injury law firm. $485M+ recovered. Auto accidents, no-fault claims, wrongful death. Free consultation. No fee unless we win.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --navy:#0B1730;
+  --navy-2:#132344;
+  --navy-3:#1A2E55;
+  --gold:#C9A86A;
+  --gold-2:#E6C88A;
+  --gold-dark:#A3844E;
+  --cream:#F9F6EE;
+  --paper:#FFFDF8;
+  --line:#E8E0CE;
+  --ink:#16233F;
+  --muted:#5E6B84;
+  --success:#0E7A5B;
+  --radius:18px;
+  --shadow:0 20px 60px rgba(11,23,48,.14);
+  --shadow-sm:0 10px 30px rgba(11,23,48,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;line-height:1.05;letter-spacing:-.02em}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1210px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;padding:16px 28px;border-radius:999px;border:0;cursor:pointer;transition:.3s;letter-spacing:.01em}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%, #B8934F);color:#0B1730;box-shadow:0 12px 30px rgba(201,168,106,.4)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(201,168,106,.5)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy-3);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.12)}
+.btn-light{background:#fff;color:var(--navy)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dark)}
+.eyebrow::before{content:'';width:32px;height:2px;background:var(--gold);display:inline-block}
+.eyebrow.center::after{content:'';width:32px;height:2px;background:var(--gold);display:inline-block}
+.section{padding:96px 0}
+.reveal{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+/* TOPBAR */
+.topbar{background:var(--navy);color:#D9DEE8;font-size:13px;padding:9px 0;position:relative;z-index:60}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.topbar a:hover{color:var(--gold-2)}
+.topbar-left{display:flex;gap:22px;flex-wrap:wrap}
+.topbar-right{display:flex;gap:18px;align-items:center}
+/* NAV */
+header{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:.3s}
+header.scrolled{box-shadow:0 10px 30px rgba(11,23,48,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:20px}
+.logo{display:flex;align-items:center;gap:13px}
+.logo-mark{width:48px;height:48px;background:var(--navy);color:var(--gold-2);display:grid;place-items:center;border-radius:12px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;position:relative;overflow:hidden}
+.logo-mark::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-2),var(--gold))}
+.logo-text{line-height:1}
+.logo-text strong{font-family:'Fraunces',serif;font-size:21px;letter-spacing:.02em;color:var(--navy)}
+.logo-text span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dark);font-weight:700}
+.nav-links{display:flex;gap:30px;align-items:center;font-size:14.5px;font-weight:600}
+.nav-links a{color:#2A3853;position:relative;padding:6px 0}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--gold);transition:.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.phone-pill{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy)}
+.phone-pill i{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold-2);display:grid;place-items:center}
+.hamburger{display:none;background:none;border:0;font-size:24px;color:var(--navy);cursor:pointer}
+/* HERO */
+.hero{background:radial-gradient(1200px 600px at 85% -10%, #24407A 0%, transparent 60%), radial-gradient(900px 500px at -10% 20%, rgba(201,168,106,.18), transparent 60%), linear-gradient(180deg,#0B1730 0%, #0F2140 60%, #13294E 100%);color:#fff;position:relative;overflow:hidden;padding:0}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:72px 0 0}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:8px 16px 8px 8px;border-radius:999px;font-size:13px;font-weight:600}
+.dot-live{width:28px;height:28px;background:#1BC47D;border-radius:999px;display:grid;place-items:center;font-size:12px;color:#06281C;font-weight:800}
+.hero h1{font-size:clamp(42px,5.2vw,68px);font-weight:500;margin:22px 0 18px}
+.hero h1 em{font-style:italic;color:var(--gold-2);font-weight:400}
+.hero p.sub{color:#C8D1E2;font-size:18px;max-width:560px}
+.hero-actions{display:flex;gap:14px;margin:30px 0;flex-wrap:wrap}
+.hero-trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:8px}
+.trust-item{display:flex;gap:12px;align-items:center}
+.trust-item .stars{color:var(--gold-2);font-size:14px;letter-spacing:2px}
+.trust-item small{display:block;color:#9AA7C2;font-size:12.5px}
+.trust-item strong{font-size:14px}
+.hero-visual{position:relative;padding-bottom:0}
+.hero-photo{border-radius:22px 22px 0 0;overflow:hidden;border:1px solid rgba(255,255,255,.15);border-bottom:0;position:relative;box-shadow:var(--shadow)}
+.hero-photo img{height:580px;width:100%;object-fit:cover}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%, rgba(11,23,48,.75))}
+.verdict-card{position:absolute;left:-36px;bottom:110px;background:#fff;color:var(--navy);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);width:260px;z-index:2;animation:float 5s ease-in-out infinite}
+.verdict-card .amt{font-family:'Fraunces',serif;font-size:32px;font-weight:600}
+.verdict-card p{font-size:13px;color:var(--muted)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.eeval-card{position:absolute;right:-10px;top:36px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-radius:16px;padding:16px;width:250px;color:var(--navy);box-shadow:var(--shadow);z-index:2}
+.eeval-card h4{font-size:14px;margin-bottom:10px}
+.eeval-steps{display:flex;gap:6px;margin:10px 0}
+.eeval-steps span{height:6px;flex:1;background:#E9E2D0;border-radius:99px}
+.eeval-steps span.on{background:var(--gold)}
+.hero-bottom{background:var(--cream);color:var(--navy);border-top:1px solid var(--line);position:relative;z-index:3}
+.hero-bottom .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.hb{padding:26px 28px;border-right:1px solid var(--line);display:flex;gap:14px;align-items:center}
+.hb:last-child{border:0}
+.hb i{width:46px;height:46px;border-radius:12px;background:var(--navy);color:var(--gold-2);display:grid;place-items:center;flex-shrink:0}
+.hb strong{display:block;font-size:15px}
+.hb small{color:var(--muted);font-size:13px}
+/* TICKER */
+.ticker{background:var(--navy);color:var(--gold-2);overflow:hidden;white-space:nowrap;padding:14px 0;border-top:1px solid rgba(255,255,255,.1);font-size:13px;letter-spacing:.16em;font-weight:700;text-transform:uppercase}
+.ticker-track{display:inline-flex;gap:48px;animation:tick 28s linear infinite;padding-left:20px}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* STATS */
+.stats{background:var(--paper);padding:70px 0 10px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;text-align:center;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-2),var(--gold))}
+.stat h3{font-size:44px;color:var(--navy)}
+.stat h3 span{color:var(--gold-dark)}
+.stat p{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+/* PRACTICE */
+.practice{background:var(--cream);position:relative}
+.practice-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+.practice-head h2{font-size:clamp(32px,3.5vw,48px);color:var(--navy);max-width:600px;margin-top:12px}
+.practice-head h2 em{color:var(--gold-dark);font-weight:400;font-style:italic}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;transition:.35s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--gold)}
+.card-icon{width:58px;height:58px;border-radius:14px;background:linear-gradient(135deg,var(--navy),var(--navy-3));color:var(--gold-2);display:grid;place-items:center;font-size:22px;margin-bottom:18px}
+.card h3{font-size:22px;color:var(--navy);margin-bottom:10px}
+.card p{font-size:15px;color:var(--muted);margin-bottom:16px}
+.card a.link{font-weight:800;font-size:14px;color:var(--navy);display:inline-flex;gap:8px;align-items:center}
+.card a.link:hover{color:var(--gold-dark)}
+.card .num{position:absolute;top:18px;right:22px;font-family:'Fraunces',serif;font-size:42px;color:#EEE6D1;line-height:1}
+/* NOFAULT */
+.nofault{background:var(--navy);color:#fff;border-radius:32px;margin:0 18px;overflow:hidden;position:relative}
+.nofault-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.nofault-left{padding:70px 60px}
+.nofault-left h2{font-size:clamp(30px,3vw,44px);margin:14px 0 16px}
+.nofault-left h2 em{color:var(--gold-2);font-style:italic;font-weight:400}
+.tabs{display:flex;gap:10px;margin:28px 0 20px;flex-wrap:wrap}
+.tab{padding:11px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-weight:700;font-size:13.5px;cursor:pointer;transition:.25s}
+.tab.active,.tab:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.tab-panel{display:none;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px;animation:fade .4s}
+.tab-panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tab-panel ul{list-style:none;margin-top:12px;display:grid;gap:10px}
+.tab-panel li{display:flex;gap:10px;font-size:15px;color:#D6DDEB}
+.tab-panel li i{color:var(--gold-2);margin-top:4px}
+.nofault-right{background:linear-gradient(180deg, rgba(11,23,48,.1), rgba(11,23,48,.75)), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1000&q=80&auto=format&fit=crop') center/cover;min-height:560px;position:relative;display:flex;align-items:end;padding:40px}
+.calc-box{background:rgba(255,253,248,.98);color:var(--navy);border-radius:18px;padding:26px;width:100%;box-shadow:var(--shadow)}
+.calc-box h3{font-size:22px}
+.calc-box p{font-size:13.5px;color:var(--muted)}
+.calc-row{margin:14px 0}
+.calc-row label{font-size:13px;font-weight:700;display:flex;justify-content:space-between;margin-bottom:8px}
+.calc-row input[type=range]{width:100%;accent-color:var(--gold-dark)}
+.calc-row select,.calc-row input[type=number]{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);font-family:inherit;font-size:14px;background:#fff}
+.calc-result{background:var(--navy);color:#fff;border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.calc-result strong{font-family:'Fraunces',serif;font-size:26px;color:var(--gold-2)}
+/* RESULTS */
+.results-head{text-align:center;max-width:700px;margin:0 auto 40px}
+.results-head h2{font-size:clamp(32px,3.5vw,48px);color:var(--navy);margin:12px 0}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.result{background:var(--navy);color:#fff;border-radius:20px;padding:32px;position:relative;overflow:hidden;transition:.3s}
+.result:nth-child(2){background:linear-gradient(135deg,#C9A86A,#9A7A3A);color:#0B1730}
+.result:hover{transform:translateY(-6px)}
+.result::after{content:'§';position:absolute;right:10px;bottom:-20px;font-family:'Fraunces',serif;font-size:140px;opacity:.08;line-height:1}
+.result .amt{font-family:'Fraunces',serif;font-size:46px;font-weight:600}
+.result h4{margin:6px 0 8px;font-size:17px}
+.result p{font-size:14px;opacity:.8}
+.result .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:99px;margin-bottom:14px}
+.result:nth-child(2) .tag{background:rgba(0,0,0,.15)}
+.disclaimer{font-size:12.5px;color:var(--muted);text-align:center;margin-top:18px;max-width:800px;margin-left:auto;margin-right:auto}
+/* PROCESS */
+.process{background:var(--cream)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;position:relative}
+.steps::before{content:'';position:absolute;top:44px;left:40px;right:40px;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 10px, transparent 10px 20px);opacity:.5}
+.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-align:center;position:relative;z-index:1}
+.step-num{width:58px;height:58px;border-radius:50%;background:var(--navy);color:var(--gold-2);font-family:'Fraunces',serif;font-size:22px;display:grid;place-items:center;margin:0 auto 16px;border:4px solid var(--cream);box-shadow:0 0 0 2px var(--gold)}
+.step h4{color:var(--navy);margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted)}
+/* ATTORNEYS */
+.atty-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.atty{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.35s}
+.atty:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.atty-img{height:300px;overflow:hidden;position:relative}
+.atty-img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.atty:hover .atty-img img{transform:scale(1.06)}
+.atty-img span{position:absolute;bottom:12px;left:12px;background:var(--navy);color:var(--gold-2);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:99px}
+.atty-body{padding:20px}
+.atty-body h3{font-size:20px;color:var(--navy)}
+.atty-body small{color:var(--gold-dark);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.atty-body p{font-size:13.5px;color:var(--muted);margin:10px 0 14px}
+.atty-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px;font-size:13px;font-weight:700}
+/* TESTIMONIALS */
+.testi{background:var(--navy);position:relative;overflow:hidden}
+.testi::before{content:'“';position:absolute;top:-40px;left:40px;font-family:'Fraunces',serif;font-size:280px;color:rgba(255,255,255,.05)}
+.testi h2{color:#fff;font-size:clamp(30px,3.2vw,44px);margin:12px 0 8px}
+.testi-wrap{margin-top:36px;position:relative}
+.testi-track{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.t-card{background:#fff;border-radius:18px;padding:28px;position:relative}
+.t-card .stars{color:#D9A62E;letter-spacing:2px;font-size:14px}
+.t-card p{font-size:15px;color:#26344E;margin:14px 0 18px;font-style:italic}
+.t-person{display:flex;gap:12px;align-items:center}
+.t-person img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.t-person strong{display:block;font-size:14px}
+.t-person small{color:var(--muted);font-size:12.5px}
+.testi-nav{display:flex;gap:12px;align-items:center;margin-top:28px}
+.t-btn{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer;transition:.3s;font-size:18px}
+.t-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.t-dots{display:flex;gap:8px;margin-left:10px}
+.t-dots span{width:8px;height:8px;border-radius:99px;background:rgba(255,255,255,.25);transition:.3s;cursor:pointer}
+.t-dots span.on{width:28px;background:var(--gold)}
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+.faq-item{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;background:#fff;overflow:hidden;transition:.3s}
+.faq-item.open{border-color:var(--gold);box-shadow:var(--shadow-sm)}
+.faq-q{padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;font-weight:700;color:var(--navy);font-size:15.5px}
+.faq-q i{width:32px;height:32px;border-radius:50%;background:var(--cream);display:grid;place-items:center;flex-shrink:0;transition:.3s}
+.faq-item.open .faq-q i{background:var(--navy);color:var(--gold-2);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 22px 22px;font-size:14.5px;color:var(--muted)}
+.faq-side{background:var(--navy);color:#fff;border-radius:20px;padding:36px;position:sticky;top:110px}
+.faq-side h3{font-size:28px;margin:12px 0}
+/* OFFICES */
+.offices{background:var(--cream)}
+.office-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.office{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.office img{height:190px;width:100%;object-fit:cover}
+.office-body{padding:24px}
+.office-body h3{color:var(--navy);font-size:21px}
+.office-body p{font-size:14px;color:var(--muted);margin:8px 0 14px}
+/* CONTACT */
+.contact{background:linear-gradient(180deg,var(--paper), #EFE8D6)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;margin-top:36px;align-items:stretch}
+.contact-info{background:var(--navy);color:#fff;border-radius:22px;padding:40px;position:relative;overflow:hidden}
+.contact-info::after{content:'';position:absolute;width:380px;height:380px;background:radial-gradient(circle, rgba(201,168,106,.25), transparent 70%);right:-100px;top:-100px}
+.contact-info h3{font-size:30px;margin:12px 0}
+.c-line{display:flex;gap:14px;margin:22px 0;align-items:flex-start}
+.c-line i{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;color:var(--gold-2);flex-shrink:0}
+.form-card{background:#fff;border-radius:22px;padding:40px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:700;display:block;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:14px 15px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:14.5px;transition:.25s;background:#FFFEFB}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,168,106,.18)}
+.field textarea{min-height:110px;resize:vertical}
+.form-note{font-size:12.5px;color:var(--muted);margin-top:12px}
+.success-box{display:none;background:#E6F5EE;border:1px solid #0E7A5B;color:#0B4A37;padding:18px;border-radius:12px;margin-top:16px;font-size:14px}
+/* FOOTER */
+footer{background:#080F20;color:#A9B3C7;padding:70px 0 0;font-size:14px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;padding-bottom:50px}
+.foot-grid h4{color:#fff;font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.foot-grid ul{list-style:none;display:grid;gap:10px}
+.foot-grid a:hover{color:var(--gold-2)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px}
+/* FLOATING */
+.float-call{position:fixed;left:20px;bottom:20px;z-index:70;display:flex;align-items:center;gap:12px;background:var(--navy);color:#fff;padding:10px 20px 10px 10px;border-radius:999px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.15)}
+.float-call span.ph{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,168,106,.6)}70%{box-shadow:0 0 0 14px rgba(201,168,106,0)}100%{box-shadow:0 0 0 0 rgba(201,168,106,0)}}
+.chat-launch{position:fixed;right:20px;bottom:20px;z-index:70;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold-2),var(--gold));border:0;font-size:24px;cursor:pointer;box-shadow:var(--shadow);color:var(--navy)}
+.chat-box{position:fixed;right:20px;bottom:90px;width:360px;max-width:calc(100vw - 40px);background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.25);z-index:71;overflow:hidden;display:none;border:1px solid var(--line)}
+.chat-box.open{display:block;animation:fade .3s}
+.chat-head{background:var(--navy);color:#fff;padding:18px 20px;display:flex;gap:12px;align-items:center}
+.chat-head img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.chat-body{height:300px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;background:var(--cream)}
+.msg{max-width:82%;padding:12px 15px;border-radius:14px;font-size:13.5px;line-height:1.5}
+.msg.bot{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.user{background:var(--navy);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.chat-input{display:flex;border-top:1px solid var(--line)}
+.chat-input input{flex:1;border:0;padding:15px;font-family:inherit;font-size:14px;outline:none}
+.chat-input button{background:var(--navy);color:var(--gold-2);border:0;padding:0 20px;cursor:pointer;font-size:18px}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(8,15,32,.7);backdrop-filter:blur(6px);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:22px;max-width:560px;width:100%;overflow:hidden;animation:pop .35s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{transform:scale(.94) translateY(12px);opacity:0}to{transform:none;opacity:1}}
+.modal-top{background:var(--navy);color:#fff;padding:28px 30px;position:relative}
+.modal-top h3{font-size:26px}
+.modal-top p{font-size:14px;color:#C8D1E2}
+.modal-close{position:absolute;right:18px;top:18px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer}
+.modal-body{padding:28px 30px}
+/* MOBILE */
+.mobile-menu{position:fixed;inset:0;background:var(--navy);z-index:90;color:#fff;padding:28px;display:none;flex-direction:column}
+.mobile-menu.open{display:flex}
+.mobile-menu a.big{font-family:'Fraunces',serif;font-size:32px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+@media(max-width:1020px){
+  .nav-links,.nav-cta .phone-pill,.nav-cta .btn{display:none}
+  .hamburger{display:block}
+  .hero-grid{grid-template-columns:1fr;padding:50px 0 0}
+  .hero-photo img{height:420px}
+  .verdict-card{left:12px}
+  .eeval-card{right:12px}
+  .hero-bottom .container{grid-template-columns:1fr 1fr}
+  .hb{border-bottom:1px solid var(--line)}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .grid-3,.result-grid,.atty-grid,.office-grid{grid-template-columns:1fr 1fr}
+  .nofault-inner,.faq-grid,.contact-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps::before{display:none}
+  .testi-track{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .nofault{margin:0 10px}
+  .nofault-left{padding:40px 28px}
+  .form-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .section{padding:64px 0}
+  .grid-3,.result-grid,.atty-grid,.office-grid,.stats-grid,.steps{grid-template-columns:1fr}
+  .hero-bottom .container{grid-template-columns:1fr}
+  .hero h1{font-size:40px}
+  .foot-grid{grid-template-columns:1fr}
+  .float-call small{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span><i class="fa-solid fa-location-dot" style="color:#C9A86A"></i> 1000 Woodward Ave, Suite 1400, Detroit, MI</span>
+      <span style="opacity:.7">Mon–Sat • 24/7 Injury Hotline</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#results">Recent Wins</a>
+      <a href="#offices">3 Michigan Offices</a>
+      <a href="tel:+13135550140" style="color:#E6C88A;font-weight:800"><i class="fa-solid fa-phone"></i> (313) 555-0140</a>
+    </div>
+  </div>
+</div>
+
+<header id="header" class="">
+  <div class="container nav">
+    <a href="#top" class="logo">
+      <div class="logo-mark">H<span style="color:#fff">&amp;</span>P</div>
+      <div class="logo-text"><strong>Harlow &amp; Pierce</strong><br><span>Accident • Injury • Michigan</span></div>
+    </a>
+    <nav class="nav-links">
+      <a href="#practice">Practice Areas</a>
+      <a href="#nofault">Michigan No-Fault</a>
+      <a href="#results">Results</a>
+      <a href="#attorneys">Attorneys</a>
+      <a href="#faq">FAQ</a>
+      <a href="#offices">Offices</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="phone-pill" href="tel:+13135550140"><i class="fa-solid fa-phone"></i><span>(313)<br>555-0140</span></a>
+      <button class="btn btn-navy" onclick="openModal()" style="padding:13px 24px">Free Consultation</button>
+      <button class="hamburger" onclick="toggleMobile(true)"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+    <div style="font-family:Fraunces,serif;font-size:22px">Harlow &amp; Pierce</div>
+    <button onclick="toggleMobile(false)" style="background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer">✕</button>
+  </div>
+  <a class="big" href="#practice" onclick="toggleMobile(false)">Practice Areas</a>
+  <a class="big" href="#nofault" onclick="toggleMobile(false)">Michigan No-Fault</a>
+  <a class="big" href="#results" onclick="toggleMobile(false)">Results</a>
+  <a class="big" href="#attorneys" onclick="toggleMobile(false)">Attorneys</a>
+  <a class="big" href="#contact" onclick="toggleMobile(false)">Contact</a>
+  <div style="margin-top:auto;display:grid;gap:12px">
+    <button class="btn btn-gold" onclick="toggleMobile(false);openModal()">Free Case Evaluation</button>
+    <a href="tel:+13135550140" class="btn btn-outline" style="justify-content:center"><i class="fa-solid fa-phone"></i> (313) 555-0140</a>
+  </div>
+</div>
+
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-badge"><span class="dot-live">●</span> Accepting new Michigan injury cases — <strong style="margin-left:4px">No fee unless we win</strong></div>
+      <h1>Injured in Michigan? <em>We fight.</em> You recover.</h1>
+      <p class="sub">Harlow &amp; Pierce is Michigan's premier accident &amp; injury firm. From Detroit freeway crashes to Grand Rapids trucking wrecks — we’ve recovered <strong style="color:#fff">$485M+</strong> for everyday Michiganders. You focus on healing. We handle everything else.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold" onclick="openModal()">Get My Free Case Review <i class="fa-solid fa-arrow-right"></i></button>
+        <a href="#results" class="btn btn-outline"><i class="fa-solid fa-scale-balanced"></i> See Our Wins</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <div><div class="stars">★★★★★</div><strong>4.9 / 5 Rating</strong><small>1,400+ Google Reviews</small></div>
+        </div>
+        <div class="trust-item">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#E6C88A"><i class="fa-solid fa-award"></i></div>
+          <div><strong>Super Lawyers 2019-2026</strong><small>Top 100 Michigan Trial Lawyers</small></div>
+        </div>
+        <div class="trust-item">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#E6C88A"><i class="fa-solid fa-shield-halved"></i></div>
+          <div><strong>$0 Upfront</strong><small>Only pay if we win your case</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="eeval-card">
+        <h4><i class="fa-solid fa-file-shield" style="color:#A3844E"></i> Free Evaluation</h4>
+        <div style="font-size:12px;font-weight:700;color:#0E7A5B"><i class="fa-solid fa-circle-check"></i> AVAILABLE TODAY</div>
+        <div class="eeval-steps"><span class="on"></span><span class="on"></span><span></span><span></span></div>
+        <p style="font-size:12.5px;color:#5E6B84">Average response time: <strong style="color:#0B1730">7 minutes</strong></p>
+        <button onclick="openModal()" style="width:100%;margin-top:10px;background:#0B1730;color:#fff;border:0;padding:11px;border-radius:10px;font-weight:800;cursor:pointer;font-size:13px">Check My Case →</button>
+      </div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1479142506502-19b3a3b7ff33?w=1000&amp;q=80&amp;auto=format&amp;fit=crop" alt="Detroit skyline at dusk">
+      </div>
+      <div class="verdict-card">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.14em;color:#0E7A5B">● JURY VERDICT — WAYNE COUNTY</div>
+        <div class="amt">$8.4 Million</div>
+        <p>I-94 truck collision • Traumatic brain injury • 2025</p>
+        <div style="margin-top:10px;display:flex;gap:6px">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&amp;q=80&amp;auto=format&amp;fit=crop" style="width:28px;height:28px;border-radius:50%;object-fit:cover" alt="">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&amp;q=80&amp;auto=format&amp;fit=crop" style="width:28px;height:28px;border-radius:50%;object-fit:cover" alt="">
+          <span style="font-size:12px;font-weight:700;align-self:center">+ Harlow &amp; Pierce Trial Team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="container">
+      <div class="hb"><i class="fa-solid fa-car-burst"></i><div><strong>Auto &amp; No-Fault Experts</strong><small>MCL 500.3101 claims handled daily</small></div></div>
+      <div class="hb"><i class="fa-solid fa-truck-fast"></i><div><strong>Truck &amp; Rideshare Wrecks</strong><small>FMCSA • Uber / Lyft litigation</small></div></div>
+      <div class="hb"><i class="fa-solid fa-house-chimney-crack"></i><div><strong>Premises &amp; Slip-Fall</strong><small>Stores, rentals, winter ice falls</small></div></div>
+      <div class="hb"><i class="fa-solid fa-heart-circle-exclamation"></i><div><strong>Wrongful Death</strong><small>Compassionate family advocacy</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-track" id="tickerTrack">
+<span>★ $485M+ Recovered for Michigan Families</span><span>★ No Fee Unless We Win</span><span>★ 27 Years Serving Michigan</span><span>★ Detroit • Grand Rapids • Ann Arbor</span><span>★ 24/7 Free Consultation (313) 555-0140</span><span>★ $485M+ Recovered for Michigan Families</span><span>★ No Fee Unless We Win</span><span>★ 27 Years Serving Michigan</span><span>★ Detroit • Grand Rapids • Ann Arbor</span><span>★ 24/7 Free Consultation (313) 555-0140</span>
+</div></div>
+
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat reveal visible"><h3>$<span class="counter" data-target="485">485</span>M+</h3><p>Total Recovered</p></div>
+    <div class="stat reveal visible"><h3><span class="counter" data-target="12400">12,400</span>+</h3><p>Michigan Clients Helped</p></div>
+    <div class="stat reveal visible"><h3><span class="counter" data-target="27">27</span> Yrs</h3><p>Fighting for Michigan</p></div>
+    <div class="stat reveal visible"><h3><span class="counter" data-target="99">99</span>%</h3><p>Cases Won or Settled</p></div>
+  </div>
+</section>
+
+<section class="section practice" id="practice">
+  <div class="container">
+    <div class="practice-head reveal visible">
+      <div><span class="eyebrow">What we do best</span><h2>Full-service accident &amp; <em>injury protection</em> for every Michigander.</h2></div>
+      <div style="max-width:340px"><p style="color:var(--muted);font-size:15px;margin-bottom:16px">Insurance companies have lawyers. You should too. We take on every insurer, trucking company, and hospital system in Michigan.</p><button class="btn btn-navy" onclick="openModal()">Ask About My Injury →</button></div>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal visible"><span class="num">01</span><div class="card-icon"><i class="fa-solid fa-car-side"></i></div><h3>Car &amp; Auto Accidents</h3><p>Rear-ends on I-75, intersection T-bones, hit-and-runs, uninsured motorists, and third-party pain-and-suffering claims.</p><a class="link" href="#contact">Free case review <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="card reveal visible"><span class="num">02</span><div class="card-icon"><i class="fa-solid fa-truck"></i></div><h3>Truck &amp; Commercial Wrecks</h3><p>Semi, box truck, and delivery van crashes. We preserve black-box data, logs, and force full FMCSA accountability.</p><a class="link" href="#contact">Free case review <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="card reveal visible"><span class="num">03</span><div class="card-icon"><i class="fa-solid fa-motorcycle"></i></div><h3>Motorcycle &amp; Bicycle</h3><p>Michigan riders face bias. We counter it with reconstructionists and real trial readiness — helmets to highways.</p><a class="link" href="#contact">Free case review <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="card reveal visible"><span class="num">04</span><div class="card-icon"><i class="fa-solid fa-person-falling"></i></div><h3>Slip, Fall &amp; Premises</h3><p>Icy Meijer lots, apartment stairs, dog bites, and negligent security. Property owners must keep you safe.</p><a class="link" href="#contact">Free case review <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="card reveal visible"><span class="num">05</span><div class="card-icon"><i class="fa-solid fa-user-doctor"></i></div><h3>Medical Malpractice</h3><p>Birth injury, surgical error, ER misdiagnosis at Michigan Medicine, Beaumont, Spectrum &amp; more. Affidavit-ready.</p><a class="link" href="#contact">Free case review <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="card reveal visible"><span class="num">06</span><div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>Wrongful Death &amp; No-Fault PIP</h3><p>Lost a loved one? Denied PIP benefits, wage loss, or attendant care? We appeal denials and sue for full value.</p><a class="link" href="#contact">Free case review <i class="fa-solid fa-arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<section id="nofault" style="padding:20px 0 96px;background:var(--cream)">
+  <div class="nofault reveal visible">
+    <div class="nofault-inner">
+      <div class="nofault-left">
+        <span class="eyebrow" style="color:var(--gold-2)">Michigan No-Fault Insider</span>
+        <h2>Michigan's <em>no-fault law</em> is confusing. We make it pay.</h2>
+        <p style="color:#C8D1E2;font-size:15.5px">After 2020 reform, your PIP choices affect everything. Insurers count on you picking wrong. We don't let them.</p>
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab(event,'t1')">PIP Benefits</button>
+          <button class="tab" onclick="switchTab(event,'t2')">Mini-Tort + 3rd Party</button>
+          <button class="tab" onclick="switchTab(event,'t3')">Deadlines</button>
+        </div>
+        <div class="tab-panel active" id="t1">
+          <strong>What PIP should cover — even if they deny it:</strong>
+          <ul>
+            <li><i class="fa-solid fa-circle-check"></i> Unlimited or capped medical bills, rehab, attendant care</li>
+            <li><i class="fa-solid fa-circle-check"></i> 85% lost wages up to 3 years + household replacement services</li>
+            <li><i class="fa-solid fa-circle-check"></i> Mileage, prescriptions, home modifications — we itemize it all</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="t2">
+          <strong>Two claims after a crash — we file both:</strong>
+          <ul>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Third-party claim:</strong> Pain, suffering, excess wages if you meet injury threshold</li>
+            <li><i class="fa-solid fa-circle-check"></i> <strong>Mini-tort (up to $3,000):</strong> Vehicle damage &amp; deductible recovery</li>
+            <li><i class="fa-solid fa-circle-check"></i> Uninsured / underinsured motorist arbitration — we maximize stacks</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="t3">
+          <strong>Miss this = lose everything:</strong>
+          <ul>
+            <li><i class="fa-solid fa-triangle-exclamation"></i> PIP application: ASAP, ideally within 30 days of crash</li>
+            <li><i class="fa-solid fa-triangle-exclamation"></i> One-year-back rule: sue quickly or lose old bills forever</li>
+            <li><i class="fa-solid fa-triangle-exclamation"></i> 3-year statute for injury lawsuits — evidence fades faster</li>
+          </ul>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-gold" onclick="openModal()">Check My PIP Rights Free</button>
+          <a href="tel:+13135550140" class="btn btn-outline"><i class="fa-solid fa-phone"></i> (313) 555-0140</a>
+        </div>
+      </div>
+      <div class="nofault-right">
+        <div class="calc-box">
+          <h3><i class="fa-solid fa-calculator" style="color:#A3844E"></i> Michigan Settlement Estimator</h3>
+          <p>Interactive estimate — not a guarantee. Get exact value in free review.</p>
+          <div class="calc-row">
+            <label>Accident Type</label>
+            <select id="calcType" onchange="calc()">
+              <option value="1.2">Car Accident (third-party)</option>
+              <option value="1.8">Truck / Commercial Vehicle</option>
+              <option value="1.0">Slip &amp; Fall / Premises</option>
+              <option value="1.5">Motorcycle / Pedestrian</option>
+              <option value="2.0">Wrongful Death / Severe TBI</option>
+            </select>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="calc-row"><label>Medical Bills ($)</label><input type="number" id="calcMed" value="45000" oninput="calc()" style=""></div>
+            <div class="calc-row"><label>Lost Wages ($)</label><input type="number" id="calcWage" value="18000" oninput="calc()" style=""></div>
+          </div>
+          <div class="calc-row"><label>Injury Severity <span id="sevLabel" style="color:#A3844E">Serious (3/5)</span></label><input type="range" id="calcSev" min="1" max="5" value="3" oninput="calc()" style=""></div>
+          <div class="calc-result"><div><small style="opacity:.7;font-size:12px;letter-spacing:.1em">ESTIMATED RANGE</small><br><strong id="calcOut">$199K – $293K</strong></div><button class="btn btn-gold" style="padding:12px 20px;font-size:13px" onclick="openModal()">Claim It →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results" style="padding-top:20px">
+  <div class="container">
+    <div class="results-head reveal visible">
+      <span class="eyebrow center">Proven in Michigan courtrooms</span>
+      <h2>Real cases. Real families. <em style="font-weight:400;color:var(--gold-dark)">Real checks.</em></h2>
+      <p style="color:var(--muted)">Insurance companies know our name — and our trial record. That’s why they pay more when Harlow &amp; Pierce calls.</p>
+    </div>
+    <div class="result-grid">
+      <div class="result reveal visible"><span class="tag">Trucking • Wayne County</span><div class="amt">$8.4M</div><h4>I-94 Semi Underride — TBI Recovery</h4><p>Driver fell asleep. Insurer offered $900K. Jury disagreed after 9-day trial.</p></div>
+      <div class="result reveal visible"><span class="tag">Auto No-Fault • Oakland County</span><div class="amt">$3.9M</div><h4>US-24 Head-On — Multiple Fractures</h4><p>PIP denied + third-party disputed. Settled 2 weeks before trial.</p></div>
+      <div class="result reveal visible"><span class="tag">Premises • Kent County</span><div class="amt">$2.2M</div><h4>Grand Rapids Ice Fall — Spinal Injury</h4><p>Landlord ignored 11 complaints. We proved notice and won big.</p></div>
+      <div class="result reveal visible"><span class="tag">Rideshare • Washtenaw County</span><div class="amt">$1.75M</div><h4>Uber Intersection Crash — Ann Arbor</h4><p>Stacked UM/UIM + Lyft/Uber layers other firms missed.</p></div>
+      <div class="result reveal visible"><span class="tag">Med Mal • Ingham County</span><div class="amt">$5.1M</div><h4>Delayed Stroke Diagnosis — Lansing ER</h4><p>Confidential settlement for family after expert affidavit battle.</p></div>
+      <div class="result reveal visible"><span class="tag">Wrongful Death • Macomb County</span><div class="amt">$4.6M</div><h4>Drunk Driver — M-59 Corridor</h4><p>Justice for two children + dram shop claim against bar.</p></div>
+    </div>
+    <p class="disclaimer">Past results do not guarantee future outcomes. Every case is evaluated on its own facts. Figures reflect gross recoveries before fees/costs.</p>
+
+    <div class="process" style="background:transparent;padding-top:70px">
+      <div style="text-align:center"><span class="eyebrow center">Simple, stress-free</span><h2 class="serif" style="font-size:clamp(30px,3vw,44px);color:var(--navy);margin-top:10px">From crash to check in 4 steps</h2></div>
+      <div class="steps">
+        <div class="step reveal visible"><div class="step-num">1</div><h4>Free Call (7 min)</h4><p>Tell us what happened. We tell you honestly what your case is worth.</p></div>
+        <div class="step reveal visible"><div class="step-num">2</div><h4>We Handle Everything</h4><p>Medical bills, PIP forms, car rental, wage docs — zero paperwork stress.</p></div>
+        <div class="step reveal visible"><div class="step-num">3</div><h4>We Build &amp; Negotiate</h4><p>Experts, videos, life-care plans. Insurers pay more when trial looms.</p></div>
+        <div class="step reveal visible"><div class="step-num">4</div><h4>You Get Paid</h4><p>Settlement or verdict. No fee unless we win. Most cases settle.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="attorneys" style="background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:20px">
+      <div><span class="eyebrow">Meet your advocates</span><h2 class="serif reveal visible" style="font-size:clamp(32px,3.5vw,48px);color:var(--navy);margin-top:12px">Michigan-born. <em style="color:var(--gold-dark);font-weight:400">Courtroom-proven.</em></h2></div>
+      <p style="max-width:360px;color:var(--muted);font-size:15px">Former insurance defense lawyers. Now we use those insider secrets against them — for you.</p>
+    </div>
+    <div class="atty-grid">
+      <div class="atty reveal visible"><div class="atty-img"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&amp;q=80&amp;auto=format&amp;fit=crop" alt="Eleanor Harlow"><span>Founding Partner</span></div><div class="atty-body"><small>U of M Law ’98</small><h3>Eleanor Harlow</h3><p>$210M+ in verdicts. No-fault pioneer. Argues at Michigan Supreme Court.</p><div class="atty-foot"><span>⭐ 10.0 Avvo</span><a href="#contact" style="color:var(--gold-dark)">Profile →</a></div></div></div>
+      <div class="atty reveal visible"><div class="atty-img"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&amp;q=80&amp;auto=format&amp;fit=crop" alt="Marcus Pierce"><span>Founding Partner</span></div><div class="atty-body"><small>Wayne State Law ’01</small><h3>Marcus Pierce</h3><p>Ex-insurance defense. Trucking &amp; TBI trials. $8.4M I-94 verdict lead.</p><div class="atty-foot"><span>⭐ Super Lawyer</span><a href="#contact" style="color:var(--gold-dark)">Profile →</a></div></div></div>
+      <div class="atty reveal visible"><div class="atty-img"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&amp;q=80&amp;auto=format&amp;fit=crop" alt="Priya Nair"><span>Senior Trial Attorney</span></div><div class="atty-body"><small>MSU Law ’09</small><h3>Priya Nair</h3><p>Med-mal &amp; birth injury. Fluent in insurance delay tactics — and beating them.</p><div class="atty-foot"><span>⭐ Rising Star</span><a href="#contact" style="color:var(--gold-dark)">Profile →</a></div></div></div>
+      <div class="atty reveal visible"><div class="atty-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&amp;q=80&amp;auto=format&amp;fit=crop" alt="James Kowalski"><span>Managing Attorney</span></div><div class="atty-body"><small>Detroit Mercy Law ’11</small><h3>James Kowalski</h3><p>Grand Rapids office lead. Slip-fall, dog bite &amp; UP / Northern MI cases.</p><div class="atty-foot"><span>⭐ Client Choice</span><a href="#contact" style="color:var(--gold-dark)">Profile →</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section testi" id="testimonials">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--gold-2)">Client stories</span>
+    <h2 class="serif reveal">Loved from Detroit to <em style="color:var(--gold-2);font-weight:400">Traverse City.</em></h2>
+    <p style="color:#9AA7C2">4.9 stars across 1,400+ verified reviews. Here's why Michigan calls us first.</p>
+    <div class="testi-wrap">
+      <div class="testi-track" id="testiTrack" style="opacity: 1; transition: opacity 0.4s;"><div class="t-card"><div class="stars">★★★★★</div><p>"Hit by a distracted driver on Michigan Ave. The insurer blamed me for riding. Harlow &amp; Pierce hired a reconstructionist and won $910K."</p><div class="t-person"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&amp;q=80&amp;auto=format&amp;fit=crop" alt=""><div><strong>Miguel Santos</strong><small>Lansing • Motorcycle • $910K</small></div></div></div><div class="t-card"><div class="stars">★★★★★</div><p>"Uber crash left me with two herniations. They stacked three insurance policies I didn't even know existed. $475K and I never went to court."</p><div class="t-person"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&amp;q=80&amp;auto=format&amp;fit=crop" alt=""><div><strong>Jennifer Wu</strong><small>Ann Arbor • Rideshare • $475K</small></div></div></div><div class="t-card"><div class="stars">★★★★★</div><p>"We lost our mother to a drunk driver. They treated us like family, handled everything, and got justice. We will forever be grateful."</p><div class="t-person"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&amp;q=80&amp;auto=format&amp;fit=crop" alt=""><div><strong>The Harper Family</strong><small>Sterling Heights • Wrongful Death</small></div></div></div></div>
+      <div class="testi-nav">
+        <button class="t-btn" onclick="moveTesti(-1)">←</button>
+        <button class="t-btn" onclick="moveTesti(1)">→</button>
+        <div class="t-dots" id="tDots"><span class=""></span><span class="on"></span><span></span></div>
+        <span style="color:#9AA7C2;font-size:13px;margin-left:auto">Swipe • Auto-plays every 6s</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container faq-grid">
+    <div class="faq-side reveal">
+      <span class="eyebrow" style="color:var(--gold-2)">Questions? Good.</span>
+      <h3 class="serif">Michigan injury questions, answered straight.</h3>
+      <p style="color:#C8D1E2;font-size:15px">No legalese. No pressure. Just what adjusters don't want you to know.</p>
+      <div style="margin:24px 0;display:grid;gap:12px">
+        <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center"><i class="fa-solid fa-phone" style="color:var(--gold-2)"></i><div><strong>24/7 Hotline</strong><br><a href="tel:+13135550140" style="color:var(--gold-2);font-weight:800;font-size:18px">(313) 555-0140</a></div></div>
+        <div style="background:rgba(255,255,255,.08);border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center"><i class="fa-solid fa-comments" style="color:var(--gold-2)"></i><div><strong>Prefer text?</strong><br><span style="font-size:14px">Chat live now — bottom right corner</span></div></div>
+      </div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="openModal()">Ask a Lawyer Free</button>
+    </div>
+    <div>
+      <span class="eyebrow">FAQ</span>
+      <h2 class="serif reveal" style="font-size:clamp(30px,3vw,42px);color:var(--navy);margin:12px 0 24px">What Michigan clients ask us daily</h2>
+      <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">How much does it cost to hire you? <i class="fa-solid fa-plus"></i></div><div class="faq-a" style="max-height:200px"><p><strong>Nothing upfront. Ever.</strong> We work on contingency — typically 33% only if we win. We advance all costs (experts, filing fees, records). If we don't recover, you owe $0. We'll put it in writing.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long do I have to file after a Michigan crash? <i class="fa-solid fa-plus"></i></div><div class="faq-a"><p>You have <strong>3 years</strong> for a pain-and-suffering lawsuit, but only <strong>1 year back</strong> for PIP benefits — meaning delays erase bills. And your PIP application should be filed within days. Call immediately; evidence (dashcam, EDR, witnesses) disappears in weeks.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">The insurer already offered me money. Should I take it? <i class="fa-solid fa-plus"></i></div><div class="faq-a"><p>Almost never without review. First offers in Michigan average <strong>7-11x lower</strong> than final recoveries we obtain. Once you sign a release, you can't reopen — even if you need surgery later. Let us review any offer free in 24 hours.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if I was partially at fault or have pre-existing injuries? <i class="fa-solid fa-plus"></i></div><div class="faq-a"><p>You can still recover. Michigan uses comparative fault — your award is reduced, not eliminated, unless you're &gt;50% at fault. And aggravation of arthritis, herniations, or prior injuries is compensable. We prove the crash made it worse with doctors who testify.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Will my case go to trial? How long will it take? <i class="fa-solid fa-plus"></i></div><div class="faq-a"><p>About 94% of our cases settle — many in 4-9 months. Complex or trial cases take 12-24 months. We're trial lawyers, so insurers pay more to avoid us in front of a Wayne, Oakland, or Kent County jury. You'll approve every settlement.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section offices" id="offices" style="padding-top:40px">
+  <div class="container">
+    <div style="text-align:center;max-width:640px;margin:0 auto"><span class="eyebrow center">Visit us</span><h2 class="serif" style="font-size:clamp(30px,3.2vw,44px);color:var(--navy);margin-top:10px">Three offices. All of Michigan covered.</h2><p style="color:var(--muted)">We travel to you — home, hospital, or Zoom — if you can't travel to us.</p></div>
+    <div class="office-grid">
+      <div class="office reveal"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Detroit"><div class="office-body"><h3>📍 Detroit — Downtown</h3><p>1000 Woodward Ave, Suite 1400<br>Detroit, MI 48226<br><strong>Mon-Fri 8am-7pm • Sat 9-3</strong></p><a href="tel:+13135550140" style="font-weight:800;color:var(--navy)">(313) 555-0140 →</a></div></div>
+      <div class="office reveal"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Grand Rapids"><div class="office-body"><h3>📍 Grand Rapids</h3><p>200 Ottawa Ave NW, Suite 500<br>Grand Rapids, MI 49503<br><strong>Serving West MI + Lakeshore</strong></p><a href="tel:+16165550190" style="font-weight:800;color:var(--navy)">(616) 555-0190 →</a></div></div>
+      <div class="office reveal"><img src="https://images.unsplash.com/photo-1591123120675-6f7fcaaa683c?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Ann Arbor"><div class="office-body"><h3>📍 Ann Arbor</h3><p>101 S Main St, Suite 300<br>Ann Arbor, MI 48104<br><strong>Washtenaw, Livingston, Jackson</strong></p><a href="tel:+17345550175" style="font-weight:800;color:var(--navy)">(734) 555-0175 →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="container">
+    <div style="text-align:center;max-width:700px;margin:0 auto"><span class="eyebrow center">Free • Confidential • No pressure</span><h2 class="serif reveal" style="font-size:clamp(32px,3.6vw,52px);color:var(--navy);margin-top:12px">Tell us what happened. <em style="color:var(--gold-dark);font-weight:400">We’ll tell you what’s next.</em></h2><p style="color:var(--muted)">Fill out in 60 seconds. A Michigan-licensed attorney — not a call center — responds within 15 minutes (24/7).</p></div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow" style="color:var(--gold-2)">Why call now</span>
+        <h3 class="serif">Evidence fades. Deadlines don’t wait.</h3>
+        <div class="c-line"><i class="fa-solid fa-clock"></i><div><strong>Available 24/7 — even holidays</strong><br><span style="color:#C8D1E2;font-size:14px">Crash at 2am on I-96? We answer. Free tow + rental guidance.</span></div></div>
+        <div class="c-line"><i class="fa-solid fa-file-medical"></i><div><strong>We get your bills paid fast</strong><br><span style="color:#C8D1E2;font-size:14px">PIP coordination, health insurance liens, wage loss docs.</span></div></div>
+        <div class="c-line"><i class="fa-solid fa-gavel"></i><div><strong>Trial-ready = higher offers</strong><br><span style="color:#C8D1E2;font-size:14px">Insurers pay 3.5x more when Harlow &amp; Pierce files suit.</span></div></div>
+        <div style="background:#fff;border-radius:14px;padding:18px;color:var(--navy);margin-top:10px;display:flex;gap:14px;align-items:center"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&amp;q=80&amp;auto=format&amp;fit=crop" style="width:56px;height:56px;border-radius:50%;object-fit:cover" alt=""><div><strong>Eleanor Harlow</strong><div style="font-size:13px;color:var(--muted)">“If we don’t win, you don’t pay. That’s my promise.”</div></div></div>
+      </div>
+      <div class="form-card reveal">
+        <form id="leadForm" onsubmit="return submitForm(event)">
+          <div class="form-grid">
+            <div class="field"><label>First Name *</label><input required="" id="fName" placeholder="Sarah" style=""></div>
+            <div class="field"><label>Last Name *</label><input required="" id="lName" placeholder="Miller" style=""></div>
+            <div class="field"><label>Phone *</label><input required="" id="fPhone" type="tel" placeholder="(313) 555-0000" style=""></div>
+            <div class="field"><label>Email</label><input id="fEmail" type="email" placeholder="you@email.com" style=""></div>
+            <div class="field full"><label>Type of Accident *</label><select id="fType" required=""><option value="">Select…</option><option>Car Accident</option><option>Truck / Semi Accident</option><option>Motorcycle / Bicycle / Pedestrian</option><option>Slip &amp; Fall / Dog Bite</option><option>Medical Malpractice</option><option>Wrongful Death</option><option>Other Injury</option></select></div>
+            <div class="field full"><label>What happened? *</label><textarea required="" id="fMsg" placeholder="e.g., Rear-ended on I-94 near Detroit on Sept 10. ER visit, back pain, insurer denying PIP..." style=""></textarea></div>
+          </div>
+          <label style="display:flex;gap:10px;font-size:13px;color:var(--muted);margin:6px 0 16px"><input type="checkbox" required="" style="width: 18px; height: 18px; accent-color: rgb(163, 132, 78);"> I agree to be contacted about my case (call/text/email). No spam.</label>
+          <button class="btn btn-gold" style="width:100%;justify-content:center;font-size:16px">Get My Free Case Evaluation <i class="fa-solid fa-arrow-right"></i></button>
+          <div class="success-box" id="successBox">✅ <strong>Received!</strong> A Harlow &amp; Pierce attorney will call you within ~15 minutes. Check your phone — save <strong>(313) 555-0140</strong>. If urgent, call now.</div>
+          <p class="form-note">🔒 Confidential &amp; privileged. Submitting does not create attorney-client relationship. No fee unless we win. Available statewide including Upper Peninsula via video.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px"><div class="logo-mark" style="background:#1A2E55">H<span style="color:#fff">&amp;</span>P</div><div><div style="font-family:Fraunces,serif;font-size:20px;color:#fff">Harlow &amp; Pierce</div><div style="font-size:11px;letter-spacing:.2em;color:#C9A86A;font-weight:700">ACCIDENT • INJURY • MICHIGAN</div></div></div>
+      <p>Michigan's accident &amp; injury trial firm since 1998. $485M+ recovered. Offices in Detroit, Grand Rapids &amp; Ann Arbor. Serving all 83 counties.</p>
+      <div style="display:flex;gap:10px;margin-top:18px"><a href="#" style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center"><i class="fa-brands fa-facebook-f"></i></a><a href="#" style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center"><i class="fa-brands fa-instagram"></i></a><a href="#" style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center"><i class="fa-brands fa-tiktok"></i></a></div>
+    </div>
+    <div><h4>Practice Areas</h4><ul><li><a href="#practice">Car Accidents</a></li><li><a href="#practice">Truck Accidents</a></li><li><a href="#practice">Motorcycle &amp; Bike</a></li><li><a href="#practice">Slip &amp; Fall</a></li><li><a href="#practice">Medical Malpractice</a></li><li><a href="#practice">Wrongful Death</a></li></ul></div>
+    <div><h4>Firm</h4><ul><li><a href="#attorneys">Our Attorneys</a></li><li><a href="#results">Case Results</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#offices">Offices</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div><h4>Contact 24/7</h4><ul><li><a href="tel:+13135550140" style="color:#E6C88A;font-weight:800">📞 (313) 555-0140</a></li><li>✉️ help@harlowpierce.law</li><li>📍 1000 Woodward Ave #1400<br>Detroit, MI 48226</li><li style="margin-top:8px;background:rgba(201,168,106,.15);border:1px solid rgba(201,168,106,.3);padding:10px 14px;border-radius:10px;color:#E6C88A">No fee unless we win. Free consult.</li></ul></div>
+  </div>
+  <div class="container foot-bottom"><span>© 2026 Harlow &amp; Pierce PLC. All rights reserved. • <a href="#">Privacy</a> • <a href="#">Terms</a> • Attorney Advertising</span><span>Prior results do not guarantee similar outcomes. Michigan law requires honest reporting.</span></div>
+</footer>
+
+<a class="float-call" href="tel:+13135550140"><span class="ph"><i class="fa-solid fa-phone"></i></span><small><strong>Call 24/7 — Free</strong><br><span style="opacity:.7">(313) 555-0140</span></small></a>
+<button class="chat-launch" onclick="toggleChat()"><i class="fa-solid fa-comment-dots"></i></button>
+<div class="chat-box" id="chatBox">
+  <div class="chat-head"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&amp;q=80&amp;auto=format&amp;fit=crop" alt=""><div><strong>Live Help — Harlow &amp; Pierce</strong><div style="font-size:12px;color:#8EE6B5">● Online • Replies instantly</div></div><button onclick="toggleChat()" style="margin-left:auto;background:none;border:0;color:#fff;cursor:pointer;font-size:18px">✕</button></div>
+  <div class="chat-body" id="chatBody"><div class="msg bot">Hi! 👋 I'm Maya from Harlow &amp; Pierce. Were you hurt in an accident in Michigan? I can check if you qualify for compensation — what type of accident was it?</div></div>
+  <div class="chat-input"><input id="chatInput" placeholder="Type your message…" onkeydown="if(event.key==='Enter')sendChat()" style=""><button onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button></div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-top"><button class="modal-close" onclick="closeModal()">✕</button><span class="eyebrow" style="color:var(--gold-2)">Free • 60 seconds • No pressure</span><h3 class="serif">Get your free case review</h3><p>$485M+ won. No fee unless we win. Attorney callback in ~15 min.</p></div>
+    <div class="modal-body">
+      <form onsubmit="return modalSubmit(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field"><label>Name *</label><input required="" placeholder="Full name" style=""></div>
+          <div class="field"><label>Phone *</label><input required="" type="tel" placeholder="(___) ___-____" style=""></div>
+        </div>
+        <div class="field"><label>Accident Type *</label><select required=""><option value="">Select…</option><option>Car Accident</option><option>Truck Accident</option><option>Motorcycle / Pedestrian</option><option>Slip &amp; Fall</option><option>Medical Malpractice</option><option>Wrongful Death</option></select></div>
+        <div class="field"><label>Briefly, what happened?</label><textarea placeholder="Where, when, injuries…" style="min-height: 80px;"></textarea></div>
+        <button class="btn btn-gold" style="width:100%;justify-content:center">Claim My Free Review →</button>
+        <p id="modalSuccess" style="display:none;margin-top:12px;background:#E6F5EE;border:1px solid #0E7A5B;padding:12px;border-radius:10px;font-size:14px;color:#0B4A37">✅ Thank you! We're calling you shortly from (313) 555-0140.</p>
+        <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px">🔒 100% confidential • Or call <a href="tel:+13135550140" style="font-weight:800;color:var(--navy)">(313) 555-0140</a> now</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Header
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>10));
+// Mobile
+function toggleMobile(open){document.getElementById('mobileMenu').classList.toggle('open',open);document.body.style.overflow=open?'hidden':''}
+// Reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Counters
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,target=+el.dataset.target;let cur=0;const step=target/60;
+  const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t)}el.textContent=Math.floor(cur).toLocaleString()},25);
+}),{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>cio.observe(el));
+// Tabs
+function switchTab(ev,id){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  ev.target.classList.add('active');document.getElementById(id).classList.add('active');
+}
+// Calculator
+function calc(){
+  const mult=parseFloat(document.getElementById('calcType').value);
+  const med=parseFloat(document.getElementById('calcMed').value)||0;
+  const wage=parseFloat(document.getElementById('calcWage').value)||0;
+  const sev=parseInt(document.getElementById('calcSev').value);
+  const labels=['','Minor (1/5)','Moderate (2/5)','Serious (3/5)','Severe (4/5)','Catastrophic (5/5)'];
+  document.getElementById('sevLabel').textContent=labels[sev];
+  const base=(med+wage)*(1+sev*0.7)*mult;
+  const lo=Math.round(base*0.85/1000), hi=Math.round(base*1.25/1000);
+  const fmt=v=>v>=1000?(v/1000).toFixed(1)+'M':'$'+v+'K';
+  document.getElementById('calcOut').textContent=fmt(lo)+' – '+fmt(hi);
+}
+calc();
+// FAQ
+function toggleFaq(q){
+  const item=q.parentElement, ans=item.querySelector('.faq-a'), open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
+  if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
+}
+// Testimonials simple rotate
+let tIdx=0;
+const tData=[
+  [{n:'Denise Carter',l:'Detroit • Auto Accident • $385K',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop',t:'"After my I-75 pileup, Progressive offered $18K. Harlow & Pierce got me $385K and paid every medical bill. They called me back every single time."'},
+   {n:'Robert Zielinski',l:'Flint • Truck Wreck • $1.2M',img:'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80&auto=format&fit=crop',t:'"My dad\'s trucking accident left him unable to work. Marcus personally came to our house in Flint. $1.2M settlement changed our lives."'},
+   {n:'Ashley Thompson',l:'Grand Rapids • Slip & Fall • $640K',img:'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&auto=format&fit=crop',t:'"Slipped on ice outside my Kentwood apartment. Two other firms said no. Priya took it and won $640K. Never felt like just a number."'}],
+  [{n:'Miguel Santos',l:'Lansing • Motorcycle • $910K',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop',t:'"Hit by a distracted driver on Michigan Ave. The insurer blamed me for riding. Harlow & Pierce hired a reconstructionist and won $910K."'},
+   {n:'Jennifer Wu',l:'Ann Arbor • Rideshare • $475K',img:'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80&auto=format&fit=crop',t:'"Uber crash left me with two herniations. They stacked three insurance policies I didn\'t even know existed. $475K and I never went to court."'},
+   {n:'The Harper Family',l:'Sterling Heights • Wrongful Death',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop',t:'"We lost our mother to a drunk driver. They treated us like family, handled everything, and got justice. We will forever be grateful."'}],
+  [{n:'David Okafor',l:'Southfield • No-Fault PIP • $210K',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop',t:'"State Farm denied my attendant care for 8 months. One letter from Eleanor and checks started coming. $210K in back benefits paid."'},
+   {n:'Karen Doyle',l:'Traverse City • Dog Bite • $185K',img:'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&q=80&auto=format&fit=crop',t:'"My son was bitten and needed surgery. James drove 4 hours to meet us. Kind, fierce, and got $185K. Worth every star."'},
+   {n:'Tom Baker',l:'Kalamazoo • Work Injury + 3rd Party',img:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80&auto=format&fit=crop',t:'"Hurt by a forklift due to a contractor\'s fault. They handled comp AND the third-party case. Double recovery — $520K total."'}]
+];
+function renderTesti(){
+  const track=document.getElementById('testiTrack');
+  track.style.opacity=0;
+  setTimeout(()=>{
+    track.innerHTML=tData[tIdx].map(c=>`<div class="t-card"><div class="stars">★★★★★</div><p>${c.t}</p><div class="t-person"><img src="${c.img}" alt=""><div><strong>${c.n}</strong><small>${c.l}</small></div></div></div>`).join('');
+    track.style.opacity=1;track.style.transition='opacity .4s';
+    document.querySelectorAll('#tDots span').forEach((d,i)=>d.classList.toggle('on',i===tIdx));
+  },200);
+}
+function moveTesti(d){tIdx=(tIdx+d+tData.length)%tData.length;renderTesti()}
+setInterval(()=>{tIdx=(tIdx+1)%tData.length;renderTesti()},7000);
+document.querySelectorAll('#tDots span').forEach((d,i)=>d.onclick=()=>{tIdx=i;renderTesti()});
+// Modal
+function openModal(){document.getElementById('modalOverlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function modalSubmit(e){e.preventDefault();document.getElementById('modalSuccess').style.display='block';setTimeout(closeModal,2200);return false}
+// Form
+function submitForm(e){
+  e.preventDefault();
+  const phone=document.getElementById('fPhone').value;
+  if(phone.replace(/\D/g,'').length<7){alert('Please enter a valid phone number so we can reach you.');return false}
+  document.getElementById('successBox').style.display='block';
+  document.getElementById('leadForm').querySelector('button').textContent='✓ Request Received — We\'ll Call Soon';
+  document.getElementById('successBox').scrollIntoView({behavior:'smooth',block:'center'});
+  return false;
+}
+// Chat
+function toggleChat(){document.getElementById('chatBox').classList.toggle('open')}
+function sendChat(){
+  const inp=document.getElementById('chatInput'), body=document.getElementById('chatBody');
+  const v=inp.value.trim();if(!v)return;
+  body.innerHTML+=`<div class="msg user">${v}</div>`;inp.value='';
+  body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{
+    let reply="Thanks for sharing — that absolutely sounds like a case we can help with. A Michigan attorney can give you an exact value in a free 7-minute call. Can I have your phone number to have them call you now? Or tap Call: <a href='tel:+13135550140' style='font-weight:800'>(313) 555-0140</a>";
+    const low=v.toLowerCase();
+    if(low.includes('car')||low.includes('crash')||low.includes('accident')) reply="Car crash cases are our #1 win — average Michigan auto settlement with us is $285K+. Important: don't give a recorded statement yet. Want a free attorney review of your PIP + pain-and-suffering claim? Drop your number and we'll call in ~15 min.";
+    else if(low.includes('truck')) reply="Truck cases pay the most — we immediately preserve black-box + driver logs (they're erased in 30 days!). Tell me: when did it happen? And please call <a href='tel:+13135550140' style='font-weight:800'>(313) 555-0140</a> ASAP so we can send a spoliation letter today.";
+    else if(low.includes('cost')||low.includes('fee')||low.includes('price')) reply="Great question: $0 upfront. We work on contingency — you pay nothing unless we win. We even advance all costs. Shall I have an attorney confirm your fee in writing for free?";
+    else if(low.includes('phone')||/\d{3}/.test(v)) reply="Perfect — I just flagged an attorney to call you within 15 minutes from (313) 555-0140. Keep your phone nearby! Anything else (photos, police report, ER records) — bring to the call. ✅";
+    else if(low.includes('hi')||low.includes('hello')) reply="Hello! 👋 Are you asking for yourself or a loved one? And was it a car, truck, motorcycle, fall, or medical injury?";
+    body.innerHTML+=`<div class="msg bot">${reply}</div>`;body.scrollTop=body.scrollHeight;
+  },800);
+}
+</script>
+
+</body></html>

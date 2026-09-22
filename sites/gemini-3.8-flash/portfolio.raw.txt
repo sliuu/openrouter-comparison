@@ -1,0 +1,966 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny Waltz | Interior Architecture & Spatial Design • New York City</title>
+    <meta name="description" content="Jenny Waltz is an architectural interior designer creating bespoke, tactile, and historically grounded private residences across Manhattan, Brooklyn, and the East End.">
+
+    <!-- Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0E0D0C',
+                        stone: {
+                            950: '#141312',
+                            900: '#1C1B19',
+                            850: '#242220',
+                            800: '#2E2B27',
+                            700: '#48433E',
+                            400: '#A49B8E',
+                            200: '#DCD5CA',
+                            100: '#EDE8E0',
+                            50: '#F9F7F4'
+                        },
+                        bronze: {
+                            light: '#D4AF37',
+                            DEFAULT: '#C3A370',
+                            dark: '#967B4E',
+                            muted: '#7E6B4B'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    },
+                    letterSpacing: {
+                        widest: '0.22em',
+                        superwide: '0.35em'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom fine-line borders and transitions */
+        ::selection {
+            background-color: #C3A370;
+            color: #0E0D0C;
+        }
+
+        /* Subtle film grain overlay for architectural tactile feel */
+        .film-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+        }
+
+        .gold-sheen {
+            background: linear-gradient(135deg, #DFCA9B 0%, #C3A370 50%, #9B7E4C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0E0D0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2E2B27;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C3A370;
+        }
+
+        .modal-blur {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-stone-100 font-sans antialiased relative selection:bg-bronze selection:text-obsidian overflow-x-hidden">
+
+    <!-- Global Film Texture -->
+    <div class="fixed inset-0 pointer-events-none z-50 film-grain"></div>
+
+    <!-- Navigation -->
+    <header id="mainNav" class="fixed top-0 left-0 w-full z-40 transition-all duration-500 bg-obsidian/85 backdrop-blur-md border-b border-stone-850/60">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+            <a href="#" class="group flex flex-col items-start focus:outline-none">
+                <span class="font-serif text-2xl md:text-3xl tracking-wide text-stone-100 group-hover:text-bronze transition-colors duration-300">JENNY WALTZ</span>
+                <span class="text-[9px] uppercase tracking-superwide text-stone-400 font-light -mt-1">Architectural Interiors • New York</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center space-x-10 text-xs tracking-widest uppercase text-stone-400 font-light">
+                <a href="#portfolio" class="hover:text-stone-100 transition-colors duration-200">Selected Works</a>
+                <a href="#philosophy" class="hover:text-stone-100 transition-colors duration-200">Philosophy</a>
+                <a href="#materials" class="hover:text-stone-100 transition-colors duration-200">Materiality</a>
+                <a href="#services" class="hover:text-stone-100 transition-colors duration-200">The Studio</a>
+                <a href="#press" class="hover:text-stone-100 transition-colors duration-200">Recognition</a>
+            </nav>
+
+            <div class="flex items-center space-x-6">
+                <a href="#inquire" class="hidden sm:inline-flex items-center space-x-2 text-xs uppercase tracking-widest px-6 py-3 border border-bronze/60 text-stone-100 hover:bg-bronze hover:text-obsidian hover:border-bronze transition-all duration-300 group">
+                    <span>Retain Studio</span>
+                    <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle navigation menu" class="lg:hidden text-stone-200 hover:text-bronze focus:outline-none p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="hidden lg:hidden border-b border-stone-850 bg-stone-950/98 px-6 py-8">
+            <div class="flex flex-col space-y-5 text-sm uppercase tracking-widest font-light text-stone-300">
+                <a href="#portfolio" class="mobile-link hover:text-bronze transition-colors">Selected Works</a>
+                <a href="#philosophy" class="mobile-link hover:text-bronze transition-colors">Philosophy</a>
+                <a href="#materials" class="mobile-link hover:text-bronze transition-colors">Materiality</a>
+                <a href="#services" class="mobile-link hover:text-bronze transition-colors">The Studio</a>
+                <a href="#press" class="mobile-link hover:text-bronze transition-colors">Recognition</a>
+                <a href="#inquire" class="mobile-link text-bronze pt-2 border-t border-stone-800">Inquire for 2025/2026</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative pt-24">
+        <!-- HERO SECTION -->
+        <section class="min-h-[92vh] flex items-center relative overflow-hidden border-b border-stone-850">
+            <!-- Background Image with Ambient Gradient Layer -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=85&w=2600" 
+                     alt="Tribeca Loft Residence by Jenny Waltz" 
+                     class="w-full h-full object-cover object-center filter brightness-[0.4] contrast-[1.1] scale-105 animate-[subtleZoom_20s_infinite_alternate]">
+                <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-obsidian/80 via-transparent to-obsidian/60"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 md:px-12 py-20 relative z-10 w-full">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center space-x-3 mb-6">
+                        <span class="h-[1px] w-8 bg-bronze"></span>
+                        <span class="text-xs uppercase tracking-superwide text-bronze font-normal">Manhattan • Brooklyn • The Hamptons</span>
+                    </div>
+
+                    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-tight mb-8">
+                        Spaces sculpted for <span class="italic font-light gold-sheen">quiet grandeur</span> & tactile calm.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-stone-300 font-light leading-relaxed max-w-2xl mb-10">
+                        Jenny Waltz directs an architectural interior practice balancing Manhattan's historic soul with rigorous contemporary volume, monolithic stone, patinated bronze, and curated archival furnishings.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-8">
+                        <a href="#portfolio" class="px-8 py-4 bg-stone-100 text-obsidian text-xs uppercase tracking-widest font-medium hover:bg-bronze transition-colors duration-300">
+                            Explore Recent Commissions
+                        </a>
+                        <a href="#inquire" class="inline-flex items-center text-xs uppercase tracking-superwide text-stone-300 hover:text-bronze transition-colors py-2">
+                            <span>Private Consultation Scope</span>
+                            <span class="ml-2 text-bronze text-base">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Architectural stats footer inside hero -->
+                <div class="mt-24 pt-8 border-t border-stone-800/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-stone-400">
+                    <div>
+                        <div class="font-serif text-2xl md:text-3xl text-stone-100 font-normal">TriBeCa</div>
+                        <div class="text-[10px] tracking-widest uppercase text-stone-400 mt-1">Design Atelier & Office</div>
+                    </div>
+                    <div>
+                        <div class="font-serif text-2xl md:text-3xl text-stone-100 font-normal">14+ Years</div>
+                        <div class="text-[10px] tracking-widest uppercase text-stone-400 mt-1">NYC Pre-War & High-Rise Expertise</div>
+                    </div>
+                    <div>
+                        <div class="font-serif text-2xl md:text-3xl text-stone-100 font-normal">Limited Intake</div>
+                        <div class="text-[10px] tracking-widest uppercase text-stone-400 mt-1">Max 5 Concurrent Residences</div>
+                    </div>
+                    <div>
+                        <div class="font-serif text-2xl md:text-3xl text-stone-100 font-normal">AD100 Contributor</div>
+                        <div class="text-[10px] tracking-widest uppercase text-stone-400 mt-1">Featured 2022–2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATEMENT OF INTENT / INTRO -->
+        <section class="py-24 md:py-32 bg-stone-950 border-b border-stone-850">
+            <div class="max-w-5xl mx-auto px-6 md:px-12 text-center">
+                <span class="text-xs uppercase tracking-superwide text-bronze mb-4 block">The Studio Perspective</span>
+                <blockquote class="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-100 font-light leading-snug mb-8">
+                    “New York apartments can easily drown in noise. Our obligation is to create sanctuaries where architecture recedes into effortless rhythm, light reveals honest materials, and every room holds a stillness you can physically breathe in.”
+                </blockquote>
+                <div class="w-12 h-[1px] bg-bronze/60 mx-auto mb-4"></div>
+                <cite class="text-xs tracking-widest uppercase text-stone-400 not-italic block font-light">Jenny Waltz, Principal & Founder</cite>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION (With Dynamic Filters & Quick Detail Modal) -->
+        <section id="portfolio" class="py-28 max-w-7xl mx-auto px-6 md:px-12 border-b border-stone-850">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <span class="text-xs uppercase tracking-superwide text-bronze block mb-2">Commissions</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-light text-stone-100">Selected Works</h2>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap gap-2 sm:gap-3" id="portfolioFilter">
+                    <button data-filter="all" class="filter-btn px-4 py-2 text-xs uppercase tracking-wider text-obsidian bg-bronze font-medium transition-all">All Projects</button>
+                    <button data-filter="residential" class="filter-btn px-4 py-2 text-xs uppercase tracking-wider text-stone-400 bg-stone-900 border border-stone-800 hover:text-stone-100 transition-all">Manhattan Lofts</button>
+                    <button data-filter="townhouse" class="filter-btn px-4 py-2 text-xs uppercase tracking-wider text-stone-400 bg-stone-900 border border-stone-800 hover:text-stone-100 transition-all">Townhouses</button>
+                    <button data-filter="penthouse" class="filter-btn px-4 py-2 text-xs uppercase tracking-wider text-stone-400 bg-stone-900 border border-stone-800 hover:text-stone-100 transition-all">Penthouses</button>
+                </div>
+            </div>
+
+            <!-- Grid of Works -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                
+                <!-- Project 1 -->
+                <div class="project-card group cursor-pointer" data-category="residential" onclick="openProjectModal('tribeca')">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-stone-900 mb-5">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200" 
+                             alt="Tribeca Cast Iron Loft" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95 group-hover:brightness-100">
+                        <div class="absolute inset-0 bg-stone-950/20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <span class="absolute top-4 right-4 text-[10px] uppercase tracking-widest bg-stone-950/80 backdrop-blur-sm px-3 py-1 border border-stone-800 text-stone-300">Franklin St.</span>
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif text-2xl text-stone-100 group-hover:text-bronze transition-colors">The Franklin Loft</h3>
+                        <span class="text-xs text-stone-400 tracking-wider">Tribeca, NYC</span>
+                    </div>
+                    <p class="text-stone-400 text-xs tracking-wide mt-1 font-light">4,400 sq ft • Raw timber beams, Roman clay, custom dark-bronze joinery</p>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card group cursor-pointer" data-category="townhouse" onclick="openProjectModal('westvillage')">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-stone-900 mb-5">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200" 
+                             alt="West Village Brownstone" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95 group-hover:brightness-100">
+                        <div class="absolute inset-0 bg-stone-950/20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <span class="absolute top-4 right-4 text-[10px] uppercase tracking-widest bg-stone-950/80 backdrop-blur-sm px-3 py-1 border border-stone-800 text-stone-300">Bank St.</span>
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif text-2xl text-stone-100 group-hover:text-bronze transition-colors">Bank Street Residence</h3>
+                        <span class="text-xs text-stone-400 tracking-wider">West Village</span>
+                    </div>
+                    <p class="text-stone-400 text-xs tracking-wide mt-1 font-light">1890s Brownstone • Plaster moldings, Calacatta Monet, Pierre Jeanneret relics</p>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group cursor-pointer" data-category="penthouse" onclick="openProjectModal('centralpark')">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-stone-900 mb-5">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200" 
+                             alt="Central Park West Penthouse" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95 group-hover:brightness-100">
+                        <div class="absolute inset-0 bg-stone-950/20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <span class="absolute top-4 right-4 text-[10px] uppercase tracking-widest bg-stone-950/80 backdrop-blur-sm px-3 py-1 border border-stone-800 text-stone-300">5th Avenue</span>
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif text-2xl text-stone-100 group-hover:text-bronze transition-colors">Fifth Avenue Penthouse</h3>
+                        <span class="text-xs text-stone-400 tracking-wider">Upper East Side</span>
+                    </div>
+                    <p class="text-stone-400 text-xs tracking-wide mt-1 font-light">Panoramic Terrace • Smoked Belgian oak, brushed nickel, silk-wool rugs</p>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card group cursor-pointer" data-category="residential" onclick="openProjectModal('soho')">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-stone-900 mb-5">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200" 
+                             alt="Greene Street Atelier Apartment" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95 group-hover:brightness-100">
+                        <div class="absolute inset-0 bg-stone-950/20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <span class="absolute top-4 right-4 text-[10px] uppercase tracking-widest bg-stone-950/80 backdrop-blur-sm px-3 py-1 border border-stone-800 text-stone-300">Greene St.</span>
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif text-2xl text-stone-100 group-hover:text-bronze transition-colors">The Greene Street Atelier</h3>
+                        <span class="text-xs text-stone-400 tracking-wider">SoHo Historic District</span>
+                    </div>
+                    <p class="text-stone-400 text-xs tracking-wide mt-1 font-light">Full-Floor Residence • Monolithic travertine island, linen drapery, curated art</p>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card group cursor-pointer" data-category="townhouse" onclick="openProjectModal('cobblehill')">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-stone-900 mb-5">
+                        <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200" 
+                             alt="Cobble Hill Townhouse" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95 group-hover:brightness-100">
+                        <div class="absolute inset-0 bg-stone-950/20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <span class="absolute top-4 right-4 text-[10px] uppercase tracking-widest bg-stone-950/80 backdrop-blur-sm px-3 py-1 border border-stone-800 text-stone-300">Amity St.</span>
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif text-2xl text-stone-100 group-hover:text-bronze transition-colors">Cobble Hill Parlor House</h3>
+                        <span class="text-xs text-stone-400 tracking-wider">Brooklyn</span>
+                    </div>
+                    <p class="text-stone-400 text-xs tracking-wide mt-1 font-light">Five-Story Restoration • Restored hearths, fluted walnut casework, garden integration</p>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card group cursor-pointer" data-category="penthouse" onclick="openProjectModal('gramercy')">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-stone-900 mb-5">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200" 
+                             alt="Gramercy Park Duplex" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95 group-hover:brightness-100">
+                        <div class="absolute inset-0 bg-stone-950/20 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <span class="absolute top-4 right-4 text-[10px] uppercase tracking-widest bg-stone-950/80 backdrop-blur-sm px-3 py-1 border border-stone-800 text-stone-300">Gramercy</span>
+                    </div>
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-serif text-2xl text-stone-100 group-hover:text-bronze transition-colors">Gramercy Park Duplex</h3>
+                        <span class="text-xs text-stone-400 tracking-wider">Gramercy</span>
+                    </div>
+                    <p class="text-stone-400 text-xs tracking-wide mt-1 font-light">Key-to-the-Park Residence • Deep espresso lime-wash, Verde Alpi marble baths</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PHILOSOPHY / THE ARCHITECTURAL APPROACH -->
+        <section id="philosophy" class="py-32 bg-stone-950 border-b border-stone-850">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative aspect-[3/4] overflow-hidden border border-stone-800 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" 
+                                 alt="Jenny Waltz, Principal Designer" 
+                                 class="w-full h-full object-cover filter grayscale contrast-125">
+                            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-stone-900/95 backdrop-blur-md border border-stone-800 p-6 max-w-xs hidden sm:block">
+                            <p class="font-serif text-lg italic text-stone-200">“We do not decorate rooms. We choreograph atmosphere and permanent resonance.”</p>
+                            <span class="text-[10px] uppercase tracking-widest text-bronze block mt-2">— Jenny Waltz</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <span class="text-xs uppercase tracking-superwide text-bronze mb-3 block">Design Philosophy</span>
+                        <h2 class="font-serif text-4xl sm:text-5xl font-light text-stone-100 leading-tight mb-8">
+                            Architectural integrity meets sensory restraint.
+                        </h2>
+                        
+                        <div class="space-y-8 text-stone-300 font-light text-sm sm:text-base leading-relaxed">
+                            <p>
+                                Trained at Columbia GSAPP with apprenticeships across Milan and Copenhagen, Jenny Waltz views an interior as an extension of urban geography. Manhattan spaces often suffer from either cold, sterile modernity or suffocating period pastiche. Waltz carves an unmistakable middle path: spaces that look contemporary yet feel hundreds of years deep.
+                            </p>
+                            <p>
+                                Every commission begins with spatial surgery—correcting flow, unmasking natural daylight pathways, and framing views of water, brick, or high-canopy skies. Only then do we bring in bespoke architectural finishes crafted by our network of upstate millworkers, European stone cutters, and French bronze artisans.
+                            </p>
+                        </div>
+
+                        <!-- 3 Pillars -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 pt-10 border-t border-stone-850">
+                            <div>
+                                <span class="text-bronze font-serif text-2xl">01</span>
+                                <h4 class="font-serif text-lg text-stone-100 mt-1 mb-2">Honest Sourcing</h4>
+                                <p class="text-xs text-stone-400 font-light leading-normal">Unlacquered brass, vein-cut travertine, hand-planed French oak, and chalk-based mineral plasters that age gracefully.</p>
+                            </div>
+                            <div>
+                                <span class="text-bronze font-serif text-2xl">02</span>
+                                <h4 class="font-serif text-lg text-stone-100 mt-1 mb-2">Acoustic Serenity</h4>
+                                <p class="text-xs text-stone-400 font-light leading-normal">Concealed soundproofing and heavy-drape thermal mass to shield the inner dwelling from New York's ambient friction.</p>
+                            </div>
+                            <div>
+                                <span class="text-bronze font-serif text-2xl">03</span>
+                                <h4 class="font-serif text-lg text-stone-100 mt-1 mb-2">Curated Provenance</h4>
+                                <p class="text-xs text-stone-400 font-light leading-normal">Rare 20th-century Nordic, Italian, and Brazilian lighting paired with commissioned gallery-grade contemporary art.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE MATERIALITY & MOOD BOARD EXPLORER -->
+        <section id="materials" class="py-28 max-w-7xl mx-auto px-6 md:px-12 border-b border-stone-850">
+            <div class="max-w-2xl mb-14">
+                <span class="text-xs uppercase tracking-superwide text-bronze block mb-2">Tactile Registry</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-light text-stone-100">The Material Language</h2>
+                <p class="text-stone-400 text-sm font-light mt-4">
+                    Interact with our primary palette of raw earth, aged alloy, and woven fiber. These form the tactile baseline of every Jenny Waltz residence.
+                </p>
+            </div>
+
+            <!-- Material Tabs / Interactive Display -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Selectors -->
+                <div class="lg:col-span-4 flex flex-col space-y-3">
+                    <button onclick="setMaterial('travertine')" id="mat-btn-travertine" class="material-tab text-left p-5 bg-stone-900 border border-bronze/60 transition-all">
+                        <span class="text-[10px] uppercase tracking-widest text-bronze block">Quarried Mineral</span>
+                        <div class="font-serif text-xl text-stone-100 mt-1">Tivoli Roman Travertine</div>
+                    </button>
+                    <button onclick="setMaterial('brass')" id="mat-btn-brass" class="material-tab text-left p-5 bg-stone-950 border border-stone-850 transition-all hover:border-stone-700">
+                        <span class="text-[10px] uppercase tracking-widest text-stone-400 block">Living Metal</span>
+                        <div class="font-serif text-xl text-stone-300 mt-1">Unlacquered Patinated Bronze</div>
+                    </button>
+                    <button onclick="setMaterial('oak')" id="mat-btn-oak" class="material-tab text-left p-5 bg-stone-950 border border-stone-850 transition-all hover:border-stone-700">
+                        <span class="text-[10px] uppercase tracking-widest text-stone-400 block">European Timber</span>
+                        <div class="font-serif text-xl text-stone-300 mt-1">Fumed French White Oak</div>
+                    </button>
+                    <button onclick="setMaterial('linen')" id="mat-btn-linen" class="material-tab text-left p-5 bg-stone-950 border border-stone-850 transition-all hover:border-stone-700">
+                        <span class="text-[10px] uppercase tracking-widest text-stone-400 block">Textile Foundation</span>
+                        <div class="font-serif text-xl text-stone-300 mt-1">Belgian Raw Slubbed Linen</div>
+                    </button>
+                </div>
+
+                <!-- Detail Panel -->
+                <div class="lg:col-span-8 bg-stone-900/50 border border-stone-850 p-8 md:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="aspect-square relative overflow-hidden border border-stone-800">
+                            <img id="mat-image" 
+                                 src="https://images.unsplash.com/photo-1597218868981-1b68e15f0063?auto=format&fit=crop&q=80&w=800" 
+                                 alt="Travertine texture" 
+                                 class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div>
+                            <span id="mat-badge" class="text-xs uppercase tracking-superwide text-bronze">Origin: Tivoli, Italy</span>
+                            <h3 id="mat-title" class="font-serif text-3xl text-stone-100 mt-2 mb-4">Tivoli Roman Travertine</h3>
+                            <p id="mat-desc" class="text-stone-300 text-sm font-light leading-relaxed mb-6">
+                                Unfilled, brushed Roman travertine provides monumental weight and soothing texture. We specify massive continuous slab cuts for floating kitchen cantilevers, primary baths, and low-profile hearth plinths.
+                            </p>
+                            <div class="space-y-3 border-t border-stone-800 pt-6">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-stone-400">Aging Quality</span>
+                                    <span id="mat-aging" class="text-stone-200">Softens with touch; develops natural satin patina</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-stone-400">Application</span>
+                                    <span id="mat-app" class="text-stone-200">Monolithic Islands, Floating Fireplaces</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-stone-400">Finish</span>
+                                    <span id="mat-finish" class="text-stone-200">Wire-brushed & honed, open pore</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES / STUDIO SCOPE -->
+        <section id="services" class="py-32 bg-stone-950 border-b border-stone-850">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-superwide text-bronze block mb-2">Practice Disciplines</span>
+                        <h2 class="font-serif text-4xl sm:text-5xl font-light text-stone-100">Curated Engagements</h2>
+                    </div>
+                    <p class="text-stone-400 text-xs sm:text-sm font-light max-w-md">
+                        Every project receives principal-level oversight from Jenny Waltz and our senior architects, with complete turnkey project delivery.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="p-8 md:p-10 bg-stone-900/40 border border-stone-850 hover:border-bronze/50 transition-colors group">
+                        <span class="font-serif text-3xl text-bronze/70 group-hover:text-bronze">I</span>
+                        <h3 class="font-serif text-2xl text-stone-100 mt-6 mb-4">Complete Architectural Renovation</h3>
+                        <p class="text-stone-400 text-xs sm:text-sm font-light leading-relaxed mb-8">
+                            Gut restructuring of NYC apartments, co-ops, and historic brownstones. Structural layouts, landmark preservation board filings, MEP engineering coordination, and millwork detail drawings.
+                        </p>
+                        <ul class="text-xs text-stone-400 space-y-2 border-t border-stone-850 pt-6">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>NYC Landmarks & Co-op Board Approvals</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>Complete Architectural Millwork Design</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>Contractor Bidding & Site Administration</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="p-8 md:p-10 bg-stone-900/40 border border-stone-850 hover:border-bronze/50 transition-colors group">
+                        <span class="font-serif text-3xl text-bronze/70 group-hover:text-bronze">II</span>
+                        <h3 class="font-serif text-2xl text-stone-100 mt-6 mb-4">Turnkey Interior Furnishing</h3>
+                        <p class="text-stone-400 text-xs sm:text-sm font-light leading-relaxed mb-8">
+                            A curated immersion in collectible design. We source rare vintage furniture, bespoke upholstery, custom woven rugs, museum lighting, and custom drapery tailored precisely to the spatial acoustics.
+                        </p>
+                        <ul class="text-xs text-stone-400 space-y-2 border-t border-stone-850 pt-6">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>European Vintage & Gallery Procurement</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>Bespoke Seating & Joinery Commissions</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>White-Glove Warehousing & Single-Day Install</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="p-8 md:p-10 bg-stone-900/40 border border-stone-850 hover:border-bronze/50 transition-colors group">
+                        <span class="font-serif text-3xl text-bronze/70 group-hover:text-bronze">III</span>
+                        <h3 class="font-serif text-2xl text-stone-100 mt-6 mb-4">Art Advisory & Curation</h3>
+                        <p class="text-stone-400 text-xs sm:text-sm font-light leading-relaxed mb-8">
+                            Harmonizing high-caliber private residences with blue-chip and emerging contemporary art. Deep relationships with Chelsea, Lower East Side, and European galleries to enrich your private collection.
+                        </p>
+                        <ul class="text-xs text-stone-400 space-y-2 border-t border-stone-850 pt-6">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>Primary & Secondary Market Sourcing</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>Curatorial Framing & Conservation Lighting</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-bronze mr-2 rounded-full"></span>Sculptural Placement & Art Integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRESS & RECOGNITION -->
+        <section id="press" class="py-24 max-w-7xl mx-auto px-6 md:px-12 border-b border-stone-850">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-superwide text-bronze">Critical Reception</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-light text-stone-100 mt-2">Published & Celebrated</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-70 mb-16">
+                <div class="font-serif text-2xl tracking-widest text-stone-300 uppercase hover:text-bronze transition-colors">ARCHITECTURAL DIGEST</div>
+                <div class="font-serif text-2xl tracking-wider text-stone-300 uppercase hover:text-bronze transition-colors">ELLE DÉCOR</div>
+                <div class="font-serif text-xl tracking-widest text-stone-300 uppercase hover:text-bronze transition-colors">THE WORLD OF INTERIORS</div>
+                <div class="font-serif text-2xl tracking-tight text-stone-300 uppercase hover:text-bronze transition-colors">WALLPAPER*</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 bg-stone-900/30 border border-stone-850">
+                    <p class="font-serif italic text-lg text-stone-200 mb-4">
+                        “Waltz’s Tribeca duplex redesign proves that minimalism in Manhattan does not need to feel sterile. Her command over texture, shadow, and proportion creates a monastery-like grace high above Hudson Street.”
+                    </p>
+                    <span class="text-xs uppercase tracking-widest text-bronze">— Architectural Digest Feature</span>
+                </div>
+                <div class="p-8 bg-stone-900/30 border border-stone-850">
+                    <p class="font-serif italic text-lg text-stone-200 mb-4">
+                        “One of New York’s most rigorous spatial minds. She approaches historic townhouses with reverent restraint, avoiding decorative tropes in favor of sculptural light and archival precision.”
+                    </p>
+                    <span class="text-xs uppercase tracking-widest text-bronze">— The World of Interiors</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENT APPLICATION & INQUIRY FORM (Interactive scope selector) -->
+        <section id="inquire" class="py-32 bg-stone-950">
+            <div class="max-w-4xl mx-auto px-6 md:px-12">
+                <div class="text-center mb-16">
+                    <span class="text-xs uppercase tracking-superwide text-bronze block mb-2">New Client Retainers</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-light text-stone-100">Initiate a Conversation</h2>
+                    <p class="text-stone-400 text-sm font-light mt-4 max-w-xl mx-auto">
+                        Jenny Waltz accepts a curated selection of residential commissions annually. Please outline your property, timeline, and spatial intentions below.
+                    </p>
+                </div>
+
+                <form id="inquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-8 bg-stone-900/40 p-8 sm:p-12 border border-stone-800">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-light">Full Name *</label>
+                            <input type="text" required placeholder="Eleanor Vance" class="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-100 text-sm focus:border-bronze focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-light">Email Address *</label>
+                            <input type="email" required placeholder="vance@residence.ny" class="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-100 text-sm focus:border-bronze focus:outline-none transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-light">Direct Phone *</label>
+                            <input type="tel" required placeholder="+1 (917) 000-0000" class="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-100 text-sm focus:border-bronze focus:outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-light">Property Location / Neighborhood *</label>
+                            <input type="text" required placeholder="e.g. West Village, 740 Park Ave, Sag Harbor" class="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-100 text-sm focus:border-bronze focus:outline-none transition-colors">
+                        </div>
+                    </div>
+
+                    <!-- Project Typology Selectors -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-stone-400 mb-3 font-light">Commission Scope</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="cursor-pointer border border-stone-800 p-4 text-center hover:border-stone-600 transition-colors has-[:checked]:border-bronze has-[:checked]:bg-stone-850">
+                                <input type="radio" name="projectType" value="Full Gut Renovation" class="hidden" checked>
+                                <span class="text-xs uppercase tracking-wider block text-stone-200">Full Architectural Renovation</span>
+                            </label>
+                            <label class="cursor-pointer border border-stone-800 p-4 text-center hover:border-stone-600 transition-colors has-[:checked]:border-bronze has-[:checked]:bg-stone-850">
+                                <input type="radio" name="projectType" value="Turnkey Interior Furnishing" class="hidden">
+                                <span class="text-xs uppercase tracking-wider block text-stone-200">Turnkey Furnishing & Art</span>
+                            </label>
+                            <label class="cursor-pointer border border-stone-800 p-4 text-center hover:border-stone-600 transition-colors has-[:checked]:border-bronze has-[:checked]:bg-stone-850">
+                                <input type="radio" name="projectType" value="Historic Brownstone Restoration" class="hidden">
+                                <span class="text-xs uppercase tracking-wider block text-stone-200">Historic Restoration</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Budget Guidance Range -->
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-light">Anticipated Construction & Furnishing Investment</label>
+                        <select class="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-300 text-sm focus:border-bronze focus:outline-none transition-colors">
+                            <option value="500k-1M">$500,000 – $1,000,000</option>
+                            <option value="1M-2.5M" selected>$1,000,000 – $2,500,000</option>
+                            <option value="2.5M-5M">$2,500,000 – $5,000,000</option>
+                            <option value="5M+">$5,000,000 +</option>
+                        </select>
+                        <p class="text-[11px] text-stone-400 mt-1 font-light">Excludes real estate acquisition costs.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-light">Project Vision & Timeline Intentions</label>
+                        <textarea rows="4" placeholder="Detail any specific architectural goals, square footage, whether co-op board approvals are required, and desired completion window..." class="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-100 text-sm focus:border-bronze focus:outline-none transition-colors"></textarea>
+                    </div>
+
+                    <div class="pt-4 text-center">
+                        <button type="submit" class="w-full sm:w-auto px-12 py-4 bg-bronze text-obsidian text-xs uppercase tracking-superwide font-semibold hover:bg-stone-100 transition-colors duration-300">
+                            Transmit Private Inquiry
+                        </button>
+                    </div>
+
+                    <!-- Submission feedback toast -->
+                    <div id="formSuccessMsg" class="hidden text-center py-4 bg-stone-950 border border-bronze text-bronze text-xs uppercase tracking-widest">
+                        Thank you. Your dossier has been transmitted to Jenny Waltz’s TriBeCa office. We will reply within 48 business hours.
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-obsidian border-t border-stone-850 pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-stone-850">
+                <div class="md:col-span-5">
+                    <span class="font-serif text-3xl tracking-wide text-stone-100 block mb-3">JENNY WALTZ</span>
+                    <p class="text-xs uppercase tracking-widest text-stone-400 font-light mb-6">Studio for Architectural Interiors</p>
+                    <p class="text-stone-400 text-sm font-light max-w-sm leading-relaxed">
+                        TriBeCa Design Atelier<br>
+                        84 Franklin Street, Penthouse 4<br>
+                        New York, NY 10013
+                    </p>
+                </div>
+
+                <div class="md:col-span-3">
+                    <span class="text-xs uppercase tracking-widest text-bronze block mb-4">Direct Contact</span>
+                    <ul class="text-xs text-stone-300 space-y-2.5 font-light">
+                        <li>General: <a href="mailto:atelier@jennywaltz.com" class="hover:text-bronze transition-colors">atelier@jennywaltz.com</a></li>
+                        <li>Press: <a href="mailto:press@jennywaltz.com" class="hover:text-bronze transition-colors">press@jennywaltz.com</a></li>
+                        <li>Telephone: +1 (212) 899-4320</li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4">
+                    <span class="text-xs uppercase tracking-widest text-bronze block mb-4">Studio Principles</span>
+                    <p class="text-xs text-stone-400 font-light leading-relaxed mb-4">
+                        Consultations held exclusively by appointment in our TriBeCa studio or on-site at prospective properties throughout the tri-state area.
+                    </p>
+                    <div class="flex space-x-6 text-xs uppercase tracking-widest text-stone-400 font-light">
+                        <a href="#" class="hover:text-stone-100 transition-colors">Instagram</a>
+                        <a href="#" class="hover:text-stone-100 transition-colors">Artsy</a>
+                        <a href="#" class="hover:text-stone-100 transition-colors">Editorial Archives</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-400 font-light">
+                <p>&copy; <span id="currentYear"></span> Jenny Waltz Architecture & Interior Direction LLC. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-stone-300">Privacy Charter</a>
+                    <a href="#" class="hover:text-stone-300">Terms of Practice</a>
+                    <a href="#" class="hover:text-stone-300">New York Licensure</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE PROJECT MODAL (Expanded Case Study Drawer) -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-blur bg-obsidian/90 p-4 md:p-8 overflow-y-auto" onclick="closeModalOnBackdrop(event)">
+        <div class="relative bg-stone-950 border border-stone-800 max-w-4xl w-full max-h-[92vh] overflow-y-auto p-6 md:p-12 shadow-2xl" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-stone-400 hover:text-stone-100 transition-colors focus:outline-none p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <!-- Modal Dynamic Content -->
+            <div id="modalContent">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu upon clicking links
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Portfolio Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state styles
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-bronze', 'text-obsidian');
+                    b.classList.add('bg-stone-900', 'text-stone-400', 'border', 'border-stone-800');
+                });
+                btn.classList.add('bg-bronze', 'text-obsidian');
+                btn.classList.remove('bg-stone-900', 'text-stone-400', 'border-stone-800');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Interactive Material Data
+        const materialsData = {
+            travertine: {
+                title: "Tivoli Roman Travertine",
+                badge: "Origin: Tivoli, Italy",
+                desc: "Unfilled, brushed Roman travertine provides monumental weight and soothing texture. We specify massive continuous slab cuts for floating kitchen cantilevers, primary baths, and low-profile hearth plinths.",
+                aging: "Softens with touch; develops natural satin patina",
+                app: "Monolithic Islands, Floating Fireplaces",
+                finish: "Wire-brushed & honed, open pore",
+                image: "https://images.unsplash.com/photo-1597218868981-1b68e15f0063?auto=format&fit=crop&q=80&w=800"
+            },
+            brass: {
+                title: "Unlacquered Patinated Bronze",
+                badge: "Origin: Birmingham & Brooklyn Foundry",
+                desc: "Never sealed with synthetic plastic lacquers. Our custom unlacquered architectural hardware, cabinet pulls, and switch plates record the touch and life of the home, burnishing into rich amber-gold over decades.",
+                aging: "Reacts gracefully to touch and natural oxidation",
+                app: "Bespoke Hardware, Casework Trims, Faucets",
+                finish: "Hand-rubbed dark bronze with exposed highlights",
+                image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800"
+            },
+            oak: {
+                title: "Fumed French White Oak",
+                badge: "Origin: Sustainable Forests of Burgundy",
+                desc: "Subtly fumed with natural ammonia salts rather than dyed with chemical stains. This draws deep, cool walnut-olive tones from the oak's inner tannins, providing quiet grounding underfoot across large loft footprints.",
+                aging: "Deepens into an antique, velvety charcoal-grain",
+                app: "Wide-plank 12” Flooring, Floor-to-ceiling Paneling",
+                finish: "Hardwax matte oil finish (zero sheen)",
+                image: "https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?auto=format&fit=crop&q=80&w=800"
+            },
+            linen: {
+                title: "Belgian Raw Slubbed Linen",
+                badge: "Origin: Meulebeke, Belgium",
+                desc: "Heavyweight, natural flax woven on traditional shuttle looms. Retains tactile irregularities and weight that absorbs echo across high-ceiling pre-war rooms while gently filtering bright New York light.",
+                aging: "Softens luxuriously with seasonal humidity changes",
+                app: "Acoustic Wall Coverings, Cascading Drapery",
+                finish: "Undyed natural oat & raw washed flax",
+                image: "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?auto=format&fit=crop&q=80&w=800"
+            }
+        };
+
+        function setMaterial(key) {
+            const data = materialsData[key];
+            if (!data) return;
+
+            // Highlight Tab
+            document.querySelectorAll('.material-tab').forEach(t => {
+                t.classList.remove('bg-stone-900', 'border-bronze/60');
+                t.classList.add('bg-stone-950', 'border-stone-850');
+            });
+            const activeTab = document.getElementById(`mat-btn-${key}`);
+            if (activeTab) {
+                activeTab.classList.remove('bg-stone-950', 'border-stone-850');
+                activeTab.classList.add('bg-stone-900', 'border-bronze/60');
+            }
+
+            // Animate details
+            document.getElementById('mat-title').textContent = data.title;
+            document.getElementById('mat-badge').textContent = data.badge;
+            document.getElementById('mat-desc').textContent = data.desc;
+            document.getElementById('mat-aging').textContent = data.aging;
+            document.getElementById('mat-app').textContent = data.app;
+            document.getElementById('mat-finish').textContent = data.finish;
+            document.getElementById('mat-image').src = data.image;
+        }
+
+        // Project Modal Case Studies Data
+        const projectsData = {
+            tribeca: {
+                title: "The Franklin Loft",
+                location: "Tribeca Historic District, Manhattan",
+                scope: "Complete Gut Renovation & Spatial Re-architecture",
+                sqft: "4,400 sq. ft.",
+                timeline: "14 Months",
+                desc: "A seminal cast-iron warehouse floor converted into an inward sanctuary. Jenny Waltz removed decades of drywall partitions to expose original 19th-century Georgia pine timbers, offsetting the rough architecture with monolithic brushed travertine slabs and curved mineral plaster partitions that guide southern sunlight directly into a 40-foot primary salon.",
+                highlights: ["Full custom chef's kitchen carved from Roman travertine", "Concealed 1,200-bottle temperature-controlled wine room", "Integrated invisible architectural lighting by Viabizzuno"],
+                img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1400"
+            },
+            westvillage: {
+                title: "Bank Street Residence",
+                location: "West Village, Manhattan",
+                scope: "Historic Greek Revival Townhouse Restoration",
+                sqft: "5,800 sq. ft. across 5 levels",
+                timeline: "18 Months",
+                desc: "Originally constructed in 1844, this townhouse was lovingly restored over eighteen months. In collaboration with the NYC Landmarks Preservation Commission, Waltz restored five marble hearth mantels while inserting an ultra-minimal sculptural bronze staircase connecting the garden floor to the library.",
+                highlights: ["Re-cast 1840s ornamental ceiling cornices", "Bespoke primary suite with Calacatta Viola soaking tub", "Private rear courtyard landscaped with Japanese maples & bluestone"],
+                img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1400"
+            },
+            centralpark: {
+                title: "Fifth Avenue Penthouse",
+                location: "Upper East Side, Manhattan",
+                scope: "Duplex Penthouse & Wrap-Around Terrace Direction",
+                sqft: "3,900 sq. ft. + 1,400 sq. ft. Terrace",
+                timeline: "11 Months",
+                desc: "Facing Central Park, this penthouse was envisioned as an elevated aerie above the tree canopies. Waltz integrated blackened steel mullions, fumed white oak parquet de Versailles flooring, and custom mohair velvet seating to absorb the dramatic natural Manhattan sky shifts.",
+                highlights: ["Custom library casework in dark smoked Belgian oak", "Hand-woven silk-wool rugs commissioned in Nepal", "Continuous bronze terrace perimeter seating with integrated heaters"],
+                img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1400"
+            },
+            soho: {
+                title: "The Greene Street Atelier",
+                location: "SoHo, Manhattan",
+                scope: "Full-Floor Commercial-to-Residential Conversion",
+                sqft: "3,600 sq. ft.",
+                timeline: "10 Months",
+                desc: "Balancing the client's significant contemporary art collection with residential warmth. Crisp gallery-white plaster walls serve as quiet backdrops, while bespoke textured bouclé sofas and low-slung Brazilian mid-century seating bring grounded comfort to vast 13-foot ceilings.",
+                highlights: ["Museum-specification LED lighting grid", "Monolithic dark basalt kitchen block", "Acoustically isolated private master study"],
+                img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1400"
+            },
+            cobblehill: {
+                title: "Cobble Hill Parlor House",
+                location: "Cobble Hill, Brooklyn",
+                scope: "Full Brownstone Modernization",
+                sqft: "4,900 sq. ft.",
+                timeline: "16 Months",
+                desc: "Designed for a young creative family seeking serenity and tactile richness. Waltz juxtaposed preserved parlor ceiling rosettes with fluted walnut cabinetry, natural linen drapery, and a bespoke glass rear wall opening onto an English-style garden.",
+                highlights: ["Continuous garden-view steel atrium", "Custom integrated children’s bunk suites in bleached birch", "Moroccan tadelakt plaster powder rooms"],
+                img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1400"
+            },
+            gramercy: {
+                title: "Gramercy Park Duplex",
+                location: "Gramercy, Manhattan",
+                scope: "Pre-War Interior Architecture & Furnishing",
+                sqft: "3,200 sq. ft.",
+                timeline: "9 Months",
+                desc: "Overlooking private Gramercy Park, this pre-war residence called for rich, moody depth. Walls are treated in artisanal dark olive and espresso lime-wash washes, anchored by deep Verde Alpi marble slabs and vintage Italian lighting from Stilnovo and Gino Sarfatti.",
+                highlights: ["Historic wood-burning hearth restoration", "Verde Alpi marble bar with patinated brass racks", "Key to Gramercy Park archival integration"],
+                img: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1400"
+            }
+        };
+
+        function openProjectModal(key) {
+            const data = projectsData[key];
+            if (!data) return;
+
+            const modal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <div class="aspect-[16/9] w-full overflow-hidden bg-stone-900 border border-stone-850">
+                        <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between border-b border-stone-800 pb-4 pt-2">
+                        <div>
+                            <span class="text-xs uppercase tracking-superwide text-bronze">${data.location}</span>
+                            <h2 class="font-serif text-3xl sm:text-4xl text-stone-100 mt-1">${data.title}</h2>
+                        </div>
+                        <div class="text-xs text-stone-400 mt-2 md:mt-0 font-light tracking-wider">
+                            ${data.sqft} • ${data.timeline}
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-2">
+                        <div class="md:col-span-2 text-stone-300 font-light text-sm leading-relaxed space-y-4">
+                            <p>${data.desc}</p>
+                        </div>
+                        <div class="bg-stone-900/60 p-6 border border-stone-850">
+                            <h4 class="text-xs uppercase tracking-widest text-stone-200 mb-4 font-medium">Distinct Architectural Details</h4>
+                            <ul class="text-xs text-stone-400 space-y-3 font-light">
+                                ${data.highlights.map(h => `<li class="flex items-start"><span class="text-bronze mr-2">—</span>${h}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-stone-850 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <span class="text-xs uppercase tracking-widest text-stone-400">Commission Scope: ${data.scope}</span>
+                        <a href="#inquire" onclick="closeProjectModal()" class="px-6 py-3 bg-stone-100 text-obsidian text-xs uppercase tracking-widest font-medium hover:bg-bronze transition-colors">
+                            Discuss a Similar Residence
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnBackdrop(e) {
+            if (e.target.id === 'projectModal') {
+                closeProjectModal();
+            }
+        }
+
+        // Close modal on Escape Key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+
+        // Form submission handler
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            const successMsg = document.getElementById('formSuccessMsg');
+            successMsg.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 40) {
+                nav.classList.add('py-1', 'shadow-2xl');
+            } else {
+                nav.classList.remove('py-1', 'shadow-2xl');
+            }
+        });
+    </script>
+</body>
+</html>
+```

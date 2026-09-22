@@ -1,0 +1,16 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "slug": "deepseek/deepseek-v4.1-flash",
+  "prompt": "candy",
+  "returned_model": "deepseek/deepseek-v4.1-flash",
+  "provider": "Relace",
+  "started_at": "2026-09-21 16:50:20",
+  "seconds": 280,
+  "prompt_tokens": 85,
+  "output_tokens": 26778,
+  "thinking_tokens": 8815,
+  "html_chars": 49373,
+  "cost": 0.01393561,
+  "finish_reason": "stop",
+  "truncated": false
+}

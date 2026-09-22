@@ -1,0 +1,893 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENTANGLEMENT — 3 Days of Underground Techno in the Amsterdam Woods</title>
+<meta name="description" content="Entanglement: a 3-day underground techno festival deep in the Amsterdamse Bos, 24–26 July 2026. Four stages, 72 hours, no signal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=JetBrains+Mono:wght@300..700&amp;display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{
+    --bg:#060806;
+    --bg-2:#0a0e0a;
+    --ink:#e9ece5;
+    --dim:#79817a;
+    --acid:#c8f94a;
+    --acid-soft:rgba(200,249,74,.14);
+    --line:rgba(233,236,229,.13);
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Space Grotesk',system-ui,-apple-system,sans-serif;
+  }
+  html{scroll-behavior:smooth;scroll-padding-top:90px;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-weight:400;line-height:1.5;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(80% 60% at 15% 0%,rgba(60,120,60,.14),transparent 60%),
+      radial-gradient(70% 60% at 90% 100%,rgba(200,249,74,.06),transparent 60%),
+      linear-gradient(180deg,#060806,#080c09 40%,#060806);
+  }
+  img,svg{display:block}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+  /* ---------- atmosphere layers ---------- */
+  #fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.85}
+  .vignette{
+    position:fixed;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 40%,transparent 35%,rgba(0,0,0,.55) 100%);
+  }
+  .grain{
+    position:fixed;inset:-50%;z-index:3;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 1.2s steps(2) infinite;
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}
+    50%{transform:translate(1%,-2%)}75%{transform:translate(-1%,-1%)}
+    100%{transform:translate(2%,2%)}
+  }
+  main,header,footer{position:relative;z-index:10}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    padding:16px clamp(16px,3vw,34px);
+    transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  .nav.solid{
+    background:rgba(6,8,6,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom-color:var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;font-weight:500}
+  .brand svg{width:22px;height:22px;stroke:var(--acid);fill:none;stroke-width:1.4;flex:0 0 auto}
+  .brand svg .orbit{animation:orbit 6s linear infinite;transform-origin:12px 12px}
+  @keyframes orbit{to{transform:rotate(360deg)}}
+  .nav-links{display:flex;gap:28px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase}
+  .nav-links a{color:var(--dim);transition:color .25s ease}
+  .nav-links a:hover{color:var(--acid)}
+  .nav-cta{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    border:1px solid var(--line);border-radius:999px;padding:9px 18px;
+    transition:border-color .25s ease,color .25s ease,background .25s ease;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .nav-cta span{transition:transform .25s ease}
+  .nav-cta:hover{border-color:var(--acid);color:var(--acid);background:var(--acid-soft)}
+  .nav-cta:hover span{transform:translateX(3px)}
+  .burger{display:none;width:38px;height:38px;position:relative;z-index:210}
+  .burger i{position:absolute;left:9px;right:9px;height:1.5px;background:var(--ink);transition:.3s ease}
+  .burger i:first-child{top:15px}
+  .burger i:last-child{top:22px}
+  .burger.open i:first-child{transform:translateY(3.5px) rotate(45deg)}
+  .burger.open i:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+
+  .menu{
+    position:fixed;inset:0;z-index:200;background:rgba(6,8,6,.97);
+    backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;
+    padding:0 clamp(20px,7vw,60px);gap:6px;
+    opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;
+  }
+  .menu.open{opacity:1;visibility:visible}
+  .menu a{
+    font-size:clamp(2rem,9vw,3.4rem);font-weight:600;letter-spacing:-.03em;
+    padding:8px 0;border-bottom:1px solid var(--line);transition:color .25s,padding-left .3s;
+  }
+  .menu a:hover{color:var(--acid);padding-left:14px}
+  .menu .menu-foot{margin-top:34px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+  .hero-inner{
+    flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3vw,34px);
+    width:100%;max-width:1420px;margin:0 auto;
+    padding:120px clamp(18px,4vw,44px) 130px;
+  }
+  .hero-eyebrow{
+    font-family:var(--mono);font-size:clamp(10px,1.4vw,12px);letter-spacing:.28em;text-transform:uppercase;color:var(--dim);
+    display:flex;align-items:center;gap:12px;
+  }
+  .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--acid);flex:0 0 auto}
+  .hero-title{
+    margin:0;font-weight:700;line-height:.86;letter-spacing:-.045em;
+    font-size:clamp(2rem,11.2vw,13.5rem);
+    display:flex;flex-wrap:wrap;
+  }
+  .hero-title span{
+    display:inline-block;white-space:pre;
+    opacity:0;transform:translateY(.35em);filter:blur(12px);
+    animation:rise .95s cubic-bezier(.2,.8,.25,1) forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:none;filter:blur(0)}}
+  .hero-title .glow{color:var(--acid);text-shadow:0 0 44px rgba(200,249,74,.35)}
+  .hero-sub{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,60px);align-items:flex-end;justify-content:space-between}
+  .hero-sub p{
+    margin:0;max-width:46ch;font-size:clamp(.95rem,1.6vw,1.12rem);color:#c3c9c0;font-weight:300;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    padding:15px 26px;border-radius:999px;border:1px solid var(--line);
+    transition:.3s cubic-bezier(.2,.8,.25,1);position:relative;overflow:hidden;
+  }
+  .btn-acid{background:var(--acid);color:#0a1000;border-color:var(--acid);font-weight:700}
+  .btn-acid:hover{transform:translateY(-2px);box-shadow:0 10px 40px -10px rgba(200,249,74,.6)}
+  .btn-ghost:hover{border-color:var(--ink);background:rgba(255,255,255,.04)}
+
+  .countdown{display:flex;gap:clamp(16px,3.4vw,44px);flex-wrap:wrap;margin-top:6px}
+  .countdown div{display:flex;flex-direction:column;gap:2px}
+  .countdown b{font-family:var(--mono);font-weight:400;font-size:clamp(1.3rem,3vw,2rem);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .countdown span{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+
+  .scroll-cue{
+    position:absolute;left:clamp(18px,4vw,44px);bottom:96px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--dim);text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+  }
+  .scroll-cue i{width:1px;height:34px;background:linear-gradient(to bottom,var(--acid),transparent);display:block;animation:cue 2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    position:absolute;left:0;right:0;bottom:0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:rgba(6,8,6,.6);backdrop-filter:blur(6px);
+    overflow:hidden;padding:12px 0;
+  }
+  .ticker-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
+  .ticker-track span{
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a8b0a6;
+    white-space:nowrap;padding-right:38px;
+  }
+  .ticker-track span b{color:var(--acid);font-weight:400}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ---------- generic section ---------- */
+  section{scroll-margin-top:90px}
+  .wrap{max-width:1280px;margin:0 auto;padding:clamp(70px,11vw,140px) clamp(18px,4vw,44px)}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--acid);
+    margin:0 0 18px;
+  }
+  h2{
+    font-size:clamp(2rem,6.4vw,4.6rem);line-height:.95;letter-spacing:-.04em;font-weight:700;margin:0 0 26px;
+  }
+  .lede{font-size:clamp(1rem,1.7vw,1.2rem);color:#b9c0b6;font-weight:300;max-width:60ch;margin:0}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.8,.25,1),transform .9s cubic-bezier(.2,.8,.25,1);transition-delay:var(--d,0s)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- manifesto ---------- */
+  .manifesto{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(10,14,10,.5)}
+  .manifesto .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(24px,5vw,80px);align-items:start}
+  .manifesto p{font-size:clamp(1rem,1.55vw,1.18rem);color:#b9c0b6;font-weight:300;margin:0 0 20px;max-width:56ch}
+  .manifesto strong{color:var(--ink);font-weight:500}
+  .manifesto .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+  .rules{list-style:none;padding:0;margin:34px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:grid;gap:10px}
+  .rules li{display:flex;gap:12px;align-items:baseline}
+  .rules li::before{content:'—';color:var(--acid)}
+
+  /* ---------- lineup ---------- */
+  .lineup-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px}
+  .day-tabs{display:flex;flex-wrap:wrap;gap:8px}
+  .day-tab{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    padding:11px 18px;border:1px solid var(--line);border-radius:999px;color:var(--dim);
+    transition:.25s ease;white-space:nowrap;
+  }
+  .day-tab:hover{color:var(--ink);border-color:rgba(233,236,229,.3)}
+  .day-tab.active{background:var(--acid);color:#0a1000;border-color:var(--acid);font-weight:700}
+
+  .day-panel{display:none}
+  .day-panel.active{display:block;animation:fade .5s cubic-bezier(.2,.8,.25,1)}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  .day-meta{
+    display:flex;flex-wrap:wrap;gap:18px 34px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--dim);padding-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .day-meta b{color:var(--acid);font-weight:400}
+  .artist{
+    display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:20px;align-items:center;
+    padding:20px 6px;border-bottom:1px solid var(--line);
+    position:relative;transition:padding-left .35s cubic-bezier(.2,.8,.25,1);
+  }
+  .artist::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:0;
+    background:linear-gradient(90deg,var(--acid-soft),transparent);
+    transition:width .45s cubic-bezier(.2,.8,.25,1);pointer-events:none;
+  }
+  .artist:hover{padding-left:18px}
+  .artist:hover::before{width:100%}
+  .artist .time{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+  .artist .name{font-size:clamp(1.15rem,2.9vw,1.9rem);font-weight:600;letter-spacing:-.03em;line-height:1.1}
+  .artist:hover .name{color:var(--acid)}
+  .artist .name em{font-style:normal;font-family:var(--mono);font-size:.5em;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;vertical-align:middle;margin-left:10px;font-weight:400}
+  .artist .stage{
+    font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+    border:1px solid var(--line);border-radius:999px;padding:7px 13px;white-space:nowrap;
+    transition:.3s ease;
+  }
+  .artist:hover .stage{border-color:var(--acid);color:var(--acid)}
+
+  /* ---------- info ---------- */
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+  .info-card{background:var(--bg);padding:clamp(24px,3vw,36px);transition:background .4s ease}
+  .info-card:hover{background:#0b110b}
+  .info-k{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--acid);margin-bottom:16px}
+  .info-card h3{margin:0 0 10px;font-size:clamp(1.05rem,2vw,1.35rem);font-weight:600;letter-spacing:-.02em}
+  .info-card p{margin:0;font-size:.93rem;color:#9aa297;font-weight:300;line-height:1.6}
+
+  /* ---------- tickets ---------- */
+  .tickets{background:rgba(10,14,10,.4);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ticket-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(266px,1fr));gap:18px;margin-top:44px}
+  .ticket{
+    border:1px solid var(--line);border-radius:4px;padding:clamp(24px,3vw,34px);
+    display:flex;flex-direction:column;gap:16px;background:rgba(6,8,6,.6);
+    position:relative;overflow:hidden;transition:.4s cubic-bezier(.2,.8,.25,1);
+  }
+  .ticket:hover{transform:translateY(-4px);border-color:rgba(233,236,229,.3)}
+  .ticket.featured{border-color:var(--acid);background:linear-gradient(180deg,rgba(200,249,74,.07),rgba(6,8,6,.6))}
+  .ticket .tag{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+  .ticket.featured .tag{color:var(--acid)}
+  .ticket h3{margin:0;font-size:clamp(1.2rem,2.4vw,1.5rem);font-weight:600;letter-spacing:-.02em}
+  .ticket .price{font-family:var(--mono);font-size:clamp(1.9rem,4vw,2.6rem);letter-spacing:-.03em;line-height:1}
+  .ticket .price small{font-size:.42em;color:var(--dim);letter-spacing:.1em;margin-left:6px}
+  .ticket ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:.9rem;color:#a5ada2;font-weight:300}
+  .ticket li{display:flex;gap:10px}
+  .ticket li::before{content:'+';color:var(--acid);font-family:var(--mono)}
+  .ticket .buy{
+    margin-top:auto;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    padding:15px;border:1px solid var(--line);border-radius:999px;transition:.3s ease;
+  }
+  .ticket .buy:hover{border-color:var(--ink);background:rgba(255,255,255,.05)}
+  .ticket.featured .buy{background:var(--acid);color:#0a1000;border-color:var(--acid);font-weight:700}
+  .ticket.featured .buy:hover{box-shadow:0 10px 40px -12px rgba(200,249,74,.7)}
+  .ticket .sold{opacity:.4;pointer-events:none}
+  .note{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-top:26px}
+
+  /* ---------- faq ---------- */
+  .faq-list{margin-top:34px;border-top:1px solid var(--line)}
+  details{border-bottom:1px solid var(--line);padding:0}
+  summary{
+    list-style:none;cursor:pointer;padding:22px 40px 22px 0;position:relative;
+    font-size:clamp(1rem,2vw,1.2rem);font-weight:500;letter-spacing:-.01em;
+    transition:color .25s ease;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--acid)}
+  summary::after{
+    content:'';position:absolute;right:8px;top:50%;width:13px;height:13px;margin-top:-6px;
+    background:
+      linear-gradient(var(--acid),var(--acid)) center/13px 1.5px no-repeat,
+      linear-gradient(var(--acid),var(--acid)) center/1.5px 13px no-repeat;
+    transition:transform .35s cubic-bezier(.2,.8,.25,1);opacity:.8;
+  }
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{margin:0 0 24px;color:#9aa297;font-weight:300;font-size:.95rem;max-width:70ch;line-height:1.7}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);background:#040604;overflow:hidden}
+  .foot-inner{max-width:1280px;margin:0 auto;padding:clamp(50px,7vw,80px) clamp(18px,4vw,44px) 30px}
+  .foot-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:40px;align-items:start}
+  .foot-top h4{margin:0 0 16px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--acid)}
+  .foot-top p{margin:0;color:#8f978c;font-size:.9rem;font-weight:300;line-height:1.7}
+  .foot-links{display:flex;flex-direction:column;gap:10px;font-size:.9rem;color:#8f978c}
+  .foot-links a{transition:color .25s ease}
+  .foot-links a:hover{color:var(--acid)}
+  .news{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+  .news input{
+    flex:1;min-width:150px;background:transparent;border:1px solid var(--line);border-radius:999px;
+    padding:13px 18px;color:var(--ink);font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;outline:none;
+    transition:border-color .25s ease;
+  }
+  .news input:focus{border-color:var(--acid)}
+  .news input::placeholder{color:#5c635a}
+  .news button{
+    border:1px solid var(--acid);color:var(--acid);border-radius:999px;padding:13px 20px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;transition:.25s ease;
+  }
+  .news button:hover{background:var(--acid);color:#0a1000}
+  .news-msg{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--acid);margin-top:12px;min-height:14px}
+  .foot-word{
+    font-size:clamp(3rem,15.5vw,15rem);font-weight:700;letter-spacing:-.05em;line-height:.8;
+    color:transparent;-webkit-text-stroke:1px rgba(233,236,229,.14);
+    margin:clamp(40px,7vw,70px) 0 0;text-align:center;user-select:none;
+  }
+  .foot-bottom{
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--line);margin-top:26px;padding-top:22px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#5c635a;
+  }
+
+  @media (max-width:900px){
+    .manifesto .wrap{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .nav-links,.nav-cta{display:none}
+    .burger{display:block}
+    .artist{grid-template-columns:64px minmax(0,1fr);gap:14px;padding:16px 2px}
+    .artist .stage{grid-column:2;justify-self:start;margin-top:2px}
+    .artist:hover{padding-left:10px}
+    .scroll-cue{display:none}
+    .hero-inner{padding-top:110px;padding-bottom:120px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="fx" aria-hidden="true" width="1440" height="900"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="9" cy="12" r="6"></circle>
+      <circle class="orbit" cx="15" cy="12" r="6"></circle>
+    </svg>
+    ENTANGLEMENT
+  </a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#lineup">Lineup</a>
+    <a href="#info">Info</a>
+    <a href="#tickets">Tickets</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="nav-cta" href="#tickets">Tickets <span>→</span></a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<div class="menu" id="menu">
+  <a href="#lineup">Lineup</a>
+  <a href="#info">Info</a>
+  <a href="#tickets">Tickets</a>
+  <a href="#faq">FAQ</a>
+  <div class="menu-foot">Amsterdamse Bos · 24–26 July 2026 · 18+</div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Amsterdamse Bos, NL — 24–26 July 2026</div>
+
+      <h1 class="hero-title" id="heroTitle" aria-label="Entanglement"><span style="animation-delay: 0.18s;">E</span><span style="animation-delay: 0.235s;">N</span><span style="animation-delay: 0.29s;">T</span><span style="animation-delay: 0.345s;">A</span><span style="animation-delay: 0.4s;">N</span><span class="glow" style="animation-delay: 0.455s;">G</span><span class="glow" style="animation-delay: 0.51s;">L</span><span class="glow" style="animation-delay: 0.565s;">E</span><span class="glow" style="animation-delay: 0.62s;">M</span><span style="animation-delay: 0.675s;">E</span><span style="animation-delay: 0.73s;">N</span><span style="animation-delay: 0.785s;">T</span></h1>
+
+      <div class="hero-sub">
+        <p>Three days and three nights of underground techno, buried deep in the woods outside Amsterdam. Four stages. No signal. No sleep. Bring boots.</p>
+        <div class="hero-actions">
+          <a class="btn btn-acid" href="#tickets">Get tickets</a>
+          <a class="btn btn-ghost" href="#lineup">See the lineup</a>
+        </div>
+      </div>
+
+      <div class="countdown" id="countdown" aria-label="Countdown to gates open">
+        <div><b id="cd-d">00</b><span>Days</span></div>
+        <div><b id="cd-h">00</b><span>Hours</span></div>
+        <div><b id="cd-m">00</b><span>Minutes</span></div>
+        <div><b id="cd-s">00</b><span>Seconds</span></div>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true"><i></i> Scroll</div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>24—26 July 2026 <b>·</b> Amsterdamse Bos <b>·</b> 72 hours non-stop <b>·</b> 4 stages <b>·</b> 4,000 capacity <b>·</b> No phones on the dancefloor <b>·</b> Shuttle from Amsterdam Zuid <b>·</b> Leave no trace <b>·</b> 18+ <b>·</b> </span>
+        <span>24—26 July 2026 <b>·</b> Amsterdamse Bos <b>·</b> 72 hours non-stop <b>·</b> 4 stages <b>·</b> 4,000 capacity <b>·</b> No phones on the dancefloor <b>·</b> Shuttle from Amsterdam Zuid <b>·</b> Leave no trace <b>·</b> 18+ <b>·</b> </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto">
+    <div class="wrap">
+      <div class="reveal in">
+        <p class="kicker">// 01 — The idea</p>
+        <h2>A temporary<br>autonomous<br>zone in the trees.</h2>
+      </div>
+      <div>
+        <p class="reveal in" style="--d:.08s">Entanglement is not a festival in the way you're used to. There is no main sponsor, no branded stage, no photo wall. There is a clearing, a sound system, and roughly four thousand people who came for the same reason.</p>
+        <p class="reveal in" style="--d:.16s">For 72 hours the forest becomes the venue. Four stages sit between the birches and the water — one of them, <strong>The Chapel</strong>, is a converted pump house with a single strobe and no ceiling. You will walk. You will get lost. That's part of it.</p>
+        <p class="reveal in" style="--d:.24s">We book artists we actually listen to, we keep the sound clean, and we leave the woods exactly as we found them. Nothing more, nothing less.</p>
+        <ul class="rules reveal in" style="--d:.32s">
+          <li>No phones on the dancefloor</li>
+          <li>No single-use plastic on site</li>
+          <li>No headliners — only residents and guests</li>
+          <li>No leaving without taking your tent</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEUP -->
+  <section id="lineup">
+    <div class="wrap">
+      <div class="lineup-head">
+        <div class="reveal in">
+          <p class="eyebrow">// 02 — Lineup</p>
+          <h2>Three days,<br>four stages.</h2>
+        </div>
+        <div class="day-tabs reveal in" style="--d:.1s" role="tablist" aria-label="Choose a day">
+          <button class="day-tab active" data-day="1" role="tab" aria-selected="true">Day 01 · Fri 24</button>
+          <button class="day-tab" data-day="2" role="tab" aria-selected="false">Day 02 · Sat 25</button>
+          <button class="day-tab" data-day="3" role="tab" aria-selected="false">Day 03 · Sun 26</button>
+        </div>
+      </div>
+
+      <div class="day-panel active" data-day="1">
+        <div class="day-meta">
+          <span>Friday 24 July</span><span>Gates <b>16:00</b></span><span>Curfew <b>06:00</b></span><span>Deep / Hypnotic</span>
+        </div>
+        <div class="artist"><span class="time">17:00</span><span class="name">Nils Kade</span><span class="stage">Moss Stage</span></div>
+        <div class="artist"><span class="time">18:30</span><span class="name">Vale &amp; Ossa</span><span class="stage">Root Stage</span></div>
+        <div class="artist"><span class="time">20:00</span><span class="name">Katarina Vex</span><span class="stage">The Chapel</span></div>
+        <div class="artist"><span class="time">21:30</span><span class="name">HARDWARE<em>live</em></span><span class="stage">The Pit</span></div>
+        <div class="artist"><span class="time">23:00</span><span class="name">Solvent</span><span class="stage">Root Stage</span></div>
+        <div class="artist"><span class="time">01:00</span><span class="name">ANATHEMA b2b Kade</span><span class="stage">Moss Stage</span></div>
+      </div>
+
+      <div class="day-panel" data-day="2">
+        <div class="day-meta">
+          <span>Saturday 25 July</span><span>Gates <b>12:00</b></span><span>Curfew <b>07:00</b></span><span>Peak time / Raw</span>
+        </div>
+        <div class="artist"><span class="time">14:00</span><span class="name">Marloes Dune</span><span class="stage">Moss Stage</span></div>
+        <div class="artist"><span class="time">16:00</span><span class="name">Tessel</span><span class="stage">Root Stage</span></div>
+        <div class="artist"><span class="time">18:00</span><span class="name">Null Object<em>live</em></span><span class="stage">The Pit</span></div>
+        <div class="artist"><span class="time">20:00</span><span class="name">Rook &amp; Ravel</span><span class="stage">The Chapel</span></div>
+        <div class="artist"><span class="time">22:00</span><span class="name">Ilse Bregman</span><span class="stage">Root Stage</span></div>
+        <div class="artist"><span class="time">00:30</span><span class="name">Ferrite</span><span class="stage">The Pit</span></div>
+        <div class="artist"><span class="time">03:00</span><span class="name">Interlock</span><span class="stage">Moss Stage</span></div>
+      </div>
+
+      <div class="day-panel" data-day="3">
+        <div class="day-meta">
+          <span>Sunday 26 July</span><span>Gates <b>11:00</b></span><span>Curfew <b>23:00</b></span><span>Ambient / Closing ritual</span>
+        </div>
+        <div class="artist"><span class="time">13:00</span><span class="name">Ivo Slaap</span><span class="stage">Root Stage</span></div>
+        <div class="artist"><span class="time">15:00</span><span class="name">Concrete Choir<em>live</em></span><span class="stage">The Pit</span></div>
+        <div class="artist"><span class="time">17:00</span><span class="name">Yuki Hara</span><span class="stage">Moss Stage</span></div>
+        <div class="artist"><span class="time">19:00</span><span class="name">The Undertow</span><span class="stage">The Chapel</span></div>
+        <div class="artist"><span class="time">21:00</span><span class="name">Zwart Water</span><span class="stage">Root Stage</span></div>
+        <div class="artist"><span class="time">22:30</span><span class="name">Closing ritual · ANATHEMA</span><span class="stage">Moss Stage</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section id="info">
+    <div class="wrap">
+      <div class="reveal in" style="max-width:700px">
+        <p class="eyebrow">// 03 — Practical</p>
+        <h2>Everything you<br>need to know.</h2>
+        <p class="lede">The exact coordinates are released to ticket holders 48 hours before gates. Getting there is easy. Getting back is your own problem.</p>
+      </div>
+
+      <div class="info-grid" style="margin-top:44px">
+        <div class="info-card reveal in">
+          <div class="info-k">// Location</div>
+          <h3>Amsterdamse Bos</h3>
+          <p>A 1,000-hectare forest 20 minutes from Amsterdam Centraal. Free shuttle buses run from Amsterdam Zuid station every 30 minutes, from 14:00 until 08:00.</p>
+        </div>
+        <div class="info-card reveal in" style="--d:.06s">
+          <div class="info-k">// Capacity</div>
+          <h3>4,000 people</h3>
+          <p>Deliberately small. We cap the site at four thousand so the dancefloors never collapse into a queue and you never lose your friends for good.</p>
+        </div>
+        <div class="info-card reveal in" style="--d:.12s">
+          <div class="info-k">// Hours</div>
+          <h3>72 hours</h3>
+          <p>Music runs non-stop from Friday 16:00 until Sunday 23:00. Camping stays open until Monday 12:00 for those who need a soft landing.</p>
+        </div>
+        <div class="info-card reveal in" style="--d:.18s">
+          <div class="info-k">// Sound</div>
+          <h3>Four stages</h3>
+          <p>Moss Stage, Root Stage, The Pit and The Chapel. All rigs are tuned on-site, sound-capped at 102 dB, and rebuilt every morning before doors.</p>
+        </div>
+        <div class="info-card reveal in" style="--d:.24s">
+          <div class="info-k">// Camping</div>
+          <h3>Sleep in the trees</h3>
+          <p>Forest camping is included with every weekend ticket. Showers, water points and a 24-hour quiet zone are on site. Bring a real tent — July in NL rains.</p>
+        </div>
+        <div class="info-card reveal in" style="--d:.3s">
+          <div class="info-k">// Care</div>
+          <h3>Harm reduction</h3>
+          <p>A trained welfare and first-aid crew is on site around the clock, no questions asked. Free water, earplugs and sunscreen at every stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKETS -->
+  <section class="tickets" id="tickets">
+    <div class="wrap">
+      <div class="reveal in" style="max-width:700px">
+        <p class="eyebrow">// 04 — Tickets</p>
+        <h2>Choose your<br>entanglement.</h2>
+        <p class="lede">All prices include VAT, shuttle bus, camping where stated, and a €3 donation to the Amsterdamse Bos rewilding fund.</p>
+      </div>
+
+      <div class="ticket-grid">
+        <div class="ticket reveal in">
+          <div class="tag">Single day</div>
+          <h3>Day Pass</h3>
+          <div class="price">€64<small>/ one day</small></div>
+          <ul>
+            <li>Access to one day of your choice</li>
+            <li>All four stages</li>
+            <li>Shuttle bus included</li>
+            <li>No camping</li>
+          </ul>
+          <a class="buy" href="#faq">Buy day pass</a>
+        </div>
+
+        <div class="ticket featured reveal in" style="--d:.08s">
+          <div class="tag">Most chosen · 3 days</div>
+          <h3>Weekend</h3>
+          <div class="price">€149<small>/ full 72h</small></div>
+          <ul>
+            <li>Full weekend access, all stages</li>
+            <li>Forest camping + showers</li>
+            <li>Free re-entry, in and out</li>
+            <li>Shuttle bus included</li>
+            <li>Festival programme zine</li>
+          </ul>
+          <a class="buy" href="#faq">Buy weekend ticket</a>
+        </div>
+
+        <div class="ticket reveal in" style="--d:.16s">
+          <div class="tag">Limited · 200 available</div>
+          <h3>Forest Ritual</h3>
+          <div class="price">€279<small>/ per person</small></div>
+          <ul>
+            <li>Everything in Weekend</li>
+            <li>Thursday pre-party in The Chapel</li>
+            <li>Guided night walk with the rangers</li>
+            <li>Screen-printed poster + tote</li>
+            <li>Priority shuttle boarding</li>
+          </ul>
+          <a class="buy" href="#faq">Buy ritual pass</a>
+        </div>
+      </div>
+
+      <p class="note">Day tickets for Saturday are sold out. Weekend tickets: 3rd release — 380 left.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="reveal in" style="max-width:700px">
+        <p class="eyebrow">// 05 — FAQ</p>
+        <h2>Questions,<br>answered.</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="reveal in">
+          <summary>Where exactly is Entanglement?</summary>
+          <p>The grounds are inside the Amsterdamse Bos, just south of Amsterdam. Because the site is protected woodland, we only release the exact gate coordinates to ticket holders by email 48 hours before gates open. Shuttle buses from Amsterdam Zuid station run every 30 minutes and take roughly 15 minutes — no car parking is available on site except for accessible parking, which you can request when you buy.</p>
+        </details>
+        <details class="reveal in">
+          <summary>Is camping really included?</summary>
+          <p>Yes — every Weekend and Forest Ritual ticket includes forest camping from Friday 16:00 until Monday 12:00. Campsites are quiet after 07:00, with water points, showers and charging lockers. There is a separate 24-hour quiet zone for light sleepers. Day pass holders cannot camp and must leave before 08:00.</p>
+        </details>
+        <details class="reveal in">
+          <summary>Why can't I use my phone on the dancefloor?</summary>
+          <p>Because the point is the music. At the gate we place a small removable sticker over your phone camera, and phone use is limited to the camping and chill areas. Security will politely ask you to put it away if you film a set. We photograph the festival ourselves and publish a free gallery afterwards.</p>
+        </details>
+        <details class="reveal in">
+          <summary>Is the site accessible?</summary>
+          <p>Most of it, yes. The main paths are compacted and wheelchair-accessible, and the Moss and Root stages have level viewing platforms. The Chapel and The Pit sit on natural forest floor and are harder to reach — we run a free on-site shuttle between stages for anyone who needs it. Email access@entanglement.nl and we'll arrange everything before you arrive.</p>
+        </details>
+        <details class="reveal in">
+          <summary>What's the policy on drugs and alcohol?</summary>
+          <p>Dutch law applies on site. There is zero tolerance for hard drugs and anyone caught dealing is removed immediately. Our harm-reduction team is on site 24 hours a day and will help anyone in trouble without judgement. Free water is available at every stage — please actually drink it.</p>
+        </details>
+        <details class="reveal in">
+          <summary>Can I leave and come back?</summary>
+          <p>Weekend and Forest Ritual tickets include unlimited re-entry between 07:00 and 23:00 each day. Day pass holders get one re-entry. Bring your ticket and ID every time — wristbands alone are not enough.</p>
+        </details>
+        <details class="reveal">
+          <summary>What should I pack?</summary>
+          <p>Waterproof boots, a real tent with a groundsheet, a warm layer for the 04:00 hours, a torch with a red light, refillable bottle, and earplugs (free at the gate, but bring your own if you're fussy). Leave glass, fireworks and drones at home — they will be confiscated.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <h4>// Newsletter</h4>
+        <p>Lineup drops, ticket releases and the occasional forest dispatch. Roughly one email a month.</p>
+        <form class="news" id="newsForm">
+          <input type="email" id="newsEmail" placeholder="your@email.com" aria-label="Email address" required="" style="">
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="news-msg" id="newsMsg" role="status"></div>
+      </div>
+      <div>
+        <h4>// Contact</h4>
+        <div class="foot-links">
+          <a href="mailto:hello@entanglement.nl">hello@entanglement.nl</a>
+          <a href="mailto:press@entanglement.nl">press@entanglement.nl</a>
+          <a href="mailto:access@entanglement.nl">access@entanglement.nl</a>
+        </div>
+      </div>
+      <div>
+        <h4>// Elsewhere</h4>
+        <div class="foot-links">
+          <a href="#top">Instagram</a>
+          <a href="#top">Resident Advisor</a>
+          <a href="#top">SoundCloud</a>
+          <a href="#top">Telegram</a>
+        </div>
+      </div>
+      <div>
+        <h4>// Site</h4>
+        <div class="foot-links">
+          <a href="#lineup">Lineup</a>
+          <a href="#info">Practical info</a>
+          <a href="#tickets">Tickets</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-word" aria-hidden="true">ENTANGLEMENT</div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Entanglement · Amsterdamse Bos, NL</span>
+      <span>18+ · Leave no trace · Stichting Entanglement</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- particle / dust field ---------- */
+  var canvas = document.getElementById('fx');
+  var ctx = canvas.getContext('2d');
+  var w = 0, h = 0, dpr = 1, parts = [], fogs = [], raf;
+
+  function makeParticles() {
+    parts = [];
+    var count = Math.max(40, Math.min(150, Math.floor((w * h) / 13000)));
+    for (var i = 0; i < count; i++) {
+      parts.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.35,
+        s: Math.random() * 0.22 + 0.04,
+        a: Math.random() * 0.45 + 0.08,
+        p: Math.random() * Math.PI * 2,
+        sp: Math.random() * 0.012 + 0.004
+      });
+    }
+    fogs = [
+      { x: w * 0.18, y: h * 0.28, r: Math.max(w, h) * 0.42, c: '60,120,70', a: 0.075, vx: 0.06, vy: 0.03 },
+      { x: w * 0.82, y: h * 0.68, r: Math.max(w, h) * 0.36, c: '200,249,74', a: 0.045, vx: -0.05, vy: -0.025 },
+      { x: w * 0.5,  y: h * 0.95, r: Math.max(w, h) * 0.4,  c: '40,90,60',   a: 0.06,  vx: 0.04, vy: -0.04 }
+    ];
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    makeParticles();
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+
+    // slow fog blobs
+    for (var f = 0; f < fogs.length; f++) {
+      var fog = fogs[f];
+      fog.x += fog.vx;
+      fog.y += fog.vy;
+      if (fog.x < -fog.r * 0.5) fog.x = w + fog.r * 0.5;
+      if (fog.x > w + fog.r * 0.5) fog.x = -fog.r * 0.5;
+      if (fog.y < -fog.r * 0.5) fog.y = h + fog.r * 0.5;
+      if (fog.y > h + fog.r * 0.5) fog.y = -fog.r * 0.5;
+
+      var g = ctx.createRadialGradient(fog.x, fog.y, 0, fog.x, fog.y, fog.r);
+      g.addColorStop(0, 'rgba(' + fog.c + ',' + fog.a + ')');
+      g.addColorStop(1, 'rgba(' + fog.c + ',0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(fog.x, fog.y, fog.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // drifting dust
+    ctx.globalCompositeOperation = 'lighter';
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      p.y -= p.s;
+      p.p += p.sp;
+      p.x += Math.sin(p.p) * 0.16;
+
+      if (p.y < -6) { p.y = h + 6; p.x = Math.random() * w; }
+      if (p.x < -6) p.x = w + 6;
+      if (p.x > w + 6) p.x = -6;
+
+      var tw = 0.55 + 0.45 * Math.sin(t * 0.0011 + p.p * 3.1);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200,249,74,' + (p.a * tw).toFixed(3) + ')';
+      ctx.fill();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+
+    raf = requestAnimationFrame(draw);
+  }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  resize();
+  if (!reduce) {
+    raf = requestAnimationFrame(draw);
+  } else {
+    draw(0);
+    cancelAnimationFrame(raf);
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 150);
+  });
+
+  /* ---------- hero title letter animation ---------- */
+  var heroTitle = document.getElementById('heroTitle');
+  if (heroTitle) {
+    var text = heroTitle.textContent.trim();
+    heroTitle.textContent = '';
+    for (var i = 0; i < text.length; i++) {
+      var span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.animationDelay = (0.18 + i * 0.055).toFixed(3) + 's';
+      if (i >= 5 && i <= 8) span.className = 'glow';
+      heroTitle.appendChild(span);
+    }
+  }
+
+  /* ---------- countdown ---------- */
+  var target = new Date('2026-07-24T16:00:00+02:00').getTime();
+  var cd = {
+    d: document.getElementById('cd-d'),
+    h: document.getElementById('cd-h'),
+    m: document.getElementById('cd-m'),
+    s: document.getElementById('cd-s')
+  };
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tickCountdown() {
+    var diff = Math.max(0, target - Date.now());
+    var total = Math.floor(diff / 1000);
+    cd.d.textContent = pad(Math.floor(total / 86400));
+    cd.h.textContent = pad(Math.floor((total % 86400) / 3600));
+    cd.m.textContent = pad(Math.floor((total % 3600) / 60));
+    cd.s.textContent = pad(total % 60);
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  /* ---------- nav scroll state ---------- */
+  var nav = document.getElementById('nav');
+  function onScroll() {
+    if (window.scrollY > 30) nav.classList.add('solid');
+    else nav.classList.remove('solid');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- mobile menu ---------- */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  function setMenu(open) {
+    menu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function () {
+    setMenu(!menu.classList.contains('open'));
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setMenu(false);
+  });
+
+  /* ---------- lineup tabs ---------- */
+  var tabs = document.querySelectorAll('.day-tab');
+  var panels = document.querySelectorAll('.day-panel');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        p.classList.toggle('active', p.dataset.day === tab.dataset.day);
+      });
+    });
+  });
+
+  /* ---------- scroll reveal ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- newsletter ---------- */
+  var form = document.getElementById('newsForm');
+  var msg = document.getElementById('newsMsg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('newsEmail').value.trim();
+    if (!email) return;
+    msg.textContent = '✓ You are in. See you in the woods.';
+    form.reset();
+    setTimeout(function () { msg.textContent = ''; }, 6000);
+  });
+
+})();
+</script>
+
+</body></html>

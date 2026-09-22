@@ -1,0 +1,1293 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connected | Autonomous AI Agent Swarms for Marketing Teams</title>
+  <meta name="description" content="Connected is the B2B AI marketing platform where autonomous agent swarms plan, write, produce, and deploy end-to-end campaigns at enterprise scale.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            midnight: '#05070E',
+            surface: {
+              900: '#0B0F19',
+              800: '#111827',
+              700: '#1B2436',
+              600: '#26334D',
+            },
+            brand: {
+              50: '#EEF2FF',
+              400: '#818CF8',
+              500: '#6366F1',
+              600: '#4F46E5',
+            },
+            cyan: {
+              400: '#22D3EE',
+              500: '#06B6D4',
+            },
+            emerald: {
+              400: '#34D399',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'glow-line': 'dash 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Glow & Scrollbar effects */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #05070E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1B2436;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4F46E5;
+    }
+    
+    .radial-gradient-hero {
+      background: radial-gradient(circle at 50% -10%, rgba(99, 102, 241, 0.22) 0%, rgba(6, 182, 212, 0.08) 35%, rgba(5, 7, 14, 0) 70%);
+    }
+
+    .glass-card {
+      background: rgba(17, 24, 39, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .glass-card-hover:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 35px -10px rgba(99, 102, 241, 0.25);
+    }
+
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(6, 182, 212, 0.4), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Grid background */
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:"Plus Jakarta Sans", sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:"JetBrains Mono", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-top-3\.5{top:-0.875rem}.left-1\/2{left:50%}.right-4{right:1rem}.right-6{right:1.5rem}.top-0{top:0px}.top-4{top:1rem}.top-5{top:1.25rem}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-3{margin-top:0.75rem;margin-bottom:0.75rem}.my-2{margin-top:0.5rem;margin-bottom:0.5rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-0\.5{margin-left:0.125rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-12{height:3rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-3{height:0.75rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-\[650px\]{height:650px}.h-full{height:100%}.min-h-\[560px\]{min-height:560px}.w-10{width:2.5rem}.w-12{width:3rem}.w-2{width:0.5rem}.w-2\.5{width:0.625rem}.w-3{width:0.75rem}.w-3\.5{width:0.875rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-5xl{max-width:64rem}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes float{0%, 100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}.animate-float{animation:float 6s ease-in-out infinite}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-baseline{align-items:baseline}.items-stretch{align-items:stretch}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-3\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.875rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-hidden{overflow-x:hidden}.scroll-smooth{scroll-behavior:smooth}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-\[10px\]{border-radius:10px}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-sm{border-radius:0.125rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-brand-500\/20{border-color:rgb(99 102 241 / 0.2)}.border-brand-500\/30{border-color:rgb(99 102 241 / 0.3)}.border-brand-500\/40{border-color:rgb(99 102 241 / 0.4)}.border-brand-500\/80{border-color:rgb(99 102 241 / 0.8)}.border-cyan-500\/20{border-color:rgb(6 182 212 / 0.2)}.border-cyan-500\/30{border-color:rgb(6 182 212 / 0.3)}.border-cyan-500\/40{border-color:rgb(6 182 212 / 0.4)}.border-emerald-500\/20{border-color:rgb(16 185 129 / 0.2)}.border-emerald-500\/30{border-color:rgb(16 185 129 / 0.3)}.border-purple-500\/30{border-color:rgb(168 85 247 / 0.3)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.border-white\/5{border-color:rgb(255 255 255 / 0.05)}.border-white\/\[0\.06\]{border-color:rgb(255 255 255 / 0.06)}.border-white\/\[0\.07\]{border-color:rgb(255 255 255 / 0.07)}.bg-black\/30{background-color:rgb(0 0 0 / 0.3)}.bg-black\/40{background-color:rgb(0 0 0 / 0.4)}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-brand-500{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-brand-500\/10{background-color:rgb(99 102 241 / 0.1)}.bg-brand-500\/20{background-color:rgb(99 102 241 / 0.2)}.bg-brand-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-cyan-400{--tw-bg-opacity:1;background-color:rgb(34 211 238 / var(--tw-bg-opacity, 1))}.bg-cyan-500\/10{background-color:rgb(6 182 212 / 0.1)}.bg-cyan-500\/20{background-color:rgb(6 182 212 / 0.2)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-emerald-500\/80{background-color:rgb(16 185 129 / 0.8)}.bg-indigo-400{--tw-bg-opacity:1;background-color:rgb(129 140 248 / var(--tw-bg-opacity, 1))}.bg-indigo-500\/10{background-color:rgb(99 102 241 / 0.1)}.bg-indigo-500\/20{background-color:rgb(99 102 241 / 0.2)}.bg-midnight{--tw-bg-opacity:1;background-color:rgb(5 7 14 / var(--tw-bg-opacity, 1))}.bg-midnight\/80{background-color:rgb(5 7 14 / 0.8)}.bg-midnight\/90{background-color:rgb(5 7 14 / 0.9)}.bg-orange-500\/10{background-color:rgb(249 115 22 / 0.1)}.bg-purple-400{--tw-bg-opacity:1;background-color:rgb(192 132 252 / var(--tw-bg-opacity, 1))}.bg-purple-500\/10{background-color:rgb(168 85 247 / 0.1)}.bg-purple-500\/20{background-color:rgb(168 85 247 / 0.2)}.bg-red-500\/10{background-color:rgb(239 68 68 / 0.1)}.bg-red-500\/80{background-color:rgb(239 68 68 / 0.8)}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.bg-surface-700{--tw-bg-opacity:1;background-color:rgb(27 36 54 / var(--tw-bg-opacity, 1))}.bg-surface-700\/60{background-color:rgb(27 36 54 / 0.6)}.bg-surface-800\/40{background-color:rgb(17 24 39 / 0.4)}.bg-surface-800\/80{background-color:rgb(17 24 39 / 0.8)}.bg-surface-900{--tw-bg-opacity:1;background-color:rgb(11 15 25 / var(--tw-bg-opacity, 1))}.bg-surface-900\/50{background-color:rgb(11 15 25 / 0.5)}.bg-surface-900\/60{background-color:rgb(11 15 25 / 0.6)}.bg-surface-900\/90{background-color:rgb(11 15 25 / 0.9)}.bg-yellow-500\/80{background-color:rgb(234 179 8 / 0.8)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-brand-400{--tw-gradient-from:#818CF8 var(--tw-gradient-from-position);--tw-gradient-to:rgb(129 140 248 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-brand-500{--tw-gradient-from:#6366F1 var(--tw-gradient-from-position);--tw-gradient-to:rgb(99 102 241 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-brand-600{--tw-gradient-from:#4F46E5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-400{--tw-gradient-from:#34D399 var(--tw-gradient-from-position);--tw-gradient-to:rgb(52 211 153 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-surface-900{--tw-gradient-from:#0B0F19 var(--tw-gradient-from-position);--tw-gradient-to:rgb(11 15 25 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-brand-500{--tw-gradient-to:rgb(99 102 241 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #6366F1 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-cyan-400{--tw-gradient-to:rgb(34 211 238 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #22D3EE var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-indigo-600{--tw-gradient-to:rgb(79 70 229 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #4f46e5 var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-surface-800{--tw-gradient-to:rgb(17 24 39 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #111827 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-cyan-300{--tw-gradient-to:#67e8f9 var(--tw-gradient-to-position)}.to-cyan-400{--tw-gradient-to:#22D3EE var(--tw-gradient-to-position)}.to-cyan-500{--tw-gradient-to:#06B6D4 var(--tw-gradient-to-position)}.to-indigo-300{--tw-gradient-to:#a5b4fc var(--tw-gradient-to-position)}.to-indigo-600{--tw-gradient-to:#4f46e5 var(--tw-gradient-to-position)}.to-midnight{--tw-gradient-to:#05070E var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-10{padding:2.5rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.p-8{padding:2rem}.p-\[1\.5px\]{padding:1.5px}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.px-8{padding-left:2rem;padding-right:2rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-20{padding-bottom:5rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pb-5{padding-bottom:1.25rem}.pl-2{padding-left:0.5rem}.pt-16{padding-top:4rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pb-2{padding-bottom:0.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:"JetBrains Mono", monospace}.font-sans{font-family:"Plus Jakarta Sans", sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.12\]{line-height:1.12}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-brand-400{--tw-text-opacity:1;color:rgb(129 140 248 / var(--tw-text-opacity, 1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249 / var(--tw-text-opacity, 1))}.text-cyan-400{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-indigo-400{--tw-text-opacity:1;color:rgb(129 140 248 / var(--tw-text-opacity, 1))}.text-orange-400{--tw-text-opacity:1;color:rgb(251 146 60 / var(--tw-text-opacity, 1))}.text-purple-300{--tw-text-opacity:1;color:rgb(216 180 254 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/10{color:rgb(255 255 255 / 0.1)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.accent-brand-500{accent-color:#6366F1}.accent-cyan-400{accent-color:#22D3EE}.accent-emerald-400{accent-color:#34D399}.opacity-30{opacity:0.3}.opacity-50{opacity:0.5}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-brand-500\/20{--tw-shadow-color:rgb(99 102 241 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-brand-500\/25{--tw-shadow-color:rgb(99 102 241 / 0.25);--tw-shadow:var(--tw-shadow-colored)}.shadow-brand-500\/30{--tw-shadow-color:rgb(99 102 241 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.shadow-brand-600\/30{--tw-shadow-color:rgb(79 70 229 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.grayscale{--tw-grayscale:grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.selection\:bg-brand-500 *::selection{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-brand-500::selection{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:border-brand-500\/40:hover{border-color:rgb(99 102 241 / 0.4)}.hover\:bg-brand-500:hover{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.hover\:bg-brand-600:hover{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-600:hover{--tw-bg-opacity:1;background-color:rgb(38 51 77 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-700\/60:hover{background-color:rgb(27 36 54 / 0.6)}.hover\:from-brand-500:hover{--tw-gradient-from:#6366F1 var(--tw-gradient-from-position);--tw-gradient-to:rgb(99 102 241 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-indigo-500:hover{--tw-gradient-to:#6366f1 var(--tw-gradient-to-position)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-90:hover{opacity:0.9}.hover\:opacity-95:hover{opacity:0.95}.hover\:shadow-brand-500\/40:hover{--tw-shadow-color:rgb(99 102 241 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.hover\:grayscale-0:hover{--tw-grayscale:grayscale(0);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.focus\:border-brand-500:focus{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:translate-x-0\.5{--tw-translate-x:0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:shadow-brand-500\/40{--tw-shadow-color:rgb(99 102 241 / 0.4);--tw-shadow:var(--tw-shadow-colored)}@media (min-width: 640px){.sm\:inline-block{display:inline-block}.sm\:inline{display:inline}.sm\:w-auto{width:auto}.sm\:flex-row{flex-direction:row}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:gap-14{gap:3.5rem}.md\:p-14{padding:3.5rem}.md\:p-16{padding:4rem}.md\:pb-28{padding-bottom:7rem}.md\:pt-24{padding-top:6rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-6{grid-column:span 6 / span 6}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:border-b-0{border-bottom-width:0px}.lg\:border-r{border-right-width:1px}.lg\:text-7xl{font-size:4.5rem;line-height:1}}</style></head>
+
+<body class="bg-midnight text-slate-200 font-sans antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
+
+  <!-- BACKGROUND DECORATIONS -->
+  <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] radial-gradient-hero pointer-events-none z-0"></div>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-midnight/80 border-b border-white/[0.07] transition-all">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-500 to-cyan-400 p-[1.5px] shadow-lg shadow-brand-500/20 group-hover:shadow-brand-500/40 transition">
+          <div class="w-full h-full bg-midnight rounded-[10px] flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+          </div>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+          Connected <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 font-mono font-medium">v2.4</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#agents" class="hover:text-white transition">Agent Swarm</a>
+        <a href="#workspace" class="hover:text-white transition">Live Orchestrator</a>
+        <a href="#integrations" class="hover:text-white transition">Ecosystem</a>
+        <a href="#roi" class="hover:text-white transition">Impact ROI</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+      </nav>
+
+      <!-- Right CTAs -->
+      <div class="flex items-center gap-4">
+        <a href="#demo-modal" onclick="openDemoModal()" class="text-sm font-semibold text-slate-300 hover:text-white transition hidden sm:inline-block">Sign in</a>
+        <a href="#interactive-simulator" class="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm text-white bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 transition shadow-lg shadow-brand-600/30 hover:shadow-brand-500/40 border border-white/10">
+          <span>Deploy Campaign</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section class="pt-16 pb-20 md:pt-24 md:pb-28 max-w-7xl mx-auto px-6 text-center">
+      <!-- Announcement Chip -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-800/80 border border-white/10 text-xs font-medium text-slate-300 mb-8 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-white font-semibold">Autonomous Swarms:</span> 
+        Multi-agent collaboration is now live
+        <svg class="w-3.5 h-3.5 text-slate-400 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.12] max-w-5xl mx-auto mb-6">
+        Turn 3-week campaign cycles into <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-cyan-400 to-indigo-300">12-minute synchronized launches.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+        Connected coordinates specialized AI agents that formulate positioning briefs, write brand-true multichannel copy, generate production-ready visual designs, and deploy directly into your marketing stack.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+        <a href="#interactive-simulator" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-brand-500 via-indigo-600 to-cyan-500 hover:opacity-95 shadow-xl shadow-brand-500/25 transition flex items-center justify-center gap-2.5">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Test Live Agent Swarm
+        </a>
+        <button onclick="openDemoModal()" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-semibold text-slate-300 glass-card hover:bg-surface-700/60 hover:text-white transition flex items-center justify-center gap-2">
+          <span>Book 1-on-1 Walkthrough</span>
+        </button>
+      </div>
+
+      <!-- Social Proof Strip -->
+      <div class="pt-6 border-t border-white/[0.06]">
+        <p class="text-xs uppercase tracking-widest text-slate-500 font-mono mb-6">Powering multi-channel pipeline at modern enterprises</p>
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-50 grayscale hover:grayscale-0 transition duration-500">
+          <div class="flex items-center gap-2 font-bold text-lg text-white tracking-wider"><span class="w-2.5 h-2.5 bg-brand-500 rounded-sm"></span>HYPERSCALE</div>
+          <div class="flex items-center gap-2 font-bold text-lg text-white tracking-wider"><span class="w-2.5 h-2.5 bg-cyan-400 rounded-sm"></span>LUMEN.IO</div>
+          <div class="flex items-center gap-2 font-bold text-lg text-white tracking-wider"><span class="w-2.5 h-2.5 bg-purple-400 rounded-sm"></span>SYNTAX DATA</div>
+          <div class="flex items-center gap-2 font-bold text-lg text-white tracking-wider"><span class="w-2.5 h-2.5 bg-emerald-400 rounded-sm"></span>NEXUS PAY</div>
+          <div class="flex items-center gap-2 font-bold text-lg text-white tracking-wider"><span class="w-2.5 h-2.5 bg-indigo-400 rounded-sm"></span>DATAVANTAGE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE AGENT ORCHESTRATOR DEMO (Core Hero Feature) -->
+    <section id="interactive-simulator" class="py-16 max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-mono mb-3">Live Simulation</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Watch Connected agents coordinate a full campaign</p>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">Select a campaign template and observe real-time agent hand-offs, prompt reasoning, and multi-asset synthesis.</p>
+      </div>
+
+      <!-- Simulator Console Container -->
+      <div class="glass-card rounded-2xl border border-white/10 shadow-2xl overflow-hidden glow-border">
+        <!-- Window Top Bar -->
+        <div class="bg-surface-900/90 px-6 py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="flex gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+            </div>
+            <span class="text-xs font-mono text-slate-400 pl-2 border-l border-white/10">workspace://connected-swarm-cluster-04</span>
+          </div>
+
+          <!-- Scenario Selectors -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-400 font-mono mr-1 hidden sm:inline">Campaign Scenario:</span>
+            <button onclick="setScenario('enterprise')" id="tab-enterprise" class="scenario-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-600 text-white transition">Enterprise Cloud Migration</button>
+            <button onclick="setScenario('product')" id="tab-product" class="scenario-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-700/60 text-slate-300 hover:text-white transition">Q3 Product Tier Launch</button>
+            <button onclick="setScenario('growth')" id="tab-growth" class="scenario-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-surface-700/60 text-slate-300 hover:text-white transition">Account-Based ABM</button>
+          </div>
+        </div>
+
+        <!-- Orchestrator Main Interface -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[560px]">
+          
+          <!-- Agent Swarm Activity Column -->
+          <div class="lg:col-span-5 p-6 border-b lg:border-b-0 lg:border-r border-white/10 bg-surface-900/50 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs uppercase font-mono tracking-wider text-slate-400 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+                  Connected Agent Swarm (Active)
+                </span>
+                <button onclick="restartSimulation()" class="text-xs text-cyan-400 hover:underline flex items-center gap-1 font-mono">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                  Re-run swarm
+                </button>
+              </div>
+
+              <!-- Agent Nodes List -->
+              <div class="space-y-3.5">
+                <!-- Agent 1: Strategist -->
+                <div id="agent-node-1" class="agent-node p-3.5 rounded-xl border border-brand-500/40 bg-brand-500/10 transition-all duration-300">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-brand-400 flex items-center justify-center font-bold text-xs border border-brand-500/30">
+                        ST
+                      </div>
+                      <div>
+                        <h4 class="text-sm font-semibold text-white">Aura • Strategy &amp; ICP Lead</h4>
+                        <p class="text-[11px] text-slate-400 font-mono">Synthesizing CRM &amp; competitor intel</p>
+                      </div>
+                    </div>
+                    <span id="badge-1" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      Completed (1.4s)
+                    </span>
+                  </div>
+                  <div id="output-snippet-1" class="text-xs text-slate-300 bg-black/40 p-2 rounded-lg font-mono mt-2 border border-white/5">
+                    &gt; Angle: "Stop paying the legacy cloud egress tax. 40% reduction verified."
+                  </div>
+                </div>
+
+                <!-- Agent 2: Copywriter -->
+                <div id="agent-node-2" class="agent-node p-3.5 rounded-xl border border-cyan-500/40 bg-cyan-500/10 transition-all duration-300">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs border border-cyan-500/30">
+                        CX
+                      </div>
+                      <div>
+                        <h4 class="text-sm font-semibold text-white">Lexicon • Multi-Format Copywriter</h4>
+                        <p class="text-[11px] text-slate-400 font-mono">Drafting LinkedIn, cold email, &amp; ad sets</p>
+                      </div>
+                    </div>
+                    <span id="badge-2" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30">
+                      Writing payload...
+                    </span>
+                  </div>
+                  <div id="output-snippet-2" class="text-xs text-slate-300 bg-black/40 p-2 rounded-lg font-mono mt-2 border border-white/5">
+                    &gt; Generated: 3 High-intent Email drafts, 6 LinkedIn hook variations.
+                  </div>
+                </div>
+
+                <!-- Agent 3: Creative / Visual -->
+                <div id="agent-node-3" class="agent-node p-3.5 rounded-xl border border-white/10 bg-surface-800/40 transition-all duration-300">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs border border-purple-500/30">
+                        PX
+                      </div>
+                      <div>
+                        <h4 class="text-sm font-semibold text-white">Prism • Creative &amp; Asset Synth</h4>
+                        <p class="text-[11px] text-slate-400 font-mono">Generating charts, banners, and layout tags</p>
+                      </div>
+                    </div>
+                    <span id="badge-3" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-700 text-slate-300">
+                      Standby
+                    </span>
+                  </div>
+                  <div id="output-snippet-3" class="text-xs text-slate-400 bg-black/30 p-2 rounded-lg font-mono mt-2 border border-white/5">
+                    &gt; Awaiting copy approvals for graphic text tokens...
+                  </div>
+                </div>
+
+                <!-- Agent 4: Orchestrator / Ops -->
+                <div id="agent-node-4" class="agent-node p-3.5 rounded-xl border border-white/10 bg-surface-800/40 transition-all duration-300">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs border border-emerald-500/30">
+                        OP
+                      </div>
+                      <div>
+                        <h4 class="text-sm font-semibold text-white">Pulse • Ad &amp; Pipeline Orchestrator</h4>
+                        <p class="text-[11px] text-slate-400 font-mono">Targeting criteria, UTM builder, CRM webhooks</p>
+                      </div>
+                    </div>
+                    <span id="badge-4" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-700 text-slate-300">
+                      Standby
+                    </span>
+                  </div>
+                  <div id="output-snippet-4" class="text-xs text-slate-400 bg-black/30 p-2 rounded-lg font-mono mt-2 border border-white/5">
+                    &gt; Ready to dispatch to HubSpot, LinkedIn Ads, Marketo.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Swarm Telemetry Bar -->
+            <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Swarm Latency: <span class="text-white">412ms</span></span>
+              <span>Tokens Synced: <span class="text-white">42,809</span></span>
+            </div>
+          </div>
+
+          <!-- Live Output Preview Column -->
+          <div class="lg:col-span-7 p-6 bg-surface-900/90 flex flex-col">
+            <!-- Output Channel Switcher Tabs -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
+              <div class="flex items-center gap-2">
+                <button onclick="previewTab('email')" id="p-tab-email" class="output-pill px-3 py-1 rounded-md text-xs font-medium bg-brand-500 text-white">Outbound Email</button>
+                <button onclick="previewTab('linkedin')" id="p-tab-linkedin" class="output-pill px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white">LinkedIn Ad</button>
+                <button onclick="previewTab('brief')" id="p-tab-brief" class="output-pill px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white">Strategy Brief</button>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Brand Voice: 99.4% Match
+                </span>
+              </div>
+            </div>
+
+            <!-- Tab Content: Live Dynamic View -->
+            <div id="preview-content" class="flex-1 bg-surface-800/80 rounded-xl p-5 border border-white/10 relative overflow-hidden font-sans">
+              <!-- Content rendered via JS based on selection -->
+              <div id="dynamic-display">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-white/5 text-xs text-slate-400 font-mono">
+              <div><span class="text-slate-500">Subject:</span> Cut your cloud egress bills by 40% before Q4 closes?</div>
+              <div>Agent: Lexicon v2.4</div>
+            </div>
+            <p class="text-sm text-slate-300">Hey <span class="text-brand-400 font-mono bg-brand-500/10 px-1 rounded">{{first_name}}</span>,</p>
+            <p class="text-sm text-slate-300">Saw that <span class="text-brand-400 font-mono bg-brand-500/10 px-1 rounded">{{company_name}}</span> scaled your ingestion cluster this quarter. Most VPs of Engineering tell us cross-zone charges jumped 3x once multi-region data synced.</p>
+            <p class="text-sm text-slate-300">Connected automated away cloud egress penalties for 14 scaleups last month. We ran an automated compute model for {{company_name}}:</p>
+            <div class="p-3 rounded-lg bg-surface-900 border border-brand-500/20 my-2 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-white">Estimated Annual Savings: $148,000</div>
+                <div class="text-[11px] text-slate-400">Validated against {{company_name}} tech profile</div>
+              </div>
+              <button class="px-2.5 py-1 rounded bg-brand-500 text-white text-xs font-semibold">Inspect Spec →</button>
+            </div>
+            <p class="text-sm text-slate-300">Worth a brief 8-minute discussion this Thursday?</p>
+          </div>
+        </div>
+            </div>
+
+            <!-- Action Trigger Bar -->
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 pt-3">
+              <div class="flex items-center gap-2 text-xs text-slate-400">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>Human-In-The-Loop Approval: <strong class="text-white font-medium">1-Click Push Enabled</strong></span>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="approveLaunch()" id="approveBtn" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-lg shadow-brand-600/30">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  Approve &amp; Push to HubSpot
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE VALUE PILLARS (Why Agent Swarms Win) -->
+    <section class="py-20 max-w-7xl mx-auto px-6" id="agents">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest text-brand-400 font-mono mb-3">Smarter Than Isolated Prompts</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Meet the Autonomous Marketing Swarm</p>
+        <p class="text-slate-400 mt-3 text-base">Generic LLMs hallucinate and lack context. Connected uses decentralized, role-based agents that challenge, cross-validate, and refine each other's outputs.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Agent 1 Card -->
+        <div class="glass-card glass-card-hover rounded-2xl p-6 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            </div>
+            <span class="text-xs font-mono text-brand-400 font-semibold uppercase tracking-wider">Agent 01</span>
+            <h3 class="text-xl font-bold text-white mt-1 mb-2">Aura: Strategist</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Scrapes competitive battlecards, customer interview transcripts, and Google Search intent to build bulletproof campaign briefs.
+            </p>
+          </div>
+          <ul class="text-xs space-y-2 text-slate-300 border-t border-white/5 pt-4 font-mono">
+            <li class="flex items-center gap-2">✓ ICP Pain Point Synthesis</li>
+            <li class="flex items-center gap-2">✓ Messaging Angle Scoring</li>
+            <li class="flex items-center gap-2">✓ Competitor Claim Defense</li>
+          </ul>
+        </div>
+
+        <!-- Agent 2 Card -->
+        <div class="glass-card glass-card-hover rounded-2xl p-6 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+            </div>
+            <span class="text-xs font-mono text-cyan-400 font-semibold uppercase tracking-wider">Agent 02</span>
+            <h3 class="text-xl font-bold text-white mt-1 mb-2">Lexicon: Copy Synthesizer</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Writes in your exact brand tone of voice. Adapts messages for SDR cadences, Google RSA headlines, and 1,500-word SEO pillars.
+            </p>
+          </div>
+          <ul class="text-xs space-y-2 text-slate-300 border-t border-white/5 pt-4 font-mono">
+            <li class="flex items-center gap-2">✓ Brand Voice Vector Match</li>
+            <li class="flex items-center gap-2">✓ Multi-Channel Copy Sync</li>
+            <li class="flex items-center gap-2">✓ Direct Response Optimization</li>
+          </ul>
+        </div>
+
+        <!-- Agent 3 Card -->
+        <div class="glass-card glass-card-hover rounded-2xl p-6 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <span class="text-xs font-mono text-purple-400 font-semibold uppercase tracking-wider">Agent 03</span>
+            <h3 class="text-xl font-bold text-white mt-1 mb-2">Prism: Creative Director</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Generates high-fidelity visual layouts, carousel stories, Figma tokens, and display ads that match your brand design system.
+            </p>
+          </div>
+          <ul class="text-xs space-y-2 text-slate-300 border-t border-white/5 pt-4 font-mono">
+            <li class="flex items-center gap-2">✓ Hex &amp; Typography Enforcement</li>
+            <li class="flex items-center gap-2">✓ Automated Aspect Resizing</li>
+            <li class="flex items-center gap-2">✓ Visual Consistency Check</li>
+          </ul>
+        </div>
+
+        <!-- Agent 4 Card -->
+        <div class="glass-card glass-card-hover rounded-2xl p-6 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <span class="text-xs font-mono text-emerald-400 font-semibold uppercase tracking-wider">Agent 04</span>
+            <h3 class="text-xl font-bold text-white mt-1 mb-2">Pulse: Pipeline Ops</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Schedules campaigns across Marketo, LinkedIn Ads, Meta, and Webflow. Applies UTM tags and tracks conversions automatically.
+            </p>
+          </div>
+          <ul class="text-xs space-y-2 text-slate-300 border-t border-white/5 pt-4 font-mono">
+            <li class="flex items-center gap-2">✓ Native MarTech API Sync</li>
+            <li class="flex items-center gap-2">✓ Auto UTM Taxonomy</li>
+            <li class="flex items-center gap-2">✓ Continuous A/B Allocation</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STEP-BY-STEP WORKFLOW INTERFACE -->
+    <section class="py-20 bg-surface-900/60 border-y border-white/5 relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div>
+            <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-mono mb-2">The Connected Lifecycle</h2>
+            <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">How marketing leaders ship 10x faster</p>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md">No messy chat prompts. Connected guides you through an end-to-end continuous loop with rigorous guardrails.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Step 1 -->
+          <div class="relative p-7 rounded-2xl glass-card">
+            <span class="text-4xl font-extrabold text-white/10 absolute top-5 right-6 font-mono">01</span>
+            <div class="text-brand-400 font-mono text-xs uppercase tracking-widest mb-3">Sync Knowledge</div>
+            <h3 class="text-xl font-bold text-white mb-3">Ingest Brand Intelligence</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Connect your Notion wiki, website URL, Gong calls, and historical top-performing ads. Connected builds a persistent memory vector that prevents hallucinated claims.
+            </p>
+            <div class="bg-midnight/80 p-3 rounded-xl border border-white/5 text-xs text-slate-400 font-mono space-y-1">
+              <div class="text-emerald-400">● Synced: 2,410 customer transcripts</div>
+              <div class="text-cyan-400">● Synced: Brand Guideline v3.2 PDF</div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative p-7 rounded-2xl glass-card">
+            <span class="text-4xl font-extrabold text-white/10 absolute top-5 right-6 font-mono">02</span>
+            <div class="text-cyan-400 font-mono text-xs uppercase tracking-widest mb-3">Agent Debate</div>
+            <h3 class="text-xl font-bold text-white mb-3">Collaborative Synthesis</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Aura identifies 3 distinct campaign angles. Lexicon writes candidate copy variants. The Compliance agent reviews against legal requirements and brand guidelines.
+            </p>
+            <div class="bg-midnight/80 p-3 rounded-xl border border-white/5 text-xs text-slate-400 font-mono space-y-1">
+              <div class="text-indigo-400">● Agent Aura rejected 2 weak hooks</div>
+              <div class="text-emerald-400">● 4 Channel variants validated</div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative p-7 rounded-2xl glass-card">
+            <span class="text-4xl font-extrabold text-white/10 absolute top-5 right-6 font-mono">03</span>
+            <div class="text-emerald-400 font-mono text-xs uppercase tracking-widest mb-3">One-Click Dispatch</div>
+            <h3 class="text-xl font-bold text-white mb-3">Review &amp; Multi-Channel Deploy</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Your marketing director reviews the unified launch board. Make edits with AI inline or approve with 1 click to publish simultaneously to your ad networks and email platforms.
+            </p>
+            <div class="bg-midnight/80 p-3 rounded-xl border border-white/5 text-xs text-slate-400 font-mono space-y-1">
+              <div class="text-brand-400">● HubSpot Cadence: Armed</div>
+              <div class="text-emerald-400">● LinkedIn Ad Sets: Scheduled</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS ECOSYSTEM -->
+    <section class="py-20 max-w-7xl mx-auto px-6" id="integrations">
+      <div class="glass-card rounded-3xl p-8 md:p-14 border border-white/10 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-mono">
+              Direct MarTech Integrations
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Your existing marketing stack, supercharged by autonomous AI.</h2>
+            <p class="text-slate-400 text-base leading-relaxed">
+              Connected doesn't ask you to replace your CRM, email automations, or ad accounts. We live as the autonomous orchestration brain on top of your existing enterprise tools.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 pt-2">
+              <div class="flex items-center gap-3 text-slate-300 text-sm">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                HubSpot CRM &amp; Marketing
+              </div>
+              <div class="flex items-center gap-3 text-slate-300 text-sm">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                Salesforce Pardot &amp; Marketo
+              </div>
+              <div class="flex items-center gap-3 text-slate-300 text-sm">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                LinkedIn Campaign Manager
+              </div>
+              <div class="flex items-center gap-3 text-slate-300 text-sm">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                Meta Ads &amp; Google Ads
+              </div>
+              <div class="flex items-center gap-3 text-slate-300 text-sm">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                Webflow, WordPress &amp; Contentful
+              </div>
+              <div class="flex items-center gap-3 text-slate-300 text-sm">
+                <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                Notion, Slack &amp; Figma
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphic Integration Mesh -->
+          <div class="lg:col-span-6 bg-midnight/90 rounded-2xl p-6 border border-white/10 relative">
+            <div class="text-xs font-mono text-slate-400 mb-4 flex items-center justify-between">
+              <span>ACTIVE SYNC MATRIX</span>
+              <span class="text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> 24/24 Connected</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+              <div class="p-4 rounded-xl bg-surface-800/80 border border-white/5 text-center flex flex-col items-center justify-center gap-2 hover:border-brand-500/40 transition">
+                <div class="w-10 h-10 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center font-bold text-sm">HS</div>
+                <span class="text-xs font-semibold text-white">HubSpot</span>
+                <span class="text-[10px] text-emerald-400 font-mono">Bi-directional</span>
+              </div>
+              <div class="p-4 rounded-xl bg-surface-800/80 border border-white/5 text-center flex flex-col items-center justify-center gap-2 hover:border-brand-500/40 transition">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold text-sm">LI</div>
+                <span class="text-xs font-semibold text-white">LinkedIn Ads</span>
+                <span class="text-[10px] text-emerald-400 font-mono">Auto-Sync</span>
+              </div>
+              <div class="p-4 rounded-xl bg-surface-800/80 border border-white/5 text-center flex flex-col items-center justify-center gap-2 hover:border-brand-500/40 transition">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-sm">MK</div>
+                <span class="text-xs font-semibold text-white">Marketo</span>
+                <span class="text-[10px] text-emerald-400 font-mono">Real-time</span>
+              </div>
+              <div class="p-4 rounded-xl bg-surface-800/80 border border-white/5 text-center flex flex-col items-center justify-center gap-2 hover:border-brand-500/40 transition">
+                <div class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-sm">SL</div>
+                <span class="text-xs font-semibold text-white">Slack Alerts</span>
+                <span class="text-[10px] text-emerald-400 font-mono">Webhooks</span>
+              </div>
+              <div class="p-4 rounded-xl bg-surface-800/80 border border-white/5 text-center flex flex-col items-center justify-center gap-2 hover:border-brand-500/40 transition">
+                <div class="w-10 h-10 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center font-bold text-sm">GA</div>
+                <span class="text-xs font-semibold text-white">Google Ads</span>
+                <span class="text-[10px] text-emerald-400 font-mono">UTM Tracking</span>
+              </div>
+              <div class="p-4 rounded-xl bg-surface-800/80 border border-white/5 text-center flex flex-col items-center justify-center gap-2 hover:border-brand-500/40 transition">
+                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-sm">SF</div>
+                <span class="text-xs font-semibold text-white">Salesforce</span>
+                <span class="text-[10px] text-emerald-400 font-mono">Lead Routing</span>
+              </div>
+            </div>
+
+            <!-- Pipeline status message -->
+            <div class="mt-4 p-3 rounded-lg bg-brand-500/10 border border-brand-500/20 text-xs font-mono text-brand-300 flex items-center gap-2">
+              <svg class="w-4 h-4 shrink-0 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              Enterprise SSO &amp; SOC2 Type II Certified with zero public model training.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ROI IMPACT CALCULATOR -->
+    <section class="py-20 max-w-7xl mx-auto px-6" id="roi">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest text-brand-400 font-mono mb-3">Enterprise Efficiency Model</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Calculate Your Campaign ROI</p>
+        <p class="text-slate-400 mt-3 text-base">See how much time and agency spend your marketing organization saves with Connected swarm orchestration.</p>
+      </div>
+
+      <div class="glass-card rounded-2xl border border-white/10 p-8 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          
+          <!-- Controls -->
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <label class="text-slate-300 font-medium">Marketing Team Size:</label>
+                <span id="team-size-val" class="font-mono text-brand-400 font-bold">8 members</span>
+              </div>
+              <input type="range" id="team-size" min="2" max="50" value="8" step="1" oninput="calculateROI()" class="w-full accent-brand-500 bg-surface-700 h-2 rounded-lg cursor-pointer" style="">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <label class="text-slate-300 font-medium">Campaigns Per Quarter:</label>
+                <span id="campaigns-val" class="font-mono text-cyan-400 font-bold">12 campaigns</span>
+              </div>
+              <input type="range" id="campaigns-count" min="1" max="40" value="12" step="1" oninput="calculateROI()" class="w-full accent-cyan-400 bg-surface-700 h-2 rounded-lg cursor-pointer" style="">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm mb-2">
+                <label class="text-slate-300 font-medium">Average External Agency / Contractor Spend ($):</label>
+                <span id="agency-val" class="font-mono text-emerald-400 font-bold">$25,000 / mo</span>
+              </div>
+              <input type="range" id="agency-spend" min="0" max="100000" value="25000" step="5000" oninput="calculateROI()" class="w-full accent-emerald-400 bg-surface-700 h-2 rounded-lg cursor-pointer" style="">
+            </div>
+          </div>
+
+          <!-- Dynamic Results Output -->
+          <div class="bg-midnight/90 rounded-xl p-6 border border-white/10 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div>
+                <span class="text-xs uppercase font-mono text-slate-400 tracking-wider">Estimated Annual Savings</span>
+                <div id="cost-savings" class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-300 font-mono mt-1">$382,800</div>
+              </div>
+
+              <div class="pt-3 border-t border-white/10 grid grid-cols-2 gap-4">
+                <div>
+                  <span class="text-xs text-slate-400 block font-mono">Hours Saved / Qtr</span>
+                  <span id="hours-saved" class="text-2xl font-bold text-white font-mono">576 hrs</span>
+                </div>
+                <div>
+                  <span class="text-xs text-slate-400 block font-mono">Launch Velocity</span>
+                  <span class="text-2xl font-bold text-brand-400 font-mono">6.4x faster</span>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="openDemoModal()" class="w-full py-3 rounded-lg bg-surface-700 hover:bg-surface-600 text-white font-medium text-xs transition border border-white/10 flex items-center justify-center gap-2 mt-6">
+              <span>Request Custom Executive ROI Report</span>
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER CASE TESTIMONIALS -->
+    <section class="py-20 max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-2xl p-7 border border-white/10 flex flex-col justify-between">
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            "Before Connected, launching our bi-weekly enterprise product campaigns required coordinating 3 copywriters, a designer, and a campaign ops lead. Now, one growth marketer drives the entire rollout before lunch."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-300 flex items-center justify-center font-bold text-sm">MR</div>
+            <div>
+              <h5 class="text-sm font-semibold text-white">Maya Rodriguez</h5>
+              <p class="text-xs text-slate-400 font-mono">VP of Demand Gen, CloudScale</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/10 flex flex-col justify-between">
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            "The real breakthrough is the agent coordination. The strategist agent critiques the copywriting agent until it matches our actual positioning. It eliminated the dreaded 'ChatGPT fluff' completely."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-sm">DK</div>
+            <div>
+              <h5 class="text-sm font-semibold text-white">David Krell</h5>
+              <p class="text-xs text-slate-400 font-mono">Head of Product Marketing, SynthData</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-7 border border-white/10 flex flex-col justify-between">
+          <p class="text-slate-300 text-sm leading-relaxed mb-6">
+            "We cut our blended customer acquisition cost (CAC) by 41% across LinkedIn and Search because we can now test 25 audience variants per campaign without burning our internal team out."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-sm">SL</div>
+            <div>
+              <h5 class="text-sm font-semibold text-white">Sarah Lindqvist</h5>
+              <p class="text-xs text-slate-400 font-mono">Chief Marketing Officer, FinPay Global</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING TIERS -->
+    <section class="py-20 max-w-7xl mx-auto px-6" id="pricing">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs uppercase tracking-widest text-brand-400 font-mono mb-3">Predictable Scale</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Flexible tiers for ambitious growth teams</p>
+        <p class="text-slate-400 mt-3 text-base">All tiers include autonomous agent collaboration and brand safety guardrails.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Tier 1: Growth -->
+        <div class="glass-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">Growth Teams</div>
+            <h3 class="text-2xl font-bold text-white">Starter Swarm</h3>
+            <p class="text-slate-400 text-sm mt-2 mb-6">For scaling startups replacing piecemeal copywriting tools with coordinated campaigns.</p>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="text-4xl font-extrabold text-white font-mono">$490</span>
+              <span class="text-xs text-slate-400 font-mono">/month</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-300 border-t border-white/10 pt-6">
+              <li class="flex items-center gap-2">✓ 4 Autonomous Core Agents</li>
+              <li class="flex items-center gap-2">✓ 15 Campaigns per month</li>
+              <li class="flex items-center gap-2">✓ LinkedIn &amp; HubSpot Connectors</li>
+              <li class="flex items-center gap-2">✓ 3 User Seats included</li>
+              <li class="flex items-center gap-2">✓ Standard Brand Tone Indexing</li>
+            </ul>
+          </div>
+          <button onclick="openDemoModal()" class="w-full mt-8 py-3 rounded-xl bg-surface-700 hover:bg-surface-600 text-white font-semibold text-sm transition">
+            Start 14-Day Free Trial
+          </button>
+        </div>
+
+        <!-- Tier 2: Pro (Featured) -->
+        <div class="glass-card rounded-2xl p-8 border-2 border-brand-500/80 bg-surface-900/90 relative flex flex-col justify-between shadow-2xl shadow-brand-500/20">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-mono text-[11px] font-bold uppercase tracking-wider">
+            Most Popular
+          </div>
+          <div>
+            <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-2">Scale Organizations</div>
+            <h3 class="text-2xl font-bold text-white">Autonomous Pro</h3>
+            <p class="text-slate-400 text-sm mt-2 mb-6">For mid-market and high-growth B2B marketing teams running continuous multichannel pipeline.</p>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="text-4xl font-extrabold text-white font-mono">$1,450</span>
+              <span class="text-xs text-slate-400 font-mono">/month</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-300 border-t border-white/10 pt-6">
+              <li class="flex items-center gap-2">✓ Unlimited Agent Swarms</li>
+              <li class="flex items-center gap-2">✓ Unlimited Multichannel Campaigns</li>
+              <li class="flex items-center gap-2">✓ Full MarTech Stack Connectors (Salesforce, Marketo, Meta)</li>
+              <li class="flex items-center gap-2">✓ 12 User Seats with RBAC approvals</li>
+              <li class="flex items-center gap-2">✓ Dynamic Vector Brand Voice Fine-Tuning</li>
+              <li class="flex items-center gap-2">✓ Priority SLA &amp; Campaign Slack Channel</li>
+            </ul>
+          </div>
+          <button onclick="openDemoModal()" class="w-full mt-8 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 hover:opacity-90 text-white font-semibold text-sm transition shadow-lg shadow-brand-500/30">
+            Deploy Pro Workspace
+          </button>
+        </div>
+
+        <!-- Tier 3: Enterprise -->
+        <div class="glass-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">Enterprise</div>
+            <h3 class="text-2xl font-bold text-white">Custom Swarms</h3>
+            <p class="text-slate-400 text-sm mt-2 mb-6">Custom-trained models with zero retention policies, dedicated VPS instances, and bespoke workflow integrations.</p>
+            <div class="flex items-baseline gap-1 mb-6">
+              <span class="text-4xl font-extrabold text-white font-mono">Custom</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-300 border-t border-white/10 pt-6">
+              <li class="flex items-center gap-2">✓ Custom Domain LLMs (Zero Training Retention)</li>
+              <li class="flex items-center gap-2">✓ Bespoke Agent Persona Engineering</li>
+              <li class="flex items-center gap-2">✓ Unlimited Seats &amp; Single Sign-On (SAML/Okta)</li>
+              <li class="flex items-center gap-2">✓ Dedicated Solution Architect &amp; Prompt Engineers</li>
+              <li class="flex items-center gap-2">✓ Custom ERP / On-Prem MarTech Integrations</li>
+            </ul>
+          </div>
+          <button onclick="openDemoModal()" class="w-full mt-8 py-3 rounded-xl bg-surface-700 hover:bg-surface-600 text-white font-semibold text-sm transition">
+            Contact Enterprise Sales
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section class="py-20 max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-mono mb-2">Clear Answers</h2>
+        <h3 class="text-3xl font-bold text-white tracking-tight">Frequently Asked Questions</h3>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Q1 -->
+        <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full p-5 text-left flex items-center justify-between text-white font-semibold text-sm sm:text-base">
+            <span>How does Connected prevent generic AI copywriting and tone-deaf posts?</span>
+            <span id="faq-icon-1" class="text-xl transition-transform duration-300">+</span>
+          </button>
+          <div id="faq-ans-1" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-3">
+            Unlike simple ChatGPT prompts, Connected embeds your brand's actual historical collateral, pitch decks, style guides, and customer win stories into a proprietary RAG vector database. Furthermore, our secondary "Compliance &amp; Brand" agent automatically audits all draft copy against prohibited phrases, competitor positioning guidelines, and readability thresholds before human review.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full p-5 text-left flex items-center justify-between text-white font-semibold text-sm sm:text-base">
+            <span>Do you train public AI models on our proprietary marketing data?</span>
+            <span id="faq-icon-2" class="text-xl transition-transform duration-300">+</span>
+          </button>
+          <div id="faq-ans-2" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-3">
+            Never. We maintain enterprise Zero Data Retention agreements with all our foundation model providers. Your campaigns, brand voice assets, target account lists, and performance analytics are encrypted at rest (AES-256) and strictly siloed to your dedicated tenant.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFaq(3)" class="w-full p-5 text-left flex items-center justify-between text-white font-semibold text-sm sm:text-base">
+            <span>Can human marketers review and override the agents before launch?</span>
+            <span id="faq-icon-3" class="text-xl transition-transform duration-300">+</span>
+          </button>
+          <div id="faq-ans-3" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-3">
+            Yes, Connected is built on a "Human-in-the-Loop by Default" paradigm. Agents prepare the strategy, copy, visual layouts, and tracking configurations in a staging cockpit. Nothing deploys to your live channels without explicit approval from a team member with publish permissions.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFaq(4)" class="w-full p-5 text-left flex items-center justify-between text-white font-semibold text-sm sm:text-base">
+            <span>How fast can an enterprise team get onboarding and fully live?</span>
+            <span id="faq-icon-4" class="text-xl transition-transform duration-300">+</span>
+          </button>
+          <div id="faq-ans-4" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-white/5 pt-3">
+            Most marketing teams complete API connection to their CRM (HubSpot/Marketo) and brand ingestion in less than 48 hours. By day 3, your swarm is ready to generate and test its first live end-to-end campaign.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CALL TO ACTION BANNER -->
+    <section class="py-24 max-w-7xl mx-auto px-6">
+      <div class="relative rounded-3xl overflow-hidden p-10 md:p-16 border border-brand-500/30 bg-gradient-to-br from-surface-900 via-surface-800 to-midnight text-center shadow-2xl">
+        <div class="absolute inset-0 bg-grid opacity-30 pointer-events-none"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+          <span class="text-xs uppercase font-mono tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6 inline-block">
+            Step Into The Agentic Era
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-6">
+            Ready to deploy your first autonomous marketing swarm?
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+            Experience the platform that turns fragmented marketing weeks into cohesive, automated 12-minute execution.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button onclick="openDemoModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-brand-500 to-cyan-500 hover:opacity-95 shadow-xl shadow-brand-500/30 transition">
+              Get Started with Connected
+            </button>
+            <a href="#interactive-simulator" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-semibold text-slate-300 glass-card hover:bg-surface-700/60 hover:text-white transition">
+              Scroll to Interactive Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 bg-midnight/90 py-12 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        </div>
+        <span class="text-white font-bold tracking-tight">Connected Inc.</span>
+        <span class="text-xs text-slate-500 font-mono">© 2025 All rights reserved.</span>
+      </div>
+
+      <div class="flex items-center gap-6 text-xs font-mono">
+        <a href="#" class="hover:text-white transition">Security &amp; Trust</a>
+        <a href="#" class="hover:text-white transition">SOC2 Compliance</a>
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition">Terms of Service</a>
+      </div>
+
+      <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        All Agent Networks Operational (99.98%)
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: BOOK DEMO / SIGN IN -->
+  <div id="demoModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-7 border border-white/20 relative shadow-2xl animate-float">
+      <button onclick="closeDemoModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+      <div class="text-center mb-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white">Experience Connected</h3>
+        <p class="text-xs text-slate-400 mt-1">Get an invite code to test autonomous campaign swarms with your company's actual brand voice.</p>
+      </div>
+
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Work Email</label>
+          <input type="email" required="" placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded-lg bg-surface-900 border border-white/15 text-white text-sm focus:outline-none focus:border-brand-500" style="">
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Company Website</label>
+          <input type="text" required="" placeholder="company.com" class="w-full px-3.5 py-2.5 rounded-lg bg-surface-900 border border-white/15 text-white text-sm focus:outline-none focus:border-brand-500" style="">
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Primary CRM / Marketing Stack</label>
+          <select class="w-full px-3.5 py-2.5 rounded-lg bg-surface-900 border border-white/15 text-white text-sm focus:outline-none focus:border-brand-500">
+            <option>HubSpot</option>
+            <option>Salesforce Pardot</option>
+            <option>Marketo</option>
+            <option>Other / Custom Stack</option>
+          </select>
+        </div>
+        <button type="submit" id="submitBtn" class="w-full py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm transition shadow-lg shadow-brand-500/30">
+          Request Instant Access
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC (Interactive Simulator, Calculator, Tabs) -->
+  <script>
+    // State management for interactive demo
+    const scenarioData = {
+      enterprise: {
+        title: "Enterprise Cloud Migration",
+        agent1: '> Angle: "Stop paying the legacy cloud egress tax. 40% reduction verified."',
+        agent2: '> Generated: 3 High-intent Email drafts, 6 LinkedIn hook variations.',
+        agent3: '> Rendered: 2 Comparison Charts (AWS vs Connected Architecture).',
+        agent4: '> Mapped to 4,200 VP Engineering accounts on HubSpot & LinkedIn.',
+        emailPreview: `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-white/5 text-xs text-slate-400 font-mono">
+              <div><span class="text-slate-500">Subject:</span> Cut your cloud egress bills by 40% before Q4 closes?</div>
+              <div>Agent: Lexicon v2.4</div>
+            </div>
+            <p class="text-sm text-slate-300">Hey <span class="text-brand-400 font-mono bg-brand-500/10 px-1 rounded">{{first_name}}</span>,</p>
+            <p class="text-sm text-slate-300">Saw that <span class="text-brand-400 font-mono bg-brand-500/10 px-1 rounded">{{company_name}}</span> scaled your ingestion cluster this quarter. Most VPs of Engineering tell us cross-zone charges jumped 3x once multi-region data synced.</p>
+            <p class="text-sm text-slate-300">Connected automated away cloud egress penalties for 14 scaleups last month. We ran an automated compute model for {{company_name}}:</p>
+            <div class="p-3 rounded-lg bg-surface-900 border border-brand-500/20 my-2 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-white">Estimated Annual Savings: $148,000</div>
+                <div class="text-[11px] text-slate-400">Validated against {{company_name}} tech profile</div>
+              </div>
+              <button class="px-2.5 py-1 rounded bg-brand-500 text-white text-xs font-semibold">Inspect Spec →</button>
+            </div>
+            <p class="text-sm text-slate-300">Worth a brief 8-minute discussion this Thursday?</p>
+          </div>
+        `,
+        linkedinPreview: `
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center font-bold text-xs text-white">C</div>
+              <div>
+                <div class="text-xs font-bold text-white">Connected Cloud Infrastructure <span class="text-slate-500 text-[10px] font-normal">• Promoted</span></div>
+                <div class="text-[10px] text-slate-400">Targeting: VP Infrastructure & DevOps</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-200">The "Cloud Egress Tax" is quietly devouring 22% of B2B SaaS engineering margins. See why fast-growing infrastructure teams are switching to coordinated edge routing.</p>
+            <div class="rounded-lg overflow-hidden border border-white/10 bg-surface-900 p-4 text-center">
+              <div class="text-xs uppercase font-mono text-cyan-400">BENCHMARK REPORT</div>
+              <div class="text-base font-bold text-white mt-1">2025 Multi-Cloud Cost Optimization Index</div>
+              <div class="mt-3 inline-block px-3 py-1 rounded bg-brand-600 text-[11px] text-white font-medium">Download Free Benchmark (PDF)</div>
+            </div>
+          </div>
+        `,
+        briefPreview: `
+          <div class="space-y-2 text-xs font-mono text-slate-300">
+            <div class="text-brand-400 font-bold">// STRATEGY BRIEF GENERATED BY AURA //</div>
+            <div><span class="text-slate-500">Target ICP:</span> VPs of Engineering & Directors of Platform ($50M+ ARR)</div>
+            <div><span class="text-slate-500">Core Narrative:</span> Fiscal responsibility in infrastructure without sacrificing throughput.</div>
+            <div><span class="text-slate-500">Key Proof Point:</span> 40% validated egress cost reduction in &lt;14 days migration.</div>
+            <div><span class="text-slate-500">Competitor Counter:</span> Directly disarms "migration downtime fear" with zero-downtime blue/green deployment guarantee.</div>
+          </div>
+        `
+      },
+      product: {
+        title: "Q3 Product Tier Launch",
+        agent1: '> Angle: "Feature release targeting self-serve users ready for enterprise SSO."',
+        agent2: '> Generated: In-app banner copy, feature announcement changelog, upsell email.',
+        agent3: '> Rendered: 3 feature badge graphics with custom SVG product diagrams.',
+        agent4: '> Syncing trigger: Users with >10 team members not on Enterprise Plan.',
+        emailPreview: `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-white/5 text-xs text-slate-400 font-mono">
+              <div><span class="text-slate-500">Subject:</span> You just unlocked Connected Enterprise Governance</div>
+              <div>Agent: Lexicon v2.4</div>
+            </div>
+            <p class="text-sm text-slate-300">Hey <span class="text-brand-400 font-mono bg-brand-500/10 px-1 rounded">{{first_name}}</span>,</p>
+            <p class="text-sm text-slate-300">Your workspace reached 14 active collaborators this month. To help your security team sleep at night, we just activated our Okta SSO and Audit Logs preview directly on your existing workspace.</p>
+            <div class="p-3 rounded-lg bg-surface-900 border border-cyan-500/20 my-2">
+              <span class="text-xs font-mono text-emerald-400">PROMO CODE: ENTERPRISE_UPGRADE_Q3</span>
+              <p class="text-xs text-slate-300 mt-1">Get 60 days of enterprise governance without changing contracts.</p>
+            </div>
+            <p class="text-sm text-slate-300">Would you like our security engineer to jump on a 5-min verification call?</p>
+          </div>
+        `,
+        linkedinPreview: `
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-xs text-white">C</div>
+              <div>
+                <div class="text-xs font-bold text-white">Connected Workspace • Update</div>
+                <div class="text-[10px] text-slate-400">Targeting: IT Directors & Security Leads</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-200">Introducing Agentic RBAC: Now give your creative teams unlimited AI power without risking sensitive customer PII or brand violations.</p>
+            <div class="rounded-lg border border-white/10 bg-surface-900 p-4 text-center">
+              <span class="text-[11px] font-mono text-emerald-400">NEW ENTERPRISE TIER</span>
+              <div class="text-sm font-bold text-white mt-1">SAML, SCIM & Agent-Level Fact Checking</div>
+            </div>
+          </div>
+        `,
+        briefPreview: `
+          <div class="space-y-2 text-xs font-mono text-slate-300">
+            <div class="text-cyan-400 font-bold">// STRATEGY BRIEF GENERATED BY AURA //</div>
+            <div><span class="text-slate-500">Target ICP:</span> Team leads on Pro plans with expanding seat count.</div>
+            <div><span class="text-slate-500">Trigger Event:</span> Added 3+ users in the last 14 days.</div>
+            <div><span class="text-slate-500">Primary Objective:</span> Convert self-serve usage into negotiated annual contract.</div>
+          </div>
+        `
+      },
+      growth: {
+        title: "Account-Based ABM",
+        agent1: '> Angle: "1:1 Hyper-personalized outbound built on latest 10-K & earnings call."',
+        agent2: '> Generated: 5 custom landing page blurbs for Fortune 500 target accounts.',
+        agent3: '> Rendered: Account-specific co-branded mockups for landing pages.',
+        agent4: '> Pipeline: Synced directly to SalesLoft cadence and LinkedIn matched audiences.',
+        emailPreview: `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-white/5 text-xs text-slate-400 font-mono">
+              <div><span class="text-slate-500">Subject:</span> Note regarding {{target_company}}'s Q2 digital transformation priority</div>
+              <div>Agent: Lexicon v2.4 (ABM Swarm)</div>
+            </div>
+            <p class="text-sm text-slate-300">Hi <span class="text-brand-400 font-mono bg-brand-500/10 px-1 rounded">{{first_name}}</span>,</p>
+            <p class="text-sm text-slate-300">Noticed on {{target_company}}'s latest shareholder presentation that your team has prioritized eliminating legacy marketing tech overhead by 25% this fiscal year.</p>
+            <p class="text-sm text-slate-300">Connected built a dedicated deployment preview for {{target_company}} demonstrating how coordinated agents can handle 80% of localized marketing collateral without agency retainers.</p>
+            <div class="p-2.5 rounded bg-surface-900 border border-white/10 text-xs font-mono text-cyan-300">
+              Private portal generated: connected.ai/preview/{{target_company}}
+            </div>
+          </div>
+        `,
+        linkedinPreview: `
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white">ABM</div>
+              <div>
+                <div class="text-xs font-bold text-white">Targeted Account Dispatch</div>
+                <div class="text-[10px] text-slate-400">Exclusive 1-to-1 Matched Audience</div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-200">How leaders at {{target_company}} are standardizing AI deployment safely across 12 product lines.</p>
+          </div>
+        `,
+        briefPreview: `
+          <div class="space-y-2 text-xs font-mono text-slate-300">
+            <div class="text-emerald-400 font-bold">// STRATEGY BRIEF GENERATED BY AURA //</div>
+            <div><span class="text-slate-500">ABM Account:</span> Tier 1 Strategic Accounts ($500M+ revenue)</div>
+            <div><span class="text-slate-500">Trigger:</span> Public mentions of marketing consolidation.</div>
+            <div><span class="text-slate-500">Dynamic Fields:</span> 12 distinct variable tags mapped via CRM.</div>
+          </div>
+        `
+      }
+    };
+
+    let currentScenario = 'enterprise';
+    let currentTab = 'email';
+
+    function setScenario(key) {
+      currentScenario = key;
+      // update buttons
+      document.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-surface-700/60', 'text-slate-300');
+      });
+      document.getElementById('tab-' + key).classList.add('bg-brand-600', 'text-white');
+      document.getElementById('tab-' + key).classList.remove('bg-surface-700/60', 'text-slate-300');
+
+      // Update Agent Snippets
+      document.getElementById('output-snippet-1').innerText = scenarioData[key].agent1;
+      document.getElementById('output-snippet-2').innerText = scenarioData[key].agent2;
+      document.getElementById('output-snippet-3').innerText = scenarioData[key].agent3;
+      document.getElementById('output-snippet-4').innerText = scenarioData[key].agent4;
+
+      renderPreview();
+    }
+
+    function previewTab(type) {
+      currentTab = type;
+      document.querySelectorAll('.output-pill').forEach(btn => {
+        btn.classList.remove('bg-brand-500', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+      document.getElementById('p-tab-' + type).classList.add('bg-brand-500', 'text-white');
+      document.getElementById('p-tab-' + type).classList.remove('text-slate-400');
+
+      renderPreview();
+    }
+
+    function renderPreview() {
+      const display = document.getElementById('dynamic-display');
+      const data = scenarioData[currentScenario];
+      if (currentTab === 'email') {
+        display.innerHTML = data.emailPreview;
+      } else if (currentTab === 'linkedin') {
+        display.innerHTML = data.linkedinPreview;
+      } else if (currentTab === 'brief') {
+        display.innerHTML = data.briefPreview;
+      }
+    }
+
+    function restartSimulation() {
+      const b1 = document.getElementById('badge-1');
+      const b2 = document.getElementById('badge-2');
+      const b3 = document.getElementById('badge-3');
+      const b4 = document.getElementById('badge-4');
+
+      b1.innerText = "Processing...";
+      b1.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300";
+      b2.innerText = "Waiting...";
+      b2.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-700 text-slate-400";
+      b3.innerText = "Waiting...";
+      b3.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-700 text-slate-400";
+      b4.innerText = "Waiting...";
+      b4.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-700 text-slate-400";
+
+      setTimeout(() => {
+        b1.innerText = "Completed (0.9s)";
+        b1.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400";
+        b2.innerText = "Synthesizing Copy...";
+        b2.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300";
+      }, 700);
+
+      setTimeout(() => {
+        b2.innerText = "Completed (1.2s)";
+        b2.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400";
+        b3.innerText = "Rendering Assets...";
+        b3.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300";
+      }, 1500);
+
+      setTimeout(() => {
+        b3.innerText = "Completed (1.4s)";
+        b3.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400";
+        b4.innerText = "Targeting Verified";
+        b4.className = "text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400";
+      }, 2300);
+    }
+
+    function approveLaunch() {
+      const btn = document.getElementById('approveBtn');
+      btn.innerHTML = `<span class="inline-block animate-spin mr-1">↻</span> Dispatched to HubSpot & LinkedIn!`;
+      btn.classList.remove('bg-brand-600', 'hover:bg-brand-500');
+      btn.classList.add('bg-emerald-600');
+      setTimeout(() => {
+        btn.innerHTML = `<svg class="w-3.5 h-3.5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Campaigns Live (3 Channels)`;
+      }, 1200);
+    }
+
+    // ROI CALCULATOR
+    function calculateROI() {
+      const teamSize = parseInt(document.getElementById('team-size').value);
+      const campaigns = parseInt(document.getElementById('campaigns-count').value);
+      const agency = parseInt(document.getElementById('agency-spend').value);
+
+      document.getElementById('team-size-val').innerText = teamSize + " members";
+      document.getElementById('campaigns-val').innerText = campaigns + " campaigns";
+      document.getElementById('agency-val').innerText = "$" + agency.toLocaleString() + " / mo";
+
+      // Simple modeling logic
+      // Hours per campaign manually: ~70 hours across copy, visual, QA, tagging
+      // With Connected: ~6 hours
+      const hoursSavedPerQuarter = campaigns * 48; 
+      // Financial savings: 75% of agency spend + team efficiency
+      const annualAgencySavings = agency * 12 * 0.70;
+      const internalTeamTimeValuation = hoursSavedPerQuarter * 4 * 75; // $75/hr assumed
+      const totalSavings = Math.round(annualAgencySavings + internalTeamTimeValuation);
+
+      document.getElementById('cost-savings').innerText = "$" + totalSavings.toLocaleString();
+      document.getElementById('hours-saved').innerText = hoursSavedPerQuarter.toLocaleString() + " hrs";
+    }
+
+    // FAQ ACCORDION TOGGLE
+    function toggleFaq(num) {
+      const ans = document.getElementById('faq-ans-' + num);
+      const icon = document.getElementById('faq-icon-' + num);
+      if (ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        icon.innerText = "−";
+      } else {
+        ans.classList.add('hidden');
+        icon.innerText = "+";
+      }
+    }
+
+    // MODAL CONTROL
+    function openDemoModal() {
+      document.getElementById('demoModal').classList.remove('hidden');
+    }
+    function closeDemoModal() {
+      document.getElementById('demoModal').classList.add('hidden');
+    }
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = "Reserving Sandbox Instance...";
+      setTimeout(() => {
+        btn.innerText = "✓ Access Pass Sent to Your Email!";
+        btn.classList.remove('bg-brand-500');
+        btn.classList.add('bg-emerald-600');
+        setTimeout(() => {
+          closeDemoModal();
+        }, 1800);
+      }, 1000);
+    }
+
+    // Initialize defaults on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateROI();
+      renderPreview();
+    });
+  </script>
+
+</body></html>

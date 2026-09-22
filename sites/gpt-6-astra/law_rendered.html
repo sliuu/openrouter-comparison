@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#183f35">
+  <meta name="description" content="Harlow &amp; Pierce is a Michigan personal injury law firm. Personal attention. Clear guidance. A stronger way forward.">
+  <title>Harlow &amp; Pierce — Your Recovery. Our Resolve.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--cream:#f6f4ed;--green:#183f35;--green-dark:#103129;--orange:#c96038;--ink:#243e35;--muted:#6a7068;--line:#dcded4;--white:#fff;--serif:"DM Serif Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:100px}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased}
+    button,input,textarea,select{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    a{color:inherit;text-decoration:none}
+    button{cursor:pointer}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
+    ::selection{background:#eac6a7;color:var(--green)}
+    .container{width:min(1280px,calc(100% - 112px));margin:auto}
+    .eyebrow{font-size:10px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+    .eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0}
+    .arrow{display:inline-block;font-size:22px;font-family:Arial,sans-serif;font-weight:400;line-height:1}
+    .button{border:0;background:var(--green);color:var(--white);display:inline-flex;justify-content:center;align-items:center;gap:26px;padding:18px 23px;font-size:12px;font-weight:600;transition:background .2s,transform .2s}
+    .button:hover{background:var(--green-dark);transform:translateY(-2px)}
+    .button.orange{background:var(--orange)}
+    .button.orange:hover{background:#b94f29}
+    .skip{position:fixed;left:15px;top:-100px;padding:12px;background:white;z-index:100}
+    .skip:focus{top:15px}
+    .topbar{background:var(--green);color:#e4e9df;font-size:10px;letter-spacing:.3px}
+    .topbar .container{height:33px;display:flex;justify-content:space-between;align-items:center}
+    .topbar a{display:flex;align-items:center;gap:8px}
+    .topbar svg{width:12px;height:12px}
+    header{border-bottom:1px solid var(--line)}
+    .header-inner{height:100px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .monogram{width:43px;height:46px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:35px;position:relative;letter-spacing:-9px;padding-right:8px}
+    .monogram:after{content:"";position:absolute;width:1px;height:37px;transform:rotate(27deg);background:var(--orange);left:23px;top:6px}
+    .brand-name{font-family:var(--serif);font-size:24px;line-height:1.1;letter-spacing:-.6px}
+    .brand-subtitle{font-size:8px;font-weight:600;letter-spacing:2.8px;margin-top:7px}
+    nav{display:flex;align-items:center;gap:28px}
+    nav a{font-size:11px;font-weight:550;position:relative}
+    nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--orange);transition:right .2s}
+    nav a:hover:after{right:0}
+    .header-cta{font-size:11px;padding:15px 18px;gap:22px}
+    .menu-toggle{display:none;background:none;border:1px solid var(--line);width:42px;height:42px;color:var(--green)}
+    .hero{display:grid;grid-template-columns:1.12fr 1fr;gap:65px;padding-top:65px;padding-bottom:67px;align-items:center}
+    .hero-copy{padding-bottom:5px}
+    .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(63px,6.45vw,92px);line-height:1.04;letter-spacing:-3.8px;margin:25px 0 25px}
+    .hero h1 em{font-weight:400;color:var(--orange)}
+    .hero-description{font-size:14px;line-height:1.85;color:var(--muted);max-width:355px;margin:0 0 29px}
+    .hero-actions{display:flex;align-items:center;gap:22px}
+    .fee-note{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted)}
+    .fee-note svg{width:14px;height:16px;color:var(--green)}
+    .hero-proof{display:flex;align-items:center;gap:13px;margin-top:38px}
+    .proof-stars{font-size:13px;letter-spacing:2px;color:var(--orange);margin-bottom:5px}
+    .proof-copy{font-size:10px;color:var(--muted);line-height:1.6}
+    .proof-copy strong{font-weight:600;color:var(--ink)}
+    .proof-icon{width:35px;height:35px;display:flex;align-items:center;justify-content:center;border:1px solid #cbd1c3;border-radius:50%;font-family:var(--serif);font-size:20px}
+    .hero-visual{position:relative;padding-left:12px}
+    .photo-wrap{height:493px;overflow:hidden;border-radius:230px 230px 3px 3px;position:relative;background:#6f8072}
+    .photo-wrap>img{width:100%;height:100%;object-fit:cover;object-position:57% center;filter:brightness(.78) saturate(.55);transform:scale(1.02)}
+    .photo-wrap:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,43,33,.88),transparent 67%)}
+    .photo-copy{position:absolute;left:42px;bottom:36px;z-index:1;color:var(--cream)}
+    .photo-copy small{font-size:8px;letter-spacing:2px;font-weight:600}
+    .photo-copy p{font-family:var(--serif);font-size:33px;line-height:1.15;margin:12px 0 0;letter-spacing:-.6px}
+    .roundel{position:absolute;right:-24px;top:46px;width:106px;height:106px;border-radius:50%;background:var(--cream);padding:6px;transform:rotate(12deg)}
+    .roundel svg{width:100%;height:100%;fill:var(--green)}
+    .photo-caption{position:absolute;right:-29px;bottom:13px;writing-mode:vertical-rl;font-size:8px;letter-spacing:2px;color:var(--muted)}
+    .metrics{background:#eaece3;border-top:1px solid #e0e3d8;border-bottom:1px solid #e0e3d8}
+    .metric-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;padding-top:27px;padding-bottom:27px}
+    .metric{border-left:1px solid #cdd3c6;padding-left:42px;display:flex;align-items:center;gap:16px}
+    .metric:first-child{border:none;padding-left:0;gap:14px}
+    .metric strong{font-family:var(--serif);font-size:39px;font-weight:400;letter-spacing:-1.5px;line-height:1}
+    .metric p{margin:0;font-size:10px;line-height:1.6;color:#626e61}
+    .metric .michigan{width:38px;height:44px;flex-shrink:0}
+    .metric:first-child p{font-size:11px;font-weight:500;color:var(--green)}
+    section{scroll-margin-top:30px}
+    .practice{padding:78px 0 82px}
+    .section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:50px;margin:16px 0 33px}
+    h2{font-family:var(--serif);font-weight:400;font-size:47px;line-height:1.12;letter-spacing:-1.4px;margin:0}
+    h2 em{font-weight:400}
+    .section-heading>p{max-width:320px;color:var(--muted);font-size:12px;line-height:1.85;margin:0 0 4px}
+    .practice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .practice-card{border:1px solid #d9ddd2;position:relative;padding:26px 22px 20px;min-height:244px;display:flex;flex-direction:column;transition:background .2s,border-color .2s}
+    .practice-card:hover{background:#eeeee5;border-color:#a9b5a4}
+    .practice-card>svg{width:35px;height:35px;stroke:var(--green);stroke-width:1.25;fill:none;margin-bottom:25px}
+    .practice-card h3{font-family:var(--serif);font-size:21px;font-weight:400;margin:0 0 10px;letter-spacing:-.3px}
+    .practice-card p{font-size:11px;line-height:1.8;color:var(--muted);margin:0 0 21px}
+    .practice-card button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;padding:0;margin-top:auto;color:var(--green);font-size:10px;font-weight:600;text-align:left}
+    .practice-card button:after{content:"";position:absolute;inset:0}
+    .practice-bottom{display:flex;justify-content:center;align-items:center;gap:9px;font-size:11px;margin-top:26px;color:var(--muted)}
+    .text-link{border:0;background:none;color:var(--green);padding:0 0 3px;border-bottom:1px solid var(--green);font-size:inherit;font-weight:600}
+    .about{background:var(--green);color:var(--cream);padding:72px 0}
+    .about-grid{display:grid;grid-template-columns:.94fr 1fr;gap:95px;align-items:center}
+    .about .eyebrow{color:#dce0d4}
+    .about h2{margin:20px 0 24px;font-size:49px}
+    .about .intro{font-size:13px;line-height:1.9;color:#c1cec3;max-width:385px}
+    .about-link{display:inline-flex;align-items:center;gap:26px;font-size:11px;margin-top:12px;padding-bottom:9px;border-bottom:1px solid #879e8a}
+    .steps{border-top:1px solid #49665a}
+    .step{display:grid;grid-template-columns:33px 1fr;gap:14px;padding:25px 0;border-bottom:1px solid #49665a}
+    .step-number{font-size:11px;color:#c88a63;margin-top:5px}
+    .step h3{font-family:var(--serif);font-size:24px;font-weight:400;margin:0 0 8px}
+    .step p{font-size:12px;line-height:1.8;color:#bdcabe;margin:0;max-width:330px}
+    .promise{padding:74px 0;text-align:center}
+    .promise .eyebrow{justify-content:center}
+    blockquote{font-family:var(--serif);font-size:36px;line-height:1.4;letter-spacing:-.6px;max-width:760px;margin:25px auto 23px}
+    .signature{font-size:11px;line-height:1.9}
+    .signature span{display:block;font-size:10px;color:var(--muted)}
+    .contact{padding-bottom:72px}
+    .contact-box{background:#e9e9dd;padding:42px 48px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .contact-box h2{font-size:37px}
+    .contact-box p{font-size:12px;color:var(--muted);margin:12px 0 0}
+    .contact-actions{text-align:center}
+    .contact-actions>a{display:block;font-size:11px;margin-top:13px}
+    footer{border-top:1px solid var(--line);padding:36px 0 23px}
+    .footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:30px;gap:30px}
+    .footer-description{font-size:11px;color:var(--muted);max-width:230px;line-height:1.8}
+    .footer-links{display:flex;gap:25px;font-size:11px}
+    .footer-bottom{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;font-size:9px;color:var(--muted);gap:20px}
+    .footer-bottom button{border:0;background:none;padding:0;color:inherit;font-size:inherit}
+    .legal{font-size:9px;line-height:1.7;color:#808479;margin-top:18px;max-width:900px}
+    dialog{border:0;padding:0;width:min(520px,calc(100% - 32px));max-height:90vh;background:var(--cream);color:var(--green);box-shadow:0 20px 80px #10282055}
+    dialog::backdrop{background:#102e28a8;backdrop-filter:blur(4px)}
+    .modal-inner{padding:37px}
+    .modal-close{position:absolute;right:15px;top:13px;width:30px;height:30px;border:0;background:none;font-size:25px;color:var(--green)}
+    dialog h2{font-size:35px;margin:16px 0}
+    dialog p{font-size:13px;line-height:1.8;color:var(--muted)}
+    .field{display:flex;flex-direction:column;gap:7px;margin-top:15px}
+    .field label{font-size:11px;font-weight:600}
+    .field input,.field textarea{width:100%;border:1px solid #cdd3c6;padding:12px;background:#fdfcf8;border-radius:0;color:var(--green);font-size:13px}
+    .field textarea{resize:vertical;min-height:88px}
+    .form-note{font-size:10px!important;line-height:1.6!important}
+    form .button{width:100%;margin-top:10px}
+    .success{padding:14px;border:1px solid #b8c3af;background:#e7ecdf;font-size:12px;line-height:1.8;margin-top:15px}
+    [hidden]{display:none!important}
+    @media(min-width:1450px){.hero{gap:90px}.photo-wrap{height:535px}.hero h1{font-size:97px}}
+    @media(max-width:1100px){.container{width:calc(100% - 64px)}nav{gap:18px}.hero{gap:35px}.hero h1{font-size:72px}.hero-actions{gap:12px;flex-wrap:wrap}.photo-wrap{height:470px}.metric{padding-left:23px;gap:12px}.metric strong{font-size:34px}.about-grid{gap:55px}.practice-card{padding:23px 18px}.header-inner{gap:15px}.brand-name{font-size:21px}}
+    @media(max-width:850px){.header-inner{height:85px}.menu-toggle{display:block}.header-cta{margin-left:auto}nav{display:none;position:absolute;left:0;right:0;top:118px;background:var(--cream);padding:25px 32px;z-index:10;box-shadow:0 12px 20px #183f3510;flex-direction:column;align-items:flex-start;gap:25px;border-bottom:1px solid var(--line)}nav.open{display:flex}nav a{font-size:14px}.hero{gap:27px;padding-top:45px;padding-bottom:45px}.hero h1{font-size:58px;letter-spacing:-2.7px}.hero .eyebrow{font-size:8px;letter-spacing:1.4px}.hero-description{font-size:12px}.photo-wrap{height:430px}.photo-copy{left:24px;bottom:28px}.photo-copy p{font-size:28px}.photo-copy small{font-size:7px}.roundel{width:86px;height:86px;right:-16px}.photo-caption{right:-20px;font-size:7px}.metric-grid{grid-template-columns:repeat(2,1fr);gap:25px}.metric:nth-child(3){border-left:0;padding-left:0}.metric:nth-child(even){padding-left:35px}.practice-grid{grid-template-columns:repeat(2,1fr)}.practice-card{min-height:225px}.section-heading{gap:30px}h2{font-size:39px}.section-heading>p{max-width:260px;font-size:11px}.about-grid{gap:35px}.about h2{font-size:39px}.step h3{font-size:22px}.contact-box{padding:35px 30px}.contact-box h2{font-size:31px}.footer-description{display:none}}
+    @media(max-width:600px){.container{width:calc(100% - 40px)}.topbar .container{font-size:9px}.topbar .location-text{display:none}.header-inner{height:79px}.brand-name{font-size:20px}.brand-subtitle{font-size:6px;letter-spacing:2.4px}.brand{gap:8px}.monogram{width:35px;font-size:30px}.monogram:after{left:20px}.header-cta{display:none}nav{top:112px}.hero{grid-template-columns:1fr;gap:34px;padding-top:37px}.hero h1{font-size:68px;letter-spacing:-3px;margin-top:21px;margin-bottom:20px}.hero .eyebrow{font-size:9px;letter-spacing:1.8px}.hero-description{font-size:13px;max-width:340px}.hero-actions{gap:16px}.button{padding:17px 20px;gap:24px}.hero-proof{margin-top:24px}.hero-visual{padding:0 10px 0 0;max-width:430px;width:100%;margin:auto}.photo-wrap{height:380px;border-radius:190px 190px 2px 2px}.photo-wrap>img{object-position:center 55%}.roundel{right:-1px;top:28px;width:90px;height:90px}.photo-copy{left:28px}.photo-copy p{font-size:31px}.photo-caption{right:-6px}.metric-grid{padding:24px 0;gap:27px 15px}.metric{gap:10px}.metric:nth-child(even){padding-left:20px}.metric strong{font-size:33px}.metric p{font-size:9px}.metric:first-child p{font-size:10px}.metric .michigan{width:30px}.practice{padding:51px 0}.section-heading{display:block;margin-top:19px}h2{font-size:38px}.section-heading>p{max-width:100%;font-size:12px;margin-top:19px}.practice-grid{gap:12px}.practice-card{padding:21px 16px;min-height:244px}.practice-card h3{font-size:20px}.practice-card p{font-size:10px}.practice-card>svg{margin-bottom:22px;width:31px}.practice-bottom{flex-wrap:wrap;font-size:10px;gap:7px}.about{padding:50px 0}.about-grid{grid-template-columns:1fr;gap:35px}.about h2{font-size:41px}.about .intro{max-width:100%}.step{padding:23px 0}.step p{max-width:100%}.promise{padding:51px 0}blockquote{font-size:29px}.contact{padding-bottom:48px}.contact-box{display:block;padding:31px 25px}.contact-box h2{font-size:34px}.contact-box p{line-height:1.8}.contact-actions{text-align:left;margin-top:25px}.contact-actions>a{padding-left:7px}.footer-top{flex-wrap:wrap;gap:25px}.footer-links{gap:20px;font-size:10px}.footer-bottom{flex-wrap:wrap;gap:12px}.modal-inner{padding:30px 24px}dialog h2{font-size:31px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="topbar">
+    <div class="container">
+      <span>Michigan roots. Unwavering resolve.</span>
+      <a href="tel:+12485550148">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2C10 21 3 14 3 5a2 2 0 0 1 2-2Z"></path></svg>
+        <span class="location-text">Let's talk.</span> (248) 555-0148
+      </a>
+    </div>
+  </div>
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Harlow and Pierce home">
+        <span class="monogram" aria-hidden="true">HP</span>
+        <div><div class="brand-name">Harlow &amp; Pierce</div><div class="brand-subtitle">PERSONAL INJURY LAW</div></div>
+      </a>
+      <nav id="navigation" aria-label="Main navigation">
+        <a href="#about">Our firm</a>
+        <a href="#practice">Practice areas</a>
+        <a href="#approach">Our approach</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="button header-cta" data-consult="">Free consultation <span class="arrow" aria-hidden="true">↗</span></button>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navigation">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="container hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow">Michigan personal injury attorneys</div>
+        <h1 id="hero-title">Your recovery.<br><em>Our resolve.</em></h1>
+        <p class="hero-description">Life can change in an instant. We help you take the next step—with clear answers, personal attention, and a relentless commitment to what’s right.</p>
+        <div class="hero-actions">
+          <button class="button orange" data-consult="">Let’s talk about your case <span class="arrow" aria-hidden="true">↗</span></button>
+          <span class="fee-note"><svg viewBox="0 0 20 22" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m10 2 7 3v6c0 4-7 9-7 9S3 15 3 11V5l7-3Z"></path><path d="m6.5 10 2.5 2.5 4.5-5"></path></svg>No fee unless we win.</span>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-icon" aria-hidden="true">H<span style="color:var(--orange)">.</span></div>
+          <div class="proof-copy"><strong>Real people. Real commitment.</strong><br>Proudly standing with Michigan.</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="photo-wrap">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="A welcoming, light-filled office with natural greenery" fetchpriority="high">
+          <div class="photo-copy"><small>MORE THAN YOUR ATTORNEYS.</small><p>Your advocates.<br>Your way forward.</p></div>
+        </div>
+        <div class="roundel" aria-label="Michigan rooted, client focused">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <defs><path id="circle-text" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"></path></defs>
+            <circle cx="50" cy="50" r="46" fill="none" stroke="#cfd4c7" stroke-width=".6"></circle>
+            <text font-family="DM Sans, sans-serif" font-size="7.2" letter-spacing="1.5"><textPath href="#circle-text" startOffset="1%">MICHIGAN ROOTED · CLIENT FOCUSED ·</textPath></text>
+            <path d="M50 29v42M29 50h42M36 36l28 28M36 64l28-28" stroke="#c96038" stroke-width="1.2"></path>
+            <circle cx="50" cy="50" r="9" fill="#f6f4ed" stroke="#c96038" stroke-width="1.2"></circle>
+            <circle cx="50" cy="50" r="3" fill="#c96038"></circle>
+          </svg>
+        </div>
+        <span class="photo-caption">HERE FOR YOU. HERE IN MICHIGAN.</span>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Our commitment at a glance">
+      <div class="container metric-grid">
+        <div class="metric">
+          <svg class="michigan" viewBox="0 0 45 54" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="m17 49 2-12-3-10 3-8 5-2 1-7 5 2 4 8 2 5 5-2 2 5-3 8-2 10-7 4Z"></path><path d="m3 11 6-4 7 1 4-4 3 1-3 6-6 1-3 4-4-2Z"></path></svg>
+          <p>Local knowledge.<br>Statewide strength.</p>
+        </div>
+        <div class="metric"><strong>100%</strong><p>Focused on<br>your recovery</p></div>
+        <div class="metric"><strong>$0</strong><p>Upfront attorney<br>fees</p></div>
+        <div class="metric"><strong>You.</strong><p>Always our<br>first priority</p></div>
+      </div>
+    </section>
+
+    <section class="container practice" id="practice">
+      <div class="eyebrow">How we can help</div>
+      <div class="section-heading">
+        <h2>When life changes,<br>we help you move forward.</h2>
+        <p>An injury shouldn’t define your future. We handle the legal complexities so you can focus on what matters most: getting better.</p>
+      </div>
+      <div class="practice-grid">
+        <article class="practice-card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m8 17 4-9h16l4 9M5 18h30v12H5zM10 30v4M30 30v4M5 24h30M10 20v2M30 20v2M12 8l-1-3M28 8l1-3"></path><path d="M3 15h4M33 15h4"></path></svg>
+          <h3>Auto accidents</h3><p>A clear path through insurance claims, medical bills, and what comes next.</p>
+          <button data-practice="auto">Explore this area <span class="arrow" aria-hidden="true">↗</span></button>
+        </article>
+        <article class="practice-card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 10h22v20H3zM25 18h7l5 7v5H25M25 25h12"></path><circle cx="10" cy="30" r="4" fill="var(--cream)"></circle><circle cx="30" cy="30" r="4" fill="var(--cream)"></circle><path d="M6 6h14M6 17h11M6 21h8"></path></svg>
+          <h3>Truck accidents</h3><p>Strong advocacy when serious collisions bring complicated challenges.</p>
+          <button data-practice="truck">Explore this area <span class="arrow" aria-hidden="true">↗</span></button>
+        </article>
+        <article class="practice-card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="10" cy="29" r="7"></circle><circle cx="31" cy="29" r="7"></circle><path d="m10 29 8-15 8 15H10l7-10h10l4 10M24 9h5l3 9M12 14h9"></path></svg>
+          <h3>Motorcycle accidents</h3><p>Protecting your rights, challenging assumptions, and making your voice heard.</p>
+          <button data-practice="motorcycle">Explore this area <span class="arrow" aria-hidden="true">↗</span></button>
+        </article>
+        <article class="practice-card">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m20 4 13 5v11c0 8-13 16-13 16S7 28 7 20V9l13-5Z"></path><path d="M17 13h6v5h5v6h-5v5h-6v-5h-5v-6h5Z"></path></svg>
+          <h3>Serious injuries</h3><p>Dedicated support for life-altering injuries and the families they affect.</p>
+          <button data-practice="injury">Explore this area <span class="arrow" aria-hidden="true">↗</span></button>
+        </article>
+      </div>
+      <div class="practice-bottom">Not sure where your case fits? <button class="text-link" data-consult="">Let’s figure it out together <span aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="eyebrow">A different kind of law firm</div>
+          <h2>Big on advocacy.<br><em>Personal by nature.</em></h2>
+          <p class="intro">You’re not a file number. You’re a person with a story, a family, and a future worth fighting for. At Harlow &amp; Pierce, we never lose sight of that.</p>
+          <a href="#contact" class="about-link">Get to know your advocates <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="steps" id="approach">
+          <div class="step"><span class="step-number">01 /</span><div><h3>First, we listen.</h3><p>Your story matters. We take the time to understand what happened and what you need to move forward.</p></div></div>
+          <div class="step"><span class="step-number">02 /</span><div><h3>Then, we make a plan.</h3><p>Honest advice. Clear next steps. A strategy built around your circumstances—not a one-size-fits-all approach.</p></div></div>
+          <div class="step"><span class="step-number">03 /</span><div><h3>We stand with you.</h3><p>From the first conversation to the final resolution, you’ll have a committed team in your corner.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container promise">
+      <div class="eyebrow">The Harlow &amp; Pierce promise</div>
+      <blockquote>“The work is about more than a case.<br>It’s about helping someone get their life back.”</blockquote>
+      <div class="signature">A personal commitment. A shared purpose.<span>The team at Harlow &amp; Pierce</span></div>
+    </section>
+
+    <section class="container contact" id="contact">
+      <div class="contact-box">
+        <div><h2>Your next chapter starts<br>with a conversation.</h2><p>No pressure. No upfront fees. Just a team ready to listen.</p></div>
+        <div class="contact-actions"><button class="button orange" data-consult="">Get your free case review <span class="arrow" aria-hidden="true">↗</span></button><a href="tel:+12485550148">Or call us at <strong>(248) 555-0148</strong></a></div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <a class="brand" href="#" aria-label="Harlow and Pierce home"><span class="monogram" aria-hidden="true">HP</span><div><div class="brand-name">Harlow &amp; Pierce</div><div class="brand-subtitle">PERSONAL INJURY LAW</div></div></a>
+        <div class="footer-description">Rooted in Michigan.<br>Committed to your way forward.</div>
+        <div class="footer-links"><a href="#about">Our firm</a><a href="#practice">Practice areas</a><a href="#contact">Let’s talk ↗</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> Harlow &amp; Pierce. All rights reserved.</span><button id="privacy-button">Privacy &amp; legal information</button><span>Proudly serving Michigan.</span></div>
+      <p class="legal">This website provides general information, not legal advice. Contacting our firm does not establish an attorney-client relationship. Each case is different; outcomes are not guaranteed. Contingent attorney fees and responsibility for case costs are governed by a written representation agreement.</p>
+    </div>
+  </footer>
+
+  <dialog id="consultation" aria-labelledby="consult-title">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close consultation form">×</button>
+      <div class="eyebrow">Your first step forward</div>
+      <h2 id="consult-title">Let’s hear your story.</h2>
+      <p>Tell us a little about yourself. Your email app will open with your request, ready for you to review and send.</p>
+      <form id="consult-form">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required="" placeholder="First and last name" style=""></div>
+        <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required="" placeholder="you@example.com" style=""></div>
+        <div class="field"><label for="phone">Phone number <span style="font-weight:400">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(248) 555-0123" style=""></div>
+        <div class="field"><label for="message">How can we help?</label><textarea id="message" name="message" required="" placeholder="Briefly tell us what happened. Please do not include confidential or sensitive information." style=""></textarea></div>
+        <p class="form-note">Sending an inquiry does not create an attorney-client relationship. Please avoid sharing medical records or other sensitive details.</p>
+        <button class="button orange" type="submit">Prepare my consultation email <span class="arrow" aria-hidden="true">↗</span></button>
+        <div class="success" id="form-status" role="status" hidden="">Your email draft is ready. Complete your request by sending it from your email app. If no app opened, call <a href="tel:+12485550148"><strong>(248) 555-0148</strong></a>. Nothing has been submitted through this website.</div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="details" aria-labelledby="details-title">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Close details">×</button>
+      <div class="eyebrow" id="details-eyebrow">How we can help</div>
+      <h2 id="details-title"></h2>
+      <div id="details-body"></div>
+      <button class="button orange" id="details-cta" style="margin-top:16px">Talk to us about your case <span class="arrow" aria-hidden="true">↗</span></button>
+    </div>
+  </dialog>
+  <script>
+    const consultation = document.getElementById('consultation');
+    const details = document.getElementById('details');
+    let previousFocus;
+    function openDialog(dialog) {
+      previousFocus = document.activeElement;
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDialog(dialog) {
+      dialog.close();
+    }
+    document.querySelectorAll('dialog').forEach(dialog => {
+      dialog.querySelector('.modal-close').addEventListener('click', () => closeDialog(dialog));
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) {
+          const rect = dialog.getBoundingClientRect();
+          if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeDialog(dialog);
+        }
+      });
+      dialog.addEventListener('close', () => {
+        document.body.style.overflow = '';
+        if (previousFocus && previousFocus.isConnected) previousFocus.focus();
+      });
+    });
+    document.querySelectorAll('[data-consult]').forEach(button => button.addEventListener('click', () => openDialog(consultation)));
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigation = document.getElementById('navigation');
+    menuToggle.addEventListener('click', () => {
+      const open = navigation.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navigation.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open menu');
+    }));
+    const practices = {
+      auto: {title:'Auto accidents', text:'After a collision, insurance paperwork and mounting expenses can feel overwhelming. We help Michigan drivers, passengers, pedestrians, and their families understand their options.', next:'We can review the circumstances of your accident, explain Michigan’s no-fault system, and evaluate potential claims. Keep accident reports, photographs, and relevant correspondence when available.'},
+      truck: {title:'Truck accidents', text:'Commercial vehicle accidents can involve multiple companies, insurers, and layers of responsibility. A careful investigation is essential to understanding what happened.', next:'Our approach starts with identifying the parties involved and the evidence that may matter, including driving records, maintenance information, and crash documentation. Reach out promptly, as evidence and legal deadlines can be time-sensitive.'},
+      motorcycle: {title:'Motorcycle accidents', text:'Motorcyclists deserve to be heard—not judged by assumptions. We help injured riders and their families navigate the aftermath of a crash with clarity and care.', next:'Insurance coverage and available benefits can depend on the vehicles involved and the facts of the collision. We’ll discuss your situation, the impact of your injuries, and the possible paths forward.'},
+      injury: {title:'Serious injuries', text:'A serious injury can affect every part of daily life, from your ability to work to the support your family needs. Your legal strategy should account for more than today’s medical bills.', next:'We take time to understand the long-term effects of an injury and explore potential claims involving unsafe property, negligence, or other preventable harm. A conversation can help you understand where to begin.'}
+    };
+    document.querySelectorAll('[data-practice]').forEach(button => button.addEventListener('click', () => {
+      const content = practices[button.dataset.practice];
+      document.getElementById('details-eyebrow').textContent = 'How we can help';
+      document.getElementById('details-title').textContent = content.title;
+      document.getElementById('details-body').replaceChildren();
+      [content.text, content.next].forEach(text => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = text;
+        document.getElementById('details-body').appendChild(paragraph);
+      });
+      document.getElementById('details-cta').hidden = false;
+      openDialog(details);
+    }));
+    document.getElementById('details-cta').addEventListener('click', () => {
+      details.close();
+      setTimeout(() => openDialog(consultation), 0);
+    });
+    document.getElementById('privacy-button').addEventListener('click', () => {
+      document.getElementById('details-eyebrow').textContent = 'Privacy & legal';
+      document.getElementById('details-title').textContent = 'Your information matters.';
+      document.getElementById('details-body').innerHTML = '<p>This website does not store consultation form entries or submit them to a server. The form prepares an email in your chosen email application. Sending that email is subject to your email provider’s privacy practices.</p><p>Fonts and photographs are loaded from Google Fonts and Unsplash. Those providers may receive standard connection information, including your IP address.</p><p>Website content is general information, not legal advice. Do not send confidential information before an attorney-client relationship has been established. Contact the firm by phone with questions about representation, fees, or handling of information.</p>';
+      document.getElementById('details-cta').hidden = true;
+      openDialog(details);
+    });
+    document.getElementById('consult-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const body = `Hello Harlow & Pierce,\n\nI would like to discuss a potential personal injury case.\n\nName: ${data.get('name')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone') || 'Not provided'}\n\n${data.get('message')}\n\nThank you.`;
+      window.location.href = 'mailto:hello@harlowandpierce.com?subject=' + encodeURIComponent('Free consultation request') + '&body=' + encodeURIComponent(body);
+      document.getElementById('form-status').hidden = false;
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body></html>

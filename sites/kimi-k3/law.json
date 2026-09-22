@@ -1,0 +1,16 @@
+{
+  "model": "kimi-k3",
+  "slug": "moonshotai/kimi-k3",
+  "prompt": "law",
+  "returned_model": "moonshotai/kimi-k3",
+  "provider": "Together",
+  "started_at": "2026-09-21 20:08:35",
+  "seconds": 590,
+  "prompt_tokens": 148,
+  "output_tokens": 36676,
+  "thinking_tokens": 12841,
+  "html_chars": 77025,
+  "cost": 0.5505381,
+  "finish_reason": "stop",
+  "truncated": false
+}

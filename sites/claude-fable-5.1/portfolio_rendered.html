@@ -1,0 +1,839 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Waltz — Interior Design, New York City</title>
+<meta name="description" content="Jenny Waltz is a New York City interior designer creating considered, timeless residences for discerning clients. Now accepting select commissions.">
+<style>
+  :root{
+    --ivory:#f4efe6;
+    --linen:#ebe4d8;
+    --stone:#d6cdbf;
+    --taupe:#a89b88;
+    --brass:#9a7b4f;
+    --brass-light:#c4a878;
+    --ink:#1a1917;
+    --charcoal:#2b2926;
+    --serif:"Didot","Bodoni 72","Bodoni MT","Cormorant Garamond","Playfair Display","Times New Roman",Georgia,serif;
+    --sans:"Helvetica Neue",Helvetica,"Inter","Segoe UI",Arial,sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.7;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--brass);color:var(--ivory)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.1;letter-spacing:-.005em}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--brass);
+    font-weight:400;
+    display:flex;align-items:center;gap:14px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--brass)}
+  .container{width:min(1280px,92vw);margin:0 auto}
+
+  /* ---------- Loader ---------- */
+  #loader{
+    position:fixed;inset:0;background:var(--ink);z-index:1000;
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity 1s var(--ease),visibility 1s;
+  }
+  #loader.done{opacity:0;visibility:hidden}
+  #loader .mono{
+    font-family:var(--serif);color:var(--ivory);font-size:clamp(40px,7vw,90px);
+    letter-spacing:.08em;position:relative;overflow:hidden;
+  }
+  #loader .mono span{display:inline-block;transform:translateY(110%);animation:rise 1.1s var(--ease) forwards}
+  #loader .mono span:nth-child(2){animation-delay:.12s}
+  @keyframes rise{to{transform:translateY(0)}}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:28px 0;
+    transition:padding .5s var(--ease),background .5s,backdrop-filter .5s;
+  }
+  header.scrolled{
+    padding:14px 0;
+    background:rgba(244,239,230,.86);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(26,25,23,.08);
+  }
+  header.on-dark:not(.scrolled){color:var(--ivory)}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:var(--serif);font-size:22px;letter-spacing:.14em;text-transform:uppercase}
+  .logo small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.32em;color:var(--brass);margin-top:2px}
+  .links{display:flex;gap:42px;list-style:none}
+  .links a{
+    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:400;
+    position:relative;padding:4px 0;
+  }
+  .links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;
+    transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease);
+  }
+  .links a:hover::after{transform:scaleX(1);transform-origin:left}
+  .nav-cta{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;
+    border:1px solid currentColor;padding:12px 24px;
+    transition:background .4s,color .4s,border-color .4s;
+  }
+  .nav-cta:hover{background:var(--brass);border-color:var(--brass);color:var(--ivory)}
+  .burger{display:none;width:34px;height:20px;position:relative;cursor:pointer;background:none;border:0;color:inherit}
+  .burger span{position:absolute;left:0;width:100%;height:1px;background:currentColor;transition:.4s var(--ease)}
+  .burger span:nth-child(1){top:2px}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:18px}
+  .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  .mobile-menu{
+    position:fixed;inset:0;background:var(--ink);color:var(--ivory);z-index:99;
+    display:flex;flex-direction:column;justify-content:center;padding:0 8vw;
+    clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease);
+  }
+  .mobile-menu.open{clip-path:inset(0 0 0 0)}
+  .mobile-menu a{font-family:var(--serif);font-size:clamp(34px,9vw,60px);padding:10px 0;border-bottom:1px solid rgba(244,239,230,.12)}
+  .mobile-menu .meta{margin-top:40px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:grid;
+    grid-template-columns:1fr 1fr;
+    background:var(--ink);color:var(--ivory);overflow:hidden;
+  }
+  .hero-copy{
+    position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;
+    padding:clamp(120px,18vh,180px) 6vw 80px 6vw;
+  }
+  .hero h1{
+    font-size:clamp(54px,7.4vw,124px);line-height:.98;font-weight:300;
+    margin:24px 0 32px;
+  }
+  .hero h1 em{font-style:italic;color:var(--brass-light)}
+  .hero p{max-width:440px;font-size:17px;color:var(--stone);margin-bottom:44px}
+  .hero-actions{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:400;
+    padding:18px 34px;border:1px solid var(--brass);background:var(--brass);color:var(--ivory);
+    transition:background .45s var(--ease),color .45s,border-color .45s,transform .45s var(--ease);
+  }
+  .btn:hover{background:transparent;color:var(--brass-light);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+  .btn.ghost:hover{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+  .link-arrow{
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;font-weight:400;
+  }
+  .link-arrow svg{width:26px;height:10px;transition:transform .4s var(--ease)}
+  .link-arrow:hover svg{transform:translateX(8px)}
+
+  .hero-visual{position:relative;overflow:hidden}
+  .hero-visual .room{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg,rgba(26,25,23,.15),rgba(26,25,23,.55) 90%),
+      linear-gradient(115deg,#5a4b3c 0%,#8a755d 35%,#c5b39a 60%,#e6dccb 100%);
+    transform:scale(1.08);
+    animation:drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift{to{transform:scale(1.0) translateX(-1.5%)}}
+  /* architectural lines */
+  .hero-visual .lines{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(90deg,rgba(26,25,23,.28) 1px,transparent 1px) 0 0/25% 100%,
+      linear-gradient(180deg,rgba(255,255,255,.10) 1px,transparent 1px) 0 62%/100% 100% no-repeat;
+    mix-blend-mode:multiply;
+  }
+  .hero-visual .light{
+    position:absolute;top:0;right:-10%;width:60%;height:100%;
+    background:radial-gradient(ellipse at 70% 20%,rgba(255,244,222,.55),transparent 60%);
+    filter:blur(10px);
+  }
+  .hero-visual .furniture{
+    position:absolute;bottom:0;left:0;right:0;height:38%;
+    background:linear-gradient(180deg,transparent,rgba(26,25,23,.65));
+  }
+  .hero-visual .furniture::before{
+    content:"";position:absolute;left:12%;bottom:18%;width:52%;height:34%;
+    background:linear-gradient(180deg,#e9e1d4,#cbbfaa);border-radius:4px 4px 0 0;
+    box-shadow:0 30px 60px rgba(0,0,0,.35);
+  }
+  .hero-visual .furniture::after{
+    content:"";position:absolute;left:70%;bottom:14%;width:9%;height:60%;
+    background:linear-gradient(180deg,#6a5843,#3b3128);border-radius:50% 50% 0 0/6% 6% 0 0;
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+  }
+  .hero-caption{
+    position:absolute;bottom:40px;right:40px;z-index:2;
+    font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--stone);
+    text-align:right;line-height:1.9;
+  }
+  .hero-scroll{
+    position:absolute;left:6vw;bottom:34px;z-index:3;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe);
+    display:flex;align-items:center;gap:16px;
+  }
+  .hero-scroll i{display:block;width:1px;height:48px;background:linear-gradient(var(--taupe),transparent);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+  /* ---------- Marquee ---------- */
+  .marquee{background:var(--ivory);border-bottom:1px solid rgba(26,25,23,.1);padding:22px 0;overflow:hidden;white-space:nowrap}
+  .marquee-track{display:inline-flex;gap:70px;animation:scroll 40s linear infinite}
+  .marquee span{font-family:var(--serif);font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);display:inline-flex;align-items:center;gap:70px}
+  .marquee span::after{content:"◆";font-size:7px;color:var(--brass)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- Sections ---------- */
+  section{padding:clamp(90px,12vw,160px) 0}
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+  /* Intro */
+  .intro{padding-bottom:clamp(60px,8vw,110px)}
+  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+  .intro h2{font-size:clamp(36px,4.4vw,66px);margin-top:26px;font-weight:300}
+  .intro h2 em{font-style:italic;color:var(--brass)}
+  .intro p{font-size:17px;color:#4a463f;max-width:520px}
+  .intro p + p{margin-top:22px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:80px;border-top:1px solid rgba(26,25,23,.15)}
+  .stat{padding:36px 30px 0 0;border-right:1px solid rgba(26,25,23,.12)}
+  .stat:not(:first-child){padding-left:30px}
+  .stat:last-child{border-right:0}
+  .stat b{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4vw,60px);display:block;line-height:1}
+  .stat span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);display:block;margin-top:14px}
+
+  /* Portrait/Philosophy */
+  .philosophy{background:var(--linen);position:relative}
+  .phil-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(40px,7vw,120px);align-items:center}
+  .portrait{
+    position:relative;aspect-ratio:4/5;
+    background:
+      radial-gradient(ellipse at 45% 30%,rgba(255,250,240,.7),transparent 55%),
+      linear-gradient(160deg,#c9bda9,#8f7f68 60%,#514535);
+    overflow:hidden;
+  }
+  .portrait::before{
+    content:"";position:absolute;left:50%;top:26%;width:44%;height:70%;transform:translateX(-50%);
+    background:linear-gradient(180deg,#e6d7c1 0 22%,#2f2823 22% 100%);
+    border-radius:50% 50% 12% 12%/60% 60% 8% 8%;
+    filter:blur(.3px);
+  }
+  .portrait::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 60%,rgba(26,25,23,.35));
+  }
+  .portrait-frame{position:absolute;inset:18px;border:1px solid rgba(244,239,230,.45);pointer-events:none}
+  .portrait-tag{
+    position:absolute;bottom:-26px;right:-26px;background:var(--ink);color:var(--ivory);
+    padding:26px 30px;font-family:var(--serif);font-size:20px;font-style:italic;line-height:1.3;max-width:240px;
+  }
+  .philosophy h2{font-size:clamp(34px,3.8vw,58px);margin:26px 0 30px;font-weight:300}
+  .philosophy p{color:#4a463f;font-size:16.5px;max-width:540px}
+  .philosophy p + p{margin-top:20px}
+  .signature{font-family:var(--serif);font-style:italic;font-size:34px;margin-top:36px;color:var(--charcoal);letter-spacing:.02em}
+  .signature small{display:block;font-family:var(--sans);font-style:normal;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);margin-top:6px}
+
+  /* Services */
+  .services-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:70px}
+  .services-head h2{font-size:clamp(36px,4.4vw,66px);margin-top:26px;font-weight:300}
+  .services-head p{max-width:380px;color:#4a463f}
+  .services-list{border-top:1px solid rgba(26,25,23,.15)}
+  .service{
+    display:grid;grid-template-columns:80px 1fr 1.2fr 60px;gap:40px;align-items:start;
+    padding:44px 0;border-bottom:1px solid rgba(26,25,23,.15);
+    transition:padding .5s var(--ease);position:relative;cursor:default;
+  }
+  .service::before{
+    content:"";position:absolute;left:0;right:0;top:0;bottom:-1px;background:var(--linen);z-index:-1;
+    transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease);
+  }
+  .service:hover::before{transform:scaleY(1)}
+  .service:hover{padding-left:24px;padding-right:24px}
+  .service .num{font-family:var(--serif);font-size:15px;color:var(--brass);padding-top:8px;letter-spacing:.1em}
+  .service h3{font-size:clamp(26px,2.6vw,38px);font-weight:300}
+  .service p{color:#4a463f;font-size:15.5px;max-width:520px}
+  .service .arrow{display:flex;justify-content:flex-end;padding-top:12px;transition:transform .5s var(--ease)}
+  .service:hover .arrow{transform:translateX(6px)}
+  .service .arrow svg{width:30px;height:30px;stroke:var(--ink);fill:none;stroke-width:1}
+
+  /* Work */
+  .work{background:var(--ink);color:var(--ivory)}
+  .work .eyebrow{color:var(--brass-light)}
+  .work .eyebrow::before{background:var(--brass-light)}
+  .work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:70px;gap:40px}
+  .work-head h2{font-size:clamp(36px,4.4vw,66px);margin-top:26px;font-weight:300}
+  .work-head h2 em{font-style:italic;color:var(--brass-light)}
+  .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:28px}
+  .project{position:relative;overflow:hidden;cursor:pointer}
+  .project .img{position:relative;width:100%;overflow:hidden;background:#3a342d}
+  .project .img .fill{position:absolute;inset:0;transition:transform 1.3s var(--ease)}
+  .project:hover .img .fill{transform:scale(1.06)}
+  .project .img::after{
+    content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,25,23,.55));
+    opacity:0;transition:opacity .6s;
+  }
+  .project:hover .img::after{opacity:1}
+  .project .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;gap:20px}
+  .project h3{font-size:clamp(22px,1.9vw,28px);font-weight:300}
+  .project .meta span{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);white-space:nowrap}
+  .project .desc{color:var(--taupe);font-size:14.5px;margin-top:8px;max-width:420px}
+  .p1{grid-column:span 7}.p1 .img{aspect-ratio:4/3}
+  .p2{grid-column:span 5;margin-top:120px}.p2 .img{aspect-ratio:3/4}
+  .p3{grid-column:span 5}.p3 .img{aspect-ratio:3/4}
+  .p4{grid-column:span 7;margin-top:-80px}.p4 .img{aspect-ratio:4/3}
+
+  /* Abstract "photographs" */
+  .f-tribeca{background:
+    radial-gradient(ellipse at 80% 15%,rgba(255,243,220,.55),transparent 50%),
+    linear-gradient(180deg,#d9cfbf 0 55%,#3d352d 55% 58%,#8a7a63 58% 100%);}
+  .f-tribeca::before{content:"";position:absolute;left:8%;bottom:42%;width:40%;height:30%;background:#f1e9dc;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+  .f-tribeca::after{content:"";position:absolute;left:58%;bottom:42%;width:30%;height:50%;background:linear-gradient(90deg,rgba(26,25,23,.25),transparent 30%,rgba(26,25,23,.25))}
+  .f-uws{background:
+    linear-gradient(180deg,#2b2926 0 8%,#5b4a3a 8% 100%);}
+  .f-uws::before{content:"";position:absolute;left:14%;top:14%;width:72%;height:60%;border:1px solid rgba(244,239,230,.35);background:linear-gradient(160deg,rgba(255,235,200,.35),transparent)}
+  .f-uws::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:24%;background:linear-gradient(180deg,#9c8567,#6a5541)}
+  .f-brooklyn{background:
+    radial-gradient(circle at 30% 30%,rgba(255,250,240,.8),transparent 40%),
+    linear-gradient(180deg,#efe7da 0 70%,#a09079 70% 100%);}
+  .f-brooklyn::before{content:"";position:absolute;left:20%;top:38%;width:60%;height:32%;background:#3b332b;border-radius:50% 50% 0 0/100% 100% 0 0}
+  .f-brooklyn::after{content:"";position:absolute;left:47%;top:8%;width:6%;height:30%;background:#1a1917}
+  .f-soho{background:
+    linear-gradient(115deg,#1f1c19,#3a332c 50%,#6f5f4c);}
+  .f-soho::before{content:"";position:absolute;right:10%;top:12%;width:26%;height:76%;background:linear-gradient(180deg,#c9b494,#8c7658);box-shadow:-40px 0 80px rgba(255,220,170,.15)}
+  .f-soho::after{content:"";position:absolute;left:8%;bottom:14%;width:48%;height:26%;background:#efe6d6;border-radius:2px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+
+  /* Process */
+  .process-grid{display:grid;grid-template-columns:1fr 2fr;gap:clamp(40px,7vw,120px)}
+  .process-grid h2{font-size:clamp(36px,4vw,60px);margin-top:26px;font-weight:300;position:sticky;top:120px}
+  .steps{display:flex;flex-direction:column}
+  .step{display:grid;grid-template-columns:110px 1fr;gap:30px;padding:44px 0;border-top:1px solid rgba(26,25,23,.15)}
+  .step:last-child{border-bottom:1px solid rgba(26,25,23,.15)}
+  .step .n{font-family:var(--serif);font-size:56px;font-weight:300;line-height:1;color:var(--stone)}
+  .step h3{font-size:26px;font-weight:300;margin-bottom:12px}
+  .step p{color:#4a463f;font-size:15.5px;max-width:560px}
+
+  /* Testimonials */
+  .testimonials{background:var(--linen);text-align:center}
+  .quote-wrap{position:relative;min-height:300px;max-width:900px;margin:40px auto 0}
+  .quote{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease),transform 1s var(--ease);transform:translateY(16px)}
+  .quote.active{opacity:1;transform:none;position:relative}
+  .quote blockquote{font-family:var(--serif);font-size:clamp(26px,3.2vw,44px);font-weight:300;line-height:1.3;font-style:italic}
+  .quote cite{display:block;font-style:normal;margin-top:36px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass)}
+  .quote cite small{display:block;color:var(--taupe);margin-top:6px;letter-spacing:.2em}
+  .dots{display:flex;justify-content:center;gap:14px;margin-top:50px}
+  .dots button{width:36px;height:1px;background:rgba(26,25,23,.2);border:0;cursor:pointer;transition:background .4s;padding:0}
+  .dots button.active{background:var(--ink)}
+  .testimonials .eyebrow{justify-content:center}
+  .testimonials .eyebrow::after{content:"";width:34px;height:1px;background:var(--brass)}
+
+  /* Press */
+  .press{padding:60px 0;border-bottom:1px solid rgba(26,25,23,.1)}
+  .press .row{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+  .press .label{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe)}
+  .press .logos{display:flex;gap:clamp(30px,5vw,80px);flex-wrap:wrap}
+  .press .logos span{font-family:var(--serif);font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);opacity:.7;transition:opacity .4s}
+  .press .logos span:hover{opacity:1}
+
+  /* Contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,8vw,140px)}
+  .contact h2{font-size:clamp(40px,5vw,78px);margin:26px 0 30px;font-weight:300;line-height:1}
+  .contact h2 em{font-style:italic;color:var(--brass)}
+  .contact p{color:#4a463f;max-width:440px}
+  .contact-details{margin-top:50px;display:grid;gap:26px}
+  .contact-details div{border-top:1px solid rgba(26,25,23,.15);padding-top:18px}
+  .contact-details b{display:block;font-weight:400;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);margin-bottom:8px}
+  .contact-details a{font-family:var(--serif);font-size:22px;transition:color .3s}
+  .contact-details a:hover{color:var(--brass)}
+  form{display:grid;gap:34px}
+  .field{position:relative}
+  .field input,.field textarea,.field select{
+    width:100%;background:transparent;border:0;border-bottom:1px solid rgba(26,25,23,.3);
+    padding:14px 0 12px;font-family:var(--sans);font-size:16px;font-weight:300;color:var(--ink);
+    outline:none;transition:border-color .4s;border-radius:0;appearance:none;-webkit-appearance:none;
+  }
+  .field textarea{resize:vertical;min-height:110px}
+  .field label{
+    position:absolute;left:0;top:14px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);
+    pointer-events:none;transition:all .4s var(--ease);
+  }
+  .field input:focus~label,.field input:not(:placeholder-shown)~label,
+  .field textarea:focus~label,.field textarea:not(:placeholder-shown)~label,
+  .field select:focus~label,.field select.filled~label{top:-10px;font-size:9.5px;color:var(--brass)}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--ink)}
+  .field select{color:var(--ink)}
+  .field .chev{position:absolute;right:0;top:20px;width:12px;height:12px;pointer-events:none}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  .form-foot{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;margin-top:6px}
+  .form-foot small{font-size:12px;color:var(--taupe);max-width:300px;line-height:1.6}
+  .form-success{
+    display:none;padding:50px 40px;border:1px solid var(--brass);text-align:center;
+  }
+  .form-success h3{font-size:32px;font-weight:300;margin-bottom:14px}
+  .form-success p{color:#4a463f}
+
+  /* Footer */
+  footer{background:var(--ink);color:var(--ivory);padding:90px 0 40px}
+  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:70px;border-bottom:1px solid rgba(244,239,230,.12)}
+  .foot-top .logo{font-size:28px}
+  .foot-top p{color:var(--taupe);max-width:320px;margin-top:20px;font-size:15px}
+  .foot-top h4{font-family:var(--sans);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--brass-light);margin-bottom:22px;font-weight:400}
+  .foot-top ul{list-style:none;display:grid;gap:12px}
+  .foot-top li a{color:var(--stone);font-size:14.5px;transition:color .3s}
+  .foot-top li a:hover{color:var(--ivory)}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;gap:20px;flex-wrap:wrap;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+  .foot-bottom a:hover{color:var(--ivory)}
+  .big-name{
+    font-family:var(--serif);font-size:clamp(60px,14vw,220px);line-height:.9;text-align:center;
+    color:transparent;-webkit-text-stroke:1px rgba(244,239,230,.18);
+    padding:60px 0 20px;letter-spacing:.02em;user-select:none;
+  }
+
+  /* Cursor dot */
+  .cursor{
+    position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--brass);
+    pointer-events:none;z-index:2000;transform:translate(-50%,-50%);
+    transition:width .3s,height .3s,background .3s;mix-blend-mode:multiply;
+  }
+  .cursor.big{width:70px;height:70px;background:rgba(154,123,79,.25)}
+  @media (hover:none){.cursor{display:none}}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1080px){
+    .links{gap:28px}
+    .work-grid{gap:20px}
+  }
+  @media (max-width:900px){
+    .links,.nav-cta{display:none}
+    .burger{display:block}
+    .hero{grid-template-columns:1fr;min-height:100vh}
+    .hero-visual{position:absolute;inset:0;opacity:.55}
+    .hero-copy{padding-top:160px;min-height:100vh}
+    .hero-caption{display:none}
+    .intro-grid,.phil-grid,.process-grid,.contact-grid{grid-template-columns:1fr;gap:50px}
+    .process-grid h2{position:static}
+    .portrait-tag{right:0;bottom:-20px}
+    .services-head,.work-head{flex-direction:column;align-items:flex-start}
+    .service{grid-template-columns:50px 1fr;gap:16px 24px}
+    .service p{grid-column:2}
+    .service .arrow{display:none}
+    .work-grid{grid-template-columns:1fr}
+    .p1,.p2,.p3,.p4{grid-column:span 1;margin-top:0}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .stats{grid-template-columns:1fr}
+    .stat{border-right:0;border-bottom:1px solid rgba(26,25,23,.12);padding:28px 0}
+    .stat:not(:first-child){padding-left:0}
+    .stat:last-child{border-bottom:0}
+    .step{grid-template-columns:70px 1fr}
+    .step .n{font-size:40px}
+  }
+  @media (max-width:560px){
+    .row2{grid-template-columns:1fr}
+    .foot-top{grid-template-columns:1fr}
+    .hero h1{font-size:clamp(46px,14vw,80px)}
+    .portrait-tag{max-width:200px;font-size:17px;padding:20px}
+  }
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true" class="done"><div class="mono"><span>J</span><span>W</span></div></div>
+<div class="cursor" aria-hidden="true" style="transform: translate(0px, 0px) translate(-50%, -50%);"></div>
+
+<header id="header" class="on-dark">
+  <div class="container nav">
+    <a href="#top" class="logo">Jenny Waltz<small>Interiors · New York</small></a>
+    <ul class="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Begin a Project</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#work">Work</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <div class="meta">studio@jennywaltz.com · New York, NY</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-copy">
+    <span class="eyebrow">Interior Design · Manhattan &amp; Brooklyn</span>
+    <h1>Rooms that feel<br><em>inevitable.</em></h1>
+    <p>Jenny Waltz designs residences for New Yorkers who value restraint, provenance, and the quiet luxury of a space made entirely for them. Now accepting a limited number of commissions for 2025.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn">Request a Consultation</a>
+      <a href="#work" class="link-arrow">View Selected Work
+        <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 5h24M20 1l4 4-4 4"></path></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true" style="transform: translateY(0px);">
+    <div class="room"></div>
+    <div class="lines"></div>
+    <div class="light"></div>
+    <div class="furniture"></div>
+  </div>
+  <div class="hero-caption">Tribeca Loft — Living Room<br>Completed 2024</div>
+  <div class="hero-scroll"><i></i>Scroll</div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Full-Service Residential Design</span><span>Architectural Renovations</span><span>Bespoke Furniture</span><span>Art Advisory</span><span>Pre-Purchase Consulting</span>
+    <span>Full-Service Residential Design</span><span>Architectural Renovations</span><span>Bespoke Furniture</span><span>Art Advisory</span><span>Pre-Purchase Consulting</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro" id="about">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="reveal in">
+        <span class="eyebrow">The Studio</span>
+        <h2>A New York practice devoted to <em>enduring</em> interiors.</h2>
+      </div>
+      <div class="reveal d2 in">
+        <p>Founded in 2012, the studio works on a small number of residences each year — prewar apartments, townhouses, lofts, and country retreats for city clients. Every project receives Jenny's direct attention from the first walkthrough to the final styling.</p>
+        <p>We believe a home should be composed rather than decorated: a considered layering of architecture, light, material, and the objects you love, arranged so that nothing asks for attention and everything rewards it.</p>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat reveal in"><b>12</b><span>Years in Practice</span></div>
+      <div class="stat reveal d1 in"><b>60+</b><span>Residences Completed</span></div>
+      <div class="stat reveal d2 in"><b>6</b><span>Commissions Accepted Annually</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="container phil-grid">
+    <div class="reveal in">
+      <div class="portrait" aria-label="Portrait of Jenny Waltz">
+        <div class="portrait-frame"></div>
+        <div class="portrait-tag">“Luxury is a room that already knows how you live.”</div>
+      </div>
+    </div>
+    <div class="reveal d2 in">
+      <span class="eyebrow">Jenny Waltz</span>
+      <h2>Trained in architecture. Fluent in the art of living well.</h2>
+      <p>Jenny began her career in the offices of a celebrated modernist architect before turning her attention to the interior — the place where buildings finally meet the people inside them. Her work is known for its disciplined palettes, honest materials, and a fluency in both period detail and contemporary form.</p>
+      <p>She lives on the Upper West Side with her husband, two children, and an ever-changing collection of ceramics. Her projects have appeared in <em>Architectural Digest</em>, <em>Elle Decor</em>, and <em>The New York Times</em>.</p>
+      <div class="signature">Jenny Waltz<small>Principal &amp; Founder</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-head">
+      <div class="reveal in">
+        <span class="eyebrow">Services</span>
+        <h2>What we offer</h2>
+      </div>
+      <p class="reveal d2 in">Each engagement is shaped around the client and the property. Most projects are full-service; a small number of consulting engagements are also available.</p>
+    </div>
+    <div class="services-list">
+      <article class="service reveal in">
+        <span class="num">01</span>
+        <h3>Full-Service Residential Design</h3>
+        <p>From concept through installation: space planning, finishes, custom millwork, furniture, lighting, textiles, art, and styling. We manage every trade and every detail so you don't have to.</p>
+        <span class="arrow"><svg viewBox="0 0 30 30"><path d="M5 15h20M18 8l7 7-7 7"></path></svg></span>
+      </article>
+      <article class="service reveal in">
+        <span class="num">02</span>
+        <h3>Architectural Renovation</h3>
+        <p>Gut renovations and combinations of prewar apartments, townhouses, and lofts, in collaboration with our trusted architects, expediters, and contractors. Co-op and condo board experience throughout the city.</p>
+        <span class="arrow"><svg viewBox="0 0 30 30"><path d="M5 15h20M18 8l7 7-7 7"></path></svg></span>
+      </article>
+      <article class="service reveal in">
+        <span class="num">03</span>
+        <h3>Bespoke Furniture &amp; Millwork</h3>
+        <p>One-of-a-kind pieces designed for your rooms and produced by artisans in New York, Italy, and Denmark — dining tables, upholstered seating, libraries, kitchens, and dressing rooms.</p>
+        <span class="arrow"><svg viewBox="0 0 30 30"><path d="M5 15h20M18 8l7 7-7 7"></path></svg></span>
+      </article>
+      <article class="service reveal in">
+        <span class="num">04</span>
+        <h3>Pre-Purchase Consultation</h3>
+        <p>Before you buy, we walk the property with you and your broker to assess its potential — what can change, what should stay, and what it will realistically take to make it yours.</p>
+        <span class="arrow"><svg viewBox="0 0 30 30"><path d="M5 15h20M18 8l7 7-7 7"></path></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="container">
+    <div class="work-head">
+      <div class="reveal in">
+        <span class="eyebrow">Selected Work</span>
+        <h2>Recent <em>residences</em></h2>
+      </div>
+      <a href="#contact" class="link-arrow reveal d2 in">Full portfolio shared on request
+        <svg viewBox="0 0 26 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 5h24M20 1l4 4-4 4"></path></svg>
+      </a>
+    </div>
+    <div class="work-grid">
+      <article class="project p1 reveal in" data-hover="">
+        <div class="img"><div class="fill f-tribeca"></div></div>
+        <div class="meta"><h3>Tribeca Loft</h3><span>4,200 sq ft · 2024</span></div>
+        <p class="desc">A cast-iron loft reorganized around light, with plaster walls, oak floors, and a kitchen carved from a single block of Calacatta Viola.</p>
+      </article>
+      <article class="project p2 reveal d1 in" data-hover="">
+        <div class="img"><div class="fill f-uws"></div></div>
+        <div class="meta"><h3>Upper West Side Classic Nine</h3><span>Prewar · 2023</span></div>
+        <p class="desc">A sensitive restoration of an Emery Roth apartment, its original mouldings restored and paired with mid-century Italian pieces.</p>
+      </article>
+      <article class="project p3 reveal in" data-hover="">
+        <div class="img"><div class="fill f-brooklyn"></div></div>
+        <div class="meta"><h3>Brooklyn Heights Townhouse</h3><span>Gut Renovation · 2023</span></div>
+        <p class="desc">Five stories of an 1850s brownstone opened to the garden with a new rear façade, limestone kitchen, and a library in smoked oak.</p>
+      </article>
+      <article class="project p4 reveal d1 in" data-hover="">
+        <div class="img"><div class="fill f-soho"></div></div>
+        <div class="meta"><h3>SoHo Penthouse</h3><span>Full Service · 2022</span></div>
+        <p class="desc">A collector's home designed as a backdrop for postwar art, with bronze, travertine, and a terrace planted as an outdoor room.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container process-grid">
+    <div class="reveal in">
+      <span class="eyebrow">The Process</span>
+      <h2>How a project unfolds</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal in"><span class="n">I</span><div><h3>Introduction</h3><p>A conversation at the studio or on site. We learn how you live, what you're hoping for, and whether we're the right fit. A proposal follows within a week.</p></div></div>
+      <div class="step reveal in"><span class="n">II</span><div><h3>Concept</h3><p>Plans, palettes, and a clear point of view. We present a single, fully resolved direction — not a menu of options — and refine it together.</p></div></div>
+      <div class="step reveal in"><span class="n">III</span><div><h3>Design Development</h3><p>Every surface, fixture, and piece is specified and documented. Custom items are drawn and prototyped. Budgets are confirmed before anything is ordered.</p></div></div>
+      <div class="step reveal in"><span class="n">IV</span><div><h3>Construction &amp; Procurement</h3><p>We coordinate contractors, artisans, and vendors, walking the site weekly and tracking each of the hundreds of items on their way to you.</p></div></div>
+      <div class="step reveal in"><span class="n">V</span><div><h3>Installation</h3><p>Over a few concentrated days, the home comes together — furniture placed, art hung, beds made, flowers on the table. You return to a finished home.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <span class="eyebrow reveal">Kind Words</span>
+    <div class="quote-wrap" id="quotes">
+      <div class="quote">
+        <blockquote>“Jenny understood our apartment better than we did. Three years later, we still notice small decisions she made and feel grateful for every one of them.”</blockquote>
+        <cite>Private Client<small>Upper West Side</small></cite>
+      </div>
+      <div class="quote active">
+        <blockquote>“The renovation was enormous and she made it feel calm. Our board, our contractor, and our children all adore her — which we didn't think was possible.”</blockquote>
+        <cite>Private Client<small>Brooklyn Heights</small></cite>
+      </div>
+      <div class="quote">
+        <blockquote>“Nothing in the house shouts. Everything is perfect. That is a very hard thing to do and she does it every time.”</blockquote>
+        <cite>Private Client<small>Tribeca</small></cite>
+      </div>
+    </div>
+    <div class="dots" id="dots">
+      <button class="" aria-label="Testimonial 1"></button>
+      <button aria-label="Testimonial 2" class="active"></button>
+      <button aria-label="Testimonial 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<div class="press">
+  <div class="container row reveal">
+    <span class="label">As Featured In</span>
+    <div class="logos">
+      <span>Architectural Digest</span><span>Elle Decor</span><span>The New York Times</span><span>Galerie</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Begin a Project</span>
+      <h2>Let's talk about <em>your</em> home.</h2>
+      <p>The studio accepts a small number of new commissions each year in New York City and the surrounding region. Tell us a little about your project and we'll be in touch within two business days.</p>
+      <div class="contact-details">
+        <div><b>Studio</b><a href="#">142 Greene Street, Fourth Floor<br>New York, NY 10012</a></div>
+        <div><b>Email</b><a href="mailto:studio@jennywaltz.com">studio@jennywaltz.com</a></div>
+        <div><b>Telephone</b><a href="tel:+12125550142">+1 (212) 555-0142</a></div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <form id="inquiry" novalidate="">
+        <div class="row2">
+          <div class="field"><input type="text" id="name" placeholder=" " required="" style=""><label for="name">Full Name</label></div>
+          <div class="field"><input type="email" id="email" placeholder=" " required="" style=""><label for="email">Email Address</label></div>
+        </div>
+        <div class="row2">
+          <div class="field"><input type="text" id="location" placeholder=" " style=""><label for="location">Property Location</label></div>
+          <div class="field">
+            <select id="type">
+              <option value="" selected="" disabled="" hidden=""></option>
+              <option>Full-Service Design</option>
+              <option>Architectural Renovation</option>
+              <option>Bespoke Furniture</option>
+              <option>Pre-Purchase Consultation</option>
+              <option>Other</option>
+            </select>
+            <label for="type">Project Type</label>
+            <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 4l5 5 5-5"></path></svg>
+          </div>
+        </div>
+        <div class="field">
+          <select id="budget">
+            <option value="" selected="" disabled="" hidden=""></option>
+            <option>$250,000 – $500,000</option>
+            <option>$500,000 – $1,000,000</option>
+            <option>$1,000,000 – $2,500,000</option>
+            <option>$2,500,000+</option>
+          </select>
+          <label for="budget">Anticipated Budget (Furnishings &amp; Construction)</label>
+          <svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 4l5 5 5-5"></path></svg>
+        </div>
+        <div class="field"><textarea id="message" placeholder=" " rows="4" style=""></textarea><label for="message">Tell us about your project</label></div>
+        <div class="form-foot">
+          <button type="submit" class="btn ghost">Send Inquiry</button>
+          <small>Your details are held in confidence and never shared. We reply personally to every inquiry.</small>
+        </div>
+      </form>
+      <div class="form-success" id="success">
+        <h3>Thank you.</h3>
+        <p>Your inquiry has been received. Jenny will be in touch within two business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <div>
+        <a href="#top" class="logo">Jenny Waltz<small>Interiors · New York</small></a>
+        <p>Considered residential interiors for New York City and beyond. By appointment only.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#work">Selected Work</a></li><li><a href="#process">Process</a></li></ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li><li><a href="#">LinkedIn</a></li><li><a href="mailto:studio@jennywaltz.com">Email</a></li></ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul><li><a href="#">142 Greene Street</a></li><li><a href="#">Fourth Floor</a></li><li><a href="#">New York, NY 10012</a></li><li><a href="tel:+12125550142">+1 (212) 555-0142</a></li></ul>
+      </div>
+    </div>
+    <div class="big-name" aria-hidden="true">Waltz</div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Jenny Waltz Interiors LLC</span>
+      <span><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#top">Back to Top ↑</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Loader
+  window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('done'),900)});
+
+  // Year
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  // Header state
+  const header=document.getElementById('header');
+  const hero=document.querySelector('.hero');
+  const onScroll=()=>{
+    header.classList.toggle('scrolled',window.scrollY>40);
+    header.classList.toggle('on-dark',window.scrollY<hero.offsetHeight-80);
+  };
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // Mobile menu
+  const burger=document.getElementById('burger'),menu=document.getElementById('mobileMenu');
+  const toggle=(f)=>{const o=f??!menu.classList.contains('open');menu.classList.toggle('open',o);burger.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';};
+  burger.addEventListener('click',()=>toggle());
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggle(false)));
+
+  // Reveal on scroll
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Testimonials
+  const quotes=[...document.querySelectorAll('#quotes .quote')],dots=[...document.querySelectorAll('#dots button')];
+  let idx=0,timer;
+  const show=i=>{idx=i;quotes.forEach((q,k)=>q.classList.toggle('active',k===i));dots.forEach((d,k)=>d.classList.toggle('active',k===i));};
+  const auto=()=>{clearInterval(timer);timer=setInterval(()=>show((idx+1)%quotes.length),6000)};
+  dots.forEach((d,k)=>d.addEventListener('click',()=>{show(k);auto();}));
+  auto();
+
+  // Select filled state
+  document.querySelectorAll('select').forEach(s=>s.addEventListener('change',()=>s.classList.toggle('filled',!!s.value)));
+
+  // Form
+  const form=document.getElementById('inquiry');
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    let valid=true;
+    ['name','email'].forEach(id=>{
+      const el=document.getElementById(id);
+      const ok=id==='email'?/^\S+@\S+\.\S+$/.test(el.value):el.value.trim().length>1;
+      el.style.borderColor=ok?'':'#b0413e';if(!ok)valid=false;
+    });
+    if(!valid)return;
+    const btn=form.querySelector('button');btn.textContent='Sending…';btn.disabled=true;
+    setTimeout(()=>{form.style.display='none';document.getElementById('success').style.display='block';},900);
+  });
+
+  // Cursor
+  const cur=document.querySelector('.cursor');
+  let cx=0,cy=0,tx=0,ty=0;
+  window.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});
+  (function loop(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cur.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,[data-hover]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('big'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+  });
+
+  // Subtle parallax on hero visual
+  const room=document.querySelector('.hero-visual');
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;if(y<window.innerHeight)room.style.transform=`translateY(${y*.15}px)`;
+  },{passive:true});
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,16 @@
+{
+  "model": "glm-5.3",
+  "slug": "z-ai/glm-5.3",
+  "prompt": "tea",
+  "returned_model": "z-ai/glm-5.3",
+  "provider": "Wafer",
+  "started_at": "2026-09-22 08:18:15",
+  "seconds": 32,
+  "prompt_tokens": 66,
+  "output_tokens": 7384,
+  "thinking_tokens": 80,
+  "html_chars": 23454,
+  "cost": 0.03250904,
+  "finish_reason": "stop",
+  "truncated": false
+}

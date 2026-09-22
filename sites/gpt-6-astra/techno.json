@@ -1,0 +1,9 @@
+{
+  "model": "gpt-6-astra",
+  "slug": "openai/gpt-6-astra",
+  "prompt": "techno",
+  "seconds": 174,
+  "output_tokens": 9945,
+  "cost": 0.49787,
+  "truncated": false
+}

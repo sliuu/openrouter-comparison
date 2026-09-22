@@ -1,0 +1,1333 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kōyō — Tea House · San Francisco</title>
+<meta name="description" content="Kōyō is a traditional Japanese tea house on Post Street, San Francisco — rebuilt for the way this city actually lives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&amp;family=Zen+Kaku+Gothic+New:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F3EEE4;
+  --paper-2:#EAE4D7;
+  --paper-3:#DED6C4;
+  --ink:#1B1916;
+  --ink-2:#3A352E;
+  --ink-3:#6E6557;
+  --moss:#3E4A35;
+  --matcha:#7E8F55;
+  --koyo:#A8452B;
+  --gold:#B48A4A;
+  --line:rgba(27,25,22,.13);
+  --line-2:rgba(27,25,22,.07);
+
+  --serif:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',Georgia,'Times New Roman',serif;
+  --sans:'Zen Kaku Gothic New',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --ease:cubic-bezier(.22,.68,.18,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.72;
+  letter-spacing:.012em;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--koyo);color:var(--paper)}
+
+/* ============ GRAIN + PROGRESS ============ */
+.grain{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  opacity:.19;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:9999;
+  background:linear-gradient(90deg,var(--matcha),var(--koyo));
+  transition:width .1s linear;
+}
+
+/* ============ LAYOUT HELPERS ============ */
+.container{width:100%;max-width:1220px;margin:0 auto;padding:0 34px}
+.section{padding:130px 0;position:relative}
+.section + .section{border-top:1px solid var(--line-2)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:.68rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ink-3);margin:0 0 26px;
+}
+.eyebrow::before{content:'';width:26px;height:1px;background:var(--koyo);opacity:.6}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3.35rem);line-height:1.12}
+h3{font-size:1.05rem;line-height:1.4;font-weight:600}
+.lead{
+  font-size:clamp(1rem,1.35vw,1.12rem);line-height:1.85;color:var(--ink-2);
+  max-width:56ch;margin:26px 0 0;
+}
+.lead--tight{margin-top:18px}
+p{margin:0 0 18px}
+p:last-child{margin-bottom:0}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;font-size:.82rem;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;border-radius:2px;position:relative;
+  transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);
+  white-space:nowrap;
+}
+.btn--fill{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
+.btn--fill:hover{background:var(--koyo);border-color:var(--koyo);transform:translateY(-2px)}
+.btn--line{border:1px solid rgba(27,25,22,.28);color:var(--ink)}
+.btn--line:hover{border-color:var(--ink);background:rgba(27,25,22,.04);transform:translateY(-2px)}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  display:flex;align-items:center;justify-content:space-between;gap:30px;
+  padding:26px 34px;
+  transition:padding .5s var(--ease),background .5s var(--ease),box-shadow .5s var(--ease);
+}
+.nav.scrolled{
+  padding:14px 34px;
+  background:rgba(243,238,228,.86);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 var(--line-2), 0 12px 34px -22px rgba(27,25,22,.35);
+}
+.brand{display:inline-flex;align-items:center;gap:12px}
+.brand__mark{width:32px;height:32px;color:var(--ink);flex:none}
+.brand__name{
+  display:flex;align-items:baseline;gap:9px;
+  font-family:var(--serif);font-size:1.14rem;font-weight:600;letter-spacing:.16em;
+}
+.brand__jp{font-size:.74rem;letter-spacing:.2em;color:var(--ink-3);font-weight:400}
+.nav__links{display:flex;gap:36px}
+.nav__links a{
+  font-size:.76rem;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-2);
+  position:relative;padding:4px 0;
+}
+.nav__links a::after{
+  content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--koyo);
+  transition:width .4s var(--ease);
+}
+.nav__links a:hover{color:var(--ink)}
+.nav__links a:hover::after{width:100%}
+.nav__cta{
+  font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:11px 22px;border:1px solid rgba(27,25,22,.3);border-radius:2px;
+  transition:all .35s var(--ease);
+}
+.nav__cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.nav__burger{display:none;width:34px;height:26px;position:relative}
+.nav__burger span{
+  position:absolute;left:4px;right:4px;height:1.5px;background:var(--ink);
+  transition:transform .4s var(--ease),opacity .3s var(--ease);
+}
+.nav__burger span:first-child{top:8px}
+.nav__burger span:last-child{bottom:8px}
+.nav__burger.open span:first-child{transform:translateY(4.5px) rotate(45deg)}
+.nav__burger.open span:last-child{transform:translateY(-4.5px) rotate(-45deg)}
+
+.mobile-menu{
+  position:fixed;inset:0;z-index:8900;background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;visibility:hidden;transform:translateY(-16px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease),visibility .45s;
+}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none}
+.mobile-menu a{
+  font-family:var(--serif);font-size:1.85rem;letter-spacing:.02em;padding:12px 0;
+}
+.mobile-menu a:hover{color:var(--koyo)}
+.mobile-menu .mm-jp{font-size:.72rem;letter-spacing:.4em;color:var(--ink-3);text-transform:uppercase;margin-top:34px}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;
+  padding:150px 0 70px;overflow:hidden;
+  background:
+    radial-gradient(70% 60% at 78% 30%, rgba(126,143,85,.13), transparent 70%),
+    radial-gradient(60% 55% at 12% 84%, rgba(168,69,43,.07), transparent 70%),
+    var(--paper);
+}
+.hero::before{
+  content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;
+  background:linear-gradient(180deg,transparent,var(--line-2) 20%,var(--line-2) 80%,transparent);
+  opacity:.7;pointer-events:none;
+}
+.hero__grid{
+  display:grid;grid-template-columns:1.06fr .94fr;gap:60px;align-items:center;
+  position:relative;z-index:2;
+}
+.hero h1{
+  font-size:clamp(2.7rem,7vw,5.5rem);
+  line-height:1.03;letter-spacing:-.03em;font-weight:500;
+  margin:0 0 30px;
+}
+.hero h1 em{
+  font-style:italic;color:var(--koyo);
+  letter-spacing:-.01em;
+}
+.hero .lead{max-width:44ch;margin-top:0}
+.hero__cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+.hero__meta{
+  list-style:none;display:flex;gap:44px;margin:54px 0 0;padding:26px 0 0;
+  border-top:1px solid var(--line-2);flex-wrap:wrap;
+}
+.hero__meta li{font-size:.86rem;color:var(--ink-2);letter-spacing:.03em}
+.hero__meta span{
+  display:block;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:6px;
+}
+
+/* hero art */
+.hero__art{position:relative;display:flex;align-items:center;justify-content:center;padding:20px}
+.bowl{
+  width:min(100%,470px);aspect-ratio:1;
+  filter:drop-shadow(0 46px 60px rgba(27,25,22,.26));
+  animation:float 9s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.bowl__swirl{transform-box:fill-box;transform-origin:center;animation:spin 70s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero__vertical{
+  position:absolute;top:0;right:-6px;
+  writing-mode:vertical-rl;font-family:var(--serif);font-size:.86rem;
+  letter-spacing:.62em;color:var(--ink-3);opacity:.75;
+}
+.hero__badge{
+  position:absolute;bottom:2%;left:-2%;
+  background:var(--paper);border:1px solid var(--line);
+  padding:14px 20px;border-radius:2px;
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);
+  box-shadow:0 18px 40px -26px rgba(27,25,22,.45);
+}
+.hero__badge b{display:block;font-family:var(--serif);font-size:1.02rem;letter-spacing:.05em;color:var(--ink);text-transform:none;font-weight:600;margin-bottom:2px}
+
+/* ============ TICKER ============ */
+.ticker{
+  border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
+  padding:19px 0;overflow:hidden;background:var(--paper-2);
+}
+.ticker__track{
+  display:flex;width:max-content;gap:0;
+  animation:ticker 52s linear infinite;
+}
+.ticker:hover .ticker__track{animation-play-state:paused}
+@keyframes ticker{to{transform:translateX(-50%)}}
+.ticker__track span{
+  font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-3);
+  padding:0 34px;white-space:nowrap;position:relative;
+}
+.ticker__track span::after{
+  content:'';position:absolute;right:0;top:50%;width:4px;height:4px;border-radius:50%;
+  background:var(--koyo);opacity:.5;transform:translateY(-50%);
+}
+
+/* ============ PHILOSOPHY ============ */
+.grid-2{display:grid;grid-template-columns:.92fr 1.08fr;gap:90px;align-items:center}
+.philosophy__art{position:relative;display:flex;align-items:center;justify-content:center}
+.enso{width:min(100%,360px);color:var(--ink)}
+.enso__path{
+  stroke-dasharray:700;stroke-dashoffset:700;
+  transition:stroke-dashoffset 2.4s cubic-bezier(.36,.05,.2,1) .15s;
+}
+.philosophy__art.in .enso__path{stroke-dashoffset:0}
+.enso__seal{
+  position:absolute;bottom:8%;right:6%;
+  writing-mode:vertical-rl;font-family:var(--serif);font-size:.8rem;letter-spacing:.5em;
+  color:var(--koyo);opacity:.9;
+}
+.principles{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:64px;
+  border-top:1px solid var(--line-2);
+}
+.principle{padding:30px 26px 6px 0;border-right:1px solid var(--line-2)}
+.principle:last-child{border-right:0;padding-right:0}
+.principle:not(:first-child){padding-left:26px}
+.principle__jp{
+  display:block;font-family:var(--serif);font-size:1.5rem;letter-spacing:.14em;
+  color:var(--koyo);margin-bottom:14px;
+}
+.principle h3{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-family:var(--sans);font-weight:600;margin-bottom:10px}
+.principle p{font-size:.88rem;line-height:1.78;color:var(--ink-3)}
+
+/* ============ MENU ============ */
+.menu{background:var(--paper-2)}
+.menu__head{max-width:62ch}
+.menu__tabs{
+  display:flex;flex-wrap:wrap;gap:6px;margin:56px 0 0;
+  border-bottom:1px solid var(--line);padding-bottom:0;
+}
+.tab{
+  padding:14px 24px;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);position:relative;transition:color .35s var(--ease);
+}
+.tab::after{
+  content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--koyo);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+}
+.tab:hover{color:var(--ink)}
+.tab.is-active{color:var(--ink)}
+.tab.is-active::after{transform:scaleX(1)}
+.menu__panels{padding-top:12px}
+.panel{display:none}
+.panel.is-active{display:grid;grid-template-columns:repeat(2,1fr);gap:0 60px;animation:fadeUp .55s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:flex-start;
+  padding:30px 12px 30px 0;border-bottom:1px solid var(--line-2);
+  transition:background .4s var(--ease),padding-left .4s var(--ease);
+  position:relative;
+}
+.item:hover{background:rgba(168,69,43,.035);padding-left:14px}
+.item__jp{
+  font-family:var(--serif);font-size:1.5rem;color:var(--ink-3);opacity:.4;line-height:1.2;
+  transition:color .4s var(--ease),opacity .4s var(--ease);min-width:2.2em;
+}
+.item:hover .item__jp{color:var(--koyo);opacity:.95}
+.item__body h3{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.item__body h3 span{
+  font-family:var(--serif);font-size:.82rem;font-weight:400;color:var(--ink-3);letter-spacing:.1em;
+}
+.item__body p{font-size:.88rem;line-height:1.75;color:var(--ink-3);margin:8px 0 0;max-width:42ch}
+.item__price{font-family:var(--serif);font-size:1.06rem;font-weight:600;white-space:nowrap;padding-top:2px}
+.badge{
+  display:inline-block;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  background:var(--koyo);color:var(--paper);padding:3px 9px;border-radius:1px;
+  vertical-align:middle;margin-left:4px;font-family:var(--sans);font-weight:500;
+}
+.menu__note{
+  margin-top:52px;padding-top:26px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  font-size:.84rem;color:var(--ink-3);letter-spacing:.02em;
+}
+.menu__note span{display:inline-flex;align-items:center;gap:10px}
+.menu__note span::before{content:'';width:5px;height:5px;background:var(--matcha);border-radius:50%}
+
+/* ============ RITUAL + TIMER ============ */
+.ritual__grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:70px;align-items:start}
+.steps{list-style:none;counter-reset:s;padding:0;margin:0}
+.steps li{
+  counter-increment:s;position:relative;padding:0 0 34px 62px;
+  border-left:1px solid var(--line-2);margin-left:11px;
+}
+.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);
+  position:absolute;left:-11px;top:-3px;
+  width:22px;height:22px;border-radius:50%;background:var(--paper);
+  border:1px solid var(--line);
+  font-size:.56rem;font-family:var(--sans);font-weight:600;letter-spacing:.02em;
+  display:flex;align-items:center;justify-content:center;color:var(--ink-3);
+}
+.steps li h3{margin-bottom:8px}
+.steps li p{font-size:.9rem;line-height:1.78;color:var(--ink-3);max-width:42ch}
+
+.timer{
+  background:var(--ink);color:var(--paper);
+  border-radius:3px;padding:38px 36px 34px;
+  box-shadow:0 40px 70px -40px rgba(27,25,22,.55);
+  position:relative;overflow:hidden;
+}
+.timer::before{
+  content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(126,143,85,.35),transparent 70%);
+}
+.timer__head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(243,238,228,.55);
+  position:relative;z-index:2;
+}
+.timer__temp{color:var(--gold);letter-spacing:.16em}
+.timer__dial{position:relative;width:210px;margin:26px auto 8px}
+.timer__dial svg{width:100%;transform:rotate(-90deg)}
+.dial__track{fill:none;stroke:rgba(243,238,228,.13);stroke-width:5}
+.dial__prog{
+  fill:none;stroke:var(--matcha);stroke-width:5;stroke-linecap:round;
+  transition:stroke .4s var(--ease);
+}
+.timer__read{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+#timerTime{
+  font-family:var(--serif);font-size:2.7rem;letter-spacing:.02em;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+#timerName{
+  font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(243,238,228,.5);margin-top:10px;font-family:var(--sans);
+}
+.timer__presets{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:24px 0 22px;position:relative;z-index:2;
+}
+.preset{
+  padding:10px 4px;border:1px solid rgba(243,238,228,.18);border-radius:2px;
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,238,228,.62);
+  transition:all .3s var(--ease);text-align:center;
+}
+.preset:hover{border-color:rgba(243,238,228,.45);color:var(--paper)}
+.preset.is-active{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.timer__actions{display:flex;gap:10px;position:relative;z-index:2}
+.timer__actions .btn{flex:1;padding:14px 18px}
+.timer__actions .btn--fill{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.timer__actions .btn--fill:hover{background:var(--koyo);color:var(--paper);border-color:var(--koyo)}
+.timer__actions .btn--line{border-color:rgba(243,238,228,.25);color:rgba(243,238,228,.8)}
+.timer__actions .btn--line:hover{border-color:var(--paper);background:rgba(243,238,228,.08);color:var(--paper)}
+.timer__note{
+  margin:20px 0 0;font-size:.78rem;line-height:1.7;color:rgba(243,238,228,.5);
+  position:relative;z-index:2;min-height:2.6em;
+}
+.timer.done .dial__prog{stroke:var(--koyo)}
+.timer.done #timerTime{color:var(--koyo)}
+
+/* ============ SPACE ============ */
+.space{background:var(--paper-2)}
+.space__head{max-width:64ch}
+.space__panels{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:64px;
+}
+.panel-art{
+  position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;border-radius:2px;
+  display:flex;align-items:flex-end;
+  box-shadow:0 30px 55px -42px rgba(27,25,22,.6);
+}
+.panel-art::after{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.panel-art figcaption{
+  position:relative;z-index:2;padding:24px 24px 26px;width:100%;
+  font-size:.82rem;line-height:1.6;color:var(--paper);
+  background:linear-gradient(to top,rgba(15,13,10,.72),transparent);
+}
+.panel-art figcaption b{
+  display:block;font-family:var(--serif);font-size:1.05rem;font-weight:600;
+  letter-spacing:.02em;margin-bottom:5px;
+}
+.panel-art--a{
+  background:
+    repeating-linear-gradient(90deg,rgba(27,25,22,.07) 0 1px,transparent 1px 62px),
+    radial-gradient(120% 80% at 74% 6%, rgba(255,248,228,.98), transparent 58%),
+    linear-gradient(158deg,#EDE6D6,#CBBFA6);
+}
+.panel-art--b{
+  background:
+    radial-gradient(85% 60% at 26% 18%, rgba(206,224,175,.4), transparent 65%),
+    linear-gradient(160deg,#4E5B3F,#262C1E);
+}
+.panel-art--c{
+  background:
+    radial-gradient(95% 70% at 78% 82%, rgba(226,128,74,.55), transparent 62%),
+    linear-gradient(160deg,#A8452B,#5E2317);
+}
+.space__notes{
+  list-style:none;margin:56px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid var(--line-2);
+}
+.space__notes li{
+  padding:26px 26px 4px 0;font-size:.85rem;line-height:1.7;color:var(--ink-3);
+  border-right:1px solid var(--line-2);
+}
+.space__notes li:last-child{border-right:0;padding-right:0}
+.space__notes li:not(:first-child){padding-left:26px}
+.space__notes b{display:block;color:var(--ink);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+
+/* ============ VISIT ============ */
+.visit__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start}
+.visit address{font-style:normal;font-size:1.06rem;line-height:1.85;color:var(--ink-2);margin:28px 0 34px}
+.hours{list-style:none;margin:0 0 36px;padding:0;border-top:1px solid var(--line-2)}
+.hours li{
+  display:flex;justify-content:space-between;gap:20px;padding:13px 0;
+  border-bottom:1px solid var(--line-2);font-size:.88rem;color:var(--ink-2);
+}
+.hours li span:first-child{color:var(--ink-3);letter-spacing:.06em}
+.hours li em{font-style:normal;color:var(--koyo);letter-spacing:.02em}
+.visit__cta{display:flex;gap:12px;flex-wrap:wrap}
+.map{
+  border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#E7E1D3;
+  box-shadow:0 40px 70px -52px rgba(27,25,22,.6);
+}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 3s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.55);opacity:.55}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+.map__label{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.22em;fill:var(--ink)}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--ink);color:var(--paper);padding:88px 0 34px}
+.footer__top{
+  display:grid;grid-template-columns:1.2fr 1fr 1.1fr;gap:60px;
+  padding-bottom:60px;border-bottom:1px solid rgba(243,238,228,.14);
+}
+.footer__word{
+  font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:.18em;
+  line-height:1;display:block;margin-bottom:18px;
+}
+.footer__brand p{font-size:.86rem;color:rgba(243,238,228,.52);line-height:1.8;max-width:34ch}
+.footer__cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.footer__cols ul{list-style:none;margin:0;padding:0}
+.footer__cols h4{
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(243,238,228,.42);font-weight:500;margin:0 0 18px;font-family:var(--sans);
+}
+.footer__cols li{margin-bottom:11px}
+.footer__cols a{font-size:.88rem;color:rgba(243,238,228,.8);transition:color .3s var(--ease)}
+.footer__cols a:hover{color:var(--koyo)}
+.footer__form label{
+  display:block;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(243,238,228,.42);margin-bottom:16px;
+}
+.field{display:flex;border-bottom:1px solid rgba(243,238,228,.28);transition:border-color .35s var(--ease)}
+.field:focus-within{border-color:var(--paper)}
+.field input{
+  flex:1;background:none;border:0;outline:none;color:var(--paper);
+  font:inherit;font-size:.9rem;padding:12px 0;
+}
+.field input::placeholder{color:rgba(243,238,228,.35)}
+.field button{
+  padding:0 6px;font-size:1.1rem;color:rgba(243,238,228,.6);
+  transition:color .3s var(--ease),transform .3s var(--ease);
+}
+.field button:hover{color:var(--koyo);transform:translateX(3px)}
+.form-msg{font-size:.78rem;color:var(--matcha);margin:12px 0 0;height:1.2em;letter-spacing:.04em}
+.footer__bottom{
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding-top:28px;font-size:.72rem;letter-spacing:.1em;color:rgba(243,238,228,.4);
+}
+
+/* ============ REVEAL ============ */
+.reveal{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .95s var(--ease) var(--d,0s),transform .95s var(--ease) var(--d,0s);
+}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .hero__grid{grid-template-columns:1fr;gap:70px;text-align:left}
+  .hero__art{order:-1;justify-content:flex-start}
+  .bowl{width:min(72%,360px)}
+  .hero__vertical{display:none}
+  .hero__badge{left:auto;right:0}
+  .grid-2{grid-template-columns:1fr;gap:64px}
+  .philosophy__art{justify-content:flex-start}
+  .ritual__grid{grid-template-columns:1fr;gap:60px}
+  .visit__grid{grid-template-columns:1fr;gap:56px}
+  .space__panels{grid-template-columns:1fr 1fr}
+  .space__panels .panel-art:last-child{grid-column:1/-1;aspect-ratio:16/9}
+  .footer__top{grid-template-columns:1fr 1fr;gap:48px}
+  .footer__form{grid-column:1/-1}
+}
+@media (max-width:820px){
+  .nav__links,.nav__cta{display:none}
+  .nav__burger{display:block}
+  .section{padding:96px 0}
+  .container{padding:0 22px}
+  .nav{padding:18px 22px}
+  .nav.scrolled{padding:12px 22px}
+  .panel.is-active{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr}
+  .principle{border-right:0;border-bottom:1px solid var(--line-2);padding:26px 0}
+  .principle:not(:first-child){padding-left:0}
+  .principle:last-child{border-bottom:0}
+  .space__notes{grid-template-columns:1fr 1fr}
+  .space__notes li{padding:22px 20px 22px 0;border-right:0;border-bottom:1px solid var(--line-2)}
+  .space__notes li:not(:first-child){padding-left:0}
+  .space__notes li:nth-child(odd){border-right:1px solid var(--line-2);padding-right:20px}
+  .menu__tabs{gap:0}
+  .tab{padding:12px 14px;font-size:.68rem}
+  .timer{padding:30px 24px 28px}
+  .hero__meta{gap:28px}
+  .footer__top{grid-template-columns:1fr}
+  .footer__cols{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .space__panels{grid-template-columns:1fr}
+  .space__panels .panel-art:last-child{aspect-ratio:3/4}
+  .item{grid-template-columns:auto 1fr;gap:14px}
+  .item__price{grid-column:2;padding-top:8px}
+  .hero__cta{flex-direction:column;align-items:stretch}
+  .hero__cta .btn{width:100%}
+  .timer__presets{grid-template-columns:1fr 1fr}
+  .footer__bottom{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .enso__path{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true" style="width: 0%;"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Kōyō Tea House">
+    <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M22 7 A14 14 0 1 1 11 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" opacity=".85"></path>
+      <circle cx="31" cy="30" r="3.2" fill="#A8452B"></circle>
+    </svg>
+    <span class="brand__name">KŌYŌ <span class="brand__jp">紅葉</span></span>
+  </a>
+
+  <nav class="nav__links">
+    <a href="#philosophy">Philosophy</a>
+    <a href="#menu">Menu</a>
+    <a href="#ritual">Ritual</a>
+    <a href="#space">The Room</a>
+    <a href="#visit">Visit</a>
+  </nav>
+
+  <a class="nav__cta" href="#visit">Reserve</a>
+  <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#philosophy">Philosophy</a>
+  <a href="#menu">Menu</a>
+  <a href="#ritual">Ritual</a>
+  <a href="#space">The Room</a>
+  <a href="#visit">Visit</a>
+  <span class="mm-jp">紅葉 · San Francisco</span>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow reveal in">San Francisco — 日本茶専門店</p>
+      <h1 class="reveal in" style="--d:.08s">Slow tea<br>for a fast <em>city.</em></h1>
+      <p class="lead reveal in" style="--d:.16s">A traditional Japanese tea house, rebuilt for the way this city actually lives. Laptops welcome. Phones optional. Refills unhurried.</p>
+      <div class="hero__cta reveal in" style="--d:.24s">
+        <a class="btn btn--fill" href="#visit">Reserve a seat</a>
+        <a class="btn btn--line" href="#menu">See the menu</a>
+      </div>
+      <ul class="hero__meta reveal in" style="--d:.32s">
+        <li><span>Open</span>Daily, 8a – 7p</li>
+        <li><span>Where</span>1846 Post St, Japantown</li>
+        <li><span>Seats</span>32, plus six at the counter</li>
+      </ul>
+    </div>
+
+    <div class="hero__art reveal in" style="--d:.2s">
+      <span class="hero__vertical" aria-hidden="true">紅葉</span>
+      <svg class="bowl" viewBox="0 0 420 420" role="img" aria-label="Top view of a matcha bowl, whisked to a fine foam">
+        <defs>
+          <radialGradient id="g-clay" cx="38%" cy="30%" r="82%">
+            <stop offset="0%" stop-color="#5C4E43"></stop>
+            <stop offset="58%" stop-color="#2F2823"></stop>
+            <stop offset="100%" stop-color="#141110"></stop>
+          </radialGradient>
+          <radialGradient id="g-matcha" cx="42%" cy="34%" r="74%">
+            <stop offset="0%" stop-color="#AABB78"></stop>
+            <stop offset="46%" stop-color="#7E8F55"></stop>
+            <stop offset="100%" stop-color="#485630"></stop>
+          </radialGradient>
+          <radialGradient id="g-sheen" cx="28%" cy="20%" r="58%">
+            <stop offset="0%" stop-color="rgba(255,255,255,.34)"></stop>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+          </radialGradient>
+          <radialGradient id="g-foam" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,255,255,.28)"></stop>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+          </radialGradient>
+        </defs>
+
+        <circle cx="210" cy="210" r="206" fill="url(#g-clay)"></circle>
+        <circle cx="210" cy="210" r="206" fill="url(#g-sheen)"></circle>
+        <circle cx="210" cy="210" r="186" fill="none" stroke="rgba(180,138,74,.32)" stroke-width="1.2"></circle>
+
+        <circle cx="210" cy="210" r="176" fill="url(#g-matcha)"></circle>
+        <circle cx="210" cy="210" r="176" fill="url(#g-foam)" opacity=".7"></circle>
+
+        <g class="bowl__swirl">
+          <circle cx="210" cy="210" r="152" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-dasharray="130 420"></circle>
+          <circle cx="210" cy="210" r="124" fill="none" stroke="rgba(255,255,255,.17)" stroke-width="1" stroke-dasharray="96 380"></circle>
+          <circle cx="210" cy="210" r="96" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="1" stroke-dasharray="72 320"></circle>
+          <circle cx="210" cy="210" r="66" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="52 260"></circle>
+        </g>
+
+        <g fill="rgba(255,255,255,.22)">
+          <circle cx="150" cy="164" r="4.5"></circle>
+          <circle cx="176" cy="140" r="3"></circle>
+          <circle cx="246" cy="152" r="5"></circle>
+          <circle cx="278" cy="196" r="3.4"></circle>
+          <circle cx="262" cy="252" r="4.2"></circle>
+          <circle cx="196" cy="272" r="3"></circle>
+          <circle cx="144" cy="232" r="3.8"></circle>
+          <circle cx="210" cy="120" r="2.6"></circle>
+        </g>
+
+        <circle cx="210" cy="210" r="176" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.6"></circle>
+      </svg>
+      <div class="hero__badge">
+        <b>Whisked to order</b>
+        Ceremonial grade · Uji, Kyoto
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>一期一会 · Ichigo ichie · one time, one meeting</span>
+    <span>侘寂 · Wabi-sabi · beauty in the unfinished</span>
+    <span>間 · Ma · the pause between things</span>
+    <span>茶の湯 · Chanoyu · the way of tea</span>
+    <span>一期一会 · Ichigo ichie · one time, one meeting</span>
+    <span>侘寂 · Wabi-sabi · beauty in the unfinished</span>
+    <span>間 · Ma · the pause between things</span>
+    <span>茶の湯 · Chanoyu · the way of tea</span>
+  </div>
+</div>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section class="section" id="philosophy">
+  <div class="container grid-2">
+    <div class="philosophy__art reveal in">
+      <svg class="enso" viewBox="0 0 300 300" aria-hidden="true">
+        <path class="enso__path" d="M168 40 A115 115 0 1 1 78 258" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"></path>
+      </svg>
+      <span class="enso__seal" aria-hidden="true">紅葉</span>
+    </div>
+
+    <div class="philosophy__text">
+      <p class="eyebrow reveal in">01 — Philosophy</p>
+      <h2 class="reveal in" style="--d:.08s">The tea is traditional.<br>Everything around it is optional.</h2>
+      <p class="lead reveal in" style="--d:.16s">Kōyō means autumn leaves — the brief moment when things turn extraordinary before they fall. We opened in a narrow Post Street storefront in 2019 with six seats, one kettle, and a bamboo whisk.</p>
+      <p class="lead lead--tight reveal in" style="--d:.22s">The idea was simple: bring the discipline of a Japanese tea room to a city that never sits still — then quietly remove everything that would stop you from sitting.</p>
+
+      <div class="principles">
+        <div class="principle reveal in" style="--d:.05s">
+          <span class="principle__jp">侘寂</span>
+          <h3>Wabi-sabi</h3>
+          <p>Beauty in the unfinished. Our bowls are mismatched on purpose; the cracks are glazed in gold.</p>
+        </div>
+        <div class="principle reveal in" style="--d:.14s">
+          <span class="principle__jp">一期一会</span>
+          <h3>Ichigo ichie</h3>
+          <p>One time, one meeting. Every bowl is whisked when you order it, and never before.</p>
+        </div>
+        <div class="principle reveal in" style="--d:.23s">
+          <span class="principle__jp">間</span>
+          <h3>Ma</h3>
+          <p>The pause. We keep seats empty so the room can breathe — and so can you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="section menu" id="menu">
+  <div class="container">
+    <div class="menu__head">
+      <p class="eyebrow reveal in">02 — The Menu</p>
+      <h2 class="reveal in" style="--d:.08s">Eight teas, four sweets,<br>and nothing rushed.</h2>
+      <p class="lead reveal in" style="--d:.16s">Sourced from small farms in Uji, Kagoshima, and Shizuoka. Every hot tea comes with a second steep on the house — just hand the cup back to the counter.</p>
+    </div>
+
+    <div class="menu__tabs reveal in" role="tablist" aria-label="Menu categories">
+      <button class="tab is-active" data-panel="matcha" role="tab" aria-selected="true">Matcha 抹茶</button>
+      <button class="tab" data-panel="leaf" role="tab" aria-selected="false">Leaf Tea 煎茶</button>
+      <button class="tab" data-panel="roast" role="tab" aria-selected="false">Roasted 焙じ茶</button>
+      <button class="tab" data-panel="plates" role="tab" aria-selected="false">Small Plates 小皿</button>
+    </div>
+
+    <div class="menu__panels">
+
+      <div class="panel is-active" id="panel-matcha">
+        <article class="item">
+          <div class="item__jp">薄茶</div>
+          <div class="item__body">
+            <h3>Usucha <span>薄茶</span></h3>
+            <p>Thin tea, whisked to a fine foam. Bright, brisk, faintly grassy at the finish.</p>
+          </div>
+          <div class="item__price">$7</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">濃茶</div>
+          <div class="item__body">
+            <h3>Koicha <span>濃茶</span><span class="badge">Signature</span></h3>
+            <p>Thick tea. Two grams, barely a whisper of water. Served with a single sweet.</p>
+          </div>
+          <div class="item__price">$12</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">抹茶</div>
+          <div class="item__body">
+            <h3>Matcha Latte <span>抹茶ラテ</span></h3>
+            <p>Ceremonial grade, oat or whole milk, lightly sweetened with Hokkaido sugar.</p>
+          </div>
+          <div class="item__price">$8</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">冷抹茶</div>
+          <div class="item__body">
+            <h3>Iced Usucha <span>冷抹茶</span></h3>
+            <p>Shaken over a single large cube. For August afternoons on Post Street.</p>
+          </div>
+          <div class="item__price">$7</div>
+        </article>
+      </div>
+
+      <div class="panel" id="panel-leaf">
+        <article class="item">
+          <div class="item__jp">玉露</div>
+          <div class="item__body">
+            <h3>Gyokuro <span>玉露</span><span class="badge">Signature</span></h3>
+            <p>Shaded three weeks before harvest, brewed at 50°C. Sweet, oceanic, almost brothy.</p>
+          </div>
+          <div class="item__price">$14</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">煎茶</div>
+          <div class="item__body">
+            <h3>Sencha <span>煎茶</span></h3>
+            <p>First flush, Uji. Steeped ninety seconds at 75°C — clean, green, a little citrus.</p>
+          </div>
+          <div class="item__price">$8</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">水出し</div>
+          <div class="item__body">
+            <h3>Cold-Brew Sencha <span>水出し</span></h3>
+            <p>Eight hours in cold water. No bitterness, all the sweetness. Served over ice.</p>
+          </div>
+          <div class="item__price">$6</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">玄米茶</div>
+          <div class="item__body">
+            <h3>Genmaicha <span>玄米茶</span></h3>
+            <p>Sencha with toasted brown rice. Tastes like the end of a good meal.</p>
+          </div>
+          <div class="item__price">$7</div>
+        </article>
+      </div>
+
+      <div class="panel" id="panel-roast">
+        <article class="item">
+          <div class="item__jp">焙じ茶</div>
+          <div class="item__body">
+            <h3>Hōjicha <span>焙じ茶</span></h3>
+            <p>Roasted stems and leaves. Nutty, warm, almost no caffeine — good at 6pm.</p>
+          </div>
+          <div class="item__price">$6</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">焙じラテ</div>
+          <div class="item__body">
+            <h3>Hōjicha Latte <span>焙じラテ</span></h3>
+            <p>Our most-ordered drink in the building, by a wide margin. Deep and toasty.</p>
+          </div>
+          <div class="item__price">$7</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">黒焙じ</div>
+          <div class="item__body">
+            <h3>Dark-Roast Hōjicha <span>黒焙じ茶</span><span class="badge">New</span></h3>
+            <p>Roasted twice. Smells like a wood stove; drinks like black tea without the tannin.</p>
+          </div>
+          <div class="item__price">$9</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">ほうじ水</div>
+          <div class="item__body">
+            <h3>Iced Hōjicha <span>焙じ茶アイス</span></h3>
+            <p>Cold-brewed, unsweetened, endlessly refillable while you sit.</p>
+          </div>
+          <div class="item__price">$6</div>
+        </article>
+      </div>
+
+      <div class="panel" id="panel-plates">
+        <article class="item">
+          <div class="item__jp">おにぎり</div>
+          <div class="item__body">
+            <h3>Onigiri <span>おにぎり</span></h3>
+            <p>Ume, salted salmon, or kombu. Made each morning; they sell out by two.</p>
+          </div>
+          <div class="item__price">$6</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">抹茶ロール</div>
+          <div class="item__body">
+            <h3>Matcha Roll Cake <span>抹茶ロール</span></h3>
+            <p>Sponge, lightly sweetened cream, a dusting of ceremonial matcha.</p>
+          </div>
+          <div class="item__price">$9</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">最中</div>
+          <div class="item__body">
+            <h3>Monaka <span>最中</span></h3>
+            <p>A crisp shell, red bean paste piped to order so it stays crisp. Two bites.</p>
+          </div>
+          <div class="item__price">$5</div>
+        </article>
+        <article class="item">
+          <div class="item__jp">干菓子</div>
+          <div class="item__body">
+            <h3>Higashi <span>干菓子</span></h3>
+            <p>Dry seasonal sweets, pressed into shapes. Served with koicha.</p>
+          </div>
+          <div class="item__price">$4</div>
+        </article>
+      </div>
+    </div>
+
+    <div class="menu__note">
+      <span>Second steep, always free</span>
+      <span>Oat, whole, or no milk — no charge</span>
+      <span>Cash, card, or tap</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RITUAL ============ -->
+<section class="section" id="ritual">
+  <div class="container">
+    <p class="eyebrow reveal in">03 — Ritual</p>
+    <h2 class="reveal in" style="--d:.08s">Four minutes, start to finish.</h2>
+    <p class="lead reveal in" style="--d:.16s">A full tea ceremony takes four hours. Ours takes four minutes — and that's the point. Here's how a seat at Kōyō works, plus a timer so you can take the ritual home.</p>
+
+    <div class="ritual__grid">
+      <ol class="steps">
+        <li class="reveal in" style="--d:.06s">
+          <h3>Choose one tea</h3>
+          <p>Not a flight, not a sampler. One tea, chosen properly, is the whole idea. Ask the counter if you're unsure.</p>
+        </li>
+        <li class="reveal in" style="--d:.14s">
+          <h3>Sit anywhere</h3>
+          <p>Seats are unassigned. The window bench fills first; the garden room stays quiet all day.</p>
+        </li>
+        <li class="reveal in" style="--d:.22s">
+          <h3>Steep it yourself</h3>
+          <p>Your tea arrives with a small kettle, a timer card, and a strainer. Pour at your own pace — we won't hover.</p>
+        </li>
+        <li class="reveal in" style="--d:.30s">
+          <h3>Stay as long as you like</h3>
+          <p>No time limit. No second-drink minimum. Refills are free until you stand up.</p>
+        </li>
+      </ol>
+
+      <div class="timer reveal in" id="timer" style="--d:.12s">
+        <div class="timer__head">
+          <span>Steep timer</span>
+          <span class="timer__temp" id="timerTemp">80°C</span>
+        </div>
+
+        <div class="timer__dial">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="dial__track" cx="100" cy="100" r="84"></circle>
+            <circle class="dial__prog" id="dialProg" cx="100" cy="100" r="84" style="stroke-dasharray: 527.79; stroke-dashoffset: 0;"></circle>
+          </svg>
+          <div class="timer__read">
+            <span id="timerTime">01:00</span>
+            <small id="timerName">Usucha 薄茶</small>
+          </div>
+        </div>
+
+        <div class="timer__presets" id="presets"><button type="button" class="preset is-active">Usucha</button><button type="button" class="preset">Sencha</button><button type="button" class="preset">Gyokuro</button><button type="button" class="preset">Hōjicha</button></div>
+
+        <div class="timer__actions">
+          <button class="btn btn--fill" id="timerStart">Start</button>
+          <button class="btn btn--line" id="timerReset">Reset</button>
+        </div>
+
+        <p class="timer__note" id="timerNote">Whisk in a W motion for fifteen seconds, until the foam holds a soft peak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPACE ============ -->
+<section class="section space" id="space">
+  <div class="container">
+    <div class="space__head">
+      <p class="eyebrow reveal in">04 — The Room</p>
+      <h2 class="reveal in" style="--d:.08s">A café that behaves<br>like a tea house.</h2>
+      <p class="lead reveal in" style="--d:.16s">Thirty-two seats across two rooms, plus six stools at the counter. Cedar, rice paper, and a single long window that catches the afternoon light on Post Street. Built for reading, working quietly, or doing nothing at all.</p>
+    </div>
+
+    <div class="space__panels">
+      <figure class="panel-art panel-art--a reveal in" style="--d:.06s">
+        <figcaption>
+          <b>The window bench</b>
+          Morning light, first flush. Six seats along the glass.
+        </figcaption>
+      </figure>
+      <figure class="panel-art panel-art--b reveal in" style="--d:.14s">
+        <figcaption>
+          <b>The garden room</b>
+          Cedar and shade. Screens stay in bags here.
+        </figcaption>
+      </figure>
+      <figure class="panel-art panel-art--c reveal in" style="--d:.22s">
+        <figcaption>
+          <b>The back table</b>
+          Long stays, second steeps, low conversation.
+        </figcaption>
+      </figure>
+    </div>
+
+    <ul class="space__notes">
+      <li class="reveal in"><b>Wi-Fi</b>Yes. The password is on the menu card at your table.</li>
+      <li class="reveal in" style="--d:.06s"><b>Outlets</b>At every other seat, tucked into the baseboards.</li>
+      <li class="reveal in" style="--d:.12s"><b>Quiet hours</b>Daily 3–5pm. Screens dimmed, headphones on.</li>
+      <li class="reveal in" style="--d:.18s"><b>Counter</b>Six stools, no laptops — conversation only.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="section" id="visit">
+  <div class="container visit__grid">
+    <div>
+      <p class="eyebrow reveal in">05 — Visit</p>
+      <h2 class="reveal in" style="--d:.08s">Come sit.</h2>
+      <address class="reveal in" style="--d:.14s">
+        <strong>Kōyō Tea House</strong><br>
+        1846 Post Street<br>
+        Japantown, San Francisco, CA 94115
+      </address>
+
+      <ul class="hours reveal in" style="--d:.18s">
+        <li><span>Monday – Thursday</span><span>8:00a – 7:00p</span></li>
+        <li><span>Friday – Saturday</span><span>8:00a – 9:00p</span></li>
+        <li><span>Sunday</span><span>9:00a – 6:00p</span></li>
+        <li><span>Quiet hours, daily</span><em>3:00p – 5:00p</em></li>
+      </ul>
+
+      <div class="visit__cta reveal" style="--d:.24s">
+        <a class="btn btn--fill" href="#visit">Reserve a seat</a>
+        <a class="btn btn--line" href="tel:+14155550184">(415) 555-0184</a>
+      </div>
+    </div>
+
+    <div class="map reveal in" style="--d:.16s">
+      <svg viewBox="0 0 620 470" role="img" aria-label="Map showing Kōyō at Post Street and Buchanan in Japantown, San Francisco">
+        <defs>
+          <pattern id="grid" width="62" height="47" patternUnits="userSpaceOnUse">
+            <path d="M62 0 H0 V47" fill="none" stroke="#D3CAB8" stroke-width="1"></path>
+          </pattern>
+        </defs>
+        <rect width="620" height="470" fill="#E8E2D3"></rect>
+        <rect width="620" height="470" fill="url(#grid)"></rect>
+
+        <!-- avenues -->
+        <path d="M0 262 L620 222" stroke="#F5F1E7" stroke-width="16"></path>
+        <path d="M0 262 L620 222" stroke="#D8CFBC" stroke-width="1"></path>
+        <path d="M0 118 L620 96" stroke="#F5F1E7" stroke-width="11"></path>
+        <path d="M0 380 L620 352" stroke="#F5F1E7" stroke-width="11"></path>
+        <path d="M312 0 L282 470" stroke="#F5F1E7" stroke-width="13"></path>
+        <path d="M462 0 L446 470" stroke="#F5F1E7" stroke-width="9"></path>
+
+        <!-- park -->
+        <rect x="356" y="286" width="150" height="104" rx="3" fill="#C2CFA6" opacity=".9"></rect>
+        <text x="378" y="342" font-family="Zen Kaku Gothic New, sans-serif" font-size="10" letter-spacing="1.6" fill="#6C7A52">PEACE PLAZA</text>
+
+        <!-- blocks -->
+        <rect x="60" y="150" width="120" height="80" fill="#DCD4C1" opacity=".7"></rect>
+        <rect x="330" y="150" width="100" height="70" fill="#DCD4C1" opacity=".7"></rect>
+        <rect x="500" y="240" width="90" height="90" fill="#DCD4C1" opacity=".7"></rect>
+
+        <!-- street labels -->
+        <text x="24" y="256" class="map__label" fill="#8A8072">POST ST</text>
+        <text x="286" y="446" class="map__label" fill="#8A8072" transform="rotate(-4 286 446)">BUCHANAN ST</text>
+        <text x="470" y="112" class="map__label" fill="#8A8072">SUTTER ST</text>
+
+        <!-- marker -->
+        <g transform="translate(312,262)">
+          <circle class="pulse" r="30" fill="#A8452B" opacity=".28"></circle>
+          <circle r="15" fill="#A8452B" opacity=".18"></circle>
+          <circle r="9" fill="#A8452B"></circle>
+          <circle r="3.4" fill="#F3EEE4"></circle>
+        </g>
+        <text x="332" y="248" class="map__label" fill="#A8452B">KŌYŌ</text>
+        <text x="332" y="268" font-family="Zen Kaku Gothic New, sans-serif" font-size="10" fill="#8A8072">1846 Post St</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="footer__word">KŌYŌ</span>
+        <p>Tea house · 1846 Post Street, San Francisco. Open daily. Walk-ins always welcome.</p>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#ritual">Ritual</a></li>
+            <li><a href="#space">The Room</a></li>
+            <li><a href="#visit">Reserve</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="#top">Instagram</a></li>
+            <li><a href="#top">Wholesale tea</a></li>
+            <li><a href="#top">Gift cards</a></li>
+            <li><a href="#top">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="footer__form" id="signup" novalidate="">
+        <label for="email">Letters from the tea room</label>
+        <div class="field">
+          <input id="email" type="email" placeholder="you@email.com" autocomplete="email" style="">
+          <button type="submit" aria-label="Subscribe">→</button>
+        </div>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2025 Kōyō Tea House</span>
+      <span>紅葉 — autumn leaves, briefly extraordinary</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- NAV ---------- */
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var progress = document.getElementById('progress');
+
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    nav.classList.toggle('scrolled', y > 40);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  burger.addEventListener('click', function(){
+    var open = mobileMenu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileMenu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ---------- SCROLL REVEAL ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- MENU TABS ---------- */
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected','false');
+      });
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected','true');
+      var panel = document.getElementById('panel-' + tab.dataset.panel);
+      if (panel) panel.classList.add('is-active');
+    });
+  });
+
+  /* ---------- STEEP TIMER ---------- */
+  var teas = [
+    { name:'Usucha', jp:'薄茶', secs:60,  temp:'80°C', note:'Whisk in a W motion for fifteen seconds, until the foam holds a soft peak.' },
+    { name:'Sencha', jp:'煎茶', secs:90,  temp:'75°C', note:'First steep: ninety seconds. Second steep: thirty. Never boiling water.' },
+    { name:'Gyokuro', jp:'玉露', secs:120, temp:'50°C', note:'Low and slow. Let the water cool to 50°C, then wait two full minutes.' },
+    { name:'Hōjicha', jp:'焙じ茶', secs:45, temp:'95°C', note:'Forgiving and nutty. Nearly caffeine-free — good for late afternoons.' }
+  ];
+
+  var timerEl    = document.getElementById('timer');
+  var timeEl     = document.getElementById('timerTime');
+  var nameEl     = document.getElementById('timerName');
+  var tempEl     = document.getElementById('timerTemp');
+  var noteEl     = document.getElementById('timerNote');
+  var presetsEl  = document.getElementById('presets');
+  var startBtn   = document.getElementById('timerStart');
+  var resetBtn   = document.getElementById('timerReset');
+  var progEl     = document.getElementById('dialProg');
+
+  var RADIUS = 84;
+  var CIRC   = 2 * Math.PI * RADIUS;
+  progEl.style.strokeDasharray = CIRC.toFixed(2);
+
+  var idx = 0;
+  var total = teas[0].secs;
+  var remaining = teas[0].secs;
+  var running = false;
+  var rafId = null;
+  var endAt = 0;
+
+  function fmt(sec){
+    var s = Math.max(0, Math.ceil(sec));
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    return String(m).padStart(2,'0') + ':' + String(r).padStart(2,'0');
+  }
+
+  function render(){
+    timeEl.textContent = fmt(remaining);
+    var offset = CIRC * (1 - (remaining / total));
+    progEl.style.strokeDashoffset = offset.toFixed(2);
+  }
+
+  function buildPresets(){
+    presetsEl.innerHTML = '';
+    teas.forEach(function(t, i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'preset' + (i === idx ? ' is-active' : '');
+      b.textContent = t.name;
+      b.addEventListener('click', function(){ selectTea(i); });
+      presetsEl.appendChild(b);
+    });
+  }
+
+  function selectTea(i){
+    idx = i;
+    stop();
+    var t = teas[i];
+    total = t.secs;
+    remaining = t.secs;
+    timerEl.classList.remove('done');
+    nameEl.textContent = t.jp ? (t.name + ' ' + t.jp) : t.name;
+    tempEl.textContent = t.temp;
+    noteEl.textContent = t.note;
+    startBtn.textContent = 'Start';
+    render();
+    Array.prototype.forEach.call(presetsEl.children, function(el, j){
+      el.classList.toggle('is-active', j === i);
+    });
+  }
+
+  function loop(){
+    if (!running) return;
+    var now = performance.now();
+    remaining = Math.max(0, (endAt - now) / 1000);
+    render();
+    if (remaining <= 0){
+      running = false;
+      timerEl.classList.add('done');
+      startBtn.textContent = 'Start';
+      noteEl.textContent = 'Ready. どうぞ — pour it out and sit with it for a while.';
+      return;
+    }
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function start(){
+    if (remaining <= 0){
+      remaining = total;
+      timerEl.classList.remove('done');
+    }
+    running = true;
+    endAt = performance.now() + remaining * 1000;
+    startBtn.textContent = 'Pause';
+    timerEl.classList.add('done'); // placeholder removal
+    timerEl.classList.remove('done');
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function stop(){
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
+
+  startBtn.addEventListener('click', function(){
+    if (running){
+      stop();
+      startBtn.textContent = 'Resume';
+    } else {
+      start();
+    }
+  });
+
+  resetBtn.addEventListener('click', function(){
+    stop();
+    remaining = total;
+    timerEl.classList.remove('done');
+    startBtn.textContent = 'Start';
+    noteEl.textContent = teas[idx].note;
+    render();
+  });
+
+  buildPresets();
+  selectTea(0);
+
+  /* ---------- NEWSLETTER ---------- */
+  var form = document.getElementById('signup');
+  var formMsg = document.getElementById('formMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var input = document.getElementById('email');
+    var val = input.value.trim();
+    if (!val || val.indexOf('@') === -1){
+      formMsg.style.color = '#C0725A';
+      formMsg.textContent = 'That address looks a little under-steeped.';
+      return;
+    }
+    formMsg.style.color = '#7E8F55';
+    formMsg.textContent = 'ありがとう — you\u2019re on the list.';
+    input.value = '';
+  });
+
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jenny Waltz — Interior Design Atelier · New York City</title>
+<meta name="description" content="Jenny Waltz is a high-end interior design atelier composing refined residences across Manhattan and Brooklyn.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2316130E'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-size='26' fill='%23F2EDE5' text-anchor='middle' font-style='italic'%3EJW%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+<style>
+/* ============ RESET & TOKENS ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#F2EDE5;
+  --bg2:#E9E1D2;
+  --ink:#16130E;
+  --ink2:#5A5346;
+  --bronze:#9C7A45;
+  --line:rgba(22,19,14,.16);
+  --line-l:rgba(242,237,229,.18);
+  --fd:'Fraunces',serif;
+  --fb:'Manrope',sans-serif;
+  --pad:clamp(20px,4.5vw,72px);
+  --ease:cubic-bezier(.65,0,.35,1);
+}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 1rem/1.65 var(--fb);
+  overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
+}
+body.is-locked{overflow:hidden}
+img{display:block;max-width:100%;-webkit-user-drag:none;user-select:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--bronze);color:var(--bg)}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#B9AF9E;border-radius:99px}
+.container{width:100%;max-width:1720px;margin:0 auto}
+section{padding-left:var(--pad);padding-right:var(--pad)}
+
+/* ============ GRAIN & CURSOR ============ */
+.grain{
+  position:fixed;inset:-100%;width:300%;height:300%;pointer-events:none;z-index:250;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 7s steps(8) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}12%{transform:translate(-3%,2%)}25%{transform:translate(2%,-4%)}
+  37%{transform:translate(-4%,-2%)}50%{transform:translate(3%,4%)}62%{transform:translate(-2%,3%)}
+  75%{transform:translate(4%,-3%)}87%{transform:translate(-3%,-4%)}
+}
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:300;border-radius:50%}
+.cursor-dot{width:7px;height:7px;background:#EDE8DF;mix-blend-mode:difference}
+.cursor-ring{
+  width:38px;height:38px;border:1px solid rgba(237,232,223,.85);mix-blend-mode:difference;
+  display:flex;align-items:center;justify-content:center;
+  transition:width .4s var(--ease),height .4s var(--ease),background .4s,border-color .4s;
+}
+.cursor-ring span{
+  font:600 .62rem/1 var(--fb);letter-spacing:.22em;text-transform:uppercase;color:var(--ink);
+  opacity:0;transition:opacity .3s;transform:translateX(.11em);
+}
+.cursor-ring.is-view{width:92px;height:92px;background:#EDE8DF;border-color:transparent}
+.cursor-ring.is-view span{opacity:1}
+.cursor-ring.is-link{width:60px;height:60px}
+@media (hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============ PRELOADER ============ */
+.preloader{
+  position:fixed;inset:0;z-index:400;background:var(--ink);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+}
+.preloader__center{text-align:center;overflow:hidden}
+.preloader__name{
+  font:340 clamp(3rem,9vw,7.5rem)/1 var(--fd);letter-spacing:-.02em;
+}
+.preloader__name em{font-style:italic;color:var(--bronze)}
+.preloader__sub{
+  margin-top:18px;font:500 .68rem/1 var(--fb);letter-spacing:.42em;text-transform:uppercase;
+  color:rgba(242,237,229,.55);opacity:0;
+}
+.preloader__count{
+  position:absolute;bottom:34px;right:var(--pad);
+  font:300 clamp(2.4rem,5vw,4.2rem)/1 var(--fd);font-style:italic;color:var(--bronze);
+}
+.preloader__bar{position:absolute;bottom:0;left:0;width:100%;height:2px;background:rgba(242,237,229,.12)}
+.preloader__bar i{display:block;height:100%;width:100%;background:var(--bronze);transform:scaleX(0);transform-origin:left}
+
+/* ============ SPLIT HELPERS ============ */
+.w-mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
+.c{display:inline-block;will-change:transform}
+.w{display:inline-block}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;width:100%;z-index:130;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--pad);
+  mix-blend-mode:difference;color:#EDE8DF;
+  transition:transform .6s var(--ease);
+}
+.nav--hidden{transform:translateY(-110%)}
+.nav__logo{font:400 1.15rem/1 var(--fd);text-decoration:none;letter-spacing:.01em;display:flex;align-items:baseline;gap:8px}
+.nav__logo em{font-style:italic}
+.nav__logo sup{font:600 .55rem/1 var(--fb);letter-spacing:.3em;opacity:.7}
+.nav__right{display:flex;align-items:center;gap:26px}
+.nav__cta{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+  font:600 .66rem/1 var(--fb);letter-spacing:.22em;text-transform:uppercase;
+  border:1px solid rgba(237,232,223,.6);border-radius:999px;padding:.95em 1.6em;
+  transition:background .45s,color .45s;
+}
+.nav__cta:hover{background:#EDE8DF;color:#16130E}
+.menu-btn{display:flex;align-items:center;gap:12px}
+.menu-btn__txt{font:600 .66rem/1 var(--fb);letter-spacing:.24em;text-transform:uppercase}
+.menu-btn__lines{width:26px;height:10px;position:relative}
+.menu-btn__lines i{position:absolute;left:0;width:100%;height:1.5px;background:currentColor;transition:transform .5s var(--ease),top .5s var(--ease)}
+.menu-btn__lines i:first-child{top:0}
+.menu-btn__lines i:last-child{top:8px}
+.menu-btn.is-open .menu-btn__lines i:first-child{top:4px;transform:rotate(45deg)}
+.menu-btn.is-open .menu-btn__lines i:last-child{top:4px;transform:rotate(-45deg)}
+@media(max-width:760px){.nav__cta{display:none}}
+
+/* ============ MENU OVERLAY ============ */
+.menu{
+  position:fixed;inset:0;z-index:120;background:var(--ink);color:var(--bg);
+  clip-path:inset(0 0 100% 0);visibility:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:110px var(--pad) 40px;
+}
+.menu__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:6vw;align-items:end;flex:1}
+.menu__links{display:flex;flex-direction:column}
+.menu__link{display:flex;align-items:baseline;gap:22px;text-decoration:none;padding:.35em 0;overflow:hidden}
+.menu__link-num{font:500 .7rem/1 var(--fb);letter-spacing:.2em;color:var(--bronze)}
+.menu__link-inner{display:inline-block;overflow:hidden}
+.menu__link-word{
+  display:inline-block;font:340 clamp(2.6rem,7.2vw,6.4rem)/1.04 var(--fd);letter-spacing:-.02em;
+  transition:transform .5s var(--ease),color .5s;
+}
+.menu__link:hover .menu__link-word{transform:translateX(18px);color:var(--bronze);font-style:italic}
+.menu__meta{display:flex;flex-direction:column;gap:26px;padding-bottom:12px}
+.menu__meta h5{font:600 .62rem/1 var(--fb);letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px}
+.menu__meta a,.menu__meta p{font:400 .95rem/1.7 var(--fb);color:rgba(242,237,229,.75);text-decoration:none}
+.menu__meta a:hover{color:var(--bg)}
+.menu__foot{
+  display:flex;justify-content:space-between;gap:20px;margin-top:48px;padding-top:22px;
+  border-top:1px solid var(--line-l);font:500 .64rem/1 var(--fb);letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(242,237,229,.45);
+}
+@media(max-width:900px){.menu__grid{grid-template-columns:1fr;gap:40px}}
+
+/* ============ LABELS / BUTTONS / LINES ============ */
+.label{display:flex;align-items:center;gap:14px;font:700 .66rem/1 var(--fb);letter-spacing:.34em;text-transform:uppercase;color:var(--bronze)}
+.label::before{content:'';width:36px;height:1px;background:currentColor}
+.rule{height:1px;background:var(--line);transform-origin:left}
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:.9em;text-decoration:none;
+  padding:1.15em 2.1em;border:1px solid currentColor;border-radius:999px;overflow:hidden;
+  font:600 .7rem/1 var(--fb);letter-spacing:.22em;text-transform:uppercase;color:var(--ink);
+  transition:color .45s;white-space:nowrap;
+}
+.btn::before{
+  content:'';position:absolute;inset:-1px;background:var(--ink);border-radius:inherit;
+  transform:scaleY(0);transform-origin:bottom;transition:transform .55s var(--ease);
+}
+.btn>*{position:relative;z-index:1}
+.btn:hover{color:var(--bg)}
+.btn:hover::before{transform:scaleY(1)}
+.btn svg{width:12px;height:12px;transition:transform .45s var(--ease)}
+.btn:hover svg{transform:rotate(45deg)}
+.btn--light{color:var(--bg)}
+.btn--light::before{background:var(--bg)}
+.btn--light:hover{color:var(--ink)}
+.uline{position:relative;text-decoration:none}
+.uline::after{
+  content:'';position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease);
+}
+.uline:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;padding-top:clamp(96px,13vh,150px);padding-bottom:34px}
+.hero__grid{display:grid;grid-template-columns:1.22fr .78fr;gap:4vw;align-items:end;flex:1}
+.hero__eyebrow{margin-bottom:clamp(24px,4vh,44px)}
+.hero__title{
+  font:340 clamp(3.3rem,8.4vw,9.6rem)/0.98 var(--fd);letter-spacing:-.025em;
+  margin-bottom:clamp(28px,4.5vh,52px);position:relative;z-index:2;
+}
+.hero__title em{font-style:italic;color:var(--bronze)}
+.hero__sub{max-width:36ch;color:var(--ink2);font-size:clamp(.98rem,1.15vw,1.12rem);margin-bottom:clamp(28px,4.5vh,48px)}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.hero__media{position:relative}
+.hero__media-main{position:relative;width:100%;aspect-ratio:3/3.9;max-height:80vh;overflow:hidden}
+.hero__media-main img{width:100%;height:100%;object-fit:cover}
+.hero__media-cap{
+  margin-top:14px;display:flex;justify-content:space-between;
+  font:500 .64rem/1.5 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);
+}
+.hero__float{
+  position:absolute;left:-16%;bottom:16%;width:clamp(130px,13vw,210px);aspect-ratio:4/5;
+  overflow:hidden;z-index:3;box-shadow:0 30px 60px -20px rgba(22,19,14,.35);
+}
+.hero__float img{width:100%;height:100%;object-fit:cover}
+.hero__foot{
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  margin-top:clamp(30px,5vh,56px);padding-top:20px;border-top:1px solid var(--line);
+  font:500 .64rem/1.6 var(--fb);letter-spacing:.24em;text-transform:uppercase;color:var(--ink2);
+}
+.scroll-cue{display:flex;align-items:center;gap:12px;cursor:pointer}
+.scroll-cue i{display:block;width:1px;height:34px;background:var(--ink);transform-origin:top;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:900px){
+  .hero__grid{grid-template-columns:1fr;gap:44px}
+  .hero__media-main{aspect-ratio:4/5}
+  .hero__float{left:auto;right:4%;bottom:-8%}
+}
+
+/* ============ MARQUEE ============ */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;background:var(--bg)}
+.marquee--dark{background:var(--ink);color:var(--bg);border-color:rgba(242,237,229,.12)}
+.marquee__skew{will-change:transform}
+.marquee__track{display:flex;width:max-content;animation:mq 30s linear infinite}
+.marquee--slow .marquee__track{animation-duration:44s}
+.marquee--rev .marquee__track{animation-direction:reverse}
+.marquee__group{display:flex;align-items:center;gap:3.4rem;padding-right:3.4rem;white-space:nowrap}
+.marquee__item{font:italic 340 clamp(1.05rem,1.7vw,1.5rem)/1 var(--fd);letter-spacing:.02em}
+.marquee__item svg{width:14px;height:14px;color:var(--bronze);flex-shrink:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ STUDIO ============ */
+.studio{padding-top:clamp(100px,15vh,180px);padding-bottom:clamp(90px,13vh,160px)}
+.studio__statement{
+  font:340 clamp(1.7rem,3.6vw,3.4rem)/1.32 var(--fd);letter-spacing:-.01em;
+  max-width:22em;margin:clamp(36px,6vh,64px) 0 clamp(70px,11vh,130px);
+}
+.studio__statement em{font-style:italic;color:var(--bronze)}
+.studio__grid{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(40px,6vw,110px);align-items:start}
+.studio__portrait{position:relative}
+.studio__portrait .reveal{aspect-ratio:3/3.8;overflow:hidden}
+.studio__portrait .reveal img{width:100%;height:100%;object-fit:cover}
+.studio__portrait figcaption{margin-top:14px;font:500 .64rem/1.6 var(--fb);letter-spacing:.22em;text-transform:uppercase;color:var(--ink2);display:flex;justify-content:space-between}
+.studio__body h2{font:340 clamp(2.2rem,4.6vw,4.4rem)/1.05 var(--fd);letter-spacing:-.015em;margin-bottom:32px}
+.studio__body h2 em{font-style:italic;color:var(--bronze)}
+.studio__body p{color:var(--ink2);max-width:52ch;margin-bottom:22px}
+.studio__atelier{margin-top:44px;width:min(420px,80%);overflow:hidden;aspect-ratio:16/10}
+.studio__atelier img{width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3vw,60px);margin-top:clamp(70px,11vh,130px);padding-top:clamp(36px,5vh,56px);border-top:1px solid var(--line)}
+.stat__num{font:300 clamp(2.6rem,5vw,4.6rem)/1 var(--fd);display:flex;align-items:baseline}
+.stat__num em{font-style:italic;color:var(--bronze);font-size:.55em;margin-left:2px}
+.stat__label{display:block;margin-top:12px;font:600 .64rem/1.6 var(--fb);letter-spacing:.24em;text-transform:uppercase;color:var(--ink2)}
+@media(max-width:900px){.studio__grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ============ WORKS ============ */
+.works{padding-top:clamp(90px,13vh,160px);padding-bottom:clamp(90px,13vh,160px)}
+.works__head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(40px,7vh,80px)}
+.works__count{font:italic 300 clamp(1.4rem,2.4vw,2rem)/1 var(--fd);color:var(--bronze)}
+.works__title{font:340 clamp(2.6rem,6vw,5.8rem)/1 var(--fd);letter-spacing:-.02em;margin-top:26px}
+.works__title em{font-style:italic;color:var(--bronze)}
+.works__grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  column-gap:clamp(16px,3vw,52px);row-gap:clamp(90px,13vh,160px);
+  margin-top:clamp(60px,9vh,110px);
+}
+.work{position:relative;cursor:pointer}
+.work:nth-child(6n+1){grid-column:1/8}
+.work:nth-child(6n+2){grid-column:9/13;margin-top:20vh}
+.work:nth-child(6n+3){grid-column:2/7;margin-top:-8vh}
+.work:nth-child(6n+4){grid-column:8/13;margin-top:12vh}
+.work:nth-child(6n+5){grid-column:1/6;margin-top:-6vh}
+.work:nth-child(6n+6){grid-column:7/13;margin-top:9vh}
+.work .reveal{overflow:hidden;position:relative;transition:transform .7s var(--ease)}
+.work:hover .reveal{transform:scale(.975)}
+.work:nth-child(6n+1) .reveal{aspect-ratio:4/3}
+.work:nth-child(6n+2) .reveal{aspect-ratio:3/4}
+.work:nth-child(6n+3) .reveal{aspect-ratio:3/3.8}
+.work:nth-child(6n+4) .reveal{aspect-ratio:4/3.2}
+.work:nth-child(6n+5) .reveal{aspect-ratio:3/4}
+.work:nth-child(6n+6) .reveal{aspect-ratio:16/10}
+.work .reveal img{width:100%;height:100%;object-fit:cover}
+.work__meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:18px}
+.work__idx{font:500 .66rem/1 var(--fb);letter-spacing:.2em;color:var(--bronze)}
+.work__title{font:400 clamp(1.4rem,2.3vw,2.1rem)/1.1 var(--fd);letter-spacing:-.01em;position:relative;display:inline-block;transition:color .4s}
+.work__title::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--bronze);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.work:hover .work__title{color:var(--bronze)}
+.work:hover .work__title::after{transform:scaleX(1);transform-origin:left}
+.work__loc{font:500 .64rem/1.7 var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);text-align:right;white-space:nowrap}
+.work__head{display:flex;align-items:baseline;gap:16px}
+@media(max-width:900px){
+  .works__grid{grid-template-columns:1fr;row-gap:70px}
+  .work{grid-column:1/-1 !important;margin-top:0 !important}
+}
+
+/* ============ SERVICES ============ */
+.services{padding-top:clamp(90px,13vh,160px);padding-bottom:clamp(90px,13vh,160px)}
+.services__title{font:340 clamp(2.4rem,5.2vw,5rem)/1.05 var(--fd);letter-spacing:-.015em;margin:26px 0 clamp(50px,8vh,90px);max-width:14em}
+.services__title em{font-style:italic;color:var(--bronze)}
+.svc{
+  display:grid;grid-template-columns:80px 1fr auto 60px;align-items:center;gap:clamp(16px,3vw,48px);
+  padding:clamp(26px,4.5vh,44px) 0;border-top:1px solid var(--line);cursor:pointer;
+}
+.svc:last-child{border-bottom:1px solid var(--line)}
+.svc__num{font:500 .7rem/1 var(--fb);letter-spacing:.2em;color:var(--bronze)}
+.svc__name{font:340 clamp(1.5rem,3.4vw,3rem)/1.1 var(--fd);letter-spacing:-.01em;transition:transform .55s var(--ease),color .55s}
+.svc:hover .svc__name{transform:translateX(26px);color:var(--bronze)}
+.svc__tags{font:500 .66rem/1.7 var(--fb);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);text-align:right}
+.svc__arr{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .45s,border-color .45s}
+.svc__arr svg{width:12px;height:12px;transition:transform .45s var(--ease)}
+.svc:hover .svc__arr{background:var(--ink);border-color:var(--ink)}
+.svc:hover .svc__arr svg{transform:rotate(45deg);stroke:var(--bg)}
+.svc-preview{
+  position:fixed;top:0;left:0;width:min(300px,26vw);aspect-ratio:4/5;z-index:80;
+  pointer-events:none;overflow:hidden;opacity:0;visibility:hidden;
+  box-shadow:0 40px 80px -30px rgba(22,19,14,.5);
+}
+.svc-preview img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.svc{grid-template-columns:50px 1fr 40px}.svc__tags{display:none}}
+
+/* ============ PROCESS ============ */
+.process{padding-top:clamp(90px,13vh,160px);padding-bottom:clamp(100px,14vh,170px)}
+.process__title{font:340 clamp(2.4rem,5.2vw,5rem)/1.05 var(--fd);letter-spacing:-.015em;margin:26px 0 clamp(50px,8vh,90px)}
+.process__title em{font-style:italic;color:var(--bronze)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(28px,3vw,56px)}
+.step{padding-top:28px;position:relative}
+.step .rule{position:absolute;top:0;left:0;width:100%}
+.step__num{font:italic 300 clamp(2.4rem,4vw,3.8rem)/1 var(--fd);color:var(--bronze)}
+.step h3{font:400 clamp(1.35rem,1.9vw,1.8rem)/1.2 var(--fd);margin:22px 0 14px}
+.step p{font-size:.92rem;color:var(--ink2);max-width:32ch}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* ============ VOICES ============ */
+.voices{background:var(--bg2);padding-top:clamp(90px,13vh,160px);padding-bottom:clamp(90px,13vh,160px)}
+.voices__stage{max-width:1000px;margin:clamp(40px,7vh,70px) auto 0;text-align:center;position:relative}
+.voices__mark{width:44px;color:var(--bronze);margin:0 auto 34px}
+.voices__quote{font:italic 340 clamp(1.5rem,3.1vw,2.7rem)/1.35 var(--fd);letter-spacing:-.01em;min-height:5.4em}
+.voices__cite{display:block;margin-top:34px;font:600 .68rem/1.8 var(--fb);letter-spacing:.28em;text-transform:uppercase;font-style:normal}
+.voices__cite span:last-child{color:var(--ink2);font-weight:500}
+.voices__ctrl{display:flex;align-items:center;justify-content:center;gap:26px;margin-top:46px}
+.voices__btn{width:48px;height:48px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .4s,border-color .4s}
+.voices__btn svg{width:14px;height:14px;transition:stroke .4s}
+.voices__btn:hover{background:var(--ink);border-color:var(--ink)}
+.voices__btn:hover svg{stroke:var(--bg)}
+.voices__idx{font:500 .68rem/1 var(--fb);letter-spacing:.26em;color:var(--ink2)}
+
+/* ============ PRESS ============ */
+.press{padding-top:clamp(60px,9vh,100px)}
+.press__label{justify-content:center;margin-bottom:34px}
+
+/* ============ CTA + FOOTER ============ */
+.cta{
+  background:var(--ink);color:var(--bg);text-align:center;
+  padding-top:clamp(110px,16vh,190px);padding-bottom:clamp(110px,16vh,190px);
+  position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);
+  width:70vw;height:70vw;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(156,122,69,.16),transparent 65%);
+}
+.cta .label{justify-content:center}
+.cta .label::before{display:none}
+.cta h2{
+  font:340 clamp(2.8rem,7vw,7rem)/1.05 var(--fd);letter-spacing:-.02em;
+  max-width:11em;margin:34px auto 46px;position:relative;z-index:2;
+}
+.cta h2 em{font-style:italic;color:var(--bronze)}
+.cta__note{margin-top:30px;font:500 .68rem/1.8 var(--fb);letter-spacing:.26em;text-transform:uppercase;color:rgba(242,237,229,.5)}
+.footer{background:var(--ink);color:var(--bg);padding:clamp(70px,10vh,110px) var(--pad) 30px;border-top:1px solid var(--line-l)}
+.footer__grid{display:grid;grid-template-columns:1.2fr repeat(3,.7fr);gap:clamp(36px,4vw,70px)}
+.footer h5{font:600 .62rem/1 var(--fb);letter-spacing:.32em;text-transform:uppercase;color:var(--bronze);margin-bottom:20px}
+.footer a,.footer p{font:400 .95rem/2 var(--fb);color:rgba(242,237,229,.72);text-decoration:none;display:block;width:fit-content}
+.footer a:hover{color:var(--bg)}
+.footer__brand p{max-width:30ch;line-height:1.8}
+.footer__mark{
+  font:340 clamp(4rem,13.5vw,14.5rem)/0.95 var(--fd);letter-spacing:-.03em;text-align:center;
+  margin-top:clamp(60px,9vh,110px);white-space:nowrap;user-select:none;
+}
+.footer__mark em{font-style:italic;color:var(--bronze)}
+.footer__bar{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+  margin-top:clamp(40px,6vh,70px);padding-top:24px;border-top:1px solid var(--line-l);
+  font:500 .62rem/1.8 var(--fb);letter-spacing:.24em;text-transform:uppercase;color:rgba(242,237,229,.45);
+}
+.footer__bar button{letter-spacing:.24em;text-transform:uppercase;font-size:.62rem;font-weight:600;display:flex;gap:8px;align-items:center;transition:color .3s}
+.footer__bar button:hover{color:var(--bg)}
+@media(max-width:900px){.footer__grid{grid-template-columns:1fr 1fr}}
+
+/* ============ PROJECT MODAL ============ */
+.pmodal{position:fixed;inset:0;z-index:140;visibility:hidden}
+.pmodal__backdrop{position:absolute;inset:0;background:rgba(12,10,7,.55);backdrop-filter:blur(6px);opacity:0}
+.pmodal__panel{
+  position:absolute;top:0;right:0;height:100%;width:min(1120px,94vw);background:var(--bg);
+  transform:translateX(102%);display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden;
+}
+.pmodal__media{display:flex;flex-direction:column;gap:14px;padding:clamp(16px,2vw,28px);overflow-y:auto}
+.pmodal__media img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.pmodal__body{padding:clamp(34px,4vw,64px);overflow-y:auto;display:flex;flex-direction:column}
+.pmodal__idx{font:500 .66rem/1 var(--fb);letter-spacing:.24em;color:var(--bronze);text-transform:uppercase}
+.pmodal__title{font:340 clamp(2rem,3.6vw,3.4rem)/1.05 var(--fd);letter-spacing:-.015em;margin:20px 0 30px}
+.pmodal__meta{list-style:none;border-top:1px solid var(--line);margin-bottom:30px}
+.pmodal__meta li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:.85rem}
+.pmodal__meta li span:first-child{font:600 .62rem/1.9 var(--fb);letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+.pmodal__desc{color:var(--ink2);font-size:1rem;max-width:46ch}
+.pmodal__cta{margin-top:auto;padding-top:40px}
+.pmodal__close{
+  position:absolute;top:20px;right:20px;z-index:5;width:52px;height:52px;border-radius:50%;
+  background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;
+  transition:transform .5s var(--ease),background .4s;
+}
+.pmodal__close:hover{transform:rotate(90deg);background:var(--bronze)}
+.pmodal__close svg{width:16px;height:16px}
+@media(max-width:860px){.pmodal__panel{grid-template-columns:1fr;overflow-y:auto}.pmodal__media{overflow:visible}}
+
+.reveal{will-change:clip-path}
+[data-fade]{will-change:transform,opacity}
+</style>
+</head>
+<body id="top" class="is-locked">
+
+<!-- GRAIN -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span>View</span></div>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__center">
+    <div class="preloader__name" id="preName">Jenny <em>Waltz</em></div>
+    <div class="preloader__sub">Atelier of Interiors — New York City</div>
+  </div>
+  <div class="preloader__count"><span id="loadNum">00</span></div>
+  <div class="preloader__bar"><i id="loadBar"></i></div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top">Jenny <em>Waltz</em><sup>NYC</sup></a>
+  <div class="nav__right">
+    <a class="nav__cta" href="mailto:atelier@jennywaltz.com?subject=Consultation%20Request" data-magnetic>Book a consultation</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+      <span class="menu-btn__txt" id="menuBtnTxt">Menu</span>
+      <span class="menu-btn__lines"><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+
+<!-- MENU OVERLAY -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__grid">
+    <nav class="menu__links">
+      <a class="menu__link" href="#studio"><span class="menu__link-num">01</span><span class="menu__link-inner"><span class="menu__link-word">Studio</span></span></a>
+      <a class="menu__link" href="#works"><span class="menu__link-num">02</span><span class="menu__link-inner"><span class="menu__link-word">Works</span></span></a>
+      <a class="menu__link" href="#services"><span class="menu__link-num">03</span><span class="menu__link-inner"><span class="menu__link-word">Services</span></span></a>
+      <a class="menu__link" href="#process"><span class="menu__link-num">04</span><span class="menu__link-inner"><span class="menu__link-word">Method</span></span></a>
+      <a class="menu__link" href="#contact"><span class="menu__link-num">05</span><span class="menu__link-inner"><span class="menu__link-word">Contact</span></span></a>
+    </nav>
+    <div class="menu__meta">
+      <div>
+        <h5>Atelier</h5>
+        <p>41 Great Jones Street, No. 3<br>New York, NY 10012</p>
+      </div>
+      <div>
+        <h5>Enquiries</h5>
+        <a href="mailto:atelier@jennywaltz.com">atelier@jennywaltz.com</a>
+        <a href="tel:+12125550147">+1 212 555 0147</a>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <a href="#" rel="noopener">Instagram</a>
+        <a href="#" rel="noopener">Pinterest</a>
+      </div>
+    </div>
+  </div>
+  <div class="menu__foot">
+    <span>Est. 2009 — Manhattan</span>
+    <span>Atelier visits by appointment</span>
+  </div>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__grid container">
+      <div class="hero__left">
+        <p class="label hero__eyebrow" data-hero-fade>Atelier for Interior Design — New York City</p>
+        <h1 class="hero__title" id="heroTitle">Interiors in<br>perfect <em>tempo.</em></h1>
+        <p class="hero__sub" data-hero-fade>Jenny Waltz composes refined residences across Manhattan &amp; Brooklyn — quiet, confident rooms measured in three-quarter time.</p>
+        <div class="hero__ctas" data-hero-fade>
+          <a class="btn" href="#works" data-magnetic><span>View selected works</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <a class="uline" href="mailto:atelier@jennywaltz.com?subject=Consultation%20Request" style="font:600 .72rem/1 var(--fb);letter-spacing:.2em;text-transform:uppercase">Book a consultation</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <figure class="hero__media-main" id="heroMain">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1400&auto=format&fit=crop" alt="Elegant ivory living room designed by Jenny Waltz" data-parallax>
+        </figure>
+        <figcaption class="hero__media-cap" data-hero-fade><span>Tribeca Loft</span><span>2024</span></figcaption>
+        <figure class="hero__float" id="heroFloat">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop" alt="Detail of a composed corner vignette" data-parallax>
+        </figure>
+      </div>
+    </div>
+    <div class="hero__foot container" data-hero-fade>
+      <span class="scroll-cue" id="scrollCue"><i></i> Scroll to explore</span>
+      <span>Est. 2009 — Manhattan &amp; Brooklyn</span>
+      <span>Residential · Full-Service</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__skew">
+      <div class="marquee__track" id="mq1"></div>
+    </div>
+  </div>
+
+  <!-- STUDIO -->
+  <section class="studio" id="studio">
+    <div class="container">
+      <p class="label" data-fade>The Studio</p>
+      <p class="studio__statement" id="statement">A waltz is counted in threes — <em>proportion, light, texture.</em> Jenny Waltz composes interiors the same way: measured, unhurried, and quietly unforgettable.</p>
+      <div class="studio__grid">
+        <figure class="studio__portrait">
+          <div class="reveal"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" alt="Portrait of Jenny Waltz, founder and principal" data-parallax loading="lazy"></div>
+          <figcaption data-fade><span>Jenny Waltz</span><span>Founder &amp; Principal</span></figcaption>
+        </figure>
+        <div class="studio__body">
+          <h2 data-split>A studio built on <em>rhythm.</em></h2>
+          <p data-fade>Founded in 2009, the atelier accepts a small number of residences each year across Manhattan and Brooklyn. Every commission is led personally by Jenny — from the first measured walk-through to the final stem placed on the mantel.</p>
+          <p data-fade>The work is quiet on purpose. Rooms are composed the way music is written: structure first, ornament second, silence where it matters most.</p>
+          <figure class="studio__atelier reveal" data-fade>
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop" alt="Atelier project — modern neutral living room" data-parallax loading="lazy">
+          </figure>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat" data-fade><span class="stat__num"><span data-count="16">0</span></span><span class="stat__label">Years of practice</span></div>
+        <div class="stat" data-fade><span class="stat__num"><span data-count="120">0</span><em>+</em></span><span class="stat__label">Residences composed</span></div>
+        <div class="stat" data-fade><span class="stat__num"><span data-count="9">0</span></span><span class="stat__label">Design honours</span></div>
+        <div class="stat" data-fade><span class="stat__num"><span data-count="14">0</span></span><span class="stat__label">Press features</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works" id="works">
+    <div class="container">
+      <div class="works__head">
+        <p class="label" data-fade>Selected Works — 2019 / 2025</p>
+        <span class="works__count" data-fade>( 06 )</span>
+      </div>
+      <h2 class="works__title" data-split>Rooms with a <em>pulse.</em></h2>
+      <div class="works__grid">
+        <article class="work" data-project="tribeca" data-cursor="view">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1500&auto=format&fit=crop" alt="Tribeca Loft living room" data-parallax loading="lazy"></figure>
+          <div class="work__meta"><div class="work__head"><span class="work__idx">01</span><h3 class="work__title">Tribeca Loft</h3></div><span class="work__loc">Tribeca · 2024</span></div>
+        </article>
+        <article class="work" data-project="ues" data-cursor="view">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop" alt="Upper East Residence bedroom" data-parallax loading="lazy"></figure>
+          <div class="work__meta"><div class="work__head"><span class="work__idx">02</span><h3 class="work__title">Upper East Residence</h3></div><span class="work__loc">UES · 2023</span></div>
+        </article>
+        <article class="work" data-project="soho" data-cursor="view">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1200&auto=format&fit=crop" alt="SoHo Penthouse moody living room" data-parallax loading="lazy"></figure>
+          <div class="work__meta"><div class="work__head"><span class="work__idx">03</span><h3 class="work__title">SoHo Penthouse</h3></div><span class="work__loc">SoHo · 2024</span></div>
+        </article>
+        <article class="work" data-project="parkslope" data-cursor="view">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1500&auto=format&fit=crop" alt="Park Slope Brownstone dining room" data-parallax loading="lazy"></figure>
+          <div class="work__meta"><div class="work__head"><span class="work__idx">04</span><h3 class="work__title">Park Slope Brownstone</h3></div><span class="work__loc">Park Slope · 2022</span></div>
+        </article>
+        <article class="work" data-project="hudson" data-cursor="view">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=1200&auto=format&fit=crop" alt="Hudson Yards Suite bedroom" data-parallax loading="lazy"></figure>
+          <div class="work__meta"><div class="work__head"><span class="work__idx">05</span><h3 class="work__title">Hudson Yards Suite</h3></div><span class="work__loc">Hudson Yards · 2023</span></div>
+        </article>
+        <article class="work" data-project="westvillage" data-cursor="view">
+          <figure class="reveal"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1500&auto=format&fit=crop" alt="West Village Townhouse kitchen" data-parallax loading="lazy"></figure>
+          <div class="work__meta"><div class="work__head"><span class="work__idx">06</span><h3 class="work__title">West Village Townhouse</h3></div><span class="work__loc">West Village · 2025</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <p class="label" data-fade>Services</p>
+      <h2 class="services__title" data-split>From first sketch to final <em>styling.</em></h2>
+      <div class="services__list" id="svcList">
+        <div class="svc" data-fade data-img="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop">
+          <span class="svc__num">01</span><h3 class="svc__name">Full-Service Interior Design</h3>
+          <span class="svc__tags">Concept → Completion</span>
+          <span class="svc__arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+        <div class="svc" data-fade data-img="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop">
+          <span class="svc__num">02</span><h3 class="svc__name">Spatial Planning &amp; Flow</h3>
+          <span class="svc__tags">Layouts · Light Studies</span>
+          <span class="svc__arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+        <div class="svc" data-fade data-img="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=800&auto=format&fit=crop">
+          <span class="svc__num">03</span><h3 class="svc__name">Custom Furniture &amp; Millwork</h3>
+          <span class="svc__tags">Bespoke · To the Millimetre</span>
+          <span class="svc__arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+        <div class="svc" data-fade data-img="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop">
+          <span class="svc__num">04</span><h3 class="svc__name">Art &amp; Object Curation</h3>
+          <span class="svc__tags">Sourcing · Placement</span>
+          <span class="svc__arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+        <div class="svc" data-fade data-img="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=800&auto=format&fit=crop">
+          <span class="svc__num">05</span><h3 class="svc__name">Lighting Design</h3>
+          <span class="svc__tags">Scenes for Every Hour</span>
+          <span class="svc__arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+        <div class="svc" data-fade data-img="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=800&auto=format&fit=crop">
+          <span class="svc__num">06</span><h3 class="svc__name">Renovation Direction</h3>
+          <span class="svc__tags">Site · Contractor Liaison</span>
+          <span class="svc__arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </div>
+      </div>
+    </div>
+    <div class="svc-preview" id="svcPreview"><img src="" alt=""></div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <p class="label" data-fade>The Method</p>
+      <h2 class="process__title" data-split>Four <em>movements.</em></h2>
+      <div class="steps">
+        <div class="step" data-fade><span class="rule"></span><span class="step__num">01</span><h3>Listen</h3><p>Every commission begins with conversation — how you wake, gather, retreat. The brief is written in your routines.</p></div>
+        <div class="step" data-fade><span class="rule"></span><span class="step__num">02</span><h3>Compose</h3><p>Mood, material and proportion are arranged into a score: floor plans, palettes and a narrative for each room.</p></div>
+        <div class="step" data-fade><span class="rule"></span><span class="step__num">03</span><h3>Refine</h3><p>Drawings become samples, samples become rooms. Millwork is tuned, stone is selected slab by slab.</p></div>
+        <div class="step" data-fade><span class="rule"></span><span class="step__num">04</span><h3>Reveal</h3><p>A final styling pass, art hung to the millimetre, the keys returned — and the house begins its life.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section class="voices">
+    <div class="container">
+      <p class="label" data-fade style="justify-content:center">Client Voices</p>
+      <div class="voices__stage" data-fade>
+        <svg class="voices__mark" viewBox="0 0 48 36" fill="currentColor" aria-hidden="true"><path d="M0 36V22C0 9 6 2 18 0v8c-6 2-8 6-8 12h10v16H0zm28 0V22C28 9 34 2 46 0v8c-6 2-8 6-8 12h10v16H28z"/></svg>
+        <blockquote>
+          <p class="voices__quote" id="quoteText">“Jenny didn’t decorate our home — she gave it a heartbeat. Every evening at six, the light lands exactly where she said it would.”</p>
+          <cite class="voices__cite"><span id="quoteAuthor">Alexandra M.</span> &nbsp;·&nbsp; <span id="quoteRole">Tribeca Loft</span></cite>
+        </blockquote>
+        <div class="voices__ctrl">
+          <button class="voices__btn" id="qPrev" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m6-7-7 7 7 7"/></svg></button>
+          <span class="voices__idx" id="qIndex">01 / 03</span>
+          <button class="voices__btn" id="qNext" aria-label="Next quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-7 7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS -->
+  <section class="press">
+    <p class="label press__label" data-fade>Selected Press</p>
+    <div class="marquee marquee--slow marquee--rev" aria-hidden="true">
+      <div class="marquee__skew"><div class="marquee__track" id="mq2"></div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <p class="label" data-fade>New Projects — Spring 2026</p>
+    <h2 data-split>Let’s set your rooms in <em>motion.</em></h2>
+    <a class="btn btn--light" href="mailto:atelier@jennywaltz.com?subject=Consultation%20Request" data-magnetic data-fade><span>Book a private consultation</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    <p class="cta__note" data-fade>Currently accepting commissions in Manhattan &amp; Brooklyn</p>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__grid container">
+    <div class="footer__brand">
+      <h5>Jenny Waltz — Atelier</h5>
+      <p>A high-end interior design studio composing residences across New York City since 2009.</p>
+    </div>
+    <div>
+      <h5>Visit</h5>
+      <p>41 Great Jones Street, No. 3<br>New York, NY 10012</p>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <a class="uline" href="mailto:atelier@jennywaltz.com">atelier@jennywaltz.com</a>
+      <a class="uline" href="tel:+12125550147">+1 212 555 0147</a>
+    </div>
+    <div>
+      <h5>Follow</h5>
+      <a class="uline" href="#" rel="noopener">Instagram</a>
+      <a class="uline" href="#" rel="noopener">Pinterest</a>
+      <a class="uline" href="#" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer__mark" id="footMark" aria-hidden="true">Jenny <em>Waltz</em></div>
+  <div class="footer__bar container">
+    <span>© 2025 Jenny Waltz Atelier</span>
+    <span>New York City — <span id="nyclock">--:--</span></span>
+    <button id="toTop">Back to top <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5m-7 7 7-7 7 7"/></svg></button>
+  </div>
+</footer>
+
+<!-- PROJECT MODAL -->
+<div class="pmodal" id="pmodal" aria-hidden="true">
+  <div class="pmodal__backdrop" id="pmBackdrop"></div>
+  <div class="pmodal__panel" data-lenis-prevent>
+    <button class="pmodal__close" id="pmClose" aria-label="Close project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="pmodal__media"><img id="pmImg1" alt=""><img id="pmImg2" alt=""></div>
+    <div class="pmodal__body">
+      <span class="pmodal__idx" id="pmIdx">Case Study</span>
+      <h3 class="pmodal__title" id="pmTitle"></h3>
+      <ul class="pmodal__meta">
+        <li><span>Location</span><span id="pmLoc"></span></li>
+        <li><span>Year</span><span id="pmYear"></span></li>
+        <li><span>Scope</span><span id="pmScope"></span></li>
+        <li><span>Size</span><span id="pmSize"></span></li>
+      </ul>
+      <p class="pmodal__desc" id="pmDesc"></p>
+      <div class="pmodal__cta">
+        <a class="btn" id="pmEnquire" href="mailto:atelier@jennywaltz.com"><span>Enquire about a similar project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+(function(){
+'use strict';
+gsap.registerPlugin(ScrollTrigger);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+/* ---------- Lenis smooth scroll ---------- */
+let lenis = null;
+if(!reduced){
+  lenis = new Lenis({ duration:1.25, smoothWheel:true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+}
+function scrollToTarget(sel){
+  const el = document.querySelector(sel);
+  if(!el) return;
+  if(lenis){ lenis.scrollTo(el,{offset:0,duration:1.4}); }
+  else{ el.scrollIntoView({behavior:'smooth'}); }
+}
+
+/* ---------- Split helpers ---------- */
+function splitToChars(el){
+  const chars=[];
+  const walk=(node)=>{
+    [...node.childNodes].forEach(child=>{
+      if(child.nodeType===3){
+        const frag=document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach(part=>{
+          if(part==='')return;
+          if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(' ')); }
+          else{
+            const w=document.createElement('span'); w.className='w-mask';
+            [...part].forEach(ch=>{ const c=document.createElement('span'); c.className='c'; c.textContent=ch; w.appendChild(c); chars.push(c); });
+            frag.appendChild(w);
+          }
+        });
+        node.replaceChild(frag,child);
+      } else if(child.nodeType===1 && child.tagName!=='BR'){ walk(child); }
+    });
+  };
+  walk(el); return chars;
+}
+function splitToWords(el){
+  const words=[];
+  const walk=(node)=>{
+    [...node.childNodes].forEach(child=>{
+      if(child.nodeType===3){
+        const frag=document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach(part=>{
+          if(part==='')return;
+          if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode('\u00A0')); }
+          else{ const w=document.createElement('span'); w.className='w'; w.textContent=part; frag.appendChild(w); words.push(w); }
+        });
+        node.replaceChild(frag,child);
+      } else if(child.nodeType===1 && child.tagName!=='BR'){ walk(child); }
+    });
+  };
+  walk(el); return words;
+}
+
+/* ---------- Marquees ---------- */
+const star = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1"/></svg>';
+function buildMarquee(id, items){
+  const group = `<div class="marquee__group">${items.map(i=>`<span class="marquee__item">${i}</span>${star}`).join('')}</div>`;
+  document.getElementById(id).innerHTML = group + group;
+}
+buildMarquee('mq1',['Full-Service Design','Spatial Planning','Custom Millwork','Art Curation','Lighting Design','Styling','Renovation Direction']);
+buildMarquee('mq2',['Architectural Digest','Elle Décor','Vogue Living','Dwell','Interior Design','House Beautiful','NY Magazine','Luxe']);
+
+/* ---------- Initial states (pre-intro) ---------- */
+let heroChars=[];
+if(!reduced){
+  heroChars = splitToChars(document.getElementById('heroTitle'));
+  gsap.set(heroChars,{yPercent:120});
+  gsap.set('#heroMain',{clipPath:'inset(100% 0% 0% 0%)'});
+  gsap.set('#heroMain img',{scale:1.35});
+  gsap.set('#heroFloat',{clipPath:'inset(0% 0% 100% 0%)'});
+  gsap.set('#heroFloat img',{scale:1.4});
+  gsap.set('[data-hero-fade]',{y:34,opacity:0});
+  gsap.set('#nav',{y:-16,opacity:0});
+}
+
+/* ---------- Preloader ---------- */
+const preloader = document.getElementById('preloader');
+function heroIntro(){
+  if(reduced){ gsap.set('#nav',{clearProps:'all'}); return; }
+  const tl = gsap.timeline({defaults:{ease:'power4.out'}});
+  tl.to(heroChars,{yPercent:0,duration:1.25,stagger:0.028})
+    .to('#heroMain',{clipPath:'inset(0% 0% 0% 0%)',duration:1.35,ease:'power4.inOut'},0.15)
+    .to('#heroMain img',{scale:1.2,duration:1.9,ease:'power3.out'},0.15)
+    .to('#heroFloat',{clipPath:'inset(0% 0% 0% 0%)',duration:1.1,ease:'power4.inOut'},0.55)
+    .to('#heroFloat img',{scale:1.2,duration:1.7,ease:'power3.out'},0.55)
+    .to('[data-hero-fade]',{y:0,opacity:1,duration:1,stagger:0.09},0.6)
+    .to('#nav',{y:0,opacity:1,duration:.9},0.7);
+}
+if(reduced){
+  preloader.remove();
+  document.body.classList.remove('is-locked');
+}else{
+  const preChars = splitToChars(document.getElementById('preName'));
+  gsap.set(preChars,{yPercent:120});
+  const counter={v:0};
+  const numEl=document.getElementById('loadNum');
+  const barEl=document.getElementById('loadBar');
+  const pre = gsap.timeline({onComplete:()=>{
+    preloader.remove();
+    document.body.classList.remove('is-locked');
+    if(lenis) lenis.start();
+    heroIntro();
+  }});
+  pre.to(preChars,{yPercent:0,duration:.9,ease:'power4.out',stagger:.04},0.15)
+     .to('.preloader__sub',{opacity:1,duration:.7},0.7)
+     .to(counter,{v:100,duration:1.9,ease:'power2.inOut',onUpdate:()=>{
+        numEl.textContent=String(Math.round(counter.v)).padStart(2,'0');
+        barEl.style.transform=`scaleX(${counter.v/100})`;
+     }},0.1)
+     .to('.preloader__center, .preloader__count',{y:-30,opacity:0,duration:.55,ease:'power3.in'},'+=0.25')
+     .to(preloader,{yPercent:-100,duration:1,ease:'power4.inOut'},'-=0.15');
+}
+
+/* ---------- Custom cursor ---------- */
+if(finePointer){
+  const dot=document.querySelector('.cursor-dot');
+  const ring=document.querySelector('.cursor-ring');
+  gsap.set([dot,ring],{xPercent:-50,yPercent:-50,x:-100,y:-100});
+  const dx=gsap.quickTo(dot,'x',{duration:.12,ease:'power3'}), dy=gsap.quickTo(dot,'y',{duration:.12,ease:'power3'});
+  const rx=gsap.quickTo(ring,'x',{duration:.45,ease:'power3'}), ry=gsap.quickTo(ring,'y',{duration:.45,ease:'power3'});
+  window.addEventListener('mousemove',e=>{dx(e.clientX);dy(e.clientY);rx(e.clientX);ry(e.clientY);});
+  document.addEventListener('mouseover',e=>{
+    if(e.target.closest('[data-cursor="view"]')) ring.classList.add('is-view');
+    else ring.classList.remove('is-view');
+    if(e.target.closest('a,button,.svc,.work')) ring.classList.add('is-link');
+    else ring.classList.remove('is-link');
+  });
+}
+
+/* ---------- Magnetic ---------- */
+if(finePointer && !reduced){
+  document.querySelectorAll('[data-magnetic]').forEach(btn=>{
+    const xTo=gsap.quickTo(btn,'x',{duration:.4,ease:'power3'});
+    const yTo=gsap.quickTo(btn,'y',{duration:.4,ease:'power3'});
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      xTo((e.clientX-r.left-r.width/2)*.32);
+      yTo((e.clientY-r.top-r.height/2)*.32);
+    });
+    btn.addEventListener('mouseleave',()=>gsap.to(btn,{x:0,y:0,duration:.8,ease:'elastic.out(1,.4)'}));
+  });
+}
+
+/* ---------- Nav hide/show + velocity skew ---------- */
+const nav=document.getElementById('nav');
+let lastY=0;
+const skewSetter = reduced ? null : gsap.quickSetter('.marquee__skew','skewX','deg');
+const clampSkew = gsap.utils.clamp(-6,6);
+function onScrollState(scroll,velocity){
+  if(scroll>120 && scroll>lastY+4) nav.classList.add('nav--hidden');
+  else if(scroll<lastY-4) nav.classList.remove('nav--hidden');
+  lastY=scroll;
+  if(skewSetter){ skewSetter(clampSkew(velocity*0.45)); }
+}
+if(lenis){ lenis.on('scroll',e=>onScrollState(e.scroll,e.velocity)); }
+else{ window.addEventListener('scroll',()=>onScrollState(window.scrollY,0)); }
+
+/* ---------- Menu overlay ---------- */
+const menu=document.getElementById('menu');
+const menuBtn=document.getElementById('menuBtn');
+const menuBtnTxt=document.getElementById('menuBtnTxt');
+let menuOpen=false;
+const menuTl=gsap.timeline({paused:true,defaults:{ease:'power4.inOut'},
+  onReverseComplete:()=>gsap.set(menu,{visibility:'hidden'})});
+menuTl.set(menu,{visibility:'visible'})
+  .to(menu,{clipPath:'inset(0% 0% 0% 0%)',duration:.85})
+  .fromTo('.menu__link-inner .menu__link-word',{yPercent:130},{yPercent:0,duration:.85,ease:'power3.out',stagger:.06},'-=.35')
+  .fromTo('.menu__meta > div',{y:26,opacity:0},{y:0,opacity:1,duration:.6,ease:'power3.out',stagger:.07},'-=.55')
+  .fromTo('.menu__foot',{opacity:0},{opacity:1,duration:.5},'-=.4');
+function toggleMenu(force){
+  menuOpen = force!==undefined?force:!menuOpen;
+  menuBtn.classList.toggle('is-open',menuOpen);
+  menuBtnTxt.textContent = menuOpen?'Close':'Menu';
+  menu.setAttribute('aria-hidden',String(!menuOpen));
+  if(menuOpen){ if(lenis)lenis.stop(); menuTl.timeScale(1).play(); }
+  else{ if(lenis)lenis.start(); menuTl.timeScale(1.4).reverse(); }
+}
+menuBtn.addEventListener('click',()=>toggleMenu());
+
+/* ---------- Anchor links ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href.length>1){
+      e.preventDefault();
+      if(menuOpen){ toggleMenu(false); setTimeout(()=>scrollToTarget(href),500); }
+      else scrollToTarget(href);
+    }
+  });
+});
+document.getElementById('scrollCue').addEventListener('click',()=>scrollToTarget('#studio'));
+document.getElementById('toTop').addEventListener('click',()=>{ if(lenis)lenis.scrollTo(0,{duration:1.6}); else window.scrollTo({top:0,behavior:'smooth'}); });
+
+/* ---------- Scroll animations ---------- */
+if(!reduced){
+  // Split headings
+  document.querySelectorAll('[data-split]').forEach(el=>{
+    const chars=splitToChars(el);
+    gsap.set(chars,{yPercent:120});
+    gsap.to(chars,{yPercent:0,duration:1.05,ease:'power4.out',stagger:.016,
+      scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+  });
+  // Statement word scrub
+  const words=splitToWords(document.getElementById('statement'));
+  gsap.fromTo(words,{opacity:.13},{opacity:1,ease:'none',stagger:.05,
+    scrollTrigger:{trigger:'#statement',start:'top 80%',end:'bottom 45%',scrub:true}});
+  // Fades
+  gsap.utils.toArray('[data-fade]').forEach(el=>{
+    gsap.fromTo(el,{y:36,opacity:0},{y:0,opacity:1,duration:1.1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+  });
+  // Image reveals
+  gsap.utils.toArray('main .reveal, .studio .reveal').forEach(w=>{
+    const img=w.querySelector('img');
+    if(w.id==='heroMain'||w.closest('.hero')) return;
+    gsap.set(w,{clipPath:'inset(0% 0% 100% 0%)'});
+    if(img) gsap.set(img,{scale:1.35});
+    const tl=gsap.timeline({scrollTrigger:{trigger:w,start:'top 86%',once:true}});
+    tl.to(w,{clipPath:'inset(0% 0% 0% 0%)',duration:1.25,ease:'power4.inOut'},0);
+    if(img) tl.to(img,{scale:1.2,duration:1.8,ease:'power3.out'},0);
+  });
+  // Parallax
+  gsap.utils.toArray('[data-parallax]').forEach(img=>{
+    gsap.fromTo(img,{yPercent:-7},{yPercent:7,ease:'none',
+      scrollTrigger:{trigger:img.closest('figure')||img,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  // Rules
+  gsap.utils.toArray('.rule').forEach(r=>{
+    gsap.fromTo(r,{scaleX:0},{scaleX:1,duration:1.4,ease:'power3.inOut',
+      scrollTrigger:{trigger:r,start:'top 92%',once:true}});
+  });
+  // Footer mark
+  const fm=splitToChars(document.getElementById('footMark'));
+  gsap.set(fm,{yPercent:60,opacity:0});
+  gsap.to(fm,{yPercent:0,opacity:1,duration:1,ease:'power4.out',stagger:.03,
+    scrollTrigger:{trigger:'#footMark',start:'top 92%',once:true}});
+  // Work hover zoom (JS to coexist with parallax)
+  if(finePointer){
+    document.querySelectorAll('.work').forEach(w=>{
+      const img=w.querySelector('.reveal img');
+      w.addEventListener('mouseenter',()=>gsap.to(img,{scale:1.3,duration:.9,ease:'power3.out'}));
+      w.addEventListener('mouseleave',()=>gsap.to(img,{scale:1.2,duration:.9,ease:'power3.out'}));
+    });
+  }
+}else{
+  document.getElementById('footMark').style.opacity=1;
+}
+
+/* ---------- Stat counters ---------- */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const end=+el.dataset.count;
+  if(reduced){ el.textContent=end; return; }
+  const obj={v:0};
+  ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:()=>{
+    gsap.to(obj,{v:end,duration:1.8,ease:'power2.out',onUpdate:()=>el.textContent=Math.round(obj.v)});
+  }});
+});
+
+/* ---------- Services hover preview ---------- */
+if(finePointer && !reduced){
+  const pv=document.getElementById('svcPreview');
+  const pvImg=pv.querySelector('img');
+  document.querySelectorAll('.svc').forEach(s=>{ const i=new Image(); i.src=s.dataset.img; });
+  const px=gsap.quickTo(pv,'x',{duration:.5,ease:'power3'});
+  const py=gsap.quickTo(pv,'y',{duration:.5,ease:'power3'});
+  const pr=gsap.quickTo(pv,'rotation',{duration:.6,ease:'power3'});
+  let lastX=0;
+  window.addEventListener('mousemove',e=>{
+    px(e.clientX - pv.offsetWidth/2);
+    py(e.clientY - pv.offsetHeight/2 - 30);
+    pr(gsap.utils.clamp(-9,9,(e.clientX-lastX)*.7));
+    lastX=e.clientX;
+  });
+  document.querySelectorAll('.svc').forEach(s=>{
+    s.addEventListener('mouseenter',()=>{
+      pvImg.src=s.dataset.img;
+      gsap.to(pv,{autoAlpha:1,scale:1,duration:.45,ease:'power3.out'});
+    });
+    s.addEventListener('mouseleave',()=>gsap.to(pv,{autoAlpha:0,scale:.92,duration:.4,ease:'power3.in'}));
+    s.addEventListener('click',()=>scrollToTarget('#contact'));
+  });
+  gsap.set(pv,{scale:.92});
+}
+
+/* ---------- Testimonials ---------- */
+const QUOTES=[
+  {t:'“Jenny didn’t decorate our home — she gave it a heartbeat. Every evening at six, the light lands exactly where she said it would.”',a:'Alexandra M.',r:'Tribeca Loft'},
+  {t:'“The most disciplined creative process I have ever experienced. On budget, ahead of schedule, and beyond anything we imagined.”',a:'Daniel R.',r:'Upper East Residence'},
+  {t:'“She hears the room before she touches it. Our brownstone finally sounds like us.”',a:'The Chen Family',r:'Park Slope Brownstone'}
+];
+let qi=0,qTimer=null;
+const qT=document.getElementById('quoteText'),qA=document.getElementById('quoteAuthor'),
+      qR=document.getElementById('quoteRole'),qI=document.getElementById('qIndex');
+function showQuote(n){
+  qi=(n+QUOTES.length)%QUOTES.length;
+  const apply=()=>{ qT.textContent=QUOTES[qi].t; qA.textContent=QUOTES[qi].a; qR.textContent=QUOTES[qi].r;
+    qI.textContent=String(qi+1).padStart(2,'0')+' / '+String(QUOTES.length).padStart(2,'0'); };
+  if(reduced){ apply(); return; }
+  gsap.timeline()
+    .to([qT,qA,qR],{y:-24,opacity:0,duration:.45,ease:'power3.in',stagger:.04,onComplete:apply})
+    .fromTo([qT,qA,qR],{y:24,opacity:0},{y:0,opacity:1,duration:.7,ease:'power3.out',stagger:.05});
+}
+function resetQTimer(){ clearInterval(qTimer); qTimer=setInterval(()=>showQuote(qi+1),7000); }
+document.getElementById('qNext').addEventListener('click',()=>{showQuote(qi+1);resetQTimer();});
+document.getElementById('qPrev').addEventListener('click',()=>{showQuote(qi-1);resetQTimer();});
+resetQTimer();
+
+/* ---------- Project modal ---------- */
+const PROJECTS={
+  tribeca:{title:'Tribeca Loft',loc:'Tribeca, Manhattan',year:'2024',scope:'Full-Service Design',size:'3,800 sq ft',
+    desc:'A cast-iron loft softened into a family home. Original columns were limewashed, a ten-metre oak library anchors the living space, and sheer linen tames the southern light into something almost musical.',
+    imgs:['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1400&auto=format&fit=crop','https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1400&auto=format&fit=crop']},
+  ues:{title:'Upper East Residence',loc:'Upper East Side',year:'2023',scope:'Full-Service Design',size:'4,600 sq ft',
+    desc:'A pre-war classic seven reimagined for slow mornings and formal evenings — panelled halls in bone lacquer, a primary suite wrapped in silk grasscloth, and brass that will outlive us all.',
+    imgs:['https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1400&auto=format&fit=crop','https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1400&auto=format&fit=crop']},
+  soho:{title:'SoHo Penthouse',loc:'SoHo, Manhattan',year:'2024',scope:'Furniture & Styling',size:'2,900 sq ft',
+    desc:'A collector’s aerie above Greene Street. Low-slung Italian seating, charred oak and a gallery-grade lighting plan let the art — and the skyline — do the talking.',
+    imgs:['https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1400&auto=format&fit=crop','https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop']},
+  parkslope:{title:'Park Slope Brownstone',loc:'Park Slope, Brooklyn',year:'2022',scope:'Renovation Direction',size:'5,200 sq ft',
+    desc:'Four storeys of 1899 brownstone brought back to breath. Restored plaster medallions meet a sculptural new kitchen in rift-sawn white oak and honed Calacatta.',
+    imgs:['https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1400&auto=format&fit=crop','https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1400&auto=format&fit=crop']},
+  hudson:{title:'Hudson Yards Suite',loc:'Hudson Yards',year:'2023',scope:'Full-Service Design',size:'2,100 sq ft',
+    desc:'A glass tower pied-à-terre given warmth and weight — bouclé, travertine and smoked eucalyptus layered against thirty-seventh-floor light.',
+    imgs:['https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=1400&auto=format&fit=crop','https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=1400&auto=format&fit=crop']},
+  westvillage:{title:'West Village Townhouse',loc:'West Village',year:'2025',scope:'Full-Service Design',size:'4,000 sq ft',
+    desc:'An 1840s townhouse composed like a slow waltz — a garden-level kitchen in unlacquered brass, a parlour in deep oxblood, and a stair hall painted the colour of late afternoon.',
+    imgs:['https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1400&auto=format&fit=crop','https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1400&auto=format&fit=crop']}
+};
+const pmodal=document.getElementById('pmodal');
+const pmPanel=pmodal.querySelector('.pmodal__panel');
+const pmBackdrop=document.getElementById('pmBackdrop');
+let pmOpen=false;
+const pmTl=gsap.timeline({paused:true,defaults:{ease:'power4.out'},
+  onReverseComplete:()=>gsap.set(pmodal,{visibility:'hidden'})});
+pmTl.set(pmodal,{visibility:'visible'})
+  .to(pmBackdrop,{opacity:1,duration:.5,ease:'power2.out'},0)
+  .to(pmPanel,{x:0,xPercent:0,duration:.85,ease:'power4.inOut'},0)
+  .fromTo(['.pmodal__idx','#pmTitle','.pmodal__meta','#pmDesc','.pmodal__cta'],
+    {y:30,opacity:0},{y:0,opacity:1,duration:.7,stagger:.07},'-=.35')
+  .fromTo('.pmodal__media img',{scale:1.15,opacity:0},{scale:1,opacity:1,duration:.9,stagger:.1,ease:'power3.out'},'-=.6');
+gsap.set(pmPanel,{xPercent:102});
+function openProject(key){
+  const p=PROJECTS[key]; if(!p)return;
+  document.getElementById('pmTitle').textContent=p.title;
+  document.getElementById('pmLoc').textContent=p.loc;
+  document.getElementById('pmYear').textContent=p.year;
+  document.getElementById('pmScope').textContent=p.scope;
+  document.getElementById('pmSize').textContent=p.size;
+  document.getElementById('pmDesc').textContent=p.desc;
+  document.getElementById('pmIdx').textContent='Case Study — '+p.loc;
+  document.getElementById('pmImg1').src=p.imgs[0];
+  document.getElementById('pmImg1').alt=p.title+' — view one';
+  document.getElementById('pmImg2').src=p.imgs[1];
+  document.getElementById('pmImg2').alt=p.title+' — view two';
+  document.getElementById('pmEnquire').href='mailto:atelier@jennywaltz.com?subject='+encodeURIComponent('Enquiry: '+p.title);
+  pmPanel.scrollTop=0;
+  pmodal.querySelector('.pmodal__media').scrollTop=0;
+  pmOpen=true; if(lenis)lenis.stop();
+  pmodal.setAttribute('aria-hidden','false');
+  pmTl.timeScale(1).play();
+}
+function closeProject(){
+  if(!pmOpen)return;
+  pmOpen=false; if(lenis&&!menuOpen)lenis.start();
+  pmodal.setAttribute('aria-hidden','true');
+  pmTl.timeScale(1.5).reverse();
+}
+document.querySelectorAll('.work').forEach(w=>w.addEventListener('click',()=>openProject(w.dataset.project)));
+document.getElementById('pmClose').addEventListener('click',closeProject);
+pmBackdrop.addEventListener('click',closeProject);
+window.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ closeProject(); if(menuOpen)toggleMenu(false); }
+});
+
+/* ---------- NYC clock ---------- */
+const clockEl=document.getElementById('nyclock');
+function tickClock(){
+  try{
+    clockEl.textContent=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',hour12:true}).format(new Date());
+  }catch(e){ clockEl.textContent=new Date().toLocaleTimeString(); }
+}
+tickClock(); setInterval(tickClock,15000);
+
+/* ---------- Refresh on load/fonts ---------- */
+window.addEventListener('load',()=>ScrollTrigger.refresh());
+if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>

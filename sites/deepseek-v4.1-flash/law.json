@@ -1,0 +1,16 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "slug": "deepseek/deepseek-v4.1-flash",
+  "prompt": "law",
+  "returned_model": "deepseek/deepseek-v4.1-flash",
+  "provider": "DeepInfra",
+  "started_at": "2026-09-21 19:05:03",
+  "seconds": 489,
+  "prompt_tokens": 82,
+  "output_tokens": 31342,
+  "thinking_tokens": 8028,
+  "html_chars": 71091,
+  "cost": 0.01317512,
+  "finish_reason": "stop",
+  "truncated": false
+}

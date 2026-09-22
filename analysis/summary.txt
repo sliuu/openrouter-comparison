@@ -1,0 +1,91 @@
+48 sites, 8 models, 6 prompts
+
+GROUPING (lower distance = more alike; p < 0.05 = more alike than chance)
+  same model, different prompts: {'mean_distance': 1.8225, 'random_baseline': 1.8062, 'p_value': 0.7545}
+  same prompt, different models: {'mean_distance': 1.5828, 'random_baseline': 1.8061, 'p_value': 0.0}
+
+MODEL SCORES (range = variety across own sites; signature = distinct from peers)
+  claude-fable-5.1       range 1.843   signature 1.548
+  claude-opus-5          range 1.869   signature 1.471
+  deepseek-v4.1-flash    range 1.840   signature 1.494
+  gemini-3.8-flash       range 1.892   signature 1.598
+  glm-5.3                range 1.726   signature 1.639
+  gpt-6-astra            range 1.676   signature 1.675
+  kimi-k3                range 1.871   signature 1.619
+  muse-spark-1.3         range 1.863   signature 1.618
+
+FONTS (number of sites declaring each)
+   12  Fraunces
+    8  Cormorant Garamond
+    7  JetBrains Mono
+    6  Inter
+    6  Space Grotesk
+    5  Plus Jakarta Sans
+    4  DM Sans
+    4  Manrope
+    3  Nunito
+    3  Georgia
+    3  Zen Kaku Gothic New
+    3  Jost
+    3  Shippori Mincho
+    3  Archivo
+    3  Arial
+
+FONTS BY MODEL (top 3 each)
+  claude-fable-5.1       Nunito (1), Fredoka (1), Inter (1)
+  claude-opus-5          Nunito (1), Fraunces (1), Zen Old Mincho (1)
+  deepseek-v4.1-flash    DM Sans (1), Fraunces (1), Jost (1)
+  gemini-3.8-flash       Plus Jakarta Sans (5), Cormorant Garamond (2), JetBrains Mono (2)
+  glm-5.3                Fraunces (3), Archivo (2), Cormorant Garamond (2)
+  gpt-6-astra            DM Sans (3), Arial (3), Georgia (2)
+  kimi-k3                Fraunces (4), Manrope (2), Outfit (1)
+  muse-spark-1.3         Inter (3), Cormorant Garamond (2), JetBrains Mono (2)
+
+Dark hero: 40%   Tailwind: 15%   3-column grid: 77%   Any purple (>5% of hero): 0%
+
+ACCENT HUES (most vivid major color in each hero)
+   18  none
+   12  orange
+    8  blue
+    5  green
+    3  red
+    1  yellow
+    1  pink
+
+MOST COMMON SECTION SEQUENCES
+    2  hero > hero > about > products > other > other > other > footer
+    1  hero > products > products > products > products > other > other > testimonials > products > footer
+    1  hero > hero > other > features > other > stats > team > team > testimonials > faq > about > footer
+    1  hero > nav > hero > about > about > features > other > gallery > testimonials > about > footer
+    1  hero > team > other > team > other > other > other > pricing > faq > footer
+
+COPY (visible words per page; page length in 900px laptop screens)
+  all AI sites: median 1128 words, median 8.6 screens
+  model claude-fable-5.1       median  1352 words    9.4 screens
+  model claude-opus-5          median  1374 words    8.9 screens
+  model deepseek-v4.1-flash    median  1118 words    7.7 screens
+  model gemini-3.8-flash       median  1204 words    7.4 screens
+  model glm-5.3                median   814 words    7.5 screens
+  model gpt-6-astra            median   570 words    3.5 screens
+  model kimi-k3                median  1050 words   10.8 screens
+  model muse-spark-1.3         median  1215 words    8.7 screens
+  prompt candy                  median  1084 words    7.3 screens
+  prompt law                    median  2011 words   10.2 screens
+  prompt portfolio              median   852 words    9.2 screens
+  prompt saas                   median  1241 words    8.1 screens
+  prompt tea                    median  1056 words    8.1 screens
+  prompt techno                 median  1136 words    8.1 screens
+
+CLOSEST LOOK-ALIKES, same prompt across labs
+  0.381  claude-fable-5.1__law  ~  claude-opus-5__law
+  0.689  deepseek-v4.1-flash__tea  ~  glm-5.3__tea
+  0.725  claude-fable-5.1__tea  ~  glm-5.3__tea
+  0.776  deepseek-v4.1-flash__techno  ~  kimi-k3__techno
+  0.869  claude-fable-5.1__techno  ~  kimi-k3__techno
+
+CLOSEST LOOK-ALIKES, one model across different prompts
+  0.921  gpt-6-astra__law  ~  gpt-6-astra__tea
+  1.069  glm-5.3__candy  ~  glm-5.3__tea
+  1.072  claude-fable-5.1__candy  ~  claude-fable-5.1__tea
+  1.105  deepseek-v4.1-flash__portfolio  ~  deepseek-v4.1-flash__tea
+  1.178  claude-opus-5__candy  ~  claude-opus-5__tea

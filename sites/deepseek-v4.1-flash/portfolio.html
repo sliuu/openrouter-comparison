@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jenny Waltz — Interior Design, New York City</title>
+<meta name="description" content="Jenny Waltz is a New York City interior designer creating calm, layered, deeply personal residences across Manhattan and Brooklyn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & TOKENS ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bone:#F5F1EA;
+  --paper:#FCFAF6;
+  --ink:#17150F;
+  --soft:#5C554A;
+  --stone:#DCD5C8;
+  --clay:#A4693F;
+  --olive:#6B7660;
+  --line:rgba(23,21,15,.14);
+  --line-light:rgba(245,241,234,.18);
+  --pad:clamp(20px,4.6vw,76px);
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost',system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.19,1,.22,1);
+  --maxw:1440px;
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  background:var(--bone);
+  color:var(--soft);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:16px;
+  line-height:1.75;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+::selection{background:var(--clay);color:var(--bone)}
+
+/* ============ LAYOUT HELPERS ============ */
+.container{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:var(--pad);
+}
+
+section{position:relative}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  font-size:10.5px;
+  font-weight:400;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--clay);
+  margin-bottom:26px;
+}
+.eyebrow::before{
+  content:"";
+  width:30px;
+  height:1px;
+  background:var(--clay);
+  opacity:.7;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--serif);
+  font-weight:300;
+  color:var(--ink);
+  line-height:1.06;
+  letter-spacing:-.015em;
+}
+
+h2{
+  font-size:clamp(34px,4.5vw,62px);
+  line-height:1.04;
+}
+
+h2 em,h1 em{
+  font-style:italic;
+  color:var(--clay);
+}
+
+p.lead{
+  font-size:clamp(16px,1.25vw,18px);
+  line-height:1.7;
+  max-width:52ch;
+}
+
+/* ============ REVEAL ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1.1s var(--ease),transform 1.1s var(--ease);
+  transition-delay:var(--d,0ms);
+}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:17px 32px;
+  border:1px solid var(--ink);
+  border-radius:100px;
+  font-family:var(--sans);
+  font-size:10.5px;
+  font-weight:400;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ink);
+  overflow:hidden;
+  transition:color .55s var(--ease),border-color .55s var(--ease);
+  isolation:isolate;
+}
+.btn span{position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px}
+.btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--ink);
+  transform:translateY(101%);
+  transition:transform .6s var(--ease);
+  z-index:1;
+}
+.btn:hover{color:var(--bone)}
+.btn:hover::after{transform:translateY(0)}
+
+.btn--solid{background:var(--ink);color:var(--bone)}
+.btn--solid::after{background:var(--bone)}
+.btn--solid:hover{color:var(--ink)}
+
+.btn--light{border-color:rgba(245,241,234,.45);color:var(--bone)}
+.btn--light::after{background:var(--bone)}
+.btn--light:hover{color:var(--ink);border-color:var(--bone)}
+
+.arrow{font-size:14px;line-height:1;transform:translateY(-1px)}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:26px var(--pad);
+  transition:padding .5s var(--ease),background .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  padding-block:14px;
+  background:rgba(245,241,234,.86);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom-color:var(--line);
+}
+
+.wordmark{
+  font-family:var(--sans);
+  font-size:12.5px;
+  font-weight:500;
+  letter-spacing:.36em;
+  text-transform:uppercase;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.wordmark em{
+  font-style:normal;
+  font-weight:300;
+  opacity:.55;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:clamp(20px,2.4vw,40px);
+}
+.nav-links a{
+  position:relative;
+  font-size:10.5px;
+  font-weight:400;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ink);
+  opacity:.62;
+  transition:opacity .4s ease;
+  padding-bottom:3px;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:0;
+  width:100%;
+  height:1px;
+  background:var(--ink);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .55s var(--ease);
+}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+.nav-cta{
+  display:inline-flex;
+  align-items:center;
+  padding:12px 22px;
+  border:1px solid var(--line);
+  border-radius:100px;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ink);
+  white-space:nowrap;
+  transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease);
+}
+.nav-cta:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+
+.menu-toggle{
+  display:none;
+  position:relative;
+  width:44px;height:44px;
+  flex:0 0 auto;
+}
+.menu-toggle span{
+  position:absolute;
+  left:11px;
+  width:22px;height:1px;
+  background:var(--ink);
+  transition:transform .5s var(--ease),opacity .35s ease;
+}
+.menu-toggle span:nth-child(1){top:19px}
+.menu-toggle span:nth-child(2){top:25px}
+.menu-toggle.active span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.menu-toggle.active span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+/* mobile menu overlay */
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  z-index:150;
+  background:var(--ink);
+  color:var(--bone);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:120px var(--pad) 60px;
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .8s var(--ease);
+  pointer-events:none;
+}
+.mobile-menu.open{clip-path:inset(0 0 0 0);pointer-events:auto}
+.mobile-menu nav{display:flex;flex-direction:column;gap:6px}
+.mobile-menu nav a{
+  font-family:var(--serif);
+  font-size:clamp(38px,11vw,60px);
+  font-weight:300;
+  line-height:1.25;
+  color:var(--bone);
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s var(--ease),transform .7s var(--ease),color .4s ease;
+}
+.mobile-menu.open nav a{opacity:1;transform:none}
+.mobile-menu.open nav a:nth-child(1){transition-delay:.12s}
+.mobile-menu.open nav a:nth-child(2){transition-delay:.19s}
+.mobile-menu.open nav a:nth-child(3){transition-delay:.26s}
+.mobile-menu.open nav a:nth-child(4){transition-delay:.33s}
+.mobile-menu nav a:active{color:var(--clay)}
+.mm-foot{
+  margin-top:auto;
+  padding-top:44px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.5);
+  opacity:0;
+  transition:opacity .8s var(--ease) .4s;
+}
+.mobile-menu.open .mm-foot{opacity:1}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:1.05fr .92fr;
+  align-items:center;
+  gap:clamp(30px,5vw,84px);
+  padding:170px var(--pad) 90px;
+  max-width:var(--maxw);
+  margin-inline:auto;
+}
+
+.hero-copy{position:relative;z-index:2}
+
+.hero h1{
+  font-size:clamp(46px,7vw,102px);
+  line-height:.98;
+  letter-spacing:-.028em;
+  margin-bottom:34px;
+}
+
+.hero p.lead{
+  max-width:44ch;
+  color:var(--soft);
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:46px;
+}
+
+.hero-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:clamp(26px,4vw,58px);
+  margin-top:clamp(48px,7vw,80px);
+  padding-top:30px;
+  border-top:1px solid var(--line);
+}
+.stat b{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(26px,2.6vw,34px);
+  font-weight:400;
+  color:var(--ink);
+  line-height:1;
+  margin-bottom:8px;
+}
+.stat span{
+  font-size:9.5px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--soft);
+  opacity:.8;
+}
+
+/* hero art */
+.hero-visual{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.arch-frame{
+  position:relative;
+  width:min(100%,420px);
+  aspect-ratio:4/5.35;
+  border-radius:50% 50% 3px 3px / 37.4% 37.4% 3px 3px;
+  overflow:hidden;
+  background:linear-gradient(168deg,#F0E8DB 0%,#DFD1BD 58%,#CDBBA2 100%);
+  box-shadow:0 60px 90px -50px rgba(72,54,34,.55),0 4px 20px -8px rgba(72,54,34,.18);
+  will-change:transform;
+}
+
+.art-window{
+  position:absolute;
+  z-index:1;
+  top:11%;left:14%;
+  width:72%;height:40%;
+  background:linear-gradient(180deg,rgba(255,253,246,.92),rgba(255,250,238,.14));
+  border-radius:44% 44% 3px 3px / 60% 60% 3px 3px;
+  filter:blur(.4px);
+}
+
+.art-shaft{
+  position:absolute;
+  z-index:3;
+  top:44%;left:22%;
+  width:48%;height:52%;
+  background:linear-gradient(180deg,rgba(255,246,224,.6),rgba(255,246,224,0));
+  transform:skewX(-13deg);
+  filter:blur(7px);
+  mix-blend-mode:screen;
+}
+
+.art-floor{
+  position:absolute;
+  z-index:2;
+  left:0;right:0;bottom:0;
+  height:29%;
+  background:linear-gradient(180deg,#BC9C78,#A3815B);
+}
+.art-floor::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.055) 0 1px,transparent 1px 34px);
+}
+
+.art-console{
+  position:absolute;
+  z-index:4;
+  left:16%;bottom:27%;
+  width:60%;height:5px;
+  border-radius:3px;
+  background:linear-gradient(180deg,#8B6A4C,#63482F);
+  box-shadow:0 6px 14px -4px rgba(60,40,22,.5);
+}
+.art-console::before,
+.art-console::after{
+  content:"";
+  position:absolute;
+  bottom:-26px;
+  width:3px;height:26px;
+  background:linear-gradient(180deg,#7A5A3E,#54391F);
+}
+.art-console::before{left:12%}
+.art-console::after{right:12%}
+
+.art-vase{
+  position:absolute;
+  z-index:5;
+  left:44%;bottom:32%;
+  width:52px;height:88px;
+  background:linear-gradient(150deg,#9A7350,#5E4229);
+  border-radius:42% 42% 46% 46% / 24% 24% 76% 76%;
+  box-shadow:inset -6px 0 12px -6px rgba(0,0,0,.5);
+}
+.art-vase i{
+  position:absolute;
+  left:50%;bottom:88%;
+  width:2px;height:74px;
+  background:linear-gradient(180deg,rgba(107,118,96,.2),#6B7660);
+  transform-origin:bottom;
+  transform:rotate(-9deg);
+}
+.art-vase i::before,
+.art-vase i::after{
+  content:"";
+  position:absolute;
+  width:15px;height:9px;
+  background:#6B7660;
+  border-radius:50% 0 50% 0;
+}
+.art-vase i::before{top:-2px;left:-13px;transform:rotate(-18deg)}
+.art-vase i::after{top:26px;left:1px;transform:rotate(24deg) scale(.85)}
+
+.grain{
+  position:absolute;
+  inset:0;
+  z-index:9;
+  pointer-events:none;
+  opacity:.2;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
+.hero-tag{
+  position:absolute;
+  z-index:3;
+  bottom:6%;
+  left:calc(50% - min(50%,210px) - 26px);
+  background:var(--paper);
+  padding:15px 22px;
+  box-shadow:0 22px 40px -22px rgba(50,36,20,.4);
+  font-size:9.5px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.hero-tag b{
+  display:block;
+  font-family:var(--serif);
+  font-size:17px;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  margin-top:5px;
+  color:var(--clay);
+}
+
+/* ============ MARQUEE ============ */
+.marquee{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:24px 0;
+  overflow:hidden;
+  background:rgba(252,250,246,.5);
+}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:scroll 42s linear infinite;
+}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+}
+.marquee-group span{
+  display:inline-flex;
+  align-items:center;
+  gap:clamp(30px,4vw,68px);
+  padding-inline:clamp(15px,2vw,34px);
+  font-size:10.5px;
+  font-weight:400;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--soft);
+  white-space:nowrap;
+}
+.marquee-group span::after{
+  content:"◆";
+  font-size:6px;
+  color:var(--clay);
+  letter-spacing:0;
+}
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* ============ PHILOSOPHY ============ */
+.philosophy{
+  padding:clamp(90px,13vw,170px) 0 clamp(80px,11vw,140px);
+  text-align:center;
+}
+.philosophy .eyebrow{justify-content:center}
+.philosophy .eyebrow::before{display:none}
+.philosophy .eyebrow::after,
+.philosophy .eyebrow::before{
+  content:"";
+  width:30px;height:1px;background:var(--clay);opacity:.7;
+}
+.philosophy .eyebrow{display:inline-flex;gap:16px}
+.philosophy h2{
+  font-size:clamp(28px,3.7vw,54px);
+  line-height:1.22;
+  letter-spacing:-.018em;
+  max-width:20ch;
+  margin:0 auto;
+}
+.philosophy-cols{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(28px,5vw,80px);
+  max-width:1040px;
+  margin:clamp(50px,7vw,78px) auto 0;
+  text-align:left;
+}
+.philosophy-cols p{font-size:15.5px;line-height:1.85;color:var(--soft)}
+
+/* ============ WORK ============ */
+.work{padding-bottom:clamp(90px,12vw,160px)}
+.work-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+  margin-bottom:clamp(46px,6vw,78px);
+}
+.work-head h2{margin-top:-8px}
+.text-link{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-size:10.5px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ink);
+  padding-bottom:6px;
+  border-bottom:1px solid var(--line);
+  transition:border-color .5s var(--ease),gap .5s var(--ease);
+}
+.text-link:hover{border-color:var(--ink);gap:18px}
+
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(24px,3.4vw,54px);
+  align-items:start;
+}
+
+.project{display:block}
+.project:nth-child(1){grid-column:1/span 7}
+.project:nth-child(2){grid-column:9/span 4;margin-top:clamp(30px,7vw,110px)}
+.project:nth-child(3){grid-column:1/span 4;margin-top:clamp(20px,3vw,40px)}
+.project:nth-child(4){grid-column:6/span 7;margin-top:clamp(40px,8vw,120px)}
+
+.art{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/3;
+  background:var(--wall);
+  isolation:isolate;
+  border-radius:2px;
+}
+.art::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:26%;
+  background:var(--floor);
+  z-index:1;
+}
+.art .shape{z-index:2}
+.art .grain{z-index:5}
+
+.art--1{--wall:linear-gradient(172deg,#EFE6D8,#DCCDB6);--floor:linear-gradient(180deg,#B4916C,#9A7855)}
+.art--1 .shape{
+  position:absolute;left:50%;bottom:26%;
+  transform:translateX(-50%);
+  width:44%;height:62%;
+  background:linear-gradient(180deg,#B4794F,#8B5936);
+  border-radius:50% 50% 0 0 / 36% 36% 0 0;
+}
+
+.art--2{--wall:linear-gradient(158deg,#7B8670,#57614B);--floor:linear-gradient(180deg,#4A5240,#373E2F)}
+.art--2 .shape{
+  position:absolute;left:50%;top:15%;
+  transform:translateX(-50%);
+  width:46%;aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle at 33% 27%,#FCF5E7,#DACBB0);
+  box-shadow:0 22px 44px -14px rgba(0,0,0,.45);
+}
+
+.art--3{--wall:linear-gradient(200deg,#F3EAE0,#E1D3C1);--floor:linear-gradient(180deg,#C8B096,#AE9375)}
+.art--3 .shape{
+  position:absolute;top:0;left:24%;
+  width:32%;height:100%;
+  background:linear-gradient(180deg,rgba(255,253,247,.92),rgba(255,250,238,.1));
+  transform:skewX(-9deg);
+  filter:blur(2px);
+}
+
+.art--4{--wall:linear-gradient(180deg,#302C27,#1D1B18);--floor:linear-gradient(180deg,#3C362E,#26221D)}
+.art--4 .shape{
+  position:absolute;right:15%;top:18%;
+  width:28%;aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle at 40% 34%,#FFEFCF,#E0A85E 58%,rgba(224,168,94,0) 74%);
+  filter:blur(1px);
+}
+
+.art--5{--wall:linear-gradient(150deg,#DED6C8,#C3B8A5);--floor:linear-gradient(180deg,#AB917A,#8E7559)}
+.art--5 .shape{
+  position:absolute;left:12%;bottom:26%;
+  width:31%;height:40%;
+  border-radius:4px;
+  background:linear-gradient(158deg,#8D6C4E,#5F462C);
+  box-shadow:0 14px 28px -12px rgba(50,34,18,.5);
+}
+
+.art--6{--wall:linear-gradient(180deg,#BDC2C4,#98A0A3);--floor:linear-gradient(180deg,#7E7061,#635747)}
+.art--6 .shape{
+  position:absolute;left:50%;bottom:26%;
+  transform:translateX(-50%);
+  width:50%;height:56%;
+  border-radius:50% 50% 0 0 / 42% 42% 0 0;
+  background:linear-gradient(180deg,rgba(255,255,255,.36),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.4);
+}
+
+.art{
+  transition:transform 1.1s var(--ease);
+}
+.project:hover .art{transform:scale(1.028)}
+
+.project-meta{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  margin-top:22px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+}
+.project-meta h3{
+  font-size:clamp(20px,1.9vw,26px);
+  letter-spacing:-.01em;
+  margin-bottom:6px;
+  transition:color .5s ease;
+}
+.project:hover .project-meta h3{color:var(--clay)}
+.project-meta p{
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--soft);
+  opacity:.75;
+}
+.project-num{
+  font-family:var(--serif);
+  font-size:14px;
+  color:var(--clay);
+  opacity:.7;
+  padding-top:4px;
+}
+
+/* ============ SERVICES ============ */
+.services{
+  padding:clamp(80px,10vw,130px) 0;
+  background:var(--paper);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.services-head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(24px,5vw,70px);
+  align-items:end;
+  margin-bottom:clamp(46px,6vw,72px);
+}
+.services-head p{max-width:40ch}
+
+.service-list{border-top:1px solid var(--line)}
+.service{
+  display:grid;
+  grid-template-columns:64px minmax(0,1.1fr) minmax(0,1.35fr) 40px;
+  align-items:baseline;
+  gap:clamp(16px,3vw,44px);
+  padding:clamp(26px,3.4vw,38px) 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-inline .6s var(--ease),background .6s var(--ease);
+}
+.service:hover{padding-inline:22px;background:rgba(245,241,234,.9)}
+.service-num{
+  font-family:var(--serif);
+  font-size:14px;
+  color:var(--clay);
+  letter-spacing:.05em;
+}
+.service h3{
+  font-size:clamp(21px,2.3vw,30px);
+  line-height:1.2;
+  letter-spacing:-.012em;
+}
+.service p{
+  font-size:14.5px;
+  line-height:1.8;
+  color:var(--soft);
+}
+.service-arrow{
+  justify-self:end;
+  font-size:16px;
+  color:var(--ink);
+  opacity:.3;
+  transition:opacity .5s ease,transform .6s var(--ease);
+}
+.service:hover .service-arrow{opacity:1;transform:translateX(6px)}
+
+/* ============ STUDIO / ABOUT ============ */
+.studio{padding:clamp(90px,13vw,170px) 0}
+.studio-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.05fr);
+  gap:clamp(36px,6vw,110px);
+  align-items:center;
+}
+
+.about-art{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  background:linear-gradient(200deg,#6E7A66,#414A38);
+  border-radius:2px;
+  isolation:isolate;
+}
+.about-art .disc{
+  position:absolute;
+  top:-14%;right:-18%;
+  width:76%;aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 32%,#FBF6EA,#DFD3BC);
+  z-index:2;
+  opacity:.94;
+}
+.about-art .band{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:22%;
+  background:linear-gradient(180deg,#A3815B,#7F6242);
+  z-index:3;
+}
+.about-art .band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.07) 0 1px,transparent 1px 40px);
+}
+.about-art .glow{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  background:radial-gradient(ellipse at 70% 20%,rgba(255,246,222,.35),transparent 62%);
+}
+.about-caption{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:16px;
+  font-size:9.5px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--soft);
+  opacity:.75;
+}
+
+.studio-text h2{margin-bottom:30px;max-width:16ch}
+.studio-text p{margin-bottom:22px;font-size:15.5px;line-height:1.9;max-width:52ch}
+.studio-text p:last-of-type{margin-bottom:0}
+
+.credentials{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 30px;
+  margin:38px 0 30px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+}
+.credentials li{
+  list-style:none;
+  position:relative;
+  padding-left:18px;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+.credentials li::before{
+  content:"";
+  position:absolute;
+  left:0;top:9px;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--clay);
+  opacity:.7;
+}
+
+.signature{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:34px;
+  font-weight:300;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  line-height:1;
+}
+.signature + span{
+  display:block;
+  margin-top:8px;
+  font-size:9.5px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--soft);
+  opacity:.7;
+}
+
+/* ============ QUOTES ============ */
+.quotes-sec{
+  padding:clamp(80px,11vw,140px) 0;
+  background:var(--paper);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  text-align:center;
+}
+.quotes-sec .eyebrow{justify-content:center}
+.quotes-sec .eyebrow::before{display:none}
+.quotes-sec .eyebrow::after{
+  content:"";width:30px;height:1px;background:var(--clay);opacity:.7;
+}
+.quotes .eyebrow{display:inline-flex;gap:16px}
+
+.quotes{display:grid;max-width:940px;margin:0 auto}
+.quote{
+  grid-area:1/1;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease),visibility .9s;
+}
+.quote.active{opacity:1;visibility:visible;transform:none}
+.quote blockquote{
+  font-family:var(--serif);
+  font-size:clamp(23px,2.9vw,40px);
+  font-weight:300;
+  line-height:1.34;
+  letter-spacing:-.012em;
+  color:var(--ink);
+  max-width:22ch;
+  margin:0 auto;
+}
+.quote blockquote::before{content:"\201C"}
+.quote blockquote::after{content:"\201D"}
+.quote figcaption{
+  margin-top:30px;
+  font-size:10px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--soft);
+  opacity:.8;
+}
+.quote figcaption b{
+  display:block;
+  font-weight:400;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:48px;
+}
+.dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--ink);
+  opacity:.2;
+  transition:opacity .5s ease,transform .5s var(--ease);
+}
+.dot.active{opacity:.85;transform:scale(1.4)}
+
+/* ============ CONTACT ============ */
+.contact{
+  background:var(--ink);
+  color:rgba(245,241,234,.72);
+  padding:clamp(90px,12vw,150px) 0 clamp(80px,10vw,120px);
+}
+.contact h2{color:var(--bone);max-width:14ch}
+.contact h2 em{color:#D9A97A}
+.contact .eyebrow{color:#D9A97A}
+.contact .eyebrow::before{background:#D9A97A}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.05fr);
+  gap:clamp(40px,6vw,110px);
+  align-items:start;
+}
+
+.contact-copy p{
+  margin-top:26px;
+  max-width:40ch;
+  font-size:15.5px;
+  line-height:1.9;
+}
+
+.contact-details{
+  margin-top:46px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+.detail{display:flex;flex-direction:column;gap:5px}
+.detail span{
+  font-size:9.5px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.42);
+}
+.detail a,.detail p{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:300;
+  color:var(--bone);
+  line-height:1.4;
+  transition:color .4s ease;
+}
+.detail a:hover{color:#D9A97A}
+
+.form{
+  border-top:1px solid var(--line-light);
+  padding-top:clamp(30px,4vw,46px);
+}
+.fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px 32px;
+}
+.field{display:flex;flex-direction:column;gap:10px}
+.field--full{grid-column:1/-1}
+.field label{
+  font-size:9.5px;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.48);
+}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(245,241,234,.24);
+  padding:10px 0 13px;
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:300;
+  color:var(--bone);
+  border-radius:0;
+  transition:border-color .5s ease;
+}
+.field textarea{resize:vertical;min-height:52px;line-height:1.7}
+.field input::placeholder,
+.field textarea::placeholder{color:rgba(245,241,234,.3)}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-bottom-color:#D9A97A;
+}
+.field select{
+  appearance:none;
+  -webkit-appearance:none;
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F5F1EA' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 2px center;
+  padding-right:26px;
+}
+.field select option{background:#17150F;color:#F5F1EA}
+
+.form .btn{justify-self:start;margin-top:12px}
+
+.form-thanks{
+  display:none;
+  padding:20px 0 8px;
+}
+.form-thanks h3{
+  font-size:clamp(30px,3.4vw,44px);
+  color:var(--bone);
+  margin-bottom:18px;
+}
+.form-thanks p{
+  max-width:42ch;
+  font-size:15.5px;
+  line-height:1.9;
+  color:rgba(245,241,234,.66);
+}
+.form.sent .fields{display:none}
+.form.sent .form-thanks{display:block;animation:fadeUp .9s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ============ FOOTER ============ */
+.footer{
+  background:var(--ink);
+  color:rgba(245,241,234,.5);
+  padding:0 0 40px;
+}
+.footer-inner{
+  border-top:1px solid var(--line-light);
+  padding-top:clamp(44px,6vw,70px);
+}
+.footer-mark{
+  font-family:var(--sans);
+  font-size:clamp(34px,9.4vw,132px);
+  font-weight:200;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.9);
+  line-height:.92;
+  margin-bottom:clamp(40px,6vw,70px);
+}
+.footer-mark em{font-style:normal;color:#D9A97A}
+.footer-cols{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:34px;
+  padding-bottom:44px;
+}
+.footer-col h4{
+  font-family:var(--sans);
+  font-size:9.5px;
+  font-weight:400;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.4);
+  margin-bottom:18px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-col a,
+.footer-col p{
+  font-size:13.5px;
+  color:rgba(245,241,234,.72);
+  transition:color .4s ease;
+  line-height:1.6;
+}
+.footer-col a:hover{color:#D9A97A}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:14px;
+  padding-top:26px;
+  border-top:1px solid var(--line-light);
+  font-size:9.5px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.34);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1180px){
+  .hero{grid-template-columns:1fr .82fr;gap:44px}
+  .project:nth-child(1){grid-column:1/span 7}
+  .project:nth-child(2){grid-column:8/span 5}
+  .project:nth-child(3){grid-column:1/span 5}
+  .project:nth-child(4){grid-column:6/span 7}
+}
+
+@media (max-width:960px){
+  .nav-links,.nav-cta{display:none}
+  .menu-toggle{display:block}
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:132px;
+    gap:56px;
+    text-align:left;
+  }
+  .hero-visual{order:-1;justify-content:flex-start}
+  .arch-frame{width:min(78%,320px)}
+  .hero-tag{left:auto;right:calc(100% - min(78%,320px) - 18px);bottom:2%}
+
+  .philosophy-cols{grid-template-columns:1fr;gap:26px}
+  .services-head{grid-template-columns:1fr;align-items:start}
+
+  .service{
+    grid-template-columns:44px 1fr;
+    grid-template-areas:
+      "num title"
+      ".   desc";
+    row-gap:14px;
+  }
+  .service-num{grid-area:num}
+  .service h3{grid-area:title}
+  .service p{grid-area:desc}
+  .service-arrow{display:none}
+
+  .studio-grid{grid-template-columns:1fr;gap:44px}
+  .about-art{aspect-ratio:5/4;max-width:520px}
+
+  .contact-grid{grid-template-columns:1fr;gap:54px}
+}
+
+@media (max-width:760px){
+  .work-grid{grid-template-columns:1fr;gap:52px}
+  .project:nth-child(1),
+  .project:nth-child(2),
+  .project:nth-child(3),
+  .project:nth-child(4){grid-column:1/-1;margin-top:0}
+  .art{aspect-ratio:4/3}
+
+  .fields{grid-template-columns:1fr;gap:24px}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:30px}
+  .credentials{grid-template-columns:1fr;gap:12px}
+  .hero-stats{gap:26px}
+  .hero-tag{
+    position:static;
+    right:auto;
+    margin-top:20px;
+    display:inline-block;
+  }
+  .hero-visual{flex-direction:column;align-items:flex-start}
+  .arch-frame{width:min(86%,300px)}
+}
+
+@media (max-width:420px){
+  .btn{padding:15px 24px;font-size:10px;letter-spacing:.2em}
+  .footer-cols{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="wordmark">Jenny&nbsp;Waltz<em>&nbsp;/ Interior Design</em></a>
+  <nav class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#studio">Studio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="nav-cta">Book a consultation</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <nav>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#studio">Studio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="mm-foot">
+    <a href="mailto:hello@jennywaltz.com">hello@jennywaltz.com</a>
+    <span>77 Franklin Street, New York</span>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Interior Design &nbsp;·&nbsp; New York City</span>
+      <h1 class="reveal" style="--d:90ms">The art of<br><em>coming home</em>.</h1>
+      <p class="lead reveal" style="--d:180ms">
+        Jenny Waltz designs residences across Manhattan and Brooklyn — calm, layered,
+        deeply personal spaces built around the way people actually live in them.
+      </p>
+      <div class="hero-actions reveal" style="--d:270ms">
+        <a href="#work" class="btn btn--solid"><span>View selected work <i class="arrow">→</i></span></a>
+        <a href="#contact" class="btn"><span>Book a consultation</span></a>
+      </div>
+      <div class="hero-stats reveal" style="--d:360ms">
+        <div class="stat"><b>18</b><span>Years in practice</span></div>
+        <div class="stat"><b>120+</b><span>Residences delivered</span></div>
+        <div class="stat"><b>5</b><span>Boroughs served</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal" style="--d:220ms">
+      <div class="arch-frame" id="hero-art">
+        <div class="art-window"></div>
+        <div class="art-floor"></div>
+        <div class="art-shaft"></div>
+        <div class="art-console"></div>
+        <div class="art-vase"><i></i></div>
+        <div class="grain"></div>
+      </div>
+      <div class="hero-tag">
+        Recently completed
+        <b>Tribeca Loft</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-label="Press features">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>Architectural Digest</span>
+        <span>Elle Decor</span>
+        <span>Domino</span>
+        <span>House &amp; Garden</span>
+        <span>The New York Times</span>
+        <span>Interior Design</span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span>Architectural Digest</span>
+        <span>Elle Decor</span>
+        <span>Domino</span>
+        <span>House &amp; Garden</span>
+        <span>The New York Times</span>
+        <span>Interior Design</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PHILOSOPHY ============ -->
+  <section class="philosophy">
+    <div class="container">
+      <span class="eyebrow reveal">Our approach</span>
+      <h2 class="reveal" style="--d:80ms">
+        A room should feel like a <em>long exhale</em> — never decorated, only resolved.
+      </h2>
+      <div class="philosophy-cols">
+        <p class="reveal" style="--d:160ms">
+          Every project begins with a series of long conversations before a single
+          swatch is chosen. We want to know how you start your mornings, where you
+          read, which wall you watch the light move across. The drawings follow the
+          life — not the other way around.
+        </p>
+        <p class="reveal" style="--d:240ms">
+          From there, we compose in layers: proportion, then material, then the
+          quiet imperfections that make a space feel collected rather than bought.
+          The result is a home that photographs beautifully and, more importantly,
+          gets better with use.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="work-head">
+        <div>
+          <span class="eyebrow reveal">Selected work</span>
+          <h2 class="reveal" style="--d:80ms">Recent residences</h2>
+        </div>
+        <a href="#contact" class="text-link reveal" style="--d:140ms">Request full portfolio <i class="arrow">→</i></a>
+      </div>
+
+      <div class="work-grid">
+
+        <a href="#contact" class="project reveal">
+          <div class="art art--1">
+            <span class="shape"></span>
+            <span class="grain"></span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <h3>West Village Townhouse</h3>
+              <p>Full renovation &nbsp;·&nbsp; 2024</p>
+            </div>
+            <span class="project-num">01</span>
+          </div>
+        </a>
+
+        <a href="#contact" class="project reveal" style="--d:120ms">
+          <div class="art art--2">
+            <span class="shape"></span>
+            <span class="grain"></span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <h3>Tribeca Loft</h3>
+              <p>Pied-à-terre &nbsp;·&nbsp; 2023</p>
+            </div>
+            <span class="project-num">02</span>
+          </div>
+        </a>
+
+        <a href="#contact" class="project reveal" style="--d:80ms">
+          <div class="art art--3">
+            <span class="shape"></span>
+            <span class="grain"></span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <h3>Park Avenue Apartment</h3>
+              <p>Full-service design &nbsp;·&nbsp; 2023</p>
+            </div>
+            <span class="project-num">03</span>
+          </div>
+        </a>
+
+        <a href="#contact" class="project reveal" style="--d:160ms">
+          <div class="art art--4">
+            <span class="shape"></span>
+            <span class="grain"></span>
+          </div>
+          <div class="project-meta">
+            <div>
+              <h3>Brooklyn Heights Brownstone</h3>
+              <p>Renovation &amp; furnishing &nbsp;·&nbsp; 2022</p>
+            </div>
+            <span class="project-num">04</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-head">
+        <div>
+          <span class="eyebrow reveal">Services</span>
+          <h2 class="reveal" style="--d:80ms">How we work<br>together</h2>
+        </div>
+        <p class="reveal" style="--d:140ms">
+          Most clients engage us for ten to eighteen months. Scope is tailored to
+          the project — some come with keys, some come with a demolition permit.
+        </p>
+      </div>
+
+      <div class="service-list">
+
+        <div class="service reveal">
+          <span class="service-num">01</span>
+          <h3>Full-Service Interior Design</h3>
+          <p>Concept, spatial planning, custom millwork, finishes, lighting and complete furnishing — managed end to end so you make decisions, not phone calls.</p>
+          <span class="service-arrow">→</span>
+        </div>
+
+        <div class="service reveal" style="--d:70ms">
+          <span class="service-num">02</span>
+          <h3>Renovation &amp; Architecture</h3>
+          <p>We join your architect, contractor and expeditor early, translating the drawings into rooms that feel warm, sound right and hold up to daily life.</p>
+          <span class="service-arrow">→</span>
+        </div>
+
+        <div class="service reveal" style="--d:140ms">
+          <span class="service-num">03</span>
+          <h3>Furnishing &amp; Styling</h3>
+          <p>Sourcing, procurement, logistics and white-glove installation. We manage deliveries, doormen, freight elevators and the final placement of every object.</p>
+          <span class="service-arrow">→</span>
+        </div>
+
+        <div class="service reveal" style="--d:210ms">
+          <span class="service-num">04</span>
+          <h3>Art &amp; Object Curation</h3>
+          <p>For clients building a collection, we advise on acquisitions, framing and placement alongside galleries, advisors and conservators we trust.</p>
+          <span class="service-arrow">→</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STUDIO ============ -->
+  <section class="studio" id="studio">
+    <div class="container">
+      <div class="studio-grid">
+
+        <div class="reveal">
+          <div class="about-art">
+            <span class="disc"></span>
+            <span class="band"></span>
+            <span class="glow"></span>
+            <span class="grain"></span>
+          </div>
+          <div class="about-caption">
+            <span>Jenny Waltz, Founder</span>
+            <span>Studio, Tribeca</span>
+          </div>
+        </div>
+
+        <div class="studio-text">
+          <span class="eyebrow reveal">The studio</span>
+          <h2 class="reveal" style="--d:80ms">Fifteen years of listening first.</h2>
+          <p class="reveal" style="--d:150ms">
+            Jenny Waltz founded the studio in 2009 after a decade in the
+            architecture offices of two of New York's most respected firms. What
+            began as a single gut renovation on Jane Street has grown into a
+            practice of six designers working on residences throughout the city
+            and the Hudson Valley.
+          </p>
+          <p class="reveal" style="--d:210ms">
+            The studio is deliberately small. Jenny leads every project personally,
+            from the first walkthrough to the day the last cushion is placed, and
+            we take on no more than eight commissions a year so that each one gets
+            the attention a home deserves.
+          </p>
+
+          <ul class="credentials reveal" style="--d:270ms">
+            <li>AD100 Nominee, 2023</li>
+            <li>Best of Houzz, 2021–2024</li>
+            <li>NYCxDesign Speaker</li>
+            <li>Member, ASID</li>
+          </ul>
+
+          <div class="reveal" style="--d:330ms">
+            <div class="signature">Jenny Waltz</div>
+            <span>Founder &amp; Principal Designer</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTES ============ -->
+  <section class="quotes-sec">
+    <div class="container">
+      <span class="eyebrow reveal">Clients</span>
+      <div class="quotes reveal" style="--d:80ms">
+
+        <figure class="quote active">
+          <blockquote>
+            Jenny understood our family before she understood our floor plan.
+            Two years later the apartment still surprises us — it works, it's
+            beautiful, and nothing feels like it was chosen for a photograph.
+          </blockquote>
+          <figcaption>
+            <b>Claire &amp; Daniel M.</b>
+            West Village Townhouse
+          </figcaption>
+        </figure>
+
+        <figure class="quote">
+          <blockquote>
+            We had three contractors and a lot of opinions. Jenny brought calm,
+            a schedule and an eye that made every trade want to do their best
+            work. The loft is unrecognisable.
+          </blockquote>
+          <figcaption>
+            <b>Marcus T.</b>
+            Tribeca Loft
+          </figcaption>
+        </figure>
+
+        <figure class="quote">
+          <blockquote>
+            She talked me out of half of what I thought I wanted and she was
+            right about all of it. The most honest design advice I've ever
+            received.
+          </blockquote>
+          <figcaption>
+            <b>Elena R.</b>
+            Park Avenue Apartment
+          </figcaption>
+        </figure>
+
+      </div>
+      <div class="dots" role="tablist" aria-label="Client testimonials">
+        <button class="dot active" aria-label="Testimonial 1"></button>
+        <button class="dot" aria-label="Testimonial 2"></button>
+        <button class="dot" aria-label="Testimonial 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="contact-copy">
+          <span class="eyebrow reveal">Start a project</span>
+          <h2 class="reveal" style="--d:80ms">Let's talk about your <em>home</em>.</h2>
+          <p class="reveal" style="--d:150ms">
+            We take on a small number of commissions each year and begin every
+            relationship with a conversation. Tell us a little about the space —
+            we'll reply within two business days.
+          </p>
+
+          <div class="contact-details reveal" style="--d:220ms">
+            <div class="detail">
+              <span>Studio</span>
+              <p>77 Franklin Street, Floor 4<br>New York, NY 10013</p>
+            </div>
+            <div class="detail">
+              <span>Email</span>
+              <a href="mailto:hello@jennywaltz.com">hello@jennywaltz.com</a>
+            </div>
+            <div class="detail">
+              <span>Telephone</span>
+              <a href="tel:+12125550148">+1 (212) 555 0148</a>
+            </div>
+            <div class="detail">
+              <span>Studio hours</span>
+              <p>Monday – Friday, 9am – 6pm</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="form reveal" id="contact-form" style="--d:120ms" novalidate>
+          <div class="fields">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@email.com" required>
+            </div>
+            <div class="field field--full">
+              <label for="type">Project type</label>
+              <select id="type" name="type">
+                <option>Full-service interior design</option>
+                <option>Renovation &amp; architecture</option>
+                <option>Furnishing &amp; styling</option>
+                <option>Art &amp; object curation</option>
+                <option>Consultation only</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="message">Tell us about your space</label>
+              <textarea id="message" name="message" rows="3" placeholder="Neighborhood, approximate square footage, timeline…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--light field--full"><span>Send inquiry <i class="arrow">→</i></span></button>
+          </div>
+
+          <div class="form-thanks">
+            <h3>Thank you.</h3>
+            <p>
+              Your note has reached the studio. Jenny or a member of our team will
+              be in touch within two business days — usually sooner.
+            </p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-mark">Jenny<em>&nbsp;Waltz</em></div>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#studio">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Work</h4>
+        <ul>
+          <li><a href="#work">Selected residences</a></li>
+          <li><a href="#contact">Full portfolio</a></li>
+          <li><a href="#contact">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>77 Franklin Street, Floor 4<br>New York, NY 10013</p>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:hello@jennywaltz.com">Email</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year">2025</span> Jenny Waltz Interiors LLC</span>
+      <span>New York City &nbsp;·&nbsp; By appointment</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Nav scroll state ---------- */
+  var nav = document.getElementById('nav');
+  var lastState = false;
+  function onScroll() {
+    var scrolled = window.scrollY > 40;
+    if (scrolled !== lastState) {
+      nav.classList.toggle('scrolled', scrolled);
+      lastState = scrolled;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- Hero parallax ---------- */
+  var heroArt = document.getElementById('hero-art');
+  if (heroArt && !reduceMotion) {
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (y < window.innerHeight * 1.2) {
+          heroArt.style.transform = 'translateY(' + (y * 0.055) + 'px)';
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* ---------- Mobile menu ---------- */
+  var toggle = document.querySelector('.menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+
+  function closeMenu() {
+    menu.classList.remove('open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      toggle.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+    });
+  }
+
+  /* ---------- Testimonials ---------- */
+  var quotes = Array.prototype.slice.call(document.querySelectorAll('.quote'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('.dot'));
+  var current = 0;
+  var timer = null;
+
+  function showQuote(index) {
+    current = index;
+    quotes.forEach(function (q, i) { q.classList.toggle('active', i === index); });
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === index); });
+  }
+
+  function startRotation() {
+    if (reduceMotion || quotes.length < 2) return;
+    clearInterval(timer);
+    timer = setInterval(function () {
+      showQuote((current + 1) % quotes.length);
+    }, 6500);
+  }
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      showQuote(i);
+      startRotation();
+    });
+  });
+
+  startRotation();
+
+  /* ---------- Contact form ---------- */
+  var form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var name = form.querySelector('#name');
+      var email = form.querySelector('#email');
+      var valid = true;
+
+      [name, email].forEach(function (field) {
+        if (field && !field.value.trim()) {
+          valid = false;
+          field.style.borderBottomColor = '#D9A97A';
+          field.addEventListener('input', function handler() {
+            field.style.borderBottomColor = '';
+            field.removeEventListener('input', handler);
+          });
+        }
+      });
+
+      if (email && email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        valid = false;
+        email.style.borderBottomColor = '#D9A97A';
+      }
+
+      if (!valid) return;
+
+      form.classList.add('sent');
+      var thanks = form.querySelector('.form-thanks');
+      if (thanks) {
+        thanks.setAttribute('tabindex', '-1');
+        try { thanks.focus({ preventScroll: false }); } catch (err) { /* noop */ }
+      }
+    });
+  }
+
+  /* ---------- Smooth anchor offset for fixed nav ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      if (!id || id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 66;
+      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENTANGLEMENT — 3-Day Underground Techno Festival | Forest Outside Amsterdam</title>
+<meta name="description" content="Entanglement. 16—18 July 2027. 3 days, 3 stages, 60+ artists deep in the forest outside Amsterdam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a08;
+  --bg2:#0a120e;
+  --panel:#0e1712;
+  --line:rgba(198,255,0,.14);
+  --line2:rgba(255,255,255,.09);
+  --acid:#c6ff00;
+  --acid2:#8cff00;
+  --moss:#5ef2a0;
+  --fog:#a8b8ad;
+  --paper:#f2f4ed;
+  --muted:#7a8a7e;
+  --red:#ff2e2e;
+  --font-d:'Unbounded',sans-serif;
+  --font-b:'Space Grotesk',sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--paper);font-family:var(--font-b);overflow-x:hidden;cursor:none}
+@media(pointer:coarse){body{cursor:auto}.cursor,.cursor-ring{display:none!important}}
+::selection{background:var(--acid);color:#000}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+/* CURSOR */
+.cursor{position:fixed;top:0;left:0;width:12px;height:12px;background:var(--acid);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cursor-ring{position:fixed;top:0;left:0;width:42px;height:42px;border:1px solid var(--acid);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s}
+.cursor-ring.hovering{width:78px;height:78px;background:rgba(198,255,0,.12);backdrop-filter:blur(2px)}
+/* PRELOADER */
+#loader{position:fixed;inset:0;background:#030503;z-index:100000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .8s,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+.loader-logo{font-family:var(--font-d);font-weight:900;font-size:clamp(22px,4vw,44px);letter-spacing:.02em}
+.loader-logo span{color:var(--acid)}
+.loader-bar{width:min(420px,70vw);height:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.loader-bar i{display:block;height:100%;width:0;background:var(--acid);animation:load 2.2s ease forwards}
+@keyframes load{to{width:100%}}
+.loader-pct{font-family:var(--font-m);font-size:12px;color:var(--acid);letter-spacing:.2em}
+/* PROGRESS */
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--acid);width:0;z-index:9999;box-shadow:0 0 12px var(--acid)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--line2);background:rgba(6,10,8,.72);backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--font-d);font-weight:800;font-size:15px;letter-spacing:.04em}
+.brand-mark{width:34px;height:34px;border:1px solid var(--acid);border-radius:50%;display:grid;place-items:center;position:relative;overflow:hidden}
+.brand-mark::after{content:'';position:absolute;inset:6px;border:1px solid var(--acid);border-radius:50%;opacity:.5;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand-mark b{color:var(--acid);font-size:16px;z-index:1}
+.nav-links{display:flex;gap:26px;font-family:var(--font-m);font-size:12px;letter-spacing:.14em}
+.nav-links a{opacity:.7;transition:.3s;position:relative}
+.nav-links a:hover{opacity:1;color:var(--acid)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.btn{border:1px solid var(--acid);background:var(--acid);color:#000;font-family:var(--font-m);font-weight:700;font-size:12px;letter-spacing:.12em;padding:12px 20px;border-radius:100px;cursor:pointer;transition:.3s;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:transparent;color:var(--acid);box-shadow:0 0 24px rgba(198,255,0,.35)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.2)}
+.btn.ghost:hover{border-color:var(--acid);color:var(--acid)}
+.sound-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--paper);display:grid;place-items:center;cursor:pointer;transition:.3s}
+.sound-btn.on{border-color:var(--acid);color:var(--acid);box-shadow:0 0 18px rgba(198,255,0,.4)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:24px;cursor:pointer}
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:120px 24px 0}
+#entangle{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-grad{position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 35%,rgba(198,255,0,.14),transparent 70%),linear-gradient(to bottom,rgba(6,10,8,.2) 0%,rgba(6,10,8,.2) 40%,rgba(6,10,8,.95) 85%,var(--bg) 100%);z-index:1;pointer-events:none}
+.hero-noise{position:absolute;inset:0;opacity:.08;z-index:2;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-inner{position:relative;z-index:3;max-width:1350px;margin:0 auto;width:100%}
+.hero-top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}
+.pill{font-family:var(--font-m);font-size:11px;letter-spacing:.18em;border:1px solid rgba(255,255,255,.18);padding:8px 14px;border-radius:100px;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:8px}
+.pill.live{border-color:var(--acid);color:var(--acid)}
+.dot{width:8px;height:8px;background:var(--acid);border-radius:50%;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+.hero h1{font-family:var(--font-d);font-weight:900;line-height:.86;letter-spacing:-.02em;font-size:clamp(56px,12.5vw,176px);text-transform:uppercase}
+.hero h1 .stroke{-webkit-text-stroke:1.5px var(--paper);color:transparent}
+.hero h1 .acid{color:var(--acid);text-shadow:0 0 40px rgba(198,255,0,.5)}
+.glitch{position:relative;display:inline-block}
+.hero-sub{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin:26px 0 30px;align-items:end}
+.hero-sub p{font-size:clamp(15px,1.6vw,19px);line-height:1.6;color:var(--fog);max-width:620px}
+.hero-sub p strong{color:var(--paper)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.forest{position:relative;z-index:3;margin-top:10px;pointer-events:none}
+.forest svg{width:100%;height:auto;display:block;opacity:.95}
+.hero-meta{position:relative;z-index:4;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line2);background:rgba(5,8,6,.85);backdrop-filter:blur(12px)}
+.hero-meta div{padding:18px 24px;border-right:1px solid var(--line2);font-family:var(--font-m)}
+.hero-meta div:last-child{border:0}
+.hero-meta small{display:block;font-size:10px;letter-spacing:.2em;color:var(--muted);margin-bottom:6px}
+.hero-meta strong{font-size:14px;letter-spacing:.04em}
+/* MARQUEE */
+.marquee{border-top:1px solid var(--acid);border-bottom:1px solid var(--acid);background:var(--acid);color:#000;overflow:hidden;white-space:nowrap;padding:12px 0;position:relative;z-index:5}
+.marquee-track{display:inline-flex;gap:0;animation:mq 22s linear infinite;font-family:var(--font-d);font-weight:800;font-size:15px;letter-spacing:.06em}
+.marquee-track span{padding:0 28px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* SECTION */
+section{position:relative;padding:110px 24px}
+.wrap{max-width:1350px;margin:0 auto}
+.kicker{font-family:var(--font-m);font-size:12px;letter-spacing:.22em;color:var(--acid);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.kicker::before{content:'';width:36px;height:1px;background:var(--acid);display:inline-block}
+h2{font-family:var(--font-d);font-weight:800;font-size:clamp(32px,5.5vw,72px);line-height:.95;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:18px}
+h2 em{font-style:normal;color:var(--acid)}
+.lead{color:var(--fog);font-size:clamp(15px,1.7vw,19px);line-height:1.7;max-width:720px}
+/* COUNTDOWN */
+.count-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;margin-top:48px;align-items:stretch}
+.count-box{background:linear-gradient(180deg,#0f1a13,#070c09);border:1px solid var(--line2);border-radius:20px;padding:32px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.count-box::after{content:'16—18 JULY 2027';position:absolute;bottom:-10px;right:10px;font-family:var(--font-d);font-weight:900;font-size:52px;opacity:.04;white-space:nowrap}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.cd div{background:rgba(0,0,0,.5);border:1px solid var(--line2);border-radius:14px;padding:18px 8px;text-align:center}
+.cd b{font-family:var(--font-d);font-size:clamp(26px,3.5vw,48px);color:var(--acid);display:block;line-height:1}
+.cd small{font-family:var(--font-m);font-size:10px;letter-spacing:.2em;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.stat{border:1px solid var(--line2);border-radius:16px;padding:22px;background:var(--panel)}
+.stat b{font-family:var(--font-d);font-size:30px;color:var(--paper)}
+.stat b i{color:var(--acid);font-style:normal}
+.stat p{font-family:var(--font-m);font-size:11px;letter-spacing:.15em;color:var(--muted);margin-top:6px}
+/* MANIFESTO */
+#manifesto{background:var(--bg2);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);overflow:hidden}
+.big-text{font-family:var(--font-d);font-size:clamp(20px,3.2vw,38px);line-height:1.25;font-weight:600;margin-top:34px;max-width:1100px}
+.big-text .dim{opacity:.25}
+.big-text .hl{color:var(--acid)}
+.manifesto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.m-card{border:1px solid var(--line2);border-radius:18px;padding:28px;background:rgba(0,0,0,.3);transition:.4s}
+.m-card:hover{border-color:var(--acid);transform:translateY(-6px)}
+.m-card h3{font-family:var(--font-m);font-size:12px;letter-spacing:.2em;color:var(--acid);margin-bottom:12px}
+.m-card p{color:var(--fog);line-height:1.6;font-size:15px}
+/* LINEUP */
+.filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}
+.fbtn{font-family:var(--font-m);font-size:11px;letter-spacing:.15em;padding:10px 18px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:var(--paper);cursor:pointer;transition:.3s}
+.fbtn.active,.fbtn:hover{background:var(--acid);color:#000;border-color:var(--acid)}
+.lineup{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.artist{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line2);background:#0a0f0b;min-height:340px;display:flex;align-items:flex-end;cursor:pointer;transition:.4s}
+.artist:hover{transform:translateY(-6px);border-color:var(--acid);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px var(--acid)}
+.artist-img{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.2) brightness(.75);transition:.6s}
+.artist:hover .artist-img{filter:grayscale(.1) contrast(1.1) brightness(.9);transform:scale(1.06)}
+.artist-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 20%,rgba(0,0,0,.2) 60%,rgba(198,255,0,.08))}
+.artist-info{position:relative;z-index:2;padding:20px;width:100%}
+.artist-info small{font-family:var(--font-m);font-size:10px;letter-spacing:.18em;color:var(--acid);display:flex;justify-content:space-between}
+.artist-info h3{font-family:var(--font-d);font-size:20px;margin:8px 0 6px;line-height:1}
+.artist-info p{font-size:13px;color:var(--fog);font-family:var(--font-m)}
+.tag{display:inline-block;font-size:10px;border:1px solid rgba(255,255,255,.2);padding:3px 8px;border-radius:100px;margin-top:10px;margin-right:6px;font-family:var(--font-m);letter-spacing:.08em}
+/* STAGES */
+#stages{background:#040705}
+.stage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.stage{border-radius:20px;overflow:hidden;border:1px solid var(--line2);background:var(--panel);transition:.4s}
+.stage:hover{border-color:var(--acid)}
+.stage-visual{height:220px;position:relative;overflow:hidden;display:flex;align-items:end;padding:20px}
+.stage-visual h4{font-family:var(--font-d);font-size:28px;z-index:2;line-height:1}
+.stage-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent)}
+.stage-body{padding:24px}
+.stage-body p{color:var(--fog);font-size:14.5px;line-height:1.7;margin:10px 0 16px}
+.stage-meta{display:flex;justify-content:space-between;font-family:var(--font-m);font-size:11px;letter-spacing:.12em;color:var(--muted);border-top:1px dashed rgba(255,255,255,.15);padding-top:14px}
+/* SCHEDULE */
+.tabs{display:flex;gap:10px;margin:28px 0;flex-wrap:wrap}
+.tab{flex:1;min-width:160px;border:1px solid var(--line2);background:transparent;color:var(--paper);padding:16px;border-radius:14px;cursor:pointer;text-align:left;transition:.3s}
+.tab b{font-family:var(--font-d);display:block;font-size:16px}
+.tab small{font-family:var(--font-m);font-size:11px;color:var(--muted);letter-spacing:.12em}
+.tab.active{background:var(--acid);color:#000;border-color:var(--acid)}
+.tab.active small{color:#000}
+.schedule{border:1px solid var(--line2);border-radius:18px;overflow:hidden}
+.srow{display:grid;grid-template-columns:110px 1fr auto;gap:18px;padding:20px 24px;border-bottom:1px solid var(--line2);align-items:center;transition:.3s;background:rgba(255,255,255,.01)}
+.srow:last-child{border:0}
+.srow:hover{background:rgba(198,255,0,.06)}
+.srow time{font-family:var(--font-m);color:var(--acid);font-size:13px;font-weight:700}
+.srow h4{font-size:16px;font-weight:700}
+.srow h4 span{color:var(--muted);font-weight:400;font-size:13px}
+.srow .where{font-family:var(--font-m);font-size:11px;letter-spacing:.12em;border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:100px;white-space:nowrap}
+/* TICKETS */
+#tickets{background:linear-gradient(180deg,var(--bg) 0%,#0c150e 50%,var(--bg) 100%)}
+.tick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;align-items:stretch}
+.tick{border:1px solid var(--line2);border-radius:22px;padding:32px 28px;background:rgba(0,0,0,.5);position:relative;display:flex;flex-direction:column;transition:.4s}
+.tick.featured{border-color:var(--acid);background:linear-gradient(180deg,rgba(198,255,0,.14),rgba(0,0,0,.6));box-shadow:0 0 60px rgba(198,255,0,.15);transform:scale(1.02)}
+.tick:hover{transform:translateY(-8px)}
+.tick h3{font-family:var(--font-d);font-size:22px}
+.tick .price{font-family:var(--font-d);font-size:48px;margin:16px 0 4px}
+.tick .price sup{font-size:16px;color:var(--acid)}
+.tick ul{list-style:none;margin:18px 0;flex:1}
+.tick ul li{font-size:14px;color:var(--fog);padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.1);display:flex;gap:10px}
+.tick ul li::before{content:'◈';color:var(--acid);font-size:12px}
+.qty{display:flex;align-items:center;gap:12px;margin:14px 0}
+.qty button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer;font-size:18px}
+.qty button:hover{border-color:var(--acid);color:var(--acid)}
+.qty b{font-family:var(--font-m)}
+.soldout{position:absolute;top:18px;right:18px;background:var(--red);color:#fff;font-family:var(--font-m);font-size:10px;letter-spacing:.15em;padding:6px 12px;border-radius:100px}
+/* LOCATION */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+.map{border:1px solid var(--line2);border-radius:20px;overflow:hidden;min-height:420px;background:#081008;position:relative}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(198,255,0,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(198,255,0,.07) 1px,transparent 1px);background-size:36px 36px}
+.map-pin{position:absolute;top:44%;left:52%;transform:translate(-50%,-50%)}
+.pin-pulse{width:120px;height:120px;border:1px solid var(--acid);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse 2s infinite}
+@keyframes pulse{to{transform:translate(-50%,-50%) scale(1.6);opacity:0}}
+.pin-dot{width:18px;height:18px;background:var(--acid);border-radius:50%;box-shadow:0 0 20px var(--acid);position:relative;z-index:2}
+.map-card{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);border:1px solid var(--line2);border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.map-card small{font-family:var(--font-m);color:var(--acid);letter-spacing:.15em;font-size:11px}
+.loc-info{display:flex;flex-direction:column;gap:14px}
+.info-row{border:1px solid var(--line2);border-radius:16px;padding:22px;background:var(--panel);display:flex;gap:16px}
+.info-row i{width:44px;height:44px;flex-shrink:0;border-radius:12px;background:rgba(198,255,0,.12);display:grid;place-items:center;font-style:normal;font-size:20px;border:1px solid var(--line)}
+.info-row h4{font-size:15px;margin-bottom:6px}
+.info-row p{color:var(--fog);font-size:14px;line-height:1.6}
+/* FAQ */
+.faq{margin-top:30px;border-top:1px solid var(--line2)}
+.faq-item{border-bottom:1px solid var(--line2)}
+.faq-q{width:100%;background:none;border:0;color:var(--paper);text-align:left;padding:22px 6px;font-size:17px;font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px}
+.faq-q span:last-child{width:32px;height:32px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center;flex-shrink:0;transition:.3s;font-family:var(--font-m)}
+.faq-item.open .faq-q span:last-child{background:var(--acid);color:#000;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s ease;color:var(--fog);line-height:1.7;font-size:15px}
+.faq-a div{padding:0 6px 24px;max-width:800px}
+/* FOOTER */
+footer{border-top:1px solid var(--line2);padding:70px 24px 28px;background:#030503}
+.foot-grid{max-width:1350px;margin:0 auto;display:grid;grid-template-columns:1.3fr .7fr .7fr 1fr;gap:28px}
+.foot-grid h5{font-family:var(--font-m);font-size:11px;letter-spacing:.2em;color:var(--muted);margin-bottom:14px}
+.foot-grid a{display:block;padding:6px 0;color:var(--fog);font-size:14px}
+.foot-grid a:hover{color:var(--acid)}
+.news{display:flex;border:1px solid var(--line2);border-radius:100px;overflow:hidden;margin-top:14px}
+.news input{flex:1;background:transparent;border:0;padding:14px 18px;color:#fff;outline:0;font-family:var(--font-m)}
+.news button{background:var(--acid);border:0;padding:0 22px;font-weight:800;cursor:pointer;font-family:var(--font-m)}
+.foot-bottom{max-width:1350px;margin:40px auto 0;border-top:1px solid var(--line2);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--font-m);font-size:11px;letter-spacing:.12em;color:var(--muted)}
+/* MODAL / DRAWER */
+.modal{position:fixed;inset:0;z-index:9500;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px)}
+.modal-card{position:relative;width:min(560px,100%);background:#0c120e;border:1px solid var(--acid);border-radius:20px;overflow:hidden}
+.modal-card img{height:260px;width:100%;object-fit:cover;filter:grayscale(.2)}
+.modal-body{padding:26px}
+.modal-body h3{font-family:var(--font-d);font-size:26px}
+.drawer{position:fixed;top:0;right:-420px;width:min(400px,92vw);height:100dvh;background:#0b100c;border-left:1px solid var(--acid);z-index:9600;transition:right .5s cubic-bezier(.7,0,.2,1);display:flex;flex-direction:column;padding:24px}
+.drawer.open{right:0}
+.drawer h3{font-family:var(--font-d)}
+.cart-item{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,.15);font-size:14px}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--acid);color:#000;font-family:var(--font-m);font-size:12px;font-weight:700;letter-spacing:.08em;padding:14px 22px;border-radius:100px;z-index:9700;transition:.5s}
+#toast.show{transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:1020px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .mobile-menu{position:fixed;inset:0;background:rgba(3,5,3,.97);z-index:9400;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;font-family:var(--font-d);font-size:26px;opacity:0;visibility:hidden;transition:.4s}
+  .mobile-menu.open{opacity:1;visibility:visible}
+  .lineup{grid-template-columns:repeat(2,1fr)}
+  .stage-grid,.tick-grid,.count-grid,.loc-grid,.hero-sub{grid-template-columns:1fr}
+  .hero-meta{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .hero-cta{justify-content:flex-start}
+  body{cursor:auto}
+}
+@media(max-width:560px){.lineup{grid-template-columns:1fr}.cd{grid-template-columns:repeat(2,1fr)}.foot-grid{grid-template-columns:1fr}section{padding:70px 18px}.srow{grid-template-columns:1fr;gap:8px}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="loader-logo">ENTANGLE<span>MENT</span></div><div class="loader-bar"><i></i></div><div class="loader-pct" id="loadPct">INITIALIZING FOREST GRID...</div></div>
+<div id="progress"></div>
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <a class="brand" href="#top"><span class="brand-mark"><b>∿</b></span> ENTANGLEMENT <span style="font-family:var(--font-m);font-weight:400;font-size:10px;letter-spacing:.2em;color:var(--acid)">AMS / 27</span></a>
+  <div class="nav-links">
+    <a href="#lineup">LINEUP</a><a href="#stages">STAGES</a><a href="#schedule">SCHEDULE</a><a href="#tickets">TICKETS</a><a href="#location">FOREST</a><a href="#faq">INFO</a>
+  </div>
+  <div class="nav-right">
+    <button class="sound-btn" id="soundBtn" title="Toggle live techno generator">♪</button>
+    <button class="btn" id="navCart">TICKETS — <span id="navCount">0</span></button>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mMenu"><a href="#lineup">LINEUP</a><a href="#stages">STAGES</a><a href="#schedule">SCHEDULE</a><a href="#tickets">TICKETS</a><a href="#location">FOREST</a><button class="btn" id="mClose">CLOSE</button></div>
+
+<header class="hero" id="top">
+  <canvas id="entangle"></canvas>
+  <div class="hero-grad"></div><div class="hero-noise"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <span class="pill live"><span class="dot"></span> 16 — 18 JULY 2027 • AMSTERDAMSE BOS</span>
+      <span class="pill">3 DAYS / 3 STAGES / 60+ ARTISTS</span>
+      <span class="pill">52.30°N — 4.83°E</span>
+    </div>
+    <h1><span class="glitch">ENTANGLE</span><br><span class="stroke">MENT</span> <span class="acid">’27</span></h1>
+    <div class="hero-sub">
+      <p>An underground techno ritual buried deep in the forest outside Amsterdam. <strong>No headliners. No phones. No daylight.</strong> Only towering pines, Funktion-One stacks wrapped in moss, fog so thick you can touch the bass — and 5,000 bodies moving as one organism.</p>
+      <div class="hero-cta">
+        <a href="#tickets" class="btn magnetic">GET ENTANGLED →</a>
+        <a href="#lineup" class="btn ghost magnetic">EXPLORE LINEUP</a>
+      </div>
+    </div>
+  </div>
+  <div class="forest">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none"><path d="M0,160 L0,120 L30,120 L35,90 L40,120 L70,120 L75,70 L85,70 L90,120 L130,120 L135,95 L142,120 L180,120 L186,60 L194,60 L200,120 L240,120 L245,85 L255,85 L260,120 L300,120 L308,50 L318,50 L326,120 L360,120 L368,92 L376,120 L410,120 L418,65 L430,65 L438,120 L470,120 L478,88 L488,120 L520,120 L530,55 L542,55 L552,120 L590,120 L598,90 L608,120 L640,120 L650,70 L662,70 L670,120 L710,120 L718,48 L732,48 L740,120 L780,120 L788,92 L798,120 L830,120 L840,62 L852,62 L862,120 L900,120 L908,84 L918,120 L950,120 L960,52 L974,52 L984,120 L1020,120 L1028,90 L1038,120 L1070,120 L1080,68 L1092,68 L1100,120 L1140,120 L1148,86 L1158,120 L1190,120 L1200,58 L1212,58 L1222,120 L1260,120 L1268,92 L1278,120 L1310,120 L1320,72 L1332,72 L1340,120 L1370,120 L1378,95 L1388,120 L1440,120 L1440,160 Z" fill="#020403"/><path d="M0,160 L0,135 L50,135 L55,110 L62,135 L120,135 L128,105 L136,135 L200,135 L208,115 L216,135 L280,135 L288,100 L298,100 L306,135 L360,135 L370,112 L380,135 L440,135 L450,105 L460,135 L520,135 L530,118 L540,135 L600,135 L610,102 L622,102 L632,135 L700,135 L710,115 L720,135 L780,135 L790,100 L802,100 L812,135 L880,135 L890,112 L900,135 L960,135 L970,108 L982,135 L1040,135 L1050,100 L1062,100 L1072,135 L1130,135 L1140,115 L1150,135 L1210,135 L1220,105 L1232,135 L1290,135 L1300,118 L1310,135 L1370,135 L1380,110 L1390,135 L1440,135 L1440,160 Z" fill="#0a120d"/></svg>
+  </div>
+  <div class="hero-meta">
+    <div><small>LOCATION</small><strong>◉ Amsterdamse Bos, NL</strong></div>
+    <div><small>DATE</small><strong>FRI 16 — SUN 18 JULY 2027</strong></div>
+    <div><small>SOUND</small><strong>135—150 BPM / 24H LICENSE</strong></div>
+    <div><small>STATUS</small><strong style="color:var(--acid)">● TIER 2 — 73% SOLD</strong></div>
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-track" id="mq"></div></div>
+
+<section id="countdown">
+  <div class="wrap">
+    <div class="kicker">01 / TRANSMISSION</div>
+    <h2>THE FOREST IS <em>ALREADY HUMMING</em></h2>
+    <p class="lead">Every year the mycelium network under Amsterdamse Bos carries low frequencies for weeks before we arrive. This is not a festival. It's an interference pattern between roots, wires and bodies.</p>
+    <div class="count-grid">
+      <div class="count-box reveal">
+        <div style="font-family:var(--font-m);font-size:11px;letter-spacing:.2em;color:var(--acid)">T-MINUS TO FIRST KICK</div>
+        <div class="cd"><div><b id="d">00</b><small>DAYS</small></div><div><b id="h">00</b><small>HOURS</small></div><div><b id="m">00</b><small>MINS</small></div><div><b id="s">00</b><small>SECS</small></div></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="document.getElementById('tickets').scrollIntoView({behavior:'smooth'})">SECURE ENTRY</button><button class="btn ghost" id="trailerBtn">▶ PLAY 2026 AFTERMOVIE</button></div>
+      </div>
+      <div class="stats">
+        <div class="stat reveal"><b>60<i>+</i></b><p>UNDERGROUND ARTISTS</p></div>
+        <div class="stat reveal"><b>72<i>H</i></b><p>NON-STOP MUSIC</p></div>
+        <div class="stat reveal"><b>3<i>◍</i></b><p>FOREST STAGES</p></div>
+        <div class="stat reveal"><b>0<i>%</i></b><p>COMMERCIAL SPONSORS</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="manifesto">
+  <div class="wrap">
+    <div class="kicker">02 / MANIFESTO</div>
+    <h2>LOSE YOURSELF TO <em>FIND THE GROOVE</em></h2>
+    <div class="big-text reveal" id="bigText">We bury the mainstage. We ban VIP sightlines. We tune the forest to <span class="hl">136 BPM</span> — <span class="dim">phones sealed at entry, lasers cut through pine smoke, every kick routed through living wood.</span> You don't watch Entanglement. <span class="hl">You get caught in it.</span></div>
+    <div class="manifesto-grid">
+      <div class="m-card reveal"><h3>◍ NO PHONES / NO PHOTOS</h3><p>Yondr pouches at the gate. Security removes anyone filming. What happens under the canopy stays in your nervous system.</p></div>
+      <div class="m-card reveal"><h3>◍ LEAVE NO TRACE</h3><p>100% renewable power, reusable cups, forest restoration fee included in every ticket. We left the 2026 site cleaner than we found it.</p></div>
+      <div class="m-card reveal"><h3>◍ HARD GROOVE ONLY</h3><p>No EDM, no pyrotechnics, no nonsense. Raw, hypnotic, industrial techno from selectors who play basements, not arenas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="lineup">
+  <div class="wrap">
+    <div class="kicker">03 / LINEUP — FIRST 16 NAMES</div>
+    <h2>WIRED TO THE <em>UNDERGROUND</em></h2>
+    <p class="lead">Alphabetical by chaos. Full 60+ lineup drops March 2027. Click any artist for set intel.</p>
+    <div class="filter-bar" id="filters">
+      <button class="fbtn active" data-f="all">ALL</button>
+      <button class="fbtn" data-f="hypnotic">HYPNOTIC</button>
+      <button class="fbtn" data-f="hard">HARD GROOVE</button>
+      <button class="fbtn" data-f="industrial">INDUSTRIAL</button>
+      <button class="fbtn" data-f="acid">ACID</button>
+    </div>
+    <div class="lineup" id="lineupGrid"></div>
+    <p style="margin-top:18px;font-family:var(--font-m);font-size:12px;color:var(--muted);letter-spacing:.1em">+ 44 MORE NAMES // B2B SECRETS // SUNRISE AMBIENT SETS // CLOSING RITUAL TBA</p>
+  </div>
+</section>
+
+<section id="stages">
+  <div class="wrap">
+    <div class="kicker">04 / THE CLEARINGS</div>
+    <h2>THREE STAGES, <em>ZERO ESCAPE</em></h2>
+    <div class="stage-grid">
+      <div class="stage reveal"><div class="stage-visual" style="background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=w=800&auto=format&fit=crop') center/cover"><h4>MYCELIUM</h4></div><div class="stage-body"><div style="font-family:var(--font-m);font-size:11px;color:var(--acid);letter-spacing:.18em">◉ MAIN / 360° / 4-POINT FUNCTION-ONE</div><p>The pit. A sunken dancefloor under 40m pines, wrapped in living mycelium sculptures that pulse with the kick. Peak-time, hard groove, sweat.</p><div class="stage-meta"><span>CAP 3500</span><span>24H / OPEN AIR</span></div></div></div>
+      <div class="stage reveal"><div class="stage-visual" style="background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=w=800&auto=format&fit=crop') center/cover"><h4>CANOPY</h4></div><div class="stage-body"><div style="font-family:var(--font-m);font-size:11px;color:var(--acid);letter-spacing:.18em">◉ HYPNOTIC / SUSPENDED DOME</div><p>A geodesic dome hung 12m high in the branches. Deep, dubby, psychedelic techno. Lie down, look up, dissolve into lasers and leaves.</p><div class="stage-meta"><span>CAP 1200</span><span>DUSK → DAWN</span></div></div></div>
+      <div class="stage reveal"><div class="stage-visual" style="background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=w=800&auto=format&fit=crop') center/cover"><h4>THE VOID</h4></div><div class="stage-body"><div style="font-family:var(--font-m);font-size:11px;color:var(--acid);letter-spacing:.18em">◉ BUNKER / INDUSTRIAL / 148 BPM+</div><p>A former WWII bunker 800m into the woods. Concrete, strobes, 12kW of pressure. No photos, no track IDs, no mercy. Strict 500 cap.</p><div class="stage-meta"><span>CAP 500</span><span>23:00 → 11:00</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <div class="kicker">05 / TIMELINE</div>
+    <h2>72 HOURS OF <em>PRESSURE</em></h2>
+    <div class="tabs" id="dayTabs">
+      <button class="tab active" data-day="fri"><b>DAY 01 — FRIDAY</b><small>16 JULY / AWAKENING / 21:00—08:00</small></button>
+      <button class="tab" data-day="sat"><b>DAY 02 — SATURDAY</b><small>17 JULY / ENTANGLEMENT / 12:00—12:00</small></button>
+      <button class="tab" data-day="sun"><b>DAY 03 — SUNDAY</b><small>18 JULY / DISSOLUTION / 12:00—23:00</small></button>
+    </div>
+    <div class="schedule reveal" id="schedList"></div>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="wrap">
+    <div class="kicker">06 / ENTRY</div>
+    <h2>CHOOSE YOUR <em>DEPTH</em></h2>
+    <p class="lead">All tiers include forest camping + 3 days access. Prices rise automatically — Tier 1 is gone. No resale above face value. 18+ only.</p>
+    <div class="tick-grid">
+      <div class="tick"><span class="soldout">SOLD OUT</span><h3>WEEKEND — TIER 1</h3><div class="price"><sup>€</sup>149</div><p style="font-family:var(--font-m);font-size:11px;color:var(--muted)">SPORE / EARLY BELIEVERS</p><ul><li>3-day entry + forest camp</li><li>All 3 stages</li><li>Free drinking water</li><li>Locker discount</li></ul><button class="btn ghost" disabled style="opacity:.4">GONE</button></div>
+      <div class="tick featured"><span class="soldout" style="background:var(--acid);color:#000">73% SOLD</span><h3>WEEKEND — TIER 2</h3><div class="price"><sup>€</sup>189</div><p style="font-family:var(--font-m);font-size:11px;color:var(--acid)">MYCELIUM / CURRENT TIER →</p><ul><li>3-day entry + forest camp</li><li>All 3 stages + secret sets</li><li>2027 zine + poncho</li><li>Priority Void queue</li><li>Reforestation donation</li></ul><div class="qty"><button onclick="chQty('t2',-1)">−</button><b id="q-t2">0</b><button onclick="chQty('t2',1)">+</button><span style="font-family:var(--font-m);font-size:11px;color:var(--muted)">QTY</span></div><button class="btn" onclick="addCart()">ADD TO CART →</button></div>
+      <div class="tick"><h3>WEEKEND — TIER 3 + VIP</h3><div class="price"><sup>€</sup>289</div><p style="font-family:var(--font-m);font-size:11px;color:var(--muted)">CANOPY / FINAL + COMFORT</p><ul><li>Everything in Tier 2</li><li>Raised Canopy deck</li><li>Backstage forest sauna</li><li>Artist Q&A + workshops</li><li> calent breakfast daily</li></ul><div class="qty"><button onclick="chQty('vip',-1)">−</button><b id="q-vip">0</b><button onclick="chQty('vip',1)">+</button><span style="font-family:var(--font-m);font-size:11px;color:var(--muted)">QTY</span></div><button class="btn ghost" onclick="addCart()">ADD VIP →</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="wrap">
+    <div class="kicker">07 / COORDINATES</div>
+    <h2>LOST IN <em>AMSTERDAMSE BOS</em></h2>
+    <div class="loc-grid">
+      <div class="map reveal"><div class="map-grid"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.35" viewBox="0 0 400 400"><path d="M0,300 Q100,260 140,200 T260,150 T400,80" stroke="#c6ff00" fill="none" stroke-width="1.5" stroke-dasharray="6 6"/><path d="M60,400 Q120,320 200,280 T360,200" stroke="rgba(255,255,255,.3)" fill="none" stroke-width="1"/></svg>
+        <div class="map-pin"><div class="pin-pulse"></div><div class="pin-dot"></div></div>
+        <div class="map-card"><div><small>ENTANGLEMENT SITE</small><div style="font-weight:700">Amsterdamse Bos — South Clearing<br><span style="color:var(--muted);font-weight:400;font-size:13px">52.2986°N, 4.8328°E • 25 min from Centraal</span></div></div><a class="btn" href="https://maps.google.com/?q=Amsterdamse+Bos" target="_blank">ROUTE</a></div>
+      </div>
+      <div class="loc-info">
+        <div class="info-row reveal"><i>🚇</i><div><h4>SHUTTLE FROM AMSTERDAM CENTRAAL</h4><p>Direct night buses every 20 min, 21:00–06:00. €8 return, included for VIP. Bike parking for 2,000 — the Dutch way is fastest.</p></div></div>
+        <div class="info-row reveal"><i>⛺</i><div><h4>FOREST CAMPING INCLUDED</h4><p>Pitch your tent among birches. Quiet zone + 24h zone. Campervans at P2. Showers, free water, sauna by the lake.</p></div></div>
+        <div class="info-row reveal"><i>🌲</i><div><h4>WEATHER-PROOF RITUAL</h4><p>Rain or shine. Mycelium is open-air, Canopy is covered, The Void is underground. Bring boots. Mud is part of the lineup.</p></div></div>
+      </div>
+    </div>
+    <div class="faq" id="faq">
+      <div style="margin:36px 0 10px;font-family:var(--font-d);font-size:22px">PRACTICAL INTEL ↓</div>
+      <div class="faq-item"><button class="faq-q">Can I pay by card inside? <span>+</span></button><div class="faq-a"><div>Yes — Entanglement is 100% cashless. Top up your wristband with PIN, Apple Pay or crypto at 12 top-up points. Unused credit auto-refunds within 5 days.</div></div></div>
+      <div class="faq-item"><button class="faq-q">What is the phone policy? <span>+</span></button><div class="faq-a"><div>Phones are sealed in Yondr pouches at entry. There are 4 unlock zones + a designated photo bridge at sunrise (06:00–07:00) where you can capture one memory.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Is there re-entry / can I sleep? <span>+</span></button><div class="faq-a"><div>Weekend wristbands allow unlimited re-entry to camping. Music runs non-stop but the forest has hammock fields, ambient clearings and a 24h tea temple for reset.</div></div></div>
+      <div class="faq-item"><button class="faq-q">How do I get there at 4AM? <span>+</span></button><div class="faq-a"><div>Night shuttles run all weekend between Leidseplein, Amstelveen and the North Gate. Last shuttle Sunday leaves at 00:30. Bikes can stay overnight in guarded parking.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div><a class="brand" href="#top"><span class="brand-mark"><b>∿</b></span> ENTANGLEMENT</a><p style="color:var(--fog);font-size:14px;line-height:1.7;margin:14px 0;max-width:300px">Independent, non-sponsored techno ritual since 2019. Organized by Stichting Wortel, Amsterdam.</p><div class="news"><input id="email" placeholder="email for secret lineup drop"><button id="newsBtn">→</button></div></div>
+    <div><h5>NAVIGATE</h5><a href="#lineup">Lineup</a><a href="#stages">Stages</a><a href="#schedule">Schedule</a><a href="#tickets">Tickets</a></div>
+    <div><h5>PROTOCOL</h5><a href="#faq">Zero tolerance</a><a href="#faq">Awareness team</a><a href="#faq">Leave no trace</a><a href="#faq">Volunteers</a></div>
+    <div><h5>FOLLOW THE SIGNAL</h5><a href="#">Instagram — @entanglement.ams</a><a href="#">RA — Entanglement 2027</a><a href="#">SoundCloud — live sets</a><p style="font-family:var(--font-m);font-size:11px;color:var(--muted);margin-top:12px">KVK 82411920 • AVG PROOF • 18+</p></div>
+  </div>
+  <div class="foot-bottom"><span>© 2027 ENTANGLEMENT — ALL FREQUENCIES RESERVED</span><span>DESIGNED IN THE FOREST • BUILT FOR THE DARK</span></div>
+</footer>
+
+<div class="modal" id="artistModal"><div class="modal-bg" onclick="closeModal()"></div><div class="modal-card"><img id="mImg" src="" alt=""><div class="modal-body"><div id="mMeta" style="font-family:var(--font-m);font-size:11px;color:var(--acid);letter-spacing:.15em"></div><h3 id="mName"></h3><p id="mDesc" style="color:var(--fog);font-size:14px;line-height:1.7;margin:10px 0"></p><div style="display:flex;gap:10px"><button class="btn" onclick="closeModal();document.getElementById('tickets').scrollIntoView({behavior:'smooth'})">SEE THEM LIVE →</button><button class="btn ghost" onclick="closeModal()">CLOSE</button></div></div></div></div>
+
+<div class="drawer" id="drawer"><div style="display:flex;justify-content:space-between;align-items:center"><h3>YOUR RAVE PACK</h3><button onclick="toggleDrawer(false)" style="background:none;border:1px solid #fff3;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer">✕</button></div><div id="cartItems" style="flex:1;overflow:auto;margin:16px 0"></div><div style="border-top:1px solid var(--line2);padding-top:16px"><div style="display:flex;justify-content:space-between;font-family:var(--font-m)"><span>TOTAL</span><b id="cartTotal" style="color:var(--acid);font-size:20px">€0</b></div><button class="btn" style="width:100%;justify-content:center;margin-top:14px;padding:16px" onclick="checkout()">CHECKOUT →</button><p style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-top:10px;text-align:center">SECURE CHECKOUT • ID REQUIRED AT GATE</p></div></div>
+<div id="toast">ADDED TO CART ◈ SEE YOU IN THE TREES</div>
+
+<script>
+// LOADER
+let p=0;let li=setInterval(()=>{p+=Math.random()*22;if(p>=100){p=100;clearInterval(li);setTimeout(()=>document.getElementById('loader').classList.add('done'),400)}document.getElementById('loadPct').textContent='SYNCING MYCELIUM... '+Math.floor(p)+'%';},220);
+
+// MARQUEE
+const words=['ENTANGLEMENT 2027','16—18 JULY • AMSTERDAMSE BOS','NO PHONES • NO HEADLINERS','HARD GROOVE • HYPNOTIC • INDUSTRIAL','TIER 2 — 73% SOLD'];
+document.getElementById('mq').innerHTML=(words.map(w=>`<span>${w} ✦</span>`).join('')).repeat(4);
+
+// CURSOR + PROGRESS + REVEAL
+const cur=document.getElementById('cursor'),ring=document.getElementById('ring');
+addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},60)});
+document.querySelectorAll('a,button,.artist').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hovering'));el.addEventListener('mouseleave',()=>ring.classList.remove('hovering'))});
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// COUNTDOWN
+const target=new Date('2027-07-16T21:00:00+02:00').getTime();
+function tick(){let d=target-Date.now();if(d<0)d=0;const dd=Math.floor(d/864e5),hh=Math.floor(d/36e5)%24,mm=Math.floor(d/6e4)%60,ss=Math.floor(d/1e3)%60;
+document.getElementById('d').textContent=String(dd).padStart(2,'0');document.getElementById('h').textContent=String(hh).padStart(2,'0');document.getElementById('m').textContent=String(mm).padStart(2,'0');document.getElementById('s').textContent=String(ss).padStart(2,'0');}
+setInterval(tick,1000);tick();
+
+// CANVAS ENTANGLEMENT
+const cv=document.getElementById('entangle'),ctx=cv.getContext('2d');let W,H,pts=[],mouse={x:-999,y:-999};
+function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight}
+addEventListener('resize',resize);resize();
+for(let i=0;i<90;i++)pts.push({x:Math.random()*2000,y:Math.random()*1200,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6});
+cv.parentElement.addEventListener('mousemove',e=>{const r=cv.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+(function loop(){ctx.clearRect(0,0,W,H);resizeCheck();
+for(let p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+ctx.fillStyle='#c6ff00';ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,7);ctx.fill()}
+for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){let dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
+if(d<160){ctx.strokeStyle=`rgba(198,255,0,${(1-d/160)*.35})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke()}}
+for(let p of pts){let d=Math.hypot(p.x-mouse.x,p.y-mouse.y);if(d<220){ctx.strokeStyle=`rgba(198,255,0,${(1-d/220)*.8})`;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke()}}
+requestAnimationFrame(loop)})();
+let rw=cv.offsetWidth;function resizeCheck(){if(cv.offsetWidth!==rw){resize();rw=cv.offsetWidth}}
+
+// LINEUP DATA
+const artists=[
+{n:'ANETHA',s:'MYCELIUM • FRI 01:00',g:'hard',img:'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=w=600&auto=format&fit=crop',d:'Mama Told Ya boss. Fast, trippy hard groove with trance stabs that detonate pine forests.'},
+{n:'DVS1',s:'THE VOID • SAT 04:00',g:'industrial',img:'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=w=600&auto=format&fit=crop',d:'Minneapolis machine funk. No photos, no compromises. A masterclass in deep, driving pressure.'},
+{n:'SPFDJ',s:'MYCELIUM • SAT 02:30',g:'hard',img:'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=w=600&auto=format&fit=crop',d:'The high-speed demon. 150 BPM hard groove, gabber kicks and pure adrenaline chaos.'},
+{n:'HELENA HAUFF',s:'CANOPY • SAT 23:00',g:'acid',img:'https://images.unsplash.com/photo-1485579149621-3123dd979885?q=w=600&auto=format&fit=crop',d:'Hamburg electro-acid queen. Raw 303 lines, EBM dirt, strictly vinyl in the dome.'},
+{n:'I HATE MODELS',s:'MYCELIUM • SUN 01:00',g:'industrial',img:'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=w=600&auto=format&fit=crop',d:'Emotional industrial warfare. Euphoric melodies crushed under warehouse distortion.'},
+{n:'BEN KLOCK',s:'MYCELIUM • FRI 23:30',g:'hypnotic',img:'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=w=600&auto=format&fit=crop',d:'Berghain resident opens the ritual. Two hours of sub-heavy, hypnotic reduction.'},
+{n:'NICO MORENO',s:'THE VOID • FRI 02:00',g:'hard',img:'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=w=600&auto=format&fit=crop',d:'French industrial hard techno. Relentless kicks built for concrete bunkers.'},
+{n:'CLARA 3000',s:'CANOPY • SUN 20:00',g:'hypnotic',img:'https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?q=w=600&auto=format&fit=crop',d:'Parisian leftfield selector. Slow-burn, sexy, dubbed-out closing frequencies.'},
+{n:'999999999',s:'MYCELIUM • SAT 00:30',g:'acid',img:'https://images.unsplash.com/photo-1571266028243-d220c6a8bd93?q=w=600&auto=format&fit=crop',d:'Live acid hardware duo. Two 303s, zero laptops, total forest meltdown guaranteed.'},
+{n:'KI/KI',s:'CANOPY • FRI 00:00',g:'acid',img:'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=w=600&auto=format&fit=crop',d:'Amsterdam’s own rave prodigy. Trancey, acid, euphoric — hometown sunrise energy.'},
+{n:'DYEN',s:'THE VOID • SAT 01:30',g:'industrial',img:'https://images.unsplash.com/photo-1519508234439-4f23643125c1?q=w=600&auto=format&fit=crop',d:'Neo-rave syndicate. Pounding schranz-infused tools for the 500-cap pressure cooker.'},
+{n:'BAMBII B2B SALOME',s:'CANOPY • SAT 03:00',g:'hypnotic',img:'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=w=600&auto=format&fit=crop',d:'Secret back-to-back. Deep psychedelic grooves, unreleased dubplates only.'},
+];
+const grid=document.getElementById('lineupGrid');
+function renderLineup(f='all'){grid.innerHTML='';artists.filter(a=>f==='all'||a.g===f).forEach((a,i)=>{
+const el=document.createElement('div');el.className='artist reveal visible';
+el.innerHTML=`<div class="artist-img" style="background-image:url('${a.img}')"></div><div class="artist-shade"></div><div class="artist-info"><small><span>◉ ${a.s.split('•')[0]}</span><span>${String(i+1).padStart(2,'0')}</span></small><h3>${a.n}</h3><p>${a.s}</p><span class="tag">${a.g.toUpperCase()}</span><span class="tag">LIVE</span></div>`;
+el.onclick=()=>{document.getElementById('mImg').src=a.img;document.getElementById('mName').textContent=a.n;document.getElementById('mMeta').textContent=a.s+' — '+a.g.toUpperCase()+' TECHNO';document.getElementById('mDesc').textContent=a.d+' Set recorded live at Entanglement 2026 has 214k plays. Expect unreleased material and extended forest edit.';document.getElementById('artistModal').classList.add('open')};
+grid.appendChild(el)})}
+renderLineup();
+document.getElementById('filters').addEventListener('click',e=>{if(e.target.classList.contains('fbtn')){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderLineup(e.target.dataset.f)}});
+function closeModal(){document.getElementById('artistModal').classList.remove('open')}
+
+// SCHEDULE
+const sched={fri:[['21:00','GATES + SMUDGING CEREMONY','Opening ritual at North Gate','MYCELIUM'],['23:30','BEN KLOCK','2h opening — sub pressure','MYCELIUM'],['01:00','ANETHA','Peak-time hard groove','MYCELIUM'],['02:00','NICO MORENO','Bunker assault','THE VOID'],['04:30','HELENA HAUFF B2B KI/KI','Surprise acid sunrise','CANOPY']],
+sat:[['12:00','FOREST YOGA + AMBIENT','Deep listening with Moss Corp','CANOPY'],['18:00','BAMBII B2B SALOME','Hypnotic warm-up','CANOPY'],['00:30','999999999 LIVE','Acid hardware meltdown','MYCELIUM'],['01:30','DYEN','Void pressure peak','THE VOID'],['02:30','SPFDJ','150 BPM headline chaos','MYCELIUM'],['04:00','DVS1','Closing the bunker — 3h','THE VOID']],
+sun:[['12:00','TEA TEMPLE RE-OPEN','Reset + sauna sessions','CANOPY'],['18:00','SECRET GUEST — ???','Unannounced forest set','MYCELIUM'],['20:00','CLARA 3000','Dubby sunset dissolution','CANOPY'],['01:00','I HATE MODELS','Final ritual — lights on at end','MYCELIUM'],['23:00','CLOSING CIRCLE','Leave no trace pledge','FOREST']]};
+function renderDay(d){document.getElementById('schedList').innerHTML=sched[d].map(r=>`<div class="srow"><time>${r[0]}</time><h4>${r[1]} <span>— ${r[2]}</span></h4><span class="where">${r[3]}</span></div>`).join('')}
+renderDay('fri');
+document.getElementById('dayTabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');renderDay(b.dataset.day)});
+
+// CART
+let cart={t2:0,vip:0};const prices={t2:189,vip:289};
+function chQty(k,d){cart[k]=Math.max(0,Math.min(8,cart[k]+d));document.getElementById('q-'+k).textContent=cart[k]}
+function addCart(){if(cart.t2===0&&cart.vip===0){toast('SELECT QUANTITY FIRST');return}toggleDrawer(true);renderCart();toast('ADDED TO CART ◈ SEE YOU IN THE TREES')}
+function renderCart(){let h='';let total=0;if(cart.t2>0){total+=cart.t2*prices.t2;h+=`<div class="cart-item"><span>TIER 2 × ${cart.t2}</span><b>€${cart.t2*prices.t2}</b></div>`}if(cart.vip>0){total+=cart.vip*prices.vip;h+=`<div class="cart-item"><span>VIP × ${cart.vip}</span><b>€${cart.vip*prices.vip}</b></div>`}if(!h)h='<p style="color:var(--muted);font-size:14px">Cart empty. The forest waits.</p>';document.getElementById('cartItems').innerHTML=h;document.getElementById('cartTotal').textContent='€'+total;document.getElementById('navCount').textContent=cart.t2+cart.vip}
+function toggleDrawer(o){document.getElementById('drawer').classList.toggle('open',o);if(o)renderCart()}
+document.getElementById('navCart').onclick=()=>toggleDrawer(true);
+function checkout(){if(cart.t2+cart.vip===0){toast('CART IS EMPTY');return}toast('REDIRECTING TO SECURE CHECKOUT...');setTimeout(()=>{cart={t2:0,vip:0};document.getElementById('q-t2').textContent=0;document.getElementById('q-vip').textContent=0;renderCart();toggleDrawer(false)},1200)}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2600)}
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q=>q.onclick=()=>{const it=q.parentElement,a=it.querySelector('.faq-a'),open=it.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}});
+
+// MENU / MISC
+document.getElementById('burger').onclick=()=>document.getElementById('mMenu').classList.add('open');
+document.getElementById('mClose').onclick=()=>document.getElementById('mMenu').classList.remove('open');
+document.querySelectorAll('#mMenu a').forEach(a=>a.onclick=()=>document.getElementById('mMenu').classList.remove('open'));
+document.getElementById('newsBtn').onclick=()=>{const v=document.getElementById('email').value;if(!v.includes('@')){toast('ENTER VALID EMAIL');return}document.getElementById('email').value='';toast('YOU ARE ON THE LIST ◈ CHECK INBOX')};
+document.getElementById('trailerBtn').onclick=()=>toast('AFTERMOVIE PREMIERES 01.03.2027 ◈ STAY TUNED');
+
+// MAGNETIC
+document.querySelectorAll('.magnetic').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.15}px,${(e.clientY-r.top-r.height/2)*.15}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')});
+
+// GENERATIVE TECHNO ENGINE (Web Audio)
+let ac=null,playing=false,nodes=[];
+document.getElementById('soundBtn').onclick=function(){this.classList.toggle('on');if(!playing)startTechno();else stopTechno();this.textContent=playing?'◉':'♪'};
+function startTechno(){ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume();playing=true;const bpm=136,step=60/bpm/2;let s=0;
+function kick(t){const o=ac.createOscillator(),g=ac.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(40,t+.12);g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.28);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+.3)}
+function hat(t){const b=ac.createBuffer(1,ac.sampleRate*.05,ac.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);const src=ac.createBufferSource();src.buffer=b;const f=ac.createBiquadFilter();f.type='highpass';f.frequency.value=7000;const g=ac.createGain();g.gain.value=.18;src.connect(f).connect(g).connect(ac.destination);src.start(t)}
+function bass(t){const o=ac.createOscillator(),g=ac.createGain(),f=ac.createBiquadFilter();o.type='sawtooth';o.frequency.value=55;f.type='lowpass';f.frequency.value=220;g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.001,t+step*1.8);o.connect(f).connect(g).connect(ac.destination);o.start(t);o.stop(t+step*2)}
+function schedLoop(){if(!playing)return;const t=ac.currentTime+.05;if(s%2===0)kick(t);if(s%2===1)hat(t);if(s%8===2)bass(t);if(s%4===3)hat(t+.02);s=(s+1)%32;nodes._t=setTimeout(schedLoop,step*1000)}
+schedLoop();toast('LIVE FOREST FREQUENCY ◈ 136 BPM')}
+function stopTechno(){playing=false;clearTimeout(nodes._t);toast('SOUND OFF — SEE YOU IN THE TREES')}
+</script>
+</body>
+</html>

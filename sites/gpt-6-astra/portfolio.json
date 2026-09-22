@@ -1,0 +1,16 @@
+{
+  "model": "gpt-6-astra",
+  "slug": "openai/gpt-6-astra",
+  "prompt": "portfolio",
+  "returned_model": "openai/gpt-6-astra",
+  "provider": "OpenAI",
+  "started_at": "2026-09-21 17:22:27",
+  "seconds": 146,
+  "prompt_tokens": 61,
+  "output_tokens": 8186,
+  "thinking_tokens": 516,
+  "html_chars": 27390,
+  "cost": 0.40991,
+  "finish_reason": "stop",
+  "truncated": false
+}

@@ -1,0 +1,9 @@
+{
+  "model": "gemini-3.8-flash",
+  "slug": "google/gemini-3.8-flash",
+  "prompt": "techno",
+  "seconds": 106,
+  "output_tokens": 19941,
+  "cost": 0.07481775,
+  "truncated": false
+}

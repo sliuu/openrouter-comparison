@@ -1,0 +1,16 @@
+{
+  "model": "glm-5.3",
+  "slug": "z-ai/glm-5.3",
+  "prompt": "techno",
+  "returned_model": "z-ai/glm-5.3",
+  "provider": "Crusoe",
+  "started_at": "2026-09-21 20:29:21",
+  "seconds": 393,
+  "prompt_tokens": 64,
+  "output_tokens": 51299,
+  "thinking_tokens": 31076,
+  "html_chars": 54700,
+  "cost": 0.2258052,
+  "finish_reason": "stop",
+  "truncated": false
+}

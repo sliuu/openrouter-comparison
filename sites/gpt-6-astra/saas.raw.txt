@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f7f2">
+<title>Connected — Big ideas. Better together.</title>
+<style>
+:root{--paper:#f7f7f2;--ink:#252b28;--muted:#71756e;--line:#dedfd6;--orange:#ff6948;--purple:#e5dff9;--green:#dce9bd;--yellow:#f4edb6;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #9a89c8;outline-offset:5px}
+.container{width:min(1240px,calc(100% - 96px));margin:auto}
+.navbar{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:30px;position:relative;z-index:10}
+.logo{display:inline-flex;align-items:center;gap:9px;font-size:27px;font-weight:750;letter-spacing:-1.3px}
+.logo svg{width:32px;height:35px}
+.nav-links{display:flex;gap:32px;align-items:center;margin-left:45px}
+.nav-link{font-size:14px;font-weight:500;background:none;border:0;padding:12px 0;display:flex;align-items:center;gap:8px}
+.chevron{width:6px;height:6px;border-right:1.3px solid;border-bottom:1.3px solid;transform:rotate(45deg);margin-top:-3px}
+.nav-actions{display:flex;align-items:center;gap:26px;font-size:14px}
+.button{border:1px solid transparent;border-radius:6px;padding:15px 23px;font-size:14px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:23px;transition:transform .2s,background .2s}
+.button:hover{transform:translateY(-2px)}
+.button-primary{background:var(--orange);color:#222923}
+.button-primary:hover{background:#fa7d60}
+.button-dark{background:var(--ink);color:white}
+.button-outline{background:transparent;border-color:#cfd1c6}
+.arrow{font-size:20px;line-height:14px;font-weight:400}
+.nav-actions .button{padding:13px 18px}
+.dropdown-wrap{position:relative}
+.dropdown{position:absolute;top:45px;left:-20px;width:250px;background:white;border:1px solid var(--line);padding:9px;border-radius:10px;box-shadow:0 12px 35px #242b2812;display:none}
+.dropdown.open{display:block}
+.dropdown a{display:block;padding:13px 12px;border-radius:5px;font-size:14px}
+.dropdown a:hover{background:var(--paper)}
+.dropdown small{display:block;font-size:11px;color:var(--muted);margin-top:5px}
+.mobile-toggle{display:none;border:0;background:none;padding:10px;font-size:23px}
+.hero{display:grid;grid-template-columns:1fr 1.06fr;gap:24px;align-items:center;padding-top:77px;padding-bottom:76px}
+.eyebrow{font-size:11px;letter-spacing:1.8px;font-weight:600;display:flex;align-items:center;gap:9px;text-transform:uppercase}
+.eyebrow .spark{color:var(--orange);font-size:22px;font-weight:400;line-height:18px}
+.hero h1{font-size:clamp(55px,5.7vw,78px);letter-spacing:-4.2px;font-weight:500;line-height:1.04;margin:25px 0 24px}
+.hero h1 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-4px;color:#777e59}
+.hero-copy>p{font-size:17px;line-height:1.75;max-width:430px;color:#62685f;margin:0 0 31px}
+.hero-actions{display:flex;gap:13px;align-items:center}
+.play-icon{width:21px;height:21px;border:1px solid #82877b;border-radius:50%;display:grid;place-items:center}
+.play-icon:after{content:"";width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:5px solid var(--ink);margin-left:2px}
+.hero-note{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);margin-top:18px}
+.hero-note svg{width:13px;height:13px}
+.hero-art{height:492px;position:relative;isolation:isolate}
+.art-background{position:absolute;inset:10px -12px 0 10px;border-radius:50% 46% 43% 47%;background:radial-gradient(ellipse at 55% 42%,#e9e8d5 0,#eeeee1 42%,#f3f3e9 67%,transparent 72%);z-index:-2}
+.art-grid{position:absolute;inset:0;background-image:radial-gradient(#a7ac903e .8px,transparent .8px);background-size:18px 18px;mask-image:radial-gradient(ellipse,black 10%,transparent 69%);z-index:-1}
+.orbit{position:absolute;width:442px;height:442px;border:1px solid #d5d8c78c;border-radius:50%;left:62px;top:27px;transform:rotate(-22deg)}
+.orbit.two{width:510px;height:310px;left:27px;top:90px;transform:rotate(-38deg);border-color:#d8dac989}
+.wires{position:absolute;width:100%;height:100%;overflow:visible;z-index:0}
+.workspace{position:absolute;left:65px;right:31px;top:135px;background:white;border:1px solid #dcdfd3;border-radius:10px;box-shadow:0 16px 40px #464d3612;z-index:2;overflow:hidden;transform:rotate(-1deg)}
+.workspace-top{padding:15px 18px;border-bottom:1px solid #eaece4;display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:1px;font-weight:700}
+.workspace-brand{display:flex;align-items:center;gap:7px}
+.workspace-brand svg{width:14px;height:16px}
+.window-dots{color:#a2a697;letter-spacing:2px;font-size:12px}
+.workspace-body{padding:20px 20px 16px}
+.workspace-body h3{font-size:21px;letter-spacing:-.7px;margin:0 0 7px;font-weight:500}
+.workspace-body>p{font-size:10px;color:#888d80;margin:0 0 19px}
+.brief{background:#f7f8f3;border:1px solid #e9ebe1;padding:12px;border-radius:5px;display:flex;gap:10px;align-items:center}
+.doc-icon{height:29px;width:25px;border:1px solid #c8ceb7;background:white;border-radius:3px;display:grid;place-items:center;color:#939a80;font-size:13px}
+.brief strong{font-size:10px;display:block;font-weight:600}
+.brief small{font-size:8px;color:#8b9080;display:block;margin-top:5px}
+.brief>span:last-child{font-size:8px;background:#e6eed7;border:1px solid #d4e1bf;border-radius:3px;padding:4px 6px;margin-left:auto;color:#667b42}
+.workspace-footer{display:flex;align-items:center;justify-content:space-between;margin-top:17px;font-size:8px;color:#777e6a}
+.avatars{display:flex;align-items:center;padding-left:5px}
+.avatar{width:22px;height:22px;border:2px solid white;border-radius:50%;display:grid;place-items:center;margin-left:-5px;color:#42493a;font-size:9px}
+.avatar:nth-child(1){background:#ddd4f4}.avatar:nth-child(2){background:#fed5ba}.avatar:nth-child(3){background:#dce9bd}
+.avatars>span:last-child{padding-left:6px}
+.status-dot{display:inline-block;width:5px;height:5px;background:#8da663;border-radius:50%;margin-right:4px}
+.agent{position:absolute;border:1px solid #d5d8ca;box-shadow:0 6px 16px #32392908;border-radius:8px;padding:12px 14px;z-index:3;background:white}
+.agent-heading{display:flex;align-items:center;gap:9px}
+.agent-icon{width:29px;height:29px;border-radius:7px;display:grid;place-items:center}
+.agent-icon svg{width:17px;height:17px}
+.agent-name{font-size:11px;font-weight:600}
+.agent-desc{font-size:9px;margin-top:4px;color:#717863}
+.agent-one{top:30px;left:137px;background:#e9e3f5;border-color:#d9d0e9;transform:rotate(-4deg);width:193px}
+.agent-one .agent-icon{background:#d6c9ed}
+.agent-two{top:106px;right:-14px;background:#f9dfc8;border-color:#ebd0b5;transform:rotate(7deg);width:163px}
+.agent-two .agent-icon{background:#f3c69f}
+.agent-three{bottom:43px;left:24px;background:#e3ebce;border-color:#cfd9b6;transform:rotate(-5deg);width:188px}
+.agent-three .agent-icon{background:#cadbaa}
+.agent-tag{font-size:8px;display:flex;align-items:center;gap:5px;margin-top:11px;border-top:1px solid #76805e24;padding-top:9px}
+.agent-tag span{width:5px;height:5px;background:#8b956f;border-radius:50%}
+.art-sticker{position:absolute;right:12px;bottom:63px;width:99px;height:99px;z-index:4}
+.art-sticker svg{width:100%;height:100%}
+.art-sticker-text{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;text-align:center;font-size:11px;font-weight:600;line-height:1.4;transform:rotate(10deg)}
+.floating-spark{position:absolute;font-size:37px;color:#79815c;left:32px;top:70px}
+.floating-star{position:absolute;font-size:23px;color:#a0a776;right:62px;top:13px}
+.art-caption{position:absolute;bottom:0;left:202px;font-family:Georgia,serif;font-style:italic;font-size:14px;color:#8a907c;transform:rotate(-3deg)}
+.trust{padding:26px 0 47px;border-top:1px solid var(--line)}
+.trust>p{font-size:11px;color:#787d73;text-align:center;margin:0 0 30px}
+.brands{display:flex;align-items:center;justify-content:space-around;gap:25px;color:#646b60}
+.brand{font-size:25px;font-weight:650;letter-spacing:-1px;white-space:nowrap}
+.brand-ramp{font-size:29px;font-weight:500;position:relative}
+.brand-ramp:after{content:"";display:inline-block;width:20px;height:17px;margin-left:3px;border-top:2px solid;transform:skew(-22deg) rotate(-27deg);border-radius:0 10px 0 0}
+.brand-loom{display:flex;gap:8px;align-items:center;font-weight:600;font-size:28px}
+.brand-loom b{font-size:35px;font-weight:400}
+.brand-cal{font-size:29px;letter-spacing:-1.6px}
+.brand-brex{display:flex;align-items:center;gap:8px;font-size:27px;font-weight:500}
+.brex-icon{width:24px;height:18px;border:3px solid;border-radius:3px 8px 3px 8px;transform:skew(-15deg)}
+.brand-census{display:flex;gap:7px;align-items:center;font-size:23px}
+.census-icon{font-size:31px;transform:rotate(-12deg)}
+.platform{background:#29322b;color:#f6f6ed;padding:78px 0 83px;position:relative;overflow:hidden}
+.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:45px;margin-bottom:39px}
+.section-heading h2{font-weight:400;font-size:46px;line-height:1.12;letter-spacing:-1.8px;margin:17px 0 0}
+.section-heading h2 em{font-family:Georgia,serif;font-weight:400;color:#dce7b9}
+.section-heading>p{font-size:14px;line-height:1.8;color:#bbc2b5;max-width:316px;margin:0 0 4px}
+.platform .eyebrow{color:#c5cebb;font-size:10px}
+.feature-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}
+.feature-card{background:#333d34;border:1px solid #4b5347;border-radius:9px;overflow:hidden}
+.mini-scene{height:195px;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:center}
+.scene-one{background:#e9e6d8}.scene-two{background:#e7dff1}.scene-three{background:#e2e8d3}
+.feature-content{padding:25px 25px 29px}
+.feature-label{font-size:9px;letter-spacing:1.2px;color:#b9c6a3}
+.feature-content h3{font-weight:500;font-size:22px;letter-spacing:-.6px;margin:11px 0}
+.feature-content p{font-size:13px;color:#bfc6b8;line-height:1.75;margin:0}
+.mini-card{background:#fff;border:1px solid #d7dacc;border-radius:6px;box-shadow:0 8px 22px #34432d0c;width:225px;padding:16px;transform:rotate(-4deg)}
+.mini-card-title{font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:space-between;color:#414b3b}
+.mini-card-title span{font-size:8px;padding:3px 5px;border-radius:3px;background:#edf2e3;color:#718358}
+.mini-rule{height:5px;background:#e7e9e1;border-radius:3px;margin-top:10px;width:85%}
+.mini-rule.short{width:59%;margin-top:6px}
+.mini-tags{display:flex;gap:5px;margin-top:15px}
+.mini-tags span{font-size:8px;background:#f1eedf;color:#817b5d;padding:5px 7px;border-radius:3px}
+.scene-label{position:absolute;font-size:9px;background:#dce7bd;border:1px solid #bfcaa4;color:#50613c;padding:9px 11px;border-radius:5px;right:20px;bottom:29px;transform:rotate(4deg);box-shadow:0 4px 8px #34432d0c}
+.copy-mini{width:225px;transform:rotate(3deg)}
+.copy-mini .mini-card-title span{background:#eee7f9;color:#8f74b1}
+.copy-lines{font-size:13px;line-height:1.5;color:#515245;margin-top:13px;letter-spacing:-.2px}
+.copy-cursor{display:inline-block;height:13px;width:2px;background:#8e75bb;vertical-align:middle;margin-left:3px}
+.copy-bubble{position:absolute;left:25px;bottom:27px;background:#f7f2fc;color:#7b6398;padding:9px 12px;font-size:9px;border:1px solid #d5c9e4;border-radius:5px;transform:rotate(-4deg)}
+.calendar-mini{width:224px;transform:rotate(-3deg)}
+.calendar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:11px}
+.calendar-grid i{height:25px;background:#f3f4ef;border-radius:3px;position:relative}
+.calendar-grid i.active{background:#e2ebcd}
+.calendar-grid i.orange{background:#f7d3bb}
+.calendar-grid i.purple{background:#e3d9f4}
+.calendar-grid i.active:after,.calendar-grid i.orange:after,.calendar-grid i.purple:after{content:"";position:absolute;width:13px;height:3px;background:#76836655;top:8px;left:7px;border-radius:2px;box-shadow:0 6px #76836630}
+.launch-label{background:#fff;bottom:30px;right:17px}
+.workflow{padding:92px 0 91px}
+.workflow-top{text-align:center;max-width:680px;margin:auto}
+.workflow-top .eyebrow{justify-content:center;color:#787e6c;font-size:10px}
+.workflow h2{font-weight:400;font-size:46px;letter-spacing:-1.8px;line-height:1.15;margin:17px 0}
+.workflow-top>p{font-size:15px;line-height:1.7;color:var(--muted);margin:0}
+.tabs{display:flex;width:max-content;gap:5px;margin:30px auto 36px;padding:5px;border:1px solid var(--line);border-radius:7px;background:#edeee6}
+.tab{border:0;border-radius:4px;background:transparent;padding:10px 24px;color:#707766;font-size:12px;display:flex;gap:8px;align-items:center}
+.tab.active{background:white;color:var(--ink);box-shadow:0 1px 4px #31372710}
+.tab-number{font-size:9px;color:#858f72}
+.workflow-detail{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:65px;padding:42px 49px;background:#eeefe6;border:1px solid #e0e2d5;border-radius:11px;min-height:348px}
+.workflow-text h3{font-size:30px;line-height:1.18;letter-spacing:-1px;font-weight:400;margin:15px 0}
+.workflow-text>p{font-size:14px;line-height:1.8;color:#70776a;margin:0 0 20px;max-width:345px}
+.text-link{background:none;border:0;padding:0;font-size:13px;font-weight:600;display:inline-flex;gap:17px;align-items:center}
+.workflow-preview{background:white;border:1px solid #dfe2d5;box-shadow:0 7px 25px #47543507;border-radius:8px;overflow:hidden}
+.preview-header{padding:15px 20px;border-bottom:1px solid #eceee4;display:flex;align-items:center;gap:8px;font-size:10px;font-weight:600}
+.preview-header .tiny-icon{height:21px;width:21px;background:#e4dbf2;display:grid;place-items:center;border-radius:5px;font-size:14px}
+.preview-header>span:last-child{margin-left:auto;font-size:8px;color:#7b846a;font-weight:400}
+.preview-body{padding:20px}
+.preview-message{font-size:11px;line-height:1.7;color:#717966;margin:0 0 17px}
+.task-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #eef0e8;font-size:10px}
+.task-check{height:15px;width:15px;display:grid;place-items:center;background:#e7edda;border-radius:50%;color:#6f8550;font-size:9px}
+.task-row>span:last-child{margin-left:auto;color:#8d9680;font-size:8px}
+.quote{display:flex;gap:25px;align-items:center;justify-content:center;padding:35px 0 0}
+.quote-mark{font-family:Georgia,serif;font-size:51px;color:#a2ad89;height:33px;line-height:1}
+.quote blockquote{font-size:15px;line-height:1.6;margin:0;letter-spacing:-.1px}
+.quote cite{display:block;font-style:normal;font-size:10px;color:#868c7f;margin-top:6px}
+.cta{background:#e2e8ce;border-top:1px solid #d5ddbd;border-bottom:1px solid #d5ddbd;overflow:hidden}
+.cta-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding:65px 0;gap:30px}
+.cta h2{font-size:43px;font-weight:400;letter-spacing:-1.7px;margin:0 0 13px;position:relative}
+.cta h2 em{font-family:Georgia,serif}
+.cta p{font-size:14px;color:#737d60;margin:0;position:relative}
+.cta .button{position:relative;white-space:nowrap}
+.cta-doodle{position:absolute;width:240px;height:240px;border:1px solid #b8c598;border-radius:50%;right:109px;top:-16px;opacity:.5}
+.cta-doodle:before{content:"";position:absolute;inset:25px -27px;border:1px solid #b8c598;border-radius:50%;transform:rotate(-40deg)}
+.footer{padding:36px 0 24px}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:25px}
+.footer .logo{font-size:23px}.footer .logo svg{width:27px;height:28px}
+.footer-links{display:flex;gap:26px;font-size:12px;color:#69715f}
+.footer-bottom{margin-top:30px;border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;font-size:10px;color:#909585}
+.footer-bottom div{display:flex;gap:20px}
+dialog{border:1px solid #ddd;max-width:480px;width:calc(100% - 36px);padding:35px;border-radius:14px;background:var(--paper);color:var(--ink);box-shadow:0 25px 90px #0002}
+dialog::backdrop{background:#17241bcc;backdrop-filter:blur(5px)}
+.modal-close{position:absolute;right:14px;top:11px;border:0;background:none;color:#7c8272;font-size:25px;padding:6px}
+dialog h2{font-weight:500;font-size:32px;letter-spacing:-1px;margin:20px 0 12px}
+dialog p{font-size:14px;color:var(--muted);line-height:1.7}
+.field{display:block;font-size:12px;font-weight:600;margin-top:18px}
+.field input,.field select{display:block;width:100%;padding:12px;border:1px solid #d5d9c9;background:white;border-radius:5px;margin-top:8px;color:var(--ink);font-size:14px}
+form .button{width:100%;margin-top:23px}
+.form-fine{font-size:10px!important;text-align:center}
+.success-state{text-align:center;padding:20px 0}
+.success-icon{width:55px;height:55px;display:grid;place-items:center;background:#dce9bd;border-radius:50%;font-size:25px;margin:auto}
+@media(min-width:1450px){.hero{gap:60px}.hero h1{font-size:79px}.hero-art{transform:scale(1.03)}}
+@media(max-width:1100px){.container{width:calc(100% - 64px)}.nav-links{gap:22px;margin-left:0}.nav-actions{gap:18px}.hero h1{font-size:63px;letter-spacing:-3.5px}.hero{gap:5px;padding-top:55px}.hero-copy>p{font-size:15px;max-width:350px}.hero-art{transform:scale(.89);transform-origin:center right;margin-left:-30px;width:510px;justify-self:end}.hero-actions .button{padding:14px 16px;gap:14px}.section-heading h2,.workflow h2{font-size:40px}.feature-content{padding:23px 20px}.feature-content h3{font-size:20px}.workflow-detail{gap:35px;padding:33px}}
+@media(max-width:850px){.nav-links{gap:18px}.nav-actions>a{display:none}.hero{grid-template-columns:1fr 1fr}.hero h1{font-size:52px;letter-spacing:-2.7px}.hero-copy>p{font-size:14px}.hero-art{transform:scale(.72);width:510px;margin-left:-100px;margin-right:-10px}.hero{padding-top:28px;padding-bottom:26px}.hero-actions{align-items:flex-start;flex-direction:column;gap:7px}.hero-actions .button-outline{border:0;padding-left:0}.hero-note{font-size:10px;margin-top:8px}.eyebrow{font-size:9px;letter-spacing:1.3px}.brands .brand{font-size:23px}.brands{gap:18px}.brand-census .census-icon{font-size:23px}.section-heading>p{max-width:270px;font-size:13px}.section-heading h2{font-size:35px}.mini-card{width:180px}.mini-scene{height:170px}.feature-content h3{font-size:18px}.feature-content p{font-size:12px}.scene-label{font-size:8px;right:5px}.copy-bubble{font-size:8px;left:5px}.workflow-detail{gap:25px;padding:26px}.workflow-text h3{font-size:27px}.cta h2{font-size:36px}.footer-links{gap:17px}}
+@media(max-width:680px){.container{width:calc(100% - 40px)}.navbar{height:78px}.logo{font-size:25px}.nav-actions{display:none}.mobile-toggle{display:block}.nav-links{display:none;position:absolute;top:77px;left:-20px;right:-20px;padding:15px 25px 24px;background:var(--paper);border-bottom:1px solid var(--line);margin:0;box-shadow:0 15px 25px #222a2510}.nav-links.mobile-open{display:block}.nav-link{width:100%;padding:13px 0}.dropdown{position:static;width:100%;box-shadow:none;margin-bottom:8px}.hero{display:flex;flex-direction:column;gap:0;padding:45px 0 20px;align-items:stretch}.hero h1{font-size:61px;letter-spacing:-3.5px;line-height:1.02;margin:24px 0}.eyebrow{font-size:10px}.hero-copy>p{font-size:15px;max-width:380px;line-height:1.7;margin-bottom:24px}.hero-actions{flex-direction:row;align-items:center;gap:13px}.hero-actions .button-outline{border:1px solid #cfd1c6;padding-left:14px}.hero-actions .button{font-size:12px;padding:14px;gap:11px}.hero-note{margin-top:15px}.hero-art{width:510px;align-self:center;justify-self:auto;transform:scale(.73);transform-origin:top center;margin:30px 0 -122px;height:492px;flex-shrink:0}.trust{padding-top:23px;padding-bottom:31px}.trust>p{font-size:10px;margin-bottom:24px}.brands{flex-wrap:wrap;justify-content:center;column-gap:29px;row-gap:20px}.brands .brand{font-size:22px}.brand-loom b{font-size:28px}.brex-icon{width:21px;height:16px}.platform{padding:49px 0}.section-heading{display:block;margin-bottom:29px}.section-heading h2{font-size:38px;letter-spacing:-1.4px}.section-heading>p{max-width:360px;margin-top:20px}.feature-cards{grid-template-columns:1fr;gap:18px}.mini-scene{height:189px}.mini-card{width:250px}.scene-label{right:26px;bottom:32px}.copy-bubble{left:27px}.feature-content{padding:23px 25px}.feature-content h3{font-size:23px}.feature-content p{font-size:13px}.workflow{padding:51px 0}.workflow h2{font-size:37px;letter-spacing:-1.6px}.workflow-top>p{font-size:14px}.tabs{margin:24px auto 25px}.tab{padding:10px 21px}.workflow-detail{grid-template-columns:1fr;gap:25px;padding:25px}.workflow-text h3{font-size:29px}.workflow-text>p{font-size:13px}.preview-body{padding:17px}.quote{gap:15px;align-items:flex-start;padding:28px 5px 0}.quote blockquote{font-size:13px}.quote-mark{font-size:42px}.cta-inner{flex-direction:column;align-items:flex-start;padding:45px 0;gap:25px}.cta h2{font-size:35px}.cta p{font-size:13px;max-width:310px;line-height:1.6}.cta-doodle{right:-70px;top:40px}.footer{padding-top:29px}.footer-top{align-items:flex-start;flex-direction:column;gap:23px}.footer-links{gap:21px;flex-wrap:wrap;font-size:11px}.footer-bottom{margin-top:24px;gap:17px;flex-direction:column}.footer-bottom div{gap:19px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="container">
+<nav class="navbar" aria-label="Main navigation">
+<a class="logo" href="#" aria-label="Connected home">
+<svg viewBox="0 0 34 36" fill="none" aria-hidden="true"><path d="M23 5H13a8 8 0 0 0 0 16h8a5 5 0 0 1 0 10H11" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M11 31h10a8 8 0 0 0 0-16h-8a5 5 0 0 1 0-10h10" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+connected
+</a>
+<div class="nav-links" id="navLinks">
+<div class="dropdown-wrap">
+<button class="nav-link dropdown-toggle" aria-expanded="false">Platform <span class="chevron"></span></button>
+<div class="dropdown"><a href="#platform">Meet your AI team<small>Specialized agents. Shared ambition.</small></a><a href="#workflow">How it works<small>One workflow, from brief to launch.</small></a></div>
+</div>
+<div class="dropdown-wrap">
+<button class="nav-link dropdown-toggle" aria-expanded="false">Solutions <span class="chevron"></span></button>
+<div class="dropdown"><a href="#workflow" data-tab-link="0">Campaign strategy<small>Turn a big idea into a clear plan.</small></a><a href="#workflow" data-tab-link="1">Content creation<small>On-brand content for every channel.</small></a><a href="#workflow" data-tab-link="2">Campaign operations<small>Make every launch feel effortless.</small></a></div>
+</div>
+<a class="nav-link" href="#why-connected">Why Connected</a>
+</div>
+<div class="nav-actions"><a href="#workflow">Explore the platform</a><button class="button button-primary" data-demo>Get a demo <span class="arrow">↗</span></button></div>
+<button class="mobile-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
+</nav>
+</header>
+
+<main>
+<section class="hero container">
+<div class="hero-copy">
+<div class="eyebrow"><span class="spark">✳</span> Your next marketing advantage</div>
+<h1>Big ideas.<br>Small team.<br><em>All connected.</em></h1>
+<p>Meet the AI team behind your next great campaign. Plan, create, and launch together — without the busywork.</p>
+<div class="hero-actions"><button class="button button-primary" data-demo>Meet your AI team <span class="arrow">↗</span></button><a href="#workflow" class="button button-outline"><span class="play-icon"></span> See how it works</a></div>
+<div class="hero-note"><svg viewBox="0 0 16 16" fill="none"><path d="m3 8 3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> More momentum. Less “we need more headcount.”</div>
+</div>
+
+<div class="hero-art" role="img" aria-label="Connected campaign workspace, with strategy, content, and launch agents collaborating on a product launch">
+<div class="art-background"></div><div class="art-grid"></div><div class="orbit"></div><div class="orbit two"></div>
+<svg class="wires" viewBox="0 0 570 492" fill="none" aria-hidden="true"><path d="M239 83v32q0 15 15 15h28v30" stroke="#a7a590" stroke-dasharray="4 5"/><path d="M483 152v66h-49" stroke="#b2a08a" stroke-dasharray="4 5"/><path d="M129 415v-41q0-15 15-15h53v-32" stroke="#9ba585" stroke-dasharray="4 5"/><circle cx="282" cy="132" r="4" fill="#c6bddb"/><circle cx="432" cy="218" r="4" fill="#e4b992"/><circle cx="197" cy="358" r="4" fill="#b8c999"/></svg>
+<span class="floating-spark">✳</span><span class="floating-star">✧</span>
+<div class="agent agent-one">
+<div class="agent-heading"><span class="agent-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z" stroke="#706184" stroke-width="1.4"/></svg></span><div><div class="agent-name">Strategy agent</div><div class="agent-desc">Big-picture thinker.</div></div></div>
+<div class="agent-tag"><span></span> Building your campaign plan</div>
+</div>
+<div class="agent agent-two">
+<div class="agent-heading"><span class="agent-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m6 17 1-5L16 3l5 5-9 9-5 1-1-1Zm8-12 5 5M4 21h16" stroke="#946844" stroke-width="1.4" stroke-linejoin="round"/></svg></span><div><div class="agent-name">Content agent</div><div class="agent-desc">Your brand, in words.</div></div></div>
+</div>
+<div class="workspace">
+<div class="workspace-top"><span class="workspace-brand"><svg viewBox="0 0 18 20" fill="none"><path d="M13 3H7a4 4 0 0 0 0 8h4a3 3 0 0 1 0 6H5M5 17h6a4 4 0 0 0 0-8H7a3 3 0 0 1 0-6h6" stroke="#6a725b" stroke-width="2.5" stroke-linecap="round"/></svg> YOUR CAMPAIGN WORKSPACE</span><span class="window-dots">•••</span></div>
+<div class="workspace-body"><h3>Your next big thing starts here.</h3><p>One brief. A whole team of possibilities.</p>
+<div class="brief"><span class="doc-icon">≡</span><div><strong>Spring product launch</strong><small>Campaign brief · Updated just now</small></div><span>In motion ↗</span></div>
+<div class="workspace-footer"><div class="avatars"><span class="avatar">✧</span><span class="avatar">✎</span><span class="avatar">↗</span><span>3 agents, working together</span></div><span><i class="status-dot"></i> All in sync</span></div>
+</div></div>
+<div class="agent agent-three"><div class="agent-heading"><span class="agent-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m5 18 13-13M7 5h11v11M4 10v10h10" stroke="#657b44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><div class="agent-name">Launch agent</div><div class="agent-desc">Let’s make it happen.</div></div></div><div class="agent-tag"><span></span> Every channel, ready to go</div></div>
+<div class="art-sticker"><svg viewBox="0 0 100 100"><path d="m50 2 9 9 12-3 5 12 12 3-1 13 10 8-6 11 4 12-12 6-3 13-13-1-9 11-11-6-12 4-6-12-13-3 1-13-10-8 6-12-4-12 12-6 3-13 13 1Z" fill="#f8d481"/></svg><span class="art-sticker-text">Made for<br>your next<br>big idea.</span></div>
+<span class="art-caption">Your team just got a little bigger.</span>
+</div>
+</section>
+
+<section class="trust container" aria-label="Customer companies">
+<p>For ambitious marketing teams making their next big move.</p>
+<div class="brands"><span class="brand brand-ramp">ramp</span><span class="brand brand-loom"><b>✺</b> loom</span><span class="brand brand-cal">Cal.com</span><span class="brand brand-brex"><i class="brex-icon"></i> brex</span><span class="brand brand-census"><span class="census-icon">▥</span> census</span></div>
+</section>
+
+<section class="platform" id="platform">
+<div class="container">
+<div class="section-heading"><div><div class="eyebrow">Not another tool. A new kind of team.</div><h2>From first spark<br>to <em>full-scale launch.</em></h2></div><p>Specialized AI agents. One shared brain.<br>Connected brings your strategy, content, and execution into the same conversation.</p></div>
+<div class="feature-cards">
+<article class="feature-card"><div class="mini-scene scene-one"><div class="mini-card"><div class="mini-card-title">A plan with a purpose <span>Strategy</span></div><div class="mini-rule"></div><div class="mini-rule short"></div><div class="mini-tags"><span>Your audience</span><span>Your goals</span><span>Your voice</span></div></div><div class="scene-label">✧ &nbsp; Big picture? Covered.</div></div><div class="feature-content"><span class="feature-label">01 / THINK BIGGER</span><h3>A strategist in your corner.</h3><p>Turn a rough idea into a thoughtful campaign plan, grounded in your brand and built for your goals.</p></div></article>
+<article class="feature-card"><div class="mini-scene scene-two"><div class="mini-card copy-mini"><div class="mini-card-title">Words that sound like you <span>Content</span></div><div class="copy-lines">Something new.<br>Something worth talking about.<span class="copy-cursor"></span></div><div class="mini-rule short"></div></div><div class="copy-bubble">✎ &nbsp; On brand. Never on autopilot.</div></div><div class="feature-content"><span class="feature-label">02 / CREATE TOGETHER</span><h3>Your voice. More volume.</h3><p>From the first headline to the last follow-up, create content that feels like you. For every channel.</p></div></article>
+<article class="feature-card"><div class="mini-scene scene-three"><div class="mini-card calendar-mini"><div class="mini-card-title">Good ideas, out in the world <span>Launch</span></div><div class="calendar-grid"><i></i><i class="active"></i><i></i><i class="purple"></i><i></i><i class="orange"></i><i></i><i class="active"></i><i></i><i class="purple"></i></div></div><div class="scene-label launch-label">✓ &nbsp; All systems go.</div></div><div class="feature-content"><span class="feature-label">03 / MAKE YOUR MOVE</span><h3>Less handoff. More liftoff.</h3><p>Keep every moving piece moving together. Go from approved to out in the world, without the scramble.</p></div></article>
+</div></div>
+</section>
+
+<section class="workflow container" id="workflow">
+<div class="workflow-top"><div class="eyebrow"><span class="spark">✳</span> More flow. Less friction.</div><h2>You bring the vision.<br>We connect the dots.</h2><p>No disconnected tools. No endless prompting.<br>Just you and your AI team, moving great work forward.</p></div>
+<div class="tabs" role="tablist" aria-label="Campaign workflow">
+<button class="tab active" id="tab-0" role="tab" aria-selected="true" aria-controls="workflowPanel" data-tab="0"><span class="tab-number">01</span> Plan</button>
+<button class="tab" id="tab-1" role="tab" aria-selected="false" aria-controls="workflowPanel" data-tab="1" tabindex="-1"><span class="tab-number">02</span> Create</button>
+<button class="tab" id="tab-2" role="tab" aria-selected="false" aria-controls="workflowPanel" data-tab="2" tabindex="-1"><span class="tab-number">03</span> Launch</button>
+</div>
+<div class="workflow-detail" id="workflowPanel" role="tabpanel" aria-labelledby="tab-0">
+<div class="workflow-text"><div class="eyebrow" id="stepLabel">The starting point</div><h3 id="stepTitle">One brief.<br>A running start.</h3><p id="stepDescription">Share what you’re working toward. Your agents get to know your brand, find the right angle, and build a plan you can actually run with.</p><button class="text-link" data-demo>Let’s build something <span class="arrow">↗</span></button></div>
+<div class="workflow-preview"><div class="preview-header"><span class="tiny-icon" id="previewIcon">✧</span><span id="previewName">Strategy agent</span><span><i class="status-dot"></i> Connected to your brand</span></div><div class="preview-body"><p class="preview-message" id="previewMessage">“I’ve got the brief. Here’s how we’ll turn your product launch into a campaign that connects.”</p><div id="previewTasks"><div class="task-row"><span class="task-check">✓</span><span>Understand your audience</span><span>Done</span></div><div class="task-row"><span class="task-check">✓</span><span>Find your campaign angle</span><span>Done</span></div><div class="task-row"><span class="task-check">✓</span><span>Build your channel-by-channel plan</span><span>Ready for you</span></div></div></div></div>
+</div>
+<div class="quote" id="why-connected"><span class="quote-mark">“</span><blockquote>Built for the marketers with more ideas than hours in the day.<cite>Less juggling. More of the work you love. That’s the Connected way.</cite></blockquote></div>
+</section>
+
+<section class="cta"><div class="cta-inner container"><div class="cta-doodle"></div><div><h2>Your next big thing.<br><em>Let’s make it happen.</em></h2><p>A little more team. A whole lot more possibility.</p></div><button class="button button-dark" data-demo>Get connected <span class="arrow">↗</span></button></div></section>
+</main>
+
+<footer class="footer container">
+<div class="footer-top"><a class="logo" href="#" aria-label="Connected home"><svg viewBox="0 0 34 36" fill="none" aria-hidden="true"><path d="M23 5H13a8 8 0 0 0 0 16h8a5 5 0 0 1 0 10H11M11 31h10a8 8 0 0 0 0-16h-8a5 5 0 0 1 0-10h10" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>connected</a><div class="footer-links"><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#why-connected">Why Connected</a><a href="mailto:hello@connected.ai">Say hello ↗</a></div></div>
+<div class="footer-bottom"><span>© <span id="year">2026</span> Connected. Better work, together.</span><div><a href="#" data-policy="privacy">Privacy policy</a><a href="#" data-policy="terms">Terms of service</a><span>Made for human ambition. ✳</span></div></div>
+</footer>
+
+<dialog id="demoDialog" aria-labelledby="demoTitle">
+<button class="modal-close" aria-label="Close dialog">×</button>
+<div id="demoContent"><div class="eyebrow"><span class="spark">✳</span> Let’s get connected</div><h2 id="demoTitle">Meet your new AI team.</h2><p>Tell us a little about yourself. We’ll help you see how Connected can bring your next campaign to life.</p><form id="demoForm"><label class="field">Your name<input type="text" name="name" autocomplete="name" placeholder="Alex Morgan" required></label><label class="field">Work email<input type="email" name="email" autocomplete="email" placeholder="alex@company.com" required></label><label class="field">What would you love help with?<select name="goal"><option>Planning and launching campaigns</option><option>Creating on-brand content</option><option>Bringing my marketing workflow together</option></select></label><button class="button button-primary" type="submit">Request my demo <span class="arrow">↗</span></button><p class="form-fine">Your next great campaign starts with a conversation.</p></form></div>
+</dialog>
+<dialog id="policyDialog" aria-labelledby="policyTitle"><button class="modal-close" aria-label="Close dialog">×</button><div class="eyebrow">Connected</div><h2 id="policyTitle"></h2><div id="policyContent"></div></dialog>
+
+<script>
+const tabs=[...document.querySelectorAll('[data-tab]')];
+const steps=[
+{label:'The starting point',title:'One brief.<br>A running start.',description:'Share what you’re working toward. Your agents get to know your brand, find the right angle, and build a plan you can actually run with.',name:'Strategy agent',icon:'✧',message:'“I’ve got the brief. Here’s how we’ll turn your product launch into a campaign that connects.”',tasks:['Understand your audience','Find your campaign angle','Build your channel-by-channel plan']},
+{label:'The creative part',title:'More good ideas.<br>All in your voice.',description:'Bring your campaign to life with content that knows your brand. Explore fresh angles, refine drafts together, and make every channel feel connected.',name:'Content agent',icon:'✎',message:'“Your campaign direction is looking good. I’ve created a set of on-brand drafts for you to make your own.”',tasks:['Draft your launch email sequence','Create social posts for every channel','Prepare your landing page copy']},
+{label:'The big moment',title:'Everything aligned.<br>Ready for liftoff.',description:'Bring every asset, channel, and deadline together. Review the details, give your approval, and put your next big idea out into the world.',name:'Launch agent',icon:'↗',message:'“Everything is in place. Your approved content and channel schedule are ready for a final review.”',tasks:['Check campaign assets and links','Align your publishing schedule','Prepare your campaign for launch']}
+];
+function selectTab(index,focus=false){
+const step=steps[index];
+tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===index);tab.setAttribute('aria-selected',i===index);tab.tabIndex=i===index?0:-1;});
+document.getElementById('workflowPanel').setAttribute('aria-labelledby','tab-'+index);
+document.getElementById('stepLabel').textContent=step.label;
+document.getElementById('stepTitle').innerHTML=step.title;
+document.getElementById('stepDescription').textContent=step.description;
+document.getElementById('previewName').textContent=step.name;
+document.getElementById('previewIcon').textContent=step.icon;
+document.getElementById('previewMessage').textContent=step.message;
+document.getElementById('previewTasks').innerHTML=step.tasks.map((task,i)=>'<div class="task-row"><span class="task-check">✓</span><span>'+task+'</span><span>'+(i===2?'Ready for you':'Done')+'</span></div>').join('');
+if(focus)tabs[index].focus();
+}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectTab(i));tab.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();selectTab(e.key==='Home'?0:e.key==='End'?2:(i+(e.key==='ArrowRight'?1:2))%3,true);}});});
+document.querySelectorAll('[data-tab-link]').forEach(link=>link.addEventListener('click',()=>selectTab(Number(link.dataset.tabLink))));
+const dropdowns=[...document.querySelectorAll('.dropdown-toggle')];
+function closeDropdowns(){dropdowns.forEach(b=>{b.setAttribute('aria-expanded','false');b.nextElementSibling.classList.remove('open');});}
+dropdowns.forEach(button=>button.addEventListener('click',e=>{e.stopPropagation();const wasOpen=button.getAttribute('aria-expanded')==='true';closeDropdowns();if(!wasOpen){button.setAttribute('aria-expanded','true');button.nextElementSibling.classList.add('open');}}));
+document.addEventListener('click',closeDropdowns);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDropdowns();});
+const mobileToggle=document.querySelector('.mobile-toggle');
+mobileToggle.addEventListener('click',()=>{const open=document.getElementById('navLinks').classList.toggle('mobile-open');mobileToggle.setAttribute('aria-expanded',open);mobileToggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');mobileToggle.textContent=open?'×':'☰';});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('navLinks').classList.remove('mobile-open');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.textContent='☰';}));
+const demoDialog=document.getElementById('demoDialog');
+document.querySelectorAll('[data-demo]').forEach(button=>button.addEventListener('click',()=>demoDialog.showModal()));
+document.querySelectorAll('dialog').forEach(dialog=>{
+dialog.querySelector('.modal-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{const r=dialog.getBoundingClientRect();if(e.target===dialog&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))dialog.close();});
+});
+document.getElementById('demoForm').addEventListener('submit',e=>{
+e.preventDefault();
+const data=new FormData(e.target);
+const name=String(data.get('name')).trim().split(' ')[0];
+const email=String(data.get('email'));
+const content=document.getElementById('demoContent');
+content.innerHTML='<div class="success-state"><div class="success-icon">✓</div><h2 id="demoTitle">You’re one step closer.</h2><p id="successCopy"></p><p>This preview doesn’t send a request. Email <a href="mailto:hello@connected.ai" style="text-decoration:underline">hello@connected.ai</a> to start the conversation with our team.</p><button class="button button-dark" id="continueButton">Keep exploring <span class="arrow">↗</span></button></div>';
+document.getElementById('successCopy').textContent='Thanks, '+name+'! Your demo details for '+email+' are ready.';
+document.getElementById('continueButton').addEventListener('click',()=>{demoDialog.close();document.getElementById('workflow').scrollIntoView({behavior:'smooth'});});
+document.getElementById('continueButton').focus();
+});
+const policyDialog=document.getElementById('policyDialog');
+document.querySelectorAll('[data-policy]').forEach(link=>link.addEventListener('click',e=>{
+e.preventDefault();
+const privacy=link.dataset.policy==='privacy';
+document.getElementById('policyTitle').textContent=privacy?'Your privacy matters.':'A little clarity.';
+document.getElementById('policyContent').innerHTML=privacy?'<p>This demonstration website does not use tracking cookies or send your form details to a server. Information entered in the demo form remains in this browser session.</p><p>If you contact us by email, your message is handled by your email provider. For privacy questions, contact <a href="mailto:hello@connected.ai" style="text-decoration:underline">hello@connected.ai</a>.</p>':'<p>This website is an interactive preview of Connected. Product screens and campaign workflows are illustrative, and submitting the demo form does not create an account or purchase a service.</p><p>For product availability and service terms, please contact <a href="mailto:hello@connected.ai" style="text-decoration:underline">hello@connected.ai</a>.</p>';
+policyDialog.showModal();
+}));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

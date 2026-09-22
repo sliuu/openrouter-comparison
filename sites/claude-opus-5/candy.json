@@ -1,0 +1,16 @@
+{
+  "model": "claude-opus-5",
+  "slug": "anthropic/claude-opus-5",
+  "prompt": "candy",
+  "returned_model": "anthropic/claude-opus-5",
+  "provider": "Claude Platform on AWS",
+  "started_at": "2026-09-21 16:51:17",
+  "seconds": 318,
+  "prompt_tokens": 98,
+  "output_tokens": 30247,
+  "thinking_tokens": 4047,
+  "html_chars": 54577,
+  "cost": 0.756665,
+  "finish_reason": "stop",
+  "truncated": false
+}

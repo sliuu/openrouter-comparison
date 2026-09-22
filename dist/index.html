@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I gave eight AI models the same six briefs and they made nearly the same website</title>
+<!-- Fonts for the font chart only: each name is set in its own typeface.
+     "text=" limits the download to the letters of the alphabet, so it stays tiny. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces&family=Cormorant+Garamond&family=JetBrains+Mono&family=Inter&family=Space+Grotesk&family=Plus+Jakarta+Sans&family=DM+Sans&family=Manrope&family=Nunito&family=Zen+Kaku+Gothic+New&family=Jost&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz%20">
+
+<style>
+  :root { --ink:#111; --muted:#6b6b6b; --line:#e4e4e4; --bg:#fff; --mark:#fff8c7;
+    /* Side gutter. Grows as the window narrows, so wide figures stop running to the
+       edges; the max-widths below add it on top of a fixed content width, so nothing
+       moves on a screen roomy enough to leave margin of its own. */
+    --gutter:clamp(24px, 5vw, 56px); }
+  * { box-sizing:border-box; }
+  ::selection { background:#fff8c7; color:var(--ink); }
+  ::-moz-selection { background:#fff8c7; color:var(--ink); }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font:19px/1.6 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; }
+  .col { width:100%; max-width:calc(632px + var(--gutter) * 2); margin:0 auto; padding:0 var(--gutter); }
+  .wide { width:100%; max-width:calc(1232px + var(--gutter) * 2); margin:0 auto; padding:0 var(--gutter); }
+  header.top { padding:120px var(--gutter) 64px; }
+  .kicker, button, .small, table, .chart, .meta, .cta, .progress, summary, .byline {
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,sans-serif; }
+  .kicker { font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  /* Sized to break into four lines inside the text column: 64px is the largest that still
+     does. The 9vw middle term tracks the column as it narrows, holding those four lines
+     down to phone widths. Leading is 1.1, not 1: at 1 the line box is shorter than the
+     font's own ascender-to-descender box, which clips the selection highlight. */
+  h1 { font-size:clamp(34px,9vw,64px); line-height:1.1; letter-spacing:-.02em; margin:16px 0 24px; font-weight:normal; }
+  .anchor-heading { position:relative; cursor:pointer; }
+  .anchor-heading::before, .anchor-heading::after { content:""; position:absolute; top:50%; width:13px; height:7px;
+    border:1.5px solid #aaa; border-radius:7px; opacity:0; transition:opacity .15s; transform:rotate(-45deg); }
+  .anchor-heading::before { right:100%; margin-right:14px; }
+  .anchor-heading::after { right:100%; margin-right:8px; }
+  .anchor-heading:hover::before, .anchor-heading:hover::after,
+  .anchor-heading:focus-visible::before, .anchor-heading:focus-visible::after,
+  .anchor-heading.copied::before, .anchor-heading.copied::after { opacity:1; }
+  .anchor-heading.copied::before, .anchor-heading.copied::after { border-color:var(--ink); }
+  .dek { font-size:24px; line-height:1.4; color:#333; }
+  .byline { font-size:14px; color:var(--muted); margin-top:28px; padding-top:16px; border-top:1px solid var(--line); }
+  .byline a { color:var(--ink); text-decoration:none; font-weight:600; }
+  .byline a:hover { text-decoration:underline; }
+  .text-link { color:var(--ink); text-decoration:none; font-weight:600;
+    background-image:linear-gradient(var(--mark),var(--mark)); background-repeat:no-repeat;
+    background-position:0 88%; background-size:0% 42%;
+    transition:background-size 350ms cubic-bezier(0.23,1,0.32,1); }
+  .text-link:hover, .text-link:focus-visible { background-size:100% 42%; }
+  .text-link:focus-visible { outline:2px solid var(--ink); outline-offset:4px; }
+  h2 { font-size:34px; line-height:1.15; font-weight:normal; margin:96px 0 16px; letter-spacing:-.01em; }
+  p { margin:0 0 20px; }
+  mark { background:var(--mark); padding:0 2px; }
+  .small { font-size:14px; color:var(--muted); line-height:1.5; }
+  section { margin-bottom:24px; }
+  a.skip { font:15px -apple-system,sans-serif; color:var(--ink); }
+
+  table { width:100%; border-collapse:collapse; font-size:15px; margin:24px 0; }
+  td, th { text-align:left; padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+
+  /* The six briefs read as three pairs, not a four-wide strip, so the grid is fixed at
+     two columns and capped short of the full .wide measure. */
+  .prompts { display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:960px; margin:24px auto; }
+  @media (max-width:640px){ .prompts { grid-template-columns:1fr; } }
+  .prompt { border:1px solid var(--line); padding:16px; font-size:15px; line-height:1.45; }
+  .prompt b { display:block; font-family:-apple-system,sans-serif; font-size:13px; margin-bottom:6px; }
+
+  .controls { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:32px 0 16px; }
+  button { font-size:14px; border:1px solid var(--ink); background:#fff; color:var(--ink);
+    padding:8px 14px; cursor:pointer; border-radius:999px; }
+  button.on { background:var(--ink); color:#fff; }
+  .spacer { flex:1; }
+  .brief-line { font-size:17px; color:#333; margin:0 0 20px; min-height:28px; }
+
+  /* Screenshot cards */
+  .card { cursor:zoom-in; }
+  .shot { position:relative; aspect-ratio:16/10; border:1px solid var(--line); overflow:hidden; background:#f2f2f2; }
+  .shot img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .swatch { position:absolute; inset:0; display:flex; }
+  .swatch div { height:100%; }
+  .swatch .note { position:absolute; left:12px; bottom:10px; font:12px -apple-system,sans-serif;
+    background:rgba(255,255,255,.85); padding:2px 6px; }
+  .meta { display:flex; justify-content:space-between; font-size:14px; margin-top:8px; }
+  .meta .lab { font-weight:600; }
+
+  /* Vote */
+  .vote-section { padding:48px var(--gutter); }
+  .vote-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media (max-width:900px){ .vote-grid { grid-template-columns:1fr 1fr; } }
+  .vote-grid .card { cursor:pointer; }
+  .vote-grid .card .shot { transition:outline-color .15s, transform .15s; outline:3px solid transparent; outline-offset:3px; }
+  .vote-grid .card:hover .shot { transform:translateY(-2px); }
+  .vote-grid .card.picked .shot { outline-color:var(--ink); }
+  .vote-grid .zoom { font:12px -apple-system,sans-serif; color:var(--muted); cursor:zoom-in; text-decoration:underline; }
+  .progress { font-size:14px; color:var(--muted); }
+  .results .headline { font:28px/1.3 "Iowan Old Style",Georgia,serif; margin:8px 0 16px; }
+  .res-row { display:grid; grid-template-columns:180px 1fr 110px; gap:12px; align-items:center; font:14px -apple-system,sans-serif; margin:8px 0; }
+  .res-row .bar { height:18px; }
+  .res-row .crowd { color:var(--muted); text-align:right; }
+  .picks { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin:24px 0; }
+  @media (max-width:800px){ .picks { grid-template-columns:repeat(3,1fr); } }
+  .picks .small { margin-top:4px; }
+
+  /* Link to the appendix, shown after the vote or a skip */
+  #browse { display:none; margin-top:32px; }
+
+  /* Lightbox */
+  .lb { position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; z-index:10; overflow:auto; cursor:zoom-out; }
+  .lb.open { display:block; }
+  .lb img { display:block; width:min(1100px,94vw); margin:40px auto; }
+  .lb .cap { position:fixed; top:12px; left:16px; color:#fff; font:14px -apple-system,sans-serif; }
+
+  /* Charts */
+  .chart { font-size:14px; margin:24px 0 8px; }
+  .bar-row { display:grid; grid-template-columns:170px 1fr 48px; align-items:center; gap:10px; margin:6px 0; }
+  .bar { height:18px; background:#111; }
+  .bar.dim { background:#c9c9c9; }
+  .bar-row .v { text-align:right; color:var(--muted); }
+  /* Font chart: wider than the text column, with big type-specimen labels */
+  .font-wide { max-width:960px; margin:40px auto 56px; }
+  #fontChart .bar-row { grid-template-columns:300px 1fr 56px; gap:16px; margin:12px 0; }
+  #fontChart .bar { height:26px; }
+  #fontChart .v { font-size:16px; }
+  #fontChart .label { font-size:26px; line-height:1.2; }
+  @media (max-width:800px){ #fontChart .bar-row { grid-template-columns:170px 1fr 40px; gap:10px; } #fontChart .label { font-size:18px; } }
+  .matrix svg { width:100%; height:auto; display:block; }
+  .matrix text { font-family:-apple-system,BlinkMacSystemFont,sans-serif; font-size:13px; fill:#555; }
+  .matrix .dot { transition:opacity .25s; }
+  .matrix .caption { font-family:-apple-system,sans-serif; font-size:15px; min-height:24px; margin:8px 0 0; text-align:right; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:56px 0 12px; }
+  @media (max-width:800px){ .pair { grid-template-columns:1fr; } }
+  .pair-caption { max-width:680px; margin:0 auto 56px; text-align:center; }
+  /* Captions under charts and tables sit at the bottom right */
+  .fig-caption { text-align:right; }
+  .stat { font-family:-apple-system,sans-serif; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin:32px 0; }
+  .stat div { border-top:2px solid var(--ink); padding-top:10px; font-size:14px; color:#333; }
+  .stat b { display:block; font-size:34px; font-weight:600; color:var(--ink); line-height:1.1; margin-bottom:4px; }
+
+  /* Closing call to action: an editorial sign-off, not a pill button.
+     On hover, the page's highlighter yellow sweeps in behind the words. */
+  .cta { display:block; margin:48px 0 0; padding:18px 0 22px; color:var(--ink); text-decoration:none;
+    border-top:2px solid var(--ink); border-bottom:1px solid var(--line); }
+  .cta-kicker { display:block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  .cta-line { font:30px/1.25 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    background-image:linear-gradient(var(--mark), var(--mark)); background-repeat:no-repeat;
+    background-position:0 88%; background-size:0% 42%;
+    transition:background-size 450ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .cta .arrow { display:inline-block; transition:transform 300ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .cta:hover .cta-line, .cta:focus-visible .cta-line { background-size:100% 42%; }
+  .cta:hover .arrow, .cta:focus-visible .arrow { transform:translateX(6px); }
+  .cta:focus-visible { outline:2px solid var(--ink); outline-offset:6px; }
+  @media (prefers-reduced-motion: reduce) { .cta-line, .cta .arrow { transition:none; } }
+  #personal { display:none; border-left:3px solid var(--ink); padding-left:16px; }
+
+  /* Appendix: collapsed by default */
+  .appendix { margin-top:120px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  #social { margin-top:24px; }
+  .appendix summary { cursor:pointer; list-style:none; padding:20px 0; display:flex; align-items:center; gap:12px;
+    font-size:15px; font-weight:600; }
+  .appendix summary::-webkit-details-marker { display:none; }
+  /* Chevron follows a class (not [open]) so it can rotate back as soon as closing starts */
+  .appendix summary .chev { display:inline-block; transition:transform 250ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .appendix.is-open summary .chev { transform:rotate(90deg); }
+  .appendix .app-body { overflow:hidden; }
+  /* The reader's own picks, highlighted after voting */
+  .appendix .card.mine .shot { outline:3px solid var(--ink); outline-offset:3px; }
+  .appendix .card.mine { position:relative; }
+  .appendix .card.mine::after { content:"your pick"; position:absolute; top:6px; left:6px;
+    font:600 11px -apple-system,sans-serif; background:var(--ink); color:#fff; padding:2px 6px; border-radius:999px; }
+  .appendix summary .small { font-weight:normal; }
+  .app-row { display:grid; grid-template-columns:160px repeat(6, 1fr) 84px; gap:8px; align-items:center; margin-bottom:10px; }
+  .app-row.head { font:12px -apple-system,sans-serif; color:var(--muted); margin:8px 0; }
+  .app-row .cost { font:14px -apple-system,sans-serif; text-align:right; font-variant-numeric:tabular-nums; }
+  .app-row.head .cost { font-size:12px; }
+  @media (max-width:800px){ .app-row { grid-template-columns:repeat(3, 1fr); } .app-row > :first-child { grid-column:1 / -1; }
+    .app-row .cost { grid-column:1 / -1; text-align:left; color:var(--muted); }
+    /* the header row is hidden at this width, so each figure names itself */
+    .app-row .cost::before { content:"Avg. cost per site "; }
+    .app-row.head { display:none; } }
+
+  /* Social drafts: a review-only section. Delete the whole #social block before publishing. */
+  #social .posts { display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:1000px; margin-top:8px; }
+  @media (max-width:900px){ #social .posts { grid-template-columns:1fr; } }
+  #social h4 { font:600 13px -apple-system,sans-serif; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--muted); margin:0 0 12px; }
+  #social .post { font:16px/1.55 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+    border-left:2px solid var(--line); padding:0 0 0 16px; margin:0 0 16px; white-space:pre-wrap; }
+  #social .post b { font-weight:600; }
+  #social .note { font:13px/1.5 -apple-system,sans-serif; color:var(--muted); margin:4px 0 20px 18px; }
+  /* The image that would go out with each post, built from the real screenshots and charts */
+  #social figure.soc { margin:4px 0 22px 18px; }
+  #social .soc-img { display:grid; gap:3px; background:var(--line); border:1px solid var(--line); }
+  #social .soc-img .shot { border:0; }
+  #social .soc-img.cols-4 { grid-template-columns:repeat(4, 1fr); }
+  #social .soc-img.cols-2 { grid-template-columns:repeat(2, 1fr); }
+  #social .soc-img.chart { display:block; background:#fff; }
+  #social .soc-img.chart img { width:100%; display:block; }
+  #social figure.soc figcaption { font:13px/1.5 -apple-system,sans-serif; color:var(--muted); margin-top:6px; }
+  @media (max-width:560px){ #social .soc-img.cols-4 { grid-template-columns:repeat(2, 1fr); } }
+
+  /* Scroll animations (all disabled when the reader prefers reduced motion) */
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+  .chart .bar { transition:width 1.1s cubic-bezier(.2,.7,.2,1); }
+  .matrix .dot { transform-box:fill-box; transform-origin:center; transform:scale(0);
+    transition:transform .5s cubic-bezier(.3,1.4,.5,1), opacity .25s; }
+  .matrix.in .dot { transform:scale(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity:1; transform:none; transition:none; }
+    .matrix .dot { transform:none; transition:opacity .25s; }
+    .chart .bar { transition:none; }
+    .appendix summary .chev { transition:none; }
+  }
+
+  /* Matrix hover preview */
+  .matrix .dot { cursor:pointer; }
+  .preview { position:fixed; z-index:9; width:320px; padding:8px; background:#fff; pointer-events:none;
+    border:1px solid #ddd; box-shadow:0 14px 36px rgba(0,0,0,.18);
+    opacity:0; transform:translateY(6px); transition:opacity .15s, transform .15s; }
+  .preview.show { opacity:1; transform:none; }
+  .preview .meta { margin-top:6px; font-size:13px; }
+
+  /* "footer.col" so this beats the .col rule's "margin: 0 auto", while keeping the column centered */
+  footer.col { margin:64px auto 80px; padding-top:24px; }
+  footer h3 { font:600 13px -apple-system,sans-serif; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  footer p, footer li { font-size:15px; color:#444; }
+</style>
+</head>
+<body>
+
+<header class="top col">
+  <div class="kicker">AI design</div>
+  <h1>I gave eight AI models the same six briefs and they made nearly the same website</h1>
+  <p class="dek">Frontier AI models from seven labs across the US and China make nearly the same website for the same brief. When a redesign costs a penny, whatever look comes next could arrive everywhere, all at once.</p>
+  <p class="byline">By <a href="https://stxphanie.com" target="_blank" rel="noopener">Stephanie Liu</a> · September 2026</p>
+</header>
+
+<!-- 1. Opening -->
+<section class="col">
+  <p>Walk into a trendy coffee shop in Seoul, Berlin, or Brooklyn and you'll likely find the same things: minimalist counters, Edison bulbs, reclaimed wood, sleek black coffee machines, and an exposed ceiling. In 2016, the writer Kyle Chayka gave this a name, <a class="text-link" href="https://www.theverge.com/2016/8/3/12325104/airbnb-aesthetic-global-minimalism-startup-gentrification">AirSpace</a>: when everyone optimizes for the same platforms and the same idea of good taste, places that should feel different start to look alike.</p>
+  <p>Every owner makes a reasonable choice, to model what's trendy. But the result is an unfortunate sameness, where nothing really stands out.</p>
+  <p>A new version is starting on the web. More and more websites are beginning as a prompt to an AI model, and there have never been more models to choose from. More models should mean more variety, but is that actually happening?</p>
+</section>
+
+<!-- 2. Market -->
+<section class="col">
+  <h2>The market is diversifying</h2>
+  <p>On <a class="text-link" href="https://www.designarena.ai">Design Arena</a>'s leaderboard, people enter their own briefs across several categories (web, video, images) and then vote blind between AI-made designs across many different labs. Some labs dominate in certain categories, but no single lab controls everything.</p>
+  <table>
+    <tr><th>Category</th><th>Leader (Sep 2026)</th><th>Lab</th></tr>
+    <tr><td>Overall web design</td><td>Kimi K3</td><td>Moonshot</td></tr>
+    <tr><td>Websites</td><td>Muse Spark 1.3</td><td>Meta</td></tr>
+    <tr><td>Low price</td><td>DeepSeek, GLM, MiMo</td><td>DeepSeek, Z.ai, Xiaomi</td></tr>
+    <tr><td>Speed</td><td>Gemini Flash, GPT-5.6 Luna</td><td>Google, OpenAI</td></tr>
+    <tr><td>Images</td><td>GPT-Image-2.5</td><td>OpenAI</td></tr>
+  </table>
+  <p class="small fig-caption">Source: Design Arena leaderboards, September 2026.</p>
+  <p>Different labs, different strengths. So do they also have different taste?</p>
+</section>
+
+<!-- 3. Experiment -->
+<section class="col">
+  <h2>The experiment</h2>
+  <p>I gave eight AI models the same six briefs, to design websites for a variety of businesses from an underground techno festival to a modern law firm.</p>
+</section>
+<section class="wide">
+  <div class="prompts" id="prompts"></div>
+</section>
+
+<!-- 4. Centerpiece: vote, then reveal -->
+<section class="col">
+  <h2>Pick your favorite</h2>
+  <p>For each brief, you'll see all eight sites, made by the eight different models, in random order. Pick the one you like best for each category. You'll see which lab made your favorites after the last pick. Scroll to the <a class="text-link" href="#appendix" id="toAppendix">appendix</a> to see all 48 sites.</p>
+  <p><a href="#" class="skip" id="skip">Skip the vote and show me the rankings →</a></p>
+</section>
+<section class="wide vote-section">
+  <div id="vote"></div>
+  <div id="browse">
+  </div>
+</section>
+<section class="col">
+  <p style="margin-top:56px">Can you tell which lab made which? The numbers (and my eyes) say probably not. Instead, what each model has is a very good sense of the genre, and it's the same sense every other model has. Every candy shop is a beige-ish background with pink or coral accents. All but one SaaS site centers its headline and buttons, while every interior designer's site aligns its headline to the left. And every single techno festival uses heavy, all-caps sans-serif type.</p>
+  <p>Researchers finding the same effect in text called it the <a class="text-link" href="https://arxiv.org/abs/2510.22954">Artificial Hivemind</a>: ask 25 different language models for a metaphor about time and nearly all of them say "a river." It guess the hivemind designs that way too.</p>
+</section>
+<section class="wide">
+  <div class="pair" id="pairTechno"></div>
+  <p class="small pair-caption">The techno festival from Claude Fable 5.1 (left) and Kimi K3 (right).</p>
+</section>
+<section class="col">
+  <p>It's good that the models adapt to the briefs so well. But it means every brief now has one answer, and as more companies design with AI, that answer will spread faster and faster.</p>
+</section>
+
+<!-- 5. Case for sameness -->
+<section class="col">
+  <h2>Is that bad?</h2>
+  <p>Well, not necessarily. Conventions exist because they do work: a familiar layout is easier to use, and research on first impressions has found people rate websites as more beautiful when they look typical for their category. A law site that looks like other law sites you've seen says "legitimate law firm" to you.</p>
+  <p>But what about being remembered? Psychologists have known since the 1930s that the item that stands out from a list is the one people recall, a finding called the von Restorff effect. Marketers make a similar argument: brands grow when they're easy to recognize and hard to confuse with competitors. Imagine searching for an injury lawyer in Michigan and opening three tabs that look identical: navy, gold, form on the right. Each one looks trustworthy. But you might not remember which was which the next day.</p>
+  <p>Convention gets you trusted, but distinctiveness gets you remembered.</p>
+  <p>The models seem to half-know this. Over time, they've learned to not look too AI-made, as people start to pick up on tell-tale AI signs. The trouble is, they've all learned the same lesson.</p>
+</section>
+
+<!-- 6. New uniform -->
+<section class="col">
+  <h2>The new uniform</h2>
+  <p>A year ago, the AI look was easy to spot: purple gradients and the Inter typeface. That look is mostly gone, with just 6 of the 48 sites still using Inter.</p>
+  <p>Coffee shops don't escape AirSpace by ditching the Edison bulbs. They swap them for the same next thing.</p>
+  <p>The most common typeface in my sample is now Fraunces, a soft, slightly quirky serif, on one in four sites, and is the new recognizable tell of the AI aesthetic (that is, until a new trend emerges).</p>
+</section>
+<section class="wide">
+  <div class="font-wide">
+    <div class="chart" id="fontChart"></div>
+    <p class="small fig-caption">Number of the 48 sites that use each font.</p>
+  </div>
+</section>
+<section class="col">
+  <p style="margin-top:40px">Color tells the same story. Orange is the most common accent color, and no one uses purple. In the chart below, each dot is one site: its inner circle is the background, measured across the site's first screen, and its outer ring is the accent color.</p>
+</section>
+<section class="wide matrix">
+  <div class="controls" id="mtabs"></div>
+  <svg id="matrix" viewBox="0 0 1000 600" role="img" aria-label="Background lightness vs accent hue for 48 sites"></svg>
+  <p class="caption" id="mcap"></p>
+</section>
+
+<!-- 7. Where labs differ -->
+<section class="col">
+  <h2>Where labs do differ</h2>
+  <p>The fingerprints are small, and they're mostly in the type. Gemini used Plus Jakarta Sans on five of its six sites. Kimi used Fraunces on four.</p>
+  <p>The lab with the most visible house style is <b>GPT-6</b>. Its sites vary less from brief to brief than any other model's, and its law firm and tea house (two... shockingly different categories) are the most alike same-lab pair in the whole set.</p>
+</section>
+<section class="wide">
+  <div class="pair" id="pairGPT"></div>
+  <p class="small pair-caption">GPT-6 Astra's law firm (left) and tea house (right).</p>
+</section>
+<section class="col">
+  <p>It's also the only model that says less.</p>
+  <div class="chart" id="wordChart"></div>
+  <p class="small fig-caption">Median visible words per site. The median AI site is about a five-minute read.</p>
+</section>
+
+<!-- 8. Good-default trap -->
+<section class="col">
+  <h2>The good-default trap</h2>
+  <p>When a default is bad, people change it. When it's good, you can't help but use it. So everyone does, all at once.</p>
+  <p>That's how purple gradients went from the signature of AI design to nowhere in frontier output once they were named as a cliché, and why the replacement is already converging.</p>
+  <p>Why do the defaults line up? The models learn from roughly the same web, they're tuned toward averaged human ratings, and they read the same critiques.</p>
+  <p>The writer Venkatesh Rao offers a definition in <a class="text-link" href="https://open.substack.com/pub/contraptions/p/the-taste-essay" target="_blank" rel="noopener">The Taste Essay</a>: "Taste is making aesthetic choices someone does not want you to make." AI models are very good connoisseurs. The tea house gets Japanese type, the law firm gets serif on a dark background, the festival gets black and neon sans-serif. What they don't do is take a risk.</p>
+  <p>Votes by popularity, as AI models are trained on, can't reward risk. So every lab keeps moving toward the same safe spot.</p>
+</section>
+
+<!-- 9. Close -->
+<section class="col">
+  <h2>When switching is free</h2>
+  <p id="personal"></p>
+  <p>None of this is new. Drifting toward sameness is how taste has always worked: a look starts somewhere specific, spreads until it's everywhere, and then starts to feel like following. Skinny jeans give way to baggy ones. Edison bulbs will give way to something too.</p>
+  <p>But there's usually a cost to switching. When Edison bulbs start to feel tired, the coffee shops can't all renovate overnight. Old looks linger and new ones spread gradually, one remodel or trip to the mall at a time.</p>
+  <p>A website made by AI has almost no switching cost. In this experiment, a complete site cost anywhere from about a penny to a dollar and a half, and most took a few minutes. When anyone can redesign in an afternoon, the next look won't spread one remodel at a time. It could arrive everywhere, all at once.</p>
+  <p>That changes what standing out is worth. In a slow cycle, whoever moves first gets years of being distinctive. In a fast one, the window between fresh and default might shrink to months, or weeks. For the businesses whose style <i>is</i> the product, like the interior designer, the tea house, or the festival, staying distinctive stops being a choice made once and becomes something they have to keep doing.</p>
+  <p>The models have already learned connoisseurship. What they don't do yet is the risky part: making a choice someone doesn't want them to make. For now, that part is still ours.</p>
+  <p>AI now gives everyone a very good default. The problem is that it's everyone's default, and when switching is free, the next one will be too.</p>
+  <a class="cta" href="https://www.designarena.ai" target="_blank" rel="noopener">
+    <span class="cta-kicker">Want your taste counted?</span>
+    <span class="cta-line">Vote on Design Arena <span class="arrow">→</span></span>
+  </a>
+</section>
+
+<!-- Appendix: every site, by model (collapsed by default) -->
+<section class="wide">
+  <details class="appendix" id="appendix">
+    <summary><span class="chev">▸</span> Appendix: All generated websites <span class="small"></span></summary>
+    <div class="app-body"><div class="app-inner">
+      <div id="appendixRows" style="padding-bottom:32px"></div>
+    </div></div>
+  </details>
+</section>
+
+<!-- SOCIAL DRAFTS — for review only. Delete this whole section before publishing. -->
+<section class="wide">
+  <details class="appendix" id="social">
+    <summary><span class="chev">▸</span> Social versions <span class="small">DRAFT / ASIDE</span></summary>
+    <div class="app-body"><div class="app-inner">
+      <div class="posts">
+        <div>
+          <h4>X thread</h4>
+          <div class="post"><b>1/</b> I gave 8 frontier AI models, from 7 labs across the US and China, the same 6 website briefs. The results for each brief were... surprisingly similar. 🧵</div>
+          <figure class="soc" data-shots="techno" data-cols="4"></figure>
+          <div class="post"><b>2/</b> Every techno festival: black, with heavy all-caps sans-serif type. Every candy shop: beige with pink or coral accents on the headline. </div>
+          <figure class="soc" data-shots="candy" data-cols="4"></figure>
+          <div class="post"><b>3/</b> Could you tell the labs apart? Statistically, no. (But if you have this talent, I'd love to hear from you!) Researchers call this the "Artificial Hivemind" in text. It designs, too.</div>
+          <div class="post"><b>4/</b> The old AI look is now mostly dead: no noticeable purple on any of the 48 sites, and only 6 used Inter. But the replacement has already converged. Fraunces shows up on 1 in 4.</div>
+          <figure class="soc" data-file="font-chart.png" data-alt="Fonts used across the 48 sites"></figure>
+          <div class="post"><b>5/</b> Some models, like GPT-6, have a subtle but real house style. A law firm looks surprisingly like a modern Japanese teahouse. </div>
+          <figure class="soc" data-pairs="gpt-6-astra:law,gpt-6-astra:tea" data-cols="2"></figure>
+          <div class="post"><b>6/</b> Is sameness bad? Not always. Convention is how a site earns trust. But distinctiveness is what gets remembered, and a very good default can't give you that.</div>
+          <div class="post"><b>7/</b> Taste has always drifted toward sameness. What slowed it down was the cost of switching. A redesign now costs anywhere from a penny to $1.50. What do trend cycles look like when saturation can happen overnight?</div>
+          <div class="post"><b>8/</b> Full piece, with a blind vote — pick your favorites without knowing the lab. [link] </div>
+        </div>
+        <div>
+          <h4>LinkedIn</h4>
+          <div class="post">Walk into a trendy coffee shop in Seoul, Berlin, or Brooklyn and you'll probably find the same things: minimalist counters, Edison bulbs, reclaimed wood, sleek black coffee machines, and an exposed ceiling. The writer Kyle Chayka called it AirSpace: everyone makes a reasonable choice, and the result is that everything looks alike.
+
+I wanted to know whether AI is doing the same thing to the web. So I gave 8 frontier AI models, from 7 labs across the US and China, the same 6 website briefs.
+
+What came back:
+
+→ Nearly identical sites for each brief. Every techno festival chose black with heavy all-caps sans-serif type, every online candy storefront chose coral pink accents on a beige background.
+
+→ No lab had a recognizable style, but some, like GPT-6, produced sites that deviated from the genre-default into their own "house style".
+
+→ The old "AI look" (purple gradients, Inter) is mostly gone. It's already been replaced by a new shared one (Fraunces, orange, beige).
+
+For most businesses that's fine: convention builds trust. But if your style is your product, a very good default is also your competitor's default, and nothing helps you stand out.
+
+With how quickly and cheaply you and adopt the new trendy look, we might see trends in UX and graphic design go from trendy -> saturated -> stale faster than ever before.
+
+The full piece has an interactive blind vote. Can you tell the labs apart?</div>
+          <figure class="soc" data-shots="techno" data-cols="4"></figure>
+        </div>
+      </div>
+    </div></div>
+  </details>
+</section>
+
+<footer class="col">
+  <h3>Methodology</h3>
+  <ul>
+    <li>Models, via OpenRouter, September 2026: Claude Fable 5.1, Claude Opus 5, DeepSeek V4.1 Flash, Gemini 3.8 Flash, GLM-5.3, GPT-6 Astra, Kimi K3, Muse Spark 1.3. Default settings, not the leaderboard's high-effort variants. One sample per model and brief.</li>
+    <li>System prompt: "You are an expert designer and frontend developer. Return one complete, self-contained HTML file with all CSS and JavaScript inline. Output only the code."</li>
+    <li>Screenshots at 1440×900 after a 6-second wait. Similarity compares each first screen's color mix and rough layout of light and dark. Fonts are those declared in the code. Words are visible text on the rendered page.</li>
+    <li>Sites for the same brief from different labs were more alike than in any of 2,000 random reshufflings of the labels; sites from the same lab across briefs were no more alike than random pairs.</li>
+    <li>"Crowd rank" is the order of these eight models on Design Arena's Text-to-HTML leaderboard, where listed versions sometimes use higher-effort settings than ours.</li>
+    <li>Leaderboard data from <a class="text-link" href="https://www.designarena.ai">Design Arena</a>, retrieved September 21, 2026.</li>
+  </ul>
+</footer>
+
+<div class="preview" id="preview"></div>
+<div class="lb" id="lb"><div class="cap" id="lbCap"></div><img id="lbImg" alt=""></div>
+
+<script>
+const LABS = [
+  ["claude-fable-5.1","Claude Fable 5.1","Anthropic"],
+  ["claude-opus-5","Claude Opus 5","Anthropic"],
+  ["deepseek-v4.1-flash","DeepSeek V4.1 Flash","DeepSeek"],
+  ["gemini-3.8-flash","Gemini 3.8 Flash","Google"],
+  ["glm-5.3","GLM-5.3","Z.ai"],
+  ["gpt-6-astra","GPT-6 Astra","OpenAI"],
+  ["kimi-k3","Kimi K3","Moonshot"],
+  ["muse-spark-1.3","Muse Spark 1.3","Meta"],
+];
+const BRIEFS = [
+  ["saas","SaaS","Create a website for Connected, a B2B AI platform that helps marketing teams plan, write, and launch campaigns using AI agents."],
+  ["candy","Candy shop","Create a website for Sweet Summer Days, an online boutique for healthy-ish candy made with real sugar, for kids and adults."],
+  ["techno","Techno festival","Create a website for Entanglement, a 3-day underground techno festival set in a forest outside Amsterdam."],
+  ["law","Law firm","Create a website for Harlow & Pierce, a modern law firm specializing in accident and injury law in Michigan."],
+  ["tea","Tea house","Create a website for Koyo, a traditional Japanese tea house adapted for modern life and cafe-sitting in San Francisco."],
+  ["portfolio","Interior designer","Create a website for Jenny Waltz, a high-end interior designer taking on clients in New York City."],
+];
+// [words, fonts, accent, palette: hex + % share]
+const D = {
+"claude-fable-5.1":{saas:[1369,"Georgia|Inter","","f7f3ed25 edeaee21 fcfcfa17 f9e9e017 f4f2ee11"],candy:[1094,"Fredoka|Nunito","cd8797","fff7ec58 cd879719 faefdd16 fffbf104 fbfbf902"],techno:[1335,"","","06080640 070b0835 555a5514 07080706 03050303"],law:[2057,"","071628","0b1a2b33 f9f8f528 111f2d20 5a5a5412 07162807"],tea:[1623,"Fraunces|Instrument Sans|Noto Serif JP","ac633e","f0ebe259 ac633e16 efebe209 e2dcd409 f3eee504"],portfolio:[1024,"","9a8e7c","1a191742 50463b26 9a8e7c20 1d1c1906 17161404"]},
+"claude-opus-5":{saas:[1224,"","2c2f45","12131d35 0a0a0d27 0b0b1019 2c2f4515 08080d04"],candy:[1134,"Fraunces|Nunito","a4826a","faf2e531 f1e2c323 a4826a20 faefdc18 fcf5e806"],techno:[1524,"Archivo Black|Space Grotesk|JetBrains Mono","d0ddba","0d120e28 0b0e0c23 080a0916 090c0a13 d0ddba12"],law:[2035,"","0f2539","15293a30 ffffff19 0c1e2e19 0f253914 f0f0ef09"],tea:[1540,"Zen Kaku Gothic New|Zen Old Mincho","d9c4b3","f1ece334 f2ede334 d9c4b319 f1ede311 f5f0e702"],portfolio:[992,"","b4a592","eae8e224 dfd8cc23 ebe8e222 eae7e216 b4a59212"]},
+"deepseek-v4.1-flash":{saas:[1263,"Instrument Serif|Inter","2e3040","05060a49 08090f34 2e304012 02030603 05060901"],candy:[647,"Fraunces|DM Sans","d7bba0","fff8ee51 d7bba024 fff8ed16 fffbf205 fff8ef03"],techno:[1247,"Space Grotesk|JetBrains Mono","5a6647","11170f27 0d110d20 0a0d0a20 10140e14 0e130f11"],law:[1783,"","0b1e2f","16273721 0e203120 0a182619 1f314118 0b1e2f13"],tea:[990,"Shippori Mincho|Zen Kaku Gothic New","979981","ede8df20 e2dfd219 e8e1d618 eae5da16 97998116"],portfolio:[774,"Cormorant Garamond|Jost","","f5f1ea65 dbd1c315 f5f1e715 f8f4ed04 f6f1e701"]},
+"gemini-3.8-flash":{saas:[1386,"JetBrains Mono|Plus Jakarta Sans","2e3f56","05070e51 060c1432 2e3f5612 03080e02 02050b01"],candy:[1195,"Fraunces|Plus Jakarta Sans","ca8b89","fffdf738 ca8b8918 fffffd15 fffdf615 f9f6ef12"],techno:[870,"JetBrains Mono|Syne","","07080845 08100b25 78847d15 08090911 01090403"],law:[2060,"Cinzel|Plus Jakarta Sans","716b5c","070c1226 0c101521 14171919 0e162114 1f232712"],tea:[1213,"Cormorant Garamond|Plus Jakarta Sans|Shippori Mincho","","48453d25 f6f4f123 f9f7f422 f8f6f316 deddd911"],portfolio:[931,"Cormorant Garamond|Plus Jakarta Sans","","11111030 0e0d0d21 27282a19 1e1d1c13 15171a11"]},
+"glm-5.3":{saas:[587,"Fraunces|Inter","2a3038","0f111647 10111725 2a303816 0f111507 0d0f1405"],candy:[1073,"Fraunces|Shantell Sans|Space Grotesk","dfb784","f8eeda62 dfb78421 faf1dd08 f5eedb06 fbeed602"],techno:[1033,"Archivo|Archivo Black|Space Mono","","0f100d62 6a6a6312 10100e12 0e100c08 0c0d0a06"],law:[2475,"Fraunces|Archivo|Spline Sans Mono","","f0ece144 f0ebe133 c7bab011 f1ece206 f3efe505"],tea:[594,"Cormorant Garamond|Zen Old Mincho|Karla","","efe8d939 f5f0e635 969b8c19 f4f0e603 f6f0e602"],portfolio:[325,"Cormorant Garamond|Jost","","f3efe770 beced515 f7f3ea05 f3efe605 e4f2f404"]},
+"gpt-6-astra":{saas:[605,"Georgia|Arial","","f7f7f258 e1dad014 f7f7f113 fbfcf908 f7f7f305"],candy:[299,"DM Sans|Fredoka","f4e1af","fff9ee48 f4e1af18 c2999e14 fff9ef09 fffbf006"],techno:[814,"Anton|IBM Plex Mono|Space Grotesk","","1a1d1c24 24252524 2b2f2d15 38413a13 5d695b13"],law:[596,"DM Sans|DM Serif Display|Arial","","f6f4ed44 3c443c25 f5f4ec15 e1e0d810 f9f7f105"],tea:[544,"Manrope|DM Sans|Playfair Display|Arial","","f5f3e942 c6c5c223 827c7222 f7f5eb07 f3f1e706"],portfolio:[448,"Cormorant Garamond|Manrope|Georgia","","f5f2eb50 aba09229 f5f2ea13 f7f2eb04 f8f6f004"]},
+"kimi-k3":{saas:[1173,"JetBrains Mono","494d3b","0a0a0c49 0f0f1234 494d3b10 07060a04 090a0c03"],candy:[616,"Outfit|Fraunces","c8ada9","fef7ed40 faeed727 fbf6ec12 fef6ea09 c8ada909"],techno:[1179,"Anton|Space Grotesk|Space Mono","b9cb94","141a1026 0b0d0a20 10140d17 0e120c15 b9cb9412"],law:[1396,"Archivo|Fraunces","716754","15131026 18161322 33302a19 1d1b1714 25231e13"],tea:[928,"Fraunces|Shippori Mincho|Manrope","","f2ece070 f1ecdf14 d1c3b609 f3eee206 f2ecdf01"],portfolio:[693,"Fraunces|Manrope","7d6852","f1ece433 f0ebe426 7d685219 dad2c613 f0ece306"]},
+"muse-spark-1.3":{saas:[1258,"JetBrains Mono|Inter|Instrument Serif","","faf8f451 f8f9ec19 bebfb415 faf8f308 fdfcf805"],candy:[1253,"Baloo 2|Nunito|Caveat","8d7180","fffaef31 f1dcd224 8d718018 fff5dc13 eff6eb09"],techno:[1094,"Unbounded|Space Grotesk|JetBrains Mono","b9c78d","0d110f27 13190f18 080c0a15 0e120f15 272e1b14"],law:[1987,"Fraunces|Inter","0b1933","11213d35 fffefa18 0b193313 52525a12 241f2412"],tea:[1122,"Cormorant Garamond|Zen Kaku Gothic New|Inter","","504b4622 f5f0e721 a39e9721 fdfaf116 81827813"],portfolio:[1177,"Cormorant Garamond|Jost","413a2f","352c2221 1e1a1418 413a2f17 2b271f17 5d584f15"]},
+};
+// Overall lightness of each site's first screen (0 = black, 1 = white)
+const BRIGHT = {
+  "claude-fable-5.1":{saas:.904,candy:.883,techno:.13,law:.381,tea:.837,portfolio:.26},
+  "claude-opus-5":{saas:.095,candy:.836,techno:.165,law:.397,tea:.881,portfolio:.848},
+  "deepseek-v4.1-flash":{saas:.076,candy:.886,techno:.119,law:.156,tea:.82,portfolio:.906},
+  "gemini-3.8-flash":{saas:.087,candy:.906,techno:.158,law:.119,tea:.771,portfolio:.117},
+  "glm-5.3":{saas:.113,candy:.879,techno:.145,law:.885,tea:.819,portfolio:.904},
+  "gpt-6-astra":{saas:.937,candy:.883,techno:.271,law:.764,tea:.795,portfolio:.818},
+  "kimi-k3":{saas:.109,candy:.907,techno:.168,law:.15,tea:.893,portfolio:.81},
+  "muse-spark-1.3":{saas:.886,candy:.831,techno:.181,law:.372,tea:.666,portfolio:.231},
+};
+const FONTS = [["Fraunces",12],["Cormorant Garamond",8],["JetBrains Mono",7],["Inter",6],["Space Grotesk",6],["Plus Jakarta Sans",5],["DM Sans",4],["Manrope",4],["Nunito",3],["Georgia",3],["Zen Kaku Gothic New",3],["Jost",3]];
+const WORDS = {"claude-opus-5":1374,"claude-fable-5.1":1352,"muse-spark-1.3":1215,"gemini-3.8-flash":1204,"deepseek-v4.1-flash":1118,"kimi-k3":1050,"glm-5.3":814,"gpt-6-astra":570};
+// Order of these 8 models on Design Arena's Text-to-HTML overall leaderboard (Sept 2026)
+const CROWD = ["kimi-k3","gpt-6-astra","muse-spark-1.3","claude-fable-5.1","deepseek-v4.1-flash","claude-opus-5","glm-5.3","gemini-3.8-flash"];
+// Mean OpenRouter cost of one site, over that model's six briefs (from each site's .json)
+const COST = {"claude-fable-5.1":1.3738,"claude-opus-5":0.7139,"deepseek-v4.1-flash":0.0198,
+              "gemini-3.8-flash":0.0825,"glm-5.3":0.1547,"gpt-6-astra":0.5400,
+              "kimi-k3":0.4635,"muse-spark-1.3":0.0767};
+// "range" per model from the latest analyze.py run: lower = its own sites look more alike
+const RANGE = {"gpt-6-astra":1.676,"glm-5.3":1.726,"deepseek-v4.1-flash":1.840,"claude-fable-5.1":1.843,
+               "muse-spark-1.3":1.863,"claude-opus-5":1.869,"kimi-k3":1.871,"gemini-3.8-flash":1.892};
+// What the article says about each model, for the personal note in the closing section
+const NOTES = {
+  "gpt-6-astra": "the one model in this experiment with a real house style, and the one that says the least",
+  "kimi-k3": "the model that reached for Fraunces most often",
+  "gemini-3.8-flash": "the model that used Plus Jakarta Sans on five of its six sites",
+};
+
+const $ = s => document.querySelector(s);
+const labName = id => LABS.find(l => l[0] === id);
+const parsePal = s => s.split(" ").map(t => ["#" + t.slice(0,6), +t.slice(6)]);
+const heroSrc = (m,p) => `img/${m}__${p}_hero.jpg`;
+const fullSrc = (m,p) => `img/${m}__${p}_full.jpg`;
+const briefName = p => BRIEFS.find(b => b[0] === p)[1];
+
+function fallbackCopy(text) {
+  const input = document.createElement("textarea");
+  input.value = text;
+  input.setAttribute("readonly", "");
+  input.style.position = "fixed";
+  input.style.opacity = "0";
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand("copy");
+  input.remove();
+}
+
+function copyHeadingLink(heading) {
+  const url = new URL(location.href);
+  url.hash = heading.id;
+  const copy = navigator.clipboard && window.isSecureContext
+    ? navigator.clipboard.writeText(url.href).catch(() => fallbackCopy(url.href))
+    : Promise.resolve(fallbackCopy(url.href));
+  copy.finally(() => {
+    heading.classList.add("copied");
+    setTimeout(() => heading.classList.remove("copied"), 900);
+  });
+  history.replaceState(null, "", `#${heading.id}`);
+}
+
+const headingIds = new Set();
+document.querySelectorAll("h1, h2, h3").forEach(heading => {
+  const base = heading.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "section";
+  let id = base, suffix = 2;
+  while (headingIds.has(id) || document.getElementById(id)) id = `${base}-${suffix++}`;
+  headingIds.add(id);
+  heading.id = id;
+  heading.classList.add("anchor-heading");
+  heading.tabIndex = 0;
+  heading.title = "Copy link to this header";
+  heading.addEventListener("click", () => copyHeadingLink(heading));
+  heading.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); copyHeadingLink(heading); }
+  });
+});
+
+function paletteDiv(m, p) {
+  const d = document.createElement("div");
+  d.className = "swatch";
+  d.innerHTML = parsePal(D[m][p][3]).map(([c,w]) => `<div style="background:${c};flex:${w}"></div>`).join("")
+    + `<span class="note">palette preview</span>`;
+  return d;
+}
+
+// Image with graceful fallback: full-res PNG, then thumbnail, then measured palette.
+function shotEl(m, p) {
+  const box = document.createElement("div");
+  box.className = "shot";
+  const img = new Image();
+  img.loading = "lazy";
+  img.alt = `${labName(m)[1]}: ${p}`;
+  const srcs = [heroSrc(m,p), `thumbs/${m}__${p}_hero.jpg`];
+  let i = 0;
+  img.onerror = () => { i++; if (i < srcs.length) img.src = srcs[i]; else { img.remove(); box.appendChild(paletteDiv(m,p)); } };
+  img.src = srcs[0];
+  box.appendChild(img);
+  return box;
+}
+
+// Lightbox: scroll the full page
+function openLB(m, p, caption) {
+  const img = $("#lbImg");
+  img.onerror = () => { img.onerror = null; img.src = heroSrc(m,p); };
+  img.src = fullSrc(m,p);
+  $("#lbCap").textContent = `${caption}  (click anywhere or press Esc to close)`;
+  $("#lb").classList.add("open"); $("#lb").scrollTop = 0;
+}
+$("#lb").onclick = () => $("#lb").classList.remove("open");
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("#lb").classList.remove("open"); });
+
+// A clickable screenshot card with a label underneath
+function card(m, p, left, right) {
+  const c = document.createElement("div");
+  c.className = "card";
+  c.appendChild(shotEl(m, p));
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  meta.innerHTML = `<span class="lab">${left}</span><span style="color:#6b6b6b">${right}</span>`;
+  c.appendChild(meta);
+  c.onclick = () => openLB(m, p, `${labName(m)[1]} · ${briefName(p)}`);
+  return c;
+}
+
+/* ---------- Prompt cards ---------- */
+$("#prompts").innerHTML = BRIEFS.map(b => `<div class="prompt"><b>${b[1]}</b>${b[2]}</div>`).join("");
+
+/* ---------- Vote: blind favorites for each brief ---------- */
+const crowdRank = m => CROWD.indexOf(m) + 1;
+const shuffle = a => { a = a.slice(); for (let i = a.length-1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; };
+const ORDER = Object.fromEntries(BRIEFS.map(([p]) => [p, shuffle(LABS.map(l => l[0]))]));
+let vStep = 0;
+const picks = {};
+
+function renderVote() {
+  if (vStep >= BRIEFS.length) return renderResults();
+  const [p, name, prompt] = BRIEFS[vStep];
+  $("#vote").innerHTML = `<div class="controls"><span class="progress">Brief ${vStep+1} of ${BRIEFS.length} · <b style="color:#111">${name}</b></span>
+    <span class="spacer"></span>${vStep ? '<button id="vBack">Back</button>' : ''}</div>
+    <p class="brief-line">“${prompt}”</p><div class="vote-grid" id="vGrid"></div>`;
+  ORDER[p].forEach((m, i) => {
+    const letter = String.fromCharCode(65+i);
+    const c = document.createElement("div");
+    c.className = "card" + (picks[p] === m ? " picked" : "");
+    c.appendChild(shotEl(m, p));
+    const row = document.createElement("div");
+    row.className = "meta";
+    row.innerHTML = `<span>${letter}</span><span class="zoom">see full page</span>`;
+    c.appendChild(row);
+    c.onclick = e => {
+      if (e.target.classList.contains("zoom")) { e.stopPropagation(); return openLB(m, p, `Option ${letter} · ${name}`); }
+      picks[p] = m;
+      document.querySelectorAll("#vGrid .card").forEach(x => x.classList.remove("picked"));
+      c.classList.add("picked");
+      setTimeout(() => { vStep++; renderVote(); }, 350);
+    };
+    $("#vGrid").appendChild(c);
+  });
+  if (vStep) $("#vBack").onclick = () => { vStep--; renderVote(); };
+}
+
+function tally() {
+  const counts = Object.fromEntries(LABS.map(l => [l[0], 0]));
+  Object.values(picks).forEach(m => counts[m]++);
+  const ranked = LABS.map(l => l[0]).sort((a,b) => counts[b]-counts[a] || crowdRank(a)-crowdRank(b));
+  const tied = ranked.filter(m => counts[m] === counts[ranked[0]]);
+  const distinct = Object.values(counts).filter(c => c > 0).length;
+  return { counts, ranked, top: ranked[0], topN: counts[ranked[0]], single: tied.length === 1, distinct };
+}
+
+function renderResults() {
+  const { counts, ranked, top, topN, single, distinct } = tally();
+  let headline;
+  if (single) {
+    const r = crowdRank(top);
+    headline = `Your favorite was <b>${labName(top)[1]}</b> from ${labName(top)[2]}, picked ${topN} of 6 times. The crowd ranks it <b>#${r}</b> of these eight.`
+      + (r === 1 ? " You and the crowd agree." : r >= 6 ? " Your taste runs against the crowd." : "");
+  } else {
+    headline = `No single favorite: your picks were spread across <b>${distinct}</b> different models.`;
+  }
+  const followUp = distinct >= 4
+    ? "You didn't stick with one lab. Hold on to that; we'll come back to it."
+    : "You kept coming back to the same few labs. Hold on to that; we'll come back to it.";
+
+  $("#vote").innerHTML = `<div class="col" style="padding:0">
+    <div class="kicker">Your results</div>
+    <p class="headline" style="font:28px/1.3 'Iowan Old Style',Georgia,serif;margin:8px 0 16px">${headline}</p>
+    <p>${followUp}</p>
+    <div style="margin-top:24px">
+      <div class="res-row" style="color:#6b6b6b;font-size:12px;text-transform:uppercase;letter-spacing:.06em"><span>Model</span><span>Your picks</span><span style="text-align:right">Crowd rank</span></div>
+      ${ranked.map(m => `<div class="res-row"><span>${labName(m)[1]}</span>
+        <div><div class="bar" style="width:${counts[m]/6*100}%;min-width:2px;background:${counts[m]?'#111':'#ddd'}"></div></div>
+        <span class="crowd">#${crowdRank(m)}</span></div>`).join("")}
+    </div>
+  </div>
+  <div class="picks">${BRIEFS.map(([p, n]) => `<div><div id="pk-${p}"></div>
+    <div class="small"><b style="color:#111">${n}</b><br>${labName(picks[p])[1]}</div></div>`).join("")}</div>
+  <button id="vAgain">Start over</button>`;
+  BRIEFS.forEach(([p]) => $(`#pk-${p}`).replaceWith(shotEl(picks[p], p)));
+  $("#vAgain").onclick = resetVote;
+  showBrowse();
+  writePersonal();
+}
+
+function resetVote() {
+  vStep = 0;
+  Object.keys(picks).forEach(k => delete picks[k]);
+  $("#browse").style.display = "none";
+  $("#personal").style.display = "none";
+  renderVote();
+}
+
+// Closing section: one sentence that ties the reader's picks back to the findings
+function writePersonal() {
+  const { top, single, distinct } = tally();
+  let text;
+  if (single && NOTES[top]) {
+    text = `Your favorite, ${labName(top)[1]}, was ${NOTES[top]}.`;
+  } else if (single) {
+    text = `Your favorite was ${labName(top)[1]}, which the crowd ranks #${crowdRank(top)}.`;
+  } else {
+    text = `Your picks were spread across ${distinct} different models.`;
+  }
+  text += distinct >= 4
+    ? " Like the models, your taste followed the brief, not the lab."
+    : " You may have spotted a house style the averages miss.";
+  $("#personal").textContent = text;
+  $("#personal").style.display = "block";
+}
+
+$("#skip").onclick = e => {
+  e.preventDefault();
+  // Jump straight to the end state: the crowd's ranking, then a link to every site labeled
+  $("#vote").innerHTML = `<div class="col" style="padding:0">
+      <div class="kicker">The crowd's ranking</div>
+      <p class="small" style="margin-top:8px">How Design Arena voters rank these eight models for text-to-website design.</p>
+      ${CROWD.map((m, i) => `<div class="res-row" style="grid-template-columns:48px 1fr 120px">
+        <span class="crowd" style="text-align:left">#${i+1}</span><span><b>${labName(m)[1]}</b></span>
+        <span class="crowd">${labName(m)[2]}</span></div>`).join("")}
+      <p class="small" style="margin-top:16px">Vote skipped. <a href="#" id="unskip">Take the vote after all</a></p>
+    </div>`;
+  $("#unskip").onclick = ev => {
+    ev.preventDefault();
+    resetVote();   // no scrollIntoView: leave the reader where they are
+  };
+  showBrowse();
+  // No scrollIntoView here: the skip link sits above #vote, so everything this handler
+  // changes is already below the reader. Leave them where they are.
+};
+
+/* ---------- After the vote (or a skip): link to the labeled appendix ---------- */
+function showBrowse() {
+  $("#browse").style.display = "block";
+  // Highlight the reader's picks in the appendix grid
+  document.querySelectorAll("#appendixRows .card").forEach(c =>
+    c.classList.toggle("mine", picks[c.dataset.p] === c.dataset.m));
+}
+$("#toAppendix").onclick = e => {
+  e.preventDefault();
+  const det = $("#appendix");
+  if (!det.open) det.querySelector("summary").click();   // opens with the ease-out animation
+  det.scrollIntoView({ behavior:"smooth", block:"start" });
+};
+
+renderVote();
+
+/* ---------- Font chart ---------- */
+const maxF = FONTS[0][1];
+$("#fontChart").innerHTML = FONTS.map(([f,c]) => {
+  const dim = !["Fraunces","Inter","Space Grotesk"].includes(f);
+  return `<div class="bar-row"><span class="label" style="font-family:'${f}', sans-serif">${f}</span><div class="bar ${dim?'dim':''}" style="width:${c/maxF*100}%"></div><span class="v">${c}</span></div>`;
+}).join("");
+
+/* ---------- Color matrix ---------- */
+const lum = h => { const n = parseInt(h.slice(1),16); return (0.299*(n>>16) + 0.587*((n>>8)&255) + 0.114*(n&255)) / 255; };
+const hueOf = h => {
+  const n = parseInt(h.slice(1),16), r=(n>>16)/255, g=((n>>8)&255)/255, b=(n&255)/255;
+  const mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn;
+  if (!d) return 0;
+  const hh = mx===r ? ((g-b)/d)%6 : mx===g ? (b-r)/d+2 : (r-g)/d+4;
+  return (hh*60+360)%360;
+};
+const HUE_NAMES = [[0,"red"],[30,"orange"],[60,"yellow"],[120,"green"],[180,"teal"],[220,"blue"],[275,"purple"],[330,"pink"]];
+const hueWord = h => { if (h > 345) return "red"; let w = "red"; HUE_NAMES.forEach(([d,n]) => { if (h >= d-15) w = n; }); return w; };
+
+const M = { L:130, R:980, T:20, B:440, NT:480, NB:540 };  // plot box, then the "no accent" band
+const X = b => M.L + b*(M.R-M.L);
+const Y = h => M.T + h/360*(M.B-M.T);
+const points = [];
+LABS.forEach(([m, name], li) => BRIEFS.forEach(([p, pname]) => {
+  const b = BRIGHT[m][p], pal = parsePal(D[m][p][3]).map(x => x[0]);
+  const bg = pal.slice().sort((a,c) => b >= .5 ? lum(c)-lum(a) : lum(a)-lum(c))[0];
+  const acc = D[m][p][2] ? "#" + D[m][p][2] : null;
+  const jx = ((li % 3) - 1) * 7, jy = ((Math.floor(li/3) % 3) - 1) * 7;  // small offsets so dots don't hide each other
+  points.push({ m, name, p, pname, b, bg, acc, hue: acc ? hueOf(acc) : null,
+    x: X(b) + jx, y: (acc ? Y(hueOf(acc)) : (M.NT+M.NB)/2) + jy });
+}));
+
+let svg = `<defs>
+  <linearGradient id="hueg" x1="0" y1="0" x2="0" y2="1">${[0,30,60,90,120,150,180,210,240,270,300,330,360].map(h =>
+    `<stop offset="${h/360}" stop-color="hsl(${h},70%,52%)"/>`).join("")}</linearGradient>
+  <linearGradient id="lightg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>
+</defs>
+<rect x="${M.L-22}" y="${M.T}" width="10" height="${M.B-M.T}" fill="url(#hueg)"/>
+<rect x="${M.L-22}" y="${M.NT}" width="10" height="${M.NB-M.NT}" fill="#bbb"/>
+<rect x="${M.L}" y="${M.NB+18}" width="${M.R-M.L}" height="10" fill="url(#lightg)" stroke="#ddd"/>
+<rect x="${M.L}" y="${M.T}" width="${M.R-M.L}" height="${M.B-M.T}" fill="none" stroke="#eee"/>
+<rect x="${M.L}" y="${M.NT}" width="${M.R-M.L}" height="${M.NB-M.NT}" fill="#fafafa" stroke="#eee"/>
+<line x1="${X(.5)}" y1="${M.T}" x2="${X(.5)}" y2="${M.NB}" stroke="#eee" stroke-dasharray="4 4"/>
+${HUE_NAMES.map(([h,n]) => `<text x="${M.L-30}" y="${Y(h)+4}" text-anchor="end">${n}</text>`).join("")}
+<text x="${M.L-30}" y="${(M.NT+M.NB)/2+4}" text-anchor="end">no accent</text>
+<text x="${M.L}" y="${M.NB+48}">dark background</text>
+<text x="${M.R}" y="${M.NB+48}" text-anchor="end">light background</text>`;
+svg += points.map(d => `<g class="dot" data-p="${d.p}" data-m="${d.m}" role="img" aria-label="${d.name} · ${d.pname}">
+  <circle cx="${d.x}" cy="${d.y}" r="13" fill="${d.acc || '#9a9a9a'}" stroke="rgba(0,0,0,.25)"/>
+  <circle cx="${d.x}" cy="${d.y}" r="7" fill="${d.bg}"/></g>`).join("");
+$("#matrix").innerHTML = svg;
+
+let mSel = "all";
+function describe(p) {
+  const ds = points.filter(d => d.p === p);
+  const dark = ds.filter(d => d.b < .5).length;
+  const counts = {};
+  ds.forEach(d => { const k = d.acc ? hueWord(d.hue) : "no accent"; counts[k] = (counts[k]||0) + 1; });
+  const top = Object.entries(counts).sort((a,b) => b[1]-a[1]).map(([k,v]) => `${v} ${k}`).join(", ");
+  return `<b>${briefName(p)}:</b> ${dark} of 8 on a dark background · accents: ${top}`;
+}
+function renderMatrix() {
+  $("#mtabs").innerHTML = [["all","All briefs"], ...BRIEFS.map(b => [b[0], b[1]])]
+    .map(([k,n]) => `<button data-m="${k}" class="${k===mSel?'on':''}">${n}</button>`).join("");
+  document.querySelectorAll("[data-m]").forEach(el => el.onclick = () => { mSel = el.dataset.m; renderMatrix(); });
+  document.querySelectorAll(".matrix .dot").forEach(g => g.style.opacity = (mSel === "all" || g.dataset.p === mSel) ? 1 : .08);
+  $("#mcap").innerHTML = mSel === "all" ? "Hover a dot to see the lab and brief. Pick a brief to isolate it." : describe(mSel);
+}
+renderMatrix();
+
+/* ---------- Matrix hover preview: a small look at each site's first screen ---------- */
+(function () {
+  const pv = $("#preview");
+  const place = e => {
+    const w = 336, h = 250, pad = 18;
+    let x = e.clientX + pad, y = e.clientY + pad;
+    if (x + w > innerWidth) x = e.clientX - w - pad;   // flip left near the right edge
+    if (y + h > innerHeight) y = e.clientY - h - pad;  // flip up near the bottom
+    pv.style.left = x + "px"; pv.style.top = y + "px";
+  };
+  const show = (g, e) => {
+    if (mSel !== "all" && g.dataset.p !== mSel) return;  // ignore faded dots
+    const m = g.dataset.m, p = g.dataset.p;
+    pv.innerHTML = "";
+    pv.appendChild(shotEl(m, p));
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    meta.innerHTML = `<span class="lab">${labName(m)[1]}</span><span style="color:#6b6b6b">${briefName(p)}</span>`;
+    pv.appendChild(meta);
+    place(e);
+    pv.classList.add("show");
+  };
+  const hide = () => pv.classList.remove("show");
+  document.querySelectorAll(".matrix .dot").forEach(g => {
+    g.addEventListener("mouseenter", e => show(g, e));
+    g.addEventListener("mousemove", place);
+    g.addEventListener("mouseleave", hide);
+    // Click (or tap on phones) opens the full page
+    g.addEventListener("click", () => {
+      if (mSel !== "all" && g.dataset.p !== mSel) return;
+      hide();
+      openLB(g.dataset.m, g.dataset.p, `${labName(g.dataset.m)[1]} · ${briefName(g.dataset.p)}`);
+    });
+  });
+  addEventListener("scroll", hide, { passive: true });
+})();
+
+/* ---------- Word chart ---------- */
+$("#wordChart").innerHTML = Object.entries(WORDS).map(([m,w]) =>
+  `<div class="bar-row"><span>${labName(m)[1]}</span><div class="bar ${m==='gpt-6-astra'?'':'dim'}" style="width:${w/1400*100}%"></div><span class="v">${w}</span></div>`).join("");
+
+/* ---------- Side-by-side pairs in the article ---------- */
+// Techno festival: two labs, same brief
+[["claude-fable-5.1","techno"], ["kimi-k3","techno"]].forEach(([m, p]) =>
+  $("#pairTechno").appendChild(card(m, p, labName(m)[1], labName(m)[2])));
+// GPT-6's house style: one model, two briefs
+[["gpt-6-astra","law"], ["gpt-6-astra","tea"]].forEach(([m, p]) =>
+  $("#pairGPT").appendChild(card(m, p, labName(m)[1], briefName(p))));
+
+/* ---------- Appendix: every model, every brief (collapsed until opened) ---------- */
+(function () {
+  const box = $("#appendixRows");
+  const head = document.createElement("div");
+  head.className = "app-row head";
+  head.innerHTML = `<span></span>` + BRIEFS.map(b => `<span>${b[1]}</span>`).join("")
+    + `<span class="cost">Avg. cost</span>`;
+  box.appendChild(head);
+  Object.keys(RANGE).sort((a, b) => RANGE[a] - RANGE[b]).forEach(m => {
+    const row = document.createElement("div");
+    row.className = "app-row";
+    const label = document.createElement("div");
+    label.innerHTML = `<div style="font:600 14px -apple-system,sans-serif">${labName(m)[1]}</div><div class="small">${labName(m)[2]}</div>`;
+    row.appendChild(label);
+    BRIEFS.forEach(([p, pname]) => {
+      const c = document.createElement("div");
+      c.className = "card";
+      c.title = `${labName(m)[1]} · ${pname}`;
+      c.dataset.m = m; c.dataset.p = p;   // lets the vote highlight the reader's picks here
+      c.appendChild(shotEl(m, p));
+      c.onclick = () => openLB(m, p, `${labName(m)[1]} · ${pname}`);
+      row.appendChild(c);
+    });
+    const cost = document.createElement("div");
+    cost.className = "cost";
+    cost.title = `Mean cost of one site across the six briefs`;
+    cost.textContent = `$${COST[m].toFixed(2)}`;
+    row.appendChild(cost);
+    box.appendChild(row);
+  });
+})();
+
+/* ---------- Social drafts: build each post's image from the real screenshots ---------- */
+(function () {
+  document.querySelectorAll("#social figure.soc").forEach(fig => {
+    const box = document.createElement("div");
+    box.className = "soc-img";
+    if (fig.dataset.file) {                       // a chart PNG sitting next to this file
+      box.classList.add("chart");
+      const img = new Image();
+      img.loading = "lazy";
+      img.src = fig.dataset.file;
+      img.alt = fig.dataset.alt || "";
+      box.appendChild(img);
+    } else {                                      // a grid of hero screenshots
+      const pairs = fig.dataset.shots
+        ? LABS.map(l => [l[0], fig.dataset.shots])
+        : fig.dataset.pairs.split(",").map(t => t.split(":"));
+      box.classList.add("cols-" + (fig.dataset.cols || 4));
+      pairs.forEach(([m, b]) => {
+        const shot = shotEl(m, b);
+        shot.title = `${labName(m)[1]} · ${briefName(b)}`;
+        box.appendChild(shot);
+      });
+    }
+    fig.insertBefore(box, fig.firstChild);
+  });
+})();
+
+/* ---------- Collapsible sections: appendix and social drafts ----------
+   Strong ease-out curve, short durations, closing faster than opening, and fully
+   interruptible: clicking mid-animation reverses from wherever it is. */
+document.querySelectorAll("details.appendix").forEach(det => {
+  const summary = det.querySelector("summary");
+  const body = det.querySelector(".app-body"), inner = det.querySelector(".app-inner");
+  const EASE = "cubic-bezier(0.23, 1, 0.32, 1)";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let closing = false;
+
+  summary.addEventListener("click", e => {
+    const opening = !det.open || closing;
+    det.classList.toggle("is-open", opening);
+    if (reduce) return;                       // let the browser toggle instantly
+    e.preventDefault();
+
+    const from = body.getBoundingClientRect().height;  // 0 when closed, current height mid-animation
+    if (opening) {
+      closing = false;
+      det.open = true;                        // render the content so it can be measured
+      const to = inner.getBoundingClientRect().height;
+      body.style.transition = inner.style.transition = "none";
+      body.style.height = from + "px";
+      if (!from) { inner.style.opacity = "0"; inner.style.transform = "translateY(-8px)"; }
+      body.offsetHeight;                      // commit the start state before animating
+      body.style.transition = `height 400ms ${EASE}`;
+      inner.style.transition = `opacity 300ms ${EASE} 50ms, transform 300ms ${EASE} 50ms`;
+      body.style.height = to + "px";
+      inner.style.opacity = "1"; inner.style.transform = "none";
+    } else {
+      closing = true;
+      body.style.transition = "none";
+      body.style.height = from + "px";
+      body.offsetHeight;
+      body.style.transition = `height 250ms ${EASE}`;
+      inner.style.transition = `opacity 150ms ${EASE}, transform 250ms ${EASE}`;
+      body.style.height = "0px";
+      inner.style.opacity = "0"; inner.style.transform = "translateY(-8px)";
+    }
+  });
+
+  body.addEventListener("transitionend", e => {
+    if (e.target !== body || e.propertyName !== "height") return;
+    if (closing) { closing = false; det.open = false; }
+    body.style.height = "";                   // back to natural height so it can reflow
+    body.style.transition = "";
+  });
+});
+
+/* ---------- Scroll animations ---------- */
+(function () {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const once = (el, fn, threshold = 0.2) => {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { fn(e.target); io.unobserve(e.target); }
+    }), { threshold });
+    io.observe(el);
+  };
+
+  // Fade text, tables, and images up as they arrive (skipping the vote and the appendix)
+  document.querySelectorAll("header.top > *, section h2, section p, section table, .stat, .prompts, .pair, footer")
+    .forEach(el => {
+      if (el.closest("#vote, #browse, #appendix")) return;
+      el.classList.add("reveal");
+      once(el, t => t.classList.add("in"), 0.15);
+    });
+
+  // Bar charts grow from zero
+  document.querySelectorAll(".chart").forEach(chart => {
+    const bars = [...chart.querySelectorAll(".bar")];
+    bars.forEach(b => { b.dataset.w = b.style.width; b.style.width = "0"; });
+    once(chart, () => bars.forEach((b, i) => setTimeout(() => b.style.width = b.dataset.w, i * 60)), 0.3);
+  });
+
+  // Matrix dots pop in one by one, then drop the delays so the brief filter stays snappy
+  const dots = [...document.querySelectorAll(".matrix .dot")];
+  shuffle(dots.map((_, i) => i)).forEach((i, k) => dots[i].style.transitionDelay = `${k * 22}ms`);
+  once(document.querySelector(".matrix"), m => {
+    m.classList.add("in");
+    setTimeout(() => dots.forEach(d => d.style.transitionDelay = ""), dots.length * 22 + 600);
+  }, 0.35);
+
+  // Headline stats count up
+  document.querySelectorAll(".stat b").forEach(el => {
+    const text = el.textContent, match = text.match(/\d+/);
+    if (!match) return;
+    const target = +match[0];
+    el.textContent = text.replace(match[0], "0");
+    once(el, () => {
+      const t0 = performance.now(), dur = 900;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - k, 3);
+        el.textContent = text.replace(match[0], Math.round(target * eased));
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, 0.6);
+  });
+})();
+</script>
+</body>
+</html>

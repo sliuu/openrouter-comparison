@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENTANGLEMENT — 3 Days. One Forest. Amsterdam.</title>
+<meta name="description" content="Entanglement is a three-day underground techno festival held in a forest outside Amsterdam. Location disclosed 48 hours before doors.">
+<style>
+  :root{
+    --bg:#060806;
+    --bg2:#0b0f0b;
+    --ink:#e6ebe4;
+    --mute:#7c877c;
+    --line:rgba(230,235,228,.14);
+    --acid:#c8ff3d;
+    --moss:#1a2c1e;
+    --deep:#0f1a12;
+    --display:"Bebas Neue","Oswald",Impact,"Haettenschweiler","Arial Narrow Bold",sans-serif;
+    --grot:"Helvetica Neue",Helvetica,Inter,Arial,sans-serif;
+    --mono:"JetBrains Mono","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--grot);
+    font-size:16px;
+    line-height:1.5;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--acid);color:#000}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  img,svg,canvas{display:block}
+
+  /* GRAIN */
+  .grain{
+    position:fixed;inset:-50%;width:200%;height:200%;
+    pointer-events:none;z-index:9998;opacity:.07;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1 1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:grain 1.2s steps(6) infinite;
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)}20%{transform:translate(-2%,3%)}40%{transform:translate(3%,-1%)}
+    60%{transform:translate(-1%,-3%)}80%{transform:translate(2%,2%)}100%{transform:translate(0,0)}
+  }
+
+  /* UTIL */
+  .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+  .wrap{width:min(1440px,100% - 3rem);margin-inline:auto}
+  .acid{color:var(--acid)}
+  .hair{height:1px;background:var(--line)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .section-head{
+    display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:1.5rem;
+    padding:1rem 0;border-top:1px solid var(--line);margin-bottom:3rem;
+  }
+  .section-head h2{
+    font-family:var(--display);font-weight:400;letter-spacing:.02em;
+    font-size:clamp(2.6rem,6vw,5.5rem);line-height:.9;text-transform:uppercase
+  }
+  .section-head .num{color:var(--mute)}
+  .section-head .tag{color:var(--mute);text-align:right}
+  @media(max-width:700px){.section-head{grid-template-columns:auto 1fr}.section-head .tag{grid-column:1/-1;text-align:left}}
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem 1.5rem;
+    mix-blend-mode:difference;color:#fff;
+    transition:padding .4s;
+  }
+  .nav .logo{font-family:var(--display);font-size:1.5rem;letter-spacing:.06em;display:flex;align-items:center;gap:.6rem}
+  .nav .logo i{width:9px;height:9px;background:#fff;border-radius:50%;display:inline-block;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.4);opacity:.4}}
+  .nav ul{display:flex;gap:2rem;list-style:none}
+  .nav ul a{position:relative;padding-bottom:2px}
+  .nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:#fff;transition:width .3s}
+  .nav ul a:hover::after{width:100%}
+  .nav .cta{border:1px solid #fff;padding:.55rem .9rem;transition:background .2s,color .2s}
+  .nav .cta:hover{background:#fff;color:#000}
+  .burger{display:none;flex-direction:column;gap:5px;padding:6px}
+  .burger span{display:block;width:26px;height:1px;background:#fff}
+  @media(max-width:860px){
+    .nav ul{display:none}
+    .burger{display:flex}
+    .nav.open ul{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#000;mix-blend-mode:normal;padding:1rem 1.5rem 2rem}
+    .nav.open ul li{border-bottom:1px solid var(--line)}
+    .nav.open ul a{display:block;padding:1rem 0;font-size:1.1rem}
+  }
+
+  /* HERO */
+  .hero{
+    position:relative;min-height:100vh;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    overflow:hidden;
+    background:radial-gradient(ellipse at 50% 120%,#132419 0%,var(--bg) 60%);
+  }
+  #web{position:absolute;inset:0;width:100%;height:100%}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to bottom,rgba(6,8,6,.2) 0%,rgba(6,8,6,0) 30%,rgba(6,8,6,.6) 85%,var(--bg) 100%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;z-index:2;padding:8rem 1.5rem 0}
+  .eyebrow{color:var(--acid);margin-bottom:1.2rem;display:flex;align-items:center;gap:1rem}
+  .eyebrow::before{content:"";width:40px;height:1px;background:var(--acid)}
+  .hero h1{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(4.5rem,17.5vw,21rem);
+    line-height:.82;letter-spacing:-.01em;text-transform:uppercase;
+    margin-left:-.03em;
+  }
+  .hero h1 .outline{
+    color:transparent;-webkit-text-stroke:1px var(--ink);
+    display:inline-block;
+  }
+  .hero h1 .glitch{position:relative;display:inline-block}
+  .hero h1 .glitch::after{
+    content:attr(data-t);position:absolute;left:0;top:0;color:var(--acid);
+    clip-path:inset(40% 0 45% 0);transform:translateX(0);opacity:0;
+    animation:glitch 6s infinite;
+  }
+  @keyframes glitch{
+    0%,92%,100%{opacity:0;transform:none}
+    93%{opacity:1;transform:translate(-6px,2px);clip-path:inset(20% 0 65% 0)}
+    95%{opacity:1;transform:translate(5px,-2px);clip-path:inset(60% 0 20% 0)}
+    97%{opacity:1;transform:translate(-3px,0);clip-path:inset(35% 0 50% 0)}
+  }
+  .hero-meta{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin:2.5rem 1.5rem 0;
+  }
+  .hero-meta div{padding:1.1rem 0;padding-right:1rem;border-right:1px solid var(--line)}
+  .hero-meta div:last-child{border-right:0}
+  .hero-meta div + div{padding-left:1rem}
+  .hero-meta .k{color:var(--mute);margin-bottom:.35rem}
+  .hero-meta .v{font-size:1.05rem;line-height:1.25}
+  .hero-bottom{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem 1.5rem;color:var(--mute)}
+  .countdown{display:flex;gap:1.2rem}
+  .countdown b{font-family:var(--display);font-weight:400;font-size:1.6rem;color:var(--ink);letter-spacing:.04em;display:block;line-height:1}
+  .countdown span{display:block}
+  .scroll-cue{display:flex;align-items:center;gap:.8rem}
+  .scroll-cue i{width:1px;height:36px;background:var(--mute);position:relative;overflow:hidden;display:block}
+  .scroll-cue i::after{content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--acid);animation:drop 1.8s infinite}
+  @keyframes drop{to{top:100%}}
+  @media(max-width:860px){
+    .hero-meta{grid-template-columns:1fr 1fr}
+    .hero-meta div{border-right:0;border-bottom:1px solid var(--line);padding-left:0!important}
+    .hero-meta div:nth-child(odd){border-right:1px solid var(--line)}
+    .hero-meta div:nth-child(even){padding-left:1rem!important}
+    .hero-meta div:nth-last-child(-n+2){border-bottom:0}
+    .scroll-cue{display:none}
+  }
+
+  /* MARQUEE */
+  .marquee{
+    overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--acid);color:#000;padding:.7rem 0;
+  }
+  .marquee .track{display:inline-flex;gap:3rem;animation:marq 40s linear infinite;will-change:transform}
+  .marquee span{font-family:var(--display);font-size:1.4rem;letter-spacing:.06em;display:inline-flex;align-items:center;gap:3rem}
+  .marquee span::after{content:"◆";font-size:.7rem}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* MANIFESTO */
+  .manifesto{padding:8rem 0 7rem}
+  .manifesto-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  .manifesto .lede{
+    font-size:clamp(1.6rem,3vw,2.8rem);line-height:1.15;letter-spacing:-.02em;font-weight:400;
+  }
+  .manifesto .lede em{font-style:normal;color:var(--acid)}
+  .rules{list-style:none;border-top:1px solid var(--line)}
+  .rules li{
+    display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.3rem 0;border-bottom:1px solid var(--line);
+    color:#c5ccc3;
+  }
+  .rules li b{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--mute);padding-top:.35rem}
+  .rules li p strong{color:var(--ink);display:block;font-weight:500;margin-bottom:.2rem}
+  @media(max-width:900px){.manifesto-grid{grid-template-columns:1fr;gap:3rem}.manifesto{padding:5rem 0}}
+
+  /* STATS BAND */
+  .band{
+    display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .band div{padding:2.2rem 1.5rem;border-right:1px solid var(--line)}
+  .band div:last-child{border-right:0}
+  .band .big{font-family:var(--display);font-size:clamp(3rem,6vw,5.5rem);line-height:.9;letter-spacing:.02em}
+  .band .k{color:var(--mute);margin-top:.5rem}
+  @media(max-width:860px){
+    .band{grid-template-columns:1fr 1fr}
+    .band div{border-bottom:1px solid var(--line)}
+    .band div:nth-child(even){border-right:0}
+    .band div:nth-last-child(-n+2){border-bottom:0}
+  }
+
+  /* LINEUP */
+  .lineup{padding:8rem 0 6rem}
+  .tabs{display:flex;gap:0;border:1px solid var(--line);width:fit-content;margin-bottom:3rem}
+  .tabs button{
+    padding:.9rem 1.6rem;font-family:var(--display);font-size:1.35rem;letter-spacing:.06em;
+    border-right:1px solid var(--line);color:var(--mute);transition:color .2s,background .2s;
+    display:flex;gap:.8rem;align-items:baseline;
+  }
+  .tabs button:last-child{border-right:0}
+  .tabs button small{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em}
+  .tabs button:hover{color:var(--ink)}
+  .tabs button[aria-selected="true"]{background:var(--ink);color:#000}
+  .day-title{display:flex;justify-content:space-between;align-items:baseline;gap:2rem;margin-bottom:2rem;flex-wrap:wrap}
+  .day-title h3{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5vw,4rem);line-height:1;letter-spacing:.02em}
+  .day-title p{color:var(--mute);max-width:46ch}
+  .stages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .stage-col{background:var(--bg);padding:1.5rem 1.5rem 2rem}
+  .stage-col header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+  .stage-col header h4{font-family:var(--display);font-weight:400;font-size:1.7rem;letter-spacing:.06em;display:flex;align-items:center;gap:.6rem}
+  .stage-col header h4 i{width:8px;height:8px;background:currentColor;display:inline-block}
+  .stage-col header h4.root i{background:var(--acid)}
+  .stage-col header h4.canopy i{background:#7fb6ff}
+  .stage-col header h4.under i{background:#ff6a3d}
+  .act{display:grid;grid-template-columns:4.2rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line);align-items:baseline;transition:padding-left .25s}
+  .act:last-child{border-bottom:0}
+  .act:hover{padding-left:.5rem}
+  .act .t{font-family:var(--mono);font-size:.72rem;color:var(--mute);letter-spacing:.06em}
+  .act .n{font-size:1.15rem;line-height:1.2;font-weight:500}
+  .act .n em{font-style:normal;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acid);margin-left:.5rem;vertical-align:middle}
+  .act .m{color:var(--mute);font-size:.8rem;margin-top:.15rem}
+  .act.hl .n{font-family:var(--display);font-size:1.9rem;font-weight:400;letter-spacing:.03em}
+  .fade-panel{animation:fadein .5s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media(max-width:1000px){.stages-grid{grid-template-columns:1fr}}
+  @media(max-width:600px){.tabs{width:100%}.tabs button{flex:1;padding:.8rem .6rem;justify-content:center;font-size:1.1rem}.tabs button small{display:none}}
+
+  /* STAGES */
+  .stages{padding:6rem 0 8rem}
+  .stage-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .stage-card{
+    position:relative;border:1px solid var(--line);padding:2rem;min-height:520px;
+    display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
+    background:linear-gradient(180deg,var(--bg2),var(--bg));
+    transition:border-color .3s,transform .3s;
+  }
+  .stage-card:hover{border-color:rgba(200,255,61,.5);transform:translateY(-4px)}
+  .stage-card svg{position:absolute;inset:0;width:100%;height:100%;opacity:.35;pointer-events:none;transition:opacity .4s}
+  .stage-card:hover svg{opacity:.7}
+  .stage-card .top{position:relative;display:flex;justify-content:space-between;color:var(--mute)}
+  .stage-card .body{position:relative}
+  .stage-card h3{font-family:var(--display);font-weight:400;font-size:clamp(3rem,5vw,4.6rem);line-height:.9;letter-spacing:.02em;margin-bottom:1rem}
+  .stage-card p{color:#b3bdb1;max-width:34ch}
+  .stage-card .spec{margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem;border-top:1px solid var(--line);padding-top:1rem}
+  .stage-card .spec span{color:var(--mute)}
+  @media(max-width:1000px){.stage-cards{grid-template-columns:1fr}.stage-card{min-height:420px}}
+
+  /* TICKETS */
+  .tickets{padding:6rem 0 8rem;position:relative}
+  .tickets::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(var(--line) 1px,transparent 1px) 0 0/100% 4rem,
+      linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/4rem 100%;
+    mask-image:linear-gradient(to bottom,transparent,black 30%,black 70%,transparent);
+    opacity:.5;
+  }
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .tier{
+    background:var(--bg);padding:1.8rem 1.6rem 1.6rem;display:flex;flex-direction:column;gap:1.4rem;position:relative;
+    transition:background .3s;
+  }
+  .tier:hover{background:var(--deep)}
+  .tier .head{display:flex;justify-content:space-between;align-items:center;color:var(--mute)}
+  .tier .status{padding:.25rem .5rem;border:1px solid var(--line)}
+  .tier .status.live{border-color:var(--acid);color:var(--acid)}
+  .tier .status.out{text-decoration:line-through}
+  .tier h3{font-family:var(--display);font-weight:400;font-size:2.2rem;letter-spacing:.03em;line-height:1}
+  .tier .price{font-family:var(--display);font-size:clamp(3rem,5vw,4.5rem);line-height:1;letter-spacing:.02em}
+  .tier .price sup{font-size:.4em;vertical-align:top;margin-right:.1em}
+  .tier .price small{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--mute);display:block;margin-top:.4rem}
+  .tier ul{list-style:none;color:#b3bdb1;font-size:.92rem;flex:1}
+  .tier ul li{padding:.5rem 0;border-top:1px solid var(--line);display:flex;gap:.7rem}
+  .tier ul li::before{content:"—";color:var(--mute)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1rem 1.2rem;border:1px solid var(--ink);font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+    transition:background .2s,color .2s,border-color .2s;width:100%;
+  }
+  .btn:hover{background:var(--acid);border-color:var(--acid);color:#000}
+  .btn.primary{background:var(--ink);color:#000}
+  .btn.primary:hover{background:var(--acid);border-color:var(--acid)}
+  .btn.ghost{color:var(--mute);border-color:var(--line);cursor:not-allowed}
+  .btn.ghost:hover{background:none;color:var(--mute);border-color:var(--line)}
+  .tier.featured{outline:1px solid var(--acid);outline-offset:-1px}
+  .fineprint{margin-top:1.5rem;color:var(--mute);max-width:70ch}
+  @media(max-width:1100px){.tiers{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.tiers{grid-template-columns:1fr}}
+
+  /* INFO */
+  .info{padding:6rem 0 8rem}
+  .info-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+  .info aside .map{
+    border:1px solid var(--line);aspect-ratio:1/1.05;position:relative;overflow:hidden;background:var(--bg2);
+  }
+  .info aside .map svg{width:100%;height:100%}
+  .info aside .map .lab{position:absolute;left:1rem;bottom:1rem;right:1rem;display:flex;justify-content:space-between;color:var(--mute)}
+  .info aside .map .lab b{color:var(--acid);font-weight:400}
+  .info aside .lines{margin-top:1.5rem;border-top:1px solid var(--line)}
+  .info aside .lines div{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .info aside .lines span:first-child{color:var(--mute)}
+  details{border-top:1px solid var(--line)}
+  details:last-of-type{border-bottom:1px solid var(--line)}
+  summary{
+    list-style:none;cursor:pointer;display:grid;grid-template-columns:3rem 1fr auto;gap:1rem;align-items:center;
+    padding:1.4rem 0;font-size:1.25rem;font-weight:500;transition:color .2s;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--acid)}
+  summary .idx{font-family:var(--mono);font-size:.72rem;color:var(--mute)}
+  summary .plus{width:14px;height:14px;position:relative}
+  summary .plus::before,summary .plus::after{content:"";position:absolute;background:currentColor;inset:50% 0 auto 0;height:1px;transform:translateY(-50%);transition:transform .3s}
+  summary .plus::after{transform:translateY(-50%) rotate(90deg)}
+  details[open] summary .plus::after{transform:translateY(-50%) rotate(0)}
+  details .ans{padding:0 0 1.6rem 4rem;color:#b3bdb1;max-width:60ch}
+  details .ans a{text-decoration:underline;text-underline-offset:3px}
+  @media(max-width:900px){.info-grid{grid-template-columns:1fr;gap:3rem}details .ans{padding-left:0}}
+
+  /* SIGNAL */
+  .signal{padding:8rem 0;border-top:1px solid var(--line);position:relative;overflow:hidden;background:var(--deep)}
+  .signal .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center}
+  .signal h2{font-family:var(--display);font-weight:400;font-size:clamp(3.4rem,9vw,9rem);line-height:.85;letter-spacing:.01em}
+  .signal h2 span{color:transparent;-webkit-text-stroke:1px var(--ink)}
+  .signal p{color:#b3bdb1;margin-top:1.4rem;max-width:44ch}
+  .signal form{display:flex;flex-direction:column;gap:1rem}
+  .field{display:flex;border:1px solid var(--ink);background:transparent}
+  .field input{flex:1;background:none;border:0;color:var(--ink);padding:1.1rem 1.2rem;font-family:var(--mono);font-size:.85rem;outline:none;min-width:0}
+  .field input::placeholder{color:var(--mute)}
+  .field button{padding:0 1.4rem;background:var(--ink);color:#000;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;transition:background .2s}
+  .field button:hover{background:var(--acid)}
+  .signal .fine{color:var(--mute);font-size:.8rem}
+  .signal .ok{color:var(--acid);display:none}
+  @media(max-width:900px){.signal .wrap{grid-template-columns:1fr;gap:2.5rem}.signal{padding:5rem 0}}
+
+  /* FOOTER */
+  footer{padding:3rem 0 2rem;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:3rem}
+  .foot-grid h5{color:var(--mute);margin-bottom:1rem;font-weight:400}
+  .foot-grid ul{list-style:none}
+  .foot-grid ul li{padding:.3rem 0}
+  .foot-grid ul a:hover{color:var(--acid)}
+  .foot-grid .brand{font-family:var(--display);font-size:2.6rem;line-height:.9;letter-spacing:.03em;max-width:12ch}
+  .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--mute);padding-top:1.2rem;border-top:1px solid var(--line)}
+  .giant{font-family:var(--display);font-size:clamp(4rem,22vw,26rem);line-height:.75;letter-spacing:-.01em;color:transparent;-webkit-text-stroke:1px rgba(230,235,228,.18);text-align:center;margin:3rem 0 -1rem;user-select:none;white-space:nowrap;overflow:hidden}
+  @media(max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo"><i></i>ENTANGLEMENT</a>
+  <ul class="mono">
+    <li><a href="#about">Manifesto</a></li>
+    <li><a href="#lineup">Lineup</a></li>
+    <li><a href="#stages">Stages</a></li>
+    <li><a href="#info">Info</a></li>
+    <li><a href="#tickets" class="cta">Tickets — Phase 2</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <canvas id="web" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="eyebrow mono">Three days · One forest · No daylight required</p>
+      <h1>
+        <span class="glitch" data-t="ENTANGLE">ENTANGLE</span><br>
+        <span class="outline">MENT</span>
+      </h1>
+    </div>
+    <div class="hero-meta">
+      <div><p class="k mono">Dates</p><p class="v">22 — 24 August <span class="yr"></span></p></div>
+      <div><p class="k mono">Location</p><p class="v">Forest, 35 min from Amsterdam Centraal. Coordinates 48h before.</p></div>
+      <div><p class="k mono">Format</p><p class="v">3 stages · 62 hours of continuous sound · 2,500 capacity</p></div>
+      <div><p class="k mono">Policy</p><p class="v">No photos. No phones on the floor. No exceptions.</p></div>
+    </div>
+    <div class="hero-bottom mono">
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div><b data-u="d">00</b><span>Days</span></div>
+        <div><b data-u="h">00</b><span>Hrs</span></div>
+        <div><b data-u="m">00</b><span>Min</span></div>
+        <div><b data-u="s">00</b><span>Sec</span></div>
+      </div>
+      <div class="scroll-cue"><i></i><span>Descend</span></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track" id="track">
+      <span>Phase 2 tickets on sale</span><span>Location disclosed 48h before doors</span><span>62 hours continuous</span><span>Camping opens Thursday 18:00</span><span>No photography policy</span><span>Shuttles from Amsterdam Sloterdijk</span>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num mono">01</span>
+        <h2>Manifesto</h2>
+        <span class="tag mono">Why we go into the trees</span>
+      </div>
+      <div class="manifesto-grid">
+        <p class="lede reveal">Techno was never meant for the club alone. It was built for <em>rooms that don't exist yet</em> — and a forest at 4 a.m., lit only by a single red lamp and two thousand people moving as one, is the closest thing we've found. Entanglement is a festival built around what happens when the sound, the ground and the crowd stop being separate things.</p>
+        <ol class="rules reveal">
+          <li><b>I</b><p><strong>Sound first.</strong> Each stage is tuned on-site by the system designers over three nights before doors. No headliner-first booking. The sonic arc of the weekend is written before a single name is confirmed.</p></li>
+          <li><b>II</b><p><strong>Darkness is a feature.</strong> Minimal light, no LED walls, no lasers. You will see the trees, the fog and the people next to you. That's it.</p></li>
+          <li><b>III</b><p><strong>Phones stay in your pocket.</strong> Cameras are covered at the gate with a sticker. Anyone filming on the floor is asked to leave. What happens here is for the people here.</p></li>
+          <li><b>IV</b><p><strong>Leave the forest as we found it.</strong> Zero single-use plastic, compost toilets, a full ecological survey before and after. The site is chosen with the landowner and Staatsbosbeheer, and it changes every year.</p></li>
+          <li><b>V</b><p><strong>Everyone is a guest.</strong> Zero tolerance for harassment. Awareness team in violet, always reachable. If you don't feel safe, we haven't done our job.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="band reveal">
+    <div><p class="big">62<span class="acid">h</span></p><p class="k mono">Continuous programme</p></div>
+    <div><p class="big">3</p><p class="k mono">Stages in the woods</p></div>
+    <div><p class="big">2,500</p><p class="k mono">Capacity — no more</p></div>
+    <div><p class="big">0</p><p class="k mono">Photos leaked to date</p></div>
+  </div>
+
+  <!-- LINEUP -->
+  <section class="lineup" id="lineup">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num mono">02</span>
+        <h2>Lineup</h2>
+        <span class="tag mono">Times in CEST · subject to the forest</span>
+      </div>
+      <div class="tabs reveal" role="tablist" id="tabs"></div>
+      <div id="panel" role="tabpanel" class="reveal"></div>
+    </div>
+  </section>
+
+  <!-- STAGES -->
+  <section class="stages" id="stages">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num mono">03</span>
+        <h2>Three Stages</h2>
+        <span class="tag mono">Each one a different organism</span>
+      </div>
+      <div class="stage-cards">
+        <article class="stage-card reveal">
+          <svg viewBox="0 0 400 520" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="none" stroke="#c8ff3d" stroke-width=".8">
+              <path d="M200 520 C200 400 180 380 140 340 S60 260 40 180" opacity=".8"/>
+              <path d="M200 520 C200 420 230 380 280 350 S360 270 370 190"/>
+              <path d="M200 520 C205 440 190 400 200 320 S220 220 200 120"/>
+              <path d="M140 340 C110 330 90 340 60 320"/><path d="M280 350 C310 340 330 360 360 350"/>
+              <path d="M200 320 C170 300 150 310 120 280"/><path d="M200 240 C240 220 260 230 290 200"/>
+              <path d="M40 180 C30 140 50 110 30 70"/><path d="M370 190 C380 150 360 120 380 80"/>
+              <path d="M200 120 C190 90 210 60 200 20"/>
+            </g>
+          </svg>
+          <div class="top mono"><span>Stage 01</span><span>Cap. 1,600</span></div>
+          <div class="body">
+            <h3>Root</h3>
+            <p>The main floor, dug half a metre into a clearing so the crowd stands below the treeline. Four-point sound system aimed inward. Fog from the ground, one red lamp above the booth. Heavy, hypnotic, relentless.</p>
+            <div class="spec mono"><span>System</span><i>Custom 8× 21" horn-loaded</i><span>Sound</span><i>Peak-time · Industrial · Hard groove</i><span>Hours</span><i>Fri 22:00 → Sun 02:00</i></div>
+          </div>
+        </article>
+        <article class="stage-card reveal">
+          <svg viewBox="0 0 400 520" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="none" stroke="#7fb6ff" stroke-width=".8">
+              <path d="M0 80 C100 40 150 120 200 90 S300 30 400 70"/>
+              <path d="M0 140 C90 110 160 190 220 150 S310 90 400 130"/>
+              <path d="M0 210 C120 170 180 260 260 210 S340 150 400 200"/>
+              <path d="M200 90 L200 520" stroke-dasharray="2 6"/><path d="M120 120 L120 520" stroke-dasharray="2 8"/><path d="M290 130 L290 520" stroke-dasharray="2 10"/>
+              <circle cx="200" cy="90" r="3"/><circle cx="120" cy="120" r="2"/><circle cx="290" cy="130" r="2"/>
+            </g>
+          </svg>
+          <div class="top mono"><span>Stage 02</span><span>Cap. 700</span></div>
+          <div class="body">
+            <h3>Canopy</h3>
+            <p>A raised timber platform among the pines with speakers hung from the branches above. Wide, deep, spatial. Where the live sets, dub techno and the strange experiments live. Bring a coat, the wind gets in.</p>
+            <div class="spec mono"><span>System</span><i>12-channel suspended array</i><span>Sound</span><i>Live · Dub · Ambient techno · Electro</i><span>Hours</span><i>Fri 22:00 → Sun 22:00</i></div>
+          </div>
+        </article>
+        <article class="stage-card reveal">
+          <svg viewBox="0 0 400 520" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="none" stroke="#ff6a3d" stroke-width=".8">
+              <path d="M20 500 L380 500 L380 380 L20 380 Z"/>
+              <path d="M60 380 L60 300 L340 300 L340 380"/>
+              <path d="M100 300 L100 240 L300 240 L300 300"/>
+              <path d="M140 240 L140 200 L260 200 L260 240"/>
+              <path d="M0 520 L400 520" stroke-width="2"/>
+              <path d="M200 200 L200 40" stroke-dasharray="3 5"/><circle cx="200" cy="40" r="4"/>
+            </g>
+          </svg>
+          <div class="top mono"><span>Stage 03</span><span>Cap. 250</span></div>
+          <div class="body">
+            <h3>Undergrowth</h3>
+            <p>A concrete bunker from 1941 that we found on the second site visit. Low ceiling, one door in, one door out. Sweat on the walls by midnight. Vinyl only. If you know, you know — and you'll queue for it.</p>
+            <div class="spec mono"><span>System</span><i>Vintage 4-way, mono</i><span>Sound</span><i>Raw · Acid · Vinyl only · Unannounced</i><span>Hours</span><i>Fri 23:00 → Sun 12:00</i></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKETS -->
+  <section class="tickets" id="tickets">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num mono">04</span>
+        <h2>Tickets</h2>
+        <span class="tag mono">2,500 total · when they're gone, they're gone</span>
+      </div>
+      <div class="tiers reveal">
+        <article class="tier">
+          <div class="head mono"><span>Phase 1</span><span class="status out">Sold out</span></div>
+          <h3>Early Roots</h3>
+          <p class="price"><sup>€</sup>149<small>Sold out in 41 minutes</small></p>
+          <ul><li>Full weekend access</li><li>All three stages</li><li>Thu → Mon camping incl.</li></ul>
+          <a class="btn ghost" aria-disabled="true">Sold out <span>×</span></a>
+        </article>
+        <article class="tier featured">
+          <div class="head mono"><span>Phase 2</span><span class="status live">On sale</span></div>
+          <h3>Weekend</h3>
+          <p class="price"><sup>€</sup>189<small>Incl. fees · 612 remaining</small></p>
+          <ul><li>Full weekend access</li><li>All three stages</li><li>Thu → Mon camping incl.</li><li>Return shuttle from Sloterdijk</li></ul>
+          <a class="btn primary" href="#signal">Get ticket <span>→</span></a>
+        </article>
+        <article class="tier">
+          <div class="head mono"><span>Day pass</span><span class="status live">On sale</span></div>
+          <h3>Sunday Only</h3>
+          <p class="price"><sup>€</sup>79<small>Sun 12:00 → Mon 06:00</small></p>
+          <ul><li>Sunday programme only</li><li>Canopy + Root closing</li><li>No camping</li><li>Shuttle included</li></ul>
+          <a class="btn" href="#signal">Get ticket <span>→</span></a>
+        </article>
+        <article class="tier">
+          <div class="head mono"><span>Add-on</span><span class="status live">Limited</span></div>
+          <h3>Quiet Camp</h3>
+          <p class="price"><sup>€</sup>45<small>Requires weekend ticket</small></p>
+          <ul><li>Silent field, 400m from stages</li><li>Pre-pitched tent option</li><li>Hot showers 08:00–14:00</li><li>Coffee tent at dawn</li></ul>
+          <a class="btn" href="#signal">Add to ticket <span>→</span></a>
+        </article>
+      </div>
+      <p class="fineprint mono reveal">Tickets are personal and name-checked at the gate. Resale only via our official swap board at face value. Minimum age 18. Ticket price includes the €3 forest restoration levy paid directly to the site's conservation trust.</p>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="info" id="info">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="num mono">05</span>
+        <h2>Practical</h2>
+        <span class="tag mono">Everything you need · nothing you don't</span>
+      </div>
+      <div class="info-grid">
+        <aside class="reveal">
+          <div class="map">
+            <svg viewBox="0 0 400 420" aria-hidden="true">
+              <defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(230,235,228,.08)"/></pattern></defs>
+              <rect width="400" height="420" fill="url(#g)"/>
+              <path d="M40 340 C90 300 120 320 160 290 S220 230 260 200 S320 140 360 90" fill="none" stroke="rgba(230,235,228,.35)" stroke-width="1.2" stroke-dasharray="4 4"/>
+              <circle cx="40" cy="340" r="4" fill="#e6ebe4"/>
+              <text x="52" y="345" font-family="monospace" font-size="9" fill="#7c877c">AMSTERDAM SLOTERDIJK</text>
+              <g transform="translate(360 90)">
+                <circle r="26" fill="none" stroke="#c8ff3d" stroke-width=".8" opacity=".5"><animate attributeName="r" values="10;40" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="3s" repeatCount="indefinite"/></circle>
+                <circle r="5" fill="#c8ff3d"/>
+              </g>
+              <text x="260" y="70" font-family="monospace" font-size="9" fill="#c8ff3d">SITE — TBA 48H</text>
+              <g fill="none" stroke="rgba(200,255,61,.25)" stroke-width=".8">
+                <circle cx="300" cy="150" r="1.5"/><circle cx="330" cy="200" r="1.5"/><circle cx="280" cy="110" r="1.5"/><circle cx="350" cy="130" r="1.5"/><circle cx="310" cy="60" r="1.5"/><circle cx="340" cy="230" r="1.5"/><circle cx="240" cy="150" r="1.5"/>
+              </g>
+              <text x="30" y="40" font-family="monospace" font-size="9" fill="#7c877c">52°N — 4°E · ±35 MIN</text>
+            </svg>
+            <div class="lab mono"><span>Shuttle route</span><b>Coordinates: encrypted</b></div>
+          </div>
+          <div class="lines mono">
+            <div><span>Doors Fri</span><span>20:00</span></div>
+            <div><span>Camping opens</span><span>Thu 18:00</span></div>
+            <div><span>Last shuttle back</span><span>Mon 10:00</span></div>
+            <div><span>Age</span><span>18+ · ID required</span></div>
+            <div><span>Currency</span><span>Cashless · card / wristband</span></div>
+          </div>
+        </aside>
+        <div class="reveal">
+          <details open>
+            <summary><span class="idx">Q.01</span>Where exactly is the forest?<span class="plus"></span></summary>
+            <div class="ans">Somewhere in the woodlands north of Amsterdam, about 35 minutes by road from Centraal. The exact coordinates are sent to ticket holders 48 hours before doors, along with your shuttle slot. We do this to protect the site and to keep the weekend ours. You will not find it on Instagram.</div>
+          </details>
+          <details>
+            <summary><span class="idx">Q.02</span>How do I get there?<span class="plus"></span></summary>
+            <div class="ans">Shuttles run from Amsterdam Sloterdijk every 20 minutes from Thu 17:00 through Mon 10:00 and are included in every ticket. There is no car park at the site and the access road is closed to private traffic. Bikes are welcome — a marked route is released with the coordinates, and there's a guarded bike field at the entrance.</div>
+          </details>
+          <details>
+            <summary><span class="idx">Q.03</span>What's the deal with phones?<span class="plus"></span></summary>
+            <div class="ans">Your camera lenses are stickered at the gate. Phones are allowed on site for messaging and emergencies, but not on the dancefloors. Anyone filming or photographing on a floor will be asked to leave and their ticket cancelled without refund. We've had zero leaked images in four editions. Help us keep it that way.</div>
+          </details>
+          <details>
+            <summary><span class="idx">Q.04</span>Is there food, water, warmth?<span class="plus"></span></summary>
+            <div class="ans">Free drinking water at eight points across the site. Six food stalls — all vegetarian, most vegan, open around the clock. Two fire pits near Canopy and a heated tent at the camp. It's a Dutch forest in August: expect 12°C at 5 a.m. and rain at least once. Dress like you mean it.</div>
+          </details>
+          <details>
+            <summary><span class="idx">Q.05</span>Safety &amp; awareness<span class="plus"></span></summary>
+            <div class="ans">Our awareness team wears violet and is present at every stage and the camp, 24 hours a day. A medical post with paramedics sits between Root and Canopy. Drug checking is available on site via a partner service, anonymous and free. If something feels wrong, find violet — or text the number on your wristband.</div>
+          </details>
+          <details>
+            <summary><span class="idx">Q.06</span>Accessibility<span class="plus"></span></summary>
+            <div class="ans">Root and Canopy are reachable via hardened paths and have raised viewing platforms. Undergrowth, being a wartime bunker, has steps and a low doorway and is not step-free. Accessible camping, toilets and a dedicated shuttle are available — write to <a href="#">access@entanglement.fest</a> and we'll sort it with you directly.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNAL -->
+  <section class="signal" id="signal">
+    <div class="wrap">
+      <div class="reveal">
+        <h2>Stay <span>Entangled</span></h2>
+        <p>Coordinates, shuttle slots, secret set announcements and the Phase 3 release all go to the list first. One email a month, less when the forest is asleep.</p>
+      </div>
+      <form class="reveal" id="form" novalidate>
+        <div class="field">
+          <input type="email" id="email" placeholder="your@address.net" required autocomplete="email">
+          <button type="submit">Transmit</button>
+        </div>
+        <p class="fine mono">No spam. No sharing. Unsubscribe in one click.</p>
+        <p class="ok mono" id="ok">◆ Received. Watch the trees.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><p class="brand">Entanglement Festival</p><p class="mono" style="color:var(--mute);margin-top:1rem">Stichting Entanglement · Amsterdam · KvK 000000</p></div>
+      <div><h5 class="mono">Festival</h5><ul><li><a href="#about">Manifesto</a></li><li><a href="#lineup">Lineup</a></li><li><a href="#stages">Stages</a></li><li><a href="#tickets">Tickets</a></li></ul></div>
+      <div><h5 class="mono">Practical</h5><ul><li><a href="#info">Getting there</a></li><li><a href="#info">Camping</a></li><li><a href="#info">Accessibility</a></li><li><a href="#">Swap board</a></li></ul></div>
+      <div><h5 class="mono">Elsewhere</h5><ul><li><a href="#">Resident Advisor</a></li><li><a href="#">Bandcamp</a></li><li><a href="#">Telegram</a></li><li><a href="#">Press</a></li></ul></div>
+    </div>
+    <div class="giant" aria-hidden="true">ENTANGLEMENT</div>
+    <div class="foot-bottom mono">
+      <span>© <span class="yr"></span> Entanglement. Built in the dark.</span>
+      <span>Privacy · Terms · Code of conduct</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- YEAR / COUNTDOWN ---------- */
+  const now = new Date();
+  let target = new Date(now.getFullYear(), 7, 22, 20, 0, 0);
+  if (target < now) target = new Date(now.getFullYear()+1, 7, 22, 20, 0, 0);
+  document.querySelectorAll('.yr').forEach(el => el.textContent = target.getFullYear());
+  const cd = document.getElementById('countdown');
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    const d = target - new Date();
+    if (d <= 0){ cd.innerHTML = '<div><b>NOW</b><span>Doors open</span></div>'; return; }
+    cd.querySelector('[data-u=d]').textContent = pad(Math.floor(d/864e5));
+    cd.querySelector('[data-u=h]').textContent = pad(Math.floor(d/36e5)%24);
+    cd.querySelector('[data-u=m]').textContent = pad(Math.floor(d/6e4)%60);
+    cd.querySelector('[data-u=s]').textContent = pad(Math.floor(d/1e3)%60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- MARQUEE DUP ---------- */
+  const track = document.getElementById('track');
+  track.innerHTML += track.innerHTML;
+
+  /* ---------- NAV ---------- */
+  const nav = document.getElementById('nav');
+  document.getElementById('burger').addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  /* ---------- REVEAL ---------- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- LINEUP ---------- */
+  const days = [
+    {
+      key:'FRI', date:'22 Aug', title:'Friday — Descent',
+      blurb:'Gates at 20:00. The forest is still light when the first kick lands. By midnight you won\'t remember that.',
+      stages:[
+        {name:'Root', cls:'root', acts:[
+          {t:'22:00', n:'Hollow Signal', m:'NL · Opening'},
+          {t:'00:00', n:'Marta Veil', m:'PL · Hypnotic'},
+          {t:'02:00', n:'KRZ', m:'DE · Industrial', hl:true},
+          {t:'04:00', n:'Sable Tone b2b Nul', m:'NL/BE · Sunrise groove'},
+          {t:'06:30', n:'Dawn silence', m:'Site reset · 1 hour'}
+        ]},
+        {name:'Canopy', cls:'canopy', acts:[
+          {t:'22:00', n:'Lichen', m:'UK · Ambient dub'},
+          {t:'23:30', n:'Fen Radio', m:'NL · Modular', tag:'live'},
+          {t:'01:00', n:'Ora Dusk', m:'IT · Deep'},
+          {t:'03:00', n:'Anvil Choir', m:'DK · Electro', hl:true},
+          {t:'05:00', n:'Isla Wend', m:'NL · Dub techno'}
+        ]},
+        {name:'Undergrowth', cls:'under', acts:[
+          {t:'23:00', n:'Moss Protocol', m:'NL · Vinyl · Raw'},
+          {t:'01:00', n:'Dusan Frey', m:'CZ · Acid'},
+          {t:'03:30', n:'Ilse Rook', m:'NL · Bunker set', hl:true},
+          {t:'06:00', n:'???', m:'Unannounced'}
+        ]}
+      ]
+    },
+    {
+      key:'SAT', date:'23 Aug', title:'Saturday — The Long Night',
+      blurb:'Twenty hours, no gaps. Root runs peak-time from midnight until the birds. Canopy opens the afternoon with live hardware.',
+      stages:[
+        {name:'Root', cls:'root', acts:[
+          {t:'16:00', n:'Feral Sun', m:'NL · Afternoon build'},
+          {t:'19:00', n:'Tine Wolde', m:'NO · Hard groove'},
+          {t:'22:00', n:'Grave Digital', m:'US · Detroit rework'},
+          {t:'01:00', n:'VOID/ANIMAL', m:'DE · Peak-time', hl:true},
+          {t:'04:00', n:'Hexen Kollektiv', m:'AT · Hypnotic 3-deck'},
+          {t:'07:00', n:'Sable Tone', m:'NL · Sunrise'}
+        ]},
+        {name:'Canopy', cls:'canopy', acts:[
+          {t:'15:00', n:'The Undergrowth Ensemble', m:'NL · Modular quartet', tag:'live'},
+          {t:'17:30', n:'Petra Salm', m:'FI · Dub techno'},
+          {t:'20:00', n:'Corridor 9', m:'FR · Electro', tag:'live'},
+          {t:'22:30', n:'Ghost Lager', m:'IE · Broken'},
+          {t:'01:00', n:'Aurelie Mott', m:'BE · Deep', hl:true},
+          {t:'04:00', n:'Lichen', m:'UK · Dawn ambient'}
+        ]},
+        {name:'Undergrowth', cls:'under', acts:[
+          {t:'20:00', n:'Rook & Frey', m:'NL/CZ · Vinyl b2b'},
+          {t:'23:00', n:'Bram Diesel', m:'NL · Acid', hl:true},
+          {t:'02:00', n:'Kettle Black', m:'UK · Raw'},
+          {t:'05:00', n:'???', m:'Unannounced'},
+          {t:'08:00', n:'Moss Protocol', m:'Closing the bunker'}
+        ]}
+      ]
+    },
+    {
+      key:'SUN', date:'24 Aug', title:'Sunday — Emergence',
+      blurb:'Softer, wider, longer. Live sets under the trees in daylight, then one final descent as Root closes with a four-hour set.',
+      stages:[
+        {name:'Root', cls:'root', acts:[
+          {t:'14:00', n:'Softcore', m:'NL · Slow build'},
+          {t:'17:00', n:'Nora Klemm', m:'DE · Melodic hypnotic'},
+          {t:'20:00', n:'Grave Digital b2b Marta Veil', m:'US/PL · One-off'},
+          {t:'22:00', n:'Paul Ostertag', m:'DE · Closing 4h', hl:true},
+          {t:'02:00', n:'Lights up', m:'Thank you'}
+        ]},
+        {name:'Canopy', cls:'canopy', acts:[
+          {t:'12:00', n:'Isla Wend', m:'NL · Morning dub'},
+          {t:'14:30', n:'Fen Radio', m:'NL · Ambient', tag:'live'},
+          {t:'17:00', n:'Anvil Choir', m:'DK · Electro', tag:'live', hl:true},
+          {t:'19:30', n:'Petra Salm', m:'FI · Closing Canopy'}
+        ]},
+        {name:'Undergrowth', cls:'under', acts:[
+          {t:'09:00', n:'Ilse Rook', m:'NL · Morning acid'},
+          {t:'11:00', n:'Bunker sealed', m:'Until next year'}
+        ]}
+      ]
+    }
+  ];
+  const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
+  days.forEach((d,i)=>{
+    const b = document.createElement('button');
+    b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0);
+    b.innerHTML = `${d.key}<small>${d.date}</small>`;
+    b.addEventListener('click', ()=>{ tabs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-selected','false')); b.setAttribute('aria-selected','true'); render(i); });
+    tabs.appendChild(b);
+  });
+  function render(i){
+    const d = days[i];
+    panel.innerHTML = `<div class="fade-panel">
+      <div class="day-title"><h3>${d.title}</h3><p>${d.blurb}</p></div>
+      <div class="stages-grid">${d.stages.map(s=>`
+        <div class="stage-col">
+          <header><h4 class="${s.cls}"><i></i>${s.name}</h4><span class="mono" style="color:var(--mute)">${s.acts.length} sets</span></header>
+          ${s.acts.map(a=>`<div class="act${a.hl?' hl':''}"><span class="t">${a.t}</span><div><p class="n">${a.n}${a.tag?`<em>${a.tag}</em>`:''}</p><p class="m">${a.m}</p></div></div>`).join('')}
+        </div>`).join('')}
+      </div></div>`;
+  }
+  render(0);
+
+  /* ---------- FORM ---------- */
+  const form = document.getElementById('form');
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const em = document.getElementById('email');
+    if (!em.value || !/.+@.+\..+/.test(em.value)){ em.focus(); em.style.color='#ff6a3d'; setTimeout(()=>em.style.color='',800); return; }
+    document.getElementById('ok').style.display='block';
+    form.querySelector('.fine').style.display='none';
+    em.value=''; em.placeholder='transmission complete';
+  });
+
+  /* ---------- ENTANGLED WEB CANVAS ---------- */
+  const cv = document.getElementById('web'), ctx = cv.getContext('2d');
+  let W,H,DPR,nodes=[],mouse={x:-9999,y:-9999,vx:0,vy:0},last={x:0,y:0};
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio||1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*DPR; cv.height = H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+    const count = Math.round(Math.min(110, Math.max(45, (W*H)/16000)));
+    nodes = Array.from({length:count}, ()=>({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25,
+      r:Math.random()*1.6+.4, p:Math.random()*Math.PI*2, k:Math.random()<.08
+    }));
+  }
+  resize(); addEventListener('resize', resize);
+  addEventListener('pointermove', e=>{
+    const r = cv.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    mouse.vx = x - last.x; mouse.vy = y - last.y; last = {x,y}; mouse.x=x; mouse.y=y;
+  });
+  addEventListener('pointerleave', ()=>{mouse.x=-9999;mouse.y=-9999});
+
+  const LINK = 150, LINK2 = LINK*LINK;
+  let t=0, running=true;
+  function draw(){
+    if (!running) return;
+    t += .006;
+    ctx.clearRect(0,0,W,H);
+    // update
+    for (const n of nodes){
+      n.x += n.vx + Math.sin(t*2 + n.p)*.12;
+      n.y += n.vy + Math.cos(t*1.7 + n.p)*.12;
+      const dx = n.x-mouse.x, dy = n.y-mouse.y, d2 = dx*dx+dy*dy;
+      if (d2 < 22500){ const f = (1 - d2/22500)*.9; n.x += dx/Math.sqrt(d2)*f*3; n.y += dy/Math.sqrt(d2)*f*3; }
+      if (n.x<-20) n.x=W+20; if (n.x>W+20) n.x=-20;
+      if (n.y<-20) n.y=H+20; if (n.y>H+20) n.y=-20;
+    }
+    // links
+    ctx.lineWidth = .6;
+    for (let i=0;i<nodes.length;i++){
+      const a = nodes[i];
+      for (let j=i+1;j<nodes.length;j++){
+        const b = nodes[j];
+        const dx=b.x-a.x, dy=b.y-a.y, d2=dx*dx+dy*dy;
+        if (d2 < LINK2){
+          const d = Math.sqrt(d2), al = (1-d/LINK);
+          const mx=(a.x+b.x)/2 + Math.sin(t*3 + a.p + b.p)*d*.18;
+          const my=(a.y+b.y)/2 + Math.cos(t*2.3 + a.p - b.p)*d*.18;
+          const hot = (a.k||b.k);
+          ctx.strokeStyle = hot ? `rgba(200,255,61,${al*.45})` : `rgba(210,220,205,${al*.22})`;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.quadraticCurveTo(mx,my,b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    // nodes
+    for (const n of nodes){
+      const fl = n.k ? (0.6 + Math.sin(t*9 + n.p)*.4) : 1;
+      ctx.fillStyle = n.k ? `rgba(200,255,61,${fl})` : 'rgba(230,235,228,.55)';
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.k? n.r+1 : n.r,0,Math.PI*2); ctx.fill();
+      if (n.k){ ctx.strokeStyle=`rgba(200,255,61,${.25*fl})`; ctx.beginPath(); ctx.arc(n.x,n.y,n.r+6+Math.sin(t*4+n.p)*2,0,Math.PI*2); ctx.stroke(); }
+    }
+    // scanline flicker
+    if (Math.random() < .02){
+      ctx.fillStyle='rgba(200,255,61,.06)';
+      ctx.fillRect(0, Math.random()*H, W, 1+Math.random()*2);
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  draw();
+  document.addEventListener('visibilitychange', ()=>{ running = !document.hidden; if (running && !reduce) draw(); });
+  // pause when hero offscreen
+  new IntersectionObserver(es=>{ const v = es[0].isIntersecting; if (v && !running){ running=true; if(!reduce) draw(); } else if (!v) running=false; }).observe(cv);
+})();
+</script>
+</body>
+</html>

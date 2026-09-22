@@ -1,0 +1,1950 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENTANGLEMENT 2025 // 72H Underground Techno Forest Gathering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300&amp;family=Syne:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070908;
+      --bg-surface: #0e1210;
+      --bg-card: rgba(16, 22, 19, 0.7);
+      --border: #1a2620;
+      --border-bright: #2d4538;
+      --toxic: #37ff7b;
+      --toxic-dim: #1ea34d;
+      --toxic-glow: rgba(55, 255, 123, 0.25);
+      --cyber-cyan: #47e5ff;
+      --warning: #ff5938;
+      --text-main: #e2ebe5;
+      --text-muted: #798f83;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      overflow-x: hidden;
+      selection-background-color: var(--toxic);
+      selection-color: var(--bg);
+    }
+
+    ::selection {
+      background: var(--toxic);
+      color: #000;
+    }
+
+    body {
+      min-height: 100vh;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    /* Ambient CRT Scanline Effect */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 99;
+      background-size: 100% 3px, 6px 100%;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    /* Interactive Background Canvas */
+    #entangled-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Top Utility Bar */
+    .top-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 24px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7, 9, 8, 0.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      color: var(--text-muted);
+    }
+
+    .top-status .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--toxic);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--toxic);
+      animation: heartBeat 2s infinite ease-in-out;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .audio-btn {
+      background: transparent;
+      border: 1px solid var(--border-bright);
+      color: var(--toxic);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 5px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    .audio-btn:hover {
+      background: var(--toxic);
+      color: var(--bg);
+      box-shadow: 0 0 15px var(--toxic-glow);
+    }
+
+    /* Main Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 36px;
+      border-bottom: 1px solid rgba(45, 69, 56, 0.4);
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .brand span {
+      color: var(--toxic);
+      font-size: 1rem;
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--toxic);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background: var(--toxic);
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-ticket {
+      background: var(--toxic);
+      color: #050806;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 10px 18px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--toxic);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-ticket:hover {
+      background: transparent;
+      color: var(--toxic);
+      box-shadow: 0 0 20px var(--toxic-glow);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 80px 0;
+      position: relative;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      font-size: 0.78rem;
+      color: var(--toxic);
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 9vw, 8.5rem);
+      font-weight: 900;
+      line-height: 0.88;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      margin-bottom: 32px;
+      text-shadow: 0 0 40px rgba(55, 255, 123, 0.15);
+    }
+
+    .hero-title .glitch-line {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--text-main);
+      transition: all 0.3s;
+    }
+
+    .hero-title:hover .glitch-line {
+      color: var(--toxic);
+      -webkit-text-stroke: 1.5px var(--toxic);
+      text-shadow: 0 0 30px var(--toxic);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #b0c2b7;
+      font-weight: 300;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    .hero-desc strong {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .coordinates-box {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .coordinates-box::after {
+      content: "CANOPY GRID: 52°23'11.8\"N 4°53'38.2\"E";
+      position: absolute;
+      bottom: -10px;
+      right: 14px;
+      font-size: 0.65rem;
+      background: var(--bg);
+      padding: 2px 8px;
+      color: var(--toxic-dim);
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .count-unit {
+      border: 1px solid var(--border);
+      padding: 10px 4px;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .count-val {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--toxic);
+      display: block;
+      font-family: var(--font-display);
+    }
+
+    .count-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Section Global Headers */
+    .section-head {
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .head-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-tag {
+      font-size: 0.72rem;
+      color: var(--toxic);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* Manifesto / Protocol Strip */
+    .protocol-section {
+      padding: 80px 0;
+    }
+
+    .protocol-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 32px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .p-card:hover {
+      border-color: var(--toxic-dim);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .p-card .p-num {
+      font-size: 0.75rem;
+      color: var(--toxic);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .p-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .p-card p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    /* Lineup Section */
+    .lineup-section {
+      padding: 80px 0;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 16px;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--toxic);
+      color: var(--toxic);
+      background: rgba(55, 255, 123, 0.05);
+    }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .artist-card {
+      background: rgba(14, 18, 16, 0.5);
+      border: 1px solid var(--border);
+      padding: 24px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      overflow: hidden;
+    }
+
+    .artist-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--toxic);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .artist-card:hover {
+      background: rgba(22, 33, 27, 0.6);
+      border-color: var(--border-bright);
+      transform: translateX(4px);
+    }
+
+    .artist-card:hover::before {
+      opacity: 1;
+    }
+
+    .artist-time {
+      font-size: 0.68rem;
+      color: var(--toxic-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .artist-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .artist-origin {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .tag-badge {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 7px;
+      font-size: 0.62rem;
+      color: var(--text-main);
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-live {
+      background: rgba(255, 89, 56, 0.18);
+      color: var(--warning);
+      border: 1px solid rgba(255, 89, 56, 0.4);
+    }
+
+    /* Stages Exploration */
+    .stages-section {
+      padding: 80px 0;
+    }
+
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .stage-card {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+    }
+
+    .stage-card:hover {
+      border-color: var(--border-bright);
+    }
+
+    .stage-radar {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1px dashed rgba(55, 255, 123, 0.15);
+      pointer-events: none;
+    }
+
+    .stage-num {
+      font-size: 0.75rem;
+      color: var(--toxic);
+      letter-spacing: 0.2em;
+    }
+
+    .stage-name {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin: 10px 0 16px 0;
+      color: #fff;
+    }
+
+    .stage-spec {
+      display: flex;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 24px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .spec-item span {
+      display: block;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* Timetable / Schedule Drawer */
+    .schedule-section {
+      padding: 80px 0;
+    }
+
+    .day-selector {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .day-tab {
+      padding: 14px 28px;
+      font-family: var(--font-mono);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .day-tab.active {
+      color: var(--toxic);
+      border-bottom-color: var(--toxic);
+      background: rgba(55, 255, 123, 0.04);
+    }
+
+    .timeline-wrap {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 140px 1.2fr 1fr 1fr;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      font-size: 0.82rem;
+      transition: background 0.2s;
+    }
+
+    .timeline-row:hover {
+      background: rgba(255,255,255,0.02);
+    }
+
+    .timeline-row.header {
+      background: rgba(0,0,0,0.5);
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .slot-time {
+      color: var(--toxic);
+      font-weight: 600;
+    }
+
+    .slot-act {
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+    }
+
+    /* Tickets Section */
+    .tickets-section {
+      padding: 80px 0 100px 0;
+    }
+
+    .ticket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .ticket-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 36px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .ticket-card.featured {
+      border-color: var(--toxic-dim);
+      background: linear-gradient(180deg, rgba(20, 32, 25, 0.7) 0%, rgba(14, 18, 16, 0.8) 100%);
+    }
+
+    .ticket-card.soldout {
+      opacity: 0.5;
+      filter: grayscale(0.8);
+      pointer-events: none;
+    }
+
+    .ticket-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      background: rgba(55, 255, 123, 0.15);
+      color: var(--toxic);
+      border: 1px solid var(--toxic-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .ticket-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .ticket-price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--toxic);
+      margin: 18px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .ticket-price span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-weight: 400;
+    }
+
+    .ticket-perks {
+      list-style: none;
+      margin-bottom: 30px;
+      font-size: 0.82rem;
+      color: #9cb0a5;
+    }
+
+    .ticket-perks li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ticket-perks li::before {
+      content: "▪";
+      color: var(--toxic);
+    }
+
+    /* Modal Dossier */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-bright);
+      width: 100%;
+      max-width: 600px;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      border-color: var(--warning);
+      color: var(--warning);
+    }
+
+    /* Policy & Environmental Responsibility */
+    .lore-banner {
+      background: rgba(14, 18, 16, 0.95);
+      border: 1px dashed var(--border-bright);
+      padding: 36px;
+      margin: 60px 0;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .lore-banner h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .lore-banner p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 60px 0 40px 0;
+      background: rgba(4, 6, 5, 0.95);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-col h5 {
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      font-size: 0.75rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--toxic);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      font-size: 0.7rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--toxic);
+      color: var(--toxic);
+      padding: 14px 20px;
+      font-size: 0.75rem;
+      box-shadow: 0 0 20px var(--toxic-glow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(120%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 200;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .stages-grid {
+        grid-template-columns: 1fr;
+      }
+      .lore-banner {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background WebGL/Canvas -->
+  <canvas id="entangled-canvas" width="1440" height="900"></canvas>
+
+  <!-- Top Real-time Bar -->
+  <aside class="top-status">
+    <div class="live-indicator">
+      <span class="pulse-dot"></span>
+      <span>72-HR CONTINUOUS RITUAL // AMSTERDAM SECTOR [HET TWISKE PINE VOID]</span>
+    </div>
+    <div style="display: flex; gap: 16px; align-items: center;">
+      <span id="cet-clock">CET [AMS] 05:56:09</span>
+      <button class="audio-btn" id="audio-toggle" aria-label="Toggle Sub Drone Synth">
+        <span id="audio-icon">⏵</span>
+        <span id="audio-label">FOREST DRONE [MUTED]</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="brand">
+      ENTANGLEMENT<span>// 2025</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#lineup">Lineup</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#stages">Stages</a></li>
+      <li><a href="#ethos">Ethos</a></li>
+      <li><a href="#tickets">Passes</a></li>
+    </ul>
+    <a href="#tickets" class="btn-ticket">Acquire Protocol Access</a>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="container hero">
+      <div class="hero-meta">
+        <span>[ 19.09 — 21.09.2025 ]</span>
+        <span>•</span>
+        <span>NO PHONES / NO SPONSORS</span>
+        <span>•</span>
+        <span>QUADRAPHONIC FUNKTION-ONE SYSTEM</span>
+      </div>
+
+      <h1 class="hero-title">
+        ANALOG SOUND
+        <span class="glitch-line">DEEP CANOPY</span>
+        TRANSMISSION.
+      </h1>
+
+      <div class="hero-grid">
+        <p class="hero-desc">
+          Entanglement is a 72-hour subterranean gathering embedded within the ancient peat and dense pine woods just 14km north of Amsterdam Centraal. 
+          <strong>Four stages enveloped in living mycorrhizal fungal networks, monolithic concrete slabs, and pure analog modular synthesis.</strong> 
+          Zero commercial sponsors. Non-stop sonic ritual from Friday 18:00 to Monday 18:00.
+        </p>
+
+        <div class="coordinates-box">
+          <div style="font-size: 0.72rem; color: var(--text-muted); display:flex; justify-content:space-between;">
+            <span>GATHERING INITIATION COUNTDOWN</span>
+            <span style="color:var(--toxic)">SECURE CONNECTION</span>
+          </div>
+          <div class="countdown-grid">
+            <div class="count-unit">
+              <span class="count-val" id="cd-days">184</span>
+              <span class="count-label">Days</span>
+            </div>
+            <div class="count-unit">
+              <span class="count-val" id="cd-hours">14</span>
+              <span class="count-label">Hours</span>
+            </div>
+            <div class="count-unit">
+              <span class="count-val" id="cd-mins">39</span>
+              <span class="count-label">Mins</span>
+            </div>
+            <div class="count-unit">
+              <span class="count-val" id="cd-secs">08</span>
+              <span class="count-label">Secs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ethos & Safety Protocol -->
+    <section class="container protocol-section" id="ethos">
+      <div class="section-head">
+        <div class="head-title-wrap">
+          <span class="section-tag">01 // CODE OF FREQUENCY</span>
+          <h2 class="section-title">FOREST COVENANT</h2>
+        </div>
+        <p style="max-width: 420px; font-size: 0.8rem; color: var(--text-muted);">
+          Our frequency relies on absolute trust, sonic intentionality, and symbiotic respect with the reserve.
+        </p>
+      </div>
+
+      <div class="protocol-cards">
+        <div class="p-card">
+          <span class="p-num">PROTOCOL 01</span>
+          <h3>Zero Screen Policy</h3>
+          <p>Camera lenses are taped at check-in. Experience temporal presence through your nervous system, not a glass viewfinder. Anyone violating dancer privacy is removed immediately.</p>
+        </div>
+        <div class="p-card">
+          <span class="p-num">PROTOCOL 02</span>
+          <h3>Harm Reduction &amp; Safe Core</h3>
+          <p>Full testing booth operational 24/7 by trained Dutch harm-reduction specialists. 24-hour quiet decompression yurts, free electrolytes, and active Awareness Angels across all clearing tracks.</p>
+        </div>
+        <div class="p-card">
+          <span class="p-num">PROTOCOL 03</span>
+          <h3>Mycelial Low-Impact Audio</h3>
+          <p>Directional bass arrays are engineered with acoustic baffles to direct sub-frequencies into human flesh while attenuating shockwaves across adjacent migratory bird sanctuaries.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lineup Section -->
+    <section class="container lineup-section" id="lineup">
+      <div class="section-head">
+        <div class="head-title-wrap">
+          <span class="section-tag">02 // CURATION ARCHIVE</span>
+          <h2 class="section-title">THE TRANSMITTERS</h2>
+        </div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All Acts</button>
+          <button class="filter-btn" data-filter="live">Modular / Live</button>
+          <button class="filter-btn" data-filter="hypnotic">Hypnotic Deep</button>
+          <button class="filter-btn" data-filter="raw">Raw Industrial</button>
+          <button class="filter-btn" data-filter="ambient">Sub-Bass &amp; Ambient</button>
+        </div>
+      </div>
+
+      <div class="artists-grid" id="artist-container"><div class="artist-card">
+          <div class="artist-time">
+            <span>The Mycelium</span>
+            <span>Sat</span>
+          </div>
+          <div class="artist-name">POLYGONIA</div>
+          <div class="artist-origin">
+            <span>Munich // IO Records</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>The Monolith</span>
+            <span>Sat</span>
+          </div>
+          <div class="artist-name">KARENN [LIVE]</div>
+          <div class="artist-origin">
+            <span>London // Voam</span>
+            <span class="tag-badge tag-live">LIVE HARDWARE</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>The Monolith</span>
+            <span>Sun</span>
+          </div>
+          <div class="artist-name">OSCAR MULERO</div>
+          <div class="artist-origin">
+            <span>Madrid // Warm Up</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>The Mycelium</span>
+            <span>Sun</span>
+          </div>
+          <div class="artist-name">DONATO DOZZY</div>
+          <div class="artist-origin">
+            <span>Rome // Spazio Disponibile</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>Damp Void</span>
+            <span>Fri</span>
+          </div>
+          <div class="artist-name">SKEE MASK</div>
+          <div class="artist-origin">
+            <span>Munich // Ilian Tape</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>The Mycelium</span>
+            <span>Fri</span>
+          </div>
+          <div class="artist-name">UPSAMMY</div>
+          <div class="artist-origin">
+            <span>Amsterdam // PAN</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>Resonance Well</span>
+            <span>Sat</span>
+          </div>
+          <div class="artist-name">SURGEON [MODULAR LIVE]</div>
+          <div class="artist-origin">
+            <span>Birmingham // Dynamic Tension</span>
+            <span class="tag-badge tag-live">LIVE HARDWARE</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>Damp Void</span>
+            <span>Sat</span>
+          </div>
+          <div class="artist-name">FOREST DRIVE WEST</div>
+          <div class="artist-origin">
+            <span>London // Livity Sound</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>The Monolith</span>
+            <span>Sun</span>
+          </div>
+          <div class="artist-name">RØDHÅD</div>
+          <div class="artist-origin">
+            <span>Berlin // WSNWG</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>The Monolith</span>
+            <span>Fri</span>
+          </div>
+          <div class="artist-name">HELENA HAUFF</div>
+          <div class="artist-origin">
+            <span>Hamburg // Return To Disorder</span>
+            <span class="tag-badge">TURNTABLES</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>Resonance Well</span>
+            <span>Sun</span>
+          </div>
+          <div class="artist-name">BLAWAN [SOLO HYBRID]</div>
+          <div class="artist-origin">
+            <span>Terni // Ternesc</span>
+            <span class="tag-badge tag-live">LIVE HARDWARE</span>
+          </div>
+        </div><div class="artist-card">
+          <div class="artist-time">
+            <span>Resonance Well</span>
+            <span>Fri</span>
+          </div>
+          <div class="artist-name">CHIAPET [LIVE MODULAR]</div>
+          <div class="artist-origin">
+            <span>Amsterdam // Delsin</span>
+            <span class="tag-badge tag-live">LIVE HARDWARE</span>
+          </div>
+        </div></div>
+    </section>
+
+    <!-- Stages Section -->
+    <section class="container stages-section" id="stages">
+      <div class="section-head">
+        <div class="head-title-wrap">
+          <span class="section-tag">03 // SPATIAL ARCHITECTURE</span>
+          <h2 class="section-title">THE FOUR ZONES</h2>
+        </div>
+      </div>
+
+      <div class="stages-grid">
+        <div class="stage-card">
+          <div class="stage-radar"></div>
+          <div>
+            <span class="stage-num">ZONE 01 // DEEP WOODS</span>
+            <h3 class="stage-name">THE MYCELIUM</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+              Nestled under a cathedral of Scots pine trees. Quadraphonic surround sound hanging from natural tension cables. Hypnotic, cyclical, polyrhythmic techno from twilight to dawn.
+            </p>
+          </div>
+          <div class="stage-spec">
+            <div class="spec-item">SYSTEM <span>Funktion-One Vero 360°</span></div>
+            <div class="spec-item">CAPACITY <span>1,200 Souls</span></div>
+            <div class="spec-item">LIGHTING <span>Bioluminescent Laser Arrays</span></div>
+          </div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-radar"></div>
+          <div>
+            <span class="stage-num">ZONE 02 // EXCAVATION TRENCH</span>
+            <h3 class="stage-name">THE MONOLITH</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+              A raw cast-concrete amphitheater embedded 4 meters into wet loam soil. High-velocity 140+ BPM modular fury, raw industrial percussions, and strobe-lit rain fog.
+            </p>
+          </div>
+          <div class="stage-spec">
+            <div class="spec-item">SYSTEM <span>L-Acoustics K2 Arrays</span></div>
+            <div class="spec-item">CAPACITY <span>1,800 Souls</span></div>
+            <div class="spec-item">LIGHTING <span>Cold Stroboscopic Grids</span></div>
+          </div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-radar"></div>
+          <div>
+            <span class="stage-num">ZONE 03 // BOG HOLLOW</span>
+            <h3 class="stage-name">DAMP VOID</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+              Sunken moss pit designed for low-frequency physical submersion. Broken-beat dub techno, drone experimentation, half-time electronics, and spatial audio field recordings.
+            </p>
+          </div>
+          <div class="stage-spec">
+            <div class="spec-item">SYSTEM <span>Danley Sound Lab Subs</span></div>
+            <div class="spec-item">CAPACITY <span>750 Souls</span></div>
+            <div class="spec-item">LIGHTING <span>Fog Sculptures &amp; Low Fire</span></div>
+          </div>
+        </div>
+
+        <div class="stage-card">
+          <div class="stage-radar"></div>
+          <div>
+            <span class="stage-num">ZONE 04 // CLEARING GEODESIC</span>
+            <h3 class="stage-name">RESONANCE WELL</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.6;">
+              An intimate canvas dome dedicated exclusively to 100% hardware live sets. Modular Euro-rack wire nests, tape delays, Buchla synthesis, and unquantized drift.
+            </p>
+          </div>
+          <div class="stage-spec">
+            <div class="spec-item">SYSTEM <span>Custom VOID Acoustic Horns</span></div>
+            <div class="spec-item">CAPACITY <span>400 Souls</span></div>
+            <div class="spec-item">LIGHTING <span>Phosphor Cathode Glow</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule / Timetable Preview -->
+    <section class="container schedule-section" id="schedule">
+      <div class="section-head">
+        <div class="head-title-wrap">
+          <span class="section-tag">04 // TEMPORAL CONTINUUM</span>
+          <h2 class="section-title">72-HOUR TIMETABLE</h2>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Continuous uninterrupted music across the 3 day cycle.</p>
+      </div>
+
+      <div class="day-selector">
+        <button class="day-tab" onclick="switchDay('fri')">DAY 01 // FRI 19 SEP</button>
+        <button class="day-tab" onclick="switchDay('sat')">DAY 02 // SAT 20 SEP</button>
+        <button class="day-tab" onclick="switchDay('sun')">DAY 03 // SUN 21 SEP</button>
+      </div>
+
+      <div class="timeline-wrap">
+        <div class="timeline-row header">
+          <div>TIMEFRAME</div>
+          <div>TRANSMITTER</div>
+          <div>STAGE LOCATION</div>
+          <div>FORMAT / ARCHETYPE</div>
+        </div>
+        <div id="schedule-content">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Lore / Environmental Note -->
+    <div class="container">
+      <div class="lore-banner">
+        <div>
+          <span style="color:var(--toxic); font-size:0.75rem; letter-spacing:0.15em;">SYMBIOSIS PLEDGE</span>
+          <h4>Leave No Micro-Trace</h4>
+        </div>
+        <div>
+          <p>
+            We operate in an ecologically fragile peat woodland. All sound equipment, stage frameworks, and structures are demountable without soil piercing. Every attendee receives a pocket stainless steel ashtray and biodegradable waste receptacle upon gate verification. Respect the soil.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tickets Protocol -->
+    <section class="container tickets-section" id="tickets">
+      <div class="section-head">
+        <div class="head-title-wrap">
+          <span class="section-tag">05 // ENTRY ALLOCATION</span>
+          <h2 class="section-title">ACCESS PROTOCOLS</h2>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Strict capacity strictly capped at 3,500 participants.</p>
+      </div>
+
+      <div class="ticket-grid">
+        <!-- Tier 1 -->
+        <div class="ticket-card soldout">
+          <div class="ticket-badge" style="border-color:var(--text-muted); color:var(--text-muted);">DEPLETED</div>
+          <div>
+            <span style="font-size:0.72rem; color:var(--text-muted);">TIER 01</span>
+            <h3 class="ticket-name">EARLY FREQUENCY</h3>
+            <div class="ticket-price">€175 <span>/ 3-Day Pass</span></div>
+            <ul class="ticket-perks">
+              <li>Full 72-hour festival clearance</li>
+              <li>General Pine-Forest Camping</li>
+              <li>Official Shuttle: Sloterdijk ⇄ Site</li>
+              <li>Pocket Ash Canteen</li>
+            </ul>
+          </div>
+          <button class="btn-ticket" disabled="" style="opacity: 0.5; cursor: not-allowed; width: 100%; text-align: center;">Sold Out</button>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="ticket-card featured">
+          <div class="ticket-badge">ACTIVE PHASE</div>
+          <div>
+            <span style="font-size:0.72rem; color:var(--toxic);">TIER 02 // GENERAL RELEASE</span>
+            <h3 class="ticket-name">WEEKEND PASS</h3>
+            <div class="ticket-price">€215 <span>/ 3-Day Pass</span></div>
+            <ul class="ticket-perks">
+              <li>Full 72-hour continuous access (Fri 18:00 - Mon 18:00)</li>
+              <li>Forest Tent Pitching Area Included</li>
+              <li>24/7 Sauna &amp; Cold Plunge Springs</li>
+              <li>Amsterdam Shuttle pass included</li>
+              <li>Harm reduction test kit voucher</li>
+            </ul>
+          </div>
+          <button class="btn-ticket" style="width: 100%; text-align: center; cursor: pointer;" onclick="openOrderModal('Weekend Pass', 215)">Acquire Ticket</button>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="ticket-card">
+          <div class="ticket-badge" style="border-color:var(--cyber-cyan); color:var(--cyber-cyan);">GLAMPING SANCTUARY</div>
+          <div>
+            <span style="font-size:0.72rem; color:var(--cyber-cyan);">TIER 03 // IMMERSIVE RESIDENCE</span>
+            <h3 class="ticket-name">MYCELIAL HABITAT</h3>
+            <div class="ticket-price">€460 <span>/ 2-Person Pod</span></div>
+            <ul class="ticket-perks">
+              <li>2x Full 72-hour Festival Passes</li>
+              <li>Pre-pitched Canvas Bell Tent with real mattresses</li>
+              <li>Direct phone locker recharging hub inside tent</li>
+              <li>Reserved wood-fired sauna bookings</li>
+              <li>Private quiet-zone forest glade placement</li>
+            </ul>
+          </div>
+          <button class="btn-ticket" style="width: 100%; text-align: center; cursor: pointer; border-color: var(--cyber-cyan); color: var(--cyber-cyan); background: transparent;" onclick="openOrderModal('Mycelial Habitat (2-Person)', 460)">Reserve Sanctuary</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dossier Modal (Artist Bio / Details) -->
+  <div class="modal-overlay" id="artist-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('artist-modal')">✕</button>
+      <span id="modal-tag" style="font-size:0.7rem; color:var(--toxic); letter-spacing:0.15em;">ARTIST DOSSIER</span>
+      <h3 id="modal-name" style="font-family:var(--font-display); font-size:2rem; margin:8px 0; color:#fff;">ARTIST NAME</h3>
+      <div id="modal-sub" style="font-size:0.78rem; color:var(--text-muted); margin-bottom:16px;">STAGE &amp; ORIGIN</div>
+      <p id="modal-desc" style="font-size:0.85rem; color:#bacdc2; line-height:1.7; margin-bottom:20px;">
+        Detailed dossier regarding performance setup and acoustic architecture...
+      </p>
+      <div style="border-top:1px solid var(--border); padding-top:16px; display:flex; justify-content:space-between; align-items:center;">
+        <span id="modal-time" style="font-size:0.78rem; color:var(--toxic);">SCHEDULED: 00:00</span>
+        <button class="btn-ticket" onclick="bookmarkSet()" style="font-size:0.7rem; padding:6px 12px;">+ Save to My Schedule</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Simulator Modal -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('checkout-modal')">✕</button>
+      <span style="font-size:0.7rem; color:var(--toxic); letter-spacing:0.15em;">ENTANGLEMENT PASS DISPATCH</span>
+      <h3 id="order-tier-title" style="font-family:var(--font-display); font-size:1.6rem; margin:8px 0; color:#fff;">TICKET NAME</h3>
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:18px;">
+        Strict digital issuance. Ticket QR keys are cryptographically generated and tied to government photo IDs at the forest check-point.
+      </p>
+
+      <form id="order-form" onsubmit="handleOrderSubmit(event)">
+        <div style="margin-bottom:14px;">
+          <label style="display:block; font-size:0.7rem; color:var(--text-muted); margin-bottom:4px;">FULL LEGAL NAME</label>
+          <input required="" type="text" placeholder="e.g. Saskia de Jong" style="width: 100%; background: var(--bg); border: 1px solid var(--border-bright); padding: 10px; color: rgb(255, 255, 255); font-family: var(--font-mono); font-size: 0.85rem;">
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <label style="display:block; font-size:0.7rem; color:var(--text-muted); margin-bottom:4px;">SECURE EMAIL DISPATCH</label>
+          <input required="" type="email" placeholder="name@domain.nl" style="width: 100%; background: var(--bg); border: 1px solid var(--border-bright); padding: 10px; color: rgb(255, 255, 255); font-family: var(--font-mono); font-size: 0.85rem;">
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-top:1px solid var(--border); padding-top:14px;">
+          <span style="font-size:0.8rem; color:var(--text-muted);">Total Calculation</span>
+          <span id="order-total-price" style="font-size:1.4rem; color:var(--toxic); font-weight:700;">€0</span>
+        </div>
+
+        <button type="submit" class="btn-ticket" style="width:100%; padding:14px; cursor:pointer;">Authorize &amp; Lock Allocation</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast" id="system-toast">
+    <span style="font-size:1.1rem;">⚡</span>
+    <span id="toast-msg">Notification received.</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">ENTANGLEMENT //</div>
+        <p style="max-width:380px; line-height: 1.7;">
+          A fully non-corporate 72-hour deep electronic music convergence. Powered in part by hybrid solar arrays and local Dutch bio-diesel generators.
+        </p>
+        <div style="margin-top: 16px; color: var(--toxic); font-size: 0.72rem;">
+          COORDINATES: 52°25'49.0"N 4°53'14.0"E
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>TRANSMISSION</h5>
+        <ul>
+          <li><a href="#lineup">Curated Lineup</a></li>
+          <li><a href="#schedule">Temporal Map</a></li>
+          <li><a href="#stages">Acoustic Specs</a></li>
+          <li><a href="#tickets">Pass Protocols</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>SURVIVAL &amp; CARE</h5>
+        <ul>
+          <li><a href="#ethos" onclick="showToast('Safe space team reachable 24/7 on channel 4')">Awareness Angels</a></li>
+          <li><a href="#ethos" onclick="showToast('Free Dutch harm test tent near Stage 02')">Drug Testing Info</a></li>
+          <li><a href="#ethos" onclick="showToast('Shuttles depart Amsterdam Sloterdijk every 20m')">Sloterdijk Shuttles</a></li>
+          <li><a href="#ethos" onclick="showToast('Strict leave no trace: all rubbish bins sorted')">Zero-Waste Guide</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© 2025 ENTANGLEMENT INITIATIVE. ALL FREQUENCIES RESERVED.</div>
+      <div>HELD IN THE WOODS OUTSIDE AMSTERDAM, THE NETHERLANDS.</div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       1. GENERATIVE ENTANGLED PARTICLE CANVAS (Interactive)
+       ========================================================= */
+    const canvas = document.getElementById('entangled-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initNodes();
+    });
+
+    const mouse = { x: width / 2, y: height / 2, radius: 180 };
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    class EntangledNode {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.45;
+        this.vy = (Math.random() - 0.5) * 0.45;
+        this.baseRadius = Math.random() * 2 + 1;
+        this.alpha = Math.random() * 0.6 + 0.2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+
+        // Mouse interaction
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const force = (mouse.radius - dist) / mouse.radius;
+          this.x -= (dx / dist) * force * 1.5;
+          this.y -= (dy / dist) * force * 1.5;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.baseRadius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(55, 255, 123, ${this.alpha * 0.8})`;
+        ctx.fill();
+      }
+    }
+
+    let nodes = [];
+    function initNodes() {
+      nodes = [];
+      const count = Math.min(Math.floor((width * height) / 16000), 90);
+      for (let i = 0; i < count; i++) {
+        nodes.push(new EntangledNode());
+      }
+    }
+    initNodes();
+
+    function renderCanvas() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Connect mycelial nodes
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 130) {
+            const lineAlpha = (1 - dist / 130) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = `rgba(55, 255, 123, ${lineAlpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+        nodes[i].update();
+        nodes[i].draw();
+      }
+
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    /* =========================================================
+       2. PROCEDURAL SUB-BASS DRONE & FOREST AUDIO GENERATOR
+       Web Audio API (Synthesizes dark analog drone & forest wind)
+       ========================================================= */
+    let audioCtx = null;
+    let isPlaying = false;
+    let masterGain, oscLow, oscSub, noiseNode, filterNode;
+
+    const audioToggleBtn = document.getElementById('audio-toggle');
+    const audioLabel = document.getElementById('audio-label');
+    const audioIcon = document.getElementById('audio-icon');
+
+    function initAudio() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.001;
+      masterGain.connect(audioCtx.destination);
+
+      // 48Hz Sub Sine Oscillator
+      oscLow = audioCtx.createOscillator();
+      oscLow.type = 'sine';
+      oscLow.frequency.setValueAtTime(48, audioCtx.currentTime);
+
+      // 72Hz Warm Harmonic Sawtooth with heavy lowpass
+      oscSub = audioCtx.createOscillator();
+      oscSub.type = 'sawtooth';
+      oscSub.frequency.setValueAtTime(72.2, audioCtx.currentTime);
+
+      // Filter
+      filterNode = audioCtx.createBiquadFilter();
+      filterNode.type = 'lowpass';
+      filterNode.frequency.setValueAtTime(140, audioCtx.currentTime);
+
+      // Procedural Wind / Tree White Noise
+      const bufferSize = audioCtx.sampleRate * 2;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      noiseNode = audioCtx.createBufferSource();
+      noiseNode.buffer = noiseBuffer;
+      noiseNode.loop = true;
+
+      const noiseFilter = audioCtx.createBiquadFilter();
+      noiseFilter.type = 'bandpass';
+      noiseFilter.frequency.setValueAtTime(380, audioCtx.currentTime);
+      noiseFilter.Q.setValueAtTime(3.0, audioCtx.currentTime);
+
+      const noiseGain = audioCtx.createGain();
+      noiseGain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+
+      // Routing
+      oscLow.connect(masterGain);
+      oscSub.connect(filterNode);
+      filterNode.connect(masterGain);
+
+      noiseNode.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      noiseGain.connect(masterGain);
+
+      oscLow.start();
+      oscSub.start();
+      noiseNode.start();
+    }
+
+    audioToggleBtn.addEventListener('click', () => {
+      if (!audioCtx) {
+        initAudio();
+      }
+
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      if (!isPlaying) {
+        masterGain.gain.setTargetAtTime(0.28, audioCtx.currentTime, 1.2);
+        isPlaying = true;
+        audioLabel.textContent = "TRANSMITTING 48Hz";
+        audioIcon.textContent = "⏹";
+        audioToggleBtn.style.background = "var(--toxic)";
+        audioToggleBtn.style.color = "#000";
+        showToast("Audio active: 48Hz Sub-Harmonic & Pine Canopy Drone");
+      } else {
+        masterGain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.4);
+        isPlaying = false;
+        audioLabel.textContent = "FOREST DRONE [MUTED]";
+        audioIcon.textContent = "⏵";
+        audioToggleBtn.style.background = "transparent";
+        audioToggleBtn.style.color = "var(--toxic)";
+        showToast("Transmission muted");
+      }
+    });
+
+    /* =========================================================
+       3. AMSTERDAM CET REAL-TIME CLOCK
+       ========================================================= */
+    const clockEl = document.getElementById('cet-clock');
+    function updateCETClock() {
+      const now = new Date();
+      const options = {
+        timeZone: 'Europe/Amsterdam',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      };
+      clockEl.textContent = `CET [AMS] ${now.toLocaleTimeString('en-GB', options)}`;
+    }
+    setInterval(updateCETClock, 1000);
+    updateCETClock();
+
+    /* =========================================================
+       4. COUNTDOWN CALCULATOR
+       ========================================================= */
+    const targetDate = new Date('2025-09-19T18:00:00+02:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+        document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+        document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    /* =========================================================
+       5. LINEUP DATA & DYNAMIC FILTERING
+       ========================================================= */
+    const artists = [
+      {
+        name: "POLYGONIA",
+        origin: "Munich // IO Records",
+        category: "hypnotic",
+        stage: "The Mycelium",
+        time: "Sat 02:00 - 05:00",
+        bio: "Multidisciplinary sound artist weaving complex polyrhythmic acoustic textures with hypnotic forest sub-bass."
+      },
+      {
+        name: "KARENN [LIVE]",
+        origin: "London // Voam",
+        category: "live",
+        stage: "The Monolith",
+        time: "Sat 23:00 - 01:30",
+        bio: "Blawan & Pariah. Pure unadulterated live hardware assault. Modular machines, analog distortion, relentless broken grooves."
+      },
+      {
+        name: "OSCAR MULERO",
+        origin: "Madrid // Warm Up",
+        category: "raw",
+        stage: "The Monolith",
+        time: "Sun 01:30 - 06:00",
+        bio: "The undisputed master of Spanish dark techno architectural purity. Hypnotic tension building into monolithic industrial pressure."
+      },
+      {
+        name: "DONATO DOZZY",
+        origin: "Rome // Spazio Disponibile",
+        category: "hypnotic",
+        stage: "The Mycelium",
+        time: "Sun 06:00 - 11:00",
+        bio: "A legendary 5-hour sunrise woodland ritual. Psychotropic textures, deep rolling acid lines, and deep spiritual acoustic resonance."
+      },
+      {
+        name: "SKEE MASK",
+        origin: "Munich // Ilian Tape",
+        category: "ambient",
+        stage: "Damp Void",
+        time: "Fri 22:00 - 02:00",
+        bio: "Master of broken tempos, dusty atmospheric dub techno, 90s ambient jungle heritage, and subterranean bass weight."
+      },
+      {
+        name: "UPSAMMY",
+        origin: "Amsterdam // PAN",
+        category: "hypnotic",
+        stage: "The Mycelium",
+        time: "Fri 20:00 - 23:00",
+        bio: "Local Dutch visionary fusing crystalline IDM structures, intricate fast-paced percussive rhythms, and organic field recordings."
+      },
+      {
+        name: "SURGEON [MODULAR LIVE]",
+        origin: "Birmingham // Dynamic Tension",
+        category: "live",
+        stage: "Resonance Well",
+        time: "Sat 21:00 - 23:00",
+        bio: "Anthony Child commanding a singular Euro-rack modular synthesizer case. Spontaneous, visceral, deep analog alchemy."
+      },
+      {
+        name: "FOREST DRIVE WEST",
+        origin: "London // Livity Sound",
+        category: "ambient",
+        stage: "Damp Void",
+        time: "Sat 03:00 - 06:30",
+        bio: "Deep minimalist dub electronics, sub-aquatic tempos, and tribal polyrhythms tailored for damp forest soil listening."
+      },
+      {
+        name: "RØDHÅD",
+        origin: "Berlin // WSNWG",
+        category: "raw",
+        stage: "The Monolith",
+        time: "Sun 20:00 - 00:00",
+        bio: "Deep, powerful, timeless groove architecture crafted for pitch-black clearing strobe marathons."
+      },
+      {
+        name: "HELENA HAUFF",
+        origin: "Hamburg // Return To Disorder",
+        category: "raw",
+        stage: "The Monolith",
+        time: "Fri 23:30 - 02:30",
+        bio: "Strict vinyl-only raw electro, acid-drenched techno, and post-punk grit played with unapologetic speed."
+      },
+      {
+        name: "BLAWAN [SOLO HYBRID]",
+        origin: "Terni // Ternesc",
+        category: "live",
+        stage: "Resonance Well",
+        time: "Sun 02:00 - 04:30",
+        bio: "Futuristic mutant electronics, organic vocal manipulation, and surgical percussive weight."
+      },
+      {
+        name: "CHIAPET [LIVE MODULAR]",
+        origin: "Amsterdam // Delsin",
+        category: "live",
+        stage: "Resonance Well",
+        time: "Fri 19:00 - 21:00",
+        bio: "Opening hardware ceremony invoking early 90s Dutch electro-acoustic ambient drones and sub harmonic pulses."
+      }
+    ];
+
+    const artistGrid = document.getElementById('artist-container');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    function renderArtists(filter = 'all') {
+      artistGrid.innerHTML = '';
+      const filtered = filter === 'all' ? artists : artists.filter(a => a.category === filter);
+
+      filtered.forEach((artist, idx) => {
+        const card = document.createElement('div');
+        card.className = 'artist-card';
+        card.onclick = () => openArtistModal(artist);
+
+        const isLive = artist.name.includes('[LIVE]') || artist.category === 'live';
+
+        card.innerHTML = `
+          <div class="artist-time">
+            <span>${artist.stage}</span>
+            <span>${artist.time.split(' ')[0]}</span>
+          </div>
+          <div class="artist-name">${artist.name}</div>
+          <div class="artist-origin">
+            <span>${artist.origin}</span>
+            ${isLive ? '<span class="tag-badge tag-live">LIVE HARDWARE</span>' : '<span class="tag-badge">TURNTABLES</span>'}
+          </div>
+        `;
+        artistGrid.appendChild(card);
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderArtists(btn.getAttribute('data-filter'));
+      });
+    });
+
+    renderArtists('all');
+
+    /* =========================================================
+       6. TIMETABLE SCHEDULE TABS & DATA
+       ========================================================= */
+    const timetableData = {
+      fri: [
+        { time: "18:00 - 20:00", artist: "MYCELIAL OPENING RESONANCE", stage: "The Mycelium", format: "Ambient Sound Bath" },
+        { time: "20:00 - 23:00", artist: "UPSAMMY", stage: "The Mycelium", format: "DJ Set / Fast Polyrhythms" },
+        { time: "22:00 - 02:00", artist: "SKEE MASK", stage: "Damp Void", format: "Broken Dub / Deep Lows" },
+        { time: "23:30 - 02:30", artist: "HELENA HAUFF", stage: "The Monolith", format: "Strict 100% Vinyl Acid" },
+        { time: "02:30 - 06:00", artist: "UNDERGROUND RESISTANCE ARCHIVE", stage: "The Monolith", format: "Industrial Techno" }
+      ],
+      sat: [
+        { time: "14:00 - 18:00", artist: "FOREST MODULAR WORKSHOP", stage: "Resonance Well", format: "Open Patch Lab" },
+        { time: "21:00 - 23:00", artist: "SURGEON [MODULAR LIVE]", stage: "Resonance Well", format: "Eurorack Hardware Live" },
+        { time: "23:00 - 01:30", artist: "KARENN [BLAWAN & PARIAH LIVE]", stage: "The Monolith", format: "Twin Analog Rigs" },
+        { time: "02:00 - 05:00", artist: "POLYGONIA", stage: "The Mycelium", format: "Deep Natural Hypnosis" },
+        { time: "03:00 - 06:30", artist: "FOREST DRIVE WEST", stage: "Damp Void", format: "Half-Time Dub & Drum" }
+      ],
+      sun: [
+        { time: "06:00 - 11:00", artist: "DONATO DOZZY [SUNRISE]", stage: "The Mycelium", format: "5-Hour Extended Ceremony" },
+        { time: "11:00 - 15:00", artist: "TRANSCENDENTAL DAMP VOID", stage: "Damp Void", format: "Hydrophone Field Drone" },
+        { time: "16:00 - 19:30", artist: "BLAWAN [MUTANT HYBRID]", stage: "Resonance Well", format: "Modular / Samplers" },
+        { time: "20:00 - 00:00", artist: "RØDHÅD", stage: "The Monolith", format: "Nightfall Closing Ceremony" },
+        { time: "00:00 - 06:00", artist: "MYCELIAL NETWORK SESSIONS", stage: "All Stages Shared", format: "B2B Unannounced Continuum" }
+      ]
+    };
+
+    function switchDay(dayKey) {
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const container = document.getElementById('schedule-content');
+      container.innerHTML = '';
+
+      timetableData[dayKey].forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'timeline-row';
+        row.innerHTML = `
+          <div class="slot-time">${item.time}</div>
+          <div class="slot-act">${item.artist}</div>
+          <div style="color:var(--text-muted); font-size:0.8rem;">${item.stage}</div>
+          <div><span class="tag-badge">${item.format}</span></div>
+        `;
+        container.appendChild(row);
+      });
+    }
+    switchDay('fri');
+
+    /* =========================================================
+       7. MODAL CONTROLS & DOSSIER VIEWER
+       ========================================================= */
+    function openArtistModal(artist) {
+      document.getElementById('modal-name').textContent = artist.name;
+      document.getElementById('modal-sub').textContent = `${artist.stage} • ${artist.origin}`;
+      document.getElementById('modal-desc').textContent = artist.bio;
+      document.getElementById('modal-time').textContent = `SCHEDULED SET: ${artist.time}`;
+      document.getElementById('artist-modal').classList.add('open');
+    }
+
+    let activeOrderTier = "";
+    let activePrice = 0;
+
+    function openOrderModal(tierName, price) {
+      activeOrderTier = tierName;
+      activePrice = price;
+      document.getElementById('order-tier-title').textContent = tierName;
+      document.getElementById('order-total-price').textContent = `€${price}`;
+      document.getElementById('checkout-modal').classList.add('open');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('open');
+    }
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        event.target.classList.remove('open');
+      }
+    };
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      closeModal('checkout-modal');
+      showToast(`Protocol Confirmed: ${activeOrderTier} locked. Check your email for pass encryption key.`);
+    }
+
+    function bookmarkSet() {
+      closeModal('artist-modal');
+      showToast('Transmitter saved to your offline festival bookmark list.');
+    }
+
+    /* =========================================================
+       8. TOAST NOTIFICATIONS
+       ========================================================= */
+    let toastTimeout;
+    function showToast(msg) {
+      const toast = document.getElementById('system-toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4500);
+    }
+  </script>
+
+</body></html>

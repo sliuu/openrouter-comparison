@@ -1,0 +1,1182 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOYO 光葉 — Modern Japanese Tea House &amp; Sanctuary · San Francisco</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;family=Shippori+Mincho:wght@400;600&amp;display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            koyo: {
+              charcoal: '#171715',
+              ink: '#232320',
+              stone: '#3A3A35',
+              matcha: '#4D5D43',
+              'matcha-deep': '#2E3B27',
+              clay: '#C86D51',
+              sand: '#F4F1EA',
+              washi: '#FAF8F5',
+              bamboo: '#E7E2D6',
+              mist: '#8E8D88',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            kanji: ['"Shippori Mincho"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Aesthetics */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F1EA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C5BFB2;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8E8D88;
+    }
+
+    .shoji-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(77, 93, 67, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(77, 93, 67, 0.05) 1px, transparent 1px);
+    }
+
+    .grain-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0.025;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .vertical-writing {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+
+    /* Ambient pulse */
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.04); }
+    }
+    .ambient-glow {
+      animation: pulse-slow 8s ease-in-out infinite;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:"Plus Jakarta Sans", sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-10{bottom:-2.5rem}.-bottom-6{bottom:-1.5rem}.-left-20{left:-5rem}.-left-4{left:-1rem}.-right-6{right:-1.5rem}.-top-24{top:-6rem}.-top-4{top:-1rem}.bottom-6{bottom:1.5rem}.left-4{left:1rem}.left-6{left:1.5rem}.right-0{right:0px}.right-6{right:1.5rem}.top-0{top:0px}.top-4{top:1rem}.top-6{top:1.5rem}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.mb-1{margin-bottom:0.25rem}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-14{margin-top:3.5rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/5\]{aspect-ratio:4/5}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-2{height:0.5rem}.h-20{height:5rem}.h-24{height:6rem}.h-3\.5{height:0.875rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-60{height:15rem}.h-80{height:20rem}.h-\[400px\]{height:400px}.h-\[500px\]{height:500px}.h-full{height:100%}.max-h-64{max-height:16rem}.min-h-\[88vh\]{min-height:88vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-24{width:6rem}.w-3\.5{width:0.875rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-\[400px\]{width:400px}.w-\[500px\]{width:500px}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.flex-shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-8{border-width:8px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-koyo-bamboo{--tw-border-opacity:1;border-color:rgb(231 226 214 / var(--tw-border-opacity, 1))}.border-koyo-bamboo\/60{border-color:rgb(231 226 214 / 0.6)}.border-koyo-bamboo\/80{border-color:rgb(231 226 214 / 0.8)}.border-koyo-ink{--tw-border-opacity:1;border-color:rgb(35 35 32 / var(--tw-border-opacity, 1))}.border-koyo-sand{--tw-border-opacity:1;border-color:rgb(244 241 234 / var(--tw-border-opacity, 1))}.border-koyo-stone\/30{border-color:rgb(58 58 53 / 0.3)}.border-koyo-stone\/40{border-color:rgb(58 58 53 / 0.4)}.border-koyo-stone\/60{border-color:rgb(58 58 53 / 0.6)}.border-white{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.bg-black\/60{background-color:rgb(0 0 0 / 0.6)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-koyo-bamboo{--tw-bg-opacity:1;background-color:rgb(231 226 214 / var(--tw-bg-opacity, 1))}.bg-koyo-bamboo\/40{background-color:rgb(231 226 214 / 0.4)}.bg-koyo-charcoal{--tw-bg-opacity:1;background-color:rgb(23 23 21 / var(--tw-bg-opacity, 1))}.bg-koyo-clay{--tw-bg-opacity:1;background-color:rgb(200 109 81 / var(--tw-bg-opacity, 1))}.bg-koyo-clay\/10{background-color:rgb(200 109 81 / 0.1)}.bg-koyo-ink{--tw-bg-opacity:1;background-color:rgb(35 35 32 / var(--tw-bg-opacity, 1))}.bg-koyo-ink\/80{background-color:rgb(35 35 32 / 0.8)}.bg-koyo-matcha{--tw-bg-opacity:1;background-color:rgb(77 93 67 / var(--tw-bg-opacity, 1))}.bg-koyo-matcha\/10{background-color:rgb(77 93 67 / 0.1)}.bg-koyo-matcha\/15{background-color:rgb(77 93 67 / 0.15)}.bg-koyo-sand{--tw-bg-opacity:1;background-color:rgb(244 241 234 / var(--tw-bg-opacity, 1))}.bg-koyo-sand\/80{background-color:rgb(244 241 234 / 0.8)}.bg-koyo-stone\/10{background-color:rgb(58 58 53 / 0.1)}.bg-koyo-washi{--tw-bg-opacity:1;background-color:rgb(250 248 245 / var(--tw-bg-opacity, 1))}.bg-koyo-washi\/90{background-color:rgb(250 248 245 / 0.9)}.bg-koyo-washi\/95{background-color:rgb(250 248 245 / 0.95)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/60{background-color:rgb(255 255 255 / 0.6)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top, var(--tw-gradient-stops))}.from-koyo-charcoal\/60{--tw-gradient-from:rgb(23 23 21 / 0.6) var(--tw-gradient-from-position);--tw-gradient-to:rgb(23 23 21 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-koyo-ink{--tw-gradient-from:#232320 var(--tw-gradient-from-position);--tw-gradient-to:rgb(35 35 32 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-transparent{--tw-gradient-to:rgb(0 0 0 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-koyo-stone{--tw-gradient-to:#3A3A35 var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.px-8{padding-left:2rem;padding-right:2rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-20{padding-bottom:5rem}.pl-2{padding-left:0.5rem}.pl-3{padding-left:0.75rem}.pr-1{padding-right:0.25rem}.pt-12{padding-top:3rem}.pt-2{padding-top:0.5rem}.pt-4{padding-top:1rem}.text-center{text-align:center}.font-kanji{font-family:"Shippori Mincho", serif}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-sans{font-family:"Plus Jakarta Sans", sans-serif}.font-serif{font-family:"Cormorant Garamond", serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-\[1\.08\]{line-height:1.08}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-\[0\.3em\]{letter-spacing:0.3em}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-koyo-bamboo{--tw-text-opacity:1;color:rgb(231 226 214 / var(--tw-text-opacity, 1))}.text-koyo-bamboo\/80{color:rgb(231 226 214 / 0.8)}.text-koyo-charcoal{--tw-text-opacity:1;color:rgb(23 23 21 / var(--tw-text-opacity, 1))}.text-koyo-charcoal\/80{color:rgb(23 23 21 / 0.8)}.text-koyo-clay{--tw-text-opacity:1;color:rgb(200 109 81 / var(--tw-text-opacity, 1))}.text-koyo-ink{--tw-text-opacity:1;color:rgb(35 35 32 / var(--tw-text-opacity, 1))}.text-koyo-matcha{--tw-text-opacity:1;color:rgb(77 93 67 / var(--tw-text-opacity, 1))}.text-koyo-mist{--tw-text-opacity:1;color:rgb(142 141 136 / var(--tw-text-opacity, 1))}.text-koyo-stone{--tw-text-opacity:1;color:rgb(58 58 53 / var(--tw-text-opacity, 1))}.text-koyo-washi{--tw-text-opacity:1;color:rgb(250 248 245 / var(--tw-text-opacity, 1))}.text-koyo-washi\/85{color:rgb(250 248 245 / 0.85)}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.underline-offset-4{text-underline-offset:4px}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-koyo-mist::placeholder{--tw-placeholder-opacity:1;color:rgb(142 141 136 / var(--tw-placeholder-opacity, 1))}.opacity-75{opacity:0.75}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-shadow{transition-property:box-shadow;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.duration-700{transition-duration:700ms}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.selection\:bg-koyo-matcha *::selection{--tw-bg-opacity:1;background-color:rgb(77 93 67 / var(--tw-bg-opacity, 1))}.selection\:text-white *::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.selection\:bg-koyo-matcha::selection{--tw-bg-opacity:1;background-color:rgb(77 93 67 / var(--tw-bg-opacity, 1))}.selection\:text-white::selection{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-koyo-ink:hover{--tw-border-opacity:1;border-color:rgb(35 35 32 / var(--tw-border-opacity, 1))}.hover\:bg-emerald-300:hover{--tw-bg-opacity:1;background-color:rgb(110 231 183 / var(--tw-bg-opacity, 1))}.hover\:bg-koyo-bamboo:hover{--tw-bg-opacity:1;background-color:rgb(231 226 214 / var(--tw-bg-opacity, 1))}.hover\:bg-koyo-ink:hover{--tw-bg-opacity:1;background-color:rgb(35 35 32 / var(--tw-bg-opacity, 1))}.hover\:bg-koyo-matcha:hover{--tw-bg-opacity:1;background-color:rgb(77 93 67 / var(--tw-bg-opacity, 1))}.hover\:bg-koyo-matcha-deep:hover{--tw-bg-opacity:1;background-color:rgb(46 59 39 / var(--tw-bg-opacity, 1))}.hover\:bg-koyo-sand:hover{--tw-bg-opacity:1;background-color:rgb(244 241 234 / var(--tw-bg-opacity, 1))}.hover\:text-black:hover{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:text-koyo-charcoal:hover{--tw-text-opacity:1;color:rgb(23 23 21 / var(--tw-text-opacity, 1))}.hover\:text-koyo-matcha:hover{--tw-text-opacity:1;color:rgb(77 93 67 / var(--tw-text-opacity, 1))}.hover\:text-koyo-washi:hover{--tw-text-opacity:1;color:rgb(250 248 245 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-emerald-400:focus{--tw-border-opacity:1;border-color:rgb(52 211 153 / var(--tw-border-opacity, 1))}.focus\:border-koyo-matcha:focus{--tw-border-opacity:1;border-color:rgb(77 93 67 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:inline{display:inline}.sm\:flex{display:flex}.sm\:inline-flex{display:inline-flex}.sm\:h-32{height:8rem}.sm\:h-96{height:24rem}.sm\:w-32{width:8rem}.sm\:w-auto{width:auto}.sm\:flex-row{flex-direction:row}.sm\:justify-start{justify-content:flex-start}.sm\:p-10{padding:2.5rem}.sm\:p-12{padding:3rem}.sm\:p-8{padding:2rem}.sm\:text-left{text-align:left}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:max-w-none{max-width:none}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:text-7xl{font-size:4.5rem;line-height:1}}</style></head>
+
+<body class="bg-koyo-washi text-koyo-ink font-sans antialiased selection:bg-koyo-matcha selection:text-white">
+
+  <!-- Subtle Film Grain -->
+  <div class="grain-overlay"></div>
+
+  <!-- TOP SF LIVE STATUS BAR -->
+  <div class="bg-koyo-ink text-koyo-washi/85 text-xs tracking-wider border-b border-koyo-stone/30 py-2 px-4 transition-all">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="font-medium text-white">Hayes Valley, SF</span>
+        <span class="text-koyo-mist">|</span>
+        <span id="current-sf-time" class="tabular-nums font-mono text-koyo-bamboo">08:55 PM PST</span>
+        <span class="hidden sm:inline text-koyo-mist">· Walk-ins Welcome &amp; Laptop-Focus Counter Open</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-[11px] uppercase tracking-widest text-koyo-bamboo">
+        <span class="text-emerald-300">● Calm Acoustics in Effect</span>
+        <button id="audio-toggle" class="hover:text-white flex items-center gap-1.5 transition-colors focus:outline-none" title="Play ambient tea garden hum">
+          <svg id="sound-icon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+          </svg>
+          <span id="audio-label">Tea Mist Audio: Off</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-koyo-washi/90 border-b border-koyo-bamboo/80 transition-all">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="#" class="group flex items-center gap-3">
+        <span class="font-kanji text-3xl font-semibold text-koyo-matcha transition-transform group-hover:scale-105">光葉</span>
+        <div class="border-l border-koyo-stone/30 pl-3">
+          <span class="font-serif text-2xl font-light tracking-[0.2em] text-koyo-charcoal block leading-none">KOYO</span>
+          <span class="text-[9px] uppercase tracking-[0.25em] text-koyo-mist mt-1 block">Tea House · San Francisco</span>
+        </div>
+      </a>
+
+      <!-- DESKTOP NAV -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="#philosophy" class="text-koyo-charcoal/80 hover:text-koyo-matcha transition-colors">Philosophy</a>
+        <a href="#menu" class="text-koyo-charcoal/80 hover:text-koyo-matcha transition-colors">Menu &amp; Harvests</a>
+        <a href="#space" class="text-koyo-charcoal/80 hover:text-koyo-matcha transition-colors">The SF Sanctuary</a>
+        <a href="#finder" class="text-koyo-charcoal/80 hover:text-koyo-matcha transition-colors flex items-center gap-1">
+          <span>Tea Match</span>
+          <span class="bg-koyo-matcha/10 text-koyo-matcha text-[10px] px-1.5 py-0.5 rounded-full font-mono">Quiz</span>
+        </a>
+        <a href="#hours" class="text-koyo-charcoal/80 hover:text-koyo-matcha transition-colors">Hours &amp; Location</a>
+      </nav>
+
+      <!-- CTA ACTIONS -->
+      <div class="flex items-center gap-3">
+        <button onclick="openModal('reserve-modal')" class="hidden sm:inline-flex items-center text-xs tracking-wider uppercase font-semibold px-4 py-2.5 rounded-full border border-koyo-ink text-koyo-ink hover:bg-koyo-ink hover:text-koyo-washi transition-all duration-300">
+          Book Tatami Nook
+        </button>
+        <button onclick="openModal('order-modal')" class="inline-flex items-center text-xs tracking-wider uppercase font-semibold px-4 py-2.5 rounded-full bg-koyo-matcha text-white hover:bg-koyo-matcha-deep shadow-sm transition-all duration-300">
+          Order for Pickup
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-koyo-ink hover:text-koyo-matcha">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- MOBILE MENU DROPDOWN -->
+    <div id="mobile-menu" class="hidden md:hidden bg-koyo-washi border-b border-koyo-bamboo px-6 py-6 space-y-4">
+      <a href="#philosophy" class="block text-base text-koyo-charcoal" onclick="toggleMobileMenu()">Philosophy</a>
+      <a href="#menu" class="block text-base text-koyo-charcoal" onclick="toggleMobileMenu()">Menu &amp; Harvests</a>
+      <a href="#space" class="block text-base text-koyo-charcoal" onclick="toggleMobileMenu()">The Sanctuary (Work &amp; Rest)</a>
+      <a href="#finder" class="block text-base text-koyo-charcoal" onclick="toggleMobileMenu()">Interactive Tea Finder</a>
+      <a href="#hours" class="block text-base text-koyo-charcoal" onclick="toggleMobileMenu()">Hours &amp; Neighborhood</a>
+      <div class="pt-2 flex flex-col gap-2">
+        <button onclick="openModal('reserve-modal'); toggleMobileMenu()" class="w-full py-3 text-center rounded border border-koyo-ink text-sm uppercase tracking-wider">Book Tatami Room</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden shoji-grid pt-12 pb-20">
+    <!-- Ambient Green Backlight Glow -->
+    <div class="ambient-glow absolute w-[500px] h-[500px] rounded-full bg-koyo-matcha/15 blur-3xl -top-24 -left-20 pointer-events-none"></div>
+    <div class="ambient-glow absolute w-[400px] h-[400px] rounded-full bg-koyo-clay/10 blur-3xl -bottom-10 right-0 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      
+      <!-- Left Column: Copy -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/70 border border-koyo-bamboo shadow-xs text-xs tracking-widest text-koyo-stone uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-koyo-matcha"></span>
+          Uji &amp; Shizuoka Direct Single-Origin Leaves
+        </div>
+
+        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-light text-koyo-charcoal leading-[1.08] tracking-tight">
+          Ancient leaf, <br>
+          <span class="italic font-normal font-serif text-koyo-matcha">modern cadence.</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-koyo-stone font-light max-w-xl leading-relaxed">
+          Koyo is an architecturally tranquil tea sanctuary in Hayes Valley. Designed for intentional mornings, deep focus sessions, and ceremonial Japanese matcha crafted for modern San Francisco life.
+        </p>
+
+        <!-- Feature Points -->
+        <div class="grid grid-cols-3 gap-4 pt-2 border-t border-koyo-bamboo max-w-lg">
+          <div>
+            <span class="block font-serif text-2xl text-koyo-charcoal">80°C</span>
+            <span class="text-xs text-koyo-mist uppercase tracking-wider">Precision Brew</span>
+          </div>
+          <div>
+            <span class="block font-serif text-2xl text-koyo-charcoal">Fiber</span>
+            <span class="text-xs text-koyo-mist uppercase tracking-wider">Silent Focus WiFi</span>
+          </div>
+          <div>
+            <span class="block font-serif text-2xl text-koyo-charcoal">0 Screens</span>
+            <span class="text-xs text-koyo-mist uppercase tracking-wider">In Tatami Court</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="#menu" class="px-7 py-3.5 rounded-full bg-koyo-ink text-koyo-washi text-sm font-medium tracking-wider uppercase hover:bg-koyo-matcha transition-colors shadow-md">
+            View Autumn Selections
+          </a>
+          <a href="#space" class="px-7 py-3.5 rounded-full bg-white border border-koyo-bamboo text-koyo-stone text-sm font-medium tracking-wider uppercase hover:bg-koyo-sand transition-colors">
+            Explore The Spaces
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Visual Composition -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          <!-- Main Image Frame -->
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl relative border-8 border-white bg-koyo-bamboo">
+            <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Hand whisking ceremonial matcha in a handcrafted ceramic chawan in San Francisco" class="w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out">
+            <div class="absolute inset-0 bg-gradient-to-t from-koyo-charcoal/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white">
+              <span class="text-[10px] tracking-[0.3em] uppercase text-emerald-200 block mb-1">Stone-Milled In-House</span>
+              <p class="font-serif text-xl italic font-light">"Tea is an act of returning to the present moment."</p>
+            </div>
+          </div>
+
+          <!-- Floating Japanese Vertical Calligraphy Card -->
+          <div class="hidden sm:flex absolute -right-6 -bottom-6 bg-koyo-washi/95 backdrop-blur-md p-5 rounded-xl border border-koyo-bamboo shadow-xl flex-col items-center">
+            <span class="font-kanji vertical-writing text-2xl text-koyo-matcha tracking-widest font-semibold py-2">
+              一期一会
+            </span>
+            <span class="text-[9px] uppercase tracking-widest text-koyo-mist text-center mt-2 border-t border-koyo-bamboo pt-2">
+              Ichigo<br>Ichie
+            </span>
+          </div>
+
+          <!-- Small Accent Pill -->
+          <div class="absolute -top-4 -left-4 bg-koyo-ink text-white px-4 py-2 rounded-full text-xs tracking-wider flex items-center gap-2 shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-koyo-clay"></span>
+            <span>Now Brewing: Gokou Single Cultivar</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY / THE CONVERGENCE -->
+  <section id="philosophy" class="py-24 bg-koyo-sand border-y border-koyo-bamboo relative">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="max-w-3xl mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-koyo-matcha font-semibold block mb-2">Designed for Northern California Pace</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-koyo-charcoal leading-tight">
+          We adapted the 450-year-old Way of Tea for the city that never stops building.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1 -->
+        <div class="bg-koyo-washi p-8 rounded-2xl border border-koyo-bamboo/80 space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-koyo-matcha/10 flex items-center justify-center text-koyo-matcha font-kanji text-xl font-bold">
+            葉
+          </div>
+          <h3 class="font-serif text-2xl text-koyo-charcoal">Clean, Sustained Focus</h3>
+          <p class="text-sm text-koyo-stone leading-relaxed font-light">
+            Unlike coffee’s jittery spike and sudden crash, shaded green teas (Gyokuro &amp; Matcha) offer high concentrations of L-Theanine. Experience 5 hours of alert, calm cerebral stamina.
+          </p>
+          <div class="text-xs text-koyo-matcha font-mono uppercase tracking-wider pt-2">
+            No jitters · Pure cognition
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-koyo-washi p-8 rounded-2xl border border-koyo-bamboo/80 space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-koyo-clay/10 flex items-center justify-center text-koyo-clay font-kanji text-xl font-bold">
+            座
+          </div>
+          <h3 class="font-serif text-2xl text-koyo-charcoal">Dual-Atmosphere Zoning</h3>
+          <p class="text-sm text-koyo-stone leading-relaxed font-light">
+            Need to finish an engineering spec or write a manuscript? Sit at our USB-C powered oak bar with silent keycaps. Need to unwind? Step shoes-off into our device-free Tatami Sanctuary.
+          </p>
+          <div class="text-xs text-koyo-clay font-mono uppercase tracking-wider pt-2">
+            Focus zone + Zen sanctuary
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-koyo-washi p-8 rounded-2xl border border-koyo-bamboo/80 space-y-4 hover:shadow-md transition-shadow">
+          <div class="w-10 h-10 rounded-full bg-koyo-stone/10 flex items-center justify-center text-koyo-stone font-kanji text-xl font-bold">
+            器
+          </div>
+          <h3 class="font-serif text-2xl text-koyo-charcoal">Ceramics with Tactile Weight</h3>
+          <p class="text-sm text-koyo-stone leading-relaxed font-light">
+            Every cup is poured into wood-fired stoneware thrown by ceramicists in Tokoname, Japan, and Sebastopol, California. Warm in the palms, textured, grounded in reality.
+          </p>
+          <div class="text-xs text-koyo-stone font-mono uppercase tracking-wider pt-2">
+            Artisanal tactile vessels
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TEA FINDER (MICRO-APP) -->
+  <section id="finder" class="py-20 bg-koyo-washi">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="border border-koyo-bamboo rounded-3xl p-8 sm:p-12 bg-white shadow-sm relative overflow-hidden">
+        
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="text-[11px] uppercase tracking-[0.25em] text-koyo-matcha font-semibold">Self-Guidance Selector</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-koyo-charcoal mt-1">What does your afternoon require?</h2>
+          <p class="text-xs sm:text-sm text-koyo-mist mt-2">Select your current mental state to discover your ideal leaf.</p>
+        </div>
+
+        <!-- Interactive Question Pills -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8" id="state-buttons">
+          <button onclick="recommendTea('focus')" class="state-btn active-state px-5 py-2.5 rounded-full text-xs tracking-wider uppercase font-medium border border-koyo-ink bg-koyo-ink text-white transition-all">
+            Deep Coding / Writing
+          </button>
+          <button onclick="recommendTea('decompress')" class="state-btn px-5 py-2.5 rounded-full text-xs tracking-wider uppercase font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">
+            Post-Meeting Reset
+          </button>
+          <button onclick="recommendTea('creativity')" class="state-btn px-5 py-2.5 rounded-full text-xs tracking-wider uppercase font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">
+            Gentle Warmth &amp; Comfort
+          </button>
+          <button onclick="recommendTea('ceremony')" class="state-btn px-5 py-2.5 rounded-full text-xs tracking-wider uppercase font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">
+            Pure Sensory Reverence
+          </button>
+        </div>
+
+        <!-- Dynamic Recommendation Card -->
+        <div id="recommendation-result" class="bg-koyo-sand/80 rounded-2xl p-6 sm:p-8 border border-koyo-bamboo flex flex-col sm:flex-row items-center gap-6 transition-all duration-300">
+          <img id="rec-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Tea" class="w-24 h-24 sm:w-32 sm:h-32 rounded-xl object-cover border border-white shadow-sm flex-shrink-0">
+          
+          <div class="space-y-2 text-center sm:text-left flex-grow">
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <span id="rec-origin" class="text-[10px] uppercase font-mono tracking-wider bg-koyo-matcha/10 text-koyo-matcha px-2 py-0.5 rounded">Uji, Kyoto · 1st Flush</span>
+              <span id="rec-temp" class="text-[10px] uppercase font-mono text-koyo-mist">75°C · Kyusu Steeping</span>
+            </div>
+            <h3 id="rec-title" class="font-serif text-2xl text-koyo-charcoal font-medium">Uji Samidori Ceremonial Koicha</h3>
+            <p id="rec-desc" class="text-xs sm:text-sm text-koyo-stone font-light leading-relaxed">
+              Highest L-theanine density. Thick, emerald froth bursting with rich edamame sweetness and zero bitterness. Keeps the mind razor-sharp for 4+ hours.
+            </p>
+            <div class="pt-2 flex items-center justify-center sm:justify-start gap-4 text-xs font-medium text-koyo-ink">
+              <span id="rec-price">$9.50 (Whisked Bowl)</span>
+              <button onclick="openModal('order-modal')" class="text-koyo-matcha underline underline-offset-4 hover:text-koyo-charcoal">Quick Add to Pickup</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU & CRAFT SHOWCASE -->
+  <section id="menu" class="py-24 bg-koyo-washi border-t border-koyo-bamboo">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] text-koyo-matcha font-semibold">Seasonal Cellar &amp; Daily Whisk</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-light text-koyo-charcoal mt-1">The Hayes Valley Menu</h2>
+          <p class="text-sm text-koyo-mist mt-2 max-w-lg">All teas steeped with triple-filtered water remineralized specifically for Japanese cultivar profiles.</p>
+        </div>
+
+        <!-- Menu Filter Buttons -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterMenu('all')" class="menu-filter-btn active-filter px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium border border-koyo-ink bg-koyo-ink text-white transition-all">All</button>
+          <button onclick="filterMenu('matcha')" class="menu-filter-btn px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">Matcha &amp; Lattes</button>
+          <button onclick="filterMenu('leaf')" class="menu-filter-btn px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">Loose Leaf Pots</button>
+          <button onclick="filterMenu('cold')" class="menu-filter-btn px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">16-Hour Cold Drip</button>
+          <button onclick="filterMenu('wagashi')" class="menu-filter-btn px-4 py-1.5 rounded-full text-xs uppercase tracking-wider font-medium border border-koyo-bamboo text-koyo-stone hover:border-koyo-ink transition-all">Pastry &amp; Wagashi</button>
+        </div>
+      </div>
+
+      <!-- Menu Grid -->
+      <div id="menu-items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Item 1: Matcha -->
+        <div class="menu-card matcha bg-white rounded-2xl p-6 border border-koyo-bamboo hover:shadow-lg transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-kanji text-koyo-matcha text-lg">濃茶</span>
+              <span class="font-mono text-sm font-semibold text-koyo-charcoal">$9.00</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-koyo-charcoal">Samidori Ceremonial Koicha</h3>
+            <p class="text-xs text-koyo-mist mb-3">Wazuka, Kyoto · Single Cultivar · 1st Flush</p>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light">
+              Prepared thick in traditional bowl. Velvety creaminess, steamed baby spinach, honeydew undertone. Served with a seasonal sugar wasanbon dry sweet.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-koyo-sand flex justify-between items-center text-[11px] text-koyo-mist">
+            <span>Water: 78°C · Bamboo Chasen</span>
+            <span class="text-koyo-matcha font-medium">Warm Bowl</span>
+          </div>
+        </div>
+
+        <!-- Item 2: Modern Latte -->
+        <div class="menu-card matcha bg-white rounded-2xl p-6 border border-koyo-bamboo hover:shadow-lg transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-kanji text-koyo-clay text-lg">焙じ茶</span>
+              <span class="font-mono text-sm font-semibold text-koyo-charcoal">$7.50</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-koyo-charcoal">Sand-Roasted Hojicha Oat Latte</h3>
+            <p class="text-xs text-koyo-mist mb-3">Shizuoka Slow Roast · Minor Figures Oat Milk</p>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light">
+              Charcoal-roasted green tea barks. Deep hazelnut, toasted caramel, and campfire smoke. Low caffeine, naturally velvety.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-koyo-sand flex justify-between items-center text-[11px] text-koyo-mist">
+            <span>Hot or Over Clear Ice</span>
+            <span class="text-koyo-clay font-medium">SF Favorite</span>
+          </div>
+        </div>
+
+        <!-- Item 3: Leaf -->
+        <div class="menu-card leaf bg-white rounded-2xl p-6 border border-koyo-bamboo hover:shadow-lg transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-kanji text-koyo-matcha text-lg">玉露</span>
+              <span class="font-mono text-sm font-semibold text-koyo-charcoal">$11.00</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-koyo-charcoal">Yame Traditional Gyokuro (3 Brews)</h3>
+            <p class="text-xs text-koyo-mist mb-3">Fukuoka · 21 Days Straw-Shaded</p>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light">
+              Served table-side in a flat shiboridashi pot. Concentrated natural glutamate umami, sweet sea kelp finish. The leaves are dressed with ponzu after the 3rd brew.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-koyo-sand flex justify-between items-center text-[11px] text-koyo-mist">
+            <span>Water: 55°C · High Umami</span>
+            <span class="text-koyo-stone font-medium">3 Infusions</span>
+          </div>
+        </div>
+
+        <!-- Item 4: Cold Drip -->
+        <div class="menu-card cold bg-white rounded-2xl p-6 border border-koyo-bamboo hover:shadow-lg transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-kanji text-koyo-matcha text-lg">水出し</span>
+              <span class="font-mono text-sm font-semibold text-koyo-charcoal">$8.00</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-koyo-charcoal">Slow Tower Mizudashi Sencha</h3>
+            <p class="text-xs text-koyo-mist mb-3">Kagoshima Saemidori · Dripped over 14 Hours</p>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light">
+              Ice melt extraction through glass Oji towers visible at our counter. Crystalline, hyper-clarified sweetness without any astringency or tannins.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-koyo-sand flex justify-between items-center text-[11px] text-koyo-mist">
+            <span>Served in Thin Kimura Glass</span>
+            <span class="text-emerald-700 font-medium">Limited Batches</span>
+          </div>
+        </div>
+
+        <!-- Item 5: Wagashi -->
+        <div class="menu-card wagashi bg-white rounded-2xl p-6 border border-koyo-bamboo hover:shadow-lg transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-kanji text-koyo-clay text-lg">和菓子</span>
+              <span class="font-mono text-sm font-semibold text-koyo-charcoal">$6.50</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-koyo-charcoal">San Francisco Fog Nerikiri</h3>
+            <p class="text-xs text-koyo-mist mb-3">Fresh Daily · White Bean Paste &amp; Shiso</p>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light">
+              Sculpted by hand to reflect the twin peaks marine layer. Sweet adzuki center wrapped in silky white bean paste infused with local coastal Meyer lemon.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-koyo-sand flex justify-between items-center text-[11px] text-koyo-mist">
+            <span>Plant-Based · Gluten Free</span>
+            <span class="text-koyo-clay font-medium">Daily Special</span>
+          </div>
+        </div>
+
+        <!-- Item 6: Wagashi/Bake -->
+        <div class="menu-card wagashi bg-white rounded-2xl p-6 border border-koyo-bamboo hover:shadow-lg transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-kanji text-koyo-clay text-lg">生菓子</span>
+              <span class="font-mono text-sm font-semibold text-koyo-charcoal">$5.75</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-koyo-charcoal">Black Sesame Hojicha Canelé</h3>
+            <p class="text-xs text-koyo-mist mb-3">Collaboration with Hayes Valley Boulangerie</p>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light">
+              Beeswax copper-mold shell with a dark caramelized crunch. Custardy interior infused with double-strength hojicha liquor and roasted black sesame praline.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-koyo-sand flex justify-between items-center text-[11px] text-koyo-mist">
+            <span>Fresh out at 8:30 AM &amp; 1:00 PM</span>
+            <span class="text-koyo-stone font-medium">Signature</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tea Flight Banner -->
+      <div class="mt-14 bg-gradient-to-r from-koyo-ink to-koyo-stone text-koyo-washi p-8 sm:p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] text-emerald-300 font-semibold block mb-1">Guided Afternoon Experience</span>
+          <h3 class="font-serif text-2xl sm:text-3xl font-light">The Terroir of Kyoto Flight</h3>
+          <p class="text-xs sm:text-sm text-koyo-bamboo/80 mt-1 max-w-xl">
+            Sample three distinct cultivations (Okumidori, Samidori, Asahi) prepared simultaneously to witness how soil elevation and shade transform leaf chemistry.
+          </p>
+        </div>
+        <button onclick="openModal('reserve-modal')" class="px-6 py-3 rounded-full bg-white text-koyo-ink text-xs uppercase tracking-wider font-semibold hover:bg-koyo-bamboo whitespace-nowrap transition-colors">
+          Book Flight ($28)
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE SPACE & ARCHITECTURE (HAYES VALLEY) -->
+  <section id="space" class="py-24 bg-koyo-sand relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-koyo-matcha font-semibold">San Francisco Architecture</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-koyo-charcoal mt-1">Spatial Harmony: Work &amp; Stillness</h2>
+        <p class="text-sm text-koyo-stone mt-3">We believe high-velocity urban life demands intentional counterweights. Our space is divided into three purposeful micro-climates.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Zone 1 -->
+        <div class="space-card bg-koyo-washi rounded-2xl overflow-hidden border border-koyo-bamboo">
+          <div class="h-60 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Minimalist wooden cafe counter with laptop user" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            <div class="absolute top-4 left-4 bg-koyo-ink/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[11px] uppercase tracking-wider">
+              Zone 01 · The Focus Bar
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl text-koyo-charcoal mb-2">Laptop &amp; Craft Study</h3>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light mb-4">
+              Equipped with unlacquered Douglas fir counters, concealed 100W USB-C PD outlets, Herman Miller seating, and fiber internet. Quiet typing etiquette observed.
+            </p>
+            <ul class="text-[11px] text-koyo-mist space-y-1">
+              <li>✓ Low-chatter environment</li>
+              <li>✓ Discreet power ports under each seat</li>
+              <li>✓ Continuous hot-water refills available</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Zone 2 -->
+        <div class="space-card bg-koyo-washi rounded-2xl overflow-hidden border border-koyo-bamboo">
+          <div class="h-60 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Japanese tatami mat tearoom" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            <div class="absolute top-4 left-4 bg-koyo-matcha text-white px-3 py-1 rounded-full text-[11px] uppercase tracking-wider">
+              Zone 02 · The Chashitsu
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl text-koyo-charcoal mb-2">The Tatami Sanctuary</h3>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light mb-4">
+              Traditional rush-grass tatami mats from Kumamoto. Strictly shoes-off and digital device-free. Ideal for reading, meditation, tea ceremony sets, and genuine face-to-face communion.
+            </p>
+            <ul class="text-[11px] text-koyo-mist space-y-1">
+              <li>✓ 0 Screens permitted</li>
+              <li>✓ Shoes stored in cedar genkan lockers</li>
+              <li>✓ Acoustic cedar baffle ceiling</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Zone 3 -->
+        <div class="space-card bg-koyo-washi rounded-2xl overflow-hidden border border-koyo-bamboo">
+          <div class="h-60 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Sunlit wood porch cafe" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            <div class="absolute top-4 left-4 bg-koyo-clay text-white px-3 py-1 rounded-full text-[11px] uppercase tracking-wider">
+              Zone 03 · The Engawa Porch
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-serif text-2xl text-koyo-charcoal mb-2">Sunlit Street Veranda</h3>
+            <p class="text-xs text-koyo-stone leading-relaxed font-light mb-4">
+              Facing the quiet leafy stretch of Hayes Valley. Heated stone benches, dog-friendly leash ties, and open conversation where neighborhood friends gather over cold drip pots.
+            </p>
+            <ul class="text-[11px] text-koyo-mist space-y-1">
+              <li>✓ Dog friendly &amp; open-air</li>
+              <li>✓ Radiant bench heating for SF fog days</li>
+              <li>✓ Quick takeaway window access</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- House Etiquette Bar -->
+      <div class="mt-12 bg-white/60 backdrop-blur-sm border border-koyo-bamboo rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between text-xs text-koyo-stone gap-4">
+        <div class="flex items-center gap-3">
+          <span class="font-kanji text-koyo-matcha text-2xl">礼</span>
+          <div>
+            <strong class="text-koyo-charcoal block">The Koyo Etiquette (和敬清寂)</strong>
+            <span>We balance work productivity with meditative presence. Please keep phone calls outside.</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-6 text-[11px] font-mono text-koyo-mist">
+          <span>SILENT LAPTOP KEYS</span>
+          <span>•</span>
+          <span>HEADPHONES REQUIRED</span>
+          <span>•</span>
+          <span>RESPECT THE SILENCE</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STOREFRONT / NEIGHBORHOOD HOURS & LOCATION -->
+  <section id="hours" class="py-24 bg-koyo-washi border-t border-koyo-bamboo">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Info Column -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-xs uppercase tracking-[0.25em] text-koyo-matcha font-semibold block mb-1">San Francisco Flagship</span>
+            <h2 class="font-serif text-4xl text-koyo-charcoal font-light">Hayes Valley Tearoom</h2>
+            <p class="text-sm text-koyo-stone mt-2 font-light">
+              432 Octavia Street (near Linden Alley)<br>
+              San Francisco, CA 94102
+            </p>
+          </div>
+
+          <!-- Hours Table -->
+          <div class="space-y-3 border-t border-b border-koyo-bamboo py-6 text-sm">
+            <div class="flex justify-between items-center">
+              <span class="text-koyo-stone">Tuesday – Friday</span>
+              <span class="font-mono text-xs text-koyo-charcoal font-medium">7:30 AM – 6:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center text-xs text-koyo-mist pl-2">
+              <span>↳ Morning Silent Hours</span>
+              <span class="font-mono">7:30 AM – 11:00 AM</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-koyo-stone">Saturday – Sunday</span>
+              <span class="font-mono text-xs text-koyo-charcoal font-medium">8:30 AM – 7:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center text-xs text-koyo-mist pl-2">
+              <span>↳ Weekend Ceremonial Flights</span>
+              <span class="font-mono">From 1:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center text-koyo-mist">
+              <span>Monday</span>
+              <span class="font-mono text-xs">Closed for R&amp;D &amp; Kiln Curing</span>
+            </div>
+          </div>
+
+          <!-- Transportation & Details -->
+          <div class="space-y-2 text-xs text-koyo-mist">
+            <p><strong>Transit:</strong> 6 min walk from Civic Center / Van Ness BART &amp; Muni Metro.</p>
+            <p><strong>Bicycle:</strong> Dedicated secure indoor bike rack inside the entryway garden.</p>
+            <p><strong>Inquiries:</strong> <a href="mailto:sanfrancisco@koyotea.com" class="text-koyo-ink underline">sanfrancisco@koyotea.com</a> · (415) 890-5696</p>
+          </div>
+
+          <div class="pt-2">
+            <button onclick="openModal('reserve-modal')" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-koyo-matcha text-white text-xs uppercase tracking-wider font-semibold hover:bg-koyo-matcha-deep transition-all">
+              Reserve Tatami or Tasting Session
+            </button>
+          </div>
+        </div>
+
+        <!-- Visual Map & Neighborhood Art Card -->
+        <div class="lg:col-span-7">
+          <div class="bg-koyo-sand rounded-3xl p-6 sm:p-8 border border-koyo-bamboo h-full flex flex-col justify-between">
+            <div class="relative rounded-2xl overflow-hidden border border-koyo-bamboo bg-koyo-bamboo/40 h-80 sm:h-96 flex items-center justify-center">
+              
+              <!-- Stylized Hayes Valley Map Graphic -->
+              <svg class="w-full h-full object-cover opacity-75" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid / Streets -->
+                <rect width="600" height="400" fill="#EFEAE0"></rect>
+                <!-- Street Lines -->
+                <path d="M0 120H600" stroke="#DFD8C9" stroke-width="12"></path>
+                <path d="M0 240H600" stroke="#DFD8C9" stroke-width="16"></path>
+                <path d="M0 320H600" stroke="#DFD8C9" stroke-width="8"></path>
+                <path d="M140 0V400" stroke="#DFD8C9" stroke-width="14"></path>
+                <path d="M300 0V400" stroke="#DFD8C9" stroke-width="18"></path>
+                <path d="M480 0V400" stroke="#DFD8C9" stroke-width="12"></path>
+                
+                <!-- Hayes Valley Park / Greenery -->
+                <rect x="320" y="140" width="130" height="80" rx="8" fill="#D6DFD2"></rect>
+                <text x="340" y="185" fill="#4D5D43" font-family="'Plus Jakarta Sans'" font-size="10" letter-spacing="1">PATRICIA'S GREEN</text>
+                
+                <!-- Street Names -->
+                <text x="310" y="40" fill="#8E8D88" font-family="'Plus Jakarta Sans'" font-size="9" letter-spacing="2">OCTAVIA ST</text>
+                <text x="20" y="235" fill="#8E8D88" font-family="'Plus Jakarta Sans'" font-size="9" letter-spacing="2">HAYES STREET</text>
+                <text x="20" y="115" fill="#8E8D88" font-family="'Plus Jakarta Sans'" font-size="9" letter-spacing="2">FELL STREET</text>
+                
+                <!-- Koyo Pin -->
+                <g transform="translate(300, 240)">
+                  <circle r="24" fill="#4D5D43" fill-opacity="0.2">
+                    <animate attributeName="r" values="16;28;16" dur="3s" repeatCount="indefinite"></animate>
+                  </circle>
+                  <circle r="12" fill="#171715"></circle>
+                  <circle r="5" fill="#FAF8F5"></circle>
+                </g>
+              </svg>
+
+              <!-- Floating Map Label -->
+              <div class="absolute bottom-6 left-6 right-6 bg-koyo-washi/95 backdrop-blur-sm p-4 rounded-xl border border-koyo-bamboo shadow-sm flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] uppercase tracking-wider text-koyo-matcha font-semibold block">Destination</span>
+                  <span class="font-serif text-base text-koyo-charcoal">KOYO · 432 Octavia St</span>
+                </div>
+                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="text-xs text-koyo-ink underline hover:text-koyo-matcha font-medium">
+                  Open Google Maps →
+                </a>
+              </div>
+
+            </div>
+
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-koyo-stone pt-2">
+              <span class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Neighborhood: Hayes Valley Arts &amp; Design District
+              </span>
+              <span class="text-koyo-mist">Curbside Pickup at Linden Alley Gate</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / WHISPER LIST -->
+  <section class="py-20 bg-koyo-charcoal text-koyo-washi relative">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+      <span class="font-kanji text-3xl text-emerald-400 block">新茶</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-light text-white">The Shincha Allocation List</h2>
+      <p class="text-sm text-koyo-bamboo/80 max-w-lg mx-auto font-light leading-relaxed">
+        Direct from Uji, Kagoshima, and Yame. Receive first access when spring first-harvest teas land in San Francisco before public counter availability.
+      </p>
+
+      <form id="subscribe-form" onsubmit="handleSubscribe(event)" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2 pt-4">
+        <input type="email" required="" placeholder="your.email@domain.com" class="bg-koyo-ink border border-koyo-stone/60 text-white placeholder-koyo-mist text-xs px-5 py-3.5 rounded-full focus:outline-none focus:border-emerald-400 flex-grow" style="">
+        <button type="submit" class="bg-koyo-washi text-koyo-charcoal px-6 py-3.5 rounded-full text-xs uppercase tracking-wider font-semibold hover:bg-emerald-300 transition-colors whitespace-nowrap">
+          Join Dispatch
+        </button>
+      </form>
+      <p id="subscribe-success" class="hidden text-xs text-emerald-300 tracking-wider">感謝 — You have been added to the seasonal tea dispatch.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-koyo-ink text-koyo-mist text-xs py-12 border-t border-koyo-stone/40">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <span class="font-kanji text-xl text-koyo-bamboo">光葉</span>
+        <span class="tracking-widest uppercase text-[10px]">KOYO TEA CO. · SAN FRANCISCO, CA</span>
+      </div>
+
+      <div class="flex items-center gap-6 text-[11px] tracking-wider uppercase">
+        <a href="#philosophy" class="hover:text-white transition-colors">Philosophy</a>
+        <a href="#menu" class="hover:text-white transition-colors">Tea Menu</a>
+        <a href="#space" class="hover:text-white transition-colors">Etiquette</a>
+        <a href="#hours" class="hover:text-white transition-colors">Find Us</a>
+      </div>
+
+      <div class="text-[10px] text-koyo-stone">
+        © <span id="year">2026</span> KOYO TEA LLC. ALL RIGHTS RESERVED.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & DRAWERS ================= -->
+
+  <!-- MODAL: TATAMI RESERVATION -->
+  <div id="reserve-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-koyo-washi rounded-3xl max-w-lg w-full p-8 border border-koyo-bamboo shadow-2xl relative">
+      <button onclick="closeModal('reserve-modal')" class="absolute top-6 right-6 text-koyo-stone hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <div class="mb-6">
+        <span class="text-[10px] uppercase font-mono tracking-widest text-koyo-matcha">Hayes Valley Tea House</span>
+        <h3 class="font-serif text-3xl text-koyo-charcoal mt-1">Book Tatami Nook or Flight</h3>
+        <p class="text-xs text-koyo-mist mt-1">Tatami rooms are shoes-off and screen-free. Reservations held for 15 minutes.</p>
+      </div>
+
+      <form onsubmit="handleReservation(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-koyo-stone mb-1">Experience Type</label>
+          <select class="w-full bg-white border border-koyo-bamboo rounded-xl px-4 py-2.5 text-xs text-koyo-charcoal focus:outline-none focus:border-koyo-matcha">
+            <option>Standard Tatami Mat (Screen-Free Reading &amp; Tea) · 75 min</option>
+            <option>Guided Terroir of Kyoto Flight ($28/person) · 60 min</option>
+            <option>Ceremonial Koicha &amp; Seasonal Wagashi Pairing · 45 min</option>
+            <option>Focus Bar Reserved Desk (Quiet Laptop Zone) · 2 hrs</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-koyo-stone mb-1">Date</label>
+            <input type="date" required="" class="w-full bg-white border border-koyo-bamboo rounded-xl px-4 py-2.5 text-xs text-koyo-charcoal focus:outline-none focus:border-koyo-matcha" style="">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-koyo-stone mb-1">Preferred Time</label>
+            <select class="w-full bg-white border border-koyo-bamboo rounded-xl px-4 py-2.5 text-xs text-koyo-charcoal focus:outline-none focus:border-koyo-matcha">
+              <option>10:00 AM (Quiet Morning)</option>
+              <option>12:30 PM (Midday)</option>
+              <option>2:15 PM (Afternoon Flight)</option>
+              <option>4:00 PM (Late Steep)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-koyo-stone mb-1">Party Size</label>
+            <select class="w-full bg-white border border-koyo-bamboo rounded-xl px-4 py-2.5 text-xs text-koyo-charcoal focus:outline-none focus:border-koyo-matcha">
+              <option>1 Person (Solo Meditation/Study)</option>
+              <option>2 People</option>
+              <option>3 - 4 People (Max)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-koyo-stone mb-1">Name</label>
+            <input type="text" required="" placeholder="Elena Vance" class="w-full bg-white border border-koyo-bamboo rounded-xl px-4 py-2.5 text-xs text-koyo-charcoal focus:outline-none focus:border-koyo-matcha" style="">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-koyo-stone mb-1">Mobile (for SMS confirmation)</label>
+          <input type="tel" required="" placeholder="(415) 000-0000" class="w-full bg-white border border-koyo-bamboo rounded-xl px-4 py-2.5 text-xs text-koyo-charcoal focus:outline-none focus:border-koyo-matcha" style="">
+        </div>
+
+        <button type="submit" class="w-full mt-4 py-3.5 bg-koyo-ink text-white rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-koyo-matcha transition-colors">
+          Confirm Sanctuary Request
+        </button>
+      </form>
+      <div id="reserve-success" class="hidden text-center py-6 text-sm text-koyo-matcha font-medium">
+        ✓ Reservation request recorded. An SMS voucher has been dispatched.
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: QUICK PICKUP ORDER -->
+  <div id="order-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-koyo-washi rounded-3xl max-w-md w-full p-8 border border-koyo-bamboo shadow-2xl relative">
+      <button onclick="closeModal('order-modal')" class="absolute top-6 right-6 text-koyo-stone hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <div class="mb-4">
+        <span class="text-[10px] uppercase font-mono tracking-widest text-koyo-matcha">Skip The Line</span>
+        <h3 class="font-serif text-2xl text-koyo-charcoal mt-1">Curbside Pickup (Hayes Valley)</h3>
+        <p class="text-xs text-koyo-mist">Whisked fresh to temperature upon your arrival window.</p>
+      </div>
+
+      <div class="space-y-3 max-h-64 overflow-y-auto pr-1 my-4 border-y border-koyo-bamboo py-3 text-xs">
+        <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-koyo-bamboo/60">
+          <div>
+            <span class="font-medium text-koyo-charcoal block">Uji Ceremonial Koicha</span>
+            <span class="text-koyo-mist text-[11px]">$9.00 · Warm Chawan Bowl</span>
+          </div>
+          <button onclick="addCartItem('Uji Ceremonial Koicha', 9.00)" class="px-2.5 py-1 bg-koyo-sand hover:bg-koyo-bamboo rounded text-[11px] font-semibold">+ Add</button>
+        </div>
+
+        <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-koyo-bamboo/60">
+          <div>
+            <span class="font-medium text-koyo-charcoal block">Roasted Hojicha Oat Latte</span>
+            <span class="text-koyo-mist text-[11px]">$7.50 · Over Clear Ice</span>
+          </div>
+          <button onclick="addCartItem('Hojicha Oat Latte', 7.50)" class="px-2.5 py-1 bg-koyo-sand hover:bg-koyo-bamboo rounded text-[11px] font-semibold">+ Add</button>
+        </div>
+
+        <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-koyo-bamboo/60">
+          <div>
+            <span class="font-medium text-koyo-charcoal block">Slow Tower Mizudashi Sencha</span>
+            <span class="text-koyo-mist text-[11px]">$8.00 · 14-Hour Cold Drip</span>
+          </div>
+          <button onclick="addCartItem('Mizudashi Sencha', 8.00)" class="px-2.5 py-1 bg-koyo-sand hover:bg-koyo-bamboo rounded text-[11px] font-semibold">+ Add</button>
+        </div>
+
+        <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-koyo-bamboo/60">
+          <div>
+            <span class="font-medium text-koyo-charcoal block">Black Sesame Hojicha Canelé</span>
+            <span class="text-koyo-mist text-[11px]">$5.75 · Freshly Baked</span>
+          </div>
+          <button onclick="addCartItem('Hojicha Canelé', 5.75)" class="px-2.5 py-1 bg-koyo-sand hover:bg-koyo-bamboo rounded text-[11px] font-semibold">+ Add</button>
+        </div>
+      </div>
+
+      <!-- Simple Cart Summary -->
+      <div class="bg-white p-3 rounded-xl border border-koyo-bamboo mb-4 text-xs">
+        <div class="flex justify-between font-medium text-koyo-charcoal">
+          <span>Your Bag (<span id="cart-count">0</span> items)</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <div id="cart-items" class="text-koyo-mist mt-1 text-[11px]">No items added yet.</div>
+      </div>
+
+      <button onclick="checkoutOrder()" class="w-full py-3 bg-koyo-matcha text-white rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-koyo-matcha-deep transition-colors">
+        Complete Hayes Street Pickup
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. Dynamic SF Live Clock
+    function updateSFTime() {
+      const options = {
+        timeZone: 'America/Los_Angeles',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      };
+      const sfTime = new Intl.DateTimeFormat([], options).format(new Date());
+      const el = document.getElementById('current-sf-time');
+      if (el) el.textContent = sfTime + ' PST';
+    }
+    setInterval(updateSFTime, 1000);
+    updateSFTime();
+
+    // Set Copyright Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Ambient Audio Synthesizer (Web Audio API - Calm Zen Rain/Chime Generator)
+    let audioCtx = null;
+    let isPlayingAudio = false;
+    let noiseNode = null;
+    let gainNode = null;
+
+    document.getElementById('audio-toggle').addEventListener('click', function() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      if (isPlayingAudio) {
+        // Stop audio
+        if (gainNode) {
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1);
+          setTimeout(() => {
+            if (noiseNode) noiseNode.disconnect();
+          }, 1000);
+        }
+        isPlayingAudio = false;
+        document.getElementById('audio-label').textContent = 'Tea Mist Audio: Off';
+        this.classList.remove('text-emerald-400');
+      } else {
+        // Resume AudioContext if suspended by browser policy
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        // Generate Pink Noise (Gentle Bamboo Mist / Waterfall effect)
+        const bufferSize = audioCtx.sampleRate * 2;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+        
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          b3 = 0.86650 * b3 + white * 0.3104856;
+          b4 = 0.55000 * b4 + white * 0.5329522;
+          b5 = -0.7616 * b5 - white * 0.0168980;
+          data[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+          data[i] *= 0.035; // Soft volume
+          b6 = white * 0.115926;
+        }
+
+        noiseNode = audioCtx.createBufferSource();
+        noiseNode.buffer = buffer;
+        noiseNode.loop = true;
+
+        // Lowpass filter for deep warm mist tone
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 480;
+
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.4, audioCtx.currentTime + 1.5);
+
+        noiseNode.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        noiseNode.start();
+
+        isPlayingAudio = true;
+        document.getElementById('audio-label').textContent = 'Tea Mist Audio: Ambient Hum';
+        this.classList.add('text-emerald-400');
+      }
+    });
+
+    // 3. Mobile Navigation Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('hidden');
+    }
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    // 4. Interactive Tea Matchmaker
+    const teaData = {
+      focus: {
+        title: "Uji Samidori Ceremonial Koicha",
+        origin: "Uji, Kyoto · 1st Flush Single Cultivar",
+        temp: "75°C · Ceremonial Whisk",
+        desc: "High concentration of L-Theanine without the crash. A thick, vibrant emerald elixir packed with sweet edamame tones and sustained clarity for long creative sprints.",
+        price: "$9.50 (Whisked Bowl)",
+        img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=500&q=80"
+      },
+      decompress: {
+        title: "Sand-Roasted Shizuoka Hojicha",
+        origin: "Makinohara, Shizuoka · Autumn Harvest",
+        temp: "90°C · Clay Pot Infusion",
+        desc: "Nearly devoid of caffeine due to high-heat roasting over porcelain sand. Deep, earthy notes of campfire oak, dark cocoa, and hazelnut. Soothes nervous system strain.",
+        price: "$7.50 (Hot or Cold Brew)",
+        img: "https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=500&q=80"
+      },
+      creativity: {
+        title: "Genmaicha with Toasted Heirloom Mochi Rice",
+        origin: "Kagoshima · Organic Bancha & Roasted Grain",
+        temp: "85°C · Kyusu Steeping",
+        desc: "Comforting, savory aroma of toasted mochi kernels combined with grassy summer bancha. Grounding, deeply nostalgic, and accessible all afternoon.",
+        price: "$7.00 (Teapot with refills)",
+        img: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=500&q=80"
+      },
+      ceremony: {
+        title: "Traditional Straw-Covered Yame Gyokuro",
+        origin: "Hoshino Village, Fukuoka · 20-Day Sun Shading",
+        temp: "55°C · Flat Shiboridashi",
+        desc: "The pinnacle of Japanese leaf craftsmanship. Deep emerald drop that feels almost broth-like with natural umami, sweet kelp, and a lingering sweetness lasting hours.",
+        price: "$11.00 (3 Guided Brews)",
+        img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=500&q=80"
+      }
+    };
+
+    function recommendTea(stateKey) {
+      const data = teaData[stateKey];
+      if (!data) return;
+
+      // Update button visual states
+      const btns = document.querySelectorAll('.state-btn');
+      btns.forEach(b => {
+        b.classList.remove('bg-koyo-ink', 'text-white', 'border-koyo-ink');
+        b.classList.add('border-koyo-bamboo', 'text-koyo-stone');
+      });
+      event.target.classList.remove('border-koyo-bamboo', 'text-koyo-stone');
+      event.target.classList.add('bg-koyo-ink', 'text-white', 'border-koyo-ink');
+
+      // Animate card update
+      const resCard = document.getElementById('recommendation-result');
+      resCard.style.opacity = '0.4';
+      setTimeout(() => {
+        document.getElementById('rec-title').textContent = data.title;
+        document.getElementById('rec-origin').textContent = data.origin;
+        document.getElementById('rec-temp').textContent = data.temp;
+        document.getElementById('rec-desc').textContent = data.desc;
+        document.getElementById('rec-price').textContent = data.price;
+        document.getElementById('rec-img').src = data.img;
+        resCard.style.opacity = '1';
+      }, 150);
+    }
+
+    // 5. Menu Category Filter
+    function filterMenu(category) {
+      const cards = document.querySelectorAll('.menu-card');
+      const filterBtns = document.querySelectorAll('.menu-filter-btn');
+
+      filterBtns.forEach(btn => {
+        btn.classList.remove('bg-koyo-ink', 'text-white', 'border-koyo-ink');
+        btn.classList.add('border-koyo-bamboo', 'text-koyo-stone');
+      });
+      event.target.classList.remove('border-koyo-bamboo', 'text-koyo-stone');
+      event.target.classList.add('bg-koyo-ink', 'text-white', 'border-koyo-ink');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 6. Modal Handlers
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Close on background backdrop click
+    window.addEventListener('click', function(e) {
+      if (e.target.id === 'reserve-modal') closeModal('reserve-modal');
+      if (e.target.id === 'order-modal') closeModal('order-modal');
+    });
+
+    // 7. Form Submissions
+    function handleReservation(e) {
+      e.preventDefault();
+      document.querySelector('#reserve-modal form').classList.add('hidden');
+      document.getElementById('reserve-success').classList.remove('hidden');
+      setTimeout(() => {
+        closeModal('reserve-modal');
+        // Reset form for next open
+        setTimeout(() => {
+          document.querySelector('#reserve-modal form').reset();
+          document.querySelector('#reserve-modal form').classList.remove('hidden');
+          document.getElementById('reserve-success').classList.add('hidden');
+        }, 500);
+      }, 2500);
+    }
+
+    function handleSubscribe(e) {
+      e.preventDefault();
+      document.getElementById('subscribe-form').classList.add('hidden');
+      document.getElementById('subscribe-success').classList.remove('hidden');
+    }
+
+    // 8. Simple Cart State for Modern SF Cafe Ordering
+    let cart = [];
+    function addCartItem(name, price) {
+      cart.push({ name, price });
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('cart-count');
+      const totalEl = document.getElementById('cart-total');
+      const itemsEl = document.getElementById('cart-items');
+
+      countEl.textContent = cart.length;
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      totalEl.textContent = '$' + total.toFixed(2);
+
+      if (cart.length === 0) {
+        itemsEl.textContent = 'No items added yet.';
+      } else {
+        itemsEl.innerHTML = cart.map(i => `• ${i.name} ($${i.price.toFixed(2)})`).join('<br/>');
+      }
+    }
+
+    function checkoutOrder() {
+      if (cart.length === 0) {
+        alert('Please add a brew or pastry to your pickup order first.');
+        return;
+      }
+      alert('Order placed for Hayes Valley pickup! Preparation begins 5 minutes before your arrival.');
+      cart = [];
+      updateCartUI();
+      closeModal('order-modal');
+    }
+  </script>
+
+</body></html>

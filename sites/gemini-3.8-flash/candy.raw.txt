@@ -1,0 +1,1454 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Summer Days | Real Sugar, Real Fruit Candy for Kids & Grown-Ups</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFFDF7',
+            blush: '#FFF0EC',
+            tangerine: '#FF7A45',
+            sunshine: '#FFC837',
+            strawberry: '#FF4D6D',
+            berry: '#782846',
+            mint: '#38B29B',
+            mintLight: '#E8F8F5',
+            ink: '#2B2129',
+            muted: '#6B5E62',
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'pop': '4px 4px 0px 0px #2B2129',
+            'pop-sm': '2px 2px 0px 0px #2B2129',
+            'pop-lg': '6px 6px 0px 0px #2B2129',
+            'soft': '0 12px 34px -8px rgba(255, 77, 109, 0.15)',
+          },
+          borderRadius: {
+            'wobbly': '255px 15px 225px 15px/15px 225px 15px 255px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbar and organic styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFFDF7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FFC837;
+      border-radius: 999px;
+      border: 2px solid #FFFDF7;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF7A45;
+    }
+
+    .badge-float {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+    .badge-float-delayed {
+      animation: gentleFloat 4.5s ease-in-out 1.5s infinite;
+    }
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    .sunburst-bg {
+      background-image: radial-gradient(#FF7A45 1.5px, transparent 1.5px), radial-gradient(#FFC837 1.5px, #FFFDF7 1.5px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+    }
+    .striped-banner {
+      background: repeating-linear-gradient(
+        -45deg,
+        #FFC837,
+        #FFC837 20px,
+        #FF7A45 20px,
+        #FF7A45 40px
+      );
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-ink font-sans selection:bg-strawberry selection:text-white antialiased">
+
+  <!-- ================= ANNOUNCEMENT BAR ================= -->
+  <aside aria-label="Summer announcement" class="bg-strawberry text-white text-xs sm:text-sm font-semibold tracking-wide py-2.5 px-4 text-center relative overflow-hidden z-50">
+    <div class="flex items-center justify-center gap-2">
+      <span class="inline-block animate-spin text-sunshine">☀️</span>
+      <span><strong>Golden Summer Flash:</strong> Free chilled insulated shipping on all orders $45+!</span>
+      <span class="hidden md:inline text-white/80">| Real Florida cane sugar. Zero weird aftertaste.</span>
+    </div>
+  </aside>
+
+  <!-- ================= HEADER & NAV ================= -->
+  <header class="sticky top-0 bg-cream/90 backdrop-blur-md z-40 border-b-2 border-ink/10 transition-all duration-300">
+    <nav aria-label="Main Navigation" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl border-2 border-ink hover:bg-blush transition-colors" aria-label="Open Navigation Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-11 h-11 bg-sunshine rounded-2xl border-2 border-ink flex items-center justify-center shadow-pop-sm group-hover:rotate-6 transition-transform">
+          <i data-lucide="sun" class="w-6 h-6 text-strawberry fill-strawberry"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-black text-2xl sm:text-3xl tracking-tight leading-none text-ink">
+            Sweet Summer <span class="text-strawberry italic">Days</span>
+          </span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-tangerine mt-0.5">Candy with a Sunny Conscience</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center gap-8 font-bold text-sm tracking-wide">
+        <a href="#shop" class="hover:text-strawberry transition-colors">Our Candies</a>
+        <a href="#philosophy" class="hover:text-strawberry transition-colors">Why Real Sugar?</a>
+        <a href="#box-builder" class="hover:text-strawberry transition-colors flex items-center gap-1.5">
+          <span class="px-2 py-0.5 bg-sunshine text-ink text-xs rounded-full border border-ink">Custom</span>
+          Build a Tuck Box
+        </a>
+        <a href="#ingredients" class="hover:text-strawberry transition-colors">Clean Ingredients</a>
+        <a href="#reviews" class="hover:text-strawberry transition-colors">Reviews</a>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <button id="searchTrigger" class="p-2.5 rounded-full hover:bg-blush transition text-ink" aria-label="Search Flavors">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+        <button id="cartBtn" class="relative flex items-center gap-2 bg-strawberry text-white font-bold px-4 py-2.5 rounded-2xl border-2 border-ink shadow-pop-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all" aria-label="Shopping Cart">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span class="hidden sm:inline text-sm">Tuck Pouch</span>
+          <span id="cartCount" class="w-5 h-5 bg-sunshine text-ink text-xs font-black rounded-full flex items-center justify-center border border-ink">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobileMenu" class="fixed inset-0 bg-ink/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity">
+    <div class="bg-cream w-4/5 max-w-sm h-full p-6 shadow-2xl flex flex-col justify-between transform -translate-x-full transition-transform duration-300 ease-out" id="mobileMenuPanel">
+      <div>
+        <div class="flex justify-between items-center pb-6 border-b border-ink/10">
+          <span class="font-serif font-black text-xl text-ink">Sweet Summer Days</span>
+          <button id="closeMobileMenu" class="p-2 text-ink hover:text-strawberry">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="flex flex-col gap-4 mt-6 font-bold text-base">
+          <a href="#shop" class="mobile-link py-2 hover:text-strawberry">Our Candies</a>
+          <a href="#philosophy" class="mobile-link py-2 hover:text-strawberry">The Healthy-ish Manifesto</a>
+          <a href="#box-builder" class="mobile-link py-2 hover:text-strawberry">Build a Tuck Box</a>
+          <a href="#ingredients" class="mobile-link py-2 hover:text-strawberry">Clean Standards</a>
+          <a href="#reviews" class="mobile-link py-2 hover:text-strawberry">What Parents & Foodies Say</a>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-ink/10 text-xs text-muted">
+        <p class="font-bold text-ink">🍭 Craft candy made in small batches.</p>
+        <p class="mt-1">Non-GMO • Dye-Free • Real Purees</p>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden sunburst-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Hero Text -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sunshine/40 border-2 border-ink text-xs sm:text-sm font-extrabold uppercase tracking-wider text-ink shadow-pop-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-strawberry animate-pulse"></span>
+              NO FAKE CHEMICAL SWEETENERS • NO RED 40
+            </div>
+
+            <h1 class="font-serif font-black text-4xl sm:text-6xl xl:text-7xl leading-[1.08] tracking-tight text-ink">
+              Candy made with <span class="italic text-strawberry underline decoration-sunshine decoration-wavy decoration-4">real sugar</span> for big & small sun-chasers.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-muted max-w-2xl font-medium leading-relaxed">
+              We ditched artificial gut-wrecking sugar alcohols, synthetic dyes, and corn syrup. Just unrefined golden cane sugar, honest fruit purées, and playful botanicals.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#shop" class="w-full sm:w-auto px-8 py-4 bg-tangerine hover:bg-strawberry text-white font-extrabold text-base rounded-2xl border-2 border-ink shadow-pop transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-pop-sm flex items-center justify-center gap-3">
+                <span>Explore Sunlit Treats</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </a>
+              <a href="#box-builder" class="w-full sm:w-auto px-7 py-4 bg-white hover:bg-blush text-ink font-bold text-base rounded-2xl border-2 border-ink shadow-pop-sm transition-all flex items-center justify-center gap-2">
+                <i data-lucide="package-plus" class="w-5 h-5 text-mint"></i>
+                <span>Mix 4-Pack Tuck Box</span>
+              </a>
+            </div>
+
+            <!-- Trust Bar / Perks -->
+            <div class="grid grid-cols-3 gap-3 pt-6 max-w-xl mx-auto lg:mx-0">
+              <div class="bg-white/90 p-3 rounded-xl border border-ink/20 text-center">
+                <div class="text-xl">🍓</div>
+                <div class="font-black text-sm text-ink mt-1">Real Fruit</div>
+                <div class="text-[11px] text-muted">Sun-ripe purées</div>
+              </div>
+              <div class="bg-white/90 p-3 rounded-xl border border-ink/20 text-center">
+                <div class="text-xl">🌿</div>
+                <div class="font-black text-sm text-ink mt-1">Zero Gut Ache</div>
+                <div class="text-[11px] text-muted">No erythritol/maltitol</div>
+              </div>
+              <div class="bg-white/90 p-3 rounded-xl border border-ink/20 text-center">
+                <div class="text-xl">🎨</div>
+                <div class="font-black text-sm text-ink mt-1">Plant Colors</div>
+                <div class="text-[11px] text-muted">Beet, carrot & spirulina</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Graphic Canvas -->
+          <div class="lg:col-span-5 relative flex justify-center">
+            <div class="relative w-full max-w-md aspect-square">
+              <!-- Backdrop circle -->
+              <div class="absolute inset-0 bg-gradient-to-tr from-sunshine via-blush to-strawberry/30 rounded-full border-4 border-ink shadow-pop-lg transform rotate-3"></div>
+              
+              <!-- Featured Candy Pouch Mockup -->
+              <div class="absolute inset-4 bg-white rounded-3xl border-3 border-ink p-6 flex flex-col justify-between shadow-inner overflow-hidden">
+                <div class="flex justify-between items-start">
+                  <span class="px-3 py-1 bg-mintLight text-mint border border-mint/40 text-xs font-black rounded-lg">BOUTIQUE BATCH #08</span>
+                  <div class="text-right">
+                    <span class="text-xs uppercase font-extrabold text-muted block">Sugar per pack</span>
+                    <span class="font-serif font-black text-xl text-ink">9g <span class="text-xs font-sans font-bold text-mint font-normal">(Mindful portion)</span></span>
+                  </div>
+                </div>
+
+                <!-- Candy Illustration Box -->
+                <div class="relative my-4 flex items-center justify-center py-6">
+                  <!-- Candy Graphic Elements -->
+                  <div class="w-36 h-36 rounded-full bg-strawberry flex items-center justify-center border-4 border-ink shadow-pop badge-float">
+                    <span class="text-5xl">🍋</span>
+                  </div>
+                  <div class="absolute -top-2 right-8 w-20 h-20 rounded-full bg-sunshine flex items-center justify-center border-3 border-ink shadow-pop-sm badge-float-delayed">
+                    <span class="text-3xl">🍓</span>
+                  </div>
+                  <div class="absolute -bottom-4 left-6 w-20 h-20 rounded-full bg-mint flex items-center justify-center border-3 border-ink shadow-pop-sm badge-float">
+                    <span class="text-3xl">🍊</span>
+                  </div>
+                </div>
+
+                <div class="border-t-2 border-dashed border-ink/20 pt-4">
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <h2 class="font-serif font-bold text-lg text-ink">Wild Summer Dino Chews</h2>
+                      <p class="text-xs text-muted">Organic Strawberry & Crisp Meyer Lemon</p>
+                    </div>
+                    <span class="font-black text-lg text-strawberry">$5.95</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Sticker Badges -->
+              <div class="absolute -top-4 -left-4 bg-sunshine text-ink font-black text-xs px-3.5 py-1.5 rounded-full border-2 border-ink shadow-pop-sm rotate-[-12deg] badge-float">
+                ✨ KID OBSESSED
+              </div>
+              <div class="absolute -bottom-4 -right-2 bg-mint text-white font-black text-xs px-3.5 py-1.5 rounded-full border-2 border-ink shadow-pop-sm rotate-[8deg] badge-float-delayed">
+                🥂 GROWN-UP CRAVED
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TICKER STRIP ================= -->
+    <div class="striped-banner py-3 text-ink font-extrabold text-sm border-y-2 border-ink overflow-hidden whitespace-nowrap">
+      <div class="inline-flex gap-8 tracking-widest uppercase animate-marquee">
+        <span>☀️ REAL UNREFINED SUGAR</span>
+        <span>•</span>
+        <span>🌿 NO ERYTHRITOL OR ARTIFICIAL SWEETENERS</span>
+        <span>•</span>
+        <span>🍓 ACTUAL FRUIT JUICE PURÉES</span>
+        <span>•</span>
+        <span>🌱 GELATIN-FREE VEGAN RECIPES</span>
+        <span>•</span>
+        <span>🎈 NO WEIRD BLOATING</span>
+        <span>•</span>
+        <span>✨ 100% SOURCED IN CALIFORNIA & SUNNY TROPICS</span>
+        <span>•</span>
+        <span>☀️ REAL UNREFINED SUGAR</span>
+      </div>
+    </div>
+
+    <!-- ================= THE HEALTHY-ISH MANIFESTO ================= -->
+    <section id="philosophy" class="py-20 bg-white relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+          <span class="px-4 py-1.5 rounded-full bg-blush border border-strawberry/30 text-strawberry font-black text-xs uppercase tracking-wider inline-block">
+            The "Healthy-ish" Philosophy
+          </span>
+          <h2 class="font-serif font-black text-3xl sm:text-5xl text-ink">
+            Why we proudly choose real sugar over chemical fakery.
+          </h2>
+          <p class="text-muted text-base sm:text-lg">
+            We believe your sweet tooth deserves honesty. Modern "diet" candy replaced sugar with mystery alcohols, processed corn starches, and chemical cooling sensations. We said: <em>let's make real candy, thoughtfully proportioned.</em>
+          </p>
+        </div>
+
+        <!-- Comparison Table / Cards -->
+        <div class="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
+          <!-- The Bad "Diet" Candy -->
+          <div class="bg-stone-50 rounded-3xl p-8 border-2 border-stone-300 relative">
+            <div class="flex items-center justify-between pb-6 border-b border-stone-200">
+              <span class="font-serif font-bold text-2xl text-stone-500">The "Zero Sugar" Gimmick</span>
+              <span class="text-3xl">🤢</span>
+            </div>
+            <ul class="space-y-4 mt-6 text-sm text-stone-600 font-medium">
+              <li class="flex items-start gap-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <span><strong>Sugar Alcohols & Allulose:</strong> Infamous for digestive distress, cramping, and that eerie chalky throat-burn.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <span><strong>Synthetic Dyes:</strong> Petroleum-derived Red #40 & Yellow #5 linked to kid hyperactivity.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <span><strong>Synthetic Soluble Corn Fiber:</strong> Leaves candy sticky in teeth and leaves an empty fake satisfaction.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="x" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <span><strong>Tastes like sadness:</strong> Missing that golden caramelization and crisp fruity bite.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- The Sweet Summer Days Way -->
+          <div class="bg-blush rounded-3xl p-8 border-3 border-ink shadow-pop relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-sunshine border-b-2 border-l-2 border-ink px-4 py-1 font-bold text-xs">
+              THE BRIGHTER PATH
+            </div>
+            <div class="flex items-center justify-between pb-6 border-b border-ink/20">
+              <span class="font-serif font-black text-2xl text-ink">Sweet Summer Days</span>
+              <span class="text-3xl">☀️</span>
+            </div>
+            <ul class="space-y-4 mt-6 text-sm text-ink font-semibold">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-mint shrink-0 mt-0.5 fill-mint/20"></i>
+                <span><strong>Fair-Trade Unrefined Cane:</strong> Pure sunshine and plant sucrose that your body instinctively knows how to digest.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-mint shrink-0 mt-0.5 fill-mint/20"></i>
+                <span><strong>Colores from the Earth:</strong> Purple sweet potatoes, spirulina algae, turmeric root, and elderberries.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-mint shrink-0 mt-0.5 fill-mint/20"></i>
+                <span><strong>Satiety & Portion Control:</strong> Because real cane actually satisfies sweet cravings, 4-6 pieces is all you need.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-mint shrink-0 mt-0.5 fill-mint/20"></i>
+                <span><strong>Pectin from Citrus Peels:</strong> 100% plant-based, chewable bliss without animal bone marrow gelatin.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Stat snippet -->
+        <div class="mt-14 p-6 bg-sunshine/20 rounded-2xl border-2 border-dashed border-ink/30 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-around gap-6 text-center">
+          <div>
+            <div class="font-serif font-black text-4xl text-ink">9-12g</div>
+            <div class="text-xs uppercase font-extrabold tracking-wider text-muted mt-1">Real Sugar Per Serving</div>
+          </div>
+          <div class="hidden md:block w-px h-12 bg-ink/20"></div>
+          <div>
+            <div class="font-serif font-black text-4xl text-strawberry">0g</div>
+            <div class="text-xs uppercase font-extrabold tracking-wider text-muted mt-1">Chemical Alcohols or Stevia</div>
+          </div>
+          <div class="hidden md:block w-px h-12 bg-ink/20"></div>
+          <div>
+            <div class="font-serif font-black text-4xl text-mint">100%</div>
+            <div class="text-xs uppercase font-extrabold tracking-wider text-muted mt-1">Smile-Guaranteed Chew</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SHOP / CANDY COLLECTION ================= -->
+    <section id="shop" class="py-20 bg-cream border-t-2 border-ink/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <span class="text-xs font-black uppercase tracking-wider text-tangerine">Handcrafted Boutique Batch</span>
+            <h2 class="font-serif font-black text-3xl sm:text-5xl text-ink mt-1">The Sunlit Pantry</h2>
+            <p class="text-muted mt-2 text-sm sm:text-base">Gourmet fruity sour drops for cocktail night, nostalgic gummies for beach days with the kids.</p>
+          </div>
+
+          <!-- Category Filters -->
+          <div class="flex flex-wrap gap-2" id="filterContainer">
+            <button class="filter-btn active-filter px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 border-ink shadow-pop-sm transition-all" data-category="all">
+              All Candies (6)
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 border-ink/30 bg-white hover:border-ink transition-all" data-category="kids">
+              Family & Kids
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 border-ink/30 bg-white hover:border-ink transition-all" data-category="adult">
+              Botanical & Adult Sours
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 border-ink/30 bg-white hover:border-ink transition-all" data-category="sour">
+              Super Sour
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+          <!-- Products injected by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BUILD YOUR OWN SUMMER TUCK BOX ================= -->
+    <section id="box-builder" class="py-20 bg-mintLight relative border-t-2 border-b-2 border-ink">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Builder Details -->
+          <div class="lg:col-span-5 space-y-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-mint text-white font-black text-xs uppercase tracking-wider border border-ink inline-block">
+              Interactive Gift Lab
+            </span>
+            <h2 class="font-serif font-black text-3xl sm:text-5xl text-ink">
+              Build a Custom 4-Pack Tuck Box
+            </h2>
+            <p class="text-muted text-base">
+              Mix and match 4 pouches in our retro sun-stamped tuck carton. Perfect for road trips, hostess gifts, picnic blankets, or family pantry stocking.
+            </p>
+
+            <div class="p-5 bg-white rounded-2xl border-2 border-ink shadow-pop-sm">
+              <div class="flex justify-between items-center mb-3">
+                <span class="font-bold text-sm text-ink">Box Capacity</span>
+                <span id="boxCountDisplay" class="font-serif font-black text-strawberry text-lg">0 / 4 Selected</span>
+              </div>
+              <!-- Progress Bar -->
+              <div class="w-full h-4 bg-blush rounded-full border border-ink overflow-hidden p-0.5">
+                <div id="boxProgressBar" class="h-full bg-strawberry rounded-full transition-all duration-300 w-0"></div>
+              </div>
+              <p class="text-xs text-muted mt-3">🎁 Includes hand-written citrus postcard & custom ribbon seal.</p>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <div>
+                <span class="text-xs text-muted font-bold block">BUNDLE PRICE</span>
+                <span class="font-serif font-black text-3xl text-ink">$22.00</span>
+                <span class="text-xs text-mint font-bold block">Save $3.80 vs single bags</span>
+              </div>
+              <button id="addBoxToCartBtn" disabled class="px-6 py-3.5 bg-ink text-white font-extrabold rounded-xl border-2 border-ink opacity-40 cursor-not-allowed transition-all shadow-pop-sm">
+                Add Bundle to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Selection Area -->
+          <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border-3 border-ink shadow-pop">
+            <h3 class="font-serif font-bold text-xl text-ink mb-2">Tap pouches to fill your slots:</h3>
+            <p class="text-xs text-muted mb-6">Select your favorite flavor combinations below.</p>
+
+            <!-- 4 Slots Display -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 mb-8">
+              <div id="slot-0" class="aspect-square border-2 border-dashed border-ink/40 rounded-2xl flex flex-col items-center justify-center p-2 text-center bg-cream transition-all">
+                <span class="text-2xl">📦</span>
+                <span class="text-[10px] sm:text-xs font-bold text-muted mt-1">Empty Slot</span>
+              </div>
+              <div id="slot-1" class="aspect-square border-2 border-dashed border-ink/40 rounded-2xl flex flex-col items-center justify-center p-2 text-center bg-cream transition-all">
+                <span class="text-2xl">📦</span>
+                <span class="text-[10px] sm:text-xs font-bold text-muted mt-1">Empty Slot</span>
+              </div>
+              <div id="slot-2" class="aspect-square border-2 border-dashed border-ink/40 rounded-2xl flex flex-col items-center justify-center p-2 text-center bg-cream transition-all">
+                <span class="text-2xl">📦</span>
+                <span class="text-[10px] sm:text-xs font-bold text-muted mt-1">Empty Slot</span>
+              </div>
+              <div id="slot-3" class="aspect-square border-2 border-dashed border-ink/40 rounded-2xl flex flex-col items-center justify-center p-2 text-center bg-cream transition-all">
+                <span class="text-2xl">📦</span>
+                <span class="text-[10px] sm:text-xs font-bold text-muted mt-1">Empty Slot</span>
+              </div>
+            </div>
+
+            <!-- Mini options pool -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="boxFlavorOptions">
+              <!-- Rendered via JS -->
+            </div>
+            
+            <div class="mt-4 flex justify-end">
+              <button id="resetBoxBtn" class="text-xs font-bold text-muted hover:text-strawberry underline">
+                Clear Tuck Box
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INGREDIENT SPOTLIGHT ================= -->
+    <section id="ingredients" class="py-20 bg-cream">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-black uppercase tracking-wider text-strawberry">Honest Chemistry</span>
+          <h2 class="font-serif font-black text-3xl sm:text-5xl text-ink mt-1">Read our ingredients without a chemistry degree.</h2>
+          <p class="text-muted mt-3">We source single-origin pure cane and real agricultural crops. Here's exactly how we flavor and color every sunny piece.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1 -->
+          <div class="bg-white p-6 rounded-2xl border-2 border-ink shadow-pop-sm flex flex-col justify-between hover:-translate-y-1 transition-transform">
+            <div>
+              <div class="w-12 h-12 bg-sunshine/40 rounded-xl border border-ink flex items-center justify-center text-2xl mb-4">
+                🌾
+              </div>
+              <h3 class="font-serif font-bold text-xl text-ink">Florida Golden Cane</h3>
+              <p class="text-xs text-muted mt-2 leading-relaxed">
+                Retains its natural amber molasses minerals. Not stripped or bleached, producing genuine warmth without metallic sweetness.
+              </p>
+            </div>
+            <span class="text-[11px] font-black text-tangerine mt-4 uppercase tracking-wider">Unrefined & Clean</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white p-6 rounded-2xl border-2 border-ink shadow-pop-sm flex flex-col justify-between hover:-translate-y-1 transition-transform">
+            <div>
+              <div class="w-12 h-12 bg-strawberry/20 rounded-xl border border-ink flex items-center justify-center text-2xl mb-4">
+                🍓
+              </div>
+              <h3 class="font-serif font-bold text-xl text-ink">Organic Fruit Purees</h3>
+              <p class="text-xs text-muted mt-2 leading-relaxed">
+                Real Oregon strawberries, Meyer lemons, and California Valencia oranges mashed down to their purest tangy nectar.
+              </p>
+            </div>
+            <span class="text-[11px] font-black text-strawberry mt-4 uppercase tracking-wider">Never "Natural Flavor #42"</span>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white p-6 rounded-2xl border-2 border-ink shadow-pop-sm flex flex-col justify-between hover:-translate-y-1 transition-transform">
+            <div>
+              <div class="w-12 h-12 bg-mint/20 rounded-xl border border-ink flex items-center justify-center text-2xl mb-4">
+                🌿
+              </div>
+              <h3 class="font-serif font-bold text-xl text-ink">Citrus Apple Pectin</h3>
+              <p class="text-xs text-muted mt-2 leading-relaxed">
+                A naturally gelatinous fiber drawn directly from apple cores and lemon rinds. Delivers a soft, juicy, melt-in-your-mouth bite.
+              </p>
+            </div>
+            <span class="text-[11px] font-black text-mint mt-4 uppercase tracking-wider">100% Plant Based</span>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white p-6 rounded-2xl border-2 border-ink shadow-pop-sm flex flex-col justify-between hover:-translate-y-1 transition-transform">
+            <div>
+              <div class="w-12 h-12 bg-berry/20 rounded-xl border border-ink flex items-center justify-center text-2xl mb-4">
+                🌱
+              </div>
+              <h3 class="font-serif font-bold text-xl text-ink">Botanical Colorings</h3>
+              <p class="text-xs text-muted mt-2 leading-relaxed">
+                Gorgeous hues painted by Spirulina, red radish juice, purple carrot, and golden turmeric root. Zero petroleum dyes.
+              </p>
+            </div>
+            <span class="text-[11px] font-black text-berry mt-4 uppercase tracking-wider">No Red 40 Ever</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS / WHO LOVES US ================= -->
+    <section id="reviews" class="py-20 bg-blush border-t-2 border-ink">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-xl mx-auto mb-16">
+          <div class="flex items-center justify-center gap-1 text-sunshine text-xl mb-2">
+            ★★★★★
+          </div>
+          <h2 class="font-serif font-black text-3xl sm:text-5xl text-ink">Loved by tiny hands & fancy grown-ups.</h2>
+          <p class="text-muted mt-2">Over 14,000 tuck pouches shared around campfire sessions, cocktail parties, and kindergarten playdates.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Testimonial 1 -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-pop flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-1 text-sunshine text-sm mb-4">★★★★★</div>
+              <p class="font-serif text-ink italic text-base leading-relaxed">
+                "Finally a candy I don't feel guilty handing to my 6-year-old before dinner, but honestly I hide the Yuzu Meyer Lemon drops in my own bedside drawer!"
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-ink/10 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-sunshine border border-ink flex items-center justify-center font-bold text-ink">
+                SJ
+              </div>
+              <div>
+                <h4 class="font-black text-sm text-ink">Sarah Jenkins</h4>
+                <p class="text-xs text-muted">Mom of two & Sommelier, Austin TX</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-pop flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-1 text-sunshine text-sm mb-4">★★★★★</div>
+              <p class="font-serif text-ink italic text-base leading-relaxed">
+                "Those zero-sugar viral keto candies gave my stomach the absolute worst cramps for 24 hours. Sweet Summer Days proves that moderation with REAL cane sugar is infinitely superior."
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-ink/10 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-mintLight border border-ink flex items-center justify-center font-bold text-mint">
+                MR
+              </div>
+              <div>
+                <h4 class="font-black text-sm text-ink">Dr. Marcus Reed</h4>
+                <p class="text-xs text-muted">Functional Medicine MD, Boulder CO</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-pop flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-1 text-sunshine text-sm mb-4">★★★★★</div>
+              <p class="font-serif text-ink italic text-base leading-relaxed">
+                "The Hibiscus Blood Orange Chews accompanied our poolside spritz party and our guests devoured all 4 bags in 20 minutes flat. Chewy perfection."
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-ink/10 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-strawberry/20 border border-ink flex items-center justify-center font-bold text-strawberry">
+                CL
+              </div>
+              <div>
+                <h4 class="font-black text-sm text-ink">Chloe Laurent</h4>
+                <p class="text-xs text-muted">Pastry Stylist, Brooklyn NY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= NEWSLETTER & SUNSHINE CLUB ================= -->
+    <section class="py-16 bg-sunshine relative border-t-2 border-ink">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="inline-block p-3 bg-white rounded-2xl border-2 border-ink shadow-pop-sm mb-4">
+          <i data-lucide="sun-medium" class="w-8 h-8 text-strawberry animate-spin" style="animation-duration: 10s;"></i>
+        </div>
+        <h2 class="font-serif font-black text-3xl sm:text-5xl text-ink">Join the Sunshine Tuck Club</h2>
+        <p class="text-ink/80 text-base max-w-xl mx-auto mt-2 font-medium">
+          Get <strong>15% off your first order</strong>, secret drop access to limited seasonal fruit harvests, and free kid-friendly summer games printable!
+        </p>
+
+        <form id="newsletterForm" class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input 
+            type="email" 
+            required 
+            placeholder="Enter your favorite email..." 
+            class="px-5 py-3.5 rounded-2xl border-2 border-ink bg-white placeholder-ink/50 text-ink focus:outline-none focus:ring-2 focus:ring-strawberry flex-grow font-medium"
+          >
+          <button type="submit" class="px-6 py-3.5 bg-strawberry hover:bg-strawberry/90 text-white font-extrabold rounded-2xl border-2 border-ink shadow-pop-sm hover:translate-x-[1px] hover:translate-y-[1px] transition-all shrink-0">
+            Send My 15% Off
+          </button>
+        </form>
+        <p class="text-xs text-ink/60 mt-3 font-semibold">No spam ever. Unsubscribe with one click anytime.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-ink text-cream py-16 border-t-4 border-ink">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12 border-b border-cream/20">
+        
+        <!-- Col 1: Brand -->
+        <div class="col-span-2">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-sunshine text-ink flex items-center justify-center font-black">☀️</span>
+            <span class="font-serif font-black text-2xl text-cream tracking-tight">Sweet Summer Days</span>
+          </div>
+          <p class="text-cream/70 text-sm mt-3 max-w-sm leading-relaxed">
+            A small boutique confectionery dedicated to mindful portions, transparent unrefined cane sugar, and radiant plant ingredients.
+          </p>
+          <div class="flex gap-3 mt-6">
+            <a href="#" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-strawberry transition flex items-center justify-center text-cream" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-strawberry transition flex items-center justify-center text-cream" aria-label="TikTok">
+              <i data-lucide="video" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-strawberry transition flex items-center justify-center text-cream" aria-label="Pinterest">
+              <i data-lucide="pin" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Shop -->
+        <div>
+          <h4 class="font-serif font-bold text-sunshine text-sm uppercase tracking-wider mb-4">Candies</h4>
+          <ul class="space-y-2.5 text-xs text-cream/75 font-semibold">
+            <li><a href="#shop" class="hover:text-sunshine transition">Sunburst Peach Rings</a></li>
+            <li><a href="#shop" class="hover:text-sunshine transition">Wild Strawberry Dino Chews</a></li>
+            <li><a href="#shop" class="hover:text-sunshine transition">Yuzu Rosemary Drops</a></li>
+            <li><a href="#shop" class="hover:text-sunshine transition">Hibiscus Blood Orange</a></li>
+            <li><a href="#box-builder" class="hover:text-sunshine transition">Build 4-Pack Tuck Box</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Why Us -->
+        <div>
+          <h4 class="font-serif font-bold text-sunshine text-sm uppercase tracking-wider mb-4">Values</h4>
+          <ul class="space-y-2.5 text-xs text-cream/75 font-semibold">
+            <li><a href="#philosophy" class="hover:text-sunshine transition">Why Real Sugar?</a></li>
+            <li><a href="#ingredients" class="hover:text-sunshine transition">No Artificial Dyes</a></li>
+            <li><a href="#ingredients" class="hover:text-sunshine transition">Citrus Pectin Based</a></li>
+            <li><a href="#philosophy" class="hover:text-sunshine transition">Digestive Safety</a></li>
+            <li><a href="#" class="hover:text-sunshine transition">Boutique Kitchen Tour</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Help -->
+        <div>
+          <h4 class="font-serif font-bold text-sunshine text-sm uppercase tracking-wider mb-4">Care & Contact</h4>
+          <ul class="space-y-2.5 text-xs text-cream/75 font-semibold">
+            <li><a href="#" class="hover:text-sunshine transition">Warm Weather Shipping Guarantee</a></li>
+            <li><a href="#" class="hover:text-sunshine transition">Wholesale & Parties</a></li>
+            <li><a href="#" class="hover:text-sunshine transition">Stockists</a></li>
+            <li><a href="#" class="hover:text-sunshine transition">hello@sweetsummerdays.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-cream/50">
+        <p>© <span id="currentYear"></span> Sweet Summer Days Boutique Confectionery Co. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:underline">Privacy Policy</a>
+          <a href="#" class="hover:underline">Terms of Service</a>
+          <a href="#" class="hover:underline">Nutrition Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= PRODUCT QUICK VIEW MODAL ================= -->
+  <div id="quickViewModal" class="fixed inset-0 z-50 bg-ink/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-cream max-w-lg w-full rounded-3xl border-3 border-ink shadow-pop-lg overflow-hidden relative animate-in fade-in zoom-in-95 duration-200">
+      <button id="closeModalBtn" class="absolute top-4 right-4 w-9 h-9 bg-white rounded-full border-2 border-ink flex items-center justify-center hover:bg-strawberry hover:text-white transition-colors z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="modalContent" class="p-6 sm:p-8 space-y-4">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SLIDE-OVER CART DRAWER ================= -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none hidden">
+    <!-- Backdrop -->
+    <div id="cartBackdrop" class="absolute inset-0 bg-ink/50 backdrop-blur-xs transition-opacity opacity-0 pointer-events-auto"></div>
+
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
+      <div id="cartPanel" class="w-screen max-w-md bg-cream border-l-3 border-ink shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+        
+        <!-- Cart Header -->
+        <div class="p-5 border-b-2 border-ink bg-blush flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-6 h-6 text-strawberry"></i>
+            <h3 class="font-serif font-black text-2xl text-ink">Your Sweet Haul</h3>
+          </div>
+          <button id="closeCartBtn" class="p-2 text-ink hover:text-strawberry transition">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Free Shipping Tracker -->
+        <div class="bg-sunshine/30 px-5 py-3 border-b border-ink/20">
+          <div class="flex justify-between text-xs font-bold text-ink mb-1">
+            <span id="shippingGoalText">Add $15.00 more for Free Chilled Shipping!</span>
+            <span id="shippingGoalPercent" class="font-extrabold text-strawberry">66%</span>
+          </div>
+          <div class="w-full h-2.5 bg-white rounded-full border border-ink overflow-hidden p-0.5">
+            <div id="shippingBar" class="h-full bg-strawberry rounded-full transition-all duration-300" style="width: 66%;"></div>
+          </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="flex-1 overflow-y-auto p-5 space-y-4" id="cartItemList">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="p-5 border-t-2 border-ink bg-white space-y-4">
+          <div class="space-y-1.5 text-sm">
+            <div class="flex justify-between text-muted font-medium">
+              <span>Subtotal</span>
+              <span id="cartSubtotal" class="font-bold text-ink">$0.00</span>
+            </div>
+            <div class="flex justify-between text-muted font-medium">
+              <span>Chilled Safe Shipping</span>
+              <span id="cartShippingText" class="font-bold text-ink">$4.95</span>
+            </div>
+            <div class="border-t border-ink/10 pt-2 flex justify-between text-base font-black text-ink">
+              <span>Estimated Total</span>
+              <span id="cartTotal" class="font-serif text-xl text-strawberry">$0.00</span>
+            </div>
+          </div>
+
+          <button id="checkoutBtn" class="w-full py-4 bg-tangerine hover:bg-strawberry text-white font-extrabold text-base rounded-2xl border-2 border-ink shadow-pop hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-pop-sm transition-all flex items-center justify-center gap-2">
+            <span>Proceed to Sweet Checkout</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+
+          <p class="text-[11px] text-center text-muted font-semibold">
+            ❄️ Shipped in recyclable cold thermal insulated pack.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION ================= -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-ink text-white px-5 py-3 rounded-2xl border-2 border-sunshine shadow-pop flex items-center gap-3">
+      <span class="text-xl">🍭</span>
+      <div>
+        <p class="text-xs font-bold text-sunshine" id="toastTitle">Added to Haul!</p>
+        <p class="text-xs text-white/90" id="toastMessage">Sunburst Peach Rings are tucked into your cart.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // CANDY PRODUCTS DATABASE
+    const PRODUCTS = [
+      {
+        id: 'peach-rings',
+        name: 'Sunburst Peach Rings',
+        category: 'kids',
+        tag: 'Kid Favorite',
+        badgeColor: 'bg-sunshine text-ink',
+        price: 5.95,
+        rating: '4.9',
+        reviewsCount: 142,
+        emoji: '🍑',
+        accentColor: 'from-amber-100 to-orange-100',
+        shortDesc: 'Chewy rings made with ripe Georgia peach purée and dusted with tart cane sugar crystals.',
+        sugarGrams: '10g',
+        calories: '90 cal',
+        ingredients: 'Organic Unrefined Cane Sugar, Non-GMO Tapioca Syrup, Peach Puree, Apple Pectin, Citric Acid, Turmeric Extract (for sunny color).'
+      },
+      {
+        id: 'dino-chews',
+        name: 'Wild Berry Dino Chews',
+        category: 'kids',
+        tag: 'No Food Dyes',
+        badgeColor: 'bg-strawberry text-white',
+        price: 5.95,
+        rating: '5.0',
+        reviewsCount: 98,
+        emoji: '🦖',
+        accentColor: 'from-pink-100 to-rose-100',
+        shortDesc: 'Adorable dinosaur gummies crafted from mashed Oregon blackberries, strawberries & elderberry.',
+        sugarGrams: '9g',
+        calories: '85 cal',
+        ingredients: 'Real Florida Cane Sugar, Oregon Blackberry Puree, Strawberry Juice Concentrate, Pectin, Elderberry Extract (for rich color).'
+      },
+      {
+        id: 'yuzu-lemon',
+        name: 'Yuzu Meyer Lemon Sour Drops',
+        category: 'sour',
+        tag: 'Pucker Up',
+        badgeColor: 'bg-sunshine text-ink',
+        price: 6.25,
+        rating: '4.8',
+        reviewsCount: 84,
+        emoji: '🍋',
+        accentColor: 'from-yellow-100 to-lime-100',
+        shortDesc: 'A bright, floral sour drop featuring aromatic Japanese yuzu and crisp sun-ripened Meyer lemon.',
+        sugarGrams: '11g',
+        calories: '95 cal',
+        ingredients: 'Florida Cane Sugar, Meyer Lemon Juice, Yuzu Puree, Tartaric Acid, Ascorbic Acid (Vitamin C), Spirulina & Turmeric blend.'
+      },
+      {
+        id: 'hibiscus-orange',
+        name: 'Hibiscus Blood Orange Chews',
+        category: 'adult',
+        tag: 'Botanical Blend',
+        badgeColor: 'bg-berry text-white',
+        price: 6.25,
+        rating: '4.9',
+        reviewsCount: 112,
+        emoji: '🌺',
+        accentColor: 'from-red-100 to-orange-100',
+        shortDesc: 'Infused with brewed whole Mexican hibiscus flowers and sweet Italian blood orange juice.',
+        sugarGrams: '10g',
+        calories: '90 cal',
+        ingredients: 'Organic Unrefined Cane Sugar, Blood Orange Puree, Brewed Hibiscus Flower Tea, Citrus Pectin, Purple Sweet Potato.'
+      },
+      {
+        id: 'watermelon-fizz',
+        name: 'Fizzy Watermelon Cloud Cubes',
+        category: 'sour',
+        tag: 'Tingly Chew',
+        badgeColor: 'bg-mint text-white',
+        price: 5.95,
+        rating: '4.7',
+        reviewsCount: 76,
+        emoji: '🍉',
+        accentColor: 'from-emerald-100 to-teal-100',
+        shortDesc: 'Soft pillowy vegan chews with an effervescent popping center made with pure watermelon juice.',
+        sugarGrams: '10g',
+        calories: '90 cal',
+        ingredients: 'Evaporated Cane Juice, Watermelon Juice Concentrate, Sodium Bicarbonate (for fizzy pop), Citrus Pectin, Beetroot Extract.'
+      },
+      {
+        id: 'ginger-calamansi',
+        name: 'Golden Calamansi Ginger Chews',
+        category: 'adult',
+        tag: 'Warm & Tangy',
+        badgeColor: 'bg-tangerine text-white',
+        price: 6.50,
+        rating: '4.9',
+        reviewsCount: 63,
+        emoji: '🍊',
+        accentColor: 'from-orange-100 to-amber-100',
+        shortDesc: 'Zesty Philippine calamansi lime married with cold-pressed ginger root for a gentle throat-warming chew.',
+        sugarGrams: '11g',
+        calories: '95 cal',
+        ingredients: 'Unrefined Cane Sugar, Calamansi Lime Puree, Cold Pressed Fresh Ginger Juice, Apple Pectin, Natural Turmeric.'
+      }
+    ];
+
+    // STATE
+    let cart = [];
+    let customBox = []; // Array of up to 4 items
+    const FREE_SHIPPING_THRESHOLD = 45.00;
+    const SHIPPING_COST = 4.95;
+
+    // INIT
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      renderProductGrid('all');
+      setupFilterListeners();
+      setupBoxBuilder();
+      setupCartDrawer();
+      setupModals();
+      setupMobileMenu();
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
+
+    // 1. RENDER PRODUCTS
+    function renderProductGrid(filter) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      const filtered = filter === 'all' 
+        ? PRODUCTS 
+        : PRODUCTS.filter(p => p.category === filter);
+
+      filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl border-3 border-ink p-5 sm:p-6 shadow-pop flex flex-col justify-between hover:translate-y-[-2px] transition-all";
+        card.innerHTML = `
+          <div>
+            <div class="relative w-full h-48 bg-gradient-to-br ${p.accentColor} rounded-2xl border-2 border-ink flex items-center justify-center overflow-hidden mb-4">
+              <span class="text-7xl badge-float drop-shadow-md select-none">${p.emoji}</span>
+              <span class="absolute top-3 left-3 ${p.badgeColor} text-[11px] font-black px-2.5 py-1 rounded-full border border-ink shadow-pop-sm uppercase tracking-wide">
+                ${p.tag}
+              </span>
+              <button onclick="openQuickView('${p.id}')" class="absolute bottom-3 right-3 bg-white/90 hover:bg-white text-ink text-xs font-bold px-3 py-1.5 rounded-xl border border-ink flex items-center gap-1 shadow-sm">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Details
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs text-muted font-bold mb-1">
+              <span class="text-sunshine font-black">★ ${p.rating}</span>
+              <span>(${p.reviewsCount} reviews)</span>
+              <span>•</span>
+              <span class="text-mint font-bold">${p.sugarGrams} cane sugar</span>
+            </div>
+
+            <h3 class="font-serif font-black text-xl text-ink leading-snug">${p.name}</h3>
+            <p class="text-xs text-muted mt-2 line-clamp-2 leading-relaxed">${p.shortDesc}</p>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-ink/10 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-muted font-black block uppercase">4.0 oz Pouch</span>
+              <span class="font-serif font-black text-2xl text-ink">$${p.price.toFixed(2)}</span>
+            </div>
+            <button onclick="addToCart('${p.id}')" class="px-5 py-2.5 bg-sunshine hover:bg-strawberry hover:text-white text-ink font-extrabold text-sm rounded-xl border-2 border-ink shadow-pop-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all flex items-center gap-2">
+              <i data-lucide="plus" class="w-4 h-4"></i> Add
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // 2. FILTER TABS
+    function setupFilterListeners() {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => {
+            b.classList.remove('active-filter', 'bg-sunshine', 'border-ink');
+            b.classList.add('bg-white', 'border-ink/30');
+          });
+          btn.classList.add('active-filter', 'bg-sunshine', 'border-ink');
+          btn.classList.remove('bg-white', 'border-ink/30');
+
+          renderProductGrid(btn.getAttribute('data-category'));
+        });
+      });
+    }
+
+    // 3. CART SYSTEM
+    function addToCart(productId, customBundle = null) {
+      if (customBundle) {
+        cart.push(customBundle);
+        showToast("Tuck Box Added!", "Your custom 4-pack bundle was added to the haul.");
+      } else {
+        const product = PRODUCTS.find(p => p.id === productId);
+        if (!product) return;
+
+        const existing = cart.find(item => item.id === productId && !item.isBundle);
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            emoji: product.emoji,
+            qty: 1,
+            isBundle: false
+          });
+        }
+        showToast("Tucked in your bag!", `${product.name} added.`);
+      }
+
+      updateCartUI();
+      openCart();
+    }
+
+    function updateCartUI() {
+      const cartCountEl = document.getElementById('cartCount');
+      const totalCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+      cartCountEl.textContent = totalCount;
+
+      // Render items
+      const listEl = document.getElementById('cartItemList');
+      listEl.innerHTML = '';
+
+      if (cart.length === 0) {
+        listEl.innerHTML = `
+          <div class="h-64 flex flex-col items-center justify-center text-center p-6 text-muted">
+            <span class="text-5xl mb-3">🧺</span>
+            <p class="font-serif font-bold text-lg text-ink">Your summer tote is empty.</p>
+            <p class="text-xs text-muted max-w-xs mt-1">Pick some sunny drops or custom mix your own 4-flavor tuck box above!</p>
+          </div>
+        `;
+      } else {
+        cart.forEach((item, index) => {
+          const itemEl = document.createElement('div');
+          itemEl.className = "p-3.5 bg-white rounded-2xl border-2 border-ink flex items-center justify-between gap-3 shadow-pop-sm";
+          
+          if (item.isBundle) {
+            itemEl.innerHTML = `
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-mintLight rounded-xl border border-ink flex items-center justify-center text-xl shrink-0">
+                  🎁
+                </div>
+                <div>
+                  <h4 class="font-serif font-black text-sm text-ink leading-tight">${item.name}</h4>
+                  <p class="text-[10px] text-muted font-bold truncate max-w-[170px]">${item.items.join(', ')}</p>
+                  <span class="font-bold text-xs text-strawberry">$${item.price.toFixed(2)}</span>
+                </div>
+              </div>
+              <button onclick="removeCartItem(${index})" class="text-muted hover:text-strawberry p-1" title="Remove bundle">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            `;
+          } else {
+            itemEl.innerHTML = `
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-blush rounded-xl border border-ink flex items-center justify-center text-2xl shrink-0">
+                  ${item.emoji}
+                </div>
+                <div>
+                  <h4 class="font-serif font-bold text-sm text-ink leading-tight">${item.name}</h4>
+                  <div class="flex items-center gap-2 mt-1">
+                    <span class="font-bold text-xs text-ink">$${(item.price * item.qty).toFixed(2)}</span>
+                    <span class="text-[10px] text-muted">($${item.price.toFixed(2)} ea)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="flex items-center border border-ink rounded-lg bg-cream overflow-hidden">
+                  <button onclick="changeQty(${index}, -1)" class="px-2 py-0.5 hover:bg-blush font-bold text-xs">-</button>
+                  <span class="px-2 font-black text-xs">${item.qty}</span>
+                  <button onclick="changeQty(${index}, 1)" class="px-2 py-0.5 hover:bg-blush font-bold text-xs">+</button>
+                </div>
+                <button onclick="removeCartItem(${index})" class="text-muted hover:text-strawberry p-1">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            `;
+          }
+          listEl.appendChild(itemEl);
+        });
+      }
+
+      // Calculate totals
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.qty || 1)), 0);
+      const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0;
+      const shippingCost = isFreeShipping ? 0 : SHIPPING_COST;
+      const total = subtotal + shippingCost;
+
+      document.getElementById('cartSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cartShippingText').textContent = isFreeShipping ? 'FREE' : `$${SHIPPING_COST.toFixed(2)}`;
+      document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+
+      // Free shipping progress bar
+      const progress = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
+      document.getElementById('shippingBar').style.width = `${progress}%`;
+      document.getElementById('shippingGoalPercent').textContent = `${Math.round(progress)}%`;
+
+      const diff = FREE_SHIPPING_THRESHOLD - subtotal;
+      if (diff > 0 && subtotal > 0) {
+        document.getElementById('shippingGoalText').textContent = `Add $${diff.toFixed(2)} more for Free Shipping!`;
+      } else if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+        document.getElementById('shippingGoalText').textContent = `🎉 You unlocked Free Chilled Shipping!`;
+      } else {
+        document.getElementById('shippingGoalText').textContent = `Add $${FREE_SHIPPING_THRESHOLD.toFixed(2)} for Free Shipping!`;
+      }
+
+      lucide.createIcons();
+    }
+
+    function changeQty(index, change) {
+      if (!cart[index]) return;
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    // 4. CART DRAWER ANIMATION
+    function setupCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const panel = document.getElementById('cartPanel');
+      const backdrop = document.getElementById('cartBackdrop');
+      const cartBtn = document.getElementById('cartBtn');
+      const closeBtn = document.getElementById('closeCartBtn');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      function open() {
+        drawer.classList.remove('hidden');
+        setTimeout(() => {
+          backdrop.classList.remove('opacity-0');
+          backdrop.classList.add('opacity-100');
+          panel.classList.remove('translate-x-full');
+        }, 10);
+      }
+
+      function close() {
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        panel.classList.add('translate-x-full');
+        setTimeout(() => {
+          drawer.classList.add('hidden');
+        }, 300);
+      }
+
+      window.openCart = open;
+      window.closeCart = close;
+
+      cartBtn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      backdrop.addEventListener('click', close);
+
+      checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+          alert("Your cart is empty! Pick some delicious real-fruit treats first.");
+          return;
+        }
+        alert("☀️ Checkout Demo: Thank you for craving real candy! In a production deployment, this directs to Shopify/Stripe securely.");
+      });
+    }
+
+    // 5. CUSTOM BOX BUILDER
+    function setupBoxBuilder() {
+      const optionsContainer = document.getElementById('boxFlavorOptions');
+      const addBoxBtn = document.getElementById('addBoxToCartBtn');
+      const resetBtn = document.getElementById('resetBoxBtn');
+      const countDisplay = document.getElementById('boxCountDisplay');
+      const progressBar = document.getElementById('boxProgressBar');
+
+      // Populate options
+      PRODUCTS.forEach(p => {
+        const opt = document.createElement('button');
+        opt.type = 'button';
+        opt.className = "flex items-center gap-2 p-2.5 rounded-xl border-2 border-ink hover:bg-blush transition text-left";
+        opt.innerHTML = `
+          <span class="text-xl">${p.emoji}</span>
+          <div class="overflow-hidden">
+            <span class="font-bold text-xs text-ink block truncate leading-tight">${p.name}</span>
+            <span class="text-[10px] text-muted">Tap to pick</span>
+          </div>
+        `;
+        opt.addEventListener('click', () => {
+          if (customBox.length < 4) {
+            customBox.push(p);
+            updateBoxUI();
+          } else {
+            showToast("Box is full!", "You already have 4 pouches. Clear or checkout.");
+          }
+        });
+        optionsContainer.appendChild(opt);
+      });
+
+      function updateBoxUI() {
+        // Update slots
+        for (let i = 0; i < 4; i++) {
+          const slot = document.getElementById(`slot-${i}`);
+          if (customBox[i]) {
+            slot.className = "aspect-square border-2 border-ink rounded-2xl flex flex-col items-center justify-center p-2 text-center bg-sunshine/30 shadow-pop-sm animate-in zoom-in-75 relative group";
+            slot.innerHTML = `
+              <button onclick="removeBoxSlot(${i})" class="absolute -top-1 -right-1 w-5 h-5 bg-strawberry text-white rounded-full flex items-center justify-center text-[10px] border border-ink opacity-90 hover:opacity-100" title="Remove">✕</button>
+              <span class="text-2xl">${customBox[i].emoji}</span>
+              <span class="text-[10px] font-bold text-ink mt-1 truncate w-full">${customBox[i].name.split(' ')[0]}</span>
+            `;
+          } else {
+            slot.className = "aspect-square border-2 border-dashed border-ink/40 rounded-2xl flex flex-col items-center justify-center p-2 text-center bg-cream transition-all";
+            slot.innerHTML = `
+              <span class="text-2xl opacity-40">📦</span>
+              <span class="text-[10px] font-bold text-muted mt-1">Empty Slot</span>
+            `;
+          }
+        }
+
+        countDisplay.textContent = `${customBox.length} / 4 Selected`;
+        progressBar.style.width = `${(customBox.length / 4) * 100}%`;
+
+        if (customBox.length === 4) {
+          addBoxBtn.disabled = false;
+          addBoxBtn.classList.remove('opacity-40', 'cursor-not-allowed', 'bg-ink');
+          addBoxBtn.classList.add('bg-strawberry', 'hover:bg-tangerine', 'text-white', 'shadow-pop');
+          addBoxBtn.textContent = "Add 4-Pack to Cart ($22)";
+        } else {
+          addBoxBtn.disabled = true;
+          addBoxBtn.classList.add('opacity-40', 'cursor-not-allowed', 'bg-ink');
+          addBoxBtn.classList.remove('bg-strawberry', 'hover:bg-tangerine', 'text-white', 'shadow-pop');
+          addBoxBtn.textContent = `Pick ${4 - customBox.length} More Pouches`;
+        }
+      }
+
+      window.removeBoxSlot = function(index) {
+        customBox.splice(index, 1);
+        updateBoxUI();
+      };
+
+      resetBtn.addEventListener('click', () => {
+        customBox = [];
+        updateBoxUI();
+      });
+
+      addBoxBtn.addEventListener('click', () => {
+        if (customBox.length === 4) {
+          const bundleItem = {
+            id: 'custom-tuck-box-' + Date.now(),
+            name: 'Custom Summer Tuck Box (4-Pack)',
+            price: 22.00,
+            isBundle: true,
+            qty: 1,
+            items: customBox.map(b => b.name)
+          };
+          addToCart(null, bundleItem);
+          customBox = [];
+          updateBoxUI();
+        }
+      });
+
+      updateBoxUI();
+    }
+
+    // 6. MODAL & QUICK VIEW
+    function setupModals() {
+      const modal = document.getElementById('quickViewModal');
+      const closeBtn = document.getElementById('closeModalBtn');
+
+      window.openQuickView = function(productId) {
+        const p = PRODUCTS.find(item => item.id === productId);
+        if (!p) return;
+
+        const content = document.getElementById('modalContent');
+        content.innerHTML = `
+          <div class="flex items-center gap-4 border-b border-ink/10 pb-4">
+            <div class="w-16 h-16 rounded-2xl bg-sunshine/40 border-2 border-ink flex items-center justify-center text-4xl shrink-0">
+              ${p.emoji}
+            </div>
+            <div>
+              <span class="text-xs font-black uppercase text-strawberry">${p.tag}</span>
+              <h3 class="font-serif font-black text-2xl text-ink leading-tight">${p.name}</h3>
+              <p class="text-xs text-muted font-bold mt-0.5">$${p.price.toFixed(2)} • 4.0 oz pouch</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 py-2">
+            <div class="p-3 bg-blush rounded-xl border border-ink/20">
+              <span class="text-[10px] font-black uppercase text-muted block">Real Sugar per bag</span>
+              <span class="font-serif font-black text-xl text-ink">${p.sugarGrams}</span>
+              <span class="text-[10px] text-ink/70 block">Unrefined Florida Cane</span>
+            </div>
+            <div class="p-3 bg-mintLight rounded-xl border border-ink/20">
+              <span class="text-[10px] font-black uppercase text-muted block">Pectin Source</span>
+              <span class="font-serif font-black text-xl text-mint">100% Plant</span>
+              <span class="text-[10px] text-ink/70 block">Gelatin-Free Pectin</span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-xs uppercase tracking-wider text-ink mb-1">Honest Ingredients List:</h4>
+            <p class="text-xs text-muted leading-relaxed bg-white p-3 rounded-xl border border-ink/20">
+              ${p.ingredients}
+            </p>
+          </div>
+
+          <div class="pt-3 flex gap-3">
+            <button onclick="addToCart('${p.id}'); closeModal();" class="w-full py-3.5 bg-strawberry hover:bg-tangerine text-white font-extrabold rounded-xl border-2 border-ink shadow-pop-sm transition-all flex items-center justify-center gap-2">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              <span>Add Pouch to Bag ($${p.price.toFixed(2)})</span>
+            </button>
+          </div>
+        `;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        lucide.createIcons();
+      };
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      window.closeModal = closeModal;
+
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    // 7. TOAST FEEDBACK
+    function showToast(title, msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastMessage').textContent = msg;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // 8. MOBILE MENU
+    function setupMobileMenu() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const close = document.getElementById('closeMobileMenu');
+      const menu = document.getElementById('mobileMenu');
+      const panel = document.getElementById('mobileMenuPanel');
+      const links = document.querySelectorAll('.mobile-link');
+
+      function openMenu() {
+        menu.classList.remove('hidden');
+        setTimeout(() => {
+          menu.classList.remove('opacity-0');
+          panel.classList.remove('-translate-x-full');
+        }, 10);
+      }
+
+      function closeMenu() {
+        menu.classList.add('opacity-0');
+        panel.classList.add('-translate-x-full');
+        setTimeout(() => {
+          menu.classList.add('hidden');
+        }, 300);
+      }
+
+      btn.addEventListener('click', openMenu);
+      close.addEventListener('click', closeMenu);
+      menu.addEventListener('click', (e) => {
+        if (e.target === menu) closeMenu();
+      });
+      links.forEach(l => l.addEventListener('click', closeMenu));
+    }
+
+    // 9. NEWSLETTER
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast("Welcome to the Sunshine Club!", "Check your inbox for 15% off!");
+      e.target.reset();
+    });
+
+    // 10. QUICK SEARCH SHORTCUT
+    document.getElementById('searchTrigger').addEventListener('click', () => {
+      const term = prompt("What sunny flavor are you looking for? (e.g. peach, lemon, sour, dino)");
+      if (term) {
+        const found = PRODUCTS.filter(p => p.name.toLowerCase().includes(term.toLowerCase()) || p.shortDesc.toLowerCase().includes(term.toLowerCase()));
+        if (found.length > 0) {
+          const shopSection = document.getElementById('shop');
+          shopSection.scrollIntoView({ behavior: 'smooth' });
+          openQuickView(found[0].id);
+        } else {
+          alert(`No candies found matching "${term}". Try "peach", "yuzu", or "orange"!`);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
+```

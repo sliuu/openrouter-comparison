@@ -1,0 +1,16 @@
+{
+  "model": "claude-opus-5",
+  "slug": "anthropic/claude-opus-5",
+  "prompt": "portfolio",
+  "returned_model": "anthropic/claude-opus-5",
+  "provider": "Claude Platform on AWS",
+  "started_at": "2026-09-21 17:25:38",
+  "seconds": 289,
+  "prompt_tokens": 87,
+  "output_tokens": 27185,
+  "thinking_tokens": 1904,
+  "html_chars": 56884,
+  "cost": 0.68006,
+  "finish_reason": "stop",
+  "truncated": false
+}

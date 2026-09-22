@@ -1,0 +1,16 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "slug": "deepseek/deepseek-v4.1-flash",
+  "prompt": "portfolio",
+  "returned_model": "deepseek/deepseek-v4.1-flash",
+  "provider": "Sail Research",
+  "started_at": "2026-09-21 17:24:54",
+  "seconds": 195,
+  "prompt_tokens": 81,
+  "output_tokens": 26082,
+  "thinking_tokens": 9686,
+  "html_chars": 51073,
+  "cost": 0.0156654,
+  "finish_reason": "stop",
+  "truncated": false
+}

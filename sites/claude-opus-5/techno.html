@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ENTANGLEMENT — 3 Days of Underground Techno in the Forest · Amsterdam</title>
+<meta name="description" content="ENTANGLEMENT — a three-day underground techno festival in the Vosbergen forest outside Amsterdam. 14–16 August 2026. Five stages. No phones on the floor. Only the loop." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ============ BASE ============ */
+:root{
+  --bg:#050706;
+  --bg-2:#080c0a;
+  --ink:#e8f0e6;
+  --dim:#8a978c;
+  --dimmer:#4e594f;
+  --acid:#c8ff2e;
+  --acid-dark:#89b31b;
+  --moss:#1c2b1f;
+  --line:rgba(200,255,46,.16);
+  --rust:#ff4b2b;
+  --f-display:'Archivo Black','Helvetica Neue',Impact,sans-serif;
+  --f-body:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,'Courier New',monospace;
+  --ease:cubic-bezier(.16,.84,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--f-body); font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--acid);color:#050706}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+/* grain + vignette */
+.grain{
+  position:fixed;inset:-50%;z-index:9998;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  animation:grain 6s steps(6) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}
+  60%{transform:translate(-3%,-3%)}80%{transform:translate(5%,2%)}100%{transform:translate(0,0)}
+}
+.vignette{position:fixed;inset:0;z-index:9997;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(0,0,0,.75) 100%)}
+.scan{position:fixed;left:0;right:0;height:1px;z-index:9996;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(200,255,46,.35),transparent);
+  animation:scan 9s linear infinite;opacity:.5}
+@keyframes scan{0%{top:-2%}100%{top:102%}}
+
+/* cursor */
+.cursor{position:fixed;width:26px;height:26px;border:1px solid var(--acid);border-radius:50%;
+  z-index:9999;pointer-events:none;transform:translate(-50%,-50%);
+  transition:width .25s var(--ease),height .25s var(--ease),background .25s,opacity .3s;mix-blend-mode:difference;opacity:0}
+.cursor.on{opacity:1}
+.cursor.big{width:56px;height:56px;background:rgba(200,255,46,.15)}
+@media (hover:none){.cursor{display:none}}
+
+/* ============ NAV ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(16px,4vw,48px);
+  transition:background .5s var(--ease),backdrop-filter .5s,border-color .5s,padding .5s var(--ease);
+  border-bottom:1px solid transparent;
+}
+header.stuck{background:rgba(5,7,6,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line);padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase}
+.brand .knot{width:22px;height:22px;flex:0 0 22px}
+.brand .knot circle{fill:none;stroke:var(--acid);stroke-width:1.4}
+.brand .knot{animation:spin 24s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+nav.links{display:flex;gap:clamp(16px,2.2vw,34px);align-items:center}
+nav.links a{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
+  position:relative;padding:6px 0;transition:color .3s}
+nav.links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--acid);transition:width .4s var(--ease)}
+nav.links a:hover{color:var(--ink)}
+nav.links a:hover::after{width:100%}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  padding:12px 20px;border:1px solid var(--acid);color:var(--acid);border-radius:999px;
+  position:relative;overflow:hidden;transition:color .4s var(--ease)
+}
+.btn span{position:relative;z-index:2}
+.btn::before{content:"";position:absolute;inset:0;background:var(--acid);transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn:hover{color:#050706}
+.btn:hover::before{transform:translateY(0)}
+.btn.solid{background:var(--acid);color:#050706}
+.btn.solid::before{background:#fff}
+.btn.ghost{border-color:var(--dimmer);color:var(--dim)}
+.btn.ghost::before{background:var(--ink)}
+.btn.ghost:hover{color:#050706;border-color:var(--ink)}
+.burger{display:none;width:40px;height:40px;position:relative;z-index:1002}
+.burger i{position:absolute;left:8px;right:8px;height:1px;background:var(--ink);transition:.4s var(--ease)}
+.burger i:nth-child(1){top:16px}.burger i:nth-child(2){bottom:16px}
+body.menu-open .burger i:nth-child(1){top:19px;transform:rotate(45deg)}
+body.menu-open .burger i:nth-child(2){bottom:20px;transform:rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:1001;background:#050706;display:flex;flex-direction:column;
+  justify-content:center;gap:4px;padding:0 24px;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease)}
+body.menu-open .mobile-menu{clip-path:inset(0 0 0 0)}
+.mobile-menu a{font-family:var(--f-display);font-size:clamp(34px,11vw,64px);text-transform:uppercase;letter-spacing:-.02em;color:var(--ink)}
+.mobile-menu a:nth-child(even){color:var(--acid)}
+.mobile-menu small{font-family:var(--f-mono);font-size:11px;color:var(--dim);letter-spacing:.2em;margin-top:28px}
+@media(max-width:860px){nav.links,header .btn{display:none}.burger{display:block}}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 clamp(16px,4vw,48px) clamp(24px,4vw,44px);overflow:hidden}
+#field{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,7,6,.7) 0%,rgba(5,7,6,0) 30%,rgba(5,7,6,.25) 60%,rgba(5,7,6,.95) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:var(--acid);
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-bottom:clamp(14px,3vw,26px)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--acid);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.6)}}
+h1.title{font-family:var(--f-display);text-transform:uppercase;line-height:.84;letter-spacing:-.035em;
+  font-size:clamp(46px,13.1vw,220px);display:flex;flex-wrap:wrap}
+h1.title span{display:inline-block;transform:translateY(120%);opacity:0;animation:rise 1.1s var(--ease) forwards}
+@keyframes rise{to{transform:translateY(0);opacity:1}}
+h1.title span.acid{color:var(--acid)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,60px);align-items:flex-end;justify-content:space-between;
+  margin-top:clamp(18px,3vw,34px);padding-top:22px;border-top:1px solid var(--line)}
+.hero-meta .col{max-width:340px}
+.hero-meta .k{font-family:var(--f-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--dimmer);margin-bottom:8px}
+.hero-meta .v{font-size:15px;color:var(--dim);line-height:1.55}
+.hero-meta .v b{color:var(--ink);font-weight:500}
+#countdown{display:flex;gap:14px;font-family:var(--f-mono)}
+#countdown div{text-align:center;min-width:52px}
+#countdown .n{font-size:clamp(20px,2.6vw,30px);color:var(--ink);font-weight:700;letter-spacing:-.02em}
+#countdown .l{font-size:9px;letter-spacing:.2em;color:var(--dimmer);text-transform:uppercase;margin-top:4px}
+.scroll-cue{position:absolute;right:clamp(16px,4vw,48px);bottom:clamp(90px,14vh,160px);z-index:3;
+  writing-mode:vertical-rl;font-family:var(--f-mono);font-size:10px;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--dimmer);display:flex;align-items:center;gap:12px}
+.scroll-cue i{width:1px;height:70px;background:linear-gradient(var(--acid),transparent);display:block}
+@media(max-width:860px){.scroll-cue{display:none}}
+
+/* ============ MARQUEE ============ */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#070a08;overflow:hidden;padding:14px 0;display:flex;white-space:nowrap}
+.marquee .track{display:flex;gap:40px;animation:roll 34s linear infinite;padding-right:40px}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes roll{to{transform:translateX(-50%)}}
+.marquee span{font-family:var(--f-mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+.marquee span em{color:var(--acid);font-style:normal}
+
+/* ============ LAYOUT ============ */
+section{padding:clamp(70px,11vh,150px) clamp(16px,4vw,48px);position:relative}
+.sec-head{display:flex;flex-wrap:wrap;gap:20px;align-items:baseline;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:clamp(34px,6vw,70px)}
+.sec-head h2{font-family:var(--f-display);text-transform:uppercase;letter-spacing:-.03em;
+  font-size:clamp(30px,6.4vw,84px);line-height:.9}
+.sec-num{font-family:var(--f-mono);font-size:11px;letter-spacing:.3em;color:var(--acid)}
+.lead{font-size:clamp(17px,2.1vw,24px);line-height:1.5;font-weight:300;color:var(--dim);max-width:62ch}
+.lead b{color:var(--ink);font-weight:400}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ CONCEPT ============ */
+.concept{display:grid;grid-template-columns:1.25fr .9fr;gap:clamp(30px,6vw,80px);align-items:start}
+@media(max-width:900px){.concept{grid-template-columns:1fr}}
+.concept p+p{margin-top:22px}
+.stats{border-top:1px solid var(--line)}
+.stat{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.stat .big{font-family:var(--f-display);font-size:clamp(26px,3.4vw,44px);letter-spacing:-.03em;line-height:1}
+.stat .lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);text-align:right;max-width:150px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.pill{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid var(--dimmer);color:var(--dim);padding:8px 13px;border-radius:999px;transition:.35s}
+.pill:hover{border-color:var(--acid);color:var(--acid)}
+
+/* ============ LINEUP ============ */
+#lineup{background:linear-gradient(180deg,#050706,#080c09 40%,#050706)}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(26px,4vw,48px)}
+.tab{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  padding:13px 22px;border:1px solid var(--dimmer);border-radius:999px;color:var(--dim);transition:.4s var(--ease)}
+.tab .d{color:var(--dimmer);margin-left:8px}
+.tab[aria-selected="true"]{background:var(--acid);border-color:var(--acid);color:#050706}
+.tab[aria-selected="true"] .d{color:rgba(5,7,6,.6)}
+.tab:hover{color:var(--ink);border-color:var(--ink)}
+.tab[aria-selected="true"]:hover{color:#050706}
+.day{display:none}
+.day.active{display:block;animation:fade .7s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.headliners{display:flex;flex-wrap:wrap;gap:0 clamp(18px,3vw,44px);align-items:baseline;
+  padding-bottom:26px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.headliners a{font-family:var(--f-display);text-transform:uppercase;letter-spacing:-.03em;
+  font-size:clamp(28px,6.2vw,76px);line-height:1.02;transition:color .35s,transform .4s var(--ease);display:inline-block}
+.headliners a:hover{color:var(--acid);transform:translateX(6px)}
+.artist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:0}
+.artist{border-bottom:1px solid rgba(200,255,46,.09);padding:16px 4px;display:flex;justify-content:space-between;
+  align-items:baseline;gap:12px;transition:.4s var(--ease)}
+.artist:hover{padding-left:12px;background:rgba(200,255,46,.04)}
+.artist .nm{font-size:16px;letter-spacing:.01em;font-weight:400}
+.artist .st{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--dimmer);white-space:nowrap}
+.artist:hover .st{color:var(--acid)}
+.lineup-note{margin-top:28px;font-family:var(--f-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dimmer)}
+
+/* ============ STAGES ============ */
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line)}
+.stage{background:#060907;padding:clamp(24px,3vw,38px);min-height:300px;display:flex;flex-direction:column;
+  justify-content:space-between;gap:26px;position:relative;overflow:hidden;transition:background .5s}
+.stage:hover{background:#0a1009}
+.stage .idx{font-family:var(--f-mono);font-size:10px;letter-spacing:.3em;color:var(--acid)}
+.stage h3{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(22px,2.6vw,34px);
+  letter-spacing:-.02em;line-height:1;margin:14px 0 14px}
+.stage p{font-size:14.5px;line-height:1.6;color:var(--dim)}
+.stage .cap{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer);
+  border-top:1px solid var(--line);padding-top:14px}
+.stage .glow{position:absolute;width:220px;height:220px;right:-80px;top:-80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,255,46,.17),transparent 70%);opacity:0;transition:opacity .6s}
+.stage:hover .glow{opacity:1}
+
+/* ============ INFO ============ */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(24px,3vw,44px)}
+.info h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--acid);
+  margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.info p{font-size:14.5px;line-height:1.7;color:var(--dim)}
+.info p b{color:var(--ink);font-weight:500}
+
+/* ============ TICKETS ============ */
+#tickets{background:#070a08;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tix{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(14px,2vw,22px)}
+.tier{border:1px solid var(--line);padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;gap:18px;
+  background:#050706;transition:.5s var(--ease);position:relative}
+.tier:hover{transform:translateY(-6px);border-color:var(--acid)}
+.tier.soldout{opacity:.42}
+.tier.soldout:hover{transform:none;border-color:var(--line)}
+.tier .tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.tier h3{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(20px,2vw,26px);letter-spacing:-.02em}
+.tier .price{font-family:var(--f-display);font-size:clamp(34px,4.4vw,54px);letter-spacing:-.04em;line-height:1}
+.tier .price small{font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;color:var(--dim);display:block;margin-top:8px;font-weight:400}
+.tier ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:auto}
+.tier li{font-size:13.5px;color:var(--dim);display:flex;gap:9px;align-items:flex-start}
+.tier li::before{content:"↳";color:var(--acid);font-size:11px;line-height:1.5}
+.tier .stamp{position:absolute;top:18px;right:18px;font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;
+  border:1px solid var(--rust);color:var(--rust);padding:4px 8px;text-transform:uppercase}
+.tier.hot .stamp{border-color:var(--acid);color:var(--acid)}
+
+/* ============ FAQ ============ */
+.faq{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:24px 0;text-align:left;font-size:clamp(16px,2vw,22px);font-weight:400;transition:color .3s}
+.q button:hover{color:var(--acid)}
+.q .ic{font-family:var(--f-mono);color:var(--acid);flex:0 0 auto;transition:transform .4s var(--ease)}
+.q.open .ic{transform:rotate(45deg)}
+.q .a{max-height:0;overflow:hidden;transition:max-height .55s var(--ease)}
+.q .a p{padding:0 0 26px;max-width:70ch;color:var(--dim);font-size:15px;line-height:1.7}
+
+/* ============ CTA / FOOTER ============ */
+.cta{text-align:center;padding:clamp(80px,14vh,170px) clamp(16px,4vw,48px);position:relative;overflow:hidden}
+.cta h2{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(34px,10vw,140px);
+  letter-spacing:-.04em;line-height:.88}
+.cta h2 em{font-style:normal;color:var(--acid)}
+.cta p{color:var(--dim);margin:22px auto 34px;max-width:46ch;font-size:16px;line-height:1.6}
+form.sub{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+form.sub input{flex:1 1 220px;background:transparent;border:1px solid var(--dimmer);color:var(--ink);
+  padding:14px 18px;border-radius:999px;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;outline:none;transition:.3s}
+form.sub input:focus{border-color:var(--acid)}
+.form-msg{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--acid);margin-top:16px;min-height:14px}
+footer{border-top:1px solid var(--line);padding:clamp(40px,6vw,70px) clamp(16px,4vw,48px) 30px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+.foot-grid h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--dimmer);margin-bottom:16px}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-grid a{font-size:14px;color:var(--dim);transition:color .3s}
+.foot-grid a:hover{color:var(--acid)}
+.foot-logo{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.03em;line-height:.95}
+.foot-logo span{color:var(--acid)}
+.foot-bot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;margin-top:clamp(36px,6vw,70px);
+  padding-top:22px;border-top:1px solid var(--line);font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer)}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="vignette"></div>
+<div class="scan"></div>
+<div class="cursor" id="cursor"></div>
+
+<!-- ============ NAV ============ -->
+<header id="hdr">
+  <a href="#top" class="brand" aria-label="Entanglement home">
+    <svg class="knot" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>
+    Entanglement
+  </a>
+  <nav class="links">
+    <a href="#concept">Concept</a>
+    <a href="#lineup">Lineup</a>
+    <a href="#stages">Stages</a>
+    <a href="#info">Info</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a href="#tickets" class="btn" data-mag><span>Tickets · Phase 2</span></a>
+  <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+</header>
+
+<div class="mobile-menu" id="mm">
+  <a href="#concept">Concept</a>
+  <a href="#lineup">Lineup</a>
+  <a href="#stages">Stages</a>
+  <a href="#info">Info</a>
+  <a href="#tickets">Tickets</a>
+  <small>14–16 August 2026 · Vosbergen Forest, NL</small>
+</div>
+
+<!-- ============ HERO ============ -->
+<div id="top"></div>
+<section class="hero">
+  <canvas id="field"></canvas>
+  <div class="scroll-cue">Scroll into the trees <i></i></div>
+  <div class="hero-inner">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span>14 — 16 August 2026</span>
+      <span>Vosbergen Forest · 38 km from Amsterdam</span>
+      <span>72 hours · 5 stages</span>
+    </div>
+    <h1 class="title" id="title" aria-label="Entanglement"></h1>
+    <div class="hero-meta">
+      <div class="col">
+        <div class="k">The premise</div>
+        <div class="v">Three days of <b>uncompromising techno</b>, deep in the pines. No headliner worship. No phones on the floor. Just sound, soil and strangers becoming <b>entangled</b>.</div>
+      </div>
+      <div class="col">
+        <div class="k">Doors open in</div>
+        <div id="countdown" aria-live="polite"></div>
+      </div>
+      <div class="col" style="max-width:none">
+        <div class="k">Capacity</div>
+        <div class="v"><b>4,000</b> · strictly limited<br>Phase 1 sold out in 11 minutes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track"></div>
+</div>
+
+<!-- ============ CONCEPT ============ -->
+<section id="concept">
+  <div class="sec-head reveal">
+    <h2>A Forest<br>That Listens</h2>
+    <div class="sec-num">01 / CONCEPT</div>
+  </div>
+  <div class="concept">
+    <div class="reveal">
+      <p class="lead">Entanglement began in 2019 as a <b>200-person generator party</b> under a highway bridge in Amsterdam-Noord. Seven years later we are still allergic to VIP decks, LED walls and 45-second drops.</p>
+      <p class="lead" style="margin-top:26px">Instead: a working forestry estate east of the city, borrowed for <b>72 hours</b>. Five sound systems hidden between the pines, all of them pointed inward. One long set instead of six short ones. A programme built on <b>resident-led marathon slots</b>, live hardware and the kind of records you only hear at 05:40.</p>
+      <p class="lead" style="margin-top:26px">Phones stay in your pocket on the dancefloor — camera lenses are covered at the gate. What happens in the trees is <b>remembered, not recorded</b>.</p>
+      <div class="pill-row">
+        <span class="pill">Hard techno</span><span class="pill">Hypnotic / loopy</span><span class="pill">Live hardware</span>
+        <span class="pill">Dub techno</span><span class="pill">Electro</span><span class="pill">Ambient sunrise</span>
+        <span class="pill">Acid</span><span class="pill">No-phone floors</span>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="big">72h</div><div class="lbl">Continuous programming, Fri 18:00 → Mon 06:00</div></div>
+      <div class="stat"><div class="big">05</div><div class="lbl">Stages, none of them a tent with a logo on it</div></div>
+      <div class="stat"><div class="big">64</div><div class="lbl">Artists, 40% Dutch &amp; Belgian underground</div></div>
+      <div class="stat"><div class="big">100%</div><div class="lbl">Battery &amp; biodiesel power, zero grid draw</div></div>
+      <div class="stat"><div class="big">4000</div><div class="lbl">Humans maximum. No day-ticket resale after Aug 1</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LINEUP ============ -->
+<section id="lineup">
+  <div class="sec-head reveal">
+    <h2>Lineup<br>2026</h2>
+    <div class="sec-num">02 / 64 ARTISTS · WAVE 2 ANNOUNCED</div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Festival days">
+    <button class="tab" role="tab" aria-selected="true" data-day="fri">Friday <span class="d">14.08</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-day="sat">Saturday <span class="d">15.08</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-day="sun">Sunday <span class="d">16.08</span></button>
+  </div>
+
+  <div class="day active" id="day-fri" role="tabpanel">
+    <div class="headliners">
+      <a href="#tickets">VOID CHAPEL</a><a href="#tickets">NØRA KLEIN</a><a href="#tickets">9MM SOUNDSYSTEM</a>
+    </div>
+    <div class="artist-grid">
+      <div class="artist"><span class="nm">Marka</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Tessellate (live)</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Static Mother</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Paalvast</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Oracle 88</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Grainfield</span><span class="st">Mycelium</span></div>
+      <div class="artist"><span class="nm">DJ Wormhole</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Lilith X</span><span class="st">Observatory</span></div>
+      <div class="artist"><span class="nm">Kloop &amp; Dander</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Hexenbrut (live)</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Sleep Clinic</span><span class="st">Mycelium</span></div>
+      <div class="artist"><span class="nm">Bleeker System</span><span class="st">Observatory</span></div>
+      <div class="artist"><span class="nm">Nachtzuster</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Cobalt Dupe</span><span class="st">The Hollow</span></div>
+    </div>
+  </div>
+
+  <div class="day" id="day-sat" role="tabpanel">
+    <div class="headliners">
+      <a href="#tickets">ZWART LICHT</a><a href="#tickets">FRAU LÄRM</a><a href="#tickets">NEURODRIFT (LIVE)</a>
+    </div>
+    <div class="artist-grid">
+      <div class="artist"><span class="nm">Hallon</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Ristretto Bloc</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Mira Duval</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Sub Rosa Trio (live)</span><span class="st">Mycelium</span></div>
+      <div class="artist"><span class="nm">Aaltje 303</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Torvald</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Klei</span><span class="st">Observatory</span></div>
+      <div class="artist"><span class="nm">Vantablack Jan</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Loophole Sisters</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Perihelion</span><span class="st">Observatory</span></div>
+      <div class="artist"><span class="nm">Rust Belt Ritual</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Mokum Tapes b2b Doves</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Heemraad</span><span class="st">Mycelium</span></div>
+      <div class="artist"><span class="nm">Ester Kwant</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Negative Space</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Vlek</span><span class="st">Observatory</span></div>
+    </div>
+  </div>
+
+  <div class="day" id="day-sun" role="tabpanel">
+    <div class="headliners">
+      <a href="#tickets">MYCELIAL NETWORK</a><a href="#tickets">DE LANGE ZONDAG</a><a href="#tickets">KURT &amp; KLEIN 8H</a>
+    </div>
+    <div class="artist-grid">
+      <div class="artist"><span class="nm">Vespertine (ambient)</span><span class="st">Mycelium</span></div>
+      <div class="artist"><span class="nm">Bram Aaltink 6h</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Dune Radio</span><span class="st">Observatory</span></div>
+      <div class="artist"><span class="nm">Lot &amp; Kade</span><span class="st">Bunker 7</span></div>
+      <div class="artist"><span class="nm">Slow Drone Unit (live)</span><span class="st">Mycelium</span></div>
+      <div class="artist"><span class="nm">Reverb Church</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Nieuwe Meer</span><span class="st">Observatory</span></div>
+      <div class="artist"><span class="nm">Iris Vandaag</span><span class="st">The Hollow</span></div>
+      <div class="artist"><span class="nm">Bassdrum Pastorate</span><span class="st">Ferrous</span></div>
+      <div class="artist"><span class="nm">Closing Ritual: all residents</span><span class="st">The Hollow</span></div>
+    </div>
+  </div>
+  <div class="lineup-note">↳ Wave 3 &amp; full set times drop 20 July. Lineups are not billed by size — sets rotate between stages.</div>
+</section>
+
+<!-- ============ STAGES ============ -->
+<section id="stages">
+  <div class="sec-head reveal">
+    <h2>Five<br>Rooms<br>Of Trees</h2>
+    <div class="sec-num">03 / STAGES</div>
+  </div>
+  <div class="stages reveal">
+    <div class="stage">
+      <div class="glow"></div>
+      <div><div class="idx">S/01</div>
+        <h3>The Hollow</h3>
+        <p>A natural bowl in the forest floor, ringed by 40-year-old pines. Funktion-One stacks buried in the earthworks, no stage riser — the booth sits at ground level in the middle of the crowd.</p></div>
+      <div class="cap">Main floor · 2,200 cap · 4-point sound</div>
+    </div>
+    <div class="stage">
+      <div class="glow"></div>
+      <div><div class="idx">S/02</div>
+        <h3>Ferrous</h3>
+        <p>A decommissioned grain silo on the estate edge. Concrete, rebar, seven seconds of natural reverb. Hard, fast, industrial. Strobe-only lighting; ear protection handed out at the door.</p></div>
+      <div class="cap">Industrial · 700 cap · 140–155 BPM</div>
+    </div>
+    <div class="stage">
+      <div class="glow"></div>
+      <div><div class="idx">S/03</div>
+        <h3>Mycelium</h3>
+        <p>Deep in the undergrowth, 34 small speakers strung through the canopy. Ambient, dub techno and lying down. Open continuously for all 72 hours. Whispering only.</p></div>
+      <div class="cap">Ambient · 300 cap · Distributed array</div>
+    </div>
+    <div class="stage">
+      <div class="glow"></div>
+      <div><div class="idx">S/04</div>
+        <h3>Observatory</h3>
+        <p>On the only clearing high enough to see the sky. Faces east, opens at 04:00 each night and closes when the sun clears the treeline. Sunrise sets, electro and long unmixed passages.</p></div>
+      <div class="cap">Sunrise · 900 cap · 04:00 — 09:00</div>
+    </div>
+    <div class="stage">
+      <div class="glow"></div>
+      <div><div class="idx">S/05</div>
+        <h3>Bunker 7</b></h3>
+        <p>A WWII bunker, 60 m². Rave capacity: 120 wet bodies. Curated nightly by a different Amsterdam collective. No line-up published in advance. You either find it or you don't.</p></div>
+      <div class="cap">Secret · 120 cap · Unannounced</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFO ============ -->
+<section id="info">
+  <div class="sec-head reveal">
+    <h2>Practical<br>Matters</h2>
+    <div class="sec-num">04 / INFO</div>
+  </div>
+  <div class="info-grid">
+    <div class="info reveal">
+      <h4>Getting there</h4>
+      <p><b>Train + shuttle:</b> Amsterdam Centraal → Vosbergen-Zuid (34 min, every 20 min). Free electric shuttles run from the station to the gate every 15 minutes, Fri 15:00 – Mon 12:00.<br><br><b>Bike:</b> guarded bike park for 1,200 bikes. 38 km of mostly flat riding along the Vecht. Bring a light.<br><br><b>Car:</b> carpool-only parking (3+ people per vehicle). €25 per car, pre-booked.</p>
+    </div>
+    <div class="info reveal">
+      <h4>Sleeping</h4>
+      <p><b>The Pines</b> — bring-your-own tent camping between the trees, no generators, quiet from 11:00 to 16:00.<br><br><b>The Clearing</b> — pre-pitched 2p canvas tents with real mattresses, 400 available.<br><br>Showers are cold, plentiful and solar-heated by noon. Free drinking water everywhere. Campfires only in the four designated pits.</p>
+    </div>
+    <div class="info reveal">
+      <h4>Care &amp; conduct</h4>
+      <p>Zero tolerance for racism, homophobia, transphobia and unwanted touching. <b>Awareness team</b> in acid-green vests roam all floors, all night — talk to them about anything.<br><br>Free drug-checking on site in partnership with a licensed harm-reduction service. Sober tent, quiet room and a medical post 90 seconds from every stage.</p>
+    </div>
+    <div class="info reveal">
+      <h4>The forest</h4>
+      <p>Vosbergen is a living production forest and a nesting site for tawny owls. <b>Stay on marked paths.</b> Sound curfew on outdoor stages 02:00 – 04:00 to protect nesting zones (indoor floors continue).<br><br>Everything you bring out, you carry back. €10 cup deposit, €20 tent deposit refunded on exit with an empty pitch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKETS ============ -->
+<section id="tickets">
+  <div class="sec-head reveal">
+    <h2>Tickets</h2>
+    <div class="sec-num">05 / PHASE 2 LIVE · 214 LEFT</div>
+  </div>
+  <div class="tix reveal">
+    <div class="tier soldout">
+      <span class="stamp">Sold out</span>
+      <div class="tag">Phase 01</div>
+      <h3>Blind Faith</h3>
+      <div class="price">€119<small>+ €6 service</small></div>
+      <ul><li>Sold before lineup announcement</li><li>Gone in 11 minutes</li><li>Includes camping</li></ul>
+    </div>
+    <div class="tier hot">
+      <span class="stamp">214 left</span>
+      <div class="tag">Phase 02</div>
+      <h3>Full Weekend</h3>
+      <div class="price">€148<small>+ €7,50 service</small></div>
+      <ul>
+        <li>Fri 15:00 → Mon 12:00 access</li>
+        <li>Camping in The Pines included</li>
+        <li>Free station shuttle</li>
+        <li>Reusable cup &amp; water refills</li>
+      </ul>
+      <a href="#" class="btn solid" data-mag data-buy><span>Buy weekend pass</span></a>
+    </div>
+    <div class="tier">
+      <div class="tag">Phase 02 · Comfort</div>
+      <h3>Weekend + Clearing</h3>
+      <div class="price">€239<small>per person, 2p tent</small></div>
+      <ul>
+        <li>Everything in Full Weekend</li>
+        <li>Pre-pitched canvas tent + mattress</li>
+        <li>Locker, warm showers, early entry Fri 13:00</li>
+      </ul>
+      <a href="#" class="btn" data-mag data-buy><span>Buy comfort pass</span></a>
+    </div>
+    <div class="tier">
+      <div class="tag">Local &amp; solidarity</div>
+      <h3>Buurt / Support</h3>
+      <div class="price">€65<small>ID or referral required</small></div>
+      <ul>
+        <li>For Vosbergen &amp; Weesp residents</li>
+        <li>Solidarity allocation: 300 reduced tickets</li>
+        <li>Pay-it-forward option at checkout</li>
+      </ul>
+      <a href="#" class="btn ghost" data-mag data-buy><span>Request access</span></a>
+    </div>
+  </div>
+  <div class="lineup-note">↳ Tickets are name-bound and non-transferable above face value. Official resale opens 1 July via our waiting list — never buy from third parties.</div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="sec-head reveal">
+    <h2>Questions</h2>
+    <div class="sec-num">06 / FAQ</div>
+  </div>
+  <div class="faq reveal">
+    <div class="q"><button aria-expanded="false">Is it really no phones?<span class="ic">+</span></button>
+      <div class="a"><p>On the dancefloors, yes. At the gate we place a small removable sticker over your camera lenses. Keep your phone for messages, maps and payments — just don't film. There are three designated photo spots near the food court if you need proof you were here.</p></div></div>
+    <div class="q"><button aria-expanded="false">How do I get from Amsterdam and back at 07:00?<span class="ic">+</span></button>
+      <div class="a"><p>Shuttles to Vosbergen-Zuid station run continuously from Friday 15:00 until Monday 12:00, including all night. Trains to Amsterdam Centraal run hourly through the night on Friday and Saturday. The full transport schedule is printed on the back of your wristband card.</p></div></div>
+    <div class="q"><button aria-expanded="false">What can I bring into the festival?<span class="ic">+</span></button>
+      <div class="a"><p>Into the camping: your own food and sealed drinks (no glass, no gas canisters larger than 250 ml). Into the festival terrain: an empty water bottle, ear protection, warm layers. Nights in the forest drop to 11 °C even in August — people always underestimate this.</p></div></div>
+    <div class="q"><button aria-expanded="false">Is the site accessible?<span class="ic">+</span></button>
+      <div class="a"><p>Three of five stages (The Hollow, Ferrous, Observatory) are reachable on firm compacted paths with a wheelchair or walker. Mycelium and Bunker 7 have soft or stepped access. Accessible camping, toilets and a raised viewing platform at The Hollow are available — email access@entanglement.fest and a human will answer within two days. Personal assistants enter free.</p></div></div>
+    <div class="q"><button aria-expanded="false">Can I come for one day only?<span class="ic">+</span></button>
+      <div class="a"><p>A small number of Saturday and Sunday day tickets (no camping, 12:00–02:00 access) are released on 20 July with the set times. The festival is designed as a continuous 72-hour arc, so we keep day tickets under 15% of capacity.</p></div></div>
+    <div class="q"><button aria-expanded="false">What happens if it rains for three days?<span class="ic">+</span></button>
+      <div class="a"><p>Then it rains for three days and Ferrous gets very busy. Two stages are fully covered, and all floors are laid with woodchip and drainage matting. Entanglement has never been cancelled or shortened due to weather. Bring boots.</p></div></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<div class="cta">
+  <h2>Get <em>Entangled</em></h2>
+  <p>One email a month. Wave announcements, secret bunker hints and the moment resale tickets go live. No sponsors, no noise.</p>
+  <form class="sub" id="sub">
+    <input type="email" required placeholder="your@email.com" aria-label="Email address" />
+    <button type="submit" class="btn solid" data-mag><span>Join the list</span></button>
+  </form>
+  <div class="form-msg" id="msg"></div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">Entangle<span>ment</span><br>2026</div>
+      <p style="color:var(--dimmer);font-size:13px;margin-top:18px;max-width:34ch;line-height:1.6">Vosbergen Forest Estate, Gemeente Weesp, Noord-Holland. 14–16 August 2026. 18+.</p>
+    </div>
+    <div>
+      <h5>Festival</h5>
+      <ul><li><a href="#lineup">Lineup</a></li><li><a href="#stages">Stages</a></li><li><a href="#info">Travel &amp; camping</a></li><li><a href="#faq">FAQ</a></li></ul>
+    </div>
+    <div>
+      <h5>Practical</h5>
+      <ul><li><a href="#tickets">Tickets</a></li><li><a href="#info">Accessibility</a></li><li><a href="#concept">Safer spaces policy</a></li><li><a href="#info">Sustainability</a></li></ul>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <ul><li><a href="#">info@entanglement.fest</a></li><li><a href="#">Instagram</a></li><li><a href="#">Resident Advisor</a></li><li><a href="#">Press &amp; volunteers</a></li></ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2026 Stichting Entanglement · KVK 8811 4422</span>
+    <span>Built in the dark · No trackers</span>
+    <span>Respect the forest, respect each other</span>
+  </div>
+</footer>
+
+<script>
+/* ---------- hero title ---------- */
+(function(){
+  const word="ENTANGLEMENT", el=document.getElementById('title');
+  [...word].forEach((ch,i)=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    if(i===0||i===word.length-1) s.className='acid';
+    s.style.animationDelay=(0.25+i*0.045)+'s';
+    el.appendChild(s);
+  });
+})();
+
+/* ---------- marquee ---------- */
+(function(){
+  const items=["14—16 AUG 2026","<em>VOSBERGEN FOREST</em>","5 STAGES · 64 ARTISTS","<em>NO PHONES ON THE FLOOR</em>","72 HOURS CONTINUOUS","<em>PHASE 2 ON SALE</em>","4000 CAPACITY","<em>BRING BOOTS</em>"];
+  const t=document.getElementById('track');
+  const html=items.map(i=>`<span>${i}</span><span>✦</span>`).join('');
+  t.innerHTML=html+html;
+})();
+
+/* ---------- countdown ---------- */
+(function(){
+  const target=new Date('2026-08-14T15:00:00+02:00').getTime();
+  const box=document.getElementById('countdown');
+  function tick(){
+    let d=Math.max(0,target-Date.now());
+    const days=Math.floor(d/864e5), h=Math.floor(d%864e5/36e5), m=Math.floor(d%36e5/6e4), s=Math.floor(d%6e4/1000);
+    const parts=[[days,'days'],[h,'hrs'],[m,'min'],[s,'sec']];
+    box.innerHTML=parts.map(p=>`<div><div class="n">${String(p[0]).padStart(2,'0')}</div><div class="l">${p[1]}</div></div>`).join('');
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ---------- header state ---------- */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>{hdr.classList.toggle('stuck',scrollY>40)},{passive:true});
+
+/* ---------- mobile menu ---------- */
+const burger=document.getElementById('burger');
+burger.addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+document.querySelectorAll('#mm a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
+
+/* ---------- reveals ---------- */
+const io=new IntersectionObserver((en)=>{
+  en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected','false'));
+    tab.setAttribute('aria-selected','true');
+    document.querySelectorAll('.day').forEach(d=>d.classList.remove('active'));
+    document.getElementById('day-'+tab.dataset.day).classList.add('active');
+  });
+});
+
+/* ---------- faq ---------- */
+document.querySelectorAll('.q button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const q=b.parentElement, a=q.querySelector('.a'), open=q.classList.contains('open');
+    document.querySelectorAll('.q').forEach(o=>{o.classList.remove('open');o.querySelector('.a').style.maxHeight=0;o.querySelector('button').setAttribute('aria-expanded','false')});
+    if(!open){q.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';b.setAttribute('aria-expanded','true')}
+  });
+});
+
+/* ---------- newsletter ---------- */
+document.getElementById('sub').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('msg').textContent='// You are on the list. Check your inbox at 03:00.';
+  e.target.reset();
+});
+document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',e=>{
+  e.preventDefault();
+  const s=b.querySelector('span'), old=s.textContent;
+  s.textContent='Opening ticket shop…';
+  setTimeout(()=>s.textContent=old,1800);
+}));
+
+/* ---------- cursor ---------- */
+(function(){
+  const c=document.getElementById('cursor');let x=0,y=0,tx=0,ty=0;
+  addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;c.classList.add('on')});
+  document.querySelectorAll('a,button,.pill,.artist,.stage').forEach(el=>{
+    el.addEventListener('mouseenter',()=>c.classList.add('big'));
+    el.addEventListener('mouseleave',()=>c.classList.remove('big'));
+  });
+  (function loop(){x+=(tx-x)*.18;y+=(ty-y)*.18;c.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+})();
+
+/* ---------- hero: entanglement field + treeline ---------- */
+(function(){
+  const cv=document.getElementById('field'), ctx=cv.getContext('2d');
+  let W=0,H=0,DPR=1,pts=[],trees=[],mouse={x:-9999,y:-9999};
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function rnd(a,b){return a+Math.random()*(b-a)}
+
+  function build(){
+    DPR=Math.min(devicePixelRatio||1,2);
+    W=cv.clientWidth;H=cv.clientHeight;
+    cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
+    const count=Math.round(Math.min(120,Math.max(38,W*H/13000)));
+    pts=[];
+    for(let i=0;i<count;i++){
+      pts.push({x:rnd(0,W),y:rnd(0,H*0.82),vx:rnd(-.14,.14),vy:rnd(-.1,.1),r:rnd(.6,1.9),p:rnd(0,6.28)});
+    }
+    // treeline layers
+    trees=[];
+    const layers=[
+      {y:H*0.90,h:H*0.20,col:'rgba(9,16,11,.85)',step:Math.max(34,W/26)},
+      {y:H*0.96,h:H*0.30,col:'rgba(5,10,7,.94)',step:Math.max(48,W/17)},
+      {y:H*1.02,h:H*0.44,col:'#03060420',step:Math.max(70,W/11)}
+    ];
+    layers.forEach((L,li)=>{
+      for(let x=-L.step;x<W+L.step;x+=L.step*rnd(.65,1.15)){
+        trees.push({x:x,y:L.y+rnd(-6,6),h:L.h*rnd(.7,1.25),w:L.step*rnd(.34,.52),col:li===2?'#030604':L.col,layer:li});
+      }
+    });
+    trees.sort((a,b)=>a.layer-b.layer);
+  }
+
+  function pine(t){
+    ctx.fillStyle=t.col;
+    const tiers=4;
+    for(let i=0;i<tiers;i++){
+      const f=i/tiers;
+      const topY=t.y-t.h+t.h*f*0.72;
+      const halfW=t.w*(0.34+f*0.66);
+      const botY=topY+t.h*0.42;
+      ctx.beginPath();
+      ctx.moveTo(t.x,topY);
+      ctx.lineTo(t.x+halfW,botY);
+      ctx.lineTo(t.x-halfW,botY);
+      ctx.closePath();ctx.fill();
+    }
+    ctx.fillRect(t.x-t.w*0.06,t.y-t.h*0.05,t.w*0.12,t.h*0.12);
+  }
+
+  let time=0;
+  function frame(){
+    time+=0.008;
+    ctx.clearRect(0,0,W,H);
+
+    // deep forest haze
+    const g=ctx.createRadialGradient(W*0.5,H*0.28,0,W*0.5,H*0.28,Math.max(W,H)*0.8);
+    g.addColorStop(0,'rgba(24,42,27,.55)');
+    g.addColorStop(.45,'rgba(9,17,12,.5)');
+    g.addColorStop(1,'rgba(5,7,6,0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+
+    // particles + entanglement links
+    const maxD=Math.min(170,W*0.16);
+    for(const p of pts){
+      if(!reduce){p.x+=p.vx;p.y+=p.vy;}
+      if(p.x<-20)p.x=W+20; if(p.x>W+20)p.x=-20;
+      if(p.y<-20)p.y=H*0.82; if(p.y>H*0.84)p.y=-20;
+      // mouse drift
+      const dx=mouse.x-p.x, dy=mouse.y-p.y, d2=dx*dx+dy*dy;
+      if(d2<40000){p.x+=dx*0.0012;p.y+=dy*0.0012;}
+    }
+    ctx.lineWidth=1;
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const a=pts[i],b=pts[j];
+        const dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+        if(d<maxD){
+          const al=(1-d/maxD)*0.30;
+          ctx.strokeStyle='rgba(200,255,46,'+al.toFixed(3)+')';
+          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+        }
+      }
+    }
+    for(const p of pts){
+      const tw=0.55+0.45*Math.sin(time*3+p.p);
+      ctx.beginPath();
+      ctx.fillStyle='rgba(216,255,120,'+(0.5*tw).toFixed(3)+')';
+      ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fill();
+      ctx.beginPath();
+      ctx.fillStyle='rgba(200,255,46,'+(0.07*tw).toFixed(3)+')';
+      ctx.arc(p.x,p.y,p.r*6,0,6.283);ctx.fill();
+    }
+
+    // mouse node
+    if(mouse.x>0){
+      ctx.beginPath();ctx.strokeStyle='rgba(200,255,46,.25)';
+      ctx.arc(mouse.x,mouse.y,26+Math.sin(time*4)*4,0,6.283);ctx.stroke();
+    }
+
+    // treeline
+    trees.forEach(pine);
+
+    // low fog
+    const f=ctx.createLinearGradient(0,H*0.62,0,H);
+    f.addColorStop(0,'rgba(5,7,6,0)');
+    f.addColorStop(.6,'rgba(12,20,14,.45)');
+    f.addColorStop(1,'rgba(5,7,6,.9)');
+    ctx.fillStyle=f;ctx.fillRect(0,H*0.6,W,H*0.4);
+
+    requestAnimationFrame(frame);
+  }
+
+  addEventListener('resize',build);
+  addEventListener('mousemove',e=>{
+    const r=cv.getBoundingClientRect();
+    mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;
+  });
+  addEventListener('mouseout',()=>{mouse.x=-9999;mouse.y=-9999});
+  build();frame();
+})();
+</script>
+</body>
+</html>

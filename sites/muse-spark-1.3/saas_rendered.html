@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connected — Plan, Write &amp; Launch Campaigns with AI Agents</title>
+<meta name="description" content="Connected is the B2B AI platform for marketing teams to plan, write and launch campaigns with specialized AI agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#FAF8F4;
+--ink:#0E0E14;
+--ink2:#1A1A24;
+--muted:#6B6B7A;
+--line:rgba(14,14,20,.1);
+--lime:#C8F135;
+--violet:#6C4CFF;
+--violet2:#8B7CFF;
+--peach:#FFD9C7;
+--card:#FFFFFF;
+--dark:#0B0B12;
+--dark2:#14141E;
+--radius:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+.mono{font-family:'JetBrains Mono',monospace}
+::selection{background:var(--lime);color:var(--ink)}
+/* NAV */
+.nav{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 24px));z-index:100;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(14,14,20,.08);border-radius:100px;padding:10px 10px 10px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 32px rgba(0,0,0,.06)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.03em}
+.logo-mark{width:32px;height:32px;border-radius:10px;background:var(--ink);display:grid;place-items:center;position:relative;overflow:hidden}
+.logo-mark::after{content:'';position:absolute;width:12px;height:12px;background:var(--lime);border-radius:50%;right:4px;top:4px;box-shadow:0 0 12px var(--lime)}
+.logo-mark span{color:white;font-weight:800;font-size:18px;z-index:1}
+.logo i{font-style:normal;background:var(--lime);width:7px;height:7px;border-radius:50%;display:inline-block;margin-left:1px}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:500;color:#3a3a48}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.btn{border-radius:100px;padding:11px 22px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.btn-dark{background:var(--ink);color:white}
+.btn-dark:hover{background:#000;transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.btn-lime{background:var(--lime);color:var(--ink);border-color:var(--ink)}
+.btn-lime:hover{transform:translateY(-1px) rotate(-1deg);box-shadow:4px 4px 0 var(--ink)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-white{background:white;color:var(--ink)}
+.hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer}
+/* HERO */
+.hero{padding:148px 24px 40px;position:relative;overflow:hidden;text-align:center;max-width:1180px;margin:0 auto}
+.hero-glow{position:absolute;width:900px;height:600px;left:50%;top:-180px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(108,76,255,.18),rgba(200,241,53,.14),transparent 70%);pointer-events:none;filter:blur(10px)}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 70% 60% at 50% 0%,black 40%,transparent 80%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid var(--line);border-radius:100px;padding:7px 14px 7px 8px;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.badge-dot{background:var(--ink);color:var(--lime);font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;letter-spacing:.06em}
+.hero h1{font-size:clamp(44px,7.2vw,84px);line-height:.95;letter-spacing:-.05em;font-weight:800;margin:24px auto 18px;max-width:900px}
+.hero h1 .serif{letter-spacing:-.02em;font-weight:400}
+.hero p.sub{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto 28px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-proof{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:26px;font-size:13.5px;color:var(--muted)}
+.avatars{display:flex}
+.avatars div{width:32px;height:32px;border-radius:50%;border:2.5px solid var(--bg);margin-left:-8px;display:grid;place-items:center;font-size:12px;font-weight:700;color:white}
+.stars{color:#FF9A1F;letter-spacing:2px}
+/* DASHBOARD MOCK */
+.dash-wrap{max-width:1180px;margin:46px auto 0;padding:0 24px;position:relative}
+.dash{border-radius:24px;background:var(--dark);color:#EDEDF2;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 100px -20px rgba(11,11,18,.45),0 0 0 8px rgba(255,255,255,.6);position:relative;text-align:left}
+.dash-top{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dash-body{display:grid;grid-template-columns:220px 1fr 300px;min-height:520px}
+.dash-side{border-right:1px solid rgba(255,255,255,.08);padding:20px 16px;display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.015)}
+.side-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;font-size:13px;color:#A6A6B8}
+.side-item.active{background:rgba(255,255,255,.08);color:white}
+.side-item .ico{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:14px}
+.dash-main{padding:22px;background:radial-gradient(600px 300px at 50% 0%,rgba(108,76,255,.18),transparent)}
+.dash-main h4{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#8E8EA3;margin-bottom:12px}
+.campaign-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+.camp-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
+.camp-card b{font-size:13.5px;display:block}
+.camp-card small{color:#9A9AB0;font-size:12px}
+.progress{height:6px;background:rgba(255,255,255,.1);border-radius:100px;margin-top:10px;overflow:hidden}
+.progress i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--violet),var(--lime));width:0;transition:width 1s}
+.orch{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+.agent-line{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.agent-line:last-child{border:none}
+.agent-ava{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:16px;font-weight:700;flex-shrink:0}
+.status{margin-left:auto;font-size:11px;padding:4px 10px;border-radius:100px;font-weight:700;letter-spacing:.04em}
+.st-live{background:rgba(200,241,53,.15);color:var(--lime);border:1px solid rgba(200,241,53,.3)}
+.st-done{background:rgba(255,255,255,.08);color:#BEBED2}
+.st-work{background:rgba(108,76,255,.2);color:#BFB4FF;border:1px solid rgba(108,76,255,.4)}
+.dash-right{border-left:1px solid rgba(255,255,255,.08);background:#0F0F18;padding:20px;display:flex;flex-direction:column}
+.live-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8E8EA3}
+.pulse{width:8px;height:8px;background:#3DFF88;border-radius:50%;box-shadow:0 0 10px #3DFF88;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{opacity:.4}}
+#feed{display:flex;flex-direction:column;gap:10px;margin-top:14px;overflow:hidden}
+.feed-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:10px 12px;font-size:12.5px;animation:slideIn .5s ease}
+.feed-item span{color:var(--lime);font-family:'JetBrains Mono',monospace;font-size:11px}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}}
+.dash-cta-row{display:flex;gap:10px;margin-top:auto;padding-top:16px}
+/* LOGOS */
+.logos{max-width:1180px;margin:0 auto;padding:36px 24px 10px;text-align:center}
+.logos small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.marquee{overflow:hidden;margin-top:18px;mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:scroll 22s linear infinite;font-weight:800;font-size:20px;letter-spacing:-.02em;color:#9A9AAE;align-items:center}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee-track span{display:flex;align-items:center;gap:8px;white-space:nowrap}
+/* STATS */
+.stats{max-width:1180px;margin:30px auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left}
+.stat b{font-size:34px;letter-spacing:-.04em;display:block}
+.stat span{font-size:13px;color:var(--muted)}
+/* SECTION */
+.section{max-width:1180px;margin:0 auto;padding:90px 24px 20px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);background:rgba(108,76,255,.08);border:1px solid rgba(108,76,255,.18);padding:7px 14px;border-radius:100px;margin-bottom:16px}
+.h2{font-size:clamp(32px,4.5vw,54px);letter-spacing:-.045em;line-height:1.02;font-weight:800;max-width:700px}
+.h2 .serif{font-weight:400}
+.lead{color:var(--muted);font-size:17px;max-width:600px;margin-top:12px}
+/* PILLARS */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.pillar{background:white;border:1px solid var(--line);border-radius:22px;padding:28px;position:relative;overflow:hidden;transition:.3s}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.pillar-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.pillar h3{font-size:22px;letter-spacing:-.02em;margin:12px 0 8px}
+.pillar p{font-size:14.5px;color:var(--muted)}
+.pillar-visual{margin-top:18px;border-radius:14px;padding:16px;font-size:13px;min-height:140px}
+.pv1{background:#0B0B12;color:#E8E8F0}
+.pv2{background:#F1EDFF;border:1px dashed rgba(108,76,255,.3)}
+.pv3{background:var(--lime);border:1.5px solid var(--ink)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;margin:3px 4px 3px 0}
+/* AGENTS */
+.dark-section{background:var(--dark);color:#EDEDF2;border-radius:32px;max-width:1220px;margin:80px auto 0;padding:70px 32px;position:relative;overflow:hidden}
+.dark-section::before{content:'';position:absolute;width:700px;height:400px;background:radial-gradient(ellipse,rgba(108,76,255,.35),transparent 70%);top:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.agents-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px;position:relative}
+.agent-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px;transition:.3s;position:relative;overflow:hidden}
+.agent-card:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);border-color:rgba(200,241,53,.4)}
+.agent-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.agent-card h3{font-size:17px}
+.agent-card p{font-size:13.5px;color:#A9A9BE}
+.agent-tags{margin-top:12px}
+.agent-tags span{font-size:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:4px 10px;border-radius:100px;margin-right:6px;display:inline-block;margin-bottom:6px}
+/* PLAYGROUND */
+.playground{margin-top:32px;display:grid;grid-template-columns:380px 1fr;gap:16px}
+.pg-controls{background:white;border:1px solid var(--line);border-radius:22px;padding:26px}
+.pg-controls label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin:16px 0 8px}
+.pg-controls label:first-child{margin-top:0}
+.pg-controls input,.pg-controls select{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);font-size:14px;font-family:inherit;background:#FBFAF7}
+.pg-controls input:focus,.pg-controls select:focus{outline:none;border-color:var(--violet)}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:100px;border:1.5px solid var(--line);font-size:13px;font-weight:600;cursor:pointer;background:white;transition:.2s}
+.chip.sel{background:var(--ink);color:white;border-color:var(--ink)}
+.pg-output{background:var(--dark);border-radius:22px;color:#EDEDF2;padding:26px;min-height:560px;position:relative;overflow:hidden}
+.pg-steps{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.pg-step{font-size:12px;font-weight:600;padding:6px 12px;border-radius:100px;background:rgba(255,255,255,.07);color:#9A9AB0;border:1px solid rgba(255,255,255,.08)}
+.pg-step.on{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.gen-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px;margin-bottom:12px}
+.gen-box h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+.gen-box p{font-size:14.5px;line-height:1.6}
+.copy-btn{margin-top:10px;font-size:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:white;padding:6px 12px;border-radius:100px;cursor:pointer}
+.copy-btn:hover{background:var(--lime);color:var(--ink)}
+.typing::after{content:'▊';animation:blink 1s infinite;color:var(--lime)}
+@keyframes blink{50%{opacity:0}}
+/* WORKFLOW */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.step-card{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;position:relative}
+.step-card b.num{width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:14px;margin-bottom:14px}
+.step-card h4{font-size:16px;margin-bottom:6px}
+.step-card p{font-size:13.5px;color:var(--muted)}
+/* ROI + INTEGRATIONS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.roi-card{background:white;border:1px solid var(--line);border-radius:22px;padding:28px}
+.roi-card input[type=range]{width:100%;accent-color:var(--violet);margin:8px 0}
+.roi-num{font-size:42px;font-weight:800;letter-spacing:-.04em}
+.roi-num em{font-style:normal;color:var(--violet)}
+.integ-card{background:var(--ink);color:white;border-radius:22px;padding:28px;position:relative;overflow:hidden}
+.integ-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.integ-pills span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:9px 16px;border-radius:100px;font-size:13px;font-weight:600}
+/* TESTIMONIALS */
+.testi-wrap{margin-top:32px;position:relative}
+.testi{background:white;border:1px solid var(--line);border-radius:22px;padding:34px;min-height:260px}
+.testi p.quote{font-size:20px;letter-spacing:-.02em;line-height:1.5;font-weight:500}
+.testi-author{display:flex;align-items:center;gap:12px;margin-top:20px}
+.testi-author div.ava{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:white;font-weight:800}
+.testi-dots{display:flex;gap:8px;margin-top:16px;justify-content:center}
+.testi-dots button{width:8px;height:8px;border-radius:100px;border:none;background:#D6D6DE;cursor:pointer;transition:.3s}
+.testi-dots button.on{width:28px;background:var(--ink)}
+/* PRICING */
+.toggle{display:inline-flex;background:white;border:1px solid var(--line);border-radius:100px;padding:4px;margin-top:20px}
+.toggle button{border:none;background:none;padding:9px 20px;border-radius:100px;font-weight:700;font-size:13px;cursor:pointer}
+.toggle button.on{background:var(--ink);color:white}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.price-card{background:white;border:1px solid var(--line);border-radius:22px;padding:30px;position:relative}
+.price-card.pop{background:var(--dark);color:white;border-color:var(--dark);transform:scale(1.02);box-shadow:0 24px 60px rgba(0,0,0,.2)}
+.price-card h3{font-size:16px}
+.price{font-size:44px;font-weight:800;letter-spacing:-.05em;margin:10px 0}
+.price small{font-size:14px;font-weight:500;color:var(--muted)}
+.price-card.pop small{color:#9A9AB0}
+.feat{list-style:none;margin:18px 0;font-size:14px;display:flex;flex-direction:column;gap:10px}
+.feat li::before{content:'✓';display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(200,241,53,.25);margin-right:8px;font-size:12px;font-weight:800}
+/* FAQ */
+.faq{margin-top:28px;max-width:760px}
+.faq-item{background:white;border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:18px 22px;font-weight:700;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:.3s;font-size:14px;color:var(--muted)}
+.faq-item.open .faq-a{padding:0 22px 20px;max-height:200px}
+/* CTA */
+.cta{background:linear-gradient(135deg,#0B0B12 0%,#231A6B 60%,#6C4CFF 100%);border-radius:28px;color:white;padding:70px 32px;text-align:center;margin:80px auto 0;max-width:1220px;position:relative;overflow:hidden}
+.cta::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(200,241,53,.35),transparent 70%);right:-100px;top:-100px}
+.cta h2{font-size:clamp(32px,5vw,60px);letter-spacing:-.045em;line-height:1}
+.cta p{color:#C9C9DA;margin:16px auto;max-width:500px}
+/* FOOTER */
+footer{max-width:1180px;margin:0 auto;padding:60px 24px 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+footer h5{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+footer a{display:block;font-size:14px;color:#3A3A48;margin-bottom:8px}
+footer a:hover{color:var(--ink)}
+.bottom{max-width:1180px;margin:0 auto;padding:20px 24px 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:10px}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.vis{opacity:1;transform:none}
+/* FLOAT */
+.float-badge{position:absolute;background:white;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:12.5px;font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.12);display:flex;gap:8px;align-items:center;animation:float 4s ease-in-out infinite;z-index:2}
+@keyframes float{50%{transform:translateY(-8px)}}
+@media(max-width:1000px){
+.dash-body{grid-template-columns:1fr}.dash-side,.dash-right{display:none}
+.pillars,.agents-grid,.steps,.two-col,.playground,.price-grid{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr 1fr}
+.nav-links{display:none}.hamburger{display:block}
+footer{grid-template-columns:1fr 1fr}
+.mobile-menu{display:none;position:fixed;top:70px;left:12px;right:12px;background:white;border-radius:20px;border:1px solid var(--line);padding:20px;z-index:99;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px;font-weight:600;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="logo"><div class="logo-mark"><span>C</span></div>Connected<i></i></div>
+<div class="nav-links"><a href="#platform">Platform</a><a href="#agents">Agents</a><a href="#playground">Live Demo</a><a href="#workflow">Workflow</a><a href="#pricing">Pricing</a></div>
+<div class="nav-cta"><a href="#pricing" class="btn btn-ghost" style="padding:10px 18px">Sign in</a><a href="#playground" class="btn btn-dark">Get started →</a><button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">☰</button></div>
+</nav>
+<div class="mobile-menu" id="mm"><a href="#platform">Platform</a><a href="#agents">Agents</a><a href="#playground">Live Demo</a><a href="#pricing">Pricing</a><a href="#playground" class="btn btn-dark" style="margin-top:10px;justify-content:center">Get started →</a></div>
+
+<header class="hero">
+<div class="hero-glow"></div><div class="hero-grid-bg"></div>
+<div class="badge"><span class="badge-dot">NEW</span> Connected Agents 2.0 — now with Brand Voice Memory <span>→</span></div>
+<h1>Plan, write &amp; launch campaigns <span class="serif">at the speed of thought.</span></h1>
+<p class="sub">Connected gives your marketing team a crew of specialized AI agents that research, draft, design, and ship on-brand campaigns — in hours, not weeks.</p>
+<div class="hero-btns"><a href="#playground" class="btn btn-lime" style="padding:15px 30px;font-size:15px">Start creating free →</a><a href="#agents" class="btn btn-dark" style="padding:15px 30px;font-size:15px">▶ Watch agents work</a></div>
+<div class="hero-proof"><div class="avatars"><div style="background:#6C4CFF">AK</div><div style="background:#0E0E14">JM</div><div style="background:#FF6B4A">SL</div><div style="background:#00B37E">+9</div></div><div><span class="stars">★★★★★</span><br><b style="color:var(--ink)">4.9/5</b> from 2,400+ marketing teams</div><div style="background:#E8F5D6;border:1px solid #B8D97A;padding:6px 12px;border-radius:100px;font-weight:700;color:#2A4A00">● SOC 2 Type II</div></div>
+</header>
+
+<div class="dash-wrap">
+<div class="float-badge" style="top:-18px;left:30px">✨ Strategist finished brief <span style="color:#00B37E">✓</span></div>
+<div class="float-badge" style="bottom:40px;right:10px;animation-delay:1.5s">🚀 Q3 Launch — 94% ready</div>
+<div class="dash reveal vis">
+<div class="dash-top"><div class="dot" style="background:#FF5F57"></div><div class="dot" style="background:#FEBC2E"></div><div class="dot" style="background:#28C840"></div><span class="mono" style="margin-left:10px;font-size:12px;color:#8E8EA3">app.connected.ai/orchestration</span><span style="margin-left:auto;font-size:12px;background:var(--lime);color:var(--ink);padding:4px 12px;border-radius:100px;font-weight:800">● LIVE • 6 agents active</span></div>
+<div class="dash-body">
+<div class="dash-side">
+<div class="side-item active"><div class="ico" style="background:rgba(108,76,255,.25)">◈</div> Overview</div>
+<div class="side-item"><div class="ico" style="background:rgba(200,241,53,.2)">✦</div> Campaigns</div>
+<div class="side-item"><div class="ico" style="background:rgba(255,107,74,.2)">🤖</div> Agents</div>
+<div class="side-item"><div class="ico" style="background:rgba(0,179,126,.2)">◐</div> Analytics</div>
+<div class="side-item"><div class="ico" style="background:rgba(255,255,255,.08)">⚙</div> Brand Kit</div>
+<div style="margin-top:auto;background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.25);border-radius:12px;padding:12px;font-size:12px"><b style="color:var(--lime)">Brand Voice: 98% match</b><br><span style="color:#9A9AB0">Trained on 342 assets</span></div>
+</div>
+<div class="dash-main">
+<h4>Q3 Product Launch — Orchestration</h4>
+<div class="campaign-row">
+<div class="camp-card"><b>📧 Email Sequence</b><small>5 emails • Klaviyo ready</small><div class="progress"><i data-w="92" style="width: 92%;"></i></div></div>
+<div class="camp-card"><b>📱 Social Pack</b><small>12 posts • LinkedIn + X</small><div class="progress"><i data-w="76" style="width: 76%;"></i></div></div>
+<div class="camp-card"><b>🎯 Paid Ads</b><small>8 variants • Meta + Google</small><div class="progress"><i data-w="64" style="width: 64%;"></i></div></div>
+</div>
+<div class="orch">
+<div class="agent-line"><div class="agent-ava" style="background:#6C4CFF">S</div><div><b style="font-size:13px">Strategist</b><br><small style="color:#8E8EA3;font-size:12px">Positioning + audience brief done</small></div><span class="status st-done">DONE</span></div>
+<div class="agent-line"><div class="agent-ava" style="background:#C8F135;color:#111">W</div><div><b style="font-size:13px">Copywriter</b><br><small style="color:#8E8EA3;font-size:12px">Writing variant 7/8… “Scale without chaos”</small></div><span class="status st-live">● WRITING</span></div>
+<div class="agent-line"><div class="agent-ava" style="background:#FF6B4A">D</div><div><b style="font-size:13px">Designer</b><br><small style="color:#8E8EA3;font-size:12px">Rendering hero visuals in brand kit</small></div><span class="status st-work">RENDERING</span></div>
+</div>
+</div>
+<div class="dash-right">
+<div class="live-head"><div class="pulse"></div> Agent activity</div>
+<div id="feed"><div class="feed-item"><span>09:42:44</span><br>Analyst: ‘Variant B outperforming by 31% — scaling’</div><div class="feed-item"><span>09:42:19</span><br>Media Buyer allocated $2.5k — predicted CPA ↓ 22%</div><div class="feed-item"><span>09:42:01</span><br>SEO scored landing draft 94/100 — keywords clustered</div><div class="feed-item"><span>09:41:28</span><br>Designer rendered 4 LinkedIn carousels in brand kit</div></div>
+<div class="dash-cta-row"><button class="btn btn-lime" style="flex:1;justify-content:center;font-size:13px" onclick="document.getElementById('playground').scrollIntoView({behavior:'smooth'})">Approve &amp; Launch</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="logos"><small>Powering 4,000+ modern marketing teams</small>
+<div class="marquee"><div class="marquee-track" id="mtrack"><span>⬢ NORTIDE</span><span>◍ Helios</span><span>◆ VANTAGE</span><span>⬣ Loopwork</span><span>◈ Klarheit</span><span>● Brightline</span><span>▲ Northbeam</span><span>⬢ NORTIDE</span><span>◍ Helios</span><span>◆ VANTAGE</span><span>⬣ Loopwork</span><span>◈ Klarheit</span><span>● Brightline</span><span>▲ Northbeam</span></div></div>
+</div>
+
+<div class="stats">
+<div class="stat reveal vis"><b><span class="count" data-n="12">12</span>hrs</b><span>saved per campaign on average</span></div>
+<div class="stat reveal vis"><b>+<span class="count" data-n="38">38</span>%</b><span>higher CTR vs. manual workflows</span></div>
+<div class="stat reveal vis"><b><span class="count" data-n="6">6</span>x</b><span>more variants shipped per launch</span></div>
+<div class="stat reveal vis"><b><span class="count" data-n="92">92</span>%</b><span>of teams launch in under 48 hours</span></div>
+</div>
+
+<section class="section" id="platform">
+<div class="eyebrow">● The Platform</div>
+<h2 class="h2">One workspace for <span class="serif">every stage</span> of your campaign.</h2>
+<p class="lead">Stop juggling docs, briefs, and freelancers. Connected orchestrates research, creation, and distribution in one connected flow.</p>
+<div class="pillars">
+<div class="pillar reveal vis"><div class="pillar-num">01 — PLAN</div><h3>Strategize with data</h3><p>Strategist agent analyzes your market, competitors, and past winners to build a brief your CMO will actually approve.</p><div class="pillar-visual pv1"><div class="mono" style="font-size:11px;color:var(--lime)">&gt; analyzing 14 competitors…</div><div style="margin-top:10px;font-size:13px">✓ Audience: RevOps leaders, 50-500 emp.<br>✓ Angle: “Kill tool sprawl”<br>✓ Channels: LinkedIn + Email + Paid</div></div></div>
+<div class="pillar reveal vis"><div class="pillar-num">02 — WRITE</div><h3>Draft in your voice</h3><p>Trained on your brand kit, tone, and top content. Every headline, email, and ad sounds like you — only faster.</p><div class="pillar-visual pv2"><div style="font-weight:800;color:var(--ink)">“Marketing that markets itself.”</div><div style="color:#55556A;font-size:13px;margin-top:6px">3 tones • 8 variants • SEO-scored 94/100</div><div style="margin-top:10px"><span class="tag" style="background:var(--ink);color:white">Bold</span><span class="tag" style="background:white;border:1px solid #ccc">Playful</span><span class="tag" style="background:white;border:1px solid #ccc">Enterprise</span></div></div></div>
+<div class="pillar reveal vis"><div class="pillar-num">03 — LAUNCH</div><h3>Ship everywhere</h3><p>One-click push to HubSpot, Mailchimp, LinkedIn, Meta, and Webflow. Analyst agent tracks and optimizes live.</p><div class="pillar-visual pv3" style="color:var(--ink)"><b>🚀 Launch checklist</b><div style="font-size:13px;margin-top:6px;font-weight:600">✓ Email scheduled — Tue 9am<br>✓ 12 social posts queued<br>✓ $2.5k ad budget distributed</div></div></div>
+</div>
+</section>
+
+<section class="dark-section" id="agents">
+<div class="eyebrow" style="background:rgba(200,241,53,.12);color:var(--lime);border-color:rgba(200,241,53,.25)">✦ Meet your agent crew</div>
+<h2 class="h2" style="color:white">Hire AI specialists. <span class="serif" style="color:var(--lime)">Keep full control.</span></h2>
+<p class="lead" style="color:#A9A9BE">Each agent is an expert in its craft, trained on B2B best practices and your brand. Assign them, review, approve.</p>
+<div class="agents-grid">
+<div class="agent-card"><div class="agent-top"><div class="agent-ava" style="background:#6C4CFF">◈</div><div><h3>Strategist</h3><small class="mono" style="color:var(--lime);font-size:11px">PLANNING</small></div></div><p>Turns goals into positioning, messaging pillars, and channel plans backed by live market research.</p><div class="agent-tags"><span>ICP mapping</span><span>Competitor intel</span><span>Briefs</span></div></div>
+<div class="agent-card"><div class="agent-top"><div class="agent-ava" style="background:var(--lime);color:#111">✎</div><div><h3>Copywriter</h3><small class="mono" style="color:var(--lime);font-size:11px">WRITING</small></div></div><p>Writes emails, landing pages, ads, and social posts in your exact tone — with 10x variants.</p><div class="agent-tags"><span>Email</span><span>Landing pages</span><span>Ad copy</span></div></div>
+<div class="agent-card"><div class="agent-top"><div class="agent-ava" style="background:#FF6B4A">◐</div><div><h3>Designer</h3><small class="mono" style="color:var(--lime);font-size:11px">VISUAL</small></div></div><p>Generates on-brand hero images, social creatives, and ad banners from your brand kit.</p><div class="agent-tags"><span>Social kits</span><span>Ad creatives</span><span>Brand match</span></div></div>
+<div class="agent-card"><div class="agent-top"><div class="agent-ava" style="background:#00B37E">◎</div><div><h3>SEO Optimizer</h3><small class="mono" style="color:var(--lime);font-size:11px">ORGANIC</small></div></div><p>Scores every word for search intent, clusters keywords, and builds internal linking automatically.</p><div class="agent-tags"><span>Keyword clusters</span><span>Briefs</span><span>Score 90+</span></div></div>
+<div class="agent-card"><div class="agent-top"><div class="agent-ava" style="background:#FFB800">⬣</div><div><h3>Media Buyer</h3><small class="mono" style="color:var(--lime);font-size:11px">PAID</small></div></div><p>Allocates budget, writes audiences, and A/B tests creative across Meta, Google, and LinkedIn.</p><div class="agent-tags"><span>Meta</span><span>Google</span><span>LinkedIn</span></div></div>
+<div class="agent-card"><div class="agent-top"><div class="agent-ava" style="background:#7CD4FF">◑</div><div><h3>Analyst</h3><small class="mono" style="color:var(--lime);font-size:11px">INSIGHT</small></div></div><p>Watches performance 24/7, explains what’s working, and rewrites underperformers by itself.</p><div class="agent-tags"><span>Attribution</span><span>Auto-optimize</span><span>Reports</span></div></div>
+</div>
+</section>
+
+<section class="section" id="playground">
+<div class="eyebrow">● Live demo — try it now</div>
+<h2 class="h2">Watch Connected <span class="serif">write your next campaign.</span></h2>
+<p class="lead">No signup. Describe your offer — our agents will plan and draft live, right here.</p>
+<div class="playground">
+<div class="pg-controls reveal vis">
+<label>Your company / product</label>
+<input id="in-brand" value="Acme — async standup tool for remote teams" style="">
+<label>Campaign goal</label>
+<div class="chip-row" id="goal-chips"><button class="chip sel">Product launch</button><button class="chip">Lead gen</button><button class="chip">Re-engagement</button><button class="chip">Event promo</button></div>
+<label>Channels</label>
+<div class="chip-row" id="chan-chips"><button class="chip sel">Email</button><button class="chip sel">LinkedIn</button><button class="chip">Paid ads</button></div>
+<label>Tone of voice</label>
+<select id="in-tone"><option>Bold &amp; punchy</option><option>Playful &amp; witty</option><option>Enterprise &amp; trusted</option><option>Minimal &amp; premium</option></select>
+<button class="btn btn-dark" id="gen-btn" style="width:100%;justify-content:center;margin-top:20px;padding:15px">✦ Generate campaign with agents</button>
+<p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center">Free demo • No credit card • 28s average</p>
+</div>
+<div class="pg-output reveal vis">
+<div class="pg-steps" id="pg-steps"><div class="pg-step">1 Strategist</div><div class="pg-step">2 Copywriter</div><div class="pg-step">3 Designer</div><div class="pg-step">4 Launch-ready</div></div>
+<div id="pg-result"><div class="gen-box"><h5>● Ready to generate</h5><p style="color:#8E8EA3">Hit “Generate campaign” and watch 4 agents collaborate in real time — brief, copy, visuals, and launch plan.</p></div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="workflow">
+<div class="eyebrow">● How it works</div>
+<h2 class="h2">From idea to in-market <span class="serif">in four steps.</span></h2>
+<div class="steps">
+<div class="step-card reveal vis"><b class="num">1</b><h4>Connect your brand</h4><p>Import your site, past campaigns, and style guide. Connected learns your voice in minutes.</p></div>
+<div class="step-card reveal vis"><b class="num">2</b><h4>Brief the crew</h4><p>Tell Strategist your goal. It returns positioning, angles, and a channel plan for approval.</p></div>
+<div class="step-card reveal vis"><b class="num">3</b><h4>Review &amp; refine</h4><p>Comment like you would with a team. Agents rewrite instantly — version history included.</p></div>
+<div class="step-card reveal vis"><b class="num">4</b><h4>Launch &amp; learn</h4><p>Push live everywhere. Analyst monitors, reports, and auto-optimizes underperformers.</p></div>
+</div>
+<div class="two-col">
+<div class="roi-card reveal vis"><div class="eyebrow">ROI calculator</div><h3 style="font-size:22px;letter-spacing:-.02em">How much could you save?</h3>
+<label style="font-size:13px;font-weight:700">Campaigns per month: <span id="v1">8</span></label><input type="range" id="r1" min="2" max="30" value="8" style="">
+<label style="font-size:13px;font-weight:700">Team size: <span id="v2">6</span></label><input type="range" id="r2" min="1" max="30" value="6" style="">
+<div style="background:#F1EDFF;border-radius:14px;padding:16px;margin-top:12px"><div class="roi-num"><em id="roi-h">96</em> hrs <span style="font-size:16px;font-weight:600">saved / mo</span></div><div style="font-size:13px;color:var(--muted)">≈ <b id="roi-d" style="color:var(--ink)">$9,600</b> in team time + 6x more output</div></div>
+</div>
+<div class="integ-card reveal vis"><div class="eyebrow" style="background:rgba(255,255,255,.1);color:white;border-color:rgba(255,255,255,.2)">Plugs into your stack</div><h3 style="font-size:24px;letter-spacing:-.02em">Ships where you already work.</h3><p style="color:#A9A9BE;font-size:14px;margin-top:8px">Native two-way sync. Approve in Connected, publish everywhere, measure back in one dashboard.</p><div class="integ-pills"><span>◉ HubSpot</span><span>☁ Salesforce</span><span># Slack</span><span>✦ Mailchimp</span><span>◍ Webflow</span><span>⬣ Figma</span><span>in LinkedIn</span><span>◎ Meta</span><span>▷ YouTube</span></div><div style="margin-top:18px;font-size:12px" class="mono">API + Zapier + Webhooks included →</div></div>
+</div>
+</section>
+
+<section class="section">
+<div class="eyebrow">● Loved by marketing leaders</div>
+<h2 class="h2">Teams ship <span class="serif">more, faster, better.</span></h2>
+<div class="testi-wrap"><div class="testi reveal vis" id="testi-box"><p class="quote" id="t-quote">“It’s like hiring six senior marketers overnight. Our content output went 6x and CAC dropped 28% in one quarter.”</p><div class="testi-author"><div class="ava" id="t-ava" style="background: rgb(14, 14, 20);">JW</div><div><b id="t-name">James Whitfield</b><br><small style="color:var(--muted)" id="t-role">Head of Growth, Vantage • SaaS</small></div><div style="margin-left:auto" class="stars">★★★★★</div></div></div><div class="testi-dots" id="t-dots"><button class=""></button><button class="on"></button><button></button></div></div>
+</section>
+
+<section class="section" id="pricing">
+<div class="eyebrow">● Pricing</div>
+<h2 class="h2">Start free. <span class="serif">Scale when you’re ready.</span></h2>
+<div class="toggle"><button id="b-mo" class="on">Monthly</button><button id="b-yr">Annual −20%</button></div>
+<div class="price-grid">
+<div class="price-card reveal vis"><h3>Starter</h3><p style="font-size:13px;color:var(--muted)">For small teams testing AI</p><div class="price">$49<small>/mo</small></div><ul class="feat"><li>2 agent seats</li><li>20 campaigns / mo</li><li>Email + social agents</li><li>Brand voice memory</li><li>Community support</li></ul><button class="btn btn-ghost" style="width:100%;justify-content:center">Start free trial</button></div>
+<div class="price-card pop reveal vis"><div style="font-size:11px;font-weight:800;letter-spacing:.08em;background:var(--lime);color:var(--ink);display:inline-block;padding:5px 12px;border-radius:100px">MOST POPULAR</div><h3 style="margin-top:10px">Growth</h3><p style="font-size:13px;color:#9A9AB0">For scaling marketing teams</p><div class="price" id="p-growth">$149<small>/mo</small></div><ul class="feat"><li>10 agent seats + all 6 agents</li><li>Unlimited campaigns</li><li>Paid ads + SEO + Analyst</li><li>HubSpot, Salesforce, Slack sync</li><li>Priority support + onboarding</li></ul><button class="btn btn-lime" style="width:100%;justify-content:center">Start free trial →</button></div>
+<div class="price-card reveal vis"><h3>Enterprise</h3><p style="font-size:13px;color:var(--muted)">For regulated &amp; global orgs</p><div class="price">Custom</div><ul class="feat"><li>SSO, SOC 2, GDPR, EU residency</li><li>Custom agent training</li><li>Dedicated CSM + SLA</li><li>Approval workflows &amp; audit logs</li><li>API + white-label</li></ul><button class="btn btn-dark" style="width:100%;justify-content:center">Talk to sales</button></div>
+</div>
+<div class="faq"><h3 style="font-size:20px;margin:30px 0 14px">Frequently asked questions</h3>
+<div class="faq-item open"><div class="faq-q">Will AI copy actually sound like our brand? <span>+</span></div><div class="faq-a">Yes. Connected trains a private Brand Voice model on your website, past campaigns, and style guide. Teams report 98% voice match, and you can lock tone, banned words, and compliance rules.</div></div>
+<div class="faq-item"><div class="faq-q">Do we still control approvals? <span>+</span></div><div class="faq-a">Completely. Nothing publishes without human approval unless you enable autopilot for specific low-risk channels. Full version history, comments, and audit logs are built in.</div></div>
+<div class="faq-item"><div class="faq-q">Is our data used to train public models? <span>+</span></div><div class="faq-a">Never. Your data is isolated, encrypted, and never used to train shared models. We are SOC 2 Type II certified and GDPR compliant with EU data residency options.</div></div>
+<div class="faq-item"><div class="faq-q">How long does onboarding take? <span>+</span></div><div class="faq-a">Most teams launch their first AI-built campaign in under a day. Import your brand in 10 minutes with our crawler, invite your team, and brief your first agent.</div></div>
+</div>
+</section>
+
+<div style="padding:0 24px"><section class="cta reveal vis"><h2>Your next campaign<br><span class="serif" style="font-weight:400">is one brief away.</span></h2><p>Join 4,000+ B2B marketing teams planning, writing, and launching with Connected agents.</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1"><a href="#playground" class="btn btn-lime" style="padding:15px 30px">Start free — no card needed</a><a href="#pricing" class="btn" style="padding:15px 30px;border:1px solid rgba(255,255,255,.3);color:white">Book a demo</a></div><p style="font-size:12px;margin-top:16px;opacity:.7">Free 14-day Pro trial • Cancel anytime • Onboard in 10 min</p></section></div>
+
+<footer><div><div class="logo"><div class="logo-mark"><span>C</span></div>Connected<i></i></div><p style="font-size:14px;color:var(--muted);margin-top:12px;max-width:260px">The AI campaign platform for B2B marketing teams. Plan, write, launch.</p><div style="display:flex;gap:8px;margin-top:14px"><span style="font-size:12px;background:#E8F5D6;border:1px solid #B8D97A;padding:4px 10px;border-radius:100px;font-weight:700">SOC 2</span><span style="font-size:12px;background:#E8E8F5;border:1px solid #B8B8E0;padding:4px 10px;border-radius:100px;font-weight:700">GDPR</span><span style="font-size:12px;background:#FFF2D6;border:1px solid #E0C97A;padding:4px 10px;border-radius:100px;font-weight:700">ISO 27001</span></div></div><div><h5>Product</h5><a href="#agents">AI Agents</a><a href="#playground">Live Demo</a><a href="#pricing">Pricing</a><a href="#">Integrations</a><a href="#">Changelog</a></div><div><h5>Company</h5><a href="#">About</a><a href="#">Customers</a><a href="#">Careers <span style="background:var(--lime);padding:2px 8px;border-radius:100px;font-size:11px;font-weight:800">HIRING</span></a><a href="#">Blog</a><a href="#">Press</a></div><div><h5>Resources</h5><a href="#">Help center</a><a href="#">Brand voice guide</a><a href="#">Campaign templates</a><a href="#">API docs</a><a href="#">Security</a></div></footer>
+<div class="bottom"><span>© 2026 Connected AI, Inc. All rights reserved.</span><span style="display:flex;gap:16px"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Status: ● All systems operational</a></span></div>
+
+<script>
+// Reveal
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Progress bars
+setTimeout(()=>document.querySelectorAll('.progress i').forEach(el=>el.style.width=el.dataset.w+'%'),400);
+// Counters
+const cio=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){let el=x.target,n=+el.dataset.n,c=0;let t=setInterval(()=>{c+=Math.ceil(n/30);if(c>=n){c=n;clearInterval(t)}el.textContent=c},50);cio.unobserve(el)}}),{threshold:.5});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+// Live feed
+const feed=document.getElementById('feed');
+const msgs=["<span>09:41:12</span><br>Copywriter drafted email #3 — ‘Your standup, minus the meeting’","<span>09:41:28</span><br>Designer rendered 4 LinkedIn carousels in brand kit","<span>09:42:01</span><br>SEO scored landing draft 94/100 — keywords clustered","<span>09:42:19</span><br>Media Buyer allocated $2.5k — predicted CPA ↓ 22%","<span>09:42:44</span><br>Analyst: ‘Variant B outperforming by 31% — scaling’","<span>09:43:02</span><br>Strategist updated brief — new angle: ‘Kill tool sprawl’"];
+let mi=0;function pushFeed(){const d=document.createElement('div');d.className='feed-item';d.innerHTML=msgs[mi%msgs.length];feed.prepend(d);while(feed.children.length>4)feed.lastChild.remove();mi++}pushFeed();pushFeed();pushFeed();setInterval(pushFeed,3500);
+// Chips
+document.querySelectorAll('.chip-row').forEach(row=>row.addEventListener('click',e=>{if(e.target.classList.contains('chip'))e.target.classList.toggle('sel')}));
+// Testimonials
+const T=[{q:"“Connected replaced three tools and a freelance roster. We launched our Series B campaign in 36 hours — pipeline up 43%.”",n:"Maya Koenig",r:"VP Marketing, Nortide • 120 employees",a:"MK",c:"#6C4CFF"},{q:"“It’s like hiring six senior marketers overnight. Our content output went 6x and CAC dropped 28% in one quarter.”",n:"James Whitfield",r:"Head of Growth, Vantage • SaaS",a:"JW",c:"#0E0E14"},{q:"“Brand voice is scary accurate. Legal approved AI copy faster than human copy. That never happens.”",n:"Sofia Lin",r:"CMO, Helios • Fintech",a:"SL",c:"#FF6B4A"}];
+let ti=0;const dots=document.querySelectorAll('#t-dots button');
+function showT(i){ti=i;document.getElementById('t-quote').textContent=T[i].q;document.getElementById('t-name').textContent=T[i].n;document.getElementById('t-role').textContent=T[i].r;const av=document.getElementById('t-ava');av.textContent=T[i].a;av.style.background=T[i].c;dots.forEach((d,j)=>d.classList.toggle('on',j===i))}
+dots.forEach((d,i)=>d.onclick=()=>showT(i));setInterval(()=>showT((ti+1)%3),6000);
+// Pricing toggle
+const pg=document.getElementById('p-growth');
+document.getElementById('b-mo').onclick=e=>{e.target.classList.add('on');document.getElementById('b-yr').classList.remove('on');pg.innerHTML='$149<small>/mo</small>'};
+document.getElementById('b-yr').onclick=e=>{e.target.classList.add('on');document.getElementById('b-mo').classList.remove('on');pg.innerHTML='$119<small>/mo, billed annually</small>'};
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q=>q.onclick=()=>q.parentElement.classList.toggle('open'));
+// ROI
+const r1=document.getElementById('r1'),r2=document.getElementById('r2');
+function roi(){document.getElementById('v1').textContent=r1.value;document.getElementById('v2').textContent=r2.value;const h=r1.value*12;document.getElementById('roi-h').textContent=h;document.getElementById('roi-d').textContent='$'+(h*100).toLocaleString()}
+r1.oninput=r2.oninput=roi;roi();
+// Generator demo
+const steps=[...document.querySelectorAll('#pg-steps .pg-step')];
+document.getElementById('gen-btn').onclick=async()=>{
+const brand=document.getElementById('in-brand').value||"Acme";
+const tone=document.getElementById('in-tone').value;
+const goals=[...document.querySelectorAll('#goal-chips .chip.sel')].map(c=>c.textContent).join(' + ')||"Product launch";
+const chans=[...document.querySelectorAll('#chan-chips .chip.sel')].map(c=>c.textContent).join(', ')||"Email, LinkedIn";
+const box=document.getElementById('pg-result');box.innerHTML='';
+steps.forEach(s=>s.classList.remove('on'));
+const seq=[
+{step:0,title:"◈ Strategist — Campaign Brief",text:`Goal: ${goals} for ${brand}. Angle: “Stop losing time to status meetings.” Audience: remote ops managers at 20–500 person companies. Pillars: save 5hrs/week, async-first, zero learning curve.`},
+{step:1,title:"✎ Copywriter — "+tone,text:`EMAIL SUBJECT: “Your standup just went async (in 2 clicks)”\n\nLINKEDIN HOOK: “We killed the 9am standup. Productivity went up 31%. Here’s the exact playbook 🧵”\n\nAD VARIANT: “Meetings are expensive. ${brand.split('—')[0].trim()} isn’t. Try free.”`},
+{step:2,title:"◐ Designer — Visual Direction",text:`Hero: soft gradient + product UI floating over calendar being erased. Palette: ink + lime pop. 4 LinkedIn carousels + 3 ad sizes exported to your brand kit. ▸ preview_connected.png`},
+{step:3,title:"🚀 Launch Plan — Ready to ship",text:`Channels: ${chans}. Schedule: Email Tue 9am (5-part drip) → LinkedIn daily 8:30am → Paid $2.5k test (Meta/LinkedIn). Predicted: 38% higher CTR, 12hrs saved. [ Approve & Launch ]`}
+];
+for(let item of seq){
+steps[item.step].classList.add('on');
+const div=document.createElement('div');div.className='gen-box';
+div.innerHTML=`<h5>${item.title}</h5><p class="typing"></p><button class="copy-btn">⧉ Copy</button>`;
+box.appendChild(div);
+const p=div.querySelector('p');const full=item.text;
+for(let i=0;i<=full.length;i+=3){p.textContent=full.slice(0,i);await new Promise(r=>setTimeout(r,12))}
+p.classList.remove('typing');
+div.querySelector('.copy-btn').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(full);e.target.textContent='✓ Copied!'};
+await new Promise(r=>setTimeout(r,350));
+}
+};
+</script>
+
+</body></html>

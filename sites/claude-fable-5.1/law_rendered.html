@@ -1,0 +1,908 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harlow &amp; Pierce | Michigan Accident &amp; Injury Attorneys</title>
+<meta name="description" content="Harlow &amp; Pierce is a modern Michigan personal injury law firm. Car accidents, truck accidents, slip and fall, wrongful death. No fee unless we win. Free case review 24/7.">
+<style>
+  :root{
+    --navy:#0b1a2b;
+    --navy-2:#112640;
+    --ink:#131a22;
+    --slate:#4a5866;
+    --mist:#8b97a3;
+    --line:#e3e0d8;
+    --cream:#f6f2ea;
+    --paper:#fbf9f4;
+    --white:#ffffff;
+    --amber:#d9a441;
+    --amber-2:#b98527;
+    --amber-soft:#f6e7c6;
+    --radius:14px;
+    --shadow:0 20px 50px -20px rgba(11,26,43,.35);
+    --serif:"Cormorant Garamond","Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none}
+  .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+  h1,h2,h3,.serif{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:1.1}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-2)}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--amber)}
+  .section{padding:104px 0}
+  .section-head{max-width:640px;margin-bottom:56px}
+  .section-head h2{font-size:clamp(34px,4vw,50px);margin:16px 0 18px;color:var(--navy)}
+  .section-head p{font-size:17px;color:var(--slate)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{background:var(--amber);color:var(--navy);box-shadow:0 10px 25px -10px rgba(217,164,65,.7)}
+  .btn-primary:hover{background:#e6b452}
+  .btn-outline{border:1.5px solid rgba(255,255,255,.35);color:#fff}
+  .btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .btn-dark{background:var(--navy);color:#fff}
+  .btn-dark:hover{background:var(--navy-2)}
+  .btn svg{width:18px;height:18px}
+
+  /* Top bar */
+  .topbar{background:var(--navy);color:rgba(255,255,255,.8);font-size:13px}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:40px}
+  .topbar strong{color:#fff}
+  .topbar .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ddc84;margin-right:8px;box-shadow:0 0 0 3px rgba(61,220,132,.2)}
+  .topbar a:hover{color:var(--amber)}
+  .topbar .right{display:flex;gap:24px}
+
+  /* Header */
+  header.site{position:sticky;top:0;z-index:60;background:rgba(251,249,244,.85);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+  header.site.scrolled{border-color:var(--line);box-shadow:0 8px 30px -20px rgba(0,0,0,.25)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo .mark{width:42px;height:42px;border-radius:10px;background:var(--navy);display:grid;place-items:center;color:var(--amber);font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .logo .name{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--navy);line-height:1}
+  .logo .name span{color:var(--amber-2)}
+  .logo .tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-top:3px;font-weight:600}
+  .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:500;color:var(--slate)}
+  .nav-links a{position:relative;padding:6px 0}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--amber);transition:width .25s}
+  .nav-links a:hover{color:var(--navy)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{display:flex;align-items:center;gap:18px}
+  .nav-phone{font-weight:600;color:var(--navy);font-size:15px}
+  .nav-phone small{display:block;font-size:11px;color:var(--mist);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+  .burger{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);place-items:center}
+  .burger span{display:block;width:20px;height:2px;background:var(--navy);margin:2.5px 0;transition:.3s}
+  .mobile-menu{display:none;position:fixed;inset:0;top:0;background:var(--navy);z-index:70;padding:32px;flex-direction:column;gap:12px;color:#fff}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{font-family:var(--serif);font-size:30px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mobile-menu .close{align-self:flex-end;color:#fff;font-size:34px;line-height:1}
+
+  /* Hero */
+  .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(900px 500px at 85% 10%,rgba(217,164,65,.18),transparent 60%),
+    radial-gradient(700px 500px at 5% 90%,rgba(41,86,140,.35),transparent 60%);
+    pointer-events:none}
+  .hero .grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse at 40% 50%,#000 30%,transparent 75%);pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding:96px 0 110px}
+  .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.85)}
+  .hero-badge b{background:var(--amber);color:var(--navy);border-radius:999px;padding:3px 10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .hero h1{font-size:clamp(44px,6vw,78px);margin:26px 0 22px;font-weight:600;line-height:1.02}
+  .hero h1 em{font-style:italic;color:var(--amber);font-weight:500}
+  .hero p.lead{font-size:18px;color:rgba(255,255,255,.72);max-width:540px;margin-bottom:36px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-proof{display:flex;gap:40px;margin-top:56px;padding-top:32px;border-top:1px solid rgba(255,255,255,.12)}
+  .hero-proof div{min-width:110px}
+  .hero-proof .num{font-family:var(--serif);font-size:38px;font-weight:600;color:#fff;line-height:1}
+  .hero-proof .num span{color:var(--amber)}
+  .hero-proof small{display:block;margin-top:6px;font-size:12.5px;color:rgba(255,255,255,.6);letter-spacing:.04em}
+
+  .case-card{background:#fff;color:var(--ink);border-radius:20px;padding:32px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);position:relative}
+  .case-card::before{content:"";position:absolute;inset:-1px;border-radius:21px;background:linear-gradient(135deg,rgba(217,164,65,.7),transparent 40%,transparent 60%,rgba(217,164,65,.4));z-index:-1}
+  .case-card h3{font-size:26px;color:var(--navy);margin-bottom:6px}
+  .case-card p.sub{font-size:14px;color:var(--slate);margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+  .field input,.field select,.field textarea{width:100%;font:inherit;font-size:15px;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 4px rgba(217,164,65,.18);background:#fff}
+  .field textarea{resize:vertical;min-height:110px}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .case-card .btn{width:100%;margin-top:6px}
+  .fine{font-size:12px;color:var(--mist);margin-top:14px;text-align:center;line-height:1.5}
+  .fine svg{width:12px;height:12px;display:inline;vertical-align:-1px;margin-right:4px}
+  .form-success{display:none;text-align:center;padding:30px 10px}
+  .form-success .check{width:64px;height:64px;border-radius:50%;background:#e8f7ee;color:#1f9d55;display:grid;place-items:center;margin:0 auto 18px}
+  .form-success h4{font-family:var(--serif);font-size:26px;color:var(--navy);margin-bottom:8px}
+  .form-success p{color:var(--slate);font-size:15px}
+
+  /* Trust strip */
+  .trust{background:var(--cream);border-bottom:1px solid var(--line)}
+  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .trust .item{display:flex;align-items:center;gap:14px;padding:26px 24px;border-left:1px solid var(--line);font-size:14.5px;color:var(--slate)}
+  .trust .item:first-child{border-left:0;padding-left:0}
+  .trust .item b{display:block;color:var(--navy);font-size:15px}
+  .trust .item svg{width:26px;height:26px;color:var(--amber-2);flex-shrink:0}
+
+  /* Practice areas */
+  .areas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .area{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+  .area::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+  .area:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+  .area:hover::after{transform:scaleX(1)}
+  .area .icon{width:52px;height:52px;border-radius:12px;background:var(--cream);display:grid;place-items:center;color:var(--navy);margin-bottom:22px}
+  .area .icon svg{width:26px;height:26px}
+  .area h3{font-size:23px;color:var(--navy);margin-bottom:10px}
+  .area p{font-size:14.5px;color:var(--slate);margin-bottom:18px}
+  .area a{font-size:14px;font-weight:600;color:var(--amber-2);display:inline-flex;align-items:center;gap:6px}
+  .area a svg{width:14px;height:14px;transition:transform .2s}
+  .area a:hover svg{transform:translateX(4px)}
+  .areas-foot{margin-top:36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;color:var(--slate);font-size:15px}
+
+  /* Approach */
+  .approach{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .approach::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.15),transparent 65%);top:-200px;right:-150px}
+  .approach .section-head h2{color:#fff}
+  .approach .section-head p{color:rgba(255,255,255,.7)}
+  .approach-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .steps{counter-reset:step}
+  .step{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:28px 0;border-top:1px solid rgba(255,255,255,.1)}
+  .step:last-child{border-bottom:1px solid rgba(255,255,255,.1)}
+  .step .n{font-family:var(--serif);font-size:40px;color:var(--amber);line-height:1;font-weight:500}
+  .step h3{font-size:24px;margin-bottom:8px}
+  .step p{color:rgba(255,255,255,.68);font-size:15px}
+  .promise{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px;position:sticky;top:110px}
+  .promise h3{font-size:30px;margin-bottom:10px}
+  .promise h3 em{color:var(--amber);font-style:italic;font-weight:500}
+  .promise p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:26px}
+  .promise ul li{display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.08);font-size:15px}
+  .promise ul li svg{width:20px;height:20px;color:var(--amber);flex-shrink:0;margin-top:2px}
+  .promise .btn{margin-top:26px}
+
+  /* Results */
+  .results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .result{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;position:relative}
+  .result .amt{font-family:var(--serif);font-size:48px;color:var(--navy);font-weight:600;line-height:1;letter-spacing:-.02em}
+  .result .amt sup{font-size:22px;color:var(--amber-2);vertical-align:top;margin-right:2px;top:.3em;position:relative}
+  .result .type{margin:14px 0 8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-2)}
+  .result p{font-size:14.5px;color:var(--slate)}
+  .result.feature{background:var(--navy);color:#fff;border-color:var(--navy);grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;background-image:radial-gradient(500px 300px at 100% 0%,rgba(217,164,65,.25),transparent 60%)}
+  .result.feature .amt{color:#fff;font-size:70px}
+  .result.feature p{color:rgba(255,255,255,.72)}
+  .results-disc{font-size:12.5px;color:var(--mist);margin-top:22px}
+
+  /* Team */
+  .team{background:var(--cream)}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .member{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+  .member:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .member .photo{aspect-ratio:4/4.4;position:relative;display:grid;place-items:center;overflow:hidden}
+  .member .photo .initials{font-family:var(--serif);font-size:64px;color:#fff;font-weight:500;letter-spacing:.02em;position:relative;z-index:1;opacity:.9}
+  .member .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,26,43,.55),transparent 55%)}
+  .p1{background:linear-gradient(160deg,#1a3557,#0b1a2b)}
+  .p2{background:linear-gradient(160deg,#3e2f1a,#0b1a2b)}
+  .p3{background:linear-gradient(160deg,#233d45,#0b1a2b)}
+  .p4{background:linear-gradient(160deg,#4a2a35,#0b1a2b)}
+  .member .info{padding:22px 22px 26px}
+  .member h3{font-size:22px;color:var(--navy)}
+  .member .role{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-2);margin:4px 0 12px}
+  .member p{font-size:14px;color:var(--slate)}
+  .member .creds{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .member .creds span{font-size:11.5px;padding:4px 9px;border-radius:999px;background:var(--cream);color:var(--slate);font-weight:500}
+
+  /* Michigan law */
+  .mi-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .mi-grid h2{font-size:clamp(34px,4vw,48px);color:var(--navy);margin:16px 0 20px}
+  .mi-grid p{color:var(--slate);font-size:16.5px;margin-bottom:18px}
+  .facts{display:grid;gap:14px}
+  .fact{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;transition:border-color .3s,transform .3s}
+  .fact:hover{border-color:var(--amber);transform:translateX(6px)}
+  .fact .k{font-family:var(--serif);font-size:34px;color:var(--amber-2);font-weight:600;line-height:1;min-width:90px}
+  .fact b{display:block;color:var(--navy);font-size:16px;margin-bottom:4px}
+  .fact span{font-size:14px;color:var(--slate)}
+
+  /* Testimonials */
+  .testi{background:var(--navy);color:#fff;overflow:hidden}
+  .testi .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+  .testi .section-head{margin-bottom:0}
+  .testi .section-head h2{color:#fff}
+  .testi .section-head p{color:rgba(255,255,255,.7)}
+  .rating{display:flex;align-items:center;gap:12px;margin-top:28px;font-size:14px;color:rgba(255,255,255,.75)}
+  .stars{color:var(--amber);letter-spacing:2px;font-size:18px}
+  .slider{position:relative;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:44px 44px 40px;min-height:340px}
+  .slider .quote-mark{font-family:var(--serif);font-size:110px;line-height:.6;color:var(--amber);opacity:.6;position:absolute;top:34px;left:36px}
+  .slide{display:none;animation:fade .5s ease}
+  .slide.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .slide blockquote{font-family:var(--serif);font-size:clamp(22px,2.2vw,28px);line-height:1.35;font-weight:500;margin:38px 0 28px}
+  .slide .who{display:flex;align-items:center;gap:14px}
+  .slide .who .av{width:46px;height:46px;border-radius:50%;background:var(--amber);color:var(--navy);display:grid;place-items:center;font-weight:700;font-size:15px}
+  .slide .who b{display:block;font-size:15px}
+  .slide .who span{font-size:13px;color:rgba(255,255,255,.6)}
+  .slider-nav{display:flex;gap:8px;position:absolute;right:40px;bottom:40px}
+  .slider-nav button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);transition:.3s}
+  .slider-nav button.active{background:var(--amber);width:28px;border-radius:6px}
+
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+  .faq-grid .section-head{position:sticky;top:110px;margin-bottom:0}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-item:first-child{border-top:1px solid var(--line)}
+  .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;text-align:left;font-family:var(--serif);font-size:22px;font-weight:600;color:var(--navy);transition:color .2s}
+  .faq-q:hover{color:var(--amber-2)}
+  .faq-q .plus{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;flex-shrink:0;transition:.3s}
+  .faq-q .plus svg{width:14px;height:14px;transition:transform .3s}
+  .faq-item.open .plus{background:var(--navy);border-color:var(--navy);color:#fff}
+  .faq-item.open .plus svg{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq-a p{padding:0 0 26px;color:var(--slate);font-size:15.5px;max-width:620px}
+
+  /* Contact */
+  .contact{background:var(--cream)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .contact-card{background:#fff;border-radius:20px;padding:40px;border:1px solid var(--line)}
+  .contact-card h3{font-size:30px;color:var(--navy);margin-bottom:8px}
+  .contact-card > p{color:var(--slate);font-size:15px;margin-bottom:26px}
+  .offices{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  .office{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+  .office b{display:block;font-family:var(--serif);font-size:21px;color:var(--navy);margin-bottom:6px}
+  .office span{display:block;font-size:14px;color:var(--slate);line-height:1.5}
+  .office .hq{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-2);font-weight:700;margin-bottom:6px}
+  .contact-side h2{font-size:clamp(34px,4vw,48px);color:var(--navy);margin:16px 0 18px}
+  .contact-side p{color:var(--slate);font-size:16.5px}
+  .big-phone{display:inline-flex;align-items:center;gap:16px;margin-top:26px;padding:18px 24px;border-radius:16px;background:var(--navy);color:#fff}
+  .big-phone .ic{width:46px;height:46px;border-radius:12px;background:var(--amber);color:var(--navy);display:grid;place-items:center}
+  .big-phone .ic svg{width:22px;height:22px}
+  .big-phone b{display:block;font-size:22px;font-family:var(--serif)}
+  .big-phone span{font-size:12.5px;color:rgba(255,255,255,.65);letter-spacing:.04em}
+
+  /* Footer */
+  footer{background:var(--navy);color:rgba(255,255,255,.7);padding:72px 0 32px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+  footer .logo .mark{background:var(--amber);color:var(--navy)}
+  footer .logo .name{color:#fff}
+  footer .logo .tag{color:rgba(255,255,255,.5)}
+  footer .about{font-size:14.5px;margin-top:20px;max-width:360px}
+  footer h4{color:#fff;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
+  footer li{margin-bottom:10px;font-size:14.5px}
+  footer li a:hover{color:var(--amber)}
+  .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;font-size:12.5px;color:rgba(255,255,255,.45)}
+  .disclaimer{font-size:12px;color:rgba(255,255,255,.4);margin-top:24px;line-height:1.6;max-width:900px}
+
+  /* Sticky mobile CTA */
+  .sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--navy);padding:12px 16px;border-top:1px solid rgba(255,255,255,.1)}
+  .sticky-cta .wrap{display:flex;gap:10px;width:100%}
+  .sticky-cta .btn{flex:1;padding:13px 16px;font-size:14px}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-delay="1"]{transition-delay:.1s}
+  .reveal[data-delay="2"]{transition-delay:.2s}
+  .reveal[data-delay="3"]{transition-delay:.3s}
+
+  @media (max-width:1024px){
+    .areas-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+    .trust .wrap{grid-template-columns:repeat(2,1fr)}
+    .trust .item:nth-child(3){border-left:0;padding-left:0}
+    .hero .wrap{grid-template-columns:1fr;gap:48px;padding:64px 0 80px}
+    .hero p.lead{max-width:none}
+    .nav-links{display:none}
+    .burger{display:grid}
+    .approach-grid,.mi-grid,.testi .wrap,.faq-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .promise,.faq-grid .section-head{position:static}
+    .results-grid{grid-template-columns:1fr 1fr}
+    .result.feature{grid-row:auto;grid-column:span 2}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    .wrap{width:calc(100% - 36px)}
+    .section{padding:72px 0}
+    .topbar .right span:first-child{display:none}
+    .nav-phone{display:none}
+    .nav .btn-dark{display:none}
+    .hero-proof{gap:20px;flex-wrap:wrap}
+    .hero-proof .num{font-size:30px}
+    .areas-grid,.team-grid,.results-grid,.offices,.trust .wrap,.field-row{grid-template-columns:1fr}
+    .result.feature{grid-column:auto}
+    .trust .item{border-left:0;padding:16px 0;border-top:1px solid var(--line)}
+    .trust .item:first-child{border-top:0}
+    .slider{padding:36px 26px 70px}
+    .slider-nav{right:26px;bottom:28px}
+    .case-card,.contact-card{padding:26px}
+    .sticky-cta{display:block}
+    body{padding-bottom:70px}
+    .foot-grid{grid-template-columns:1fr}
+    .step{grid-template-columns:48px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="wrap">
+    <div><span class="dot"></span><strong>Available 24/7</strong> · Free case review · No fee unless we win</div>
+    <div class="right">
+      <span>Detroit · Grand Rapids · Ann Arbor · Lansing</span>
+      <a href="tel:18005550149"><strong>(800) 555-0149</strong></a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site" id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo" aria-label="Harlow &amp; Pierce home">
+      <div class="mark">H<span style="color:#fff;font-size:12px;margin:0 1px">&amp;</span>P</div>
+      <div>
+        <div class="name">Harlow <span>&amp;</span> Pierce</div>
+        <div class="tag">Michigan Injury Attorneys</div>
+      </div>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#practice">Practice Areas</a>
+      <a href="#approach">How It Works</a>
+      <a href="#results">Results</a>
+      <a href="#team">Attorneys</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:18005550149"><small>Call anytime</small>(800) 555-0149</a>
+      <a class="btn btn-dark" href="#contact">Free Case Review</a>
+      <button class="burger" id="burger" aria-label="Open menu"><div><span></span><span></span><span></span></div></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu" aria-label="Close menu">×</button>
+  <a href="#practice">Practice Areas</a>
+  <a href="#approach">How It Works</a>
+  <a href="#results">Results</a>
+  <a href="#team">Attorneys</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:18005550149" style="color:var(--amber)">(800) 555-0149</a>
+</div>
+
+<main id="top">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="grid-lines"></div>
+  <div class="wrap">
+    <div>
+      <div class="hero-badge"><b>Michigan</b> Trusted by 3,400+ injured clients since 2009</div>
+      <h1>Hurt in an accident? You focus on healing. <em>We'll handle the fight.</em></h1>
+      <p class="lead">Harlow &amp; Pierce is a modern personal injury firm built around one idea: injured Michiganders deserve big-firm results with a small-firm level of attention. No fee unless we win. Ever.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Start Your Free Case Review
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a class="btn btn-outline" href="tel:18005550149">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+          (800) 555-0149
+        </a>
+      </div>
+      <div class="hero-proof">
+        <div><div class="num"><span>$</span><span data-count="312" data-suffix="M+">312M+</span></div><small>Recovered for clients</small></div>
+        <div><div class="num"><span data-count="98" data-suffix="%">98%</span></div><small>Client satisfaction</small></div>
+        <div><div class="num"><span data-count="3400" data-suffix="+">3,400+</span></div><small>Cases handled</small></div>
+        <div><div class="num"><span data-count="0" data-suffix="">$0</span></div><small>Upfront cost to you</small></div>
+      </div>
+    </div>
+
+    <div class="case-card" id="heroForm">
+      <form id="caseForm" novalidate="">
+        <h3>Free Case Evaluation</h3>
+        <p class="sub">Tell us what happened. An attorney — not a call center — responds within 1 hour.</p>
+        <div class="field-row">
+          <div class="field"><label for="fname">First name</label><input id="fname" name="fname" type="text" placeholder="Jordan" required="" style=""></div>
+          <div class="field"><label for="lname">Last name</label><input id="lname" name="lname" type="text" placeholder="Williams" required="" style=""></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(313) 555-0100" required="" style=""></div>
+          <div class="field"><label for="type">Type of accident</label>
+            <select id="type" name="type" required="">
+              <option value="">Select one</option>
+              <option>Car accident</option>
+              <option>Truck accident</option>
+              <option>Motorcycle accident</option>
+              <option>Slip &amp; fall</option>
+              <option>Medical malpractice</option>
+              <option>Wrongful death</option>
+              <option>Workplace injury</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="msg">What happened?</label><textarea id="msg" name="msg" placeholder="Briefly describe the accident and your injuries…" style=""></textarea></div>
+        <button type="submit" class="btn btn-primary">Get My Free Review</button>
+        <p class="fine"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Confidential &amp; protected by attorney-client privilege. No obligation.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+        <h4>We've got it. Hang tight.</h4>
+        <p>An attorney will call you within the hour. If it's urgent, call us now at <a href="tel:18005550149" style="color:var(--amber-2);font-weight:600">(800) 555-0149</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="trust">
+  <div class="wrap">
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 3.8 8.5 9 9 5.2-.5 9-4 9-9V7l-9-5z"></path><path d="m9 12 2 2 4-4"></path></svg><div><b>No fee unless we win</b>You never pay out of pocket</div></div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><div><b>1-hour response</b>Real attorneys, 24 hours a day</div></div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11"></path><path d="M10 21v-6h4v6"></path></svg><div><b>4 Michigan offices</b>Or we come to you — home or hospital</div></div>
+    <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3 6.5 7 .9-5 4.9 1.3 7L12 18l-6.3 3.3 1.3-7-5-4.9 7-.9L12 2z"></path></svg><div><b>Super Lawyers® 2019–2024</b>Top-rated by peers &amp; clients</div></div>
+  </div>
+</section>
+
+<!-- Practice areas -->
+<section class="section" id="practice">
+  <div class="wrap">
+    <div class="section-head reveal in">
+      <span class="eyebrow">Practice Areas</span>
+      <h2>Every kind of accident. One relentless standard.</h2>
+      <p>We only handle injury cases — which means we know exactly how Michigan insurers value claims, and exactly how to get them to pay what your case is actually worth.</p>
+    </div>
+    <div class="areas-grid">
+      <article class="area reveal in">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M3 12l2-5h14l2 5v5H3v-5z"></path><circle cx="7.5" cy="17" r="1.5"></circle><circle cx="16.5" cy="17" r="1.5"></circle><path d="M6 12h12"></path></svg></div>
+        <h3>Car Accidents</h3>
+        <p>Rear-end, T-bone, distracted or drunk driving. We navigate Michigan's no-fault maze so you don't have to.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in" data-delay="1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h12v10H2zM14 10h5l3 3v4h-8"></path><circle cx="6" cy="18" r="1.8"></circle><circle cx="18" cy="18" r="1.8"></circle></svg></div>
+        <h3>Truck Accidents</h3>
+        <p>Commercial carriers have rapid-response teams. So do we. We preserve black-box data before it disappears.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in" data-delay="2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="16.5" r="3"></circle><circle cx="18.5" cy="16.5" r="3"></circle><path d="M5.5 16.5 9 9h4l2 4h3.5M13 9l3-3h3"></path></svg></div>
+        <h3>Motorcycle Accidents</h3>
+        <p>Riders face bias from adjusters and juries alike. We build cases that put the blame where it belongs.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in" data-delay="3">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="4.5" r="2"></circle><path d="M13 8l-4 4 3 3-2 5M13 8l4 1 2 4M9 12l-4-1M3 21h18"></path></svg></div>
+        <h3>Slip &amp; Fall</h3>
+        <p>Icy parking lots, wet floors, broken stairs. Property owners owe you a duty of care — we hold them to it.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M12 8v8M8 12h8"></path></svg></div>
+        <h3>Medical Malpractice</h3>
+        <p>Misdiagnosis, surgical errors, birth injuries. We work with leading medical experts to prove what went wrong.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in" data-delay="1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z"></path></svg></div>
+        <h3>Wrongful Death</h3>
+        <p>Nothing brings them back. But accountability and financial security for your family matter. We pursue both.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in" data-delay="2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 8 0 0 1 16 0"></path><path d="M2 15h20v3H2zM12 4v3M9 7.5V6M15 7.5V6"></path></svg></div>
+        <h3>Workplace Injuries</h3>
+        <p>Construction sites, factories, warehouses. Beyond workers' comp, third-party claims can multiply your recovery.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="area reveal in" data-delay="3">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5l-3 4 2 5 5 6 5-6 2-5-3-4"></path><path d="M8 5h8M10 12h.01M14 12h.01M11 15h2"></path></svg></div>
+        <h3>Dog Bites</h3>
+        <p>Michigan is a strict-liability state for dog attacks. Owners are responsible — even on the first bite.</p>
+        <a href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+    </div>
+    <div class="areas-foot reveal in">
+      <span>Not sure if you have a case? That's exactly what a free review is for.</span>
+      <a class="btn btn-dark" href="#contact">Ask an Attorney</a>
+    </div>
+  </div>
+</section>
+
+<!-- Approach -->
+<section class="section approach" id="approach">
+  <div class="wrap">
+    <div class="section-head reveal in">
+      <span class="eyebrow" style="color:var(--amber)">How It Works</span>
+      <h2>A clear process, from first call to final check.</h2>
+      <p>Most clients have never hired a lawyer before. We've removed the guesswork so you always know what's happening — and what happens next.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="steps">
+        <div class="step reveal in">
+          <div class="n">01</div>
+          <div><h3>Free consultation — within the hour</h3><p>Call, text, or send the form. A licensed attorney evaluates your case, explains your rights under Michigan law, and tells you honestly whether we can help.</p></div>
+        </div>
+        <div class="step reveal in" data-delay="1">
+          <div class="n">02</div>
+          <div><h3>We investigate immediately</h3><p>Police reports, surveillance footage, witness statements, vehicle data, medical records. Evidence disappears fast — we move faster.</p></div>
+        </div>
+        <div class="step reveal in" data-delay="2">
+          <div class="n">03</div>
+          <div><h3>You heal. We handle the insurers.</h3><p>Every adjuster call, every form, every deadline. We coordinate your no-fault PIP benefits so medical bills and lost wages are covered while your case builds.</p></div>
+        </div>
+        <div class="step reveal in" data-delay="3">
+          <div class="n">04</div>
+          <div><h3>Maximum recovery — settlement or trial</h3><p>We prepare every case as if it's going to trial. Insurers know it, which is why most settle for full value. If they don't, we're ready for the courtroom.</p></div>
+        </div>
+      </div>
+      <aside class="promise reveal in" data-delay="1">
+        <h3>The Harlow &amp; Pierce <em>Client Promise</em></h3>
+        <p>Written into every engagement agreement. Not marketing — a commitment.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>You'll have your attorney's direct cell number</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Calls returned the same business day, guaranteed</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Plain-English updates every two weeks, minimum</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>You make every settlement decision — never us</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>Zero fees, zero costs unless we recover money for you</li>
+        </ul>
+        <a class="btn btn-primary" href="#contact">Talk to an Attorney Now</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="section" id="results">
+  <div class="wrap">
+    <div class="section-head reveal in">
+      <span class="eyebrow">Case Results</span>
+      <h2>Results that changed our clients' lives.</h2>
+      <p>Over $312 million recovered across Michigan. Here's a small sample of recent verdicts and settlements.</p>
+    </div>
+    <div class="results-grid">
+      <div class="result feature reveal in">
+        <div class="type" style="color:var(--amber)">Truck Accident · Jury Verdict</div>
+        <div class="amt"><sup>$</sup>18.4M</div>
+        <p>Wayne County. A commercial semi ran a red light on I-94, leaving a 34-year-old father with a traumatic brain injury. The carrier offered $900,000. We took it to trial.</p>
+      </div>
+      <div class="result reveal in" data-delay="1">
+        <div class="amt"><sup>$</sup>6.2M</div>
+        <div class="type">Medical Malpractice</div>
+        <p>Delayed stroke diagnosis in an Oakland County ER resulted in permanent partial paralysis.</p>
+      </div>
+      <div class="result reveal in" data-delay="2">
+        <div class="amt"><sup>$</sup>3.75M</div>
+        <div class="type">Wrongful Death</div>
+        <p>Drunk-driving crash in Kent County. Recovery included a dram-shop claim against the bar that overserved.</p>
+      </div>
+      <div class="result reveal in" data-delay="1">
+        <div class="amt"><sup>$</sup>2.1M</div>
+        <div class="type">Motorcycle Accident</div>
+        <p>Left-turn collision in Ann Arbor. Rider suffered multiple fractures; insurer initially blamed the rider.</p>
+      </div>
+      <div class="result reveal in" data-delay="2">
+        <div class="amt"><sup>$</sup>1.35M</div>
+        <div class="type">Slip &amp; Fall</div>
+        <p>Unsalted parking lot at a Lansing retail chain. Hip fracture requiring two surgeries for a 62-year-old client.</p>
+      </div>
+    </div>
+    <p class="results-disc">Results depend on the facts of each case. Prior results do not guarantee a similar outcome. Amounts shown before fees and costs.</p>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section team" id="team">
+  <div class="wrap">
+    <div class="section-head reveal in">
+      <span class="eyebrow">Our Attorneys</span>
+      <h2>Trial lawyers who actually go to trial.</h2>
+      <p>Many injury firms settle everything. Insurers know which ones. Our attorneys have tried more than 140 cases to verdict — and it shows in every offer we receive.</p>
+    </div>
+    <div class="team-grid">
+      <div class="member reveal in">
+        <div class="photo p1"><span class="initials">DH</span></div>
+        <div class="info">
+          <h3>Daniel Harlow</h3>
+          <div class="role">Founding Partner</div>
+          <p>Former insurance defense attorney who switched sides in 2009. Knows exactly how carriers evaluate — and undervalue — claims.</p>
+          <div class="creds"><span>U-M Law '02</span><span>Super Lawyers</span><span>$18.4M verdict</span></div>
+        </div>
+      </div>
+      <div class="member reveal in" data-delay="1">
+        <div class="photo p2"><span class="initials">EP</span></div>
+        <div class="info">
+          <h3>Elena Pierce</h3>
+          <div class="role">Founding Partner</div>
+          <p>Leads the firm's catastrophic injury and wrongful death practice. Named one of Michigan's Top 25 Women Trial Lawyers.</p>
+          <div class="creds"><span>Wayne State Law '04</span><span>Board Certified</span><span>MAJ Board</span></div>
+        </div>
+      </div>
+      <div class="member reveal in" data-delay="2">
+        <div class="photo p3"><span class="initials">MR</span></div>
+        <div class="info">
+          <h3>Marcus Reed</h3>
+          <div class="role">Partner · Trucking &amp; Commercial</div>
+          <p>Former CDL holder turned attorney. Fluent in FMCSA regulations, hours-of-service logs, and electronic control module data.</p>
+          <div class="creds"><span>MSU Law '11</span><span>Rising Stars</span></div>
+        </div>
+      </div>
+      <div class="member reveal in" data-delay="3">
+        <div class="photo p4"><span class="initials">PN</span></div>
+        <div class="info">
+          <h3>Priya Natarajan</h3>
+          <div class="role">Partner · Medical Malpractice</div>
+          <p>Registered nurse before law school. Reads medical charts the way most lawyers read contracts.</p>
+          <div class="creds"><span>RN, BSN</span><span>Notre Dame Law '13</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Michigan law -->
+<section class="section" id="michigan">
+  <div class="wrap mi-grid">
+    <div class="reveal in">
+      <span class="eyebrow">Michigan Law, Explained</span>
+      <h2>Michigan's no-fault system is different. Your lawyer should be, too.</h2>
+      <p>Michigan is one of the few states with a no-fault auto insurance system — and the 2019 reforms made it more complex, not less. Choosing the wrong PIP coverage level or missing a filing deadline can permanently cost you benefits.</p>
+      <p>We've handled thousands of Michigan no-fault claims. We know the deadlines, the exceptions, and the tactics adjusters use to deny "reasonably necessary" care.</p>
+      <a class="btn btn-dark" href="#contact" style="margin-top:8px">Get a Free Case Review</a>
+    </div>
+    <div class="facts">
+      <div class="fact reveal in"><div class="k">1 yr</div><div><b>Deadline to file for no-fault PIP benefits</b><span>You must submit written notice of your claim to your insurer within one year of the accident to preserve benefits.</span></div></div>
+      <div class="fact reveal in" data-delay="1"><div class="k">3 yrs</div><div><b>Statute of limitations for injury lawsuits</b><span>Most Michigan personal injury and wrongful death claims must be filed within three years — but exceptions can shorten this.</span></div></div>
+      <div class="fact reveal in" data-delay="2"><div class="k">51%</div><div><b>Modified comparative fault threshold</b><span>If you're found more than 50% at fault, you cannot recover non-economic damages. Evidence preservation is critical.</span></div></div>
+      <div class="fact reveal in" data-delay="3"><div class="k">$5k</div><div><b>Mini-tort limit for vehicle damage</b><span>Since 2020, you can recover up to $5,000 in vehicle damage from an at-fault driver — separate from your injury claim.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testi" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal in">
+      <span class="eyebrow" style="color:var(--amber)">Client Stories</span>
+      <h2>What it's like to be a client here.</h2>
+      <p>We asked. They told us. Every review below is from a real Michigan client who trusted us with the worst chapter of their life.</p>
+      <div class="rating"><span class="stars">★★★★★</span> 4.9 average across 640+ verified reviews</div>
+    </div>
+    <div class="slider reveal in" data-delay="1">
+      <div class="quote-mark">“</div>
+      <div class="slide">
+        <blockquote>The insurance company offered me $40,000 and told me to take it. Elena told me to stop answering their calls. Fourteen months later my case settled for $1.2 million. She gave me my life back.</blockquote>
+        <div class="who"><div class="av">TM</div><div><b>Tanya M.</b><span>Car accident · Southfield, MI</span></div></div>
+      </div>
+      <div class="slide active">
+        <blockquote>Daniel came to the hospital the day after my husband's crash. He handled the no-fault paperwork, got his surgeries approved, and fought the trucking company for two years. We never got a bill. Not once.</blockquote>
+        <div class="who"><div class="av">RK</div><div><b>Renee &amp; Jim K.</b><span>Truck accident · Grand Rapids, MI</span></div></div>
+      </div>
+      <div class="slide">
+        <blockquote>I had my attorney's cell number. Not a paralegal, not a case manager — Marcus. He answered on a Sunday when the adjuster was pressuring me. That's the whole difference.</blockquote>
+        <div class="who"><div class="av">DA</div><div><b>Devon A.</b><span>Motorcycle accident · Ann Arbor, MI</span></div></div>
+      </div>
+      <div class="slider-nav" id="sliderNav" aria-label="Testimonial navigation">
+        <button class="" aria-label="Slide 1"></button>
+        <button aria-label="Slide 2" class="active"></button>
+        <button aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap faq-grid">
+    <div class="section-head reveal in">
+      <span class="eyebrow">Common Questions</span>
+      <h2>Straight answers, before you ever sign anything.</h2>
+      <p>Still have questions? Call us — the consultation is free and there's never pressure to hire us.</p>
+    </div>
+    <div class="faq-list reveal in" data-delay="1">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How much does it cost to hire Harlow &amp; Pierce?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <div class="faq-a"><p>Nothing upfront, and nothing ever unless we win. We work on a contingency fee — a percentage of the recovery we obtain for you. We advance all case costs, including expert witnesses and court fees. If we don't recover money, you owe us nothing.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How long do I have to file a claim in Michigan?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <div class="faq-a"><p>Generally three years for injury lawsuits, but no-fault PIP benefits require notice within one year, and claims against government entities can require notice in as little as 120 days. Deadlines vary — the safest move is to call us now so nothing is missed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Should I talk to the other driver's insurance company?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <div class="faq-a"><p>No. Politely decline and refer them to us. Adjusters are trained to obtain recorded statements that minimize your injuries or shift blame. You have no legal obligation to give one, and once we're retained, they must communicate through us.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What is my case worth?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <div class="faq-a"><p>It depends on the severity and permanence of your injuries, medical expenses, lost earning capacity, available insurance coverage, and fault. Anyone who quotes you a number in the first call is guessing. We'll give you an honest range once we've reviewed your medical records and the evidence.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Will my case go to trial?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <div class="faq-a"><p>Most don't — roughly 90% of our cases settle. But we prepare every case as if it will, and insurers know we're willing to go. That reputation is what produces full-value settlements. If trial is the right path for you, the decision is always yours.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">I already have a lawyer. Can I switch?<span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+        <div class="faq-a"><p>Yes, at any time and at no additional cost to you. Attorneys' fees are divided between firms out of the same contingency percentage — you don't pay more. If you're not getting callbacks or clear answers, call us for a confidential second opinion.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-side reveal">
+      <span class="eyebrow">Free Case Review</span>
+      <h2>Let's talk about what happened.</h2>
+      <p>One conversation with a Michigan injury attorney — free, confidential, and with zero obligation. We'll tell you honestly what your options are, even if that means you don't need a lawyer.</p>
+      <a class="big-phone" href="tel:18005550149">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg></div>
+        <div><b>(800) 555-0149</b><span>Call or text · Attorneys available 24/7</span></div>
+      </a>
+      <div class="offices">
+        <div class="office"><span class="hq">Headquarters</span><b>Detroit</b><span>500 Woodward Ave, Suite 2400<br>Detroit, MI 48226</span></div>
+        <div class="office"><b>Grand Rapids</b><span>99 Monroe Ave NW, Suite 700<br>Grand Rapids, MI 49503</span></div>
+        <div class="office"><b>Ann Arbor</b><span>301 E Liberty St, Suite 500<br>Ann Arbor, MI 48104</span></div>
+        <div class="office"><b>Lansing</b><span>120 N Washington Sq, Suite 300<br>Lansing, MI 48933</span></div>
+      </div>
+    </div>
+    <div class="contact-card reveal" data-delay="1">
+      <form id="contactForm" novalidate="">
+        <h3>Send us your story</h3>
+        <p>We respond within one hour, day or night.</p>
+        <div class="field-row">
+          <div class="field"><label for="c-name">Full name</label><input id="c-name" type="text" placeholder="Your name" required="" style=""></div>
+          <div class="field"><label for="c-phone">Phone</label><input id="c-phone" type="tel" placeholder="(313) 555-0100" required="" style=""></div>
+        </div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="you@example.com" style=""></div>
+        <div class="field-row">
+          <div class="field"><label for="c-type">Type of accident</label>
+            <select id="c-type" required="">
+              <option value="">Select one</option>
+              <option>Car accident</option><option>Truck accident</option><option>Motorcycle accident</option><option>Slip &amp; fall</option><option>Medical malpractice</option><option>Wrongful death</option><option>Workplace injury</option><option>Dog bite</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="c-date">Date of accident</label><input id="c-date" type="date" style=""></div>
+        </div>
+        <div class="field"><label for="c-msg">What happened?</label><textarea id="c-msg" placeholder="Tell us about the accident and your injuries. Any detail helps." style=""></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Request My Free Case Review</button>
+        <p class="fine">By submitting, you agree to be contacted by Harlow &amp; Pierce. Submitting does not create an attorney-client relationship.</p>
+      </form>
+      <div class="form-success" id="contactSuccess">
+        <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+        <h4>Thank you. We're on it.</h4>
+        <p>An attorney will reach out within the hour. Need us sooner? Call <a href="tel:18005550149" style="color:var(--amber-2);font-weight:600">(800) 555-0149</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo">
+          <div class="mark">H<span style="color:var(--navy);font-size:12px;margin:0 1px">&amp;</span>P</div>
+          <div><div class="name">Harlow <span style="color:var(--amber)">&amp;</span> Pierce</div><div class="tag">Michigan Injury Attorneys</div></div>
+        </a>
+        <p class="about">A modern personal injury law firm representing accident victims across the State of Michigan. No fee unless we win. Free consultations, 24 hours a day.</p>
+      </div>
+      <div>
+        <h4>Practice Areas</h4>
+        <ul><li><a href="#practice">Car Accidents</a></li><li><a href="#practice">Truck Accidents</a></li><li><a href="#practice">Motorcycle Accidents</a></li><li><a href="#practice">Slip &amp; Fall</a></li><li><a href="#practice">Medical Malpractice</a></li><li><a href="#practice">Wrongful Death</a></li></ul>
+      </div>
+      <div>
+        <h4>Firm</h4>
+        <ul><li><a href="#approach">How It Works</a></li><li><a href="#results">Case Results</a></li><li><a href="#team">Our Attorneys</a></li><li><a href="#testimonials">Client Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li><a href="tel:18005550149">(800) 555-0149</a></li><li><a href="mailto:intake@harlowpierce.law">intake@harlowpierce.law</a></li><li>500 Woodward Ave, Suite 2400<br>Detroit, MI 48226</li><li>Available 24/7</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Harlow &amp; Pierce, PLLC. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Use</a> &nbsp;·&nbsp; <a href="#">Accessibility</a></span>
+    </div>
+    <p class="disclaimer">ATTORNEY ADVERTISING. This website is for general informational purposes only and does not constitute legal advice. Viewing this site or submitting a form does not create an attorney-client relationship. Prior results do not guarantee a similar outcome; every case is different and outcomes depend on specific facts and circumstances. Case results reflect gross amounts before deduction of fees and costs. Harlow &amp; Pierce, PLLC attorneys are licensed to practice in the State of Michigan.</p>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <div class="wrap">
+    <a class="btn btn-outline" href="tel:18005550149">Call Now</a>
+    <a class="btn btn-primary" href="#contact">Free Case Review</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Sticky header
+  const header=document.getElementById('header');
+  const onScroll=()=>header.classList.toggle('scrolled',window.scrollY>10);
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // Mobile menu
+  const menu=document.getElementById('mobileMenu');
+  document.getElementById('burger').addEventListener('click',()=>{menu.classList.add('open');document.body.style.overflow='hidden';});
+  const closeMenu=()=>{menu.classList.remove('open');document.body.style.overflow='';};
+  document.getElementById('closeMenu').addEventListener('click',closeMenu);
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+  // Reveal on scroll
+  const revealEls=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(el=>io.observe(el));
+  }else{revealEls.forEach(el=>el.classList.add('in'));}
+
+  // Counters
+  const counters=document.querySelectorAll('[data-count]');
+  const fmt=n=>n.toLocaleString('en-US');
+  const runCounter=el=>{
+    const target=+el.dataset.count, suffix=el.dataset.suffix||'';
+    if(target===0){el.textContent='$0';return;}
+    const dur=1600, start=performance.now();
+    const tick=now=>{
+      const p=Math.min((now-start)/dur,1), eased=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(target*eased))+suffix;
+      if(p<1)requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  if('IntersectionObserver' in window){
+    const cio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){runCounter(e.target);cio.unobserve(e.target);}});},{threshold:.5});
+    counters.forEach(c=>cio.observe(c));
+  }else{counters.forEach(runCounter);}
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const btn=item.querySelector('.faq-q'), ans=item.querySelector('.faq-a');
+    btn.addEventListener('click',()=>{
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;o.querySelector('.faq-q').setAttribute('aria-expanded','false');});
+      if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';btn.setAttribute('aria-expanded','true');}
+    });
+  });
+
+  // Testimonial slider
+  const slides=document.querySelectorAll('.slide'), dots=document.querySelectorAll('#sliderNav button');
+  let cur=0, timer;
+  const go=i=>{
+    slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+    cur=(i+slides.length)%slides.length;
+    slides[cur].classList.add('active');dots[cur].classList.add('active');
+  };
+  const auto=()=>{clearInterval(timer);timer=setInterval(()=>go(cur+1),6500);};
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{go(i);auto();}));
+  auto();
+
+  // Forms
+  const handleForm=(formId,successId)=>{
+    const form=document.getElementById(formId), success=document.getElementById(successId);
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      let valid=true;
+      form.querySelectorAll('[required]').forEach(f=>{
+        const ok=f.value.trim()!=='';
+        f.style.borderColor=ok?'':'#d64545';
+        if(!ok)valid=false;
+      });
+      if(!valid){form.querySelector('[required]:not(:valid), [style*="d64545"]')?.focus();return;}
+      const btn=form.querySelector('button[type=submit]');
+      btn.textContent='Sending…';btn.disabled=true;
+      setTimeout(()=>{form.style.display='none';success.style.display='block';},900);
+    });
+    form.querySelectorAll('[required]').forEach(f=>f.addEventListener('input',()=>f.style.borderColor=''));
+  };
+  handleForm('caseForm','formSuccess');
+  handleForm('contactForm','contactSuccess');
+
+  // Year
+  document.getElementById('year').textContent=new Date().getFullYear();
+})();
+</script>
+
+</body></html>

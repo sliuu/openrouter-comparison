@@ -1,0 +1,16 @@
+{
+  "model": "claude-opus-5",
+  "slug": "anthropic/claude-opus-5",
+  "prompt": "tea",
+  "returned_model": "anthropic/claude-opus-5",
+  "provider": "Claude Platform on AWS",
+  "started_at": "2026-09-21 20:37:35",
+  "seconds": 321,
+  "prompt_tokens": 98,
+  "output_tokens": 27673,
+  "thinking_tokens": 3644,
+  "html_chars": 51813,
+  "cost": 0.692315,
+  "finish_reason": "stop",
+  "truncated": false
+}

@@ -1,0 +1,9 @@
+{
+  "model": "claude-opus-5",
+  "slug": "anthropic/claude-opus-5",
+  "prompt": "techno",
+  "seconds": 272,
+  "output_tokens": 24775,
+  "cost": 0.61983,
+  "truncated": false
+}

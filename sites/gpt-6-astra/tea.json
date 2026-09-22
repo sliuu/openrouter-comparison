@@ -1,0 +1,16 @@
+{
+  "model": "gpt-6-astra",
+  "slug": "openai/gpt-6-astra",
+  "prompt": "tea",
+  "returned_model": "openai/gpt-6-astra",
+  "provider": "OpenAI",
+  "started_at": "2026-09-21 20:32:44",
+  "seconds": 198,
+  "prompt_tokens": 64,
+  "output_tokens": 9971,
+  "thinking_tokens": 1034,
+  "html_chars": 29570,
+  "cost": 0.49919,
+  "finish_reason": "stop",
+  "truncated": false
+}

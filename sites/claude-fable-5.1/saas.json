@@ -1,0 +1,16 @@
+{
+  "model": "claude-fable-5.1",
+  "slug": "anthropic/claude-fable-5.1",
+  "prompt": "saas",
+  "returned_model": "anthropic/claude-fable-5.1",
+  "provider": "Anthropic",
+  "started_at": "2026-09-21 16:44:41",
+  "seconds": 313,
+  "prompt_tokens": 100,
+  "output_tokens": 30348,
+  "thinking_tokens": 1357,
+  "html_chars": 65182,
+  "cost": 1.5184,
+  "finish_reason": "stop",
+  "truncated": false
+}

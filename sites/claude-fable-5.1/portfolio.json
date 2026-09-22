@@ -1,0 +1,16 @@
+{
+  "model": "claude-fable-5.1",
+  "slug": "anthropic/claude-fable-5.1",
+  "prompt": "portfolio",
+  "returned_model": "anthropic/claude-fable-5.1",
+  "provider": "Anthropic",
+  "started_at": "2026-09-21 17:24:07",
+  "seconds": 208,
+  "prompt_tokens": 89,
+  "output_tokens": 20045,
+  "thinking_tokens": 435,
+  "html_chars": 44216,
+  "cost": 1.00314,
+  "finish_reason": "stop",
+  "truncated": false
+}

@@ -1,0 +1,16 @@
+{
+  "model": "gpt-6-astra",
+  "slug": "openai/gpt-6-astra",
+  "prompt": "law",
+  "returned_model": "openai/gpt-6-astra",
+  "provider": "OpenAI",
+  "started_at": "2026-09-21 16:54:46",
+  "seconds": 213,
+  "prompt_tokens": 62,
+  "output_tokens": 11247,
+  "thinking_tokens": 954,
+  "html_chars": 35083,
+  "cost": 0.56297,
+  "finish_reason": "stop",
+  "truncated": false
+}

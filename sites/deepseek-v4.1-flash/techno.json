@@ -1,0 +1,9 @@
+{
+  "model": "deepseek-v4.1-flash",
+  "slug": "deepseek/deepseek-v4.1-flash",
+  "prompt": "techno",
+  "seconds": 1814,
+  "output_tokens": 20044,
+  "cost": 0.00963096,
+  "truncated": false
+}

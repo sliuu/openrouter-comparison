@@ -1,0 +1,1054 @@
+Here’s a complete, self-contained HTML page for the Sweet Summer Days candy boutique, featuring a playful summer look, product filtering, and an interactive bag counter.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sweet Summer Days — Healthy-ish Candy Made With Real Sugar</title>
+<meta name="description" content="Small-batch lollipops, gummies and caramels made with real cane sugar and real fruit. Sweet enough for kids, good enough for grown-ups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{
+    --cream:#FFF8EE; --cream-2:#FFF0DC; --ink:#2C1B2E; --ink-soft:#6E5A73;
+    --coral:#FF5C7A; --coral-dark:#E8445F; --tangerine:#FF9F45; --lemon:#FFD84D;
+    --mint:#4FCBAA; --pink:#FFE1E9; --line:rgba(44,27,46,.10);
+    --shadow-sm:0 6px 18px rgba(44,27,46,.07);
+    --shadow-md:0 16px 36px rgba(44,27,46,.10);
+    --shadow-lg:0 34px 70px -24px rgba(44,27,46,.30);
+    --radius:24px;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+    overflow-x:clip;
+  }
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;line-height:1.07;margin:0;letter-spacing:-.02em}
+  h1{font-size:clamp(2.5rem,5.6vw,4.15rem);font-weight:900}
+  h2{font-size:clamp(1.9rem,3.7vw,2.9rem);font-weight:800}
+  h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+  p{margin:0}
+  .wrap{width:min(1180px,100% - 44px);margin-inline:auto}
+  section{padding:clamp(64px,8vw,108px) 0;scroll-margin-top:88px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--coral-dark);background:#FFE7EC;border-radius:999px;padding:8px 16px;
+  }
+  .sec-head{max-width:640px;margin:0 auto clamp(36px,4vw,52px);text-align:center}
+  .sec-head p{color:var(--ink-soft);margin-top:16px;font-size:1.05rem}
+  .sec-head h2{margin-top:18px}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:15px 28px;border-radius:999px;font-weight:700;font-size:.98rem;
+    transition:transform .2s cubic-bezier(.2,.8,.3,1.2),box-shadow .25s,background .25s,color .25s;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--coral);color:#fff;box-shadow:0 12px 26px -8px rgba(255,92,122,.75)}
+  .btn-primary:hover{transform:translateY(-3px);background:var(--coral-dark);box-shadow:0 18px 34px -10px rgba(255,92,122,.85)}
+  .btn-ghost{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm);border:1.5px solid var(--line)}
+  .btn-ghost:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:80;
+    background:rgba(255,248,238,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid transparent;transition:box-shadow .3s,border-color .3s;
+  }
+  .site-header.scrolled{box-shadow:0 10px 30px -18px rgba(44,27,46,.5);border-color:var(--line)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:78px}
+  .logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+  .logo-mark{width:40px;height:40px;flex-shrink:0}
+  .logo-text{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:1.22rem;letter-spacing:-.03em;line-height:1}
+  .logo-text em{font-style:normal;color:var(--coral)}
+  .nav-links{display:flex;gap:34px;font-weight:500;font-size:.96rem}
+  .nav-links a{position:relative;padding:6px 0;color:var(--ink)}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:2.5px;border-radius:3px;
+    background:var(--coral);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.8,.3,1)
+  }
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .header-actions{display:flex;align-items:center;gap:10px}
+  .cart-btn{
+    position:relative;width:46px;height:46px;border-radius:50%;background:#fff;
+    display:grid;place-items:center;box-shadow:var(--shadow-sm);border:1.5px solid var(--line);
+    transition:transform .2s cubic-bezier(.2,.8,.3,1.4)
+  }
+  .cart-btn:hover{transform:translateY(-2px) scale(1.04)}
+  .cart-count{
+    position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 5px;
+    background:var(--coral);color:#fff;border-radius:999px;font-size:.72rem;font-weight:700;
+    display:grid;place-items:center;border:2px solid var(--cream);transition:transform .3s
+  }
+  .cart-count.bump{animation:bump .45s cubic-bezier(.2,.9,.3,1.5)}
+  @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
+  .burger{display:none;width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid var(--line);box-shadow:var(--shadow-sm);place-items:center}
+  .burger span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;margin:3px auto;transition:transform .3s,opacity .3s}
+  .burger.open span:nth-child(1){transform:translateY(5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+  .mobile-menu{
+    display:none;overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.2,.8,.3,1);
+    border-top:1px solid transparent;
+  }
+  .mobile-menu.open{max-height:320px;border-color:var(--line)}
+  .mobile-menu-inner{padding:14px 22px 26px;display:flex;flex-direction:column;gap:4px}
+  .mobile-menu a{padding:12px 4px;font-weight:600;font-family:'Fraunces',Georgia,serif;font-size:1.3rem;border-bottom:1px solid var(--line)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding-top:clamp(38px,5vw,64px);padding-bottom:clamp(48px,6vw,80px);position:relative}
+  .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{margin:22px 0 20px}
+  .hl{
+    color:var(--coral);
+    background:linear-gradient(transparent 58%,rgba(255,216,77,.8) 58%,rgba(255,216,77,.8) 92%,transparent 92%);
+    padding:0 .06em;
+  }
+  .lede{font-size:1.1rem;color:var(--ink-soft);max-width:53ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin:32px 0 30px}
+  .hero-trust{
+    list-style:none;display:flex;flex-wrap:wrap;gap:12px 26px;padding:0;margin:0;
+    font-size:.92rem;color:var(--ink-soft)
+  }
+  .hero-trust li{display:flex;align-items:center;gap:7px}
+  .hero-trust strong{color:var(--ink)}
+  .hero-trust li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint);flex-shrink:0}
+
+  .hero-art{position:relative;min-height:490px;display:grid;place-items:center}
+  .sun{
+    width:min(370px,78%);aspect-ratio:1;border-radius:50%;position:relative;
+    background:radial-gradient(circle at 34% 28%,#FFEDA8,#FFC94F 58%,#FFB03C);
+    box-shadow:0 40px 80px -30px rgba(255,159,69,.85);
+  }
+  .sun::before{
+    content:"";position:absolute;inset:-22%;border-radius:50%;z-index:-1;
+    background:repeating-conic-gradient(from 0deg,rgba(255,199,79,.34) 0 5deg,transparent 5deg 15deg);
+    animation:spin 60s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .float{position:absolute;filter:drop-shadow(0 18px 26px rgba(44,27,46,.20));animation:floaty 7s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(-9px) rotate(-3deg)}50%{transform:translateY(11px) rotate(4deg)}}
+  .f1{top:1%;left:-2%;width:112px;animation-delay:-.4s}
+  .f2{bottom:9%;left:1%;width:100px;animation-delay:-2.6s}
+  .f3{top:8%;right:-3%;width:124px;animation-delay:-4.2s}
+  .f4{bottom:1%;right:5%;width:104px;animation-delay:-3.1s}
+
+  /* ---------- Marquee ---------- */
+  .marquee{background:var(--ink);color:var(--cream);padding:15px 0;overflow:hidden;transform:rotate(-1.1deg);margin-block:6px}
+  .marquee-track{display:flex;width:max-content;animation:slide 30s linear infinite}
+  .marquee-group{display:flex;align-items:center}
+  .marquee-group span{
+    padding:0 22px;font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;
+    display:flex;align-items:center;gap:22px
+  }
+  .marquee-group span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--lemon)}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ---------- Filters ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:38px}
+  .chip{
+    padding:10px 20px;border-radius:999px;background:#fff;border:1.5px solid var(--line);
+    font-size:.9rem;font-weight:600;color:var(--ink-soft);transition:all .22s
+  }
+  .chip:hover{transform:translateY(-2px);color:var(--ink)}
+  .chip.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+  /* ---------- Products ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .product{
+    background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);
+    display:flex;flex-direction:column;border:1px solid rgba(44,27,46,.05);
+    transition:transform .3s cubic-bezier(.2,.8,.3,1.1),box-shadow .3s;
+  }
+  .product:hover{transform:translateY(-7px);box-shadow:var(--shadow-md)}
+  .product[hidden]{display:none}
+  .product.pop{animation:pop .34s cubic-bezier(.2,.9,.3,1.4)}
+  @keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+  .product-visual{
+    position:relative;padding:26px;display:grid;place-items:center;aspect-ratio:16/11;
+    background:var(--tint);overflow:hidden;
+  }
+  .product-visual::after{
+    content:"";position:absolute;width:130%;height:130%;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.75),transparent 62%);
+  }
+  .product-visual svg{width:auto;height:100%;max-height:180px;position:relative;z-index:1;transition:transform .4s cubic-bezier(.2,.8,.3,1.2)}
+  .product:hover .product-visual svg{transform:scale(1.07) rotate(-3deg)}
+  .tag{
+    position:absolute;top:14px;left:14px;z-index:2;
+    background:var(--ink);color:var(--cream);font-size:.68rem;font-weight:700;
+    letter-spacing:.13em;text-transform:uppercase;padding:6px 12px;border-radius:999px;
+  }
+  .tag.mint{background:var(--mint);color:#0C3B2E}
+  .product-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .product-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .price{font-family:'Fraunces',Georgia,serif;font-weight:800;font-size:1.15rem;color:var(--coral);flex-shrink:0}
+  .product-body p{color:var(--ink-soft);font-size:.93rem;flex:1}
+  .btn-add{
+    margin-top:8px;background:var(--ink);color:var(--cream);padding:13px 22px;border-radius:999px;
+    font-weight:700;font-size:.92rem;width:100%;transition:background .25s,transform .2s
+  }
+  .btn-add:hover{background:var(--coral);transform:translateY(-2px)}
+  .btn-add.done{background:var(--mint);color:#0C3B2E}
+
+  /* ---------- Story / values ---------- */
+  .story{background:linear-gradient(180deg,transparent,var(--cream-2) 22%,var(--cream-2) 78%,transparent)}
+  .value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .value{
+    background:#fff;border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-sm);
+    border:1px solid rgba(44,27,46,.05);transition:transform .3s,box-shadow .3s
+  }
+  .value:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+  .value-icon{
+    width:52px;height:52px;border-radius:16px;display:grid;place-items:center;margin-bottom:18px;
+    background:var(--icon-bg);color:var(--icon-fg)
+  }
+  .value h3{margin-bottom:8px}
+  .value p{font-size:.92rem;color:var(--ink-soft)}
+  .stats{
+    margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+    background:var(--ink);color:var(--cream);border-radius:32px;padding:40px 34px;text-align:center
+  }
+  .stats strong{display:block;font-family:'Fraunces',Georgia,serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;color:var(--lemon);line-height:1}
+  .stats span{font-size:.88rem;opacity:.72;letter-spacing:.03em}
+
+  /* ---------- Reviews ---------- */
+  .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{
+    background:#fff;border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow-sm);
+    border:1px solid rgba(44,27,46,.05);display:flex;flex-direction:column;gap:16px;
+    transition:transform .3s,box-shadow .3s
+  }
+  .review:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:var(--shadow-md)}
+  .stars{color:var(--tangerine);letter-spacing:2px;font-size:1rem}
+  .review blockquote{margin:0;font-family:'Fraunces',Georgia,serif;font-size:1.07rem;line-height:1.5;font-weight:500}
+  .reviewer{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:8px}
+  .avatar{
+    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+    font-weight:700;font-size:.9rem;color:#fff;background:var(--av,var(--coral))
+  }
+  .reviewer b{display:block;font-size:.93rem;font-family:'DM Sans',sans-serif}
+  .reviewer small{color:var(--ink-soft);font-size:.82rem}
+
+  /* ---------- Club / newsletter ---------- */
+  .club{padding-bottom:clamp(70px,9vw,120px)}
+  .club-card{
+    position:relative;overflow:hidden;border-radius:36px;
+    background:linear-gradient(135deg,#FF7A93,#FF5C7A 42%,#FF9F45);
+    padding:clamp(40px,6vw,68px);color:#fff;text-align:center;
+    box-shadow:0 40px 80px -34px rgba(255,92,122,.9)
+  }
+  .club-card::before,.club-card::after{
+    content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.14)
+  }
+  .club-card::before{width:300px;height:300px;top:-130px;left:-90px}
+  .club-card::after{width:360px;height:360px;bottom:-190px;right:-110px}
+  .club-card>*{position:relative;z-index:1}
+  .club-card h2{color:#fff}
+  .club-card p{max-width:52ch;margin:16px auto 0;opacity:.94}
+  .news-form{
+    display:flex;gap:10px;max-width:520px;margin:30px auto 0;background:#fff;
+    padding:8px;border-radius:999px;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)
+  }
+  .news-form input{
+    flex:1;border:0;outline:0;background:transparent;padding:14px 20px;font:inherit;font-size:.97rem;color:var(--ink);min-width:0
+  }
+  .news-form input::placeholder{color:#9C8B9F}
+  .news-form button{background:var(--ink);color:#fff;padding:14px 26px;border-radius:999px;font-weight:700;transition:background .25s}
+  .news-form button:hover{background:var(--coral)}
+  .form-note{font-size:.84rem;margin-top:14px;min-height:20px;opacity:.95}
+  .form-note.error{color:#FFE1E9;font-weight:600}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:rgba(255,248,238,.72);padding:70px 0 30px}
+  .foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:46px;border-bottom:1px solid rgba(255,248,238,.14)}
+  footer h4{font-family:'DM Sans',sans-serif;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lemon);margin-bottom:18px;font-weight:700}
+  .foot-links{display:flex;flex-direction:column;gap:11px;font-size:.93rem}
+  .foot-links a{transition:color .2s}
+  .foot-links a:hover{color:#fff}
+  .foot-brand .logo-text{color:var(--cream)}
+  .foot-brand p{margin-top:16px;font-size:.93rem;max-width:36ch}
+  .socials{display:flex;gap:10px;margin-top:22px}
+  .socials a{
+    width:38px;height:38px;border-radius:50%;background:rgba(255,248,238,.1);
+    display:grid;place-items:center;transition:background .25s,transform .25s
+  }
+  .socials a:hover{background:var(--coral);transform:translateY(-3px)}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:26px;font-size:.85rem}
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:30px;z-index:200;
+    transform:translate(-50%,180%);
+    background:var(--ink);color:var(--cream);padding:14px 24px;border-radius:999px;
+    font-weight:600;font-size:.93rem;display:flex;align-items:center;gap:11px;
+    box-shadow:var(--shadow-lg);
+    transition:transform .45s cubic-bezier(.2,.9,.3,1.25);
+    max-width:calc(100% - 40px);
+  }
+  .toast.show{transform:translate(-50%,0)}
+  .toast .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);flex-shrink:0}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.3,1),transform .7s cubic-bezier(.2,.8,.3,1)}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .value-grid{grid-template-columns:repeat(2,1fr)}
+    .review-grid{grid-template-columns:1fr}
+    .hero-inner{grid-template-columns:1fr;gap:34px}
+    .hero-art{min-height:400px;order:-1}
+    .hero-copy{text-align:center}
+    .lede{margin-inline:auto}
+    .hero-cta,.hero-trust{justify-content:center}
+    .foot-top{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:820px){
+    .nav-links{display:none}
+    .burger{display:grid}
+    .mobile-menu{display:block}
+    .header-inner{height:70px}
+    .sun{width:min(280px,68%)}
+    .f1{width:80px;left:-4%}.f2{width:74px}.f3{width:88px;right:-4%}.f4{width:76px}
+    .hero-art{min-height:330px}
+    .stats{grid-template-columns:1fr;gap:28px}
+  }
+  @media (max-width:620px){
+    .grid{grid-template-columns:1fr;gap:22px}
+    .value-grid{grid-template-columns:1fr}
+    .news-form{flex-direction:column;border-radius:26px;padding:12px;gap:8px}
+    .news-form input{text-align:center;padding:12px}
+    .news-form button{width:100%}
+    .foot-top{grid-template-columns:1fr;gap:34px}
+    .hero-trust{gap:10px 18px;font-size:.87rem}
+    .btn{padding:14px 24px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo" aria-label="Sweet Summer Days home">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="13" fill="#FFD84D"/>
+          <g stroke="#FF9F45" stroke-width="3.2" stroke-linecap="round">
+            <path d="M22 2.5v5"/><path d="M22 36.5v5"/>
+            <path d="M2.5 22h5"/><path d="M36.5 22h5"/>
+            <path d="M8.2 8.2l3.6 3.6"/><path d="M32.2 32.2l3.6 3.6"/>
+            <path d="M35.8 8.2l-3.6 3.6"/><path d="M11.8 32.2l-3.6 3.6"/>
+          </g>
+          <circle cx="22" cy="22" r="7.5" fill="#FF5C7A"/>
+        </svg>
+      </span>
+      <span class="logo-text">Sweet Summer <em>Days</em></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#story">Real Sugar</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#club">Summer Club</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="cart-btn" id="cartBtn" aria-label="Shopping bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C1B2E" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 8h14l-1.3 11.1a2 2 0 0 1-2 1.9H8.3a2 2 0 0 1-2-1.9L5 8Z"/>
+          <path d="M9 8V6.2A3 3 0 0 1 12 3.2a3 3 0 0 1 3 3V8"/>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#shop">Shop</a>
+      <a href="#story">Real Sugar</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#club">Summer Club</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Small batch · Real cane sugar · Zero fake dyes</span>
+      <h1>Candy that tastes like a <span class="hl">long, slow summer</span>.</h1>
+      <p class="lede">Fruit-forward lollipops, chewy gummies and buttery caramels made with real cane sugar and real fruit purée. Sweet enough for the kids — good enough for the grown-ups sneaking from the jar.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#shop">Shop the summer box</a>
+        <a class="btn btn-ghost" href="#story">Why real sugar?</a>
+      </div>
+      <ul class="hero-trust">
+        <li><strong>4.9★</strong> from 2,400+ reviews</li>
+        <li><strong>Free shipping</strong> over $35</li>
+        <li><strong>No</strong> artificial colours</li>
+      </ul>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="sun"></div>
+
+      <!-- lollipop -->
+      <div class="float f1">
+        <svg viewBox="0 0 160 180" width="112">
+          <defs>
+            <clipPath id="lpClip"><circle cx="80" cy="72" r="52"/></clipPath>
+            <linearGradient id="stickGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#E7D5C0"/><stop offset=".5" stop-color="#FDF6EA"/><stop offset="1" stop-color="#DCC7AE"/>
+            </linearGradient>
+          </defs>
+          <rect x="74" y="112" width="12" height="62" rx="6" fill="url(#stickGrad)"/>
+          <circle cx="80" cy="72" r="52" fill="#FF5C7A"/>
+          <g clip-path="url(#lpClip)" transform="rotate(24 80 72)">
+            <rect x="24" y="-10" width="16" height="170" fill="#FFF8EE"/>
+            <rect x="60" y="-10" width="16" height="170" fill="#FFF8EE"/>
+            <rect x="96" y="-10" width="16" height="170" fill="#FFF8EE"/>
+            <rect x="132" y="-10" width="16" height="170" fill="#FFF8EE"/>
+          </g>
+          <ellipse cx="60" cy="47" rx="17" ry="11" fill="#fff" opacity=".45" transform="rotate(-26 60 47)"/>
+        </svg>
+      </div>
+
+      <!-- jelly beans -->
+      <div class="float f2">
+        <svg viewBox="0 0 160 160" width="100">
+          <ellipse cx="52" cy="102" rx="36" ry="25" fill="#FF9F45" transform="rotate(-15 52 102)"/>
+          <ellipse cx="108" cy="106" rx="33" ry="23" fill="#4FCBAA" transform="rotate(12 108 106)"/>
+          <ellipse cx="80" cy="52" rx="37" ry="25" fill="#FF5C7A" transform="rotate(-6 80 52)"/>
+          <ellipse cx="64" cy="40" rx="13" ry="7" fill="#fff" opacity=".38" transform="rotate(-12 64 40)"/>
+          <ellipse cx="40" cy="92" rx="11" ry="6" fill="#fff" opacity=".32" transform="rotate(-15 40 92)"/>
+          <ellipse cx="97" cy="97" rx="10" ry="5" fill="#fff" opacity=".3" transform="rotate(12 97 97)"/>
+        </svg>
+      </div>
+
+      <!-- gummy worm -->
+      <div class="float f3">
+        <svg viewBox="0 0 170 150" width="124">
+          <defs>
+            <linearGradient id="wormA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7BE3C4"/><stop offset="1" stop-color="#33AE8C"/>
+            </linearGradient>
+            <linearGradient id="wormB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFA3C6"/><stop offset="1" stop-color="#FF5C7A"/>
+            </linearGradient>
+          </defs>
+          <path d="M28 104 Q 56 50 84 104 T 142 104" stroke="url(#wormB)" stroke-width="24" fill="none" stroke-linecap="round" opacity=".9"/>
+          <path d="M28 78 Q 56 26 84 78 T 142 78" stroke="url(#wormA)" stroke-width="24" fill="none" stroke-linecap="round"/>
+          <circle cx="30" cy="76" r="3.4" fill="#0E5C48" opacity=".65"/>
+          <circle cx="42" cy="76" r="3.4" fill="#0E5C48" opacity=".65"/>
+        </svg>
+      </div>
+
+      <!-- lemon drop -->
+      <div class="float f4">
+        <svg viewBox="0 0 160 160" width="104">
+          <defs><clipPath id="lmClip"><circle cx="80" cy="80" r="46"/></clipPath></defs>
+          <circle cx="80" cy="80" r="54" fill="#FFD84D"/>
+          <circle cx="80" cy="80" r="46" fill="#FFF7D6"/>
+          <g clip-path="url(#lmClip)" fill="#FFC93C">
+            <rect x="76" y="34" width="8" height="48" rx="4"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(45 80 80)"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(90 80 80)"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(135 80 80)"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(180 80 80)"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(225 80 80)"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(270 80 80)"/>
+            <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(315 80 80)"/>
+          </g>
+          <circle cx="80" cy="80" r="54" fill="none" stroke="#F0BC2F" stroke-width="3"/>
+          <ellipse cx="58" cy="54" rx="15" ry="9" fill="#fff" opacity=".45" transform="rotate(-28 58 54)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span>Real cane sugar</span><span>Real fruit purée</span><span>No artificial dyes</span>
+      <span>Small batch</span><span>Kid &amp; adult approved</span><span>Free shipping over $35</span>
+    </div>
+    <div class="marquee-group">
+      <span>Real cane sugar</span><span>Real fruit purée</span><span>No artificial dyes</span>
+      <span>Small batch</span><span>Kid &amp; adult approved</span><span>Free shipping over $35</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SHOP ============ -->
+<section id="shop">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The candy shelf</span>
+      <h2>Pick your summer favourites</h2>
+      <p>Everything is made in small batches with real ingredients — so it tastes like fruit, butter and vanilla, not like a chemistry set.</p>
+    </div>
+
+    <div class="filters reveal" role="group" aria-label="Filter candy">
+      <button class="chip active" data-filter="all">All candy</button>
+      <button class="chip" data-filter="fruity">Fruity</button>
+      <button class="chip" data-filter="sour">Sour</button>
+      <button class="chip" data-filter="chewy">Chewy</button>
+      <button class="chip" data-filter="chocolate">Caramel &amp; Chocolate</button>
+    </div>
+
+    <div class="grid" id="productGrid">
+
+      <!-- 1 -->
+      <article class="product reveal" data-cat="fruity">
+        <div class="product-visual" style="--tint:#FFE3EA">
+          <span class="tag">Bestseller</span>
+          <svg viewBox="0 0 160 180">
+            <defs>
+              <clipPath id="p1clip"><circle cx="80" cy="72" r="52"/></clipPath>
+              <linearGradient id="p1stick" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#E7D5C0"/><stop offset=".5" stop-color="#FDF6EA"/><stop offset="1" stop-color="#DCC7AE"/>
+              </linearGradient>
+            </defs>
+            <rect x="74" y="112" width="12" height="62" rx="6" fill="url(#p1stick)"/>
+            <circle cx="80" cy="72" r="52" fill="#FF5C7A"/>
+            <g clip-path="url(#p1clip)" transform="rotate(24 80 72)">
+              <rect x="24" y="-10" width="16" height="170" fill="#FFF8EE"/>
+              <rect x="60" y="-10" width="16" height="170" fill="#FFF8EE"/>
+              <rect x="96" y="-10" width="16" height="170" fill="#FFF8EE"/>
+              <rect x="132" y="-10" width="16" height="170" fill="#FFF8EE"/>
+            </g>
+            <ellipse cx="60" cy="47" rx="17" ry="11" fill="#fff" opacity=".45" transform="rotate(-26 60 47)"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-top">
+            <h3>Strawberry Sunburst Lollipops</h3>
+            <span class="price">$12</span>
+          </div>
+          <p>Slow-cooked strawberry with a whisper of lemon. Ten minutes of pure summer on a stick — pack of 8.</p>
+          <button class="btn-add" data-name="Strawberry Sunburst Lollipops">Add to bag</button>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="product reveal" data-cat="fruity">
+        <div class="product-visual" style="--tint:#FFEBD3">
+          <svg viewBox="0 0 160 160">
+            <ellipse cx="52" cy="102" rx="36" ry="25" fill="#FF9F45" transform="rotate(-15 52 102)"/>
+            <ellipse cx="108" cy="106" rx="33" ry="23" fill="#FF5C7A" transform="rotate(12 108 106)"/>
+            <ellipse cx="80" cy="52" rx="37" ry="25" fill="#4FCBAA" transform="rotate(-6 80 52)"/>
+            <ellipse cx="64" cy="40" rx="13" ry="7" fill="#fff" opacity=".4" transform="rotate(-12 64 40)"/>
+            <ellipse cx="40" cy="92" rx="11" ry="6" fill="#fff" opacity=".34" transform="rotate(-15 40 92)"/>
+            <ellipse cx="97" cy="97" rx="10" ry="5" fill="#fff" opacity=".32" transform="rotate(12 97 97)"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-top">
+            <h3>Jelly Bean Jubilee</h3>
+            <span class="price">$9</span>
+          </div>
+          <p>Eight real-fruit flavours tumbled in cane sugar. Wildly, dangerously easy to eat by the handful.</p>
+          <button class="btn-add" data-name="Jelly Bean Jubilee">Add to bag</button>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="product reveal" data-cat="sour">
+        <div class="product-visual" style="--tint:#FFF6C8">
+          <span class="tag mint">New</span>
+          <svg viewBox="0 0 160 160">
+            <defs><clipPath id="p3clip"><circle cx="80" cy="80" r="46"/></clipPath></defs>
+            <circle cx="80" cy="80" r="54" fill="#FFD84D"/>
+            <circle cx="80" cy="80" r="46" fill="#FFF7D6"/>
+            <g clip-path="url(#p3clip)" fill="#FFC93C">
+              <rect x="76" y="34" width="8" height="48" rx="4"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(45 80 80)"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(90 80 80)"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(135 80 80)"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(180 80 80)"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(225 80 80)"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(270 80 80)"/>
+              <rect x="76" y="34" width="8" height="48" rx="4" transform="rotate(315 80 80)"/>
+            </g>
+            <circle cx="80" cy="80" r="54" fill="none" stroke="#F0BC2F" stroke-width="3"/>
+            <ellipse cx="58" cy="54" rx="15" ry="9" fill="#fff" opacity=".45" transform="rotate(-28 58 54)"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-top">
+            <h3>Sour Lemon Drops</h3>
+            <span class="price">$10</span>
+          </div>
+          <p>Pucker-up bright, rolled in citric sugar. The ones kids trade their best marbles for.</p>
+          <button class="btn-add" data-name="Sour Lemon Drops">Add to bag</button>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="product reveal" data-cat="chewy">
+        <div class="product-visual" style="--tint:#DDF5EE">
+          <svg viewBox="0 0 170 150">
+            <defs>
+              <linearGradient id="p4a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7BE3C4"/><stop offset="1" stop-color="#33AE8C"/>
+              </linearGradient>
+              <linearGradient id="p4b" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#FFA3C6"/><stop offset="1" stop-color="#FF5C7A"/>
+              </linearGradient>
+            </defs>
+            <path d="M28 108 Q 56 54 84 108 T 142 108" stroke="url(#p4b)" stroke-width="24" fill="none" stroke-linecap="round" opacity=".9"/>
+            <path d="M28 78 Q 56 26 84 78 T 142 78" stroke="url(#p4a)" stroke-width="24" fill="none" stroke-linecap="round"/>
+            <circle cx="30" cy="76" r="3.4" fill="#0E5C48" opacity=".65"/>
+            <circle cx="42" cy="76" r="3.4" fill="#0E5C48" opacity=".65"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-top">
+            <h3>Gummy Worm Wiggles</h3>
+            <span class="price">$11</span>
+          </div>
+          <p>Stretchy, juicy and made with real fruit purée. No neon colours — just actual strawberry and apple.</p>
+          <button class="btn-add" data-name="Gummy Worm Wiggles">Add to bag</button>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="product reveal" data-cat="chocolate">
+        <div class="product-visual" style="--tint:#F7E4D2">
+          <span class="tag">Grown-up favourite</span>
+          <svg viewBox="0 0 160 160">
+            <rect x="24" y="84" width="112" height="50" rx="17" fill="#C97A3A"/>
+            <rect x="32" y="44" width="96" height="50" rx="17" fill="#E09355"/>
+            <rect x="38" y="54" width="34" height="12" rx="6" fill="#fff" opacity=".26"/>
+            <rect x="32" y="94" width="38" height="13" rx="6" fill="#fff" opacity=".18"/>
+            <path d="M38 108 q 20 -14 42 0 t 42 0" stroke="#FFF3E0" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M42 68 q 18 -13 38 0 t 38 0" stroke="#FFF3E0" stroke-width="6" fill="none" stroke-linecap="round" opacity=".85"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-top">
+            <h3>Sea Salt Caramels</h3>
+            <span class="price">$14</span>
+          </div>
+          <p>Slow-stirred butter and cream with a flick of flaky sea salt. The one hidden at the back of the jar.</p>
+          <button class="btn-add" data-name="Sea Salt Caramels">Add to bag</button>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="product reveal" data-cat="chewy">
+        <div class="product-visual" style="--tint:#EDEAFB">
+          <svg viewBox="0 0 160 160">
+            <rect x="50" y="30" width="82" height="48" rx="19" fill="#FFFDF8" stroke="#E7DACB" stroke-width="3" transform="rotate(-8 91 54)"/>
+            <rect x="28" y="76" width="104" height="58" rx="21" fill="#FFFDF8" stroke="#E7DACB" stroke-width="3"/>
+            <rect x="42" y="90" width="34" height="13" rx="6.5" fill="#F1E7D8"/>
+            <rect x="64" y="42" width="26" height="11" rx="5.5" fill="#F1E7D8" transform="rotate(-8 77 47)"/>
+            <ellipse cx="106" cy="128" rx="20" ry="6" fill="#EFE2D2" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-top">
+            <h3>Toasted Marshmallow Clouds</h3>
+            <span class="price">$8</span>
+          </div>
+          <p>Pillowy vanilla marshmallows, lightly toasted. Builds a s'more your campfire will be jealous of.</p>
+          <button class="btn-add" data-name="Toasted Marshmallow Clouds">Add to bag</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story" class="story">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why real sugar</span>
+      <h2>Honest candy, made the slow way</h2>
+      <p>We started Sweet Summer Days because we got tired of reading candy labels that sounded like a science project. So we went back to the basics — and it turns out basics taste better.</p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value reveal" style="--icon-bg:#FFE3EA;--icon-fg:#E8445F">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20.5s-7.5-4.3-7.5-9.6A4.4 4.4 0 0 1 12 8.4a4.4 4.4 0 0 1 7.5 2.5c0 5.3-7.5 9.6-7.5 9.6Z"/>
+            <path d="M7 12h3l1.4-2.4L13.4 14l1.3-2h2.6"/>
+          </svg>
+        </div>
+        <h3>Real cane sugar</h3>
+        <p>Not corn syrup. We use cane sugar so every piece tastes clean and finishes sweet — never cloying.</p>
+      </div>
+
+      <div class="value reveal" style="--icon-bg:#FFF2CF;--icon-fg:#C98A0B">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8.5"/>
+            <path d="M12 3.5v17M3.5 12h17M6 6l12 12M18 6 6 18"/>
+          </svg>
+        </div>
+        <h3>Real fruit purée</h3>
+        <p>Strawberries, lemons, raspberries and apple. If a flavour exists in nature, we use the nature version.</p>
+      </div>
+
+      <div class="value reveal" style="--icon-bg:#DDF5EE;--icon-fg:#1F8A6E">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.8 14.6 9l6.6.5-5 4.4 1.5 6.5L12 17l-5.7 3.4L7.8 14l-5-4.4L9.4 9 12 2.8Z"/>
+          </svg>
+        </div>
+        <h3>No artificial dyes</h3>
+        <p>Colour comes from fruit, turmeric and beetroot. Yes, that's really how we do it.</p>
+      </div>
+
+      <div class="value reveal" style="--icon-bg:#EDEAFB;--icon-fg:#6A5BC4">
+        <div class="value-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5 12 4l9 5.5v9L12 24l-9-5.5v-9Z" transform="translate(0 -2)"/>
+            <path d="M3 7.5 12 13l9-5.5M12 13v9" transform="translate(0 -2)"/>
+          </svg>
+        </div>
+        <h3>Small batches</h3>
+        <p>Cooked in 40-pound copper kettles in our Sonoma kitchen, tested by an unusually opinionated panel of kids.</p>
+      </div>
+    </div>
+
+    <div class="stats reveal">
+      <div><strong>100%</strong><span>Real cane sugar</span></div>
+      <div><strong>0</strong><span>Artificial colours or dyes</span></div>
+      <div><strong>48 hrs</strong><span>From kettle to your door</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Happy mouths</span>
+      <h2>Loved by kids, hoarded by adults</h2>
+    </div>
+
+    <div class="review-grid">
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>“My 7-year-old now thinks I'm a hero for sourcing 'the good lollipops'. I haven't told her the box was technically for me.”</blockquote>
+        <div class="reviewer">
+          <span class="avatar" style="--av:#FF5C7A">MR</span>
+          <span><b>Maya R.</b><small>Mom of two · Portland</small></span>
+        </div>
+      </div>
+
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>“The sea salt caramels are genuinely better than the ones I buy from the fancy chocolate shop. I've ordered four times this summer.”</blockquote>
+        <div class="reviewer">
+          <span class="avatar" style="--av:#4FCBAA">DK</span>
+          <span><b>Daniel K.</b><small>Self-declared caramel expert</small></span>
+        </div>
+      </div>
+
+      <div class="review reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>“We hand these out at birthday parties and the parents always ask where they're from. Real fruit, no weird colours — finally.”</blockquote>
+        <div class="reviewer">
+          <span class="avatar" style="--av:#FF9F45">PS</span>
+          <span><b>Priya S.</b><small>Party-planning pro · Austin</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLUB ============ -->
+<section id="club" class="club">
+  <div class="wrap">
+    <div class="club-card reveal">
+      <h2>Join the Summer Club</h2>
+      <p>Get 10% off your first box, a free strawberry lollipop in every order, and first dibs on seasonal flavours.</p>
+      <form class="news-form" id="newsForm" novalidate>
+        <input type="email" id="newsEmail" placeholder="you@sunnydays.com" aria-label="Email address" required>
+        <button type="submit">Get 10% off</button>
+      </form>
+      <p class="form-note" id="formNote">No spam, ever. Just candy news and the occasional freebie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo" style="align-items:center">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none">
+              <circle cx="22" cy="22" r="13" fill="#FFD84D"/>
+              <g stroke="#FF9F45" stroke-width="3.2" stroke-linecap="round">
+                <path d="M22 2.5v5"/><path d="M22 36.5v5"/><path d="M2.5 22h5"/><path d="M36.5 22h5"/>
+                <path d="M8.2 8.2l3.6 3.6"/><path d="M32.2 32.2l3.6 3.6"/>
+                <path d="M35.8 8.2l-3.6 3.6"/><path d="M11.8 32.2l-3.6 3.6"/>
+              </g>
+              <circle cx="22" cy="22" r="7.5" fill="#FF5C7A"/>
+            </svg>
+          </span>
+          <span class="logo-text">Sweet Summer <em>Days</em></span>
+        </div>
+        <p>Small-batch candy made with real cane sugar and real fruit. Sunny side up since 2019.</p>
+        <div class="socials">
+          <a href="#top" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFF8EE" stroke-width="1.9" stroke-linecap="round">
+              <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="#FFF8EE" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#top" aria-label="TikTok">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFF8EE" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 3v10.5a3.8 3.8 0 1 1-3.8-3.8"/><path d="M14 4.5A5 5 0 0 0 19 9"/>
+            </svg>
+          </a>
+          <a href="#top" aria-label="Newsletter">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFF8EE" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7.5 8 5.5 8-5.5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Shop</h4>
+        <div class="foot-links">
+          <a href="#shop">Lollipops</a>
+          <a href="#shop">Gummies &amp; chews</a>
+          <a href="#shop">Caramels</a>
+          <a href="#shop">Gift boxes</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <div class="foot-links">
+          <a href="#story">Our story</a>
+          <a href="#story">Ingredients</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#club">Summer Club</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Help</h4>
+        <div class="foot-links">
+          <a href="#club">Shipping</a>
+          <a href="#club">Returns</a>
+          <a href="#club">FAQ</a>
+          <a href="#club">Contact us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2025 Sweet Summer Days Candy Co. Made with real sugar and real sunshine.</span>
+      <span>Privacy · Terms · Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="dot"></span><span id="toastMsg">Added to your bag</span>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Sticky header shadow ---------- */
+  var header = document.querySelector('.site-header');
+  function onScroll() {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile menu ---------- */
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function () {
+    var open = mobileMenu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  var revealables = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var siblings = Array.prototype.slice.call(el.parentElement.children);
+          var idx = siblings.indexOf(el) % 6;
+          el.style.transitionDelay = (idx * 70) + 'ms';
+          el.classList.add('visible');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+    revealables.forEach(function (el) { io.observe(el); });
+  } else {
+    revealables.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ---------- Filters ---------- */
+  var chips = document.querySelectorAll('.chip');
+  var products = Array.prototype.slice.call(document.querySelectorAll('.product'));
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      applyFilter(chip.dataset.filter);
+    });
+  });
+
+  function applyFilter(filter) {
+    products.forEach(function (p) {
+      var show = filter === 'all' || p.dataset.cat === filter;
+      if (show) {
+        p.hidden = false;
+        p.classList.remove('pop');
+        void p.offsetWidth; // restart animation
+        p.classList.add('pop');
+      } else {
+        p.hidden = true;
+      }
+    });
+  }
+
+  /* ---------- Cart ---------- */
+  var cartCount = 0;
+  var cartCountEl = document.getElementById('cartCount');
+  var toast = document.getElementById('toast');
+  var toastMsg = document.getElementById('toastMsg');
+  var toastTimer = null;
+
+  function addToCart(name, btn) {
+    cartCount++;
+    cartCountEl.textContent = cartCount;
+    cartCountEl.classList.remove('bump');
+    void cartCountEl.offsetWidth;
+    cartCountEl.classList.add('bump');
+
+    toastMsg.textContent = name + ' added to your bag';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('show');
+    }, 2400);
+
+    if (btn) {
+      var original = btn.textContent;
+      btn.textContent = 'Added ✓';
+      btn.classList.add('done');
+      btn.disabled = true;
+      setTimeout(function () {
+        btn.textContent = original;
+        btn.classList.remove('done');
+        btn.disabled = false;
+      }, 1500);
+    }
+  }
+
+  document.querySelectorAll('.btn-add').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      addToCart(btn.dataset.name || 'Candy', btn);
+    });
+  });
+
+  document.getElementById('cartBtn').addEventListener('click', function () {
+    if (cartCount === 0) {
+      toastMsg.textContent = 'Your bag is empty — go pick something sweet!';
+    } else {
+      toastMsg.textContent = cartCount + (cartCount === 1 ? ' treat' : ' treats') + ' in your bag · checkout at $35 for free shipping';
+    }
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+  });
+
+  /* ---------- Newsletter ---------- */
+  var form = document.getElementById('newsForm');
+  var emailInput = document.getElementById('newsEmail');
+  var note = document.getElementById('formNote');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var value = emailInput.value.trim();
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+
+    if (!valid) {
+      note.textContent = 'Hmm, that email looks a little underbaked. Try again?';
+      note.classList.add('error');
+      emailInput.focus();
+      return;
+    }
+
+    note.classList.remove('error');
+    note.textContent = 'You\u2019re in! Check your inbox for a 10% off code. 🍭';
+    emailInput.value = '';
+    emailInput.placeholder = 'Welcome to the Summer Club';
+  });
+
+  emailInput.addEventListener('input', function () {
+    if (note.classList.contains('error')) {
+      note.classList.remove('error');
+      note.textContent = 'No spam, ever. Just candy news and the occasional freebie.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
+```
+### Design Highlights: A Bright, Summery Candy Boutique
+
+The page leans into a cheerful, handcrafted aesthetic that mirrors the boutique’s small-batch ethos. A warm cream background and a palette of coral, lemon, and mint keep the mood sunny without feeling overly sugary. The hero pairs a giant sunburst with floating lollipops and gummies, immediately communicating what the brand is about.
+
+Typography does a lot of the work here: Fraunces, a soft serif with a vintage feel, gives headings a friendly, almost storybook quality, while DM Sans keeps body text clean and easy to read. The gentle rotation on the marquee and the reveal-on-scroll animations add a sense of motion without overwhelming the content.
+
+The product cards stand out with their pastel tinted panels and large illustrated candies — each one a tiny still life. The color-coded filter chips and the sticky header with a bag counter make browsing feel smooth and playful, reinforcing the idea that this is candy for kids and adults alike.
+---
+
+**Optimization Tip:** The product names, prices, and review text are sample content — you can easily swap them for real products and customer reviews before publishing.

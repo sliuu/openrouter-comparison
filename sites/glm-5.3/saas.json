@@ -1,0 +1,16 @@
+{
+  "model": "glm-5.3",
+  "slug": "z-ai/glm-5.3",
+  "prompt": "saas",
+  "returned_model": "z-ai/glm-5.3",
+  "provider": "Wafer",
+  "started_at": "2026-09-21 20:29:21",
+  "seconds": 34,
+  "prompt_tokens": 69,
+  "output_tokens": 6229,
+  "thinking_tokens": 19,
+  "html_chars": 20487,
+  "cost": 0.0275042,
+  "finish_reason": "stop",
+  "truncated": false
+}

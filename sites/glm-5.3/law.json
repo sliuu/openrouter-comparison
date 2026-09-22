@@ -1,0 +1,16 @@
+{
+  "model": "glm-5.3",
+  "slug": "z-ai/glm-5.3",
+  "prompt": "law",
+  "returned_model": "z-ai/glm-5.3",
+  "provider": "Together",
+  "started_at": "2026-09-21 21:48:48",
+  "seconds": 272,
+  "prompt_tokens": 64,
+  "output_tokens": 64847,
+  "thinking_tokens": 40396,
+  "html_chars": 80046,
+  "cost": 0.2854164,
+  "finish_reason": "stop",
+  "truncated": false
+}

@@ -1,0 +1,1089 @@
+<!DOCTYPE html><html lang="en" class="cur"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENTANGLEMENT — Underground Techno in the Bos — 21·22·23 AUG</title>
+<meta name="description" content="Three days of underground techno threaded through a forest south of Amsterdam. 21 acts, 3 stages, one clearing. 21–23 August.">
+<meta name="theme-color" content="#0B0C09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=Archivo+Black&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --bg:#0B0C09;
+  --bg2:#12140D;
+  --ink:#E9E7DC;
+  --dim:#8B9083;
+  --line:rgba(233,231,220,.14);
+  --line2:rgba(233,231,220,.3);
+  --acid:#C6FF4A;
+  --bl:#0C0D0A;
+  --pad:clamp(20px,4vw,56px);
+  --f-d:'Archivo Black',sans-serif;
+  --f-b:'Archivo',sans-serif;
+  --f-m:'Space Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px;background:var(--bg)}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--f-b);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--acid);color:var(--bl)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#23261B;border:2px solid var(--bg)}
+:focus-visible{outline:1px solid var(--acid);outline-offset:3px}
+img{display:block;max-width:100%}
+a{color:inherit}
+.mono{font-family:var(--f-m)}
+[hidden]{display:none!important}
+button{font:inherit;background:none;border:none;color:inherit}
+body.lock{overflow:hidden}
+body.menu-open{overflow:hidden}
+
+/* ================= GRAIN + CURSOR ================= */
+.grain{
+  position:fixed;inset:-4%;z-index:1400;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='240' height='240' filter='url(%23n)' opacity='0.55'/></svg>");
+}
+.cur-dot,.cur-ring{position:fixed;left:0;top:0;z-index:1600;pointer-events:none;display:none}
+html.cur .cur-dot,html.cur .cur-ring{display:block}
+html.cur,html.cur *{cursor:none}
+.cur-dot{width:5px;height:5px;margin:-2px 0 0 -2px;background:var(--acid)}
+.cur-ring{width:30px;height:30px;margin:-15px 0 0 -15px;border:1px solid rgba(233,231,220,.5);border-radius:50%}
+.cur-ring::before{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:1px solid var(--acid);opacity:0;transform:scale(.5);
+  transition:opacity .25s,transform .25s;
+}
+.cur-ring.hov::before{opacity:1;transform:scale(1.15)}
+
+/* ================= NAV ================= */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:900;height:64px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:0 var(--pad);border-bottom:1px solid var(--line);
+  background:rgba(11,12,9,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--f-d);font-size:15px;letter-spacing:.05em}
+.brand i{width:9px;height:9px;background:var(--acid);flex:none}
+.nav-links{display:flex;gap:30px}
+.nav-links a{
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;color:var(--dim);
+  position:relative;padding:6px 0;transition:color .2s;
+}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--acid);transition:width .25s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.btn{
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink);border:1px solid var(--line2);
+  padding:10px 18px;white-space:nowrap;
+  transition:background .18s,color .18s,border-color .18s;
+}
+.btn:hover{background:var(--acid);border-color:var(--acid);color:var(--bl)}
+.btn-menu{display:none}
+
+/* mobile menu overlay */
+.mnav{
+  position:fixed;inset:0;z-index:1000;background:var(--bg);
+  display:flex;flex-direction:column;padding:var(--pad);
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
+}
+body.menu-open .mnav{opacity:1;visibility:visible}
+.mnav-top{display:flex;justify-content:space-between;align-items:center;height:64px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.mnav-links{display:flex;flex-direction:column;justify-content:center;flex:1}
+.mnav-links a{
+  font-family:var(--f-d);font-size:clamp(2.4rem,10vw,4.6rem);text-transform:uppercase;
+  text-decoration:none;padding:16px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  transition:color .2s,padding-left .2s;
+}
+.mnav-links a span{font-family:var(--f-m);font-size:11px;letter-spacing:.15em;color:var(--acid)}
+.mnav-links a:hover{color:var(--acid);padding-left:12px}
+
+/* ================= HERO ================= */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%}
+.hero-kick{
+  position:absolute;top:88px;left:var(--pad);z-index:2;
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.18em;
+  color:var(--dim);text-transform:uppercase;
+}
+.hero-inner{position:relative;z-index:2;padding:0 var(--pad);margin-bottom:clamp(26px,4vh,52px)}
+.hero-h{
+  font-family:var(--f-d);text-transform:uppercase;line-height:.82;letter-spacing:-.01em;
+}
+.hero-h .l1{display:block;font-size:clamp(3.2rem,13vw,12.5rem)}
+.hero-h .l2{
+  display:block;font-size:clamp(3.2rem,13vw,12.5rem);
+  margin-left:clamp(1.4rem,9vw,9rem);color:var(--ink);
+  transition:color .4s;
+}
+@supports (-webkit-text-stroke:2px #000){
+  .hero-h .l2{-webkit-text-stroke:clamp(1.5px,.22vw,2.6px) var(--ink);color:transparent}
+  .hero-h .l2:hover{color:var(--acid);-webkit-text-stroke-color:var(--acid)}
+}
+.hero-side{position:absolute;right:var(--pad);bottom:128px;z-index:2;width:196px;display:none}
+.hero-side div{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:9px 0;border-top:1px solid var(--line);
+  font-family:var(--f-m);font-weight:700;font-size:10px;letter-spacing:.16em;color:var(--dim);
+}
+.hero-side div:last-child{border-bottom:1px solid var(--line)}
+.hero-side b{color:var(--acid);font-family:var(--f-m);font-size:13px}
+.hero-bar{
+  position:relative;z-index:2;border-top:1px solid var(--line);
+  background:rgba(11,12,9,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:grid;grid-template-columns:auto 1fr auto auto;gap:14px 36px;align-items:center;
+  padding:15px var(--pad);
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.13em;
+  color:var(--dim);text-transform:uppercase;
+}
+.cd{display:flex;gap:9px;align-items:baseline;color:var(--dim)}
+.cd b{color:var(--acid);font-size:12px}
+.hero-hint{text-align:right}
+.hero-hint i{color:var(--acid);font-style:normal}
+
+/* ================= TICKER ================= */
+.ticker{overflow:hidden;border-bottom:1px solid var(--line);padding:15px 0}
+.tk-track{display:flex;width:max-content;animation:tick 30s linear infinite}
+.ticker:hover .tk-track{animation-play-state:paused}
+.tk{
+  font-family:var(--f-m);font-weight:700;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;white-space:nowrap;opacity:.85;
+}
+.tk i{color:var(--acid);font-style:normal;margin:0 22px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ================= SECTIONS ================= */
+section{padding:clamp(72px,10vw,140px) var(--pad);border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:26px;margin-bottom:clamp(42px,6vw,76px)}
+.sec-head .idx{font-family:var(--f-m);font-weight:700;font-size:12px;letter-spacing:.14em;color:var(--acid)}
+.sec-head h2{font-family:var(--f-d);font-size:clamp(2.1rem,6vw,4.5rem);line-height:.9;text-transform:uppercase}
+.sec-head .rule{flex:1;height:1px;background:var(--line);align-self:center}
+.sec-head .note{font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* ================= 01 SIGNAL ================= */
+.sig-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(36px,5vw,88px);align-items:start}
+.sig-lede{font-weight:600;font-size:clamp(1.45rem,2.6vw,2.2rem);line-height:1.18;letter-spacing:-.01em;max-width:26ch}
+.sig-lede .ac{color:var(--acid);font-style:normal}
+.sig-body{margin-top:26px;color:var(--dim);font-size:15px;line-height:1.75;max-width:56ch}
+.sig-body + .sig-body{margin-top:16px}
+.duo{background:var(--acid);overflow:hidden;aspect-ratio:3/4;width:100%}
+.duo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.12);mix-blend-mode:multiply}
+.sig-fig figcaption{margin-top:12px;font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.stats{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:clamp(48px,7vw,88px)}
+.stat{flex:1 1 170px;padding:26px 34px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat b{display:block;font-family:var(--f-d);font-size:clamp(2rem,3.4vw,3rem);line-height:1}
+.stat span{display:block;margin-top:10px;font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+
+/* ================= 02 LINEUP ================= */
+.tabs-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:30px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.14em;
+  color:var(--dim);padding:12px 16px;border-bottom:2px solid transparent;
+  text-transform:uppercase;transition:color .2s,border-color .2s;
+}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--acid);border-color:var(--acid)}
+.a-count{font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;padding-bottom:14px}
+.acts{list-style:none}
+.act{
+  display:grid;grid-template-columns:56px minmax(0,1fr) auto auto;gap:8px 24px;
+  align-items:center;padding:20px 12px;border-top:1px solid var(--line);
+  transition:opacity .28s,transform .28s,background .15s,color .15s;
+}
+.act:last-child{border-bottom:1px solid var(--line)}
+.act:not(.on){opacity:0;transform:translateY(14px)}
+.a-idx{font-family:var(--f-m);font-weight:700;font-size:11px;color:var(--dim)}
+.a-name{font-family:var(--f-d);font-size:clamp(1.45rem,3.2vw,2.6rem);line-height:1;text-transform:uppercase;letter-spacing:.01em;min-width:0;overflow-wrap:anywhere}
+.a-tag{
+  font-family:var(--f-m);font-weight:700;font-size:9px;letter-spacing:.16em;
+  border:1px solid var(--line);padding:5px 9px;color:var(--dim);
+  text-transform:uppercase;white-space:nowrap;
+}
+.a-tag.hot{color:var(--acid);border-color:rgba(198,255,74,.45)}
+.a-meta{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;text-align:right;white-space:nowrap}
+.act:hover{background:var(--acid);color:var(--bl)}
+.act:hover .a-idx,.act:hover .a-meta{color:rgba(12,13,10,.72)}
+.act:hover .a-tag{color:var(--bl);border-color:rgba(12,13,10,.5)}
+.l-foot{margin-top:36px;font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.l-foot i{color:var(--acid);font-style:normal}
+.preview{
+  position:fixed;left:0;top:0;width:230px;height:288px;z-index:850;
+  pointer-events:none;opacity:0;transform:scale(.92);
+  transition:opacity .25s,transform .25s;border:1px solid var(--line2);
+  background:var(--bg2);overflow:hidden;
+}
+.preview.on{opacity:1;transform:scale(1)}
+.preview img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.92)}
+.preview::after{
+  content:'FEED // CANOPY-CAM';position:absolute;left:0;bottom:0;right:0;
+  font-family:var(--f-m);font-size:9px;letter-spacing:.16em;color:var(--acid);
+  padding:7px 10px;background:rgba(11,12,9,.8);text-transform:uppercase;
+}
+
+/* ================= 03 TERRAIN ================= */
+.terrain-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(42px,6vw,96px);align-items:start}
+.t-statement{font-family:var(--f-d);font-size:clamp(1.7rem,3.4vw,2.8rem);line-height:.95;text-transform:uppercase}
+.t-para{margin-top:24px;color:var(--dim);font-size:15px;line-height:1.75;max-width:44ch}
+.rules{border:1px solid var(--line);margin-top:38px}
+.rules-h{
+  padding:14px 18px;border-bottom:1px solid var(--line);
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.18em;color:var(--acid);text-transform:uppercase;
+}
+.rules ul{list-style:none}
+.rules li{display:flex;gap:20px;padding:15px 18px;border-bottom:1px solid var(--line);font-size:14px;line-height:1.55}
+.rules li:last-child{border-bottom:none}
+.rules li b{font-family:var(--f-m);font-weight:700;font-size:10px;color:var(--dim);padding-top:4px}
+.t-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;padding:19px 0;border-top:1px solid var(--line)}
+.t-row:last-of-type{border-bottom:1px solid var(--line)}
+.t-row dt{font-family:var(--f-m);font-weight:700;font-size:10px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;padding-top:4px}
+.t-row dd{font-size:15px;line-height:1.65}
+.map-wrap{margin-top:46px}
+.map{width:100%;height:auto;border:1px solid var(--line);display:block}
+.map text{font-family:var(--f-m);font-size:9px;fill:var(--dim);letter-spacing:.1em}
+.map .mt{fill:var(--acid)}
+.map-cap{margin-top:12px;font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+
+/* ================= 04 ACCESS ================= */
+.board-head{
+  display:grid;grid-template-columns:92px minmax(0,1fr) 96px minmax(120px,220px) 92px;
+  gap:18px;padding-bottom:12px;
+  font-family:var(--f-m);font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;
+}
+.b-row{
+  display:grid;grid-template-columns:92px minmax(0,1fr) 96px minmax(120px,220px) 92px;
+  gap:18px;align-items:center;padding:23px 12px;border-top:1px solid var(--line);
+  transition:background .18s;
+}
+.b-row:last-child{border-bottom:1px solid var(--line)}
+.b-row:hover{background:rgba(233,231,220,.03)}
+.b-code{font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.1em;color:var(--dim)}
+.b-name{font-family:var(--f-d);font-size:clamp(1rem,1.7vw,1.3rem);text-transform:uppercase;line-height:1.1}
+.b-name em{display:block;margin-top:6px;font-family:var(--f-m);font-style:normal;font-weight:400;font-size:10px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.b-price{font-family:var(--f-m);font-weight:700;font-size:14px}
+.b-status{font-family:var(--f-m);font-weight:700;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.b-status.low{color:var(--acid)}
+.b-status.low::before{
+  content:'';display:inline-block;width:7px;height:7px;background:var(--acid);
+  margin-right:9px;animation:blink 1.1s steps(2) infinite;
+}
+@keyframes blink{50%{opacity:.15}}
+.b-get{justify-self:end;padding:9px 16px}
+.board-notes{margin-top:30px;display:grid;gap:9px;max-width:640px}
+.board-notes span{font-family:var(--f-m);font-size:11px;line-height:1.6;letter-spacing:.08em;color:var(--dim)}
+.board-notes i{color:var(--acid);font-style:normal}
+
+/* ================= 05 FREQUENCIES ================= */
+.freq{max-width:720px}
+.freq-lede{font-weight:600;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.3;max-width:32ch}
+.freq form{margin-top:38px}
+.freq label{display:block;font-family:var(--f-m);font-weight:700;font-size:10px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.freq-row{display:flex;gap:18px;align-items:flex-end}
+.freq input{
+  flex:1;background:transparent;border:none;border-bottom:1px solid var(--line2);
+  font-family:var(--f-m);font-size:15px;color:var(--ink);padding:14px 0;border-radius:0;
+}
+.freq input::placeholder{color:#4d5248}
+.freq input:focus{outline:none;border-color:var(--acid)}
+.freq-err{margin-top:16px;font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.12em;color:var(--acid);text-transform:uppercase}
+.freq-ok{margin-top:20px;font-family:var(--f-m);font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--acid);text-transform:uppercase}
+.freq.done .freq-row,.freq.done label{display:none}
+.freq-fine{margin-top:22px;font-family:var(--f-m);font-size:10px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;line-height:1.9}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid var(--line);padding:clamp(48px,7vw,96px) var(--pad) 26px;overflow:hidden}
+.foot-mark{
+  font-family:var(--f-d);font-size:clamp(2.8rem,12.4vw,11.5rem);line-height:.82;
+  text-transform:uppercase;white-space:nowrap;color:rgba(233,231,220,.45);
+  user-select:none;transition:color .5s;
+}
+@supports (-webkit-text-stroke:2px #000){
+  .foot-mark{-webkit-text-stroke:1.5px rgba(233,231,220,.5);color:transparent}
+  .foot-mark:hover{color:var(--acid);-webkit-text-stroke-color:var(--acid)}
+}
+.foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:44px;margin-top:clamp(44px,6vw,80px)}
+.foot-loc{font-family:var(--f-m);font-size:11px;letter-spacing:.14em;line-height:2;color:var(--dim);text-transform:uppercase}
+.foot-links{display:flex;flex-direction:column;gap:12px}
+.foot-links a{
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.16em;
+  text-decoration:none;color:var(--dim);text-transform:uppercase;width:max-content;
+  transition:color .2s;
+}
+.foot-links a:hover{color:var(--acid)}
+.foot-clock{font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+.foot-clock b{color:var(--acid)}
+.foot-bot{
+  margin-top:clamp(44px,6vw,72px);border-top:1px solid var(--line);padding-top:18px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
+  font-family:var(--f-m);font-size:10px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;
+}
+
+/* ================= MODAL ================= */
+.modal{position:fixed;inset:0;z-index:1300;display:grid;place-items:center;padding:20px}
+.m-back{position:absolute;inset:0;background:rgba(6,7,5,.84);opacity:0;transition:opacity .26s}
+.m-panel{
+  position:relative;width:min(480px,100%);background:var(--bg2);
+  border:1px solid var(--line2);padding:36px 34px 30px;
+  transform:translateY(16px);opacity:0;transition:transform .3s,opacity .3s;
+}
+.modal.open .m-back{opacity:1}
+.modal.open .m-panel{transform:none;opacity:1}
+.m-panel::before,.m-panel::after{content:'';position:absolute;width:8px;height:8px;background:var(--acid)}
+.m-panel::before{top:-4px;left:-4px}
+.m-panel::after{top:-4px;right:-4px}
+.m-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border:1px solid var(--line);display:grid;place-items:center;color:var(--dim);transition:.2s}
+.m-x:hover{background:var(--acid);color:var(--bl);border-color:var(--acid)}
+.m-label{font-family:var(--f-m);font-weight:700;font-size:10px;letter-spacing:.22em;color:var(--acid);text-transform:uppercase}
+#mTitle{font-family:var(--f-d);font-size:24px;text-transform:uppercase;line-height:1.05;margin-top:12px;padding-right:44px}
+.m-row{display:flex;justify-content:space-between;gap:14px;border-top:1px solid var(--line);margin-top:14px;padding:11px 0 10px}
+.m-row span{font-family:var(--f-m);font-weight:700;font-size:10px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.m-row b{font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.m-gen{width:100%;margin-top:22px;padding:14px}
+.m-code{margin-top:20px;border:1px dashed var(--acid);padding:20px;text-align:center}
+.m-code b{display:block;font-family:var(--f-m);font-weight:700;font-size:26px;letter-spacing:.12em;color:var(--acid)}
+.m-code .btn{margin-top:16px}
+.m-note{margin-top:18px;font-family:var(--f-m);font-size:10px;line-height:1.8;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+
+/* ================= TOASTS + LOG ================= */
+.toasts{position:fixed;left:18px;bottom:18px;z-index:1150;display:flex;flex-direction:column;gap:10px}
+.toast{
+  font-family:var(--f-m);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--acid);
+  padding:13px 18px;color:var(--ink);max-width:330px;
+  opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;
+}
+.toast.on{opacity:1;transform:none}
+.log{
+  position:fixed;right:18px;bottom:18px;z-index:800;pointer-events:none;
+  font-family:var(--f-m);font-size:10px;letter-spacing:.08em;color:var(--dim);
+  line-height:1.85;text-transform:uppercase;text-align:left;
+}
+.log .cl{transition:opacity .35s}
+.log .cl.out{opacity:0}
+.log .cl:last-child::after{
+  content:'';display:inline-block;width:6px;height:11px;background:var(--acid);
+  margin-left:7px;vertical-align:-1px;animation:blink 1s steps(2) infinite;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1100px){.hero-side{display:none}.log{display:none}}
+@media(max-width:900px){.nav-links{display:none}.btn-menu{display:block}}
+@media(max-width:820px){
+  .sig-grid,.terrain-grid{grid-template-columns:1fr}
+  .hero-bar{grid-template-columns:1fr 1fr}
+  .hero-hint{grid-column:2;text-align:right}
+  .cd{grid-column:1 / -1}
+  .sec-head .note{display:none}
+  .freq-row{flex-direction:column;align-items:stretch}
+  .freq-row .btn{width:100%}
+}
+@media(max-width:760px){
+  .board-head{display:none}
+  .b-row{
+    grid-template-columns:1fr auto;row-gap:12px;
+    grid-template-areas:'code price' 'name name' 'status get';
+  }
+  .b-code{grid-area:code}.b-price{grid-area:price;justify-self:end}
+  .b-name{grid-area:name}.b-status{grid-area:status}.b-get{grid-area:get;justify-self:end}
+  .t-row{grid-template-columns:1fr;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .tk-track{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+  .b-status.low::before{animation:none}
+  .act{transition:none}
+  .log .cl:last-child::after{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cur-ring" aria-hidden="true" style="transform: translate(720px, 450px);"></div>
+<div class="cur-dot" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="#top"><i aria-hidden="true"></i>ENTANGLEMENT</a>
+  <div class="nav-links">
+    <a href="#signal">The Signal</a>
+    <a href="#lineup">Lineup</a>
+    <a href="#terrain">Terrain</a>
+    <a href="#access">Access</a>
+  </div>
+  <div class="nav-cta">
+    <a class="btn" href="#access">Get Access</a>
+    <button class="btn btn-menu" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menu</button>
+  </div>
+</nav>
+
+<!-- mobile menu -->
+<div class="mnav" id="mnav">
+  <div class="mnav-top">
+    <span class="brand"><i aria-hidden="true"></i>ENTANGLEMENT</span>
+    <button class="btn" id="menuClose">Close</button>
+  </div>
+  <div class="mnav-links">
+    <a href="#signal">The Signal<span>01</span></a>
+    <a href="#lineup">Lineup<span>02</span></a>
+    <a href="#terrain">Terrain<span>03</span></a>
+    <a href="#access">Access<span>04</span></a>
+    <a href="#freq">Frequencies<span>05</span></a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true" width="1440" height="900"></canvas>
+  <p class="hero-kick">Est. 2019 — Independent — Third Edition</p>
+  <div class="hero-inner">
+    <h1 class="hero-h">
+      <span class="l1">Entangle</span>
+      <span class="l2">ment</span>
+    </h1>
+  </div>
+  <aside class="hero-side" aria-hidden="true">
+    <div><span>Days</span><b>03</b></div>
+    <div><span>Stages</span><b>03</b></div>
+    <div><span>Acts</span><b>21</b></div>
+    <div><span>Hrs of low end</span><b>58</b></div>
+  </aside>
+  <div class="hero-bar">
+    <span>52.294°N — 4.793°E</span>
+    <span>Amsterdamse Bos — Gate 03</span>
+    <span class="cd">Gates in <b id="cdD">333D</b><b id="cdT">17:02:53</b></span>
+    <span class="hero-hint">Scroll <i>↓</i> — Click to plant <i>+</i></span>
+  </div>
+</header>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="tk-track">
+    <span class="tk">21–23 Aug<i>///</i>Amsterdamse Bos<i>///</i>Root / Canopy / Clearing<i>///</i>No phones on the floor<i>///</i>Sound 14:00 — Curfew 06:00<i>///</i>Leave no trace<i>///</i>18+<i>///</i>Hold codes live<i>///</i></span>
+    <span class="tk">21–23 Aug<i>///</i>Amsterdamse Bos<i>///</i>Root / Canopy / Clearing<i>///</i>No phones on the floor<i>///</i>Sound 14:00 — Curfew 06:00<i>///</i>Leave no trace<i>///</i>18+<i>///</i>Hold codes live<i>///</i></span>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ 01 SIGNAL ============ -->
+<section id="signal">
+  <header class="sec-head rv in">
+    <span class="idx">01</span><h2>The Signal</h2><span class="rule"></span><span class="note">Why a forest</span>
+  </header>
+  <div class="sig-grid">
+    <div class="rv in" style="--d:.05s">
+      <p class="sig-lede">Three days of low end threaded through <em class="ac">one thousand hectares</em> of pine, birch and open sky — twenty-two minutes from Amsterdam Zuid.</p>
+      <p class="sig-body">Entanglement started in 2019 as a single soundsystem strapped between two oaks and forty people who didn't want to go home. Six years later the roots have spread: three stages cut into the treeline of the Amsterdamse Bos, tuned to sit under the canopy instead of above it.</p>
+      <p class="sig-body">The forest does something a warehouse can't. It swallows the city at the gate and hands back bass that arrives like weather. We build the floor around the trees that are already there — nothing cleared that didn't ask for it, nothing left behind that doesn't compost.</p>
+    </div>
+    <figure class="sig-fig rv in" style="--d:.12s">
+      <div class="duo"><img src="https://picsum.photos/seed/entangle-bos-04/900/1200" alt="Forest canopy at dawn, treated in acid duotone"></div>
+      <figcaption>Fig.01 — The bos, 05:12, day zero</figcaption>
+    </figure>
+  </div>
+  <div class="stats rv in">
+    <div class="stat"><b>03</b><span>Days of sound</span></div>
+    <div class="stat"><b>21</b><span>Acts confirmed</span></div>
+    <div class="stat"><b>03</b><span>Stages / systems</span></div>
+    <div class="stat"><b>22</b><span>Min from Zuid</span></div>
+  </div>
+</section>
+
+<!-- ============ 02 LINEUP ============ -->
+<section id="lineup">
+  <header class="sec-head rv in">
+    <span class="idx">02</span><h2>Lineup</h2><span class="rule"></span><span class="note">Wave 01 confirmed</span>
+  </header>
+  <div class="tabs-row rv in">
+    <div class="tabs" role="tablist" aria-label="Filter by day">
+      <button type="button" class="tab on" data-day="0" aria-pressed="true">All dates</button>
+      <button type="button" class="tab" data-day="1" aria-pressed="false">Fri — 21</button>
+      <button type="button" class="tab" data-day="2" aria-pressed="false">Sat — 22</button>
+      <button type="button" class="tab" data-day="3" aria-pressed="false">Sun — 23</button>
+    </div>
+    <span class="a-count" id="actsCount">21 acts — 3 days</span>
+  </div>
+  <ul class="acts" id="acts"><li class="act on" data-day="1" data-i="0"><span class="a-idx">01</span><span class="a-name">VELDT</span><span class="a-tag">OPENING</span><span class="a-meta">Root System — 14:00 · D01</span></li><li class="act on" data-day="1" data-i="1"><span class="a-idx">02</span><span class="a-name">NULL SEA</span><span class="a-tag hot">LIVE</span><span class="a-meta">Canopy — 16:30 · D01</span></li><li class="act on" data-day="1" data-i="2"><span class="a-idx">03</span><span class="a-name">KOBALT</span><span class="a-tag"></span><span class="a-meta">Root System — 18:00 · D01</span></li><li class="act on" data-day="1" data-i="3"><span class="a-idx">04</span><span class="a-name">HEXVOLT</span><span class="a-tag hot">LIVE</span><span class="a-meta">Root System — 20:00 · D01</span></li><li class="act on" data-day="1" data-i="4"><span class="a-idx">05</span><span class="a-name">BASTINE VAAL</span><span class="a-tag"></span><span class="a-meta">Canopy — 22:00 · D01</span></li><li class="act on" data-day="1" data-i="5"><span class="a-idx">06</span><span class="a-name">MORROW</span><span class="a-tag">B2B KRAKON</span><span class="a-meta">Root System — 23:45 · D01</span></li><li class="act on" data-day="1" data-i="6"><span class="a-idx">07</span><span class="a-name">KARRA</span><span class="a-tag">CLOSING</span><span class="a-meta">Clearing — 02:00 · D01</span></li><li class="act on" data-day="2" data-i="7"><span class="a-idx">08</span><span class="a-name">SLOOM</span><span class="a-tag">OPENING</span><span class="a-meta">Clearing — 14:00 · D02</span></li><li class="act on" data-day="2" data-i="8"><span class="a-idx">09</span><span class="a-name">MOTTE</span><span class="a-tag"></span><span class="a-meta">Canopy — 16:00 · D02</span></li><li class="act on" data-day="2" data-i="9"><span class="a-idx">10</span><span class="a-name">SUB HALO</span><span class="a-tag"></span><span class="a-meta">Root System — 17:30 · D02</span></li><li class="act on" data-day="2" data-i="10"><span class="a-idx">11</span><span class="a-name">GEIST FELD</span><span class="a-tag hot">LIVE</span><span class="a-meta">Canopy — 19:30 · D02</span></li><li class="act on" data-day="2" data-i="11"><span class="a-idx">12</span><span class="a-name">VOLKOVAN</span><span class="a-tag"></span><span class="a-meta">Root System — 22:00 · D02</span></li><li class="act on" data-day="2" data-i="12"><span class="a-idx">13</span><span class="a-name">PLUKT</span><span class="a-tag hot">AV SHOW</span><span class="a-meta">Canopy — 23:30 · D02</span></li><li class="act on" data-day="2" data-i="13"><span class="a-idx">14</span><span class="a-name">YLDEN</span><span class="a-tag">CLOSING</span><span class="a-meta">Root System — 02:30 · D02</span></li><li class="act on" data-day="3" data-i="14"><span class="a-idx">15</span><span class="a-name">VATTEN</span><span class="a-tag">OPENING</span><span class="a-meta">Clearing — 14:00 · D03</span></li><li class="act on" data-day="3" data-i="15"><span class="a-idx">16</span><span class="a-name">AMBER DECAY</span><span class="a-tag"></span><span class="a-meta">Root System — 16:00 · D03</span></li><li class="act on" data-day="3" data-i="16"><span class="a-idx">17</span><span class="a-name">HERRA</span><span class="a-tag"></span><span class="a-meta">Canopy — 18:30 · D03</span></li><li class="act on" data-day="3" data-i="17"><span class="a-idx">18</span><span class="a-name">LOW ORBIT</span><span class="a-tag hot">LIVE</span><span class="a-meta">Clearing — 20:00 · D03</span></li><li class="act on" data-day="3" data-i="18"><span class="a-idx">19</span><span class="a-name">SARV</span><span class="a-tag"></span><span class="a-meta">Canopy — 22:00 · D03</span></li><li class="act on" data-day="3" data-i="19"><span class="a-idx">20</span><span class="a-name">MOTZ</span><span class="a-tag"></span><span class="a-meta">Root System — 23:30 · D03</span></li><li class="act on" data-day="3" data-i="20"><span class="a-idx">21</span><span class="a-name">ELDFRUS</span><span class="a-tag hot">CLOSING — 6 HR</span><span class="a-meta">Root System — 01:00 · D03</span></li></ul>
+  <p class="l-foot">// Wave 02 lands at first light — stay tuned to the frequencies below</p>
+  <div class="preview" id="preview" aria-hidden="true"><img alt=""></div>
+</section>
+
+<!-- ============ 03 TERRAIN ============ -->
+<section id="terrain">
+  <header class="sec-head rv in">
+    <span class="idx">03</span><h2>Terrain</h2><span class="rule"></span><span class="note">Practicalities</span>
+  </header>
+  <div class="terrain-grid">
+    <div class="rv in" style="--d:.05s">
+      <h3 class="t-statement">A clearing cut into the treeline</h3>
+      <p class="t-para">Three systems, one flow. The Root System carries the hard groove. Canopy is the dense, drone-leaning middle. The Clearing opens at sunset for the long, slow ones. Follow the rope lights, not the map.</p>
+      <div class="rules">
+        <div class="rules-h">House rules // read twice</div>
+        <ul>
+          <li><b>01</b><span>No photos on the dancefloor. Live inside it — your memory is the archive.</span></li>
+          <li><b>02</b><span>No glitter, no confetti. The moss remembers everything.</span></li>
+          <li><b>03</b><span>Leave no trace. Pack out what you pack in, down to the filter tips.</span></li>
+          <li><b>04</b><span>Respect the canopy — no climbing, no fires, no shortcuts through the undergrowth.</span></li>
+          <li><b>05</b><span>If someone looks lost, you're their crew now. That's the whole policy.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <dl>
+        <div class="t-row rv in" style="--d:.02s"><dt>Gate 03</dt><dd>Amstelveenseweg side. Opens 14:00 daily, last entry 04:00. The rope lights start at the bike racks.</dd></div>
+        <div class="t-row rv in" style="--d:.06s"><dt>Transit</dt><dd>Shuttle every 20 minutes from Amsterdam Zuid (22 min ride, night service until 07:00). 3,000 bike racks. No car parking — seriously.</dd></div>
+        <div class="t-row rv in" style="--d:.1s"><dt>Bivouac</dt><dd>A marked pitch zone under the pines. Tents only, low-fi, quiet hours 08:00–12:00. Rented two-person tents while stock lasts.</dd></div>
+        <div class="t-row rv in" style="--d:.14s"><dt>Sound</dt><dd>14:00 until curfew at 06:00 sharp. After that the birds take over, and honestly, they're not bad.</dd></div>
+        <div class="t-row rv in" style="--d:.18s"><dt>Conditions</dt><dd>Forest floor: boots over sneakers. It rained in 2023. It will rain again.</dd></div>
+        <div class="t-row rv in" style="--d:.22s"><dt>Age</dt><dd>18+. ID at the gate. No exceptions, no hard-luck stories.</dd></div>
+      </dl>
+      <div class="map-wrap rv in" style="--d:.1s">
+        <svg class="map" viewBox="0 0 520 340" role="img" aria-label="Site plan of the festival grounds">
+          <rect x="8" y="8" width="504" height="324" fill="none" stroke="rgba(233,231,220,.25)"></rect>
+          <path d="M30 74 C110 44 210 90 300 64 S460 88 492 58" stroke="rgba(233,231,220,.12)" fill="none"></path>
+          <path d="M26 154 C140 124 250 184 360 144 S470 164 494 136" stroke="rgba(233,231,220,.12)" fill="none"></path>
+          <path d="M40 240 C150 214 240 266 340 230 S455 250 492 224" stroke="rgba(233,231,220,.12)" fill="none"></path>
+          <path d="M60 320 C120 250 90 180 160 120 S260 60 300 20" stroke="rgba(198,255,74,.4)" fill="none" stroke-dasharray="3 5"></path>
+          <path d="M470 44 L300 180 L170 292" stroke="rgba(233,231,220,.35)" fill="none"></path>
+          <g stroke="rgba(233,231,220,.3)"><path d="M64 120 h8 M68 116 v8"></path><path d="M118 216 h8 M122 212 v8"></path><path d="M226 92 h8 M230 88 v8"></path><path d="M350 196 h8 M354 192 v8"></path><path d="M452 258 h8 M456 254 v8"></path></g>
+          <g><rect x="142" y="136" width="7" height="7" fill="#C6FF4A"></rect><text x="156" y="143" class="mt">ROOT SYSTEM</text></g>
+          <g><rect x="322" y="96" width="7" height="7" fill="#C6FF4A"></rect><text x="336" y="103" class="mt">CANOPY</text></g>
+          <g><rect x="402" y="231" width="7" height="7" fill="#C6FF4A"></rect><text x="416" y="238" class="mt">CLEARING</text></g>
+          <g><rect x="296" y="176" width="7" height="7" fill="none" stroke="#E9E7DC"></rect><text x="310" y="186">GATE 03 — ENTRY</text></g>
+          <path d="M478 30 v26 M478 30 l-5 9 M478 30 l5 9" stroke="rgba(233,231,220,.5)" fill="none"></path>
+          <text x="472" y="72" text-anchor="middle">N</text>
+          <text x="24" y="30">AMSTERDAMSE BOS — SITE PLAN</text>
+          <text x="24" y="322">AMSTELVEENSEWEG — RIVER DASHED</text>
+          <text x="496" y="30" text-anchor="end">52.294 N / 4.793 E</text>
+        </svg>
+        <p class="map-cap">Fig.02 — Site plan, not to scale (it never is)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ACCESS ============ -->
+<section id="access">
+  <header class="sec-head rv in">
+    <span class="idx">04</span><h2>Access</h2><span class="rule"></span><span class="note">Hold-code system</span>
+  </header>
+  <div class="board rv in">
+    <div class="board-head"><span>Code</span><span>Pass</span><span>Rate</span><span>Status</span><span></span></div>
+    <div class="b-row rv in" data-code="ENT-01" data-name="Full Root — 3 Day" data-price="€165">
+      <span class="b-code">ENT-01</span>
+      <span class="b-name">Full Root<em>All 3 days — Root / Canopy / Clearing</em></span>
+      <span class="b-price">€165</span>
+      <span class="b-status low">Low — 1st release</span>
+      <button class="btn b-get" type="button">Get</button>
+    </div>
+    <div class="b-row rv in" style="--d:.04s" data-code="ENT-02" data-name="Day 01 — Friday" data-price="€62">
+      <span class="b-code">ENT-02</span>
+      <span class="b-name">Day 01<em>Friday — all stages</em></span>
+      <span class="b-price">€62</span>
+      <span class="b-status">Available</span>
+      <button class="btn b-get" type="button">Get</button>
+    </div>
+    <div class="b-row rv in" style="--d:.08s" data-code="ENT-03" data-name="Day 02 — Saturday" data-price="€68">
+      <span class="b-code">ENT-03</span>
+      <span class="b-name">Day 02<em>Saturday — all stages</em></span>
+      <span class="b-price">€68</span>
+      <span class="b-status">Available</span>
+      <button class="btn b-get" type="button">Get</button>
+    </div>
+    <div class="b-row rv in" style="--d:.12s" data-code="ENT-04" data-name="Day 03 — Sunday" data-price="€58">
+      <span class="b-code">ENT-04</span>
+      <span class="b-name">Day 03<em>Sunday — closing until curfew</em></span>
+      <span class="b-price">€58</span>
+      <span class="b-status">Available</span>
+      <button class="btn b-get" type="button">Get</button>
+    </div>
+    <div class="b-row rv in" style="--d:.16s" data-code="ENT-05" data-name="Bivouac Pitch" data-price="+€35">
+      <span class="b-code">ENT-05</span>
+      <span class="b-name">Bivouac<em>Pine zone — tents only, 3 nights</em></span>
+      <span class="b-price">+€35</span>
+      <span class="b-status">Add-on</span>
+      <button class="btn b-get" type="button">Get</button>
+    </div>
+    <div class="b-row rv in" style="--d:.2s" data-code="ENT-06" data-name="Shuttle Wristband" data-price="+€18">
+      <span class="b-code">ENT-06</span>
+      <span class="b-name">Shuttle<em>Zuid ⇄ Gate 03 — all 3 days</em></span>
+      <span class="b-price">+€18</span>
+      <span class="b-status">Add-on</span>
+      <button class="btn b-get" type="button">Get</button>
+    </div>
+  </div>
+  <div class="board-notes rv in">
+    <span><i>*</i> Hold codes lock the gate price for 48 hours — present the code with ID at Gate 03.</span>
+    <span><i>*</i> 3-day passes are personal. Name changes accepted until 48h before gates.</span>
+    <span><i>*</i> Payment at the bos: PIN only. Cash stays in the city, where it belongs.</span>
+  </div>
+</section>
+
+<!-- ============ 05 FREQUENCIES ============ -->
+<section id="freq">
+  <header class="sec-head rv">
+    <span class="idx">05</span><h2>Frequencies</h2><span class="rule"></span><span class="note">One per moon cycle</span>
+  </header>
+  <div class="freq rv">
+    <p class="freq-lede">Drop your address. We only write when something matters — a lineup wave, a hold-code drop, a warning about the mud.</p>
+    <form id="freqForm" class="freqForm" novalidate="">
+      <label for="em">Your frequency (email)</label>
+      <div class="freq-row">
+        <input id="em" type="email" name="email" placeholder="you@nightmail.nl" autocomplete="email" style="">
+        <button class="btn" type="submit">Transmit</button>
+      </div>
+      <p class="freq-err" id="freqErr" hidden="">That's not a frequency. Check the format.</p>
+      <p class="freq-ok" id="freqOk" hidden="">// Signal locked — welcome to the roots</p>
+      <p class="freq-fine">No resale, no spam, no 2 a.m. "we miss you" mail.<br>Unsubscribe anytime — the mycelium will understand.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-mark" aria-hidden="true">Entanglement</div>
+  <div class="foot-grid">
+    <div class="foot-loc">Amsterdamse Bos — NL<br>52.294 N / 4.793 E<br>Gate 03 — Amstelveenseweg</div>
+    <nav class="foot-links" aria-label="Elsewhere">
+      <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="https://soundcloud.com" target="_blank" rel="noopener">Soundcloud ↗</a>
+      <a href="https://ra.co" target="_blank" rel="noopener">Resident Advisor ↗</a>
+      <a href="mailto:roots@entanglement.nu">roots@entanglement.nu</a>
+    </nav>
+    <div class="foot-clock">AMS <b id="clock">05:57:06</b> — local</div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2025 Entanglement Collective</span>
+    <span>Lineup subject to entropy</span>
+    <span>Designed in the dark</span>
+  </div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal" hidden="">
+  <div class="m-back"></div>
+  <div class="m-panel" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="m-x" id="mClose" aria-label="Close">
+      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5"></path></svg>
+    </button>
+    <p class="m-label">// Access request</p>
+    <h3 id="mTitle">Full Root — 3 Day</h3>
+    <div class="m-row"><span>Pass</span><b id="mPass">—</b></div>
+    <div class="m-row"><span>Rate</span><b id="mRate">—</b></div>
+    <div class="m-row"><span>Window</span><b>48 hrs</b></div>
+    <button class="btn m-gen" id="mGen" type="button">Generate hold code</button>
+    <div class="m-code" id="mCodeBox" hidden="">
+      <b id="mCodeVal">—</b>
+      <button class="btn" id="mCopy" type="button">Copy code</button>
+    </div>
+    <p class="m-note">Hold codes lock the gate price for 48 hours. Present the code with ID at Gate 03. One code per human.</p>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="log" id="log" aria-hidden="true"><div class="cl"><span class="tx">SYS // ROOT SYSTEM ARMED</span></div><div class="cl"><span class="tx">DB // FLOOR +0.0°C — STABLE</span></div></div>
+
+<script>
+/* ============ helpers ============ */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pad2 = n => String(n).padStart(2,'0');
+
+/* ============ toasts ============ */
+const toastsEl = $('#toasts');
+function toast(msg){
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  toastsEl.appendChild(t);
+  requestAnimationFrame(() => t.classList.add('on'));
+  setTimeout(() => { t.classList.remove('on'); setTimeout(() => t.remove(), 320); }, 3400);
+}
+
+/* ============ mobile menu ============ */
+const menuBtn = $('#menuBtn');
+const setMenu = o => {
+  document.body.classList.toggle('menu-open', o);
+  menuBtn.setAttribute('aria-expanded', o);
+  menuBtn.textContent = o ? 'Close' : 'Menu';
+};
+menuBtn.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+$('#menuClose').addEventListener('click', () => setMenu(false));
+$$('.mnav-links a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+/* ============ scroll reveal ============ */
+const ro = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); }
+}), { threshold: .12 });
+$$('.rv').forEach(el => ro.observe(el));
+
+/* ============ lineup data ============ */
+const STAGES = { 1:'Root System', 2:'Canopy', 3:'Clearing' };
+const ACTS = [
+  {n:'VELDT',        tag:'OPENING',            day:1, stage:1, time:'14:00'},
+  {n:'NULL SEA',     tag:'LIVE',               day:1, stage:2, time:'16:30'},
+  {n:'KOBALT',       tag:'',                   day:1, stage:1, time:'18:00'},
+  {n:'HEXVOLT',      tag:'LIVE',               day:1, stage:1, time:'20:00'},
+  {n:'BASTINE VAAL', tag:'',                   day:1, stage:2, time:'22:00'},
+  {n:'MORROW',       tag:'B2B KRAKON',         day:1, stage:1, time:'23:45'},
+  {n:'KARRA',        tag:'CLOSING',            day:1, stage:3, time:'02:00'},
+  {n:'SLOOM',        tag:'OPENING',            day:2, stage:3, time:'14:00'},
+  {n:'MOTTE',        tag:'',                   day:2, stage:2, time:'16:00'},
+  {n:'SUB HALO',     tag:'',                   day:2, stage:1, time:'17:30'},
+  {n:'GEIST FELD',   tag:'LIVE',               day:2, stage:2, time:'19:30'},
+  {n:'VOLKOVAN',     tag:'',                   day:2, stage:1, time:'22:00'},
+  {n:'PLUKT',        tag:'AV SHOW',            day:2, stage:2, time:'23:30'},
+  {n:'YLDEN',        tag:'CLOSING',            day:2, stage:1, time:'02:30'},
+  {n:'VATTEN',       tag:'OPENING',            day:3, stage:3, time:'14:00'},
+  {n:'AMBER DECAY',  tag:'',                   day:3, stage:1, time:'16:00'},
+  {n:'HERRA',        tag:'',                   day:3, stage:2, time:'18:30'},
+  {n:'LOW ORBIT',    tag:'LIVE',               day:3, stage:3, time:'20:00'},
+  {n:'SARV',         tag:'',                   day:3, stage:2, time:'22:00'},
+  {n:'MOTZ',         tag:'',                   day:3, stage:1, time:'23:30'},
+  {n:'ELDFRUS',      tag:'CLOSING — 6 HR',     day:3, stage:1, time:'01:00'},
+];
+ACTS.forEach(a => a.seed = 'ent-' + a.n.toLowerCase().replace(/[^a-z0-9]+/g,'') + a.day);
+
+const list = $('#acts');
+const HOT = new Set(['LIVE','AV SHOW','CLOSING — 6 HR']);
+ACTS.forEach((a,i) => {
+  const li = document.createElement('li');
+  li.className = 'act on';
+  li.dataset.day = a.day; li.dataset.i = i;
+  li.innerHTML =
+    `<span class="a-idx">${pad2(i+1)}</span>` +
+    `<span class="a-name">${a.n}</span>` +
+    (a.tag ? `<span class="a-tag${HOT.has(a.tag) ? ' hot' : ''}">${a.tag}</span>` : `<span class="a-tag"></span>`) +
+    `<span class="a-meta">${STAGES[a.stage]} — ${a.time} · D0${a.day}</span>`;
+  list.appendChild(li);
+});
+
+/* tabs / filter */
+let dayFilter = 0;
+const countEl = $('#actsCount');
+function applyFilter(){
+  let vi = 0;
+  [...list.children].forEach(r => {
+    clearTimeout(r._t);
+    const show = dayFilter === 0 || +r.dataset.day === dayFilter;
+    if(show){
+      r.hidden = false;
+      r.style.transitionDelay = (vi++ * 30) + 'ms';
+      requestAnimationFrame(() => requestAnimationFrame(() => r.classList.add('on')));
+    } else {
+      r.style.transitionDelay = '0ms';
+      r.classList.remove('on');
+      r._t = setTimeout(() => { r.hidden = true; }, 280);
+    }
+  });
+  countEl.textContent = dayFilter === 0 ? '21 acts — 3 days' : `7 acts — day 0${dayFilter}`;
+}
+$$('.tab').forEach(t => t.addEventListener('click', () => {
+  if(+t.dataset.day === dayFilter) return;
+  $$('.tab').forEach(x => { x.classList.toggle('on', x === t); x.setAttribute('aria-pressed', x === t); });
+  dayFilter = +t.dataset.day;
+  applyFilter();
+}));
+
+/* floating preview image */
+const prev = $('#preview'), pimg = prev.querySelector('img');
+const finePtr = matchMedia('(pointer:fine)').matches;
+let pvOn = false;
+list.addEventListener('pointermove', e => {
+  if(!finePtr) return;
+  const row = e.target.closest('.act');
+  if(row){
+    if(!pvOn){
+      pvOn = true; prev.classList.add('on');
+      const a = ACTS[+row.dataset.i];
+      if(pimg.dataset.cur !== a.seed){
+        pimg.dataset.cur = a.seed;
+        pimg.src = `https://picsum.photos/seed/${a.seed}/460/580`;
+      }
+    }
+    let x = e.clientX + 26, y = e.clientY - 150;
+    if(x + 240 > innerWidth) x = e.clientX - 252;
+    y = Math.max(10, Math.min(y, innerHeight - 296));
+    prev.style.left = x + 'px'; prev.style.top = y + 'px';
+  } else if(pvOn){ pvOn = false; prev.classList.remove('on'); }
+}, { passive: true });
+list.addEventListener('pointerleave', () => { pvOn = false; prev.classList.remove('on'); });
+
+/* ============ modal — hold codes ============ */
+const modal = $('#modal'), mTitle = $('#mTitle'), mPass = $('#mPass'), mRate = $('#mRate');
+const mGen = $('#mGen'), mCodeBox = $('#mCodeBox'), mCodeVal = $('#mCodeVal'), mCopy = $('#mCopy');
+const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const rnd = n => Array.from({length:n}, () => CHARSET[Math.random()*CHARSET.length|0]).join('');
+
+function scramble(el, final, dur = 900){
+  const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const start = performance.now();
+  (function tick(now){
+    const p = (now - start) / dur;
+    if(p >= 1){ el.textContent = final; return; }
+    let out = '';
+    for(let i = 0; i < final.length; i++)
+      out += (i / final.length < p) ? final[i] : glyphs[Math.random()*glyphs.length|0];
+    el.textContent = out;
+    requestAnimationFrame(tick);
+  })(start);
+}
+function openModal(row){
+  mTitle.textContent = row.dataset.name;
+  mPass.textContent = row.dataset.code;
+  mRate.textContent = row.dataset.price + ' — locked 48h';
+  mGen.hidden = false; mGen.disabled = false;
+  mCodeBox.hidden = true; mCodeVal.textContent = '';
+  modal.hidden = false;
+  document.body.classList.add('lock');
+  requestAnimationFrame(() => modal.classList.add('open'));
+  mGen.focus();
+}
+function closeModal(){
+  modal.classList.remove('open');
+  document.body.classList.remove('lock');
+  setTimeout(() => { modal.hidden = true; }, 280);
+}
+$$('.b-get').forEach(b => b.addEventListener('click', () => openModal(b.closest('.b-row'))));
+$('#mClose').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if(e.target.classList.contains('m-back')) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+mGen.addEventListener('click', () => {
+  const code = 'ENT-' + rnd(4) + '-' + rnd(3);
+  mGen.disabled = true;
+  mCodeBox.hidden = false;
+  scramble(mCodeVal, code, 900);
+  toast('Hold code issued — 48h window running');
+});
+async function copyText(t){
+  try { await navigator.clipboard.writeText(t); return true; }
+  catch(e){
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = t; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); ta.remove(); return true;
+    } catch(err){ return false; }
+  }
+}
+mCopy.addEventListener('click', async () => {
+  const ok = await copyText(mCodeVal.textContent);
+  toast(ok ? 'Hold code copied — see you in the trees' : 'Copy failed — write it down the old way');
+});
+
+/* ============ newsletter ============ */
+const freqForm = $('#freqForm'), em = $('#em'), freqErr = $('#freqErr'), freqOk = $('#freqOk');
+function markDone(){
+  freqForm.classList.add('done');
+  freqOk.hidden = false; freqErr.hidden = true;
+}
+if(localStorage.getItem('ent-freq')) markDone();
+freqForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = em.value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){
+    freqErr.hidden = false; em.focus(); return;
+  }
+  localStorage.setItem('ent-freq', v);
+  markDone();
+  toast('Frequency locked — check your inbox (eventually)');
+});
+
+/* ============ countdown + clock ============ */
+function gateDate(){
+  const now = new Date();
+  let t = new Date(now.getFullYear(), 7, 21, 14, 0, 0);
+  if(t < now) t = new Date(now.getFullYear() + 1, 7, 21, 14, 0, 0);
+  return t;
+}
+const TARGET = gateDate(), cdD = $('#cdD'), cdT = $('#cdT');
+function tickCd(){
+  let s = Math.max(0, Math.floor((TARGET - Date.now()) / 1000));
+  cdD.textContent = Math.floor(s / 86400) + 'D';
+  cdT.textContent = pad2(Math.floor(s % 86400 / 3600)) + ':' + pad2(Math.floor(s % 3600 / 60)) + ':' + pad2(s % 60);
+}
+tickCd(); setInterval(tickCd, 1000);
+
+const clock = $('#clock');
+function tickClock(){ clock.textContent = new Date().toLocaleTimeString('en-GB', { timeZone:'Europe/Amsterdam', hour12:false }); }
+tickClock(); setInterval(tickClock, 1000);
+
+/* ============ transmission log ============ */
+const logEl = $('#log');
+if(logEl && !RM){
+  const MSGS = [
+    () => 'SYS // ROOT SYSTEM ARMED',
+    () => 'SGN // LOCK 52.294N 4.793E',
+    () => 'WTHR // CANOPY HUMIDITY ' + (58 + Math.random()*30 | 0) + '%',
+    () => 'DB // FLOOR +0.' + (Math.random()*9 | 0) + '°C — STABLE',
+    () => 'PWR // GENERATORS ' + (55 + Math.random()*25 | 0) + '% BIOFUEL',
+    () => 'Q // ' + (3000 + Math.random()*2000 | 0) + ' HOLD CODES ACTIVE',
+    () => 'MSS // MYCELIUM LINK STABLE',
+    () => 'CLK // SOUND CURFEW 06:00 CEST',
+  ];
+  let last = -1;
+  function push(){
+    if(logEl.children.length > 5){
+      const f = logEl.firstElementChild;
+      if(!f.classList.contains('out')){ f.classList.add('out'); setTimeout(() => f.remove(), 380); }
+    }
+    let i; do { i = Math.random()*MSGS.length | 0; } while(i === last);
+    last = i;
+    const line = document.createElement('div');
+    line.className = 'cl';
+    line.innerHTML = '<span class="tx"></span>';
+    logEl.appendChild(line);
+    const tx = line.querySelector('.tx'), txt = MSGS[i]();
+    let c = 0;
+    const iv = setInterval(() => {
+      tx.textContent = txt.slice(0, ++c);
+      if(c >= txt.length){ clearInterval(iv); setTimeout(push, 3000 + Math.random()*1600); }
+    }, 26);
+  }
+  setTimeout(push, 1400);
+}
+
+/* ============ generative canvas — the entangled roots ============ */
+(() => {
+  const cv = $('#net'), hero = $('#top');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, dpr = 1, heroVis = true;
+  const MAXT = 110, N = { t: [], pulses: [], px: -9999, py: -9999 };
+
+  function resize(){
+    dpr = Math.min(1.75, window.devicePixelRatio || 1);
+    W = hero.clientWidth; H = hero.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  const noise = (x, y, s) => Math.sin(x*0.0019 + s*3.1) + Math.cos(y*0.0016 + s*1.7);
+  function mkThread(x, y, a, gen = 0){
+    return { pts: [{x, y}], a, sp: .5 + Math.random()*1.6, seed: Math.random()*100, gen, age: 0, life: 900 + Math.random()*600, max: 40 + Math.random()*70 };
+  }
+  const spawn = () => mkThread(Math.random()*W, Math.random()*H, Math.random()*Math.PI*2, 0);
+
+  function step(t){
+    const head = t.pts[t.pts.length - 1];
+    let na = t.a + noise(head.x, head.y, t.seed) * 0.045;
+    const dx = N.px - head.x, dy = N.py - head.y, d = Math.hypot(dx, dy);
+    if(d < 220){ // the web reaches for the pointer
+      const ta = Math.atan2(dy, dx);
+      let diff = ((ta - na + Math.PI*3) % (Math.PI*2)) - Math.PI;
+      na += diff * 0.05 * (1 - d/220);
+    }
+    t.a = na;
+    t.pts.push({ x: head.x + Math.cos(na)*t.sp, y: head.y + Math.sin(na)*t.sp });
+    if(t.pts.length > t.max){ t.pts.shift(); t.life -= 1.15; }
+    const h = t.pts[t.pts.length - 1];
+    if(h.x < -60 || h.x > W+60 || h.y < -60 || h.y > H+60) t.life -= 10;
+    t.age++;
+    if(t.gen < 2 && t.pts.length > 8 && Math.random() < 0.012 && N.t.length < MAXT){
+      const p = t.pts[Math.random()*t.pts.length | 0];
+      N.t.push(mkThread(p.x, p.y, t.a + (Math.random() < .5 ? 1 : -1)*(0.7 + Math.random()*0.7), t.gen + 1));
+    }
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineWidth = 1;
+    for(let i = N.pulses.length - 1; i >= 0; i--){
+      const p = N.pulses[i]; p.r += 4.5; p.a *= 0.94;
+      if(p.a > 0.02){
+        ctx.strokeStyle = 'rgba(198,255,74,' + (p.a*0.55) + ')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.stroke();
+      } else N.pulses.splice(i, 1);
+    }
+    for(const t of N.t){
+      if(t.pts.length < 2) continue;
+      const head = t.pts[t.pts.length - 1];
+      const dpx = Math.hypot(N.px - head.x, N.py - head.y);
+      const g = Math.max(0, 1 - dpx/230);
+      const fade = Math.min(1, t.age/36) * Math.min(1, t.life/260);
+      const alpha = (0.10 + 0.62*g*g) * fade;
+      ctx.strokeStyle = g > 0.08 ? 'rgba(198,255,74,'+alpha+')' : 'rgba(233,231,220,'+alpha+')';
+      ctx.lineWidth = 0.6 + t.sp*0.3 + g*0.7;
+      ctx.beginPath();
+      ctx.moveTo(t.pts[0].x, t.pts[0].y);
+      for(let k = 1; k < t.pts.length; k++) ctx.lineTo(t.pts[k].x, t.pts[k].y);
+      ctx.stroke();
+      if(g > 0.15){
+        ctx.fillStyle = 'rgba(198,255,74,' + Math.min(0.9, g)*fade + ')';
+        ctx.fillRect(head.x - 1.2, head.y - 1.2, 2.4, 2.4);
+      }
+    }
+  }
+  function reseed(){
+    resize();
+    N.t.length = 0; N.pulses.length = 0;
+    for(let i = 0; i < 36; i++) N.t.push(spawn());
+    for(let s = 0; s < 40; s++) N.t.forEach(step);
+  }
+  reseed();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(reseed, 200); });
+
+  window.addEventListener('pointermove', e => {
+    const r = cv.getBoundingClientRect();
+    N.px = e.clientX - r.left; N.py = e.clientY - r.top;
+  }, { passive: true });
+
+  hero.addEventListener('click', e => {
+    if(e.target.closest('a,button,input')) return;
+    const r = cv.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    N.pulses.push({ x, y, r: 6, a: .85 });
+    for(let i = 0; i < 3; i++) N.t.push(mkThread(x, y, Math.random()*Math.PI*2, 0));
+    if(N.t.length > 130) N.t.splice(0, N.t.length - 130);
+  });
+
+  if(RM){ // static composition for reduced motion
+    for(let s = 0; s < 300; s++){ N.t.forEach(step); N.t = N.t.filter(t => t.life > 0); while(N.t.length < 36) N.t.push(spawn()); }
+    draw(); return;
+  }
+  const io = new IntersectionObserver(en => { heroVis = en[0].isIntersecting; }, { threshold: 0 });
+  io.observe(hero);
+  (function frame(){
+    if(heroVis && !document.hidden){
+      while(N.t.length < 34) N.t.push(spawn());
+      N.t.forEach(step);
+      N.t = N.t.filter(t => t.life > 0);
+      draw();
+    }
+    requestAnimationFrame(frame);
+  })();
+})();
+
+/* ============ custom cursor ============ */
+(() => {
+  if(!matchMedia('(pointer:fine)').matches || RM) return;
+  document.documentElement.classList.add('cur');
+  const dot = $('.cur-dot'), ring = $('.cur-ring');
+  let rx = innerWidth/2, ry = innerHeight/2, tx = rx, ty = ry;
+  window.addEventListener('pointermove', e => {
+    tx = e.clientX; ty = e.clientY;
+    dot.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
+    ring.classList.toggle('hov', !!e.target.closest('a,button,input,.act,.tab'));
+  }, { passive: true });
+  (function loop(){
+    rx += (tx - rx) * .18; ry += (ty - ry) * .18;
+    ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+
+</body></html>

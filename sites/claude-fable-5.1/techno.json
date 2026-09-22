@@ -1,0 +1,9 @@
+{
+  "model": "claude-fable-5.1",
+  "slug": "anthropic/claude-fable-5.1",
+  "prompt": "techno",
+  "seconds": 282,
+  "output_tokens": 25588,
+  "cost": 1.28033,
+  "truncated": false
+}

@@ -1,0 +1,1066 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connected — AI agents for marketing teams</title>
+<meta name="description" content="Connected is the AI platform where marketing teams plan, write, and launch campaigns with a coordinated team of AI agents.">
+<style>
+  :root{
+    --bg:#F7F4EE;
+    --bg-2:#EFEAE0;
+    --ink:#0E1220;
+    --ink-2:#2A3040;
+    --muted:#5E6577;
+    --line:rgba(14,18,32,.10);
+    --line-strong:rgba(14,18,32,.18);
+    --card:#FFFFFF;
+    --accent:#2F4BFF;
+    --accent-soft:rgba(47,75,255,.10);
+    --coral:#FF6B3D;
+    --mint:#18C29C;
+    --gold:#F5B531;
+    --dark:#0B0E17;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(14,18,32,.04),0 12px 40px -12px rgba(14,18,32,.14);
+    --font:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  button{font-family:inherit;cursor:pointer}
+  .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+  @media(max-width:640px){.wrap{width:calc(100% - 32px)}}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;
+    border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:#1c2338;box-shadow:0 10px 30px -10px rgba(14,18,32,.5)}
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-accent:hover{background:#2440e6;box-shadow:0 10px 30px -10px rgba(47,75,255,.6)}
+  .btn-ghost{background:transparent;border-color:var(--line-strong);color:var(--ink)}
+  .btn-ghost:hover{background:rgba(14,18,32,.04);border-color:var(--ink)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-light:hover{background:#eee}
+  .btn .arr{transition:transform .2s}
+  .btn:hover .arr{transform:translateX(3px)}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    transition:background .3s,border-color .3s,backdrop-filter .3s;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{background:rgba(247,244,238,.85);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+  .logo-mark{width:30px;height:30px;position:relative}
+  .logo-mark svg{width:100%;height:100%}
+  .nav-links{display:flex;gap:32px;font-size:15px;font-weight:500;color:var(--ink-2)}
+  .nav-links a{position:relative;padding:4px 0}
+  .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  .nav-cta .btn{padding:10px 18px;font-size:14px}
+  .burger{display:none;width:42px;height:42px;border:1px solid var(--line-strong);border-radius:12px;background:transparent;position:relative}
+  .burger span{position:absolute;left:11px;right:11px;height:2px;background:var(--ink);border-radius:2px;transition:.25s}
+  .burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:20px}.burger span:nth-child(3){top:26px}
+  .burger.open span:nth-child(1){top:20px;transform:rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){top:20px;transform:rotate(-45deg)}
+  .mobile-menu{display:none;flex-direction:column;gap:6px;padding:8px 0 22px;border-top:1px solid var(--line)}
+  .mobile-menu a{padding:12px 4px;font-weight:500;font-size:17px;border-bottom:1px solid var(--line)}
+  .mobile-menu .btn{margin-top:12px;justify-content:center}
+  .mobile-menu.open{display:flex}
+  @media(max-width:900px){
+    .nav-links,.nav-cta{display:none}
+    .burger{display:block}
+    header{background:rgba(247,244,238,.92);backdrop-filter:blur(14px)}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:72px 0 40px;overflow:hidden}
+  .hero-grid-bg{
+    position:absolute;inset:0;z-index:-1;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 30%,transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 30%,transparent 100%);
+    opacity:.7;
+  }
+  .hero-glow{position:absolute;z-index:-1;width:760px;height:760px;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none}
+  .hero-glow.a{background:#B9C3FF;top:-300px;left:50%;transform:translateX(-60%)}
+  .hero-glow.b{background:#FFD4C4;top:-200px;left:65%}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px 6px 8px;border-radius:999px;background:#fff;border:1px solid var(--line);
+    font-size:13px;font-weight:500;color:var(--ink-2);box-shadow:0 1px 2px rgba(0,0,0,.03)
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(24,194,156,.18);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(24,194,156,.18)}50%{box-shadow:0 0 0 7px rgba(24,194,156,.06)}}
+  .eyebrow .tag{background:var(--ink);color:#fff;font-size:11px;padding:2px 7px;border-radius:999px;letter-spacing:.02em;font-weight:600}
+  .hero-inner{text-align:center;max-width:860px;margin:0 auto}
+  h1{
+    font-size:clamp(42px,6.4vw,78px);line-height:1.02;letter-spacing:-.04em;font-weight:700;margin:26px 0 22px;
+  }
+  h1 .hl{position:relative;display:inline-block;white-space:nowrap}
+  h1 .hl svg{position:absolute;left:-2%;right:-2%;bottom:-6px;width:104%;height:14px;overflow:visible}
+  h1 .hl path{stroke:var(--coral);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.2s .5s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .lede{font-size:clamp(17px,1.5vw,20px);color:var(--muted);max-width:640px;margin:0 auto 34px;line-height:1.55}
+  .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero-note{margin-top:16px;font-size:13px;color:var(--muted)}
+  .hero-note b{color:var(--ink);font-weight:600}
+
+  /* Hero product canvas */
+  .canvas{
+    margin:64px auto 0;max-width:1080px;
+    background:var(--card);border:1px solid var(--line);border-radius:24px;
+    box-shadow:0 2px 4px rgba(14,18,32,.04),0 40px 80px -30px rgba(14,18,32,.25);
+    overflow:hidden;position:relative;
+  }
+  .canvas-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);background:#FBFAF7}
+  .dots{display:flex;gap:6px}
+  .dots i{width:10px;height:10px;border-radius:50%;background:#E4E1DA}
+  .canvas-title{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;font-weight:500}
+  .canvas-title .pill{background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600}
+  .canvas-body{display:grid;grid-template-columns:1.35fr .9fr;min-height:440px}
+  @media(max-width:860px){.canvas-body{grid-template-columns:1fr}}
+  .graph{position:relative;padding:20px;background:
+    radial-gradient(circle at 1px 1px, rgba(14,18,32,.08) 1px, transparent 1px) 0 0/22px 22px;}
+  .graph svg{width:100%;height:100%;min-height:400px;display:block}
+  .node{
+    position:absolute;transform:translate(-50%,-50%);
+    background:#fff;border:1px solid var(--line-strong);border-radius:14px;padding:10px 12px;
+    display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px -10px rgba(14,18,32,.25);
+    font-size:13px;font-weight:600;min-width:150px;
+    transition:transform .3s,box-shadow .3s,border-color .3s;
+  }
+  .node.active{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft),0 12px 30px -10px rgba(47,75,255,.4);transform:translate(-50%,-50%) scale(1.04)}
+  .node .ic{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;color:#fff;font-size:12px}
+  .node small{display:block;font-weight:500;color:var(--muted);font-size:11px;margin-top:1px}
+  .node.brief{left:14%;top:50%}
+  .node.strat{left:47%;top:18%}
+  .node.copy{left:47%;top:50%}
+  .node.design{left:47%;top:82%}
+  .node.launch{left:83%;top:50%}
+  .node .st{margin-left:auto;width:8px;height:8px;border-radius:50%;background:#D8D5CE}
+  .node.active .st{background:var(--mint);box-shadow:0 0 0 3px rgba(24,194,156,.25)}
+  .node.done .st{background:var(--mint)}
+  .edge{fill:none;stroke:rgba(14,18,32,.18);stroke-width:1.5}
+  .edge.flow{stroke:var(--accent);stroke-dasharray:6 8;animation:dash 1.2s linear infinite;opacity:0;transition:opacity .4s}
+  .edge.flow.on{opacity:1}
+  @keyframes dash{to{stroke-dashoffset:-14}}
+  @media(max-width:860px){
+    .node{min-width:0;padding:8px 10px;font-size:12px}
+    .node small{display:none}
+    .graph svg{min-height:320px}
+  }
+
+  .activity{border-left:1px solid var(--line);display:flex;flex-direction:column;background:#FBFAF7}
+  @media(max-width:860px){.activity{border-left:0;border-top:1px solid var(--line)}}
+  .act-head{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
+  .act-head span.live{color:var(--mint);font-size:12px;display:flex;align-items:center;gap:6px}
+  .act-head span.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint);animation:blink 1.2s infinite}
+  @keyframes blink{50%{opacity:.3}}
+  .log{padding:14px 18px;font-family:var(--mono);font-size:12.5px;line-height:1.6;flex:1;display:flex;flex-direction:column;gap:9px;min-height:300px}
+  .log-line{display:flex;gap:10px;opacity:0;transform:translateY(6px);animation:rise .4s forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .log-line .t{color:#9AA0B0;flex-shrink:0}
+  .log-line .who{font-weight:700;padding:0 6px;border-radius:5px;flex-shrink:0;font-size:11px;line-height:1.7;align-self:flex-start;margin-top:1px}
+  .who.sys{background:#E8E6E0;color:#555}
+  .who.strat{background:#FFE9DF;color:#C24A20}
+  .who.copy{background:#E3E7FF;color:#2F4BFF}
+  .who.design{background:#E0F7F0;color:#0F8E70}
+  .who.review{background:#FFF3D6;color:#9A6A00}
+  .who.launch{background:#EDE4FF;color:#6A3ED9}
+  .log-line .msg{color:var(--ink-2)}
+  .cursor{display:inline-block;width:8px;height:14px;background:var(--ink);vertical-align:-2px;margin-left:2px;animation:blink 1s infinite}
+  .act-foot{padding:12px 18px;border-top:1px solid var(--line);display:flex;gap:8px}
+  .act-foot .fake-input{flex:1;background:#fff;border:1px solid var(--line-strong);border-radius:10px;padding:8px 12px;font-size:13px;color:#9AA0B0}
+  .act-foot .send{width:36px;height:36px;border-radius:10px;background:var(--ink);color:#fff;border:0;display:grid;place-items:center}
+
+  /* ---------- Logos ---------- */
+  .logos{padding:56px 0 20px;text-align:center}
+  .logos p{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:26px}
+  .logo-row{display:flex;justify-content:center;gap:clamp(24px,5vw,64px);flex-wrap:wrap;align-items:center;opacity:.6}
+  .logo-row span{font-weight:700;font-size:20px;letter-spacing:-.03em;color:var(--ink);display:flex;align-items:center;gap:6px}
+  .logo-row span i{width:18px;height:18px;border-radius:5px;background:var(--ink);display:inline-block}
+  .logo-row span.serif{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-style:italic;font-size:23px}
+
+  /* ---------- Sections ---------- */
+  section{padding:104px 0}
+  @media(max-width:700px){section{padding:72px 0}}
+  .sec-head{max-width:720px;margin-bottom:56px}
+  .sec-head.center{text-align:center;margin-left:auto;margin-right:auto}
+  .kicker{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;margin-bottom:16px}
+  .kicker::before{content:"";width:18px;height:2px;background:var(--accent);border-radius:2px}
+  .center .kicker::before{display:none}
+  h2{font-size:clamp(32px,4.2vw,52px);line-height:1.05;letter-spacing:-.035em;font-weight:700}
+  .sub{margin-top:18px;font-size:18px;color:var(--muted);line-height:1.6}
+
+  /* ---------- How it works ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+  @media(max-width:900px){.steps{grid-template-columns:1fr}}
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;
+    position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s;
+  }
+  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .step .num{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .step .num::after{content:"";flex:1;height:1px;background:var(--line)}
+  .step h3{font-size:22px;letter-spacing:-.02em;margin-bottom:10px}
+  .step p{color:var(--muted);font-size:15px}
+  .step-vis{margin-top:24px;height:150px;border-radius:12px;background:var(--bg);border:1px solid var(--line);position:relative;overflow:hidden}
+  /* plan vis */
+  .plan-list{padding:14px;display:flex;flex-direction:column;gap:8px}
+  .plan-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:500}
+  .plan-item .chk{width:16px;height:16px;border-radius:5px;border:1.5px solid var(--line-strong);display:grid;place-items:center;flex-shrink:0}
+  .plan-item.done .chk{background:var(--accent);border-color:var(--accent);color:#fff}
+  .plan-item .bar{margin-left:auto;height:6px;width:50px;border-radius:3px;background:var(--bg-2);overflow:hidden}
+  .plan-item .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width 1.2s ease}
+  .step.inview .plan-item:nth-child(1) .bar i{width:100%}
+  .step.inview .plan-item:nth-child(2) .bar i{width:70%}
+  .step.inview .plan-item:nth-child(3) .bar i{width:35%}
+  /* write vis */
+  .write-doc{padding:16px 18px;font-size:12px;line-height:1.7;color:var(--ink-2)}
+  .write-doc .line{height:8px;border-radius:4px;background:#E6E2D9;margin-bottom:9px}
+  .write-doc .typed{font-weight:600;font-size:14px;color:var(--ink);min-height:22px;margin-bottom:8px}
+  .write-doc .variant{position:absolute;right:12px;bottom:12px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:11px;display:flex;gap:6px;align-items:center;box-shadow:var(--shadow)}
+  .write-doc .variant b{color:var(--accent)}
+  /* launch vis */
+  .launch-grid{padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .chan{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:11px;font-weight:600;display:flex;flex-direction:column;gap:6px}
+  .chan .ci{width:22px;height:22px;border-radius:6px}
+  .chan .status{font-weight:500;color:var(--mint);display:flex;align-items:center;gap:4px}
+  .chan .status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mint)}
+  .launch-line{position:absolute;left:14px;right:14px;bottom:14px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:11px;display:flex;justify-content:space-between;color:var(--muted)}
+  .launch-line b{color:var(--ink)}
+
+  /* ---------- Agents ---------- */
+  .agents{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+  .agents .kicker{color:#8FA0FF}.agents .kicker::before{background:#8FA0FF}
+  .agents .sub{color:#A5ABBE}
+  .agents::before{content:"";position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(47,75,255,.35),transparent 60%);top:-400px;right:-300px;pointer-events:none}
+  .agent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:1000px){.agent-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.agent-grid{grid-template-columns:1fr}}
+  .agent{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:26px;
+    transition:background .3s,border-color .3s,transform .3s;position:relative;
+  }
+  .agent:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2);transform:translateY(-4px)}
+  .agent .av{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:20px;font-weight:700;font-size:18px;position:relative}
+  .agent .av::after{content:"";position:absolute;right:-3px;bottom:-3px;width:12px;height:12px;border-radius:50%;background:var(--mint);border:2px solid var(--dark)}
+  .agent h3{font-size:19px;letter-spacing:-.02em;margin-bottom:4px}
+  .agent .role{font-size:12px;color:#8FA0FF;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+  .agent p{color:#A5ABBE;font-size:14.5px;line-height:1.6}
+  .agent ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:6px}
+  .agent li{font-size:13px;color:#C9CDD9;display:flex;gap:8px;align-items:center}
+  .agent li::before{content:"";width:5px;height:5px;border-radius:50%;background:#8FA0FF;flex-shrink:0}
+  .agents-foot{margin-top:40px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(255,255,255,.1)}
+  .agents-foot p{color:#A5ABBE;font-size:15px;max-width:560px}
+  .agents-foot p b{color:#fff}
+
+  /* ---------- Board mock / features ---------- */
+  .feature-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  @media(max-width:960px){.feature-split{grid-template-columns:1fr;gap:40px}}
+  .feature-list{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+  .feature-list li{padding:20px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;cursor:pointer;transition:padding-left .3s}
+  .feature-list li .fi{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0;color:var(--accent);transition:.3s}
+  .feature-list li.active .fi{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .feature-list li h4{font-size:17px;letter-spacing:-.01em;margin-bottom:4px}
+  .feature-list li p{font-size:14.5px;color:var(--muted);max-height:0;overflow:hidden;transition:max-height .35s,opacity .3s;opacity:0}
+  .feature-list li.active p{max-height:100px;opacity:1}
+  .board{
+    background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 2px 4px rgba(14,18,32,.04),0 40px 80px -30px rgba(14,18,32,.25);
+    overflow:hidden;
+  }
+  .board-top{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .board-top .crumbs{font-size:13px;color:var(--muted)}
+  .board-top .crumbs b{color:var(--ink);font-weight:600}
+  .avatars{display:flex}
+  .avatars i{width:26px;height:26px;border-radius:50%;border:2px solid #fff;margin-left:-8px;display:grid;place-items:center;font-size:10px;font-weight:700;color:#fff}
+  .avatars i:first-child{margin-left:0}
+  .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px;background:#FBFAF7;min-height:380px}
+  @media(max-width:560px){.cols{grid-template-columns:repeat(2,1fr)}}
+  .col h5{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:flex;justify-content:space-between;margin:4px 4px 10px}
+  .col h5 span{background:#fff;border:1px solid var(--line);padding:0 6px;border-radius:5px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px;font-size:12px;box-shadow:0 1px 2px rgba(14,18,32,.04);transition:transform .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .card .lbl{display:inline-block;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;margin-bottom:6px}
+  .lbl.em{background:#E3E7FF;color:#2F4BFF}.lbl.li{background:#E0F7F0;color:#0F8E70}.lbl.lp{background:#FFE9DF;color:#C24A20}.lbl.ad{background:#FFF3D6;color:#9A6A00}
+  .card .ttl{font-weight:600;color:var(--ink);line-height:1.4}
+  .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;color:var(--muted);font-size:11px}
+  .card .meta i{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;font-size:8px;color:#fff;font-weight:700}
+  .card.hl{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .card .ai{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--accent);font-weight:600;margin-top:6px}
+  .card .ai::before{content:"✦"}
+
+  /* ---------- Integrations ---------- */
+  .integ{background:var(--bg-2)}
+  .integ-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:8px}
+  @media(max-width:900px){.integ-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.integ-grid{grid-template-columns:repeat(2,1fr)}}
+  .int{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:13px;font-weight:600;transition:transform .25s,box-shadow .25s}
+  .int:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .int i{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px}
+
+  /* ---------- Stats & testimonial ---------- */
+  .proof{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+  @media(max-width:900px){.proof{grid-template-columns:1fr}}
+  .quote{
+    background:var(--ink);color:#fff;border-radius:24px;padding:44px;display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;overflow:hidden;min-height:380px;
+  }
+  .quote::before{content:"“";position:absolute;font-family:Georgia,serif;font-size:300px;line-height:1;top:-40px;right:20px;color:rgba(255,255,255,.06)}
+  .quote blockquote{font-size:clamp(20px,2vw,26px);line-height:1.35;letter-spacing:-.02em;font-weight:500;position:relative}
+  .quote blockquote em{color:#B9C3FF;font-style:normal}
+  .quote .who{display:flex;align-items:center;gap:14px;margin-top:36px}
+  .quote .who i{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--gold));display:grid;place-items:center;font-weight:700;color:#fff}
+  .quote .who b{display:block;font-size:15px}
+  .quote .who span{font-size:13px;color:#A5ABBE}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px 26px;display:flex;flex-direction:column;justify-content:space-between}
+  .stat .n{font-size:clamp(38px,4vw,52px);letter-spacing:-.04em;font-weight:700;line-height:1}
+  .stat .n small{font-size:.5em;color:var(--accent);margin-left:2px}
+  .stat p{font-size:14px;color:var(--muted);margin-top:14px}
+  .stat.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .stat.accent p{color:rgba(255,255,255,.75)}
+  .stat.accent .n small{color:#fff}
+
+  /* ---------- Pricing ---------- */
+  .toggle{display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:var(--muted);margin:0 auto 44px;justify-content:center;width:100%}
+  .toggle .sw{width:48px;height:28px;border-radius:999px;background:#DCD8CF;position:relative;border:0;transition:background .25s}
+  .toggle .sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .25s}
+  .toggle .sw.on{background:var(--ink)}
+  .toggle .sw.on::after{left:23px}
+  .toggle .save{background:#E0F7F0;color:#0F8E70;font-size:12px;padding:2px 8px;border-radius:999px;font-weight:600}
+  .toggle span.active{color:var(--ink)}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  @media(max-width:900px){.plans{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px;display:flex;flex-direction:column;position:relative;transition:transform .3s,box-shadow .3s}
+  .plan:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .plan.feat{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .plan .badge{position:absolute;top:-12px;left:32px;background:var(--coral);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+  .plan h3{font-size:20px;letter-spacing:-.02em}
+  .plan .desc{font-size:14px;color:var(--muted);margin-top:6px;min-height:42px}
+  .plan.feat .desc{color:#A5ABBE}
+  .price{margin:24px 0 6px;display:flex;align-items:baseline;gap:6px}
+  .price .amt{font-size:48px;font-weight:700;letter-spacing:-.04em;line-height:1}
+  .price .per{font-size:14px;color:var(--muted)}
+  .plan.feat .per{color:#A5ABBE}
+  .price-note{font-size:12.5px;color:var(--muted);margin-bottom:22px}
+  .plan.feat .price-note{color:#A5ABBE}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin:22px 0 28px;flex:1}
+  .plan li{font-size:14.5px;display:flex;gap:10px;align-items:flex-start}
+  .plan li svg{flex-shrink:0;margin-top:3px;color:var(--accent)}
+  .plan.feat li svg{color:#B9C3FF}
+  .plan .btn{width:100%;justify-content:center}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-item button{width:100%;text-align:left;background:none;border:0;padding:22px 0;font-size:17px;font-weight:600;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink)}
+  .faq-item button .pl{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;flex-shrink:0;transition:transform .3s,background .3s}
+  .faq-item.open button .pl{transform:rotate(45deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+  .faq-item .ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .faq-item .ans p{color:var(--muted);padding:0 40px 22px 0;font-size:15.5px;line-height:1.65}
+
+  /* ---------- CTA ---------- */
+  .cta-wrap{padding:40px 0 104px}
+  .cta{
+    border-radius:28px;background:linear-gradient(135deg,#1A2560 0%,var(--accent) 55%,#7A5BFF 100%);color:#fff;
+    padding:clamp(48px,7vw,88px) clamp(28px,6vw,80px);text-align:center;position:relative;overflow:hidden;
+  }
+  .cta::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.15) 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%)}
+  .cta h2{position:relative;color:#fff}
+  .cta p{position:relative;color:rgba(255,255,255,.8);font-size:18px;margin:18px auto 34px;max-width:560px}
+  .cta .hero-ctas{position:relative}
+  .cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.4)}
+  .cta .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--line);padding:56px 0 28px;background:var(--bg)}
+  .foot-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:32px}
+  @media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.foot-grid{grid-template-columns:1fr}}
+  .foot-grid h6{font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin-bottom:16px}
+  .foot-grid a{display:block;font-size:14.5px;color:var(--muted);padding:5px 0;transition:color .2s}
+  .foot-grid a:hover{color:var(--ink)}
+  .foot-brand p{color:var(--muted);font-size:14.5px;margin:14px 0 20px;max-width:300px}
+  .newsletter{display:flex;gap:6px;max-width:320px}
+  .newsletter input{flex:1;border:1px solid var(--line-strong);border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;background:#fff;outline:none}
+  .newsletter input:focus{border-color:var(--accent)}
+  .newsletter button{border:0;background:var(--ink);color:#fff;border-radius:10px;padding:0 14px;font-weight:600;font-size:14px}
+  .foot-bottom{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .foot-bottom .soc{display:flex;gap:16px}
+  .foot-bottom .status{display:flex;align-items:center;gap:6px}
+  .foot-bottom .status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint)}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header id="header" class="">
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo" aria-label="Connected home">
+        <span class="logo-mark">
+          <svg viewBox="0 0 32 32" fill="none">
+            <circle cx="6" cy="16" r="4" fill="#0E1220"></circle>
+            <circle cx="26" cy="7" r="4" fill="#2F4BFF"></circle>
+            <circle cx="26" cy="25" r="4" fill="#FF6B3D"></circle>
+            <path d="M9.5 14.5L22.5 8.5M9.5 17.5L22.5 23.5" stroke="#0E1220" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        Connected
+      </a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#agents">Agents</a>
+        <a href="#platform">Platform</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#" class="btn btn-ghost">Sign in</a>
+        <a href="#cta" class="btn btn-primary">Book a demo</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#how">How it works</a>
+      <a href="#agents">Agents</a>
+      <a href="#platform">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta" class="btn btn-primary">Book a demo</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow a"></div>
+  <div class="hero-glow b"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow reveal in"><span class="dot"></span> Now with multi-agent campaign orchestration <span class="tag">NEW</span></div>
+      <h1>Your marketing team,<br>now with <span class="hl">AI teammates<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M3 10 C 60 2, 140 2, 297 8"></path></svg></span></h1>
+      <p class="lede">Connected gives every marketer a coordinated team of AI agents that plan strategy, write on-brand copy, and launch across every channel — while you stay in control.</p>
+      <div class="hero-ctas">
+        <a href="#cta" class="btn btn-primary">Start free trial <span class="arr">→</span></a>
+        <a href="#how" class="btn btn-ghost">▶&nbsp; Watch 2-min demo</a>
+      </div>
+      <p class="hero-note">No credit card required · <b>14-day</b> free trial · SOC 2 Type II</p>
+    </div>
+
+    <!-- Product canvas -->
+    <div class="canvas reveal in">
+      <div class="canvas-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="canvas-title">Campaign: <b style="color:var(--ink)">Workflows 2.0 Launch</b> <span class="pill">4 agents active</span></div>
+        <div style="width:54px"></div>
+      </div>
+      <div class="canvas-body">
+        <div class="graph" id="graph">
+          <svg viewBox="0 0 700 420" preserveAspectRatio="none" aria-hidden="true">
+            <path class="edge" d="M98 210 C 200 210, 220 75, 329 75"></path>
+            <path class="edge" d="M98 210 L 329 210"></path>
+            <path class="edge" d="M98 210 C 200 210, 220 345, 329 345"></path>
+            <path class="edge" d="M329 75 C 450 75, 470 210, 581 210"></path>
+            <path class="edge" d="M329 210 L 581 210"></path>
+            <path class="edge" d="M329 345 C 450 345, 470 210, 581 210"></path>
+            <path class="edge flow" id="e1" d="M98 210 C 200 210, 220 75, 329 75"></path>
+            <path class="edge flow on" id="e2" d="M98 210 L 329 210"></path>
+            <path class="edge flow" id="e3" d="M98 210 C 200 210, 220 345, 329 345"></path>
+            <path class="edge flow" id="e4" d="M329 75 C 450 75, 470 210, 581 210"></path>
+            <path class="edge flow" id="e5" d="M329 210 L 581 210"></path>
+            <path class="edge flow" id="e6" d="M329 345 C 450 345, 470 210, 581 210"></path>
+          </svg>
+          <div class="node brief done" data-n="brief"><span class="ic" style="background:#0E1220">▤</span><div>Brief<small>Q3 launch · ICP: Ops leads</small></div><span class="st"></span></div>
+          <div class="node strat done" data-n="strat"><span class="ic" style="background:#FF6B3D">◎</span><div>Strategist<small>Angles &amp; channel mix</small></div><span class="st"></span></div>
+          <div class="node copy active" data-n="copy"><span class="ic" style="background:#2F4BFF">✎</span><div>Copywriter<small>12 assets · brand voice</small></div><span class="st"></span></div>
+          <div class="node design" data-n="design"><span class="ic" style="background:#18C29C">◧</span><div>Designer<small>Visual variants</small></div><span class="st"></span></div>
+          <div class="node launch" data-n="launch"><span class="ic" style="background:#6A3ED9">↗</span><div>Launcher<small>HubSpot · LinkedIn · Web</small></div><span class="st"></span></div>
+        </div>
+        <aside class="activity">
+          <div class="act-head">Agent activity <span class="live">Live</span></div>
+          <div class="log" id="log"><div class="log-line"><span class="t">09:41</span><span class="who sys">SYSTEM</span><span class="msg">Brief received: Q3 launch — "Workflows 2.0". Kicking off 4 agents.</span></div><div class="log-line"><span class="t">09:41</span><span class="who strat">Strategist</span><span class="msg">Analyzing ICP, CRM segments, and 6 past launches…</span></div><div class="log-line"><span class="t">09:42</span><span class="who strat">Strategist</span><span class="msg">3 angles proposed → selected "Ship faster, argue less" (highest fit: 0.91).</span></div><div class="log-line"><span class="t">09:42</span><span class="who copy">Copywriter</span><span class="msg">Drafting 12 assets: <span class="cursor"></span></span></div></div>
+          <div class="act-foot">
+            <div class="fake-input">Ask the team anything…</div>
+            <button class="send" aria-label="Send">↑</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOGOS ================= -->
+<div class="logos">
+  <div class="wrap reveal in">
+    <p>Trusted by marketing teams at</p>
+    <div class="logo-row">
+      <span><i></i>Northwind</span>
+      <span class="serif">Lumen &amp; Co.</span>
+      <span>Kestrel</span>
+      <span><i style="border-radius:50%"></i>Orbital</span>
+      <span class="serif">Fable</span>
+      <span>Halcyon</span>
+      <span><i style="transform:rotate(45deg);border-radius:3px"></i>Vantage</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal in">
+      <div class="kicker">How it works</div>
+      <h2>From a rough brief to a live campaign in an afternoon.</h2>
+      <p class="sub">Connected replaces the handoffs, the doc chaos, and the 14-tab workflow with a single place where agents and people work the same campaign.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal d1 in inview">
+        <div class="num">01 — PLAN</div>
+        <h3>Brief once, get a strategy back</h3>
+        <p>Drop in a one-liner, a deck, or a Slack thread. The Strategist agent builds audience segments, messaging angles, and a channel plan grounded in your past performance.</p>
+        <div class="step-vis">
+          <div class="plan-list">
+            <div class="plan-item done"><span class="chk">✓</span>Audience: Ops leaders, 200–2k emp.<span class="bar"><i></i></span></div>
+            <div class="plan-item done"><span class="chk">✓</span>Angle: “Ship faster, argue less”<span class="bar"><i></i></span></div>
+            <div class="plan-item"><span class="chk"></span>Channel mix &amp; budget split<span class="bar"><i></i></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="step reveal d2 in inview">
+        <div class="num">02 — WRITE</div>
+        <h3>Every asset, in your voice</h3>
+        <p>The Copywriter and Designer agents draft emails, landing pages, social posts, and ads from your brand kit — with variants ready for testing and a Reviewer checking claims.</p>
+        <div class="step-vis">
+          <div class="write-doc">
+            <div class="typed" id="typed">Workflows 2.0 is here.</div>
+            <div class="line" style="width:92%"></div>
+            <div class="line" style="width:78%"></div>
+            <div class="line" style="width:60%"></div>
+            <div class="variant"><b>3 variants</b> · Tone: confident</div>
+          </div>
+        </div>
+      </div>
+      <div class="step reveal d3 in inview">
+        <div class="num">03 — LAUNCH</div>
+        <h3>Approve, schedule, ship everywhere</h3>
+        <p>One approval pushes finished assets to your CRM, ad platforms, CMS, and social — with UTMs, audiences, and reporting wired up automatically.</p>
+        <div class="step-vis">
+          <div class="launch-grid">
+            <div class="chan"><i class="ci" style="background:#FF7A59"></i>HubSpot<span class="status">Scheduled</span></div>
+            <div class="chan"><i class="ci" style="background:#0A66C2"></i>LinkedIn<span class="status">Scheduled</span></div>
+            <div class="chan"><i class="ci" style="background:#000"></i>Webflow<span class="status">Live</span></div>
+          </div>
+          <div class="launch-line"><span>Go-live</span><b>Tue, 9:00 AM ET</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AGENTS ================= -->
+<section class="agents" id="agents">
+  <div class="wrap">
+    <div class="sec-head reveal in">
+      <div class="kicker">Meet the agents</div>
+      <h2>Specialists that work like a team, not a chatbot.</h2>
+      <p class="sub">Each agent has a defined role, memory of your brand and campaigns, and the ability to hand work to the next agent — or to a human when it matters.</p>
+    </div>
+    <div class="agent-grid">
+      <div class="agent reveal d1 in">
+        <div class="av" style="background:linear-gradient(135deg,#FF6B3D,#FFA07A)">S</div>
+        <h3>Strategist</h3>
+        <div class="role">Plans</div>
+        <p>Turns a brief into positioning, segments, and a channel plan using your CRM data and past results.</p>
+        <ul><li>ICP &amp; segment analysis</li><li>Messaging angles</li><li>Budget &amp; channel mix</li></ul>
+      </div>
+      <div class="agent reveal d2 in">
+        <div class="av" style="background:linear-gradient(135deg,#2F4BFF,#8FA0FF)">C</div>
+        <h3>Copywriter</h3>
+        <div class="role">Writes</div>
+        <p>Drafts every asset in your voice — emails, landing pages, ads, social — with variants built for testing.</p>
+        <ul><li>Brand voice guardrails</li><li>Multi-format drafting</li><li>A/B variant generation</li></ul>
+      </div>
+      <div class="agent reveal d3 in">
+        <div class="av" style="background:linear-gradient(135deg,#18C29C,#7FE3CB)">D</div>
+        <h3>Designer</h3>
+        <div class="role">Visualizes</div>
+        <p>Produces on-brand visuals, ad creative, and page layouts straight from your design system.</p>
+        <ul><li>Brand-kit aware</li><li>Ad &amp; social sizes</li><li>Layout suggestions</li></ul>
+      </div>
+      <div class="agent reveal d4 in">
+        <div class="av" style="background:linear-gradient(135deg,#6A3ED9,#B79CFF)">L</div>
+        <h3>Launcher</h3>
+        <div class="role">Ships</div>
+        <p>Publishes approved work to your stack, sets up tracking, and reports back on what’s working.</p>
+        <ul><li>CRM, ads, CMS, social</li><li>UTMs &amp; audiences</li><li>Performance digests</li></ul>
+      </div>
+    </div>
+    <div class="agents-foot reveal in">
+      <p><b>Plus a Reviewer agent</b> on every campaign — checking claims, compliance, tone, and accessibility before anything reaches an approver.</p>
+      <a href="#cta" class="btn btn-light">See the agents in action <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLATFORM ================= -->
+<section id="platform">
+  <div class="wrap">
+    <div class="feature-split">
+      <div class="reveal in">
+        <div class="kicker">The platform</div>
+        <h2>One workspace where humans and agents share the board.</h2>
+        <p class="sub">See every campaign, every asset, and every agent decision in one place. Approve with a click, edit inline, and never lose the thread.</p>
+        <ul class="feature-list" id="featureList">
+          <li class="active">
+            <div class="fi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 10h18M9 4v16"></path></svg>
+            </div>
+            <div><h4>Campaign board</h4><p>Track assets from plan to live. Agents move cards as they work; you see exactly what needs a human eye.</p></div>
+          </li>
+          <li>
+            <div class="fi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>
+            </div>
+            <div><h4>Brand memory</h4><p>Voice, visual identity, claims library, and past winners — learned once, applied everywhere, versioned like code.</p></div>
+          </li>
+          <li>
+            <div class="fi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>
+            </div>
+            <div><h4>Approval &amp; governance</h4><p>Role-based approvals, legal review queues, and a full audit trail of every agent action. Nothing ships without a sign-off.</p></div>
+          </li>
+          <li>
+            <div class="fi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path></svg>
+            </div>
+            <div><h4>Closed-loop learning</h4><p>Results flow back from your channels so the Strategist gets smarter with every launch — not just every model update.</p></div>
+          </li>
+        </ul>
+      </div>
+      <div class="board reveal d2 in">
+        <div class="board-top">
+          <div class="crumbs">Campaigns / <b>Workflows 2.0 Launch</b></div>
+          <div class="avatars">
+            <i style="background:#FF6B3D">S</i><i style="background:#2F4BFF">C</i><i style="background:#18C29C">D</i><i style="background:#0E1220">JM</i>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="col">
+            <h5>Plan <span>2</span></h5>
+            <div class="card"><span class="lbl ad">Paid</span><div class="ttl">Retargeting audience — trial drop-offs</div><div class="meta"><span>Strategist</span><i style="background:#FF6B3D">S</i></div></div>
+            <div class="card"><span class="lbl em">Email</span><div class="ttl">Nurture sequence outline (5 touches)</div><div class="meta"><span>Draft</span><i style="background:#FF6B3D">S</i></div></div>
+          </div>
+          <div class="col">
+            <h5>Draft <span>3</span></h5>
+            <div class="card hl"><span class="lbl lp">Landing</span><div class="ttl">/workflows-2 hero + feature grid</div><div class="ai">Writing variant 3 of 3</div><div class="meta"><span>Copywriter</span><i style="background:#2F4BFF">C</i></div></div>
+            <div class="card"><span class="lbl li">LinkedIn</span><div class="ttl">Founder post — “argue less” angle</div><div class="meta"><span>Copywriter</span><i style="background:#2F4BFF">C</i></div></div>
+            <div class="card"><span class="lbl ad">Paid</span><div class="ttl">4 static creatives, 1080×1080</div><div class="ai">Rendering</div><div class="meta"><span>Designer</span><i style="background:#18C29C">D</i></div></div>
+          </div>
+          <div class="col">
+            <h5>Review <span>2</span></h5>
+            <div class="card"><span class="lbl em">Email</span><div class="ttl">Launch announcement — customers</div><div class="meta"><span style="color:#9A6A00">2 claims flagged</span><i style="background:#0E1220">JM</i></div></div>
+            <div class="card"><span class="lbl li">LinkedIn</span><div class="ttl">Carousel — 6 slides</div><div class="meta"><span>Awaiting approval</span><i style="background:#0E1220">JM</i></div></div>
+          </div>
+          <div class="col">
+            <h5>Live <span>1</span></h5>
+            <div class="card"><span class="lbl lp">Landing</span><div class="ttl">Waitlist page</div><div class="meta"><span style="color:#0F8E70">↑ 4.8% conv.</span><i style="background:#6A3ED9">L</i></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTEGRATIONS ================= -->
+<section class="integ">
+  <div class="wrap">
+    <div class="sec-head center reveal in">
+      <div class="kicker">Integrations</div>
+      <h2>Plugs into the stack you already run.</h2>
+      <p class="sub">Two-way sync with your CRM, ad platforms, CMS, and analytics — so agents work with real data and ship to real channels.</p>
+    </div>
+    <div class="integ-grid reveal in">
+      <div class="int"><i style="background:#FF7A59">H</i>HubSpot</div>
+      <div class="int"><i style="background:#00A1E0">S</i>Salesforce</div>
+      <div class="int"><i style="background:#0A66C2">in</i>LinkedIn Ads</div>
+      <div class="int"><i style="background:#4285F4">G</i>Google Ads</div>
+      <div class="int"><i style="background:#1877F2">M</i>Meta</div>
+      <div class="int"><i style="background:#146EF5">W</i>Webflow</div>
+      <div class="int"><i style="background:#611F69">#</i>Slack</div>
+      <div class="int"><i style="background:#000">N</i>Notion</div>
+      <div class="int"><i style="background:#F24E1E">F</i>Figma</div>
+      <div class="int"><i style="background:#5E5CE6">M</i>Marketo</div>
+      <div class="int"><i style="background:#E37400">A</i>GA4</div>
+      <div class="int"><i style="background:#0E1220">+</i>40 more</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROOF ================= -->
+<section>
+  <div class="wrap">
+    <div class="proof">
+      <div class="quote reveal in">
+        <blockquote>“We used to take six weeks to get a product launch out the door. With Connected, the first draft of the entire campaign was waiting for us <em>the morning after we wrote the brief</em>. Our team spends its time on judgment now, not production.”</blockquote>
+        <div class="who"><i>MR</i><div><b>Maya Reyes</b><span>VP Marketing, Northwind</span></div></div>
+      </div>
+      <div class="stats">
+        <div class="stat reveal d1 in"><div class="n"><span data-count="6">6</span><small>×</small></div><p>faster from brief to first full campaign draft</p></div>
+        <div class="stat accent reveal d2 in"><div class="n"><span data-count="41">41</span><small>%</small></div><p>average lift in campaign output per marketer</p></div>
+        <div class="stat reveal d3 in"><div class="n"><span data-count="12">12</span><small>k+</small></div><p>campaigns launched through Connected last quarter</p></div>
+        <div class="stat reveal d4 in"><div class="n"><span data-count="98">98</span><small>%</small></div><p>of agent drafts approved with light or no edits</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section id="pricing" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head center reveal in">
+      <div class="kicker">Pricing</div>
+      <h2>Simple per-seat pricing. Agents included.</h2>
+      <p class="sub">Every plan comes with the full agent team. Scale seats as your marketing org grows.</p>
+    </div>
+    <div class="toggle reveal in">
+      <span id="lblMonthly">Monthly</span>
+      <button class="sw on" id="billingToggle" aria-label="Toggle annual billing"></button>
+      <span class="active" id="lblAnnual">Annual</span>
+      <span class="save">Save 20%</span>
+    </div>
+    <div class="plans">
+      <div class="plan reveal d1 in">
+        <h3>Team</h3>
+        <p class="desc">For small marketing teams getting their first campaigns out with AI.</p>
+        <div class="price"><span class="amt" data-m="59" data-a="49">$49</span><span class="per">/ seat / mo</span></div>
+        <p class="price-note">Billed annually · min 3 seats</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>All 5 agents</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>10 active campaigns</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>1 brand memory</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Core integrations</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Email support</li>
+        </ul>
+        <a href="#cta" class="btn btn-ghost">Start free trial</a>
+      </div>
+      <div class="plan feat reveal d2 in">
+        <span class="badge">MOST POPULAR</span>
+        <h3>Business</h3>
+        <p class="desc">For growing teams running campaigns across many channels and brands.</p>
+        <div class="price"><span class="amt" data-m="119" data-a="95">$95</span><span class="per">/ seat / mo</span></div>
+        <p class="price-note">Billed annually · min 5 seats</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Everything in Team</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Unlimited campaigns</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>5 brand memories</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Approval workflows &amp; audit log</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>All integrations + API</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Priority support</li>
+        </ul>
+        <a href="#cta" class="btn btn-light">Start free trial</a>
+      </div>
+      <div class="plan reveal d3 in">
+        <h3>Enterprise</h3>
+        <p class="desc">For global marketing orgs with security, compliance, and scale requirements.</p>
+        <div class="price"><span class="amt">Custom</span></div>
+        <p class="price-note">Annual contract · volume pricing</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Everything in Business</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>SSO / SAML &amp; SCIM</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Private model deployment</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Custom agents &amp; skills</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"></path></svg>Dedicated CSM &amp; SLAs</li>
+        </ul>
+        <a href="#cta" class="btn btn-primary">Talk to sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="kicker">FAQ</div>
+      <h2>Questions marketers ask us.</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item open">
+        <button aria-expanded="true">Will the copy actually sound like our brand?<span class="pl">+</span></button>
+        <div class="ans" style="max-height: 99px;"><p>Yes. Connected builds a versioned brand memory from your style guide, past campaigns, and top-performing assets. Every agent draft is checked against tone rules, banned phrases, and your claims library before you see it — and every edit you make teaches it further.</p></div>
+      </div>
+      <div class="faq-item">
+        <button aria-expanded="false">Do agents publish anything without human approval?<span class="pl">+</span></button>
+        <div class="ans"><p>Never by default. Agents can plan, draft, and stage work, but publishing requires an approval from someone with the right role. You can loosen this for low-risk channels if you choose, and every action is logged in a full audit trail.</p></div>
+      </div>
+      <div class="faq-item">
+        <button aria-expanded="false">How is our data handled?<span class="pl">+</span></button>
+        <div class="ans"><p>Your data is encrypted at rest and in transit, isolated per workspace, and never used to train shared models. Connected is SOC 2 Type II certified and GDPR-compliant; Enterprise customers can opt for private model deployment and regional data residency.</p></div>
+      </div>
+      <div class="faq-item">
+        <button aria-expanded="false">Which AI models power the agents?<span class="pl">+</span></button>
+        <div class="ans"><p>Connected is model-agnostic. Each agent routes to the best model for its task across leading providers, and Enterprise customers can bring their own keys or run on private endpoints.</p></div>
+      </div>
+      <div class="faq-item">
+        <button aria-expanded="false">How long does it take to get set up?<span class="pl">+</span></button>
+        <div class="ans"><p>Most teams connect their stack and launch their first agent-built campaign within a week. Brand memory setup takes about an hour with your existing guidelines and a handful of past assets.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<div class="cta-wrap" id="cta">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Give your team its AI teammates.</h2>
+      <p>Start a free 14-day trial or book a walkthrough with our team. Your first campaign draft is on us.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn btn-light">Start free trial <span class="arr">→</span></a>
+        <a href="#" class="btn btn-ghost">Book a demo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 32 32" fill="none">
+              <circle cx="6" cy="16" r="4" fill="#0E1220"></circle>
+              <circle cx="26" cy="7" r="4" fill="#2F4BFF"></circle>
+              <circle cx="26" cy="25" r="4" fill="#FF6B3D"></circle>
+              <path d="M9.5 14.5L22.5 8.5M9.5 17.5L22.5 23.5" stroke="#0E1220" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          Connected
+        </a>
+        <p>The AI platform where marketing teams plan, write, and launch campaigns with a coordinated team of agents.</p>
+        <form class="newsletter" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓';">
+          <input type="email" placeholder="Work email" required="" aria-label="Work email" style="">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div>
+        <h6>Product</h6>
+        <a href="#agents">Agents</a><a href="#platform">Platform</a><a href="#">Integrations</a><a href="#pricing">Pricing</a><a href="#">Changelog</a>
+      </div>
+      <div>
+        <h6>Solutions</h6>
+        <a href="#">Product marketing</a><a href="#">Demand generation</a><a href="#">Content teams</a><a href="#">Agencies</a>
+      </div>
+      <div>
+        <h6>Resources</h6>
+        <a href="#">Blog</a><a href="#">Guides</a><a href="#">Customer stories</a><a href="#">Help center</a><a href="#">API docs</a>
+      </div>
+      <div>
+        <h6>Company</h6>
+        <a href="#">About</a><a href="#">Careers</a><a href="#">Security</a><a href="#">Privacy</a><a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Connected Labs, Inc. All rights reserved.</span>
+      <span class="status">All systems operational</span>
+      <div class="soc"><a href="#">LinkedIn</a><a href="#">X</a><a href="#">YouTube</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------- Nav ----------
+  const header=document.getElementById('header');
+  const onScroll=()=>header.classList.toggle('scrolled',window.scrollY>10);
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  const burger=document.getElementById('burger');
+  const mobile=document.getElementById('mobileMenu');
+  burger.addEventListener('click',()=>{
+    const open=burger.classList.toggle('open');
+    mobile.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+  });
+  mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');mobile.classList.remove('open');}));
+
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  // ---------- Reveal on scroll ----------
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(e.target.classList.contains('step'))e.target.classList.add('inview');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ---------- Counters ----------
+  const cio=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target,end=+el.dataset.count,dur=1400,start=performance.now();
+      const tick=t=>{
+        const p=Math.min(1,(t-start)/dur),ease=1-Math.pow(1-p,3);
+        el.textContent=Math.round(end*ease);
+        if(p<1)requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);cio.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+  // ---------- Hero agent simulation ----------
+  const log=document.getElementById('log');
+  const nodes={};document.querySelectorAll('.node').forEach(n=>nodes[n.dataset.n]=n);
+  const edge=id=>document.getElementById(id);
+  const script=[
+    {t:'09:41',who:'sys',cls:'sys',msg:'Brief received: Q3 launch — "Workflows 2.0". Kicking off 4 agents.',node:'brief',edges:[]},
+    {t:'09:41',who:'Strategist',cls:'strat',msg:'Analyzing ICP, CRM segments, and 6 past launches…',node:'strat',edges:['e1']},
+    {t:'09:42',who:'Strategist',cls:'strat',msg:'3 angles proposed → selected "Ship faster, argue less" (highest fit: 0.91).',node:'strat',edges:['e1']},
+    {t:'09:42',who:'Copywriter',cls:'copy',msg:'Drafting 12 assets: 4 emails, 5 LinkedIn posts, 1 landing page, 2 ads.',node:'copy',edges:['e2']},
+    {t:'09:44',who:'Designer',cls:'design',msg:'Generating 8 visual variants from brand kit v3.2.',node:'design',edges:['e3']},
+    {t:'09:46',who:'Reviewer',cls:'review',msg:'2 claims flagged for legal ("2× faster", "zero setup"). Routed to J. Morgan.',node:'copy',edges:['e2','e3']},
+    {t:'09:47',who:'sys',cls:'sys',msg:'J. Morgan approved 11/12 assets · 1 edit applied.',node:'brief',edges:[]},
+    {t:'09:48',who:'Launcher',cls:'launch',msg:'Scheduled to HubSpot + LinkedIn + Webflow · Tue 9:00 AM ET. UTMs attached.',node:'launch',edges:['e4','e5','e6']},
+  ];
+  let i=0,timer;
+  function setActive(nodeKey,edges){
+    Object.values(nodes).forEach(n=>n.classList.remove('active'));
+    document.querySelectorAll('.edge.flow').forEach(e=>e.classList.remove('on'));
+    if(nodeKey){nodes[nodeKey].classList.add('active');}
+    edges.forEach(id=>edge(id).classList.add('on'));
+  }
+  function addLine(item){
+    const div=document.createElement('div');
+    div.className='log-line';
+    div.innerHTML=`<span class="t">${item.t}</span><span class="who ${item.cls}">${item.who==='sys'?'SYSTEM':item.who}</span><span class="msg"></span>`;
+    log.appendChild(div);
+    const msg=div.querySelector('.msg');
+    let c=0;
+    const cur=document.createElement('span');cur.className='cursor';msg.appendChild(cur);
+    const typeTick=()=>{
+      if(c<item.msg.length){
+        cur.insertAdjacentText('beforebegin',item.msg[c++]);
+        setTimeout(typeTick,10+Math.random()*18);
+      }else{cur.remove();}
+    };
+    typeTick();
+    log.scrollTop=log.scrollHeight;
+  }
+  function step(){
+    if(i>=script.length){
+      // mark everything done, pause, then reset
+      Object.values(nodes).forEach(n=>{n.classList.remove('active');n.classList.add('done');});
+      document.querySelectorAll('.edge.flow').forEach(e=>e.classList.remove('on'));
+      timer=setTimeout(()=>{
+        log.innerHTML='';i=0;
+        Object.values(nodes).forEach(n=>n.classList.remove('done'));
+        step();
+      },4200);
+      return;
+    }
+    const item=script[i++];
+    if(item.node!=='brief'||i===1){
+      // mark previous node done
+      Object.values(nodes).forEach(n=>{if(n.classList.contains('active'))n.classList.add('done');});
+    }
+    setActive(item.node,item.edges);
+    addLine(item);
+    timer=setTimeout(step,2300+item.msg.length*14);
+  }
+  step();
+
+  // ---------- Typed headline in "Write" step ----------
+  const typedEl=document.getElementById('typed');
+  const headlines=['Ship faster. Argue less.','Your team, finally in sync.','Workflows 2.0 is here.'];
+  let hi=0,hc=0,deleting=false;
+  function typeLoop(){
+    const cur=headlines[hi];
+    if(!deleting){
+      typedEl.textContent=cur.slice(0,++hc);
+      if(hc===cur.length){deleting=true;return setTimeout(typeLoop,1800);}
+      setTimeout(typeLoop,55);
+    }else{
+      typedEl.textContent=cur.slice(0,--hc);
+      if(hc===0){deleting=false;hi=(hi+1)%headlines.length;return setTimeout(typeLoop,400);}
+      setTimeout(typeLoop,28);
+    }
+  }
+  typeLoop();
+
+  // ---------- Feature list accordion ----------
+  const items=document.querySelectorAll('#featureList li');
+  items.forEach(li=>li.addEventListener('click',()=>{items.forEach(x=>x.classList.remove('active'));li.classList.add('active');}));
+
+  // ---------- Pricing toggle ----------
+  const sw=document.getElementById('billingToggle');
+  const lm=document.getElementById('lblMonthly'),la=document.getElementById('lblAnnual');
+  sw.addEventListener('click',()=>{
+    const annual=sw.classList.toggle('on');
+    lm.classList.toggle('active',!annual);la.classList.toggle('active',annual);
+    document.querySelectorAll('.amt[data-m]').forEach(a=>{
+      a.style.opacity=0;
+      setTimeout(()=>{a.textContent='$'+(annual?a.dataset.a:a.dataset.m);a.style.transition='opacity .25s';a.style.opacity=1;},120);
+    });
+    document.querySelectorAll('.price-note').forEach(n=>{
+      if(n.textContent.includes('Billed'))n.textContent=n.textContent.replace(/Billed \w+/,annual?'Billed annually':'Billed monthly');
+    });
+  });
+
+  // ---------- FAQ ----------
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const btn=item.querySelector('button'),ans=item.querySelector('.ans');
+    if(item.classList.contains('open'))ans.style.maxHeight=ans.scrollHeight+'px';
+    btn.addEventListener('click',()=>{
+      const open=item.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
+      ans.style.maxHeight=open?ans.scrollHeight+'px':'0px';
+    });
+  });
+  window.addEventListener('resize',()=>{
+    document.querySelectorAll('.faq-item.open .ans').forEach(a=>a.style.maxHeight=a.scrollHeight+'px');
+  });
+})();
+</script>
+
+</body></html>
